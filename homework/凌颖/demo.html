@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html id="html">
+<head>
+<meta charset="utf-8" />
+<title>demo</title>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<style type="text/css">
+#div1 {
+    width:200px;
+    height:200px;
+    background:#eee;
+    border:1px solid #ccc;
+    
+}
+</style>
+<script type="text/javascript">
+$(function(){
+    
+    /*
+    $('button').on('click',function(){
+        第一个参数传字符串（‘fast’）（‘slow’）或是直接传数字
+        $('#div1').hide(2000);
+        第二个参数传那种缓动方式
+        $('#div1').hide('slow',’linear‘)
+        第三个参数可以传完成动画后的参数
+        $('#div1').hide('slow',function(){
+                alert('hsj');
+            })
+            
+        show方法同上
+        $('#div1').show('slow')
+        
+        toggle方法同上
+        $('#div1').toggle('slow')
+        
+        $('#div1').toggle('slow',function(){
+            console.log('sjdaiwjn');
+            })
+            
+        
+        });
+    向下滑动
+     $('button').on('click',function(){
+          $('#div1').slideDown(1000,function(){
+            console.log('sjdaiwjn');
+            });
+        });
+        向上滑动
+    $('button').on('click',function(){
+          $('#div1').slideUp(1000,function(){
+            console.log('sjdaiwjn');
+            });
+        });
+        切换滑动
+          */
+    $('button').on('click',function(){
+          $('#div1').slideToggle(1000,function(){
+            console.log('sjdaiwjn');
+            });
+        });
+      
+});
+</script>
+</head>
+<body id="body">
+    <button>点我试试</button>
+    <div id="div1"></div>
+</body>git@github.com:jirengu-inc/jrg-renwu3.git
+</html>
