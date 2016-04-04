@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html id="html">
+<head>
+<meta charset="utf-8" />
+<title>demo</title>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<style type="text/css">
+.header{
+	width:1040px;
+	height:77px;
+	border:1px solid #ccc;
+	font-size:23px;
+}
+.header ul li{
+	display: inline-block;
+	color:#444;
+	margin:auto 30px;
+}
+.header ul li:hover{
+	color:red;
+}
+</style>
+</head>
+<body>
+  <div class="header">
+	  <ul>
+		  <li><a>主页</a></li>
+		  <li><a>课程</a></li>
+		  <li><a>视频</a></li>
+		  <li><a>关于</a></li>
+	  </ul>
+  </div>
+	<form method="post" action="b.php" >
+		<div>姓名：<input type="text" name="name" placeholder="用户名"/></div>
+		<div>密码：<input type="password" name="password"/></div>
+		<div>性别:<input id="man" type="radio" checked="checked" name="sex"/><label for="man">男</label> 
+		     <input id="women" type="radio" name="sex"/><label for="women">女</label>
+		</div>
+		<div>取向:<input id="nan" type="radio" name="sexual"/><label for="nan">男</label> 
+		     <input id="nv" type="radio" name="sexual" checked="checked"/><label for="nv">女</label>
+		</div>
+		<div>爱好:<input id="dota" type="checkbox" name="sexual"/><label for="data">dota</label> 
+		     <input id="travel" type="checkbox" checked="checked" name="sexual"/><label for="travel">旅游</label>
+			 <input id="pet" type="checkbox" checked="checked" name="sexual"/><label for="pet">宠物</label>
+		</div>	
+		<div>
+		评论：<textarea name="comment" cols="60" rows="15" placeholder="ddd"></textarea>
+		</div>
+		<div>
+		my car：<select name="car">
+					<option value="sabo">萨博</option>
+					<option value="aodi">奥迪</option>
+					<option value="baoma">宝马</option>
+				</select> 
+		</div>
+	</form>
+</body>
+</html>
