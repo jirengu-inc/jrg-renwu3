@@ -1,0 +1,134 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+img {
+  border: none;
+}
+input,
+select,
+textarea {
+  outline: none;
+  border: none;
+  background: none;
+}
+textarea {
+  resize: none;
+}
+a {
+  text-decoration: none;
+}
+* {
+  font-family: "微软雅黑";
+}
+#header {
+  background: #333;
+  width: 100%;
+  height: 120px;
+}
+ul.nav {
+  width: 100%;
+  height: 40px;
+  padding: 40px 40px;
+}
+ul.nav li {
+  color: #008000;
+  list-style: none;
+  float: left;
+  margin-right: 50px;
+}
+ul.nav li a {
+  color: #008000;
+  text-decoration: none;
+  font-size: 36px;
+}
+ul.nav li a:hover {
+  color: #59b200;
+}
+#content {
+  width: 100%;
+  padding: 20px;
+}
+#content .title {
+  text-align: center;
+  font-size: 60px;
+  margin: 80px auto;
+  color: #008000;
+}
+#content .desc {
+  margin: 30px auto;
+  text-indent: 2em;
+  color: #888888;
+  font-size: 20px;
+  font-weight: bold;
+}
+#content h3 {
+  font-size: 32px;
+  font-weight: bold;
+  padding: 14px 0;
+  border-bottom: 1px dashed #888888;
+}
+#content h3 + p {
+  color: #000;
+  font-size: 26px;
+  text-indent: 2em;
+  margin: 60px auto;
+}
+ul.tree {
+  margin-left: 2em;
+}
+ul.tree > li ul {
+  display: none;
+}
+ul.tree > li > a {
+  color: #008000;
+  font-size: 30px;
+}
+ul.tree > li > a:hover {
+  color: #59b200;
+}
+ul.tree > li.open.has-child ul {
+  margin-left: 2em;
+  font-size: 27px;
+  color: #666;
+  display: block;
+}
+ul.tree > li.open.has-child:before {
+  content: "-";
+  font-size: 30px;
+  color: #008000;
+}
+ul.tree > li:nth-of-type(2):before,
+ul.tree > li:nth-of-type(3):before,
+ul.tree > li:nth-of-type(4):before {
+  content: "+";
+  font-size: 30px;
+  color: #008000;
+}
+#footer a,
+#footer span,
+#footer div,
+#footer button {
+  display: inline-block;
+  border: none;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  font-size: 20px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+#footer .btn {
+  width: 60px;
+  height: 30px;
+  border-radius: 5px;
+  background-color: #c14d21;
+}
+#footer .btn:hover {
+  background-color: #e25f31;
+}
