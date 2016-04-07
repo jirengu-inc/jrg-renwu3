@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>For task 7-1</title>
+	<style>
+	*{
+		font-family: "微软雅黑",sans-serif;
+	}
+	a{
+		color:#047604;
+		text-decoration:none;
+	}
+	#header{
+		background: #333333;
+	}
+	#header li{
+		display: inline-block;
+		line-height: 50px;
+		list-style: none;
+		font-size: 20px;
+		padding-right:10px; 
+	}
+	p{
+		text-indent:2em;
+	}
+	.tree>li{
+		list-style-image:url('jia.png'); 
+	}
+	.tree li:first-child,.tree li:nth-child(2){
+		list-style-image:url('jian.png'); 
+	}
+	.has-child li{
+		list-style:none!important;
+	}
+	</style>
+</head>					  		
+<body>
+    <div id="header">
+        <ul class="nav">
+          <li><a href="">首页</a></li>
+          <li><a href="">简介</a></li>
+          <li><a href="">作品</a></li>
+          <li><a href="">关于</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <h1 class="title" style="text-align: center; color:#047604">前端学习</h1>
+        <p class="desc" style="color:gray">这是我的前端学习笔记</p>
+        <h3>第一章</h3>
+        <p>这是我的前端学习笔
+            记这是我是<span class="text-less"> 特别的</span> 的前端学习笔
+            记这是我的前端学习笔记这是
+            我的前端学习,笔记这是我, 的前端, 
+            学习笔记
+        </p>
+        <h3>第二章</h3>
+        <p>这是我的前端学习笔
+            记这是我的前端学习笔
+            记这是我的<span class="text-less"> 特别的</span>前端学习笔记这是
+            我的前端学习,笔记这是我, 的前端, 
+            学习笔记
+        </p>
+        <ul class="tree">
+          <li class="open has-child">
+            <a href="#">记笔记</a>
+            <ul>
+              <li>jscode</li>
+              <li>博客</li>
+              <li>Github</li>
+            </ul>
+          </li>
+          <li class="has-child">
+              <a href="#">做作业</a>
+              <ul>
+                  <li>jscode</li>
+                  <li>博客</li>
+                  <li>Github</li>
+                </ul>
+          </li>
+          <li><a href="#">多思考</a></li>
+          <li><a href="#">多练习</a></li>
+        </ul>
+    </div>
+    <div id="footer"></div>
+
+</body>
+</html>
