@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task-10-1</title>
+	<style>
+	body{
+		margin:0;
+		padding: 0;
+	}
+	ul{
+		margin:0;
+		padding:0;
+	}
+	li{
+		list-style:none;
+		display:inline-block;
+		color:white;
+	}
+	li:hover{
+		color:blue;
+		cursor:pointer;
+	}
+	.header{
+		background-color: #000;
+		height: 50px;
+	}
+	.header-center{
+		height: 50px;
+		width: 900px;
+		margin:0 auto;
+
+	}
+	.header-center .pic{
+		background:url('img/pic.png') no-repeat;
+		background-size:contain ;
+		float:left;
+		height: 50px;
+		width:200px;
+	}
+	.header-center .nav{
+		float:right;
+		height: 50px;
+	}
+	.header-center .nav li{
+		margin-right:25px;
+		margin-top:15px;
+	}
+	.content{
+		width: 900px;
+		height: 550px;
+		margin:0 auto;
+		margin-top:10px;
+
+	}
+	.content-left{
+		width: 200px;
+		height: 550px;
+		float:left;
+		background-color: #ccc;
+	}
+	.content-right{
+		width: 690px;
+		height: 200px;
+		/* margin-left: 10px; */
+		float:right;
+		background-color: #ccc;
+	}
+	.content-right h1{
+		margin-top:50px;
+
+	}
+	.content-right h1,p{
+		margin-left:10px;
+	}
+	.footer{
+		background-color: #333;
+		height: 50px;
+	}
+	.footer-center{
+		height: 50px;
+		width: 900px;
+		margin:0 auto;
+
+	}
+	.footer-center li{
+		margin-left:5px;
+		margin-top:15px;
+	}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<div class="header-center">
+			<div class="pic"></div>
+			<div class="nav">
+				<ul>
+					<li>技能</li>
+					<li>经历</li>
+					<li>作品</li>
+					<li>关于</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div class="content-left"></div>
+		<div class="content-right">
+			<h1>我的作品</h1>
+			<p>生活很美好<br>心情不错<br>代码写得很漂亮<br></p>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footer-center">
+			<ul>
+				<li>饥人谷</li>
+				<li>JSCODE</li>
+				<li>JSBIN</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>
