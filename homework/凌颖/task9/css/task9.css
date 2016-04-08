@@ -1,0 +1,121 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+img {
+  border: none;
+}
+input,
+select,
+textarea {
+  outline: none;
+  border: none;
+  background: none;
+}
+textarea {
+  resize: none;
+}
+a {
+  text-decoration: none;
+}
+* {
+  font-family: "微软雅黑";
+}
+.icon,.icon2{
+  overflow: hidden;
+  margin:30px auto;
+}
+.icon li{
+  float:left;
+  cursor:pointer;
+}
+.icon li{
+  float:left;
+  width:52px;
+  height:22px;
+  padding-left:25px;
+  background:url(../img/img.png) 0 0 no-repeat ;
+  background-size:24px 140px;
+}
+.icon li.go{
+  background-position: 0 -44px;
+}
+.icon li.go:hover{
+  background-position:0 -67px;
+  color:#9D55B8;
+  cursor:pointer;
+}
+.icon li.start{
+  background-position: 0 -20px;
+}
+.icon li.start:hover{
+  background-position:-3px -117px;
+  color:#9D55B8;
+  cursor:pointer;
+}
+.icon li.stop{
+  background-position: -2px -95px;
+}
+.icon li.stop:hover{
+  background-position:0 0;
+  color:#9D55B8;
+  cursor:pointer;
+}
+.square{
+  width:0;
+  height:0;
+  border-left:30px solid #BFCFFF;
+  border-right:30px solid #5C26FF;
+  border-bottom:30px solid #7A4DFF;
+  border-top:30px solid #9999FF;
+}
+.triangle{
+  width:0;
+  height:0;
+  margin-top:30px;
+}
+.up{
+  border-left:30px solid transparent;
+  border-right:30px solid transparent;
+  border-bottom:30px solid #9999FF;
+}
+.down{
+  border-left:30px solid transparent;
+  border-right:30px solid transparent;
+  border-top:30px solid #9673FF;
+}
+.left{
+  border-right:30px solid #9673FF;
+  border-bottom:30px solid transparent;
+  border-top:30px solid transparent;
+  margin-left:30px;
+}
+.right{
+  border-left:30px solid #9673FF;
+  border-bottom:30px solid transparent;
+  border-top:30px solid transparent;
+}
+.up_left{
+  border-top:45px solid #7A4DFF;
+  border-right:45px solid transparent;
+}
+.up_right{
+  border-top:45px solid #7A4DFF;
+  border-left:45px solid transparent;
+}
+.bottom_right{
+  border-bottom:45px solid #7A4DFF;
+  border-left:45px solid transparent;
+}
+.bottom_left{
+  border-bottom:45px solid #7A4DFF;
+  border-right:45px solid transparent;
+}
+.fa-forward:hover,.fa-play:hover,.fa-stop:hover {
+  color:#A75FC0;
+}
