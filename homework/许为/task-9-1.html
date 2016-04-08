@@ -4,29 +4,46 @@
 <meta charset="utf-8">
 	<title>task-9-1</title>
 	<style type="text/css">
-	div div{
+	div{
 		display: inline-block;
-		background: url(img/result.png) 0 0 no-repeat;
 	}
-	.go,.begain,.stop{
-		padding-left: 35px;
+	a{
+	text-decoration: none;
+	color: black;
+	padding-left: 35px;
+	font-size: 24px;
 	}
-	.go{
-		background-position: 0 8px;
+	a{
+		background:url(img/result.png) no-repeat;
 	}
-	.begain{
-		background-position: 0 -35px;
+	.go a{
+		background-position: 0 -143px;
 	}
-	.stop{
-		background-position: 0 -81px;
+	.go a:hover{
+		color: purple;
+		background-position: 0 -6px;
+	}
+	.begain a{
+		background-position: 0 -188px;
+	}
+	.begain a:hover{
+		color: purple;
+		background-position: 0 -56px;
+	}
+	.stop a{
+		background-position: 0 -234px;
+	}
+	.stop a:hover{
+		color: purple;
+		background-position: 0 -100px;
 	}
 	</style>
 </head>
 <body>
 <div>
-	<div class="go"><p>前进</p></div>
-	<div class="begain"><p>开始</p></div>
-	<div class="stop"><p>停止</p></div>
+	<div class="go"><a href="#">前进</a></div>
+	<div class="begain"><a href="#">开始</a></div>
+	<div class="stop"><a href="#">停止</a></div>
 </div>
 </body>
 </html>
