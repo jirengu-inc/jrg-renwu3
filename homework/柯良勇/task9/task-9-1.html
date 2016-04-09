@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>For task 9-1</title>
+	<style>
+	div{
+		display:inline-block;
+		padding-left:20px;
+	}
+	li{
+		list-style: none;
+	}
+	li a{
+		text-decoration:none;
+		color:black;
+		padding-left: 20px;
+		background:url(result.png) 0 0 no-repeat;
+		background-size:20px;
+	}
+	.forward a{
+		background-position:0 -3px;
+	}
+	.play a{
+		background-position:0 -27px;
+	}
+	.stop a{
+		background-position:0 -54px;
+	}
+	.forward a:hover{
+		background-position:-1px -80px;
+		color:purple;
+	}
+	.play a:hover{
+		background-position:-3px -107px;
+		color:purple;
+	}
+	.stop a:hover{
+		background-position:2px -133px;
+		color:purple;
+	}
+	</style>
+</head>
+<body> 
+    <div class="guide">
+    	<ul>
+    	   <div class="forward">
+    	   	  <li><a href="#">前进</a></li>
+    	   </div> 
+    	   <div class="play">
+    	   	  <li><a href="#">开始</a></li>
+    	   </div>
+    	   <div class="stop">
+    	   	  <li><a href="#">停止</a></li>
+    	   </div>
+        </ul>
+    </div>
+</body>
+</html>
