@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task-11-1</title>
+	<style>
+	html,body,ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style:none;
+	}
+	li:hover{
+		cursor:pointer;
+		background-color: #aaa;
+	}
+	ul{
+		background-color: #ccc;
+	}
+	.box>li ul{
+		background-color: #fff;
+	}
+	a{
+		text-decoration:none;
+		color:#000;
+	}
+	.box{
+		/* 二级子菜单会隐藏 */
+		/* overflow:auto; */
+		/* overflow:hidden; */
+		/* 达不到想要的效果 */
+		/* display:inline-block; */
+		/* float:left; */
+		/* position:absolute; */
+
+	}
+	.box:after{
+		content:'';
+		display:block;
+		clear:both;
+	}
+	.box>li{
+		float:left;
+		position:relative;
+		height: 30px;
+		padding-left:10px;
+		padding-right:10px;
+
+		text-align:center;
+		line-height:30px;
+	}
+
+	.box>li:hover .child{
+		display:block;
+	}
+	.box>li:hover ul{
+		border:1px solid #ccc;
+	}
+	.box>li ul{
+		position:absolute;
+		display:none;
+
+	}
+	.box>li .web-front{
+		top:100%;
+		left:0px;
+	}
+	.box>li .Web-server{
+		top:100%;
+		left:0px;
+	}
+	.box>li .web-tool{
+		top:100%;
+		left:0px;
+	}
+	</style>
+</head>
+<body>
+	<ul class="box">
+		<li>
+			<a href="">前端</a>
+			<ul class="web-front child">
+				<li>JavaScript</li>
+				<li>CSS</li>
+				<li>HTML</li>
+			</ul>
+		</li>
+		<li>
+			<a href="">服务端</a>
+			<ul class="Web-server child">
+				<li>Node</li>
+				<li>PHP</li>
+				<li>Java</li>
+			</ul>
+		</li>
+		<li>
+			<a href="">前端工具</a>
+			<ul class="web-tool child">
+				<li>Sublime</li>
+				<li>Webstrom</li>
+				<li>Git</li>
+			</ul>
+		</li>
+		<li><a href=""></a>HTML</li>
+		<li><a href=""></a>NODE</li>
+	</ul>
+</body>
+</html>
