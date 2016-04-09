@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task-10-2</title>
+	<style>
+	.box{
+		width: 300px;
+		height: 150px;
+		border:1px solid #ccc;
+	}
+	.top,.middle,.bottom{
+		margin:30px;
+	}
+	.bottom{
+		position:relative;
+	}
+	.top-triangle{
+		width:1px;
+		border-bottom:20px solid #ccc;
+		border-left:10px solid transparent;
+		border-right:10px solid transparent;
+		position:relative;
+		left:10px;
+	}
+	.middle-triangle{
+		width:1px;
+		border-bottom:20px solid transparent;
+		border-right:20px solid red;
+		position:relative;
+		left:280px;
+		top:20px;
+	}
+	.bottom-triangle{
+		width:1px;
+		border-bottom:20px solid #fff ;
+		border-left:10px solid transparent;
+		border-right:10px solid transparent;
+		position:absolute;
+		left:10px;
+		top:1px;
+	}
+	</style>
+</head>
+<body>
+	<div class="top">
+		<div class="top-triangle"></div>
+		<div class="box"></div>
+	</div>
+	<div class="middle">
+		<div class="middle-triangle"></div>
+		<div class="box"></div>
+	</div>
+	<div class="bottom">
+		<div class="top-triangle"></div>
+		<div class="bottom-triangle"></div>
+		<div class="box"></div>
+	</div>
+</body>
+</html>
