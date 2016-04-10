@@ -4,14 +4,14 @@
     <meta charset="utf-8">
 	<title>For task 9-1</title>
 	<style>
-	div{
+	.guide li{
 		display:inline-block;
 		padding-left:20px;
 	}
 	li{
 		list-style: none;
 	}
-	li a{
+	.guide a{
 		text-decoration:none;
 		color:black;
 		padding-left: 20px;
@@ -44,15 +44,9 @@
 <body> 
     <div class="guide">
     	<ul>
-    	   <div class="forward">
-    	   	  <li><a href="#">前进</a></li>
-    	   </div> 
-    	   <div class="play">
-    	   	  <li><a href="#">开始</a></li>
-    	   </div>
-    	   <div class="stop">
-    	   	  <li><a href="#">停止</a></li>
-    	   </div>
+    	   	  <li class="forward"><a href="#">前进</a></li>  	
+    	   	  <li class="play"><a href="#">开始</a></li>
+    	   	  <li class="stop"><a href="#">停止</a></li>
         </ul>
     </div>
 </body>
