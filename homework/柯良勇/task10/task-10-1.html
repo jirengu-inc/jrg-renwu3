@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>For task 10-1</title>
+	<style>
+    *{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑", sans-serif;
+    }
+	#header, #main, #footer{
+		width: 910px;
+        margin: 0 auto;
+	}
+	div.wrap{
+		width: 100%;
+		background-color: #333;
+		height: 50px;
+	}
+	#logo img{
+		width: 195px;
+		height: 50px;
+	}
+	#nav li, #footer li{
+		display: inline-block;
+		margin-right: 20px;
+		line-height: 50px;
+	}
+	div#nav{
+        float: right;
+	} 
+	#nav a, #footer a{
+		text-decoration: none;
+		color: white;
+	}
+	div#content{
+		width: 700px;
+        background: #eee;
+        float: right;
+	}
+	#sider{
+		width: 200px;
+		height: 530px;
+		background: #eee;
+		margin-top: 30px;
+	}
+	#content h1{
+		margin: 30px 20px; 
+	}
+	#content p{
+		margin: 10px 20px;
+	}
+	</style>
+</head>
+<body>
+
+    <div class="wrap">
+        <div id="header">
+            <div id="nav">
+    	        <ul>
+    		        <li><a href="#">技能</a></li>
+    		        <li><a href="#">经历</a></li>
+    		        <li><a href="#">作品</a></li>
+    		        <li><a href="#">关于</a></li>
+    	        </ul>
+            </div>
+    	    <div id="logo">
+    		    <a href="#"><img src="logo-tiny.png" alt="logo"></a>
+    	    </div>
+        </div>
+    </div>
+
+    <div id="main">
+    	<div id="content">
+    		<h1>我的作品</h1>
+    		<p>生活很美好</p>
+    		<p>心情不错</p>
+    		<p>代码写得很漂亮</p>
+    	</div>
+    	<div id="sider"></div>
+    </div>
+
+    <div class="wrap">
+    	<div id="footer">
+    	    <ul>
+    	        <li><a href="">饥人谷</a></li>
+    		    <li><a href="">JSCODE</a></li>
+    		    <li><a href="">JSBIN</a></li>
+    	    </ul>
+        </div>
+    </div>
+
+</body>
+</html>

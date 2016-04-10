@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>For task 10-1</title>
+	<style>
+	.box1, .box2, .box3{
+		width: 300px;
+		height: 150px;
+		border: 2px solid #ccc;
+		margin-top: 30px;
+		margin-left: 50px;
+	}
+	.top-gray{
+		width: 0;
+		height: 0;
+		border:20px solid;
+		border-color: white white #ccc white;
+		position: relative;
+		top: 30px;
+		left: 70px;
+	}
+	.right-red{
+		width: 0;
+		height: 0;
+		border:20px solid;
+		border-color: red red white white;
+		position: relative;
+		top: 71px;
+		left: 313px;
+	}
+	.top-white{
+		width: 0;
+		height: 0;
+		border: 20px solid;
+		border-color: transparent transparent white transparent;
+		position: absolute;
+		top: 490px;
+		left: 78px;
+
+	}
+	</style>
+</head>
+<body>
+	<div class="top-gray"></div>
+	<div class="box1"></div>
+
+    <div class="right-red"></div>
+	<div class="box2"></div>
+
+	<div class="top-gray"></div>
+	<div class="top-white"></div>	
+	<div class="box3"></div>	
+</body>
+</html>
