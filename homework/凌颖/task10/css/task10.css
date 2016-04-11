@@ -1,0 +1,136 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+img {
+  border: none;
+}
+input,
+select,
+textarea {
+  outline: none;
+  border: none;
+  background: none;
+}
+textarea {
+  resize: none;
+}
+a {
+  text-decoration: none;
+}
+* {
+  font-family: "微软雅黑";
+}
+
+body{
+  width:100%;
+}
+header,footer{
+  background-color:#333;
+  height:70px;
+
+}
+.wrap{
+  width:900px;
+  margin:0 auto;
+  overflow:hidden
+}
+header .wrap .nav{
+  float:right;
+  color:#fff;
+  font-size:20px;
+  line-height:70px;
+}
+header .wrap .nav li {
+  display: inline-block;
+  margin-left:20px;
+}
+aside{
+  width:200px;
+  min-height:550px;
+  background-color:#eee;
+  float:left;
+  margin-top:10px;
+}
+section{
+  width:690px;
+  min-height:200px;
+  float:right;
+  background-color:#eee;
+  color:#656565;
+  margin-top:10px;
+}
+section>h1{
+  font-size:25px;
+  margin:50px 20px;
+}
+section>p{
+  margin:20px;
+}
+footer .select{
+  color:#fff;
+  font-size:20px;
+  line-height:70px;
+}
+footer .select li{
+  float:left;
+  margin-right:20px;
+}
+/*CSS写三角*/
+.box{
+  width:260px;
+  height:130px;
+  border:1px solid #ccc;
+  position:relative;
+  left:20px;
+  top:30px;
+}
+.top-triangle>.x{
+  width:0;
+  height:0;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-bottom:10px solid #ccc;
+  position:absolute;
+  top:-10px;
+  left:10px;
+}
+.right-triangle{
+  margin-top:30px;
+}
+.right-triangle>.x{
+  width:0;
+  height:0;
+  border-right:15px solid pink;
+  border-bottom:15px solid transparent;
+  position:absolute;
+  right:0;
+}
+.two-triangle{
+  margin-top:30px;
+}
+.two-triangle>.x{
+  width:0;
+  height:0;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-bottom:10px solid #ccc;
+  position:absolute;
+  top:-10px;
+  left:10px;
+}
+.two-triangle>.y{
+  width:0;
+  height:0;
+  border-left:10px solid transparent;
+  border-right:10px solid transparent;
+  border-bottom:10px solid #fff;
+  position:absolute;
+  top:-8px;
+  left:10px;
+}
