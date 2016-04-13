@@ -1,0 +1,191 @@
+ html,body,ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    html,body{
+      height: 100%;
+      width: 100%;
+      font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 14px;
+    }
+    li{
+      list-style:none;
+    }
+    a{
+      
+      text-decoration:none;
+    }
+    li,a,h1,h2,h3,h4,p{
+       text-align: center;
+    }
+    hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-top: 1px solid #eee;
+    max-width: 100px;
+    }
+    h1{
+      font-size: 4.5em;
+      font-weight: bold;
+    }
+    h2{
+      font-size: 30px;
+    }
+    a.btn-bigger{
+      height: 50px;
+      width: 140px;
+      line-height: 50px;
+    }
+    .btn1{
+      display: inline-block;
+      width: 140px;
+      height: 30px;
+      line-height: 30px;
+      color: white;
+      background-color: rgba(0,0,0,0.4);
+      text-align: center;
+    }
+    .btn1:hover{
+      background-color: rgba(0,0,0,0.7);
+    }
+    .btn2{
+      display: inline-block;
+      width: 95px;
+      height: 30px;
+      line-height: 30px;
+      color: black;
+      background-color: white;
+      text-align: center;
+    }
+    .btn2:hover{
+      background-color: #eee;
+    }
+    .table{
+      display: table;
+      height: 100%;
+    }
+    .vertical-center{
+      display:table-cell;
+      vertical-align:middle;
+    }
+     .clear:after{
+      content:'';
+      display:block;
+      clear:both;
+    }
+    .text-center{
+      text-align: center;
+    }
+    #header{
+      width: 100%;
+      height: 100%;
+      background:url('task14-img/bg.jpg');
+      background-size: cover;
+    }
+    
+    #header h3{
+      font-size: 24px;
+    }
+    
+    .about p{
+      font-size: 21px;
+    }
+    .container{
+      width:960px;
+      margin:0 auto;
+    }
+    #content .about{
+      padding:50px 0;
+    }
+    #content .Services{
+      padding:50px 0;
+      color:white;
+      background-color: #337ab7;
+    }
+    #content .Services li{
+      float:left;
+      width:25%;
+    }
+    #content .Services span{
+      // display:inline-block;
+      // width:112px;
+      // height: 112px;
+      font-size: 112px;
+    }
+    .callout{
+      padding: 200px 0;
+      color:white;
+      background: url('task14-img/callout.jpg');
+      background-size: cover;
+    }
+    .portfolio{
+      padding:50px 0;
+    }
+    .portfolio li.single{
+      float: left;
+      width:  465px;
+      height: 305px;
+      margin-bottom:30px;
+      margin-right: 15px;
+
+    }
+     .portfolio li.double{
+      float: left;
+      width:  465px;
+      height: 305px;
+      margin-bottom:30px;
+      margin-left: 15px;
+     }
+     .portfolio li .portfolio-pic1{
+      background: url('task14-img/portfolio-1.jpg');
+      display: inline-block;
+      width: 100%;  
+      height: 100%;
+     }
+     .portfolio li .portfolio-pic2{
+      background: url('task14-img/portfolio-2.jpg');
+      display: inline-block;
+      width: 100%;  
+      height: 100%;
+     }
+     .portfolio li .portfolio-pic3{
+      background: url('task14-img/portfolio-3.jpg');
+      display: inline-block;
+      width: 100%;  
+      height: 100%;
+     }
+     .portfolio li .portfolio-pic4{
+      background: url('task14-img/portfolio-4.jpg');
+      display: inline-block;
+      width: 100%;  
+      height: 100%;
+     }
+     .call-to-action{
+       padding:50px 0;
+       background-color: #337ab7;
+       color: white;
+     }
+     #footer{
+      padding: 100px 0;
+     }
+     #footer .contact-information {
+      margin-bottom: 30px;
+     }
+     #footer .contact-information li.icon-phone{
+      display: block;
+     }
+     
+     #footer .contact-inco{
+       text-align: center;
+     }
+      .contact-inco li{
+      // float: left;
+      display: inline-block;
+      margin: 10px
+      }
+      .contact-inco a{
+        font-size: 45px;
+      }
+      #footer a{
+        color:#337ab7;
+      }
