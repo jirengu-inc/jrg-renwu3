@@ -36,6 +36,19 @@
       width: 140px;
       line-height: 50px;
     }
+    #footer a:hover{
+      color: #23527c;
+      }
+    .contact-information a:hover{
+      text-decoration: underline;
+    }
+    .about a{
+      color: #337ab7;
+    }
+    .about a:hover{
+      text-decoration: underline;
+      color: #23527c;
+    }
     .btn1{
       display: inline-block;
       width: 140px;
@@ -186,6 +199,7 @@
       .contact-inco a{
         font-size: 45px;
       }
+      
       #footer a{
         color:#337ab7;
       }
