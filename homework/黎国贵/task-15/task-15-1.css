@@ -1,0 +1,242 @@
+ html,body,ul,li{
+      margin: 0;
+      padding: 0;
+    }
+     html,body{
+      font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+      font-size: 14px;
+    }
+    li{
+      list-style:none;
+    }
+    a{
+      text-decoration:none;
+       color: #777;
+    }
+	h2,h3,h4,p,li{
+		text-align: center;
+		font-weight: 400;
+	}
+	hr {
+        border-top: 1px solid #eee;
+    }
+    h1{
+        font-size: 60px;
+        font-weight: 400;
+    }
+    h3{
+    	font-size: 24px;
+    }
+    h2{
+    	font-size: 30px;
+    	margin-top: 0;
+    	margin-bottom: 10px;
+    }
+    h4{
+    	font-size: 18px;
+    }
+    a:hover{
+        color: #333;
+    }
+    .container .btn{
+    	display: inline-block;
+    	width: 53px;
+    	height: 33px;
+    	border:1px solid #ccc;
+    	text-align: center;
+    	line-height: 33px;
+    	color: black;
+    	background-color: #fff;
+    	cursor: pointer;
+    }
+	.btn:hover{
+		background-color: #e6e6e6;
+        border-color: #adadad;
+	}
+	.clear:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.layout{
+		width: 1000px;
+		margin: 0 auto;
+	}
+	#navbar{
+		width: 100%;
+		height: 50px;
+		background-color: #fff;
+		position:fixed;
+		top:0;
+		left: 0;
+	}
+	.navbar-header{
+		display: inline-block;
+		height: 50px;
+		float: left;
+		line-height: 50px;
+		padding: 0 15px;
+		font-size: 18px;
+
+	}
+	.navbar-nav{
+		float: left;
+		margin-left: 15px;
+	}
+	.navbar-nav>li{
+		float: left;
+		width: 58px;
+		height: 50px;
+		text-align: center;
+		line-height: 50px;
+	}
+	.navbar-nav .mywork{
+		width: 73px;
+		position:relative;
+		padding-right: 5px;		
+	}
+	.navbar-nav .mywork span{
+		padding:0 3px;
+		position: absolute;
+		top: 30%;
+	}
+
+	.dropdown-menu{
+		position: absolute;
+		top:100%;
+		display: none;
+		background-color: #fff;
+		border:1px solid #ccc;
+	}
+	.dropdown-menu li>a{
+		display: block;
+        padding: 3px 20px;
+        height: 20px;
+    	line-height: 20px;
+    	width: 90px;
+    	text-align: left;
+	}
+	.dropdown-menu li:first-child{
+		margin-top: 5px;
+	}
+	.dropdown-menu .dropdown-footer{
+		font-size: 12px;
+    	color: #777;
+    	display: block;
+        padding: 3px 20px;
+        height: 20px;
+    	line-height: 20px;
+    	width: 90px;
+    	text-align: left;
+	}
+	.dropdown-menu li:hover{
+		background-color: #eee;
+	}
+	.dropdown-menu .dropdown-footer:hover{
+		background-color: #fff;
+	}
+	.mywork:hover .dropdown-menu{
+		display: block;
+	}
+	#header{
+		padding:60px 0;
+		background-color: #b84d45;
+		color: white;
+		margin-bottom: 40px;
+	}
+	#header p{
+		text-align: left;
+	    font-size: 24px;
+	    line-height: 1.4;
+	    color: rgba(255, 255, 255, .8);
+	}
+	.breadcrumb{
+        margin-bottom: 20px;
+	}
+	.breadcrumb ul{
+		padding: 8px 15px;
+		background-color: #f5f5f5;
+	}
+	.breadcrumb ul>li{
+		display: inline-block;
+	}
+	.breadcrumb ul>li:first-child:after{
+		content: "/";
+		padding:0 5px;
+		color: #ccc;
+	}
+	.breadcrumb a,#footer a{
+		color: #b84d45;
+	}
+	.breadcrumb a:hover,#footer a:hover{
+		color: #803630;
+    	text-decoration: underline;
+	}
+	.container ul{
+		margin-bottom: 20px;
+		margin-left: -30px;
+	}
+	.container ul>li{
+		width: 303px;
+		height: 407px;
+		border:1px solid #ccc;
+		padding:4px;
+		float: left;
+		margin-left:30px;
+		margin-bottom: 30px; 
+	}
+	.container ul>li a{
+		display: block;
+		width: 100%;
+		height: 225px;
+		border: 1px solid #ccc;
+	}
+	.container-pic1{
+		background: url('task15-1-img/1.jpg') no-repeat;
+		background-size: cover;
+	}
+	.container-pic2{
+		background: url('task15-1-img/2.jpg') no-repeat;
+		background-size: cover;
+	}
+	.container-pic3{
+		background: url('task15-1-img/3.jpg') no-repeat;
+		background-size: cover;
+	}
+	.container-pic4{
+		background: url('task15-1-img/4.jpg') no-repeat;
+		background-size: cover;
+	}
+	.container-pic5{
+		background: url('task15-1-img/5.jpg') no-repeat;
+		background-size: cover;
+	}
+	.container-pic6{
+		background: url('task15-1-img/6.jpg') no-repeat;
+		background-size: cover;
+	}
+	.container-pic7{
+		background: url('task15-1-img/7.jpg') no-repeat;
+		background-size: cover;
+	}
+	.container-pic8{
+		background: url('task15-1-img/8.jpg') no-repeat;
+		background-size: cover;
+	}
+	.container-pic9{
+		background: url('task15-1-img/9.jpg') no-repeat;
+		background-size: cover;
+	}
+	.container-pic10{
+		background: url('task15-1-img/10.jpg') no-repeat;
+		background-size: cover;
+	}
+	.contact{
+		padding:50px 0;
+		background-color: #b84d45;
+		color: white;
+
+	}
+	#footer{
+		padding:50px 0;
+	}
