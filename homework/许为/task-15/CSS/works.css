@@ -1,0 +1,11 @@
+.works .title{
+	color: red;
+}
+.works .mywork{
+	color: black;
+}
+.works p{
+	background: rgba(128, 128, 128, 0.3);
+	margin-top: 10px;
+	padding: 8px 0 7px 16px;
+}
