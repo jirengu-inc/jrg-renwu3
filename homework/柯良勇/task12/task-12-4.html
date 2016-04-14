@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>For task 12-4</title>
+	<style>
+	html, body{
+		margin: 0;
+		padding: 0;
+	}
+	#header, #footer{
+		background-color: gray;
+		height: 50px;
+	}
+	#main{
+		background-color: green;
+		float: left;
+		width: 100%;
+	}
+	.sider-r{
+		background-color: yellow;
+		float: left;
+		width: 200px;
+		margin-left: -200px;
+		height: 100px;
+	}
+	.ct:after{
+		content: "";
+		clear: both;
+		display: block;
+	}
+	#main .content{
+		margin-right: 200px;
+		height: 100px;
+	}
+	</style>
+</head>
+<body>
+	<div id="header">头部</div>
+	<div class="ct">
+		<div id="main">
+			<div class="content">
+			    双飞翼布局指两边顶宽，中间自适应三栏布局，中间蓝要在放在文档流前面以优先渲染
+			</div>
+		</div>
+		<div class="sider-r">右侧边栏，固定宽度</div>
+	</div>
+	<div id="footer">尾部</div>
+</body>
+</html>
