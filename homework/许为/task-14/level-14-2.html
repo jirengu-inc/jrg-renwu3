@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>level14</title>
+<link rel="stylesheet" type="text/css" href="../css/font-awesome.css">
+<style type="text/css">
+	* {
+		margin:0;
+		padding:0;
+	}
+	html,body{
+		width: 100%;
+		height:100%;
+	}
+	li{
+		list-style: none;
+	}
+	#header{
+		background: url(../img/bg.jpg) 0 0 no-repeat;
+		width: 100%;
+		height: 100%;
+		background-size: cover;
+		display: table;
+	}
+	.container{
+		width: 960px;
+	}
+	.h1-header{
+		/* padding: 13% 0 15px 33%; */
+		text-align: center;
+		font-size: 53px;
+		margin-bottom: 20px;
+	}
+	.h2-service{
+		color: white;
+		padding-top: 20px;
+	}
+	.h2-vertically{
+		color: white;
+		font-size: 59px;
+	}
+	.h2-wrok{
+		padding-top: 33px;
+	}
+	.h2-button{
+		color: white;
+		padding-bottom: 30px;
+	}
+
+	.h3-service{
+		color: white;
+		margin-bottom: 10px;
+	}
+	.h3-contact{
+		padding-bottom: 15px;
+	}
+	.p-contact{
+		padding-bottom: 10px;
+	}
+	#header p{
+		/* padding: 0px 0 0 38%; */
+		text-align: center;
+		font-size: 19px;
+		margin-bottom: 20px;
+	}
+	#header .btn{
+		/* padding: 7px; */
+		background:gray;
+		color: white;
+		text-decoration: none;
+		/* position: relative;
+		left:43%; */
+		/* top:17px; */
+		height: 40px;
+		width: 140px;
+		line-height: 40px;
+		display: inline-block;
+	}
+	.introduce{
+		text-align: center;
+		margin: 37px auto;
+	}
+	.wrap-introduce a{
+		text-decoration: none;
+		color: blue;
+	}
+	.chaining{
+		font-size: 19px;
+	}
+	.wrap-service{
+		background: rgba(0, 0, 255, 0.47);
+	}
+	.service{
+		text-align: center;
+		margin: 0px auto;
+		padding: 31px 0;
+	}
+	.hr-service{
+		width: 100px;
+		margin-top: 16px;
+		margin:0 auto;
+		margin-top: 30px;
+		margin-bottom:30px;
+	}
+	.icon-cloud,.icon-globe,.icon-filter,.icon-home{
+		font-size: 100px;
+		color: white;
+	}
+	.p-service{
+		color: white;
+		margin-bottom: 20px;
+	}
+	.wrap-service .btn{
+		padding: 7px;
+		background: white;
+		color: black;
+		text-decoration: none;
+	}
+	.wrap-service:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.service:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.wrap-service li{
+		float: left;
+		width: 25%;
+	}
+	.wrap-vertically{
+		background: url(../img/callout.jpg) 0 0  no-repeat;
+		width: 100%;
+	}
+	.vertically{
+		margin:0 auto;
+		text-align: center;
+		padding: 243px 0;
+	}
+	.work{
+		margin: 0 auto;
+		text-align: center;
+		padding: 20px 0;
+	}
+	.hr-work{
+		width: 80px;
+		margin:30px auto;
+	}
+	.wrap-work li{
+		float: left;
+		padding: 0 10px 10px 10px;
+	}
+	.wrap-work .btn{
+		clear: left;
+	}
+	.wrap-work .btn a{
+		background: gray;
+		padding: 7px;
+		color: white;
+		text-decoration: none;
+	}
+	.wrap-button{
+		background: rgba(0, 0, 255, 0.47);
+	}
+	.button{
+		margin: 0 auto;
+		text-align: center;
+		padding: 56px 0;
+	}
+	.wrap-button .click{
+		padding: 8px;
+		color: black;
+		background: white;
+		text-decoration: none;
+	}
+	.wrap-button .look{
+		padding: 8px;
+		color: white;
+		background: #05055F;
+		text-decoration: none;
+	}
+	.contact{
+		margin: 0 auto;
+		text-align: center;
+		padding: 114px 0;
+	}
+	.contact .btn{
+		color:blue;
+		text-decoration: none;
+	}
+	.contact .btn:hover{
+		text-decoration: underline;
+	}
+	.icon-facebook{
+		color: blue;
+		font-size: 49px;
+		padding-top: 20px;
+		position: relative;
+		top: 20px;
+	}
+	.icon-twitter,.icon-dribbble{
+		color: blue;
+		font-size: 49px;
+		padding-left: 32px;
+		position: relative;
+		top: 20px;
+	}
+	.p-copyright{
+		position: relative;
+		top: 61px;
+	}
+	.header-content{
+		text-align: center;
+		display: table-cell;
+		vertical-align: middle;
+	}
+	.work ul:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+</style>
+</head>
+<body>
+	<div id="header">
+		<div class="header-content">
+			<h1 class="h1-header">Start Bootstrap</h1>
+			<p>Free Bootstrap Themes&Templates</p>
+			<a href="#" class="btn">Find Out More</a>
+		</div>
+	</div>
+	<div id="content">
+		<div class="wrap-introduce">
+			<div class="introduce container">
+				<h2>Stylish Portfolio is the perfect theme for your next project!</h2>
+				<p class="chaining">This theme features some wonderful photography courtesy of <a href="http://join.deathtothestockphoto.com/" target="blank">Death to the Stock Photo.</a></p>
+			</div>
+		</div>
+		<div class="wrap-service">
+			<div class="service container">
+				<h2 class="h2-service">Our Services</h2>
+				<hr class="hr-service"max>
+				<ul>
+					<li>
+						<span class="icon-cloud"></span>
+						<h3 class="h3-service">Service Name</h3>
+						<p class="p-service">Lorem ipsum dolor sit amet<br>consectetur adipisicing elit</p>
+						<a href="#" class="btn">Learn More</a>
+					</li>
+					<li>
+						<span class="icon-globe"></span>
+						<h3 class="h3-service">Service Name</h3>
+						<p class="p-service">Lorem ipsum dolor sit amet<br>consectetur adipisicing elit</p>
+						<a href="#" class="btn">Learn More</a>
+					</li>
+					<li>
+						<span class="icon-filter"></span>
+						<h3 class="h3-service">Service Name</h3>
+						<p class="p-service">Lorem ipsum dolor sit amet<br>consectetur adipisicing elit</p>
+						<a href="#" class="btn">Learn More</a>
+					</li>
+					<li>
+						<span class="icon-home"></span>
+						<h3 class="h3-service">Service Name</h3>
+						<p class="p-service">Lorem ipsum dolor sit amet<br>consectetur adipisicing elit</p>
+						<a href="#" class="btn">Learn More</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="wrap-vertically">
+			<div class="vertically container">
+				<h2 class="h2-vertically">Vertically Centered Text
+				</h2>
+			</div>
+		</div>
+		<div class="wrap-work">
+			<div class="work container">
+				<h2 class="h2-work">Our Work</h2>
+				<hr class="hr-work">
+				<ul>
+					<li><img src="../img/portfolio-1.jpg" alt="使用手机" width="460px">
+					</li>
+					<li><img src="../img/portfolio-2.jpg" alt="思考问题" width="460px">
+					</li>
+					<li><img src="../img/portfolio-3.jpg" alt="使用电脑" width="460px"></li>
+					<li><img src="../img/portfolio-4.jpg" alt="手动记录" width="460px"></li>
+				</ul>
+				<div class="btn">
+					<a href="#">View More items</a>
+				</div>
+			</div>
+		</div>
+		<div class="wrap-button">
+			<div class="button container">
+				<h2 class="h2-button">The buttons below are impossible to resist</h2>
+				<a href="#" class="click">Click Me!</a>
+				<a href="#" class="look">Look at Me!</a>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<div class="wrap-contact">
+			<div class="contact container">
+				<h3 class="h3-contact">Start Bootstrap</h3>
+				<p class="p-contact">3481 Melrose Place<br>Beverly Hills,CA 90210</p>
+				<span class="icon-phone">&nbsp&nbsp(123)456-7890</span>
+				<br><span class="icon-envelope-alt"></span>
+				<a href="#" class="btn">name@example.com</a>
+				<br><span class="icon-facebook"></span>
+				<span class="icon-twitter"></span><span class="icon-dribbble"></span>
+				<p class="p-copyright">Copyright Your Website 2014</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
