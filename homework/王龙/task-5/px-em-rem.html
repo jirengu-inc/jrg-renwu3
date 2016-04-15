@@ -2,7 +2,9 @@
 <html>
     <head>
         <title>文本两端对齐 by hongchenok</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+         <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
           <style>
           html {
             font-size: 20px;
@@ -12,15 +14,19 @@
               color: gray;
           }
 
-        a:link {color:  #FFFF00;} /* 未访问的链接 */
-        a:visited {color:#00FF00;} /* 已访问的链接 */
-        a:hover {color:blue;} /* 鼠标划过链接 */
-        a:active {color:white;} /* 已选中的链接 */
+          a:link {color:  #FFFF00;} /* 未访问的链接 */
+          a:visited {color:#00FF00;} /* 已访问的链接 */
+          a:hover {color:blue;} /* 鼠标划过链接 */
+          a:active {color:white;} /* 已选中的链接 */
 
           
-           table {
-            border-collapse: collapse;/* 边框为单线*/
+           .t1 {
+            border-collapse: collapse; /* 边框为单线*/
 
+            width : 100%;
+           }
+
+           .t2 {
             width : 100%;
            }
 
@@ -50,8 +56,9 @@
 
          <a href="#">css伪类，次序不要放反;為什麼？反了会失效，但不知道为什么</a>
 
+          <button onclick="javascript:$('#collapse').toggleClass('t1').toggleClass('t2')">border-collapse的作用</button>
 
-         <table>
+         <table id="collapse" class="t1">
             <tr>
                 <th>0</th>
                 <th>0</th>
