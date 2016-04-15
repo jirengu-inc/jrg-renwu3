@@ -21,13 +21,16 @@
 		width: 100%;
 		height: 100%;
 		background-size: cover;
+		display: table;
 	}
 	.container{
 		width: 960px;
 	}
-	h1{
-		padding: 13% 0 15px 33%;
+	.h1-header{
+		/* padding: 13% 0 15px 33%; */
+		text-align: center;
 		font-size: 53px;
+		margin-bottom: 20px;
 	}
 	.h2-service{
 		color: white;
@@ -56,17 +59,23 @@
 		padding-bottom: 10px;
 	}
 	#header p{
-		padding: 0px 0 0 38%;
+		/* padding: 0px 0 0 38%; */
+		text-align: center;
 		font-size: 19px;
+		margin-bottom: 20px;
 	}
 	#header .btn{
-		padding: 7px;
+		/* padding: 7px; */
 		background:gray;
 		color: white;
 		text-decoration: none;
-		position: relative;
-		left:43%;
-		top:17px;
+		/* position: relative;
+		left:43%; */
+		/* top:17px; */
+		height: 40px;
+		width: 140px;
+		line-height: 40px;
+		display: inline-block;
 	}
 	.introduce{
 		text-align: center;
@@ -88,9 +97,11 @@
 		padding: 31px 0;
 	}
 	.hr-service{
-		position: relative;
-		left: 430px;
+		width: 100px;
 		margin-top: 16px;
+		margin:0 auto;
+		margin-top: 30px;
+		margin-bottom:30px;
 	}
 	.icon-cloud,.icon-globe,.icon-filter,.icon-home{
 		font-size: 100px;
@@ -118,6 +129,7 @@
 	}
 	.wrap-service li{
 		float: left;
+		width: 25%;
 	}
 	.wrap-vertically{
 		background: url(../img/callout.jpg) 0 0  no-repeat;
@@ -134,9 +146,8 @@
 		padding: 20px 0;
 	}
 	.hr-work{
-		position: relative;
-		left: 441px;
-		margin: 16px 0;
+		width: 80px;
+		margin:30px auto;
 	}
 	.wrap-work li{
 		float: left;
@@ -201,13 +212,25 @@
 		position: relative;
 		top: 61px;
 	}
+	.header-content{
+		text-align: center;
+		display: table-cell;
+		vertical-align: middle;
+	}
+	.work ul:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
 </style>
 </head>
 <body>
 	<div id="header">
-		<h1>Start Bootstrap</h1>
-		<p>Free Bootstrap Themes&Templates</p>
-		<a href="#" class="btn">Find Out More</a>
+		<div class="header-content">
+			<h1 class="h1-header">Start Bootstrap</h1>
+			<p>Free Bootstrap Themes&Templates</p>
+			<a href="#" class="btn">Find Out More</a>
+		</div>
 	</div>
 	<div id="content">
 		<div class="wrap-introduce">
@@ -219,7 +242,7 @@
 		<div class="wrap-service">
 			<div class="service container">
 				<h2 class="h2-service">Our Services</h2>
-				<hr class="hr-service" width="100px">
+				<hr class="hr-service"max>
 				<ul>
 					<li>
 						<span class="icon-cloud"></span>
@@ -257,7 +280,7 @@
 		<div class="wrap-work">
 			<div class="work container">
 				<h2 class="h2-work">Our Work</h2>
-				<hr class="hr-work" width="80px">
+				<hr class="hr-work">
 				<ul>
 					<li><img src="../img/portfolio-1.jpg" alt="使用手机" width="460px">
 					</li>
