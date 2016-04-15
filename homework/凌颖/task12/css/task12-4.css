@@ -1,0 +1,35 @@
+@charset "utf-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+header,footer{
+  height:50px;
+  background-color:#ccc;
+}
+.cont:after{
+  content:"";
+  display:block;
+  clear:both;
+}
+.main,.asidel,.asider{
+  float:left;
+}
+.main{
+  width:100%;
+  height:200px;
+}
+.main p{
+  background-color: lightsteelblue;
+  height:200px;
+  margin-right: 200px;
+}
+
+.asider{
+  width:200px;
+  height:300px;
+  background-color:palevioletred;
+  margin-left:-200px;
+}
+
+

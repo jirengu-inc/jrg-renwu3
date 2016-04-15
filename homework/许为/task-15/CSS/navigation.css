@@ -1,24 +1,13 @@
-* {
-	margin: 0;
-	padding: 0;
-}
-.container{
-	width: 1000px;
-	margin: 0 auto;
-}
 .navigation:after{
 	content: '';
 	display: block;
 	clear: both;
 }
-li {
-	list-style: none;
-}
 h1{
 	font-size: 23px;
 	float: left;
 	position: relative;
-	top: 19px; 
+	top: 19px;
 }
 .first-navigation a{
 	text-decoration: none;
@@ -48,12 +37,12 @@ h1{
 	border-color: gray transparent transparent transparent;
 	border-radius: 0 0 5px 5px;
 	margin-top: 24px;
-	display: none;  
+	display: none;
 	background: white;
 }
   .first-navigation>li:first-child:hover ul{
-	display: block; 
-}  
+	display: block;
+}
 .first-navigation>li ul li{
 	padding-left: 21px;
 }
