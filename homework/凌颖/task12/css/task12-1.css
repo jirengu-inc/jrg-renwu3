@@ -7,6 +7,9 @@ header,footer{
   height:50px;
   background-color:#ccc;
 }
+.cont{
+  padding:0 200px;
+}
 .cont:after{
   content:"";
   display:block;
