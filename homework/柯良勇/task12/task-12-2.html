@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>For task 12-2</title>
+	<style>
+	body{
+		margin: 0;
+		padding: 0;
+	}
+	#header, #footer{
+		background-color: gray;
+		height: 50px;
+	}
+	.sider-l{
+		background-color: red;
+		width: 200px;
+		float: left;
+		margin-left: -100%;
+		position: relative;
+		left: -200px;
+		height: 100px;
+	}
+	#main{
+		background-color: green;
+		float: left;
+		width: 100%;
+	}
+	.ct:after{
+		content: "";
+		clear: both;
+		display: block;
+	}
+	.ct{
+		padding-left: 200px;
+	}
+	</style>
+</head>
+<body>
+	<div id="header">头部</div>
+	<div class="ct">
+		<div id="main">
+			<p>
+				圣杯布局指两边顶宽，中间自适应的三栏布局，中间栏要在放在文档流前面以优先渲染。
+				参考：<a href="#">圣杯布局原理</a>。其流程为：1）设置container的左右oadding，
+				用于预留左右边栏的空间。2）给所用元素设置定位和浮动，用于设置左右两栏偏移；3）
+				给左侧边栏设置margin，让其移动位置。设置负边距100%（#container的宽度），让其跑到上面；4)给又变懒设置负边距使其跑到上面
+			</p>
+		</div>
+		<div class="sider-l">左侧边栏，固定宽度</div>
+	</div>
+	<div id="footer">尾部</div>
+</body>
+</html>

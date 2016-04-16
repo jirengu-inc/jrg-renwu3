@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 14</title>
+  <link rel="stylesheet" href="css/fontello.css">
+  <style>
+    html, body{
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+    a{
+      text-decoration: none;
+    }
+    .container{
+      width: 960px;
+      margin: 0 auto;
+      padding: 40px 0; 
+    }
+    .vertical{
+      display: table-cell;
+      vertical-align: middle;
+    }
+    .center{
+      text-align: center;
+    }
+    #header{
+      background: url(img/bg.jpg);
+      background-size: cover; 
+      display: table;
+      height: 100%;
+      width: 100%;
+      font-size: 16px;
+    }
+    .service-item>div{
+      float: left;
+      width: 200px;
+      margin: 30px 20px;
+      color: white;
+    } 
+    .vertical-text{
+      background: url(img/callout.jpg) no-repeat center center;
+      padding: 100px 0;
+    }
+    .work-box{
+      float: left;
+      margin: 15px 15px;
+    }
+    .clear{
+      overflow: hidden;
+    }
+    #header h1{
+      font-size: 3.5em;
+      margin-bottom: -2px;
+    }
+    #header p{
+      margin-bottom: 30px;
+      font-size: 20px;
+    }
+    #header a:hover,
+    .work .dark-btn:hover{
+      background-color: #363f41;
+    }
+    .dark-btn{
+      padding: 10px;
+      color: white;
+      background-color: #6c7e84;
+    }
+    .white-btn{
+      padding: 10px;
+      color: black;
+      background-color: white;
+    }
+    .introduce p{
+      font-size: 18px;
+    }
+    .introduce a{
+      color: #337ab7;
+    }
+    .introduce a:hover{
+      text-decoration: underline;
+      color: #23527c;
+    }
+    .service, .click-look{
+      background-color: #337ab7;
+    }
+    .service h2{
+      font-size: 30px;
+      color: white;
+    }
+    hr{
+      width: 120px;
+    }
+    .service span{
+      font-size: 70px;
+    }
+    .service-item p,
+    .service-item a{
+      font-size: 12px;
+      margin-top: -5px;
+      margin-bottom: 20px;
+    }
+    .service-item a:hover,
+    .click-look .white-btn:hover{
+      background-color: #d6e4f0;
+    }
+    .vertical-text h1{
+      color: white;
+      font-size: 50px;
+    }
+    .work .dark-btn{
+      position: relative;
+      top: 17px;
+      font-size: 13px;
+    }
+    .work-box a:hover{
+      opacity: 0.8;
+    }
+    #footer .click-look .dark-btn{
+      background-color: #1f496e;
+      margin-left: 20px;
+    }
+    #footer .click-look .dark-btn:hover{
+      background-color: #0f2436;
+    }
+    #footer .click-look{
+      margin-top: 20px;
+    }
+    #footer .click-look h3{
+      color: white;
+      margin-bottom: 30px;
+    }
+    #footer .contact{
+      color: #1f496e;
+      font-size: 14px;
+    }
+    #footer .contact span{
+      font-size: 40px;
+    }
+    #footer .contact hr,
+    #content .work hr{
+      width: 100px;
+      opacity: 0.3;
+    }
+    #footer .contact a:hover{
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+	<div id="header">
+		<div class="container vertical center">
+      <h1>Start Bootstrap</h1>
+      <p>Free Bootstrap Themes & Templates</p>
+      <a href="#" class="dark-btn">Find Out More</a>
+    </div>
+  </div>
+
+  <div id="content">
+    <div class="introduce">
+      <div class="container center">
+        <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
+        <p>This theme features some wonderful photography courtesy of <a href="#">Death to the Stock Photo</a>.</p>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="container center">
+        <h2>Our Services</h2>
+        <hr>
+        <div class="service-item clear">
+          <div>
+            <span class="icon-weibo"></span>
+            <h4>Service Name</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <a class="white-btn" href="#">Learn More</a>
+          </div>
+          <div>
+            <span class="icon-wechat"></span>
+            <h4>Service Name</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <a class="white-btn" href="#">Learn More</a>
+          </div>
+          <div>
+            <span class="icon-android"></span>
+            <h4>Service Name</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <a class="white-btn" href="#">Learn More</a>
+          </div>
+          <div>
+            <span class="icon-html5"></span>
+            <h4>Service Name</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <a class="white-btn" href="#">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vertical-text">
+      <div class="container center">
+        <h1>Vertically Centered Text</h1>
+      </div>
+    </div>
+
+    <div class="work">
+      <div class="container center clear">
+        <h1>Our Work</h1>
+        <hr>
+        <div class="work-box">
+          <a href="#"><img src="img/portfolio-1.jpg" alt="" width="450px" height="300px"></a>
+        </div>
+        <div class="work-box">
+          <a href="#"><img src="img/portfolio-2.jpg" alt="" width="450px" height="300px"></a>
+        </div>
+        <div class="work-box">
+          <a href="#"><img src="img/portfolio-3.jpg" alt="" width="450px" height="300px"></a>
+        </div>
+        <div class="work-box">
+          <a href="#"><img src="img/portfolio-4.jpg" alt="" width="450px" height="300px"></a>
+        </div>
+        <a href="#" class="dark-btn">View More Items</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="footer">
+  <div class="click-look">
+    <div class="container center">
+      <h3>The buttons below are impossible to resist.</h3>
+      <a class="white-btn" href="#">Click Me!</a>         
+      <a class="dark-btn" href="#">Look at Me!</a>
+    </div>
+  </div>
+  <div class="contact">
+    <div class="container center">
+      <h4>Start Bootstrap</h4>
+      <p>3481 Melrose Place</p>
+      <p>Beverly Hills, CA 90210</p>
+      <p class="icon-phone">(123) 456-7890</p>
+      <p class="icon-mail"><a href="#">name@example.com</a></p>
+      <span class="icon-dribbble"></span>
+      <hr>
+      <p>Copyright © Your Website 2014</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
