@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>level-9-1</title>
+    <style>
+      ul {
+        list-style: none;
+      }
+
+      a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      ul > li {
+        float: left;
+        padding-right: 30px;
+      }
+
+      .sprite{
+        display: inline-block;
+        background: url(result.png) 0 0 no-repeat;
+        width: 33px;
+        height: 33px;
+        padding-left: 40px;
+        line-height: 33px;
+      }
+
+      .sprite:hover{
+        color: #AE02C7;
+      }
+
+      .s1 {
+        background-position: 0px 0px;
+      }
+
+      .s2 {
+        background-position: 0px -45px;
+      }
+
+      .s3 {
+        background-position: 0px -88px;
+      }
+
+      a.s1:hover{
+        background-position: -1px -135px;
+      }
+
+      a.s2:hover{
+        background-position: -5px -186px;
+      }
+
+      a.s3:hover{
+        background-position: 4px -226px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div>
+      <ul>
+        <li>
+          <a class="sprite s1" href="javascript:;">前进</a>
+        </li>
+        <li>
+          <a class="sprite s2" href="javascript:;">开始</a>
+        </li>
+        <li>
+          <a class="sprite s3" href="javascript:;">停止</a>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
