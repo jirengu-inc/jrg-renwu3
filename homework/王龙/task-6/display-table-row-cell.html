@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="http://www.softwhy.com/" />
+<title>蚂蚁部落</title>
+<style type="text/css"> 
+.table{ 
+  display:table; 
+} 
+.tr{ 
+  display:table-row; 
+  width:200px; 
+  height:200px; 
+} 
+.td{ 
+  display:table-cell; 
+  width:100px; 
+  height:100px; 
+  background-color:green; 
+  border:1px solid red; 
+} 
+tr{ 
+  width:200px; 
+  height:200px; 
+} 
+td{ 
+  width:100px; 
+  height:100px; 
+  background-color:green; 
+  border:1px solid red; 
+} 
+
+
+</style> 
+</head> 
+<body> 
+  <pre>
+    1.table:指定对象作为块元素级的表格，类同于html标签<table>。
+    2.table-row:指定对象作为表格行，类同于html标签<tr>。
+    3.table-cell:指定对象作为表格单元格，类同于html标签<td>。
+
+  </pre>
+<div class="table"> 
+  <div class="tr"> 
+    <div class="td"></div> 
+    <div class="td"></div> 
+  </div> 
+</div> 
+<br/> 
+<table cellpadding="0" cellspacing="0"> 
+  <tr> 
+    <td></td> 
+    <td></td> 
+  </tr> 
+</table> 
+<p style="word-wrap:break-word;">
+从以上代码的表现来看，为div添加了相关属性值之后，差不多完全具有了表格的相关特性，当然上面的演示并不能够完全说明表格所具有的相关特性，以上代码只是说明三个属性值的作用。到这里可能会有朋友提出这样的疑问:在众多的实际应用中并没有完整的定义类似表格这样的层次关系，而是往往只有display:table-cell，这是因为，如果一个对象具有display:table-cell，而它的父元素和祖父元素没有定义display:table-row和display:table-cell,那么就会匿名的创建这两个父元素，尽管外观没有任何变化。代码实例如下:
+</p>
+
+</body> 
+</html>

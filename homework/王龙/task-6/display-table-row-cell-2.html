@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="http://www.softwhy.com/" />
+<title>蚂蚁部落</title>
+<style type="text/css"> 
+
+.parent{ 
+  width:200px; 
+  height:200px; 
+  background-color:green; 
+  display:table-cell; 
+  vertical-align:middle; 
+} 
+.children{ 
+  width:60px; 
+  height:60px; 
+  background-color:red; 
+  font-size:12px; 
+} 
+</style> 
+</head> 
+<body> 
+  
+<div class="parent"> 
+   <div class="children">蚂蚁部落</div> 
+</div> 
+<pre>
+父元素中具有display:table-cell，但是它并没有父元素或者祖父元素定义display:table-row和display:table-cell。这个时候就会匿名创建两个具有此属性的对象，当然外观是看不出来的。
+
+以上代码中之所以子元素可以垂直居中对齐，是因为td元素具有valign属性，而vertical-align:middle只会在具有valign属性的对象中生效，所以上面代码就成功实现了垂直居中效果。
+
+在兼容各个浏览器的位置高度div垂直居中效果中，middle对象中使用了display:table-cell，它的父对象parent中也显示声明了display:table-cell，否则会匿名创建两个具有此属性的对象，middle对象的尺寸就会根据内容自适应了，这样在标准浏览器中就不能达到垂直居中效果了。
+</pre>
+</body> 
+</html>
