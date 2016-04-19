@@ -190,10 +190,17 @@ h4{
     padding-bottom:30px;
     border-radius:5px;
 }
+.thumbnail-list>li>a{
+    cursor:pointer;
+}
+
 .thumbnail-list>li img{
     width:300px;
     height:230px;
     border: 1px solid #e6e6e6;
+}
+.thumbnail-list>li img:hover{
+    opacity:0.7;
 }
 /*底部*/
 #contact{
