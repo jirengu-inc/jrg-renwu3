@@ -174,12 +174,17 @@ hr.sort{
 }
 #footer .foot-icon{
     font-size:50px;
-    color:#337ab7;
     margin:30px -30px 10px auto;
 }
 #footer .foot-icon>li{
     float:left;
     margin-right:30px;
+}
+#footer .foot-icon>li a{
+    color:#337ab7;
+}
+#footer .foot-icon>li a:hover{
+    color:rgba(51,85,139,1);
 }
 #footer .foot-text{
     color:#ccc;
