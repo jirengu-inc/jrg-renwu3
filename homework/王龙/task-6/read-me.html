@@ -1,0 +1,141 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>task6</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+
+  <script>
+  var lh=1;
+  </script>
+          <style>
+            p{
+              border: 1px solid gray;
+              line-height: 2;
+              width: 20%;
+              word-wrap:break-word; 
+            }
+            .div1{
+              border: 1px solid gray;
+              line-height: 80px;
+              width: 20%; 
+              height: 80px;
+            }
+
+            .div2{
+              border: 1px solid gray;
+              width: 315px; 
+              height: 250px;
+              display: table-cell;
+              vertical-align: middle;
+              text-indent: 2em;
+            }
+            * {
+              margin:0 auto;
+            }
+
+            ul{
+                padding: 0;
+                margin: 0;
+                list-style-type: none;
+            }
+            .zxx_ul_image{overflow:hidden; zoom:1;}
+            .zxx_ul_image li{border :1px solid pink;float:left; width:150px; height:150px; text-align:center; line-height:150px; *font-size:125px;}
+            .zxx_ul_image li:after{content:'  '; vertical-align:middle;}
+            .zxx_ul_image li img{vertical-align:middle;}
+            .tf:after{
+              content:'11111111';
+            }
+
+             .item{
+                width: 400px;
+                height: 300px;
+                border: 1px solid red;
+                margin: 0 auto;
+                text-align: center;
+                display: table-cell;
+                vertical-align: middle;
+              }
+
+
+               .item2{
+                  width: 400px;
+                  height: 300px;
+                  border: 1px solid red;
+                  text-align: center;
+                }
+                .item2:before{
+                  content: '';
+                  display:inline-block;
+                  height: 100%;
+                  vertical-align: middle;
+                }
+                .item2 img{
+                  vertical-align: middle;
+                }
+          </style>      
+    </head>
+    <body>
+
+         <p>
+            line-height针对段落间的行高，单行文本时达到垂直居中的效果vertical-align，局限于单行(注意使用场景)；
+            <button onclick="javascript:$(this).parent('p').css('line-height',3);">line-height++</button>
+         </p>
+         <hr>
+          <p style="border: 1px solid gray;line-height: 2;font-size:18px;">
+              (line-height: 2)=字体高度*2的高度
+         </p>
+        
+         <br>
+         <div class="div1">
+            line-height和height为相同值也可垂直居中;
+            asdfasdfasdfasfffffffffff(多行味道就变了。。。)
+         </div>
+
+         <div style="display:table">
+         <div class="div2" >
+            div单独vertical-align: middle，没有顾名思义的效果；再添加display: table-cell;元素垂直居中，但是 width: 20%，不起作用；改为 width: 315px,就起作用；而且margin: 0 auto；也不居中。
+         </div>
+        </div>
+         <p>
+             vertical-align:
+             初始值：baseline 
+             继承性：不继承 
+             适用于:行内元素和单元格（table-cell）元素 
+             特别提醒：vertical-align只对行内元素有效，对块级元素无效。
+         </p>
+
+
+          <pre>
+              display: list-item（li的默认样式），在li上添加vertical-align: middle对img元素没影响（样式没被继承下去），直接再img上添加vertical-align:middle有效果
+          </pre>
+        <hr>
+       <ul class="zxx_ul_image">
+          <li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm1.jpg" /></li>
+          <li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm2.jpg" /></li>
+          <li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm3.jpg" /></li>
+          <li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm4.jpg" /></li>
+          <li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm5.jpg" /></li>
+          <li><img src="http://image.zhangxinxu.com/image/study/s/s128/mm6.jpg" /></li>  
+      </ul>m
+
+
+      <div class="item">
+        <a href="#" title="图像">
+          <img src="http://s7.mogucdn.com/pic/141028/19m4he_ieydgzbuhfstcyzsmqytambqhayde_220x135.jpg" alt="图像">
+        </a> 
+      </div>
+
+      <div  class="tf">
+          sdfa
+      </div>
+
+
+
+    <div class="item2">
+      <a href="#" title="图像">
+        <img src="http://s7.mogucdn.com/pic/141028/19m4he_ieydgzbuhfstcyzsmqytambqhayde_220x135.jpg" alt="图像">
+      </a> 
+    </div>
+    </body>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</html>

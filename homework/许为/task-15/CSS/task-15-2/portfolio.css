@@ -1,0 +1,87 @@
+.wrap-portfolio{
+	background: rgba(128, 128, 128, 0.07);
+} 
+.portfolio{
+	text-align: center;
+	padding: 110px 0;
+}
+.portfolio h2{
+	font-size: 40px;
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+.portfolio>p{
+	font-size: 16px;
+	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: italic;
+	margin-bottom: 75px;
+	color: #777;
+}
+.portfolio li{
+	width: 360px;
+	margin-left: 23px;
+	margin-bottom: 20px;
+	background: white;
+}
+.portfolio .a1-portfolio{
+	background: url(../../img/portfolio/roundicons.png) 0 0 no-repeat;
+	display: block;
+	height: 260px;
+	background-size: cover;
+}
+.portfolio .a2-portfolio{
+	background: url(../../img/portfolio/startup-framework.png) 0 0 no-repeat;
+	display: block;
+	height: 260px;
+	background-size: cover;
+}
+.portfolio .a3-portfolio{
+	background: url(../../img/portfolio/treehouse.png) 0 0 no-repeat;
+	display: block;
+	height: 260px;
+	background-size: cover;
+}
+.portfolio .a4-portfolio{
+	background: url(../../img/portfolio/golden.png) 0 0 no-repeat;
+	display: block;
+	height: 260px;
+	background-size: cover;
+}
+.portfolio .a5-portfolio{
+	background: url(../../img/portfolio/escape.png) 0 0 no-repeat;
+	display: block;
+	height: 260px;
+	background-size: cover;
+}
+.portfolio .a6-portfolio{
+	background: url(../../img/portfolio/dreams.png) 0 0 no-repeat;
+	display: block;
+	height: 260px;
+	background-size: cover;
+}
+.portfolio h3{
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin: 25px 0 3px 0;
+}
+.portfolio li>p{
+	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+	color:#777;
+	margin-bottom: 23px;
+}
+.hide{
+	background: rgba(255, 255, 0, 0.52);
+	height: 260px;
+	width: 360px;
+	display: table;
+	opacity: 0;
+}
+.hide:hover{
+	opacity: 1;
+}
+.hide span{
+ 	display: table-cell;
+	vertical-align: middle;
+	color: white;
+	font-size: 57px;
+}

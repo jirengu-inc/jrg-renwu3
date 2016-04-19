@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 15-1</title>
+  <link rel="stylesheet" href="css/fontello.css">
+  <style>
+    html, body, ul, li, hr{
+      margin: 0;
+      padding: 0;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+    body a{
+      text-decoration: none;
+    }
+    .container{
+      margin: 0 auto;
+      width: 1000px;
+    }
+    .center{
+      text-align: center;
+    }
+    #nav li{
+      list-style: none;
+    }
+    #nav{
+      height: 40px;
+      position: fixed;
+      background-color: white;
+      width: 100%;
+      text-align: center;
+    }
+    .nav-list>li{
+      float: left;
+      margin-right: 20px;
+      line-height: 40px;
+      font-size: 14px;
+      position: relative;
+    }
+    .clear-float:after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .nav-list .work-list{
+      display: none;
+      position: absolute;
+      left: -5px;
+      top: 100%;
+      width: 130px;
+      border: 1px solid #ccc;
+      background-color: white;
+    }
+    .work-list li a{
+      color: black;
+    }
+    .work-list li{
+      padding-left: 10px;
+      padding-right: 50px;
+      margin-bottom: -5px;
+    }
+    .work-list li:hover{
+      background-color: #eee;
+    }
+    .nav-list>li>a{
+      color: black;
+      opacity: 0.6;
+    }
+    .nav-list>li>a:hover{
+      opacity: 1;
+    }
+    #nav .nav-list>li:nth-child(1){
+      font-size: 18px;
+    }
+    .nav-list li:nth-child(1)>a{
+      opacity: 1;
+    }
+    .nav-list>li:hover .work-list{
+      display: block;
+    }
+    #nav .work-list .line{
+      opacity: 0.4;
+      margin-top: 8px;
+      margin-bottom: 3px;
+      padding: 0;
+    }
+    #nav .work-list .work-diff{
+      margin-bottom: 3px;
+    }
+    #nav .work-list .work-diff:hover{
+      background-color: white;
+    }
+    #require{
+      background-color: #b84d45;
+      color: white;
+      font-size: 1.5em;
+      padding-top: 50px;
+      padding-bottom: 30px;
+    }
+    #head a,
+    #footer a{
+      color: #b84d45;
+    } 
+    #head a:hover{
+      text-decoration: underline;
+    }
+    #head{
+      background-color: #f5f5f5;
+      margin-top: 30px;
+    }
+    #head p{
+      padding: 8px;
+    }
+    .center{
+      text-align: center;
+    }
+    #work .item-box{
+      float: left;
+      margin-left: 32px;
+      border:1px solid #ddd;
+      border-radius: 5px;
+      padding: 5px;
+      margin-bottom: 32px;
+      text-align: center;
+      list-style: none;
+    }
+    #work{
+      margin-left: -32px;
+    }
+    #work img:hover{
+      opacity: 0.7;
+    }
+    #work img{
+      width: 300px;
+      height: 200px;
+    }
+    #work .wrap{
+      margin: 0 auto;
+      width: 1032px;
+    }
+    .item-box:after{
+      content: "";
+      display: block;
+      height: 15px;
+    }
+    #work a{
+      border: 1px solid #ccc;
+      color: black;
+      padding: 5px;
+      border-radius: 3px;
+    }
+    #work a:hover{
+      background-color: #eee;
+    }
+    #contact{
+      background-color: #b84d45;
+      color: white;
+      padding: 20px 0;
+      font-size: 1.2em;
+    }
+    #footer{
+      margin: 60px 0;
+    }
+    #footer a:hover{
+      text-decoration: underline;
+    }
+    #footer hr{
+      opacity: 0.2;
+      width: 1000px;
+    }
+  </style>
+</head>
+<body>
+  <div id="nav" class="clear-float">
+    <ul class="nav-list container">
+      <li><a href="#">饥人谷</a></li>
+      <li><a href="#">我的作品<span class="icon-down-dir"></span></a>
+        <ul class="work-list">
+          <li><a class="icon-gihub" href="#">作品1</a></li>
+          <li><a class="icon-joomla" href="#">作品2</a></li>
+          <li><a class="icon-renren" href="#">作品3</a></li>
+          <li class="line"><hr></li>
+          <li class="work-diff">作品4</li>
+        </ul>
+      </li>
+      <li><a href="#">博客</a></li>
+      <li><a href="#">项目</a></li>
+      <li><a href="#">关于我</a></li>
+    </ul>
+  </div>
+
+  <div id="require">
+    <div class="container">
+      <h1>页面特征</h1>
+      <p>不需要处理响应式，不使用 Bootstrap，不需要 js。<br>图标使用 font-awesome,页面中心内容固定宽度1000px</p>
+    </div>
+  </div>
+
+  <div id="head" class="container">
+    <p><a href="#">首页</a> / 我的作品</p>
+  </div>
+
+  <div id="work">
+    <ul class="clear-float wrap">
+      <li class="item-box">
+        <img src="img/creative.jpg" alt="">
+        <h2>Creative</h2>
+        <p>A one page creative theme.</p>
+        <a href="#">查看</a>
+      </li>
+      <li class="item-box">
+        <img src="img/agency.jpg" alt="">
+        <h2>Agency</h2>
+        <p>A one page agency theme.</p>
+        <a href="#">查看</a>
+      </li>
+      <li class="item-box">
+        <img src="img/freelancer.jpg" alt="">
+        <h2>Freelancer</h2>
+        <p>A one page freelancer theme.</p>
+        <a href="#">查看</a>
+      </li>
+      <li class="item-box">
+        <img src="img/grayscale.jpg" alt="">
+        <h2>Grayscale</h2>
+        <p>A multipurpose one page theme.</p>
+        <a href="#">查看</a>
+      </li>
+      <li class="item-box">
+        <img src="img/landing-page.jpg" alt="">
+        <h2>Landing Page</h2>
+        <p>A clean, functional landing page theme.</p>
+        <a href="#">查看</a>
+      </li>
+      <li class="item-box">
+        <img src="img/stylish-portfolio.jpg" alt="">
+        <h2>Stylish Portfolio</h2>
+        <p>A stylish Bootstrap portfolio theme.</p>
+        <a href="#">查看</a>
+      </li>
+      <li class="item-box">
+        <img src="img/full-width-pics.jpg" alt="">
+        <h2>Full Width Pics</h2>
+        <p>Full width picture backgrounds.</p>
+        <a href="#">查看</a>
+      </li>
+      <li class="item-box">
+        <img src="img/one-page-wonder.jpg" alt="">
+        <h2>One Page Wonder</h2>
+        <p>A simple one page website template.</p>
+        <a href="#">查看</a>
+      </li>
+      <li class="item-box">
+        <img src="img/half-slider.jpg" alt="">
+        <h2>Half Slider</h2>
+        <p>A half page image slider template.</p>
+        <a href="#">查看</a>
+      </li>
+      <li class="item-box">
+        <img src="img/full-slider.jpg" alt="">
+        <h2>Full Slider</h2>
+        <p>A full page image slider template.</p>
+        <a href="#">查看</a>
+      </ul>
+    </div>
+
+    <div id="contact">
+      <div class="center">
+        <h2>想更详细的了解我？</h2>
+        <p>下载简历，打我电话找我吧</p>
+      </div>
+    </div>
+
+    <div id="footer" class="center">
+      <div class="container">
+        <hr>
+        <p>模板来自<a href="#">start Bootstrap</a>.</p>
+      </div>
+    </div>
+  </body>
+  </html>

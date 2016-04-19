@@ -1,0 +1,53 @@
+#header{
+	width: 100%;
+	height: 100%;
+	background: url(../../img/header-bg.jpg) 0 0 no-repeat;
+}
+.navigation{
+	padding: 10px 0;
+}
+.navigation h1{
+	font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+	color: yellow;
+	margin-top: 25px;
+}
+.navigation a{
+	float: right;
+	margin-left: 20px;
+	color: white;
+	font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+	text-decoration: none;
+	position: relative;
+	bottom: 30px;
+}
+.navigation a:hover{
+	color: yellow;
+}
+.navigation:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.welcome{
+	text-align: center;
+	padding-top: 160px;
+}
+.welcome h2{
+	font-style: italic;
+	color: white;
+	font-size: 45px;
+	margin-bottom: 20px;
+}
+.welcome h3{
+	color: white;
+	font-size: 75px;
+	margin-bottom: 32px;
+}
+.welcome .tell{
+	height: 69px;
+	width: 222px;
+	
+}
+.
+
+
