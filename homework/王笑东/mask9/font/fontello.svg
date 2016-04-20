@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2016 by original authors @ fontello.com</metadata>
+<defs>
+<font id="fontello" horiz-adv-x="1000" >
+<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="right-circled2" unicode="&#xe800;" d="M643 350q0-8-5-13l-179-178q-5-5-13-5-7 0-12 5t-5 12v108h-197q-7 0-12 5t-6 12v108q0 7 6 12t12 5h197v108q0 7 5 12t12 5q7 0 14-5l178-178q5-5 5-13z m89 0q0 83-41 152t-110 111-152 41-153-41-110-111-41-152 41-152 110-111 153-41 152 41 110 111 41 152z m125 0q0-117-57-215t-156-156-215-58-216 58-155 156-58 215 58 215 155 156 216 58 215-58 156-156 57-215z" horiz-adv-x="857.1" />
+
+<glyph glyph-name="right-circled" unicode="&#xe801;" d="M717 350q0 15-10 25l-51 51-202 202q-10 10-25 10t-25-10l-51-51q-10-10-10-25t10-25l106-106h-280q-15 0-26-10t-10-25v-72q0-14 10-25t26-10h280l-106-106q-10-10-10-25t10-25l51-51q10-10 25-10t25 10l202 202 51 51q10 10 10 25z m140 0q0-117-57-215t-156-156-215-58-216 58-155 156-58 215 58 215 155 156 216 58 215-58 156-156 57-215z" horiz-adv-x="857.1" />
+
+<glyph glyph-name="play-circled" unicode="&#xe802;" d="M429 779q116 0 215-58t156-156 57-215-57-215-156-156-215-58-216 58-155 156-58 215 58 215 155 156 216 58z m214-460q18 10 18 31t-18 31l-304 178q-17 11-35 1-18-11-18-31v-358q0-20 18-31 9-4 17-4 10 0 18 5z" horiz-adv-x="857.1" />
+
+<glyph glyph-name="play-circled2" unicode="&#xe803;" d="M661 350q0-21-18-31l-304-178q-8-5-18-5-8 0-17 4-18 11-18 31v358q0 20 18 31 18 10 35-1l304-178q18-10 18-31z m71 0q0 83-41 152t-110 111-152 41-153-41-110-111-41-152 41-152 110-111 153-41 152 41 110 111 41 152z m125 0q0-117-57-215t-156-156-215-58-216 58-155 156-58 215 58 215 155 156 216 58 215-58 156-156 57-215z" horiz-adv-x="857.1" />
+
+<glyph glyph-name="stop-outline" unicode="&#xe804;" d="M521 559l-417 0 0-418 417 0 0 418z m0 104q44 0 74-30t30-74l0-418q0-43-30-73t-74-30l-417 0q-44 0-74 30t-30 73l0 418q0 44 30 74t74 30l417 0z" horiz-adv-x="625" />
+
+<glyph glyph-name="stop" unicode="&#xe805;" d="M521 663q44 0 74-30t30-74l0-418q0-43-30-73t-74-30l-417 0q-44 0-74 30t-30 73l0 418q0 44 30 74t74 30l417 0z" horiz-adv-x="625" />
+</font>
+</defs>
+</svg>
