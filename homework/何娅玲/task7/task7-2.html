@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表单</title>
+    <style>
+
+    </style>
+</head>
+<body>
+<form action="#">
+    <div>
+        <label for="user">姓名：</label>
+        <input id="user" name="user" type="text" placeholder="用户名"/>
+    </div>
+    <div>
+        <label for="psw">密码：</label>
+        <input id="psw" name="psw" type="password" />
+    </div>
+    <div>
+        <label >性别：</label>
+        <input type="radio" name="sex" id="man" checked/>
+        <label for="man">男</label>
+        <input type="radio" name="sex" id="woman"/>
+        <label for="woman">女</label>
+    </div>
+    <div>
+        <label >取向：</label>
+        <input type="radio" name="sex1" id="man1"/>
+        <label for="man1">男</label>
+        <input type="radio" name="sex1" id="woman1" checked/>
+        <label for="woman1">女</label>
+    </div>
+    <div>
+        <label >爱好：</label>
+        <input type="checkbox" name="hobby" id="hobby1" />
+        <label for="hobby1">DoTa</label>
+        <input type="checkbox" name="hobby" id="hobby2" checked/>
+        <label for="hobby2">旅游</label>
+        <input type="checkbox" name="hobby" id="hobby3" checked/>
+        <label for="hobby3">宠物</label>
+    </div>
+    <div>
+        <label for="" >评论：</label>
+        <textarea name="meg" id="" cols="30" rows="10">value</textarea>
+    </div>
+    <label for="">我的car：</label>
+    <select name="car" >
+        <option value="car1" selected>萨博</option>
+        <option value="car2">奥迪</option>
+        <option value="car3">奔驰</option>
+    </select>
+
+    <!--<button>提交</button>-->
+    <input type="submit" value="提交"/>
+</form>
+</body>
+</html>
