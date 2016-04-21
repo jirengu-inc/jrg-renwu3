@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>form表单</title>
+	<style type="text/css">
+		/* p{
+			display:inline-block;
+		} */
+		.main{
+			width:500px;
+			margin:0 auto;
+			background-color:#ccc;
+		}
+		.main div{
+			color:red;
+			font-size:20px;
+		}
+		textarea{
+			margin-top:-35px;
+			margin-left:40px;
+			height:200px;
+			width:200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<form name="myForm" action="#" method="get">
+			<div>姓名：<input name="username" type="text" placeholder="用户名"></div>
+			<div>密码：<input name="password" type="password" placeholder="请输入密码"></div>
+			<div>性别：<input name="sex" type="radio" value="male">男
+				<input name="sex" type="radio" value="female">女
+			</div>
+			<div>取向：<input name="love" type="radio" value="male">男
+				<input name="love" type="radio" value="female">女
+			</div>
+			<div>爱好：<input name="dota" type="checkbox">dota
+				<input name="tour" type="checkbox">旅游
+				<input name="pet" type="checkbox">宠物
+			</div>
+			<div>
+				<p>评论：</p>
+				<textarea name="comment" placeholder="dddd"></textarea>			
+			</div>
+			<div>Mycar:
+				<select name="myCar">
+					<option value="saab">萨博</option>
+					<option value="changan">长安一汽</option>
+					<option value="volvo">沃尔沃</option>
+					<option value="opel">欧宝</option>
+					<option value="audi">奥迪</option>
+				</select>
+				<button type="submit">提交</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

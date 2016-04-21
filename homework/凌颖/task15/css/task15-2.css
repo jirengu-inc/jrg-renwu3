@@ -41,6 +41,8 @@ section{
     text-align:center;
     display:inline-block;
     vertical-align:middle;
+    border:none;
+    outline: none;
 }
 .btn-lg{
     font-size: 23px;
@@ -60,9 +62,9 @@ section{
 .center{
     text-align: center;
 }
-.clear{
+.clear:after{
     content:"";
-    display:inline-block;
+    display:block;
     clear:both;
 }
 .grey{
@@ -281,24 +283,92 @@ h3.public-intro{
 #about .timeline>li div>h4{
     margin:0 0 10px 0;
 }
-/*底部*/
-#contact{
-    background-color:#b84d45;
+#partner{
+    background-color:#f7f7f7;
+}
+#partner .partner-list>li{
+    width:350px;
+    height:auto;
+    float:left;
+    text-align: center;
+}
+#partner .partner-list>li>img{
+    display: inline-block;
+    border-radius: 50%;
+    border: 7px solid #fff;
+    width:240px;
+    height:240px;
+}
+#partner .partner-list>li>h4{
+    margin-bottom:0;
+}
+#partner .partner-list>li>p{
+    margin-top:0;
+}
+.partner-icon-list>li{
+   display: inline-block;
+    margin:0 10px;
+}
+.partner-icon-list>li>a{
+    background-color: #222;
+    border-radius: 100%;
+    color: #fff;
+    display: block;
+    font-size: 20px;
+    height: 40px;
+    line-height: 40px;
+    outline: 0 none;
+    width: 40px;
+}
+.partner-icon-list>li>a:hover{
+    background-color:rgba(254, 209, 54, 0.9);
+}
+#partner>.layout>p.grey{
+    width:660px;
+    margin:50px auto 10px auto;
+    font-weight: bold;
+}
+#link{
     padding:50px 0;
+}
+#link .link-list>li{
+    display: inline-block;
+    width:24%;
+}
+#contact{
     color:#fff;
-    margin-top: 50px;
+    background: url("../img/task15-2/map-image.png") center center no-repeat #222;
 }
+#contact form div.form-left{
+    width:49%;
+    float:left;
+}
+#contact form div.form-right{
+    width:49%;
+    float:right;
+}
+#contact form div>input{
+    width:95%;
+    height:50px;
+    border-radius:5px;
+    margin-bottom:20px;
+}
+#contact form div>textarea{
+    width:95%;
+    border-radius:5px;
+    height: 205px;
+    margin-bottom:15px;
+}
+
+/*底部*/
 #footer{
-    padding:40px 0;
+    padding:50px 0;
 }
-#footer hr{
-    border-top: 1px solid #eee;
-    margin:20px 0;
+#footer .list-3{
+    float:left;
+    width:33%;
 }
-#footer p{
-    color:#777;
-}
-#footer p a{
-    color:#b84d45;
-    text-decoration: none;
+#footer .list-3>a{
+    color:rgba(254, 209, 54, 0.9);
+    margin-right:20px;
 }
