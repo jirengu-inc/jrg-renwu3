@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>first-child  vs first-of-child</title>
+  <style>
+    /*选中.item1,该元素是它父亲下 当前类型的 第一个孩子*/
+    .item1:first-of-type{
+      background: red;
+    }
+    
+    /*选中.item1,该元素是它父亲所有的 .item1孩子中的第一个*/
+    .item1:first-child{
+      color: blue;
+    }
+
+  </style>
+</head>
+<body>
+
+ <!--红色，因为该元素是item1,且是它父亲的孩子中，div类型下的第一个-->
+ <!--蓝色，因为该元素是item1,且是它父亲的孩子中的第一个-->
+ <div class="item1">111</div>
+
+ <div class="ct">
+   
+   <!--蓝色，因为该元素是item1,且是它父亲的孩子中的第一个-->
+   <!--红色，因为该元素是item1,且是它父亲的孩子中，p 类型下的第一个-->
+   <p class="item1">222</p>
+   
+   <!--红色，因为该元素是item1,且是它父亲的孩子中，div 类型下的第一个-->
+   <div class="item1">333</div>
+   <div class="item1">444</div>
+   <div class="item2">
+     
+     <!--蓝色，因为该元素是item1,且是它父亲的孩子中的第一个-->
+     <!--红色，因为该元素是item1,且是它父亲的孩子中，div 类型下的第一个-->
+     <div class="item1">555</div>
+     
+     <div class="item1">666</div>
+   </div>
+ </div>
+</body>
+</html>

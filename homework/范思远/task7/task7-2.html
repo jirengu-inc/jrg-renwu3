@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style type="text/css">
+  div {
+    font-size: 25px;
+    font-weight: bold;
+    font-family: KaiTi;
+  }
+  
+  textarea {
+    width: 500px;
+    height: 250px;
+    font-size: 20px;
+  }
+  
+  select {
+    border-radius: 5px;
+    width: 80px;
+    font-size: 17px;
+  }
+  
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: 18px;
+    height: 18px;
+  }
+  </style>
+</head>
+
+<body>
+  <form name="myform" action="#" method="post">
+    <div>姓名：
+      <input name="username" type="text" placeholder="用户名" maxlength="10">
+    </div>
+    <div>密码：
+      <input name="password" type="password" placeholder="密码">
+    </div>
+    <div>性别：
+      <input name="sex" type="radio" value="male" checked>男
+      <input name="sex" type="radio" value="female">女
+    </div>
+    <div>取向：
+      <input name="sexual-preference" type="radio" value="male">男
+      <input name="sexual-preference" type="radio" value="female" checked>女
+    </div>
+    <div>爱好：
+      <input name="dota" type="checkbox">dota
+      <input name="travel" type="checkbox" checked>旅游
+      <input name="pet" type="checkbox" checked>宠物
+      <div>评论：
+        <textarea name="maneywords" maxlength=300 placeholder="ddd"></textarea>
+      </div>
+      <div>我的car
+        <select name="mycar">
+          <option value="sabo">萨博</option>
+        </select>
+        <input type="submit" value="提交" />
+      </div>
+</body>
+
+</html>
