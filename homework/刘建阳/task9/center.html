@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用定位实现垂直水平居中</title>
+	<style type="text/css">
+		.ct{
+			/* position: relative;
+			height: 800px; */
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;/* 满屏 */
+			background: rgba(0,0,0,0.5);/* 灰色 */
+		}
+		.center{
+			width: 80px;
+			height: 80px;
+			position: absolute;
+			top: 50%;
+			left: 50%;/* 左上角水平居中 */
+			margin-left: -40px;
+			margin-top: -40px;/* 元素水平居中 */
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<div class="ct">
+		<div class="center"></div>
+	</div>
+</body>
+</html>
