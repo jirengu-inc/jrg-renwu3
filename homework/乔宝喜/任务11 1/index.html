@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			body,ul{
+				padding: 0;
+				margin: 0;
+			}
+			li{
+				list-style: none;
+			}
+			a{
+				text-decoration: none;
+				color: black;
+			}
+			.clear{
+				zoom: 1;
+			}
+			.clear:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			
+			.main>li{
+				float: left;
+				background-color:#cbcbcb;
+				padding: 10px;
+				position: relative;
+			}
+			.main .content{
+				display: none;
+			}
+			.main>li:hover .content{
+				top:100%;
+				display: block;
+				position: absolute;
+				z-index: 1;
+				left: 0;
+				background-color: ;
+				border: 1px solid black;
+			}
+			.content>li:hover{
+				background-color:#cbcbcb ;	
+			}
+			.main>li:hover{
+				background-color:darkgrey;
+			}
+		</style>
+	</head>
+	<body><ul class="main clear">
+		<li><a href="#">前端</a>
+		<ul class="content">
+			<li>JAVASCRIPT</li>
+			<li>CSS</li>
+			<li>HTML</li>
+		</ul></li>
+		<li><a href="#">服务器</a>
+		<ul class="content">
+			<li>NODE</li>
+			<li>PHP</li>
+			<li>JAVA</li>
+		</ul></li>
+		<li><a href="#">前端工具</a>
+		<ul class="content">
+			<li>Sublime</li>
+			<li>Webstorm</li>
+			<li>git</li>
+		</ul></li>
+		<li>HTML</li>
+		<li>NODE</li>
+	</ul>
+		
+	</body>
+</html>
