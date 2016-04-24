@@ -44,6 +44,8 @@
 		#content{
 			width:80%;
 			margin: 0 auto;
+			/* overflow: hidden; */ 
+			/*形成BFC，使footer的外边距起作用，当取值auto中间content会形成滚动条 */
 			/* padding: 30px 0px; */
 		}
 
@@ -113,15 +115,18 @@
 		.tree>li a{
 			color: #008000;
 		}
-
+		
+		.clear{
+			clear: both;
+		}/* 最简单的一个方法，在所有浮动元素后面添加div，然后clear:both; */
 
 		#footer{
 			width: 80%;
 			
 			clear: both;
-
+			
 			margin: 30px auto;/* ul class="tree">设为向左浮动时（为了鼠标只放在li>a元素的里面，即内容汉字的范围内有效）.footer的上下边距变的无效 */
-			padding: 30px 0;
+			/* padding: 30px 0; */
 			
 		}
 		#footer .btn{
@@ -182,11 +187,11 @@
        		  <li class="has-child"><a href="#">多思考</a></li>
        		  <li class="has-child"><a href="#">多练习</a></li>
        		</ul>
+       		<div class="clear"></div>
        </div>
     </div>
     <div id="footer">
     	<button class="btn">发送</button>
     </div>
-
 </body>
 </html>
