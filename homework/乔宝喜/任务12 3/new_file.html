@@ -20,10 +20,9 @@
 				clear: both;
 			}
 			.main{
-				background-color: green;
+				
 				float: left;
-				margin:0 200px;
-				height: 200px;
+				
 			}
 			.left-side{
 				width:200px;
@@ -40,6 +39,11 @@
 				margin-left:-200px ;
 				height: 200px;
 			}
+			#in{
+			margin:0 200px;
+			height: 200px;
+			background-color: green;
+			}
 		</style>
 	</head>
 	<body>
@@ -48,11 +52,13 @@
 		</div>
 		<div id="content" class="clear">
 			<div class="main">
+				<div id="in">
 				实现了内容与布局的分离，即Eric提到的Any-Order Columns.
 				main部分是自适应宽度的，很容易在定宽布局和流体布局中切换。
 				任何一栏都可以是最高栏，不会出问题。
 				需要的hack非常少（就一个针对ie6的清除浮动hack:_zoom: 1;）
 				在浏览器上的兼容性非常好，IE5.5以上都支持。
+				</div>
 			</div>
 			<div class="left-side">
 				左侧边栏，固定宽度
