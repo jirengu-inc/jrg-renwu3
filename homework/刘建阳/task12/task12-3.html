@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圣杯布局的方式实现两栏布局</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+	
+		}
+		.head{
+			height: 50px;
+			background: #ccc;
+		}
+		.foot{
+			height: 50px;
+			background: #ccc;
+		}
+		
+		
+		.main{
+			width: 100%;
+			float:left;
+			
+		}
+
+		.container:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		.right{
+			background-color: #168;
+			width: 200px;
+			float:left;
+			margin-left: -200px;
+			
+		}
+
+		.content{
+			margin-right: 200px;
+			background-color: #3a5;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="head">这是头这石头</div>
+	<div class="container">
+		<div class="main">
+			<div class="content">
+				这个是双飞翼布局，两侧边栏固定宽度，中间自适应这个是双飞翼布局，两侧边栏固定宽度，中间自适应
+				这个是双飞翼布局，两侧边栏固定宽度，中间自适应这个是双飞翼布局，两侧边栏固定宽度，中间自适应
+				这个是双飞翼布局，两侧边栏固定宽度，中间自适应这个是双飞翼布局，两侧边栏固定宽度，中间自适应
+				这个是双飞翼布局，两侧边栏固定宽度，中间自适应这个是双飞翼布局，两侧边栏固定宽度，中间自适应
+				这个是双飞翼布局，两侧边栏固定宽度，中间自适应
+			</div>
+		</div>
+		
+		<div class="right">右侧边栏，固定宽度</div>	
+	</div>
+	<div class="foot">这世界脚部</div>
+</body>
+</html>
