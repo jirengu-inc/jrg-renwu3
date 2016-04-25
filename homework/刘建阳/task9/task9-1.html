@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task9-1悬停播放</title>
+	<style type="text/css">
+		.multimedia{
+			/* width: 100px; */
+		}
+		.control{
+			background: url(img/result.png) 0 0 no-repeat;
+			color: black;
+			font-family: "微软雅黑";
+			width: 40px;
+			height: 40px;
+			display: inline-block;
+			padding-left: 33px;
+		}
+
+
+		.speed{
+			background-position: 0px -182px;
+		}
+		.speed:hover{
+			background-position: 0px -228px;
+			color: purple;
+		}
+		.play{
+			background-position: -2px -7px;
+		}
+		.play:hover{
+			background-position: 0 -49px;
+			color: purple;
+		}
+		.pause{
+			background-position: 0 -88px;
+		}
+		.pause:hover{
+			background-position: -3px -136px;
+			color: purple;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="multimedia">
+		<a href="#" class="control speed">前进</a>
+		<a href="#" class="control play">开始</a>
+		<a href="#" class="control pause">停止</a>
+	</div>
+</body>
+</html>

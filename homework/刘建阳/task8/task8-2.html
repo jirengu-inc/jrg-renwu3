@@ -9,9 +9,20 @@
 			padding: 0 0;
 			font-family: "微软雅黑"
 		}
+		li{
+			list-style: none;
+		}
+		a{
+			padding: 4px;
+			border-radius: 6px;
+			text-decoration: none;
+		}
+		a:hover{
+			background-color: #ddd;
+		}
 		#header{
 			background-color: #333333;
-			width: 1000px;
+			width: 80%;
 			height: 70px;
 			margin: 0 auto;
 			padding-left: 20px;
@@ -27,12 +38,14 @@
 		}
 		.nav>li a{
 			color: #008000;
-			text-decoration: none;
+			/* text-decoration: none; */
 		}
 		
 		#content{
-			width:1000px;
+			width:80%;
 			margin: 0 auto;
+			/* overflow: hidden; */ 
+			/*形成BFC，使footer的外边距起作用，当取值auto中间content会形成滚动条 */
 			/* padding: 30px 0px; */
 		}
 
@@ -55,32 +68,75 @@
 		
 		.tree{
 			margin: 30px auto;
-		}
-		.tree,.tree ul{
 			list-style: none;
 		}
-		.tree .open a{
+		.tree ul{
+			list-style: none;
+			margin-left: 12px;
+		}
+		/* .tree .open a{
 			
 			text-decoration: none;
 			
-		}
+		} */
 
-
+		
+		/* .content-nav{
+			clear: both;
+		} */	/* .footer的上下边距依然无效 */
 		.tree>li{
 			padding-left: 14px;
 			text-decoration: none;
 			background:url(imge/2.jpg) 0 5px no-repeat; 
+			float: left;
+			clear: both;
 		}
-		.tree>li:hover{
+		.tree>li:hover ul{
+			display: block;
+			cursor: pointer;
+			/* background-color: #ccc; */
+		}
+		.tree>.has-child:hover{
 			background:url(imge/1.jpg) 0 5px no-repeat;
 		}
-		.tree>.has-child:nth-of-type(2) ul{
+		/* .tree>li ul>li{
+			float: left;
+			clear: both;
+		} *//* .tree>li已经设置了左浮动，所以li里面的子元素的空间范围也被限定在内容撑开的范围内，不用单独设置浮动*/
+		.tree>.has-child ul>li:hover{
+
+			background-color: #ccc;/* 全局设置的a:hover{}没有效果 */
+		}
+		.tree>.has-child ul{
 			display: none;
 		}
 
 
 		.tree>li a{
 			color: #008000;
+		}
+		
+		.clear{
+			clear: both;
+		}/* 最简单的一个方法，在所有浮动元素后面添加div，然后clear:both; */
+
+		#footer{
+			width: 80%;
+			
+			clear: both;
+			
+			margin: 30px auto;/* ul class="tree">设为向左浮动时（为了鼠标只放在li>a元素的里面，即内容汉字的范围内有效）.footer的上下边距变的无效 */
+			/* padding: 30px 0; */
+			
+		}
+		#footer .btn{
+			background-color: red;
+			color: white;
+			border: 0;
+			font-size: 18px;
+			border-radius: 6px;
+			width: 60px;
+			cursor: pointer;
 		}
 	</style>
 </head>
@@ -110,28 +166,32 @@
             我的前端学习,笔记这是我, 的前端, 
             学习笔记
         </p>
-        <ul class="tree">
-          <li class="open has-child">
-            <a href="#">记笔记</a>
-            <ul>
-              <li>jscode</li>
-              <li>博客</li>
-              <li>Github</li>
-            </ul>
-          </li>
-          <li class="has-child">
-              <a href="#">做作业</a>
-              <ul>
-                  <li>jscode</li>
-                  <li>博客</li>
-                  <li>Github</li>
-                </ul>
-          </li>
-          <li><a href="#">多思考</a></li>
-          <li><a href="#">多练习</a></li>
-        </ul>
+       <div class="content-nav">
+       		<ul class="tree">
+       		  <li class="open has-child">
+       		    <a href="#">记笔记</a>
+       		    <ul>
+       		      <li>jscode</li>
+       		      <li>博客</li>
+       		      <li>Github</li>
+       		    </ul>
+       		  </li>
+       		  <li class="has-child">
+       		      <a href="#">做作业</a>
+       		      <ul>
+       		          <li>jscode</li>
+       		          <li>博客</li>
+       		          <li>Github</li>
+       		        </ul>
+       		  </li>
+       		  <li class="has-child"><a href="#">多思考</a></li>
+       		  <li class="has-child"><a href="#">多练习</a></li>
+       		</ul>
+       		<div class="clear"></div>
+       </div>
     </div>
-    <div id="footer"></div>
-
+    <div id="footer">
+    	<button class="btn">发送</button>
+    </div>
 </body>
 </html>

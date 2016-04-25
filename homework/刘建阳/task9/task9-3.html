@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>border实现三角效果</title>
+	<style type="text/css">
+		.square{
+		  width:0;
+		  height:0;
+		  border-left:30px solid #f00;
+		  border-right:30px solid #00f;
+		  border-bottom:30px solid #0f0;
+		  border-top:30px solid #999;
+		}
+		.triangle{
+		  width:0;
+		  height:0;
+		  margin-top:30px;
+		}
+		.up{
+		  border-left:30px solid transparent;
+		  border-right:30px solid transparent;
+		  border-bottom:30px solid #0f0;
+		}
+		.down{
+		  border-left:30px solid transparent;
+		  border-right:30px solid transparent;
+		  border-top:30px solid #999;
+		}
+		.left{
+		  border-right:30px solid #00f;
+		  border-bottom:30px solid transparent;
+		  border-top:30px solid transparent;
+		  margin-left:30px;
+		}
+		.right{
+		  border-left:30px solid #f00;
+		  border-bottom:30px solid transparent;
+		  border-top:30px solid transparent;
+		}
+		.up_left{
+		  border-top:45px solid #999;
+		  border-right:45px solid transparent;
+		}
+		.up_right{
+		  border-top:45px solid #0f0;
+		  border-left:45px solid transparent;
+		}
+		.bottom_left{
+		  border-bottom:45px solid #a37;
+		  border-right:45px solid transparent;
+		}
+		.bottom_right{
+		  border-bottom:45px solid #7A4DFF;
+		  border-left:45px solid transparent;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="square"></div>
+	<div class="up triangle"></div>
+	<div class="down triangle"></div>
+	<div class="left triangle"></div>
+	<div class="right triangle"></div>
+	<div class="up_left triangle"></div>
+	<div class="up_right triangle"></div>
+	<div class="bottom_left triangle"></div>
+	<div class="bottom_right triangle"></div>
+</body>
+</html>

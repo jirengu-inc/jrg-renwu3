@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>inline-bloc缝隙k</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			/* 在设置padding=0后页面看不到·样式，是因为被padding遮住了 */
+			list-style: none;
+		}
+		.box{
+			border: 2px solid red;
+			font-size: 0;
+		}
+		.box>li{
+			display: inline-block;
+			background-color: #ccc;
+			border-radius: 6px;
+			height: 30px;
+			font-size: 18px;
+			line-height: 30px;
+			/* margin-left: -8px; */
+		}
+	</style>
+</head>
+<body>
+	<ul class="box">
+		<li>inline</li>
+		<li>inline</li>
+		<li>inline</li>
+	</ul>
+</body>
+</html>
