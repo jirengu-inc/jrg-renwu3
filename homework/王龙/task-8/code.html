@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style> 
+  p{
+    font-family: "微软雅黑",sans-serif;
+  }
+  ul {
+    list-style: none;
+  }
+  a {
+      text-decoration: none;
+  }
+  body,ul,p{
+    padding: 0px;
+    margin: 0px;
+  }
+
+  #header>.nav li{
+    float: left;
+    /* display: inline-block; */
+    height: 60px;
+    line-height: 60px;
+    margin-left: 30px;
+  }
+  
+  #header>.nav li>a{
+    color: #73BBAD;
+    height: 60px;
+  }
+
+  .nav{
+    background: #333;
+  }
+  
+  #header>.nav:after {
+    content: "";
+    display: block;
+    clear: left;
+  }
+  #content h3{
+    border-bottom: 1px dashed gray;
+    padding-bottom: 8px;
+    font-weight: bold;
+    padding: 10px;
+  }
+  #content .title{
+    color: #73BBAD;
+    text-align: center;
+  }
+  #content{
+    padding: 20px;
+  }
+  #content p{
+    text-indent: 2;
+  }
+  #content .desc{
+    font-size: 12px;
+    text-align: left;
+    color: gray;
+  }
+
+  #content .tree{
+    margin-top: 20px;
+  }
+  #content .tree>li:not(.open):before{
+    content: "+ ";
+    display: inline;
+  }
+
+  #content .tree>li.open:before{
+    content: "- ";
+    display: inline;
+  }
+
+
+  #content .tree>li>a{
+    color: green;
+  }
+
+
+
+  #content .tree>li:not(.open)>ul{
+     display: none;
+  }
+
+  #content .tree>li.open>ul{
+    display: block;
+    text-indent: 2em;
+    padding: 4px 0;
+  }
+    
+  </style>
+</head>
+<body>
+    <div id="header">
+        <ul class="nav">
+          <li><a href="">首页</a></li>
+          <li><a href="">简介</a></li>
+          <li><a href="">作品</a></li>
+          <li><a href="">关于</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <h1 class="title">前端学习</h1>
+        <p class="desc">这是我的前端学习笔记</p>
+        <h3>第一章</h3>
+        <p>这是我的前端学习笔
+            记这是我是<span class="text-less"> 特别的</span> 的前端学习笔
+            记这是我的前端学习笔记这是
+            我的前端学习,笔记这是我, 的前端, 
+            学习笔记
+        </p>
+        <h3>第二章</h3>
+        <p>这是我的前端学习笔
+            记这是我的前端学习笔
+            记这是我的<span class="text-less"> 特别的</span>前端学习笔记这是
+            我的前端学习,笔记这是我, 的前端, 
+            学习笔记
+        </p>
+        <ul class="tree">
+          <li class="open has-child">
+            <a href="#">记笔记</a>
+            <ul>
+              <li>jscode</li>
+              <li>博客</li>
+              <li>Github</li>
+            </ul>
+          </li>
+          <li class="has-child">
+              <a href="#">做作业</a>
+              <ul>
+                  <li>jscode</li>
+                  <li>博客</li>
+                  <li>Github</li>
+              </ul>
+          </li>
+          <li><a href="#">多思考</a></li>
+          <li><a href="#">多练习</a></li>
+        </ul>
+    </div>
+    <div id="footer"></div>
+
+</body>
