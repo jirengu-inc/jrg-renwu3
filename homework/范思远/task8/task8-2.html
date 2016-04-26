@@ -7,9 +7,10 @@
   * {
     font-family: 楷体;
   }
-  body{
-  	font-size:20px;
-  	font-weight:bold;
+  
+  body {
+    font-size: 20px;
+    font-weight: bold;
   }
   
   #header {
@@ -38,7 +39,7 @@
     color: green;
   }
   
-  #content>.desc {
+  #content .desc {
     color: #555;
   }
   
@@ -54,6 +55,25 @@
   
   .tree a {
     color: green;
+    text-decoration: none;
+  }
+  
+  .tree {
+    list-style: none;
+  }
+  
+  .tree .has-child a:before {
+    content: "-";
+    color: black;
+    font-weight: bold;
+    margin:0px 5px;
+  }
+  
+  .tree a:before {
+    content: "+";
+    color: black;
+    font-weight: bold;
+    margin:0px 5px;
   }
   </style>
 </head>
