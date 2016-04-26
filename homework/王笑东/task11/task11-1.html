@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task11-1</title>
+    <style>
+body,ul,li{
+	margin: 0;
+}
+a{
+	text-decoration: none;
+	color: #703333;
+}
+.nav{
+	list-style: none;
+	border:1px solid;
+	background-color: #cbcbcb;
+}
+.common{
+	display: inline-block;
+	padding: 8px;
+	line-height: 40px;
+}
+.child{
+	display: none;
+	position: absolute;
+	left: 0;
+	top: 100%;
+	list-style: none;
+	border:1px solid;
+	padding: 0;
+}
+.child>li:hover{
+	background-color: #aaa;
+}
+.nav>li{
+	padding: 0px 10px;
+	position: relative;
+}
+.nav>li:hover{
+	background-color: #aaa;
+}
+.nav>li:hover .child{
+	display: block;
+}
+    </style>
+</head>
+<body>
+<ul class="nav">
+	<li class="common menu">
+		<a href="#">前端</a>
+		<ul class="child">
+			<li><a href="#">JavaScript</a></li>
+			<li><a href="#">Css</a></li>
+			<li><a href="#">Html</a></li>
+		</ul>
+	</li>
+	<li class="common menu">
+		<a href="#">服务端</a>
+		<ul class="child">
+			<li><a href="#">Node</a></li>
+			<li><a href="#">PHP</a></li>
+			<li><a href="#">Java</a></li>
+		</ul>
+	</li>
+	<li class="common menu">
+		<a href="#">前端工具</a>
+		<ul class="child">
+			<li><a href="#">Sublime</a></li>
+			<li><a href="#">WebStrom</a></li>
+			<li><a href="#">Git</a></li>
+		</ul>
+	</li>
+	<li class="common single">
+		<a href="#">HTML</a>
+	</li>
+	<li class="common single">
+		<a href="#">NODE</a>
+	</li>
+</ul>
+</body>
+</html>
