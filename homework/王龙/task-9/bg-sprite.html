@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+  ul {
+      list-style: none;
+    border:1px solid ;
+  }
+  ul>li:nth-child(1){
+  background:url(./tiny-result.png) 0px -277px no-repeat;
+  }
+  ul>li:nth-child(1):hover{
+  background:url(./tiny-result.png) 0px -109px no-repeat;
+  }
+  
+  ul>li:nth-child(2){
+  background:url(./tiny-result.png) 3px -222px no-repeat;
+  }
+  ul>li:nth-child(2):hover{
+  background:url(./tiny-result.png) -1px -52px no-repeat;
+  }
+  
+  ul>li:nth-child(3){
+  background:url(./tiny-result.png) -1px -170px no-repeat;
+  }
+  ul>li:nth-child(3):hover{
+  background:url(./tiny-result.png) 4px 3px no-repeat;
+  }
+  li{
+    height: 35px;
+      float: left;
+      margin-left: 42px;
+      padding-left: 36px;
+    line-height: 35px;
+    cursor: pointer;
+  }
+  .ct:after{
+    content:"";
+    clear:left;
+    display:block;
+  }
+  li:hover{
+    color:purple;
+  }
+  </style>
+</head>
+<body>
+<ul class="ct">
+  <li class="item">前进</li>
+  <li class="item">开始</li>
+  <li class="item">停止</li>
+</ul>
+ <p> 使用CSS Sprite 把如下6张图标图片合并成一张图片，做出如下效果
+ </p>
+</body>
+</html>
