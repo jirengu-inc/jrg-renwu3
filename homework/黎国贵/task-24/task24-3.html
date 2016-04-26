@@ -79,7 +79,7 @@
     });
     button.addEventListener("click",function (e) {
         e.preventDefault();
-        if (isName() && isValidPassword() && isPassName2()){
+        if (isName() && isValidPassword() && isPassName2()&&(showname.innerText!=="lgg大神已经注册过了.请换个名字吧")){
             alert('正在注册，稍等');
         }
         else {
