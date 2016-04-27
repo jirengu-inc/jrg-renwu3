@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task25-3</title>
+    <style>
+        ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .btn{
+            display: inline-block;
+            position: absolute;
+            width: 80px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #c81623;
+            background-color: #fff;
+            border:1px solid #c81623;
+            top:50%;
+            left: 50%;
+            margin-left: -40px;
+            margin-top: -20px;
+        }
+        .btn1{
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #c81623;
+            background-color: #fff;
+            border:1px solid #c81623;
+        }
+        .clear:after{
+            content: '';
+            display: block;
+            clear:both;
+        }
+        .ct{
+            border: 1px solid #cccccc;
+            width: 694px;
+        }
+        .wrap1{
+            margin-left: -20px;
+            margin-top: -20px;
+        }
+        .panel{
+            box-sizing: border-box;
+            position: relative;
+            height: 210px;
+            width: 218px;
+            float: left;
+            margin-left: 20px;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border:1px solid #cccccc;
+
+        }
+        .panel img{
+            display: block;
+            margin: 0 auto;
+        }
+        .product-price{
+            color: #c81623;
+        }
+        .cover{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            background-color: #aaa;
+            margin: -10px -20px;
+        }
+        .cover:hover{
+            opacity: 0.8;
+        }
+    </style>
+
+</head>
+<body class="">
+<h2>珠宝首饰</h2>
+<div class="ct clear">
+    <ul class="wrap1">
+        <li class="panel">
+            <div class="cover"><a href="" class="btn">立刻抢购</a></div>
+            <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            <div class="product-name">藏美千足金和田玉金镶吊坠</div>
+            <div class="product-price">￥1699.00</div>
+        </li>
+        <li class="panel">
+            <div class="cover"><a href="" class="btn">立刻抢购</a></div>
+            <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            <div class="product-name">藏美千足金和田玉金镶吊坠</div>
+            <div class="product-price">￥1699.00</div>
+        </li>
+        <li class="panel">
+            <div class="cover"><a href="" class="btn">立刻抢购</a></div>
+            <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            <div class="product-name">藏美千足金和田玉金镶吊坠</div>
+            <div class="product-price">￥1699.00</div>
+        </li>
+        <li class="panel">
+            <div class="cover"><a href="" class="btn">立刻抢购</a></div>
+            <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            <div class="product-name">藏美千足金和田玉金镶吊坠</div>
+            <div class="product-price">￥1699.00</div>
+        </li>
+        <li class="panel">
+            <div class="cover"><a href="" class="btn">立刻抢购</a></div>
+            <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            <div class="product-name">藏美千足金和田玉金镶吊坠</div>
+            <div class="product-price">￥1699.00</div>
+        </li>
+        <li class="panel">
+            <div class="cover"><a href="" class="btn">立刻抢购</a></div>
+            <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+            <div class="product-name">藏美千足金和田玉金镶吊坠</div>
+            <div class="product-price">￥1699.00</div>
+        </li>
+    </ul>
+</div>
+<a href="" class="btn1">添加</a>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    var products = [
+        {
+            img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+            name: '珂兰 黄金手 猴哥款',
+            price: '￥405.00'
+        },{
+            img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+            name: '珂兰 黄金转运珠 猴哥款',
+            price: '￥100.00'
+        },{
+            img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+            name: '珂兰 黄金手链 3D猴哥款',
+            price: '￥45.00'
+        }
+    ];
+    for (var i=0;i<products.length;i++){
+        products[i]='<li class="panel">'+'<div class="cover"><a href="" class="btn">立刻抢购</a></div>'+'<img src='+products[i].img+'>'+'<div class="product-name">'+products[i].name+'</div>'+'<div class="product-price">'+products[i].price+'</div>';
+    }
+    var html=products[0]+products[1]+products[2];
+    $(".btn1").on("click",function (e) {
+        e.preventDefault();
+        var $body = $(this).parents("body");
+        $body.find(".wrap1").append(html);
+        console.log(html);
+    })
+</script>
+</body>
+</html>
