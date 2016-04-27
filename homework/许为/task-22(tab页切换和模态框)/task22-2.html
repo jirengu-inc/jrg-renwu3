@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level16</title>
+<style type="text/css">
+
+</style>
+</head>
+<body>
+	<ul class="ct">
+		<li>这里是</li>
+		<li>饥人谷</li>
+		<li>前端6班</li>
+	</ul>
+	<input class="ipt-add-content" placeholder="添加内容"/>
+	<button id="btn-add-start">开头添加</button>
+	<button id="btn-add-end">结尾添加</button>
+<script type="text/javascript">
+	var ul=document.querySelector(".ct");
+	var btnStart=document.querySelector("#btn-add-start");
+	var btnEnd=document.querySelector("#btn-add-end");
+	var addContent=document.querySelector(".ipt-add-content");
+
+	ul.addEventListener("click",function(e){
+		console.log(e.target.innerText);
+	});
+	btnStart.addEventListener("click",function(){
+		var li=document.createElement("li");
+		var content=addContent.value;
+		if(content!=null){
+		var text=document.createTextNode(content);
+		li.appendChild(text);
+		ul.insertBefore(li,ul.firstChild);
+		}else{
+			return false;
+		}//老师，这里我用这种方法判断输入框无内容的时候无法进行添加没效果，这个判断条件哪里有问题呢？
+	});
+	btnEnd.addEventListener("click",function(){
+		var li=document.createElement("li");
+		var content=addContent.value;
+		var text=document.createTextNode(content);
+		li.appendChild(text);
+		ul.appendChild(li);
+	})
+</script>
+</body>
+</html>
