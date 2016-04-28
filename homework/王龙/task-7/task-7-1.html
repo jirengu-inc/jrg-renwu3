@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>task7</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+          <style>
+
+            .ul,form{
+              list-style-type: none;
+              border: 1px solid gray;
+              text-align: center;
+              padding: 0px;
+              width: 50%;
+              margin: 0 auto;
+            }
+            .ul>li{
+              display: inline-block;
+              /* border: 1px solid gray;*/
+               margin: 10px 15px;
+            }
+            li>a{
+              text-decoration: none;
+              color: #444;
+            }
+            li>a:hover{
+              color:red;
+            }
+            form>div{
+              padding-top: 10px;
+            }
+            
+            input[type=textarea]{
+              width: 200px;
+              height: 80px;
+            }
+
+            li:first-of-type{
+              background: pink;
+            }
+            li:first-child{
+              font-size: 30px;
+            }
+          </style>      
+    </head>
+    <body>
+      <ul class="ul">
+          <li><A HREF="#">主页</A></li>
+          <li><A HREF="#">课程</A></li>
+          <li><A HREF="#">视频</A></li>
+          <li><A HREF="#">相关</A></li>
+      </ul> 
+
+      <hr>
+      <form>
+         
+         <div><label>姓名：</label><input name="name" type="text" value="" placeholder="用户名"/></div>
+         <div><label>密码：</label><input name="pswd" type="password" value="" placeholder="密码"/></div>
+         <div><label>性别：</label><input name="sex" type="radio" value="1" />男<input name="sex" type="radio" value="0" checked='checked'/>女</div>
+         <div><label>取向：</label><input name="lover" type="radio" checked='checked' value="1" />男<input name="lover" type="radio" value="0" />女</div>
+         <div><label>爱好：</label><input name="like" type="checkbox" value="1" />dota<input name="like" type="checkbox" value="0" checked='checked'/>旅游 <input name="like" type="checkbox" value="0" >pet</div>
+         <div><label>评论：</label><input name="comment" type="textarea" value="" placeholder="评论" row="100"/></div>
+         <div><label>my-car：</label><select name="car">
+                    <option value="rover">路虎</option>
+                    </select></div>
+      </form>
+    </body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task11-1导航条效果</title>
+	<style type="text/css">
+		html,body,div,ul,li{
+			margin: 0;
+			padding: 0;
+			font-family: "Microsoft Yahei";
+		}
+		.head{
+			height: 50px;
+			background: #ccc;
+		}
+		a{
+			
+			text-decoration: none;
+			color: black;
+		}
+		
+
+		li{
+			/* width: 80px; */
+			list-style: none;
+			/* text-align: center; */
+		}
+		/*  使用浮动float无法解决当下拉列表出来是由于宽度的变化，导致后面元素位置发生变化的问题
+		.head>ul .nac{
+			 不能加固定宽度，当页面过窄时会导致后面的li元素放不开跑到下一行
+			width: 130px;
+			display: inline-block;
+			line-height: 50px;
+			margin: 0 12px;
+			float:left;
+		}
+		.head .has-child>ul{
+			
+			display: none;
+			background: #ccc;
+		}
+		.head .has-child:hover{
+			background: #999;
+		}
+		.head .has-child:hover ul{
+			display: block;
+		
+		
+		}
+		.head>ul>.has-child>ul>li:hover{
+			background: #999;
+		}
+		 */
+		
+		.head>ul>li{
+			/* width: 80px; */
+			padding:0 12px;
+			display: inline-block;
+			position: relative;
+			line-height: 50px;
+			background-color: #ccc;
+		}
+		.head>ul li:hover{
+			background: #999;
+		}
+		.head .has-child>ul>li{
+			padding: 0 10px;
+			margin: 0;
+		}
+
+		.head .has-child>ul{
+			display: none;
+		}
+		.head ul>li:hover ul{
+			display: block;
+			position: absolute;
+			top:100%;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="head">
+		<ul>
+			<li class="nac has-child">
+				<a href="#">前端</a>
+				<ul>
+					<li><a href="#">HTML</a></li>
+					<li><a href="#">Javascript</a></li>
+					<li><a href="#">CSS</a></li>
+				</ul>
+			</li>
+			<li class="nac has-child">
+				<a href="#">服务端</a>
+				<ul>
+					<li><a href="#">node</a></li>
+					<li><a href="#">PHP</a></li>
+					<li><a href="#">JAVA</a></li>
+				</ul>
+			</li>
+			<li class="nac has-child">
+				<a href="#">前端工具</a>
+				<ul>
+					<li><a href="#">Sublime</a></li>
+					<li><a href="#">Webstorm</a></li>
+					<li><a href="#">GIt</a></li>
+				</ul>
+				</li>
+			<li class="nac has-child">
+				<a href="#">HTML</a>
+
+				</li>
+			<li class="nac has-child">
+				<a href="#">NODE</a>
+			</li>
+
+		</ul>
+	</div>
+</body>
+</html>

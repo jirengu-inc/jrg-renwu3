@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level22</title>
+<style type="text/css">
+	.major{
+		background: gray;
+		width:800px;
+		height:800px;
+		display: none;
+	}
+	.wrap{
+		float: left;
+		margin: 0 auto;
+		width: 200px;
+		background: white;
+		height: 203px;
+		position: relative;
+		bottom: 554px;
+		left: 299px;
+	}
+	button{
+		float: left;
+	}
+	.header{
+		border-bottom: 1px solid;
+	}
+	.header h3{
+		display: inline-block;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+	.header a{
+		margin-left: 79px;
+	}
+	.content{
+		margin-top: 50px;
+	}
+	.footer{
+		margin-left: 109px;
+	}
+	.active{
+		display: block;
+	}
+</style>
+</head>
+<body>
+	<button class="btn">点我</button>
+	<div class="major"></div>
+	<div class="wrap">
+		 	<div class="header">
+		 		<h3>我是标题1</h3>
+		 		<a href="#" class="headbtn">X</a>
+		 	</div>
+		 	<div class="content">
+		 		<p>我是内容1</p>
+		 		<p>我是内容1</p>
+		 	</div>
+		 	<div class="footer">
+		 		<a href="#" class="footbtn">取消</a>
+		 		<a href="#">确定</a>
+		 	</div>
+	 	</div>
+	<script type="text/javascript">
+		var operationClass={
+			hasClass:function(el,str){             //判断el中是否存在str
+				var reg=new RegExp("\\b"+str+"\\b","g");
+				return reg.test(el.className);
+			},
+			singleAddClass:function(el,str){        //添加el中str
+				if(!operationClass.hasClass(el,str)){
+					el.className+=" "+str;
+				}
+			},
+			singleRemoveClass:function(el,str){       //删除el中str
+				var reg=new RegExp("\\b"+str+"\\b","g");
+				el.className=el.className.replace(reg,"").replace(/\s{2,}/g,"");
+			},
+			addClass:function(el,str){
+			//兼容式的进行元素类名添加，如果包含多个元素，则每一个分别添加str
+			//只包含一个元素则运行else
+				if(el.length>0){
+					for(var i=0;i<el.length;i++){
+						operationClass.singleAddClass(el[i],str);
+					}
+				}else{
+						operationClass.singleAddClass(el,str);
+				}
+			},
+			removeClass:function(el,str){
+			//兼容式的进行元素类名删除，包含多个元素，则每一个分别删除str
+			//只包含一个元素则运行else
+				if(el.length>0){
+					for(var i=0;i<el.length;i++){
+						operationClass.singleRemoveClass(el[i],str);
+					}
+				}else{
+					operationClass.singleRemoveClass(el,str);
+				}
+			},
+			indexOf:function(el){    //判断元素位于当前同级子元素的哪一位
+				var ex=el.parentElement;
+				var et=ex.children;
+				for(var i=0;i<et.length;i++){
+					if(el===et[i]){
+						return i;
+					}
+				}
+			}
+		}
+		var btn=document.getElementsByClassName("btn");
+		var major=document.getElementsByClassName("major");
+		var headbtn=document.getElementsByClassName("headbtn");
+		var footbtn=document.getElementsByClassName("footbtn");
+		btn[0].addEventListener('click',function(e){
+			if(operationClass.hasClass(major[0],"active")){
+				operationClass.removeClass(major[0],"active");
+			}else{
+				operationClass.addClass(major[0],"active");
+			}
+		})
+		major[0].addEventListener('click',function(e){
+		if(operationClass.hasClass(major[0],"active")){
+			operationClass.removeClass(major[0],"active");
+		}else{
+				operationClass.addClass(major[0],"active");
+		}
+		})
+		headbtn[0].addEventListener('click',function(e){
+		if(operationClass.hasClass(major[0],"active")){
+			operationClass.removeClass(major[0],"active");
+		}else{
+				operationClass.addClass(major[0],"active");
+		}
+		})
+		footbtn[0].addEventListener('click',function(e){
+		if(operationClass.hasClass(major[0],"active")){
+			operationClass.removeClass(major[0],"active");
+		}else{
+				operationClass.addClass(major[0],"active");
+		}
+		})
+
+	</script>
+</body>
+</html>

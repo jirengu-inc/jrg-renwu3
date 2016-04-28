@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    .box{
+  width:300px;
+  height:200px;
+  border:1px solid gray;
+  margin:20px;
+  position: relative;
+}
+.border-up{
+    width: 0px;
+    height: 0px;
+    border: 1px solid;
+    border-width: 13px;
+    border-color: transparent transparent gray;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    transform: translate(0,-100%);
+}
+
+.border-inner-right{
+     width: 0px;
+    height: 0px;
+    border: 1px solid;
+    border-width: 13px;
+    border-color: red red transparent transparent;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    transform: translate(-100%);
+}
+.border-transparent{
+    width: 0px;
+    height: 0px;
+    border: 1px solid;
+    border-width: 13px;
+    border-color: transparent transparent gray;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    transform: translate(0,-100%);
+}
+
+.border-cover{
+  width: 0px;
+    height: 0px;
+    border: 1px solid;
+    border-width: 13px;
+    border-color: transparent transparent white;
+    position: absolute;
+    top: 0;
+    left: 5%;
+    transform: translate(0,-94%);
+}
+
+
+
+  </style>
+</head>
+<body>
+<div class="box">
+  <div class="border-up"></div>
+</div>
+<div class="box">
+  <div class="border-inner-right"></div>
+</div>
+<div class="box">
+  <div class="border-transparent"></div>
+  <div class="border-cover"></div>
+</div>
+
+</body>
+</html>

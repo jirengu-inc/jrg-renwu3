@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+		#header{
+			background-color: red;
+			height: 50px;
+		}
+		#footer{
+			background-color: red;
+			height: 50px;
+		}
+		.clear{
+			zoom: 1;
+		}
+		.clear:after{
+			content: "";display: block;clear: both;
+		}
+		
+		.aside{
+			float: left;
+			background-color: aliceblue;
+			width: 100px;
+		}
+		.main{
+			overflow: hidden;
+			width: 100px;
+			background-color: pink;
+		}
+		#content{
+			
+		}
+		</style>
+	</head>
+	<body><div id="header">header</div>
+    <div id="content" class="clear">
+        <div class="aside">aside</div>
+        <div class="main">
+            我是main 
+            我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main... 
+        </div>
+    </div>
+    <div id="footer"></div>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>level7-2</title>
+	<style type="text/css">
+		*{
+			font-family: "微软雅黑";
+			font-size: 26px;
+		}
+		.message{
+			margin: 0;
+			padding: 0;
+		}
+		textarea{
+			height: 380px;
+			width: 700px;
+			border:solid 2px #737373;
+		}
+		p{
+			margin: 2px;
+		}
+	</style>
+</head>
+<body>
+<form class="message">
+	<p>
+		姓名：<input type="text" placeholder="用户名" maxlength="16"></input>
+	</p>
+	<p>
+		密码：<input type="password" maxlength="12" placeholder="密码"></input>
+	</p>
+	<p>
+		性别：<input type="radio" name="sex" value="male">男</input>
+		<input type="radio" name="sex" value="female">女</input>
+	</p>
+	<p>取向：<input type="radio" name="sexy" value="male">男</input>
+		<input type="radio" name="sexy" value="female">女</input>
+	</p>
+	<p>爱好：<input type="checkbox" name="game">dota</input>
+		<input type="checkbox" name="travel">旅游</input>
+		<input type="checkbox" name="pet">宠物</input>
+	</p>
+	<p>评论：<textarea name="maneywords" maxlength="600" placeholder="ddd"></textarea>
+	</p>
+	<p>我的car：<select name="mycar">
+			<option value="sabo" selected="selected">萨博</option>
+			<option value="audi">奥迪</option>
+			<option value="dazhong">大众</option>
+			<option value="fengtian">丰田</option>
+		</select>
+		<input type="submit" value="提交"></input>
+	</p>
+</form>
+</body>
+</html>

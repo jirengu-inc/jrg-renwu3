@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#header,#footer{
+				height: 50px;
+				background-color: aliceblue;
+			}
+			#content{
+				border: 1px solid black;
+			}
+			.clear{
+				zoom: 1;
+			}
+			.clear:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			.main{
+				
+				float: left;
+				
+			}
+			.left-side{
+				width:200px;
+				background-color: red;
+				float: left;
+				margin-left:-100% ;
+			
+				height: 200px;
+			}
+			.right-side{
+				width:200px;
+				background-color: yellow;
+				float: left;
+				margin-left:-200px ;
+				height: 200px;
+			}
+			#in{
+			margin:0 200px;
+			height: 200px;
+			background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header">
+			头部
+		</div>
+		<div id="content" class="clear">
+			<div class="main">
+				<div id="in">
+				实现了内容与布局的分离，即Eric提到的Any-Order Columns.
+				main部分是自适应宽度的，很容易在定宽布局和流体布局中切换。
+				任何一栏都可以是最高栏，不会出问题。
+				需要的hack非常少（就一个针对ie6的清除浮动hack:_zoom: 1;）
+				在浏览器上的兼容性非常好，IE5.5以上都支持。
+				</div>
+			</div>
+			<div class="left-side">
+				左侧边栏，固定宽度
+			</div>
+			<div class="right-side">
+				右侧边栏，固定宽度
+			</div>
+		</div>
+		<div id="footer">
+			尾部
+		</div>
+	</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+  body,ul{
+  padding:0px;
+  margin:0px;
+}
+div{
+  box-sizing: border-box;
+}
+/**********header*************/
+.header,.footer{
+  background:#1a1d24;
+  color:white;
+  height: 57px;
+}
+.center{
+  width:900px;
+  margin:0 auto;
+  text-align:justify;
+}
+.center:after{
+    content:"";
+    display:inline-block;
+    width: 100%;
+    height: 0px;
+}
+.header .nav {
+    display: inline-block;
+}
+ 
+.nav{
+  list-style-type: none;
+}
+.nav>li{
+  float:left;
+  margin-left:20px;
+  line-height:57px;
+}
+
+/**********main*************/
+.main{
+  margin:10px auto;
+  width:910px;
+  height: 500px;
+}
+.main>.side{
+  width:200px;
+  background:gray;
+/*   margin:10px; */
+  float:left;
+   height: 100%;
+}
+.main>.content{
+  width:700px;
+  background:gray;
+  margin-left:10px;
+  float:left;
+  padding:10px;
+}
+.main:after{
+  content:"";
+  display:block;
+  clear:left;
+}
+/*********footer***********/
+.footer .nav>li:first-child{
+  margin-left:0px;
+}
+
+  </style>
+</head>
+<body>
+ <div class="header">
+   <div class="center">
+   <img src="http://cdn.jirengu.com/public/logo-tiny.png" alt="x">
+   <ul class="nav">
+     <li>技能</li>
+     <li>经历</li>
+     <li>作品</li>
+     <li>关于</li>
+   </ul>
+   </div>
+ </div>
+ <div class="main">
+    <div class="side">1</div>
+    <div class="content">
+      <h3>task-10</h3>
+      写出如下两栏布局, 其中中间区块宽度900px,<br>
+      居中,左侧边栏宽度200px, 右侧边栏宽度700px<br>
+      
+    </div>
+ </div>
+  <div class="footer">
+    <div class="center">
+      <ul class="nav">
+        <li>饥人谷</li>
+        <li>jscode</li>
+        <li>jsbin</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>task12-4</title>
+<style type="text/css">
+#head,#foot{
+	background-color: #ccc;
+	height: 30px;
+}
+#content{
+	border:1px solid;
+}
+#content:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.middle{
+	width: 100%;
+	height: 200px;
+	background-color: green;
+	float:left;
+}
+.middle .wrap{
+	height: 200px;
+	background-color: green;
+	margin-right: 200px;
+}
+.rightside{
+	width:200px;
+	height:200px;
+	background-color: yellow;
+	float: left;
+	margin-left: -200px;
+}
+</style>
+</head>
+<body>
+	<div id="head">头部</div>
+	<div id="content">
+		<div class="middle">
+			<div class="wrap"></div>
+		</div>
+		<div class="rightside"></div>
+	</div>
+	<div id="foot">尾部</div>
+</body>
+</html>

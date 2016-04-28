@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用border实现图形效果</title>
+	<style type="text/css">
+	.div{
+	  width:300px;
+	  height:150px;
+	  border:1px solid #ccc;
+	  position:relative;
+	  left:20px;
+	  top:30px;
+	  margin: 30px;
+	}
+	.triangle1{
+	  width:0;
+	  height:0;
+	  border-left:15px solid transparent;
+	  border-right:15px solid transparent;
+	  border-bottom:15px solid #ccc;
+	  position:absolute;
+	  top:-15px;
+	  left:15px;
+	}
+	
+	.triangle2{
+	  width:0;
+	  height:0;
+	  border-right:30px solid red;
+	  border-bottom:30px solid transparent;
+	  position:absolute;
+	  right:0;
+	}
+
+	.triangle3{
+	  width:0;
+	  height:0;
+	  border-left:15px solid transparent;
+	  border-right:15px solid transparent;
+	  border-bottom:15px solid #ccc;
+	  position:absolute;
+	  top:-15px;
+	  left:15px;
+	}
+	.white{
+	  width:0;
+	  height:0;
+	  border-left:15px solid transparent;
+	  border-right:15px solid transparent;
+	  border-bottom:15px solid #fff;
+	  position:absolute;
+	  top:-13px;
+	  left:15px;
+	}
+	</style>
+</head>
+<body>
+	<div class="div">
+		<div class="triangle1"></div>
+	</div>
+	<div class="div">
+		<div class="triangle2"></div>
+	</div>
+	<div class="div">
+		<div class="triangle3"></div>
+		<div class="white"></div>
+	</div>
+</body>
+</html>

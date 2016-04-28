@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task11-2 BFC两栏</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#header{
+			height: 50px;
+			background: #090;
+		}
+		#content{
+			overflow: auto;
+		}
+		.aside{
+			background-color:#61a;
+			float: left;
+			
+			width: 20%;
+		}
+		.main{
+			background-color: #25a;
+			float: left;
+			height: 200px;
+			width: 80%;
+		}
+
+		#footer{
+			height:50px;
+			background-color: purple;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">header</div>
+	   <div id="content">
+	       <div class="aside">aside</div>
+	       <div class="main">
+	           我是main 
+	           我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main
+				我是main 我是main我是main 我是main我是main 我是main我是main 我是main我是main 我是main
+	           我是main... 
+	       </div>
+	   </div>
+	   <div id="footer"></div>
+</body>
+</html>

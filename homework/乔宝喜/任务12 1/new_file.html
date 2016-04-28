@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			#header,#footer{
+				height: 50px;
+				background-color: aliceblue;
+			}
+			#content{
+				border: 1px solid black;
+			}
+			.clear{
+				zoom: 1;
+			}
+			.clear:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			.main{
+				background-color: green;
+				float: left;
+				width: 100%;
+			}
+			.left-side{
+				width:200px;
+				background-color: red;
+				float: left;
+				margin-left:-100% ;
+				position: relative;
+				left: -200px;
+				height: 200px;
+			}
+			.right-side{
+				width:200px;
+				background-color: yellow;
+				float: left;
+				margin-left:-200px ;
+				height: 200px;
+				position: relative;
+				left: 200px;
+			}
+			#content{
+				padding: 0 200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header">
+			头部
+		</div>
+		<div id="content" class="clear">
+			<div class="main">
+				
+					仔细查看example5和example4的源代码，可以发现DOM结构是完全一样的，仅仅CSS稍有不同。这意味着HTML结构和CSS布局在一定程度上解耦了，我们开发HTML代码时，从内容出发即可，无需过多的考虑布局。这正是渐进增强在前端工作流程上的体现。
+					仔细查看example5和example4的源代码，可以发现DOM结构是完全一样的，仅仅CSS稍有不同。这意味着HTML结构和CSS布局在一定程度上解耦了，我们开发HTML代码时，从内容出发即可，无需过多的考虑布局。这正是渐进增强在前端工作流程上的体现。
+				
+			</div>
+			<div class="left-side">
+				左侧边栏，固定宽度
+			</div>
+			<div class="right-side">
+				右侧边栏，固定宽度
+			</div>
+		</div>
+		<div id="footer">
+			尾部
+		</div>
+	</body>
+</html>

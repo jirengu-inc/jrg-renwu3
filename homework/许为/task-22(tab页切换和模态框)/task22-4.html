@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level22</title>
+<style type="text/css">
+	ul{
+		margin-bottom: 0px;
+	}
+	div{
+		margin-left: 31px;
+		width: 568px;
+		height: 300px;
+		border:1px solid;
+		border-top: transparent;
+		padding-top: 10px;
+		padding-left: 10px;
+	}
+	.navigation>li{
+		list-style: none;
+		display: inline-block;
+		margin-left: -9px;
+		width:192px;
+		border:1px solid;
+		height: 36px;
+		text-align: center;
+		line-height: 36px;
+	}
+	.active{
+		background: gray;
+	}
+	.content1{
+		display: none;
+	}
+	.active2{
+		display: block;
+	}
+</style>
+</head>
+<body>
+	<ul class="navigation">
+		<li class="active">tab1</li>
+		<li>tab2</li>
+		<li>tab3</li>
+	</ul>
+	<div class="content1 active2">内容1</div>
+	<div class="content1">内容2</div>
+	<div class="content1">内容3</div>
+	<script type="text/javascript">
+		var operationClass={
+			hasClass:function(el,str){             //判断el中是否存在str
+				var reg=new RegExp("\\b"+str+"\\b","g");
+				return reg.test(el.className);
+			},
+			singleAddClass:function(el,str){        //添加el中str
+				if(!operationClass.hasClass(el,str)){
+					el.className+=" "+str;
+				}
+			},
+			singleRemoveClass:function(el,str){       //删除el中str
+				var reg=new RegExp("\\b"+str+"\\b","g");
+				el.className=el.className.replace(reg,"").replace(/\s{2,}/g,"");
+			},
+			addClass:function(el,str){
+			//兼容式的进行元素类名添加，如果包含多个元素，则每一个分别添加str
+			//只包含一个元素则运行else
+				if(el.length>0){
+					for(var i=0;i<el.length;i++){
+						operationClass.singleAddClass(el[i],str);
+					}
+				}else{
+						operationClass.singleAddClass(el,str);
+				}
+			},
+			removeClass:function(el,str){
+			//兼容式的进行元素类名删除，包含多个元素，则每一个分别删除str
+			//只包含一个元素则运行else
+				if(el.length>0){
+					for(var i=0;i<el.length;i++){
+						operationClass.singleRemoveClass(el[i],str);
+					}
+				}else{
+					operationClass.singleRemoveClass(el,str);
+				}
+			},
+			indexOf:function(el){    //判断元素位于当前同级子元素的哪一位
+				var ex=el.parentElement;
+				var et=ex.children;
+				for(var i=0;i<et.length;i++){
+					if(el===et[i]){
+						return i;
+					}
+				}
+			}
+		}
+
+
+		var navigation=document.querySelector(".navigation");
+		var contents=document.getElementsByClassName("content1");
+		navigation.addEventListener('click',function(e){
+			var arr=navigation.children;
+			var target=e.target;
+			var now=operationClass.indexOf(target);
+			operationClass.removeClass(arr, 'active');
+       		operationClass.addClass(target, 'active');
+       		operationClass.removeClass(contents,"active2");
+       		operationClass.addClass(contents[now],"active2");
+
+		})
+	</script>
+</body>
+</html>
