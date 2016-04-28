@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task7</title>
+    <style media="screen">
+    * {
+    	margin: 0px;
+    	padding: 0px;
+    }/*首先全局清除边距，方便布局*/
+    .header{
+      border: 1px solid #ccc;
+      margin:8px 8px;
+    }
+    ul {
+      height: 100%;
+    }
+    li {
+      display: inline-block;
+      /*让原本是块级元素的li变成行内块级元素，
+      好让他们能排列在同一行*/
+      margin: 0 40px;/*为li设置左右边距*/
+    }
+    a {
+      text-decoration: none;/*去下划线*/
+      font-size: 40px;
+      color: #444;
+      line-height: 3;
+    }
+    a:hover{
+        color: red;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <ul>
+        <li><a href="#">主页</a></li>
+        <li><a href="#">课程</a></li>
+        <li><a href="#">视频</a></li>
+        <li><a href="#">关于</a></li>
+      </ul>
+    </div>
+
+    <div class="form">
+
+    </div>
+  </body>
+</html>

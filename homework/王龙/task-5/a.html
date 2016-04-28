@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>文本两端对齐 by hongchenok</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+         <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+          <style>
+          html {
+            font-size: 20px;
+          }
+          
+          a:link {color:  red;} /* 未访问的链接 */
+          a:visited {color:green;} /* 已访问的链接 */
+          a:hover {color:pink;} /* 鼠标划过链接 */
+          a:active {color:gray;} /* 已选中的链接 */
+
+          a{
+              text-direction: none;
+              color: red;
+          }
+      
+          </style>      
+    </head>
+    <body>
+  
+         <a href="#">css伪类，次序不要放反(顺序避免样式冲突);為什麼？反了会失效，但不知道为什么<br/>
+            第一：不管什么情况下鼠标悬停都应该有一个样式变化（:hover）,我们就把hover放在最后，防止具备其他状态时，被其他状态的设置覆盖掉。<br/>
+            第二：当a被激活时(:active)，我们要求不管是否访问过，都应该有相同的样式，也就是这个状态的效果应该能够覆盖未被访问时(:link)与 已访问过(:visited)两种状态。应该放在 :link :hover的后面。<br/>
+            第三：被访问过的a（:visited）可能会有不一样的样式属性，用来区别a是否被访问过。也就是说:visited 状态的属性可以覆盖掉:link状态的属性， 即 :visited 要放在 :link 的后面。<br/>
+            不过用LOVE  HATE 的方式来记住这个排序是一种不错的方法，推荐新手使用
+         </a>
+
+          
+    </body>
+</html>

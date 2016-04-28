@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task24-3</title>
+    <style>
+        h4{
+            text-align:center;
+        }
+        li{
+            list-style: none;
+        }
+        .wrap{
+            width: 300px;
+
+        }
+        .myform p{
+            text-align: right;
+            font-size:12px;
+            color:#888;
+        }
+        .btnli{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h4>注册</h4>
+    <form action="task24-3.php" class="myform">
+        <ul>
+            <li><span>用户名：&nbsp</span><input class="user" name="username" type="text" placeholder="用户名 lgg 已经注册">
+                <p class="showname">用户名为:字母、数字、下划线、3-10个字符</p>
+            </li>
+            <li><span>密码：&nbsp&nbsp</span><input class="psw1" type="password" placeholder="密码长度在6~15个字符">
+                <p class="showpassword1">密码为:字母、数字、下划线</p>
+            </li>
+            <li><span>再输一次：</span><input class="psw2" type="password" placeholder="密码长度在6~15个字符">
+                <p class="showpassword2">&nbsp</p>
+            </li>
+            <li class="btnli"><button class="btn">注册</button>
+                <p class="message">&nbsp</p>
+            </li>
+        </ul>
+    </form>
+</div>
+<script>
+    var button = document.querySelector(".btn");
+    var user = document.querySelector(".user");
+    var psw1 = document.querySelector(".psw1");
+    var psw2 = document.querySelector(".psw2");
+    var showname = document.querySelector(".showname");
+    var showpassword1 = document.querySelector(".showpassword1");
+    var showpassword2 = document.querySelector(".showpassword2");
+    var message = document.querySelector(".message");
+    user.addEventListener("change",function () {
+        if(isName()){
+            ajax({
+                url: 'task24-3.php',
+                type: 'post',
+                data: {
+                    username:user.value
+                },
+                success: function(json){
+                    onSuccess(json);
+                },
+                error: function(){
+                    onError();
+                }
+            });
+        }
+
+    });
+    psw1.addEventListener("change",function () {
+        isValidPassword ();
+    });
+    psw2.addEventListener("change",function () {
+        isPassName2();
+    });
+    button.addEventListener("click",function (e) {
+        e.preventDefault();
+        if (isName() && isValidPassword() && isPassName2()&&(showname.innerText!=="lgg大神已经注册过了.请换个名字吧")){
+            alert('正在注册，稍等');
+        }
+        else {
+            message.innerText="勇士请先注册，再冒险"
+        }
+    });
+    function onSuccess(json) {
+        if(json.data){
+            showname.innerText="合法用户名";
+        }
+        else{
+            showname.innerText="lgg大神已经注册过了.请换个名字吧"
+        }
+    }
+    function onError() {
+        console.log("AJAX在哪里？");
+    }
+
+    function ajax(opts){
+        var xmlhttp = new XMLHttpRequest();
+        var str = "";
+        for(var k in opts.data){
+            str =str + k+"="+opts.data[k]+"&";
+        }
+        str = str.substr(0,str.length-1);
+        if(opts.type.toLowerCase()==="get"){
+            opts.url = opts.url+"?"+str;
+            xmlhttp.open(opts.type, opts.url,true);
+            xmlhttp.send();
+        }
+        if(opts.type.toLowerCase()==="post") {
+            xmlhttp.open(opts.type, opts.url, true);
+            xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+            xmlhttp.send(str);
+        }
+        xmlhttp.onreadystatechange = function () {
+            if(xmlhttp.readyState===4&&xmlhttp.status===200){
+                console.log(xmlhttp.responseText);
+                var json = JSON.parse(xmlhttp.responseText);
+                console.log(json);
+                opts.success(json);
+            }
+            if(xmlhttp.readyState===4&&xmlhttp.status===404){
+                opts.error();
+            }
+        }
+    }
+    function isName() {
+        var re =/^\w{3,10}$/g;
+        if(re.test(user.value)){
+            return true;
+        }
+        else{
+            showname.innerText="用户名不合法";
+            return false;
+        }
+    }
+    function isValidPassword () {
+        var re = /^[\w]{6,15}$/g;
+        if (re.test(psw1.value)){
+            var re1 = /\d/g;
+            var a=0,b=0,c=0,d=0;
+            if(re1.test(psw1.value)=== false){
+                a = 1;
+            }
+            var re2 = /[a-z]/g;
+            if (re2.test(psw1.value)=== false){
+                b = 1;
+            }
+            var re3 = /[A-Z]/g;
+            if (re3.test(psw1.value)=== false){
+                c = 1;
+            }
+            var re4 = /_/g;
+            if (re4.test(psw1.value)=== false){
+                d = 1;
+            }
+            var result = a+b+c+d;
+            if(result === 3){
+                showpassword1.innerText="不合法，看提示输入";
+                return false;
+            }
+            else {
+                showpassword1.innerText="密码合法";
+                return true;
+            }
+        }
+        else{
+            showpassword1.innerText="密码不合法";
+            return false;
+        }
+    }
+    function isPassName2() {
+        if(psw1.value){
+            if((psw2.value === psw1.value)&&(psw2.value!=="")){
+                showpassword2.innerText="和密码一致";
+                return true;
+            }
+            else{
+                showpassword2.innerText="与密码不一样";
+                return false;
+            }
+        }
+        else {
+            showpassword2.innerText="请先输入密码";
+        }
+    }
+</script>
+</body>
+</html>

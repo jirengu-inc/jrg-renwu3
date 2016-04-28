@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+  body{margin: 0;padding: 0;}
+#header{
+  height: 50px;
+  background: red;
+}
+#footer{
+  height: 50px;
+  background: red;
+}
+#content{
+  /*  padding: 0 100px; */
+}
+#content:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+.main{
+  float: left;
+  width: 100%;
+  background: white;
+}
+.main .warp{
+  margin: 0 200px;
+  background: gray;
+   height: 150px;
+}
+.aside-left{
+  width:200px;
+  height:100px;
+  background: #D4B7B7;
+  float: left;
+  margin-left:-100% ; 
+}
+.aside-right{
+  width:200px;
+  height:100px;  
+  float: left;
+  background: green;
+  margin-left: -200px;
+}
+  </style>
+</head>
+<body>
+      <div id="header">header</div>
+  
+      <div id="content">
+          <div class="main">
+            <div class="warp">
+               xxxxxxxxxxxxxxxasdffffff  
+            </div>                 
+          </div>
+          <div class="aside-left">aside-left</div>
+          <div class="aside-right">aside-right</div>
+      </div>
+            
+      <div id="footer"></div>
+</body>
+</html>

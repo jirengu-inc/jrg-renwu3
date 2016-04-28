@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task-7-1</title>
+<meta name="description" content="写如导航栏，文字默认颜色 #444, 可点，鼠标放置文字变为 red。（使用无序列表，a，用display: inline-block）">
+<meta name="keywords" content="">
+<style>
+	.nav{
+		height: 50px;
+		padding: 0;
+		border: solid 1px #C9C9C9;
+	}
+	.nav li{
+		display: inline-block;
+		list-style: none;
+	}
+	.nav li>a{
+		display: inline-block;
+		padding-left: 20px;
+		padding-right: 20px;
+		font-size: 24px;
+		font-weight: bold;
+		line-height: 50px;
+		color: #444;
+		text-decoration: none;
+	}
+	.nav li>a:hover{
+		color: red;
+	}
+</style>
+</head>
+<body>
+    <ul class="nav">
+    	<li>
+    		<a href="">主页</a>
+    	</li>
+    	<li>
+    		<a href="">课程</a>
+    	</li>
+    	<li>
+    		<a href="">视频</a>
+    	</li>
+    	<li>
+    		<a href="">关于</a>
+    	</li>
+    </ul>
+</body>
+</html>
