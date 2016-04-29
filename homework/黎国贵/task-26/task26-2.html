@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task26-2</title>
+    <style>
+        body{
+            height: 3000px;
+        }
+        .div{
+            height: 200px;
+            width: 200px;
+            border: 1px solid #000;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 200px;
+        }
+        .input{
+            outline: none;
+        }
+        .btn{
+            display: inline-block;
+            height: 100px;
+            width: 100px;
+            border: 1px solid green;
+            text-decoration: none;
+            text-align: center;
+            line-height: 100px;
+            color: #000000;
+        }
+
+    </style>
+</head>
+<body>
+<a href="#" class="btn">click me</a>
+<div class="div">鼠标放上来</div>
+<input type="text" class="input">
+<select name="select"  multiple="multiple">
+    <option value="1">苹果</option>
+    <option value="2">香蕉</option>
+    <option value="3">西瓜</option>
+    <option value="4">莲雾</option>
+</select>
+<script src="jquery-2.2.3.min.js"></script>
+<script src="jquery.color.js"></script>
+<script>
+    var $btn = $(".btn");
+    $btn.on("click",function (e) {
+        e.preventDefault();
+        $(this).animate({backgroundColor: "red"},1000).animate({backgroundColor: "blue"},1000);
+    });
+
+
+    $('.input').on("focus",function () {
+        $(this).css("borderColor","blue");
+    });
+   $('.input').on("blur",function () {
+        $(this).css("borderColor","");
+    });
+    var $input = $(".input");
+    $input.on("keyup",function () {
+        $input.val($(this).val().toUpperCase());
+        console.log($(this).val());
+    });
+    $("option").on("click",function () {
+        console.log($(this).text());
+    });
+
+
+    $(".div").on("mouseenter",function () {
+        $(this).css("backgroundColor","red");
+    });$(".div").on("mouseleave",function () {
+        $(this).css("backgroundColor","white");
+    });
+
+
+    $(window).on("scroll",function () {
+        console.log($(window).scrollTop());
+//        console.log($(document).scrollTop());//也可以
+    })
+</script>
+</body>
+</html>

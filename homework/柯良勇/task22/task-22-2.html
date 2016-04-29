@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 22-2</title>
+</head>
+<body>
+  <ul class="ct">
+    <li>这里是</li>
+    <li>饥人谷</li>
+    <li>前端6班</li>
+  </ul>
+  <input class="ipt-add-content" placeholder="添加内容"/>
+  <button id="btn-add-start">开头添加</button>
+  <button id="btn-add-end">结尾添加</button>
+  <script>
+    function showText(e){
+      console.log(e.target.innerText);
+    }
+    var ct=document.getElementsByClassName("ct")[0];
+    ct.addEventListener('click',showText,false);
+    function creatEl(){
+      var newInput=document.createElement("li");
+      newInput.innerText=document.getElementsByClassName("ipt-add-content")[0].value;
+      return newInput;      
+    }
+    function addUpEl(){
+      var test=/^\s*$/.test(creatEl().innerText);
+      if (!test){
+        ct.insertBefore(creatEl(),ct.firstChild);      
+      }
+    }
+    function addDownEl(){
+      var test=/^\s*$/.test(creatEl().innerText);
+      if (!test){
+        ct.appendChild(creatEl());        
+      }
+    }
+    var startBtn=document.getElementById("btn-add-start");
+    startBtn.addEventListener('click',addUpEl,false);
+    var endBtn=document.getElementById("btn-add-end");
+    endBtn.addEventListener('click',addDownEl,false);
+  </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 22-5</title>
+  <style>
+    body,html,h3{
+      margin: 0;
+      padding: 0;
+    }
+    .modal-dialog{
+      display: none;
+    }
+    .modal-box{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -100px 0 0 -200px;
+      width: 400px;
+      border: 1px solid #ccc;
+      background-color: white;
+    }
+    .cover{
+      position: relative;
+      top: -21px;
+      background-color: #888;
+      height: 670px;
+      opacity: 0.7;
+    }
+    .header{
+      padding: 8px 15px;
+    }
+    .header span{
+      float: right;
+      cursor: pointer;
+    }
+    .content{
+      padding: 0 20px;
+      border-top: 1px solid #ccc;
+    }
+    .footer>span{
+      cursor: pointer;
+    }
+    .footer{
+      text-align: right;
+      padding: 10px;
+      border-top: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <div class="btn">
+    <input type="button" value="点我1">
+  </div>
+  <div class="modal-dialog">
+    <div class="cover"></div>
+    <div class="modal-box">
+      <div class="header">
+        <span>×</span>
+        <h3>我是标题1</h3>
+      </div>
+      <div class="content">
+        <p>我是内容1</p>
+        <p>我是内容1</p>
+      </div>
+      <div class="footer">
+        <span>取消</span>
+        <span>确定</span>       
+      </div>
+    </div>
+  </div>
+  <script>
+    var btn=document.getElementsByClassName('btn')[0].children[0];
+    btn.addEventListener('click',show,false);
+    var modal=document.getElementsByClassName('modal-dialog')[0];
+    var cover=document.getElementsByClassName('cover')[0];
+    var close=document.getElementsByClassName('header')[0].children[0];
+    var cancel=document.getElementsByClassName('footer')[0].children[0];
+    modal.addEventListener('click',hidden,false);
+    function show(){
+      modal.style.display='block';
+    }
+    function hidden(e){
+      if(e.target===cover|e.target===close|e.target===cancel)
+        modal.style.display='none';
+    }
+  </script>
+</body>
+</html>
