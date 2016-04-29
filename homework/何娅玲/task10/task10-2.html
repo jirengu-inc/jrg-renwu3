@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            padding: 100px;
+        }
+        .div1{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #23527c;
+            position: relative;
+        }
+        .div1 p{
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid #23527c;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -37px;
+            left: 10px;
+        }
+        .div2{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #23527c;
+            position: relative;
+        }
+        .div2 p{
+            border-top: 10px solid red;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid transparent;
+            border-right: 10px solid red;
+            width: 0;
+            height: 0;
+            position: absolute;
+            right: 0;
+            top: -16px;
+        }
+        .div3{
+            width: 200px;
+            height: 200px;
+            border: 1px solid #23527c;
+            position: relative;
+        }
+        .div3 .p1{
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid #23527c;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -37px;
+            left: 10px;
+        }
+        .div3 .p2{
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid #fff;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -34px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <p></p>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div class="div2">
+        <p></p>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <div class="div3">
+        <p class="p1"></p>
+        <p class="p2"></p>
+    </div>
+</body>
+</html>
