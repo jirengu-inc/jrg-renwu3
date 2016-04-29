@@ -1,0 +1,256 @@
+/*去除默认样式*/
+
+body,ul,h1,p,h3{
+	margin: 0;
+	padding: 0;
+	font-family: arial;
+}
+li{
+	list-style: none;
+}
+.clear{
+	zoom: 1;
+}
+.clear:after{
+	content: "";
+	display: block;
+	clear: both;
+}
+a{
+	text-decoration: none;
+}
+@font-face {font-family: "iconfont";
+  src: url('../font/iconfont.eot?t=1461733185'); /* IE9*/
+  src: url('../font/iconfont.eot?t=1461733185#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../font/iconfont.woff?t=1461733185') format('woff'), /* chrome, firefox */
+  url('../font/iconfont.ttf?t=1461733185') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../font/iconfont.svg?t=1461733185#iconfont') format('svg'); /* iOS 4.1- */
+}
+img{background: ur;}
+
+
+/*header*/
+#header{
+	width: 100%;
+	height: 50px;
+    position: fixed;
+	background-color: white;
+	z-index: 1;
+	
+}
+#header>ul{
+	width: 1140px;
+	height: 50px;
+	margin: 0 auto;
+	position: relative;	
+
+}
+
+#header>ul>li{
+	float: left;
+	margin-right: 20px;
+	height: 50px;
+    font-size: 14px;
+    line-height: 50px;
+}
+#header>ul>li:nth-child(1){
+	font-size: 24px;
+}
+#header p{
+	border-width:5px;
+	border-color: #777777 transparent  transparent transparent;
+	border-style: solid;
+	width: 0px;
+	height: 0px;
+	display: inline-block;
+	position: absolute;
+	top:22px;
+
+}
+#header>ul>li:nth-child(2){
+	margin-right: 25px;
+}
+
+#header>ul>li:nth-child(2):hover .works{
+	display: block;
+	width: 160px;
+	height: 125px;
+	border-top: 1px solid #c5c5c5;
+	background-color: white;
+	padding-top:5px ;
+}
+
+#header>ul .works{
+	
+	position: absolute;
+	top:100%;
+	display: none;
+	left: 60px;
+    font-size:12px;
+}
+#header .works li{
+		
+		line-height: 30px;
+		
+		color: #9d9d9d;
+	}
+#header .works li:nth-child(4){
+	padding-left: 20px;
+}
+#header .works a{
+	padding-left: 20px;
+	display: inline-block;
+	color: #4b4b4b;
+	font-family:"iconfont" !important;
+  	width: 140px;
+	height: 30px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+	}
+#header .works a:hover{
+		background-color: #f5f5f5;
+}
+#feature{
+	background-color: #b84d45;
+	height: 256px;
+     padding-top:50px ;
+}
+#feature .feature-content{
+	width:1140px;
+	margin: 0 auto;
+	padding-top: 64px;
+}
+#feature .feature-content>h1{
+	font-size: 60px;
+	color: white;
+}
+#feature .feature-content>p{
+	font-size: 24px;
+	line-height: 38px;
+	color: #f1dbda;
+}
+#content{
+	width: 1140px;
+	margin: 0 auto;
+		overflow: hidden;
+}
+#content .content-head{
+	height: 36px;
+	line-height: 36px;
+	background-color: #f5f5f5;
+	margin-top: 40px;
+	padding-left: 14px;
+}
+#content .content-head a{
+	font-size: 14px;
+	color:#b84d45;
+	
+}
+#content .content-head a:hover{
+	text-decoration: underline;
+	
+}
+#content .content-head p{
+	width: 24px;
+	display: inline-block;
+	
+	text-align: center;
+}
+#content .content-head span{
+		font-size: 14px;
+		color: #777;
+}
+#content .pic{
+
+}
+#content .pic li{
+	float: left;
+	margin-top: 20px;
+	width: 350px;
+	height: 408px;
+	border: 1px solid #dddddd;
+	padding: 4px;
+	text-align: center;
+}
+#content .pic li img{
+	width: 348px;
+	height: 228px;
+	border: 1px solid #dddddd;
+	vertical-align: bottom;
+}
+#content .pic li img:hover{
+	opacity: 0.8;
+}
+#content .pic .margin{
+	margin: 20px 30px 0 30px;
+	
+}
+ #content .pic h3{
+ 
+ 	margin-top:34px;
+ 	font-size: 20px;
+ }
+  #content .pic p{
+  	font-size: 14px;
+  	margin-top: 26px;	
+  	margin-bottom: 20px;
+  }
+  #content .pic a{
+  	width: 52px ;
+  	height: 32px;
+  	background-color: white;
+  	display: inline-block;
+    border: 1px solid #DDDDDD;
+    line-height: 32px;
+    color: black;
+  }
+  #content .pic a:hover{
+  	background-color: #F5F5F5;
+  }
+#foonter{
+	height: 175px;
+	background-color: #b84d45;
+	margin-top: 80px;
+	text-align: center;
+	display: table;
+	width: 100%;
+}
+
+#foonter .footer-content{
+	
+	display: table-cell;
+	vertical-align: middle;
+}
+#foonter .footer-content p:nth-child(1){
+	font-size: 30px;
+	font-weight: bold;
+}
+#foonter .footer-content p:nth-child(2){
+	font-size: 18px;
+		
+	
+}
+#wrap{
+	text-align: center;
+}
+#wrap .line{
+	width: 1140px;
+	height: 70px;
+	margin: 0 auto;
+	border-bottom: 1px solid #eeeeee;
+}
+#wrap p{
+	padding: 24px 0 64px 0;
+	font-size: 14px;
+}
+#wrap p a{
+	color: #bb554e;
+	
+}
+#wrap p a:hover{
+	text-decoration: underline;
+	
+	
+}
