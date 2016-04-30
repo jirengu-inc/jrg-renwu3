@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task-10-2</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+	.box1 {
+		position: relative;
+		height: 80px;
+		width: 180px;
+		border:1px solid #888;
+		margin:30px 0 20px 10px;
+		text-align: center;
+		line-height: 80px;
+	}
+	.toptriangle {
+		position: absolute;
+		top: -30px;
+		left: 20px;
+    	width:0;
+    	height:0;
+    	border-width:15px;
+    	border-style:solid;
+    	border-color: transparent transparent #888 transparent;
+	}
+	.box2 {
+		position: relative;
+		height: 80px;
+		width: 180px;
+		border:1px solid #888;
+		margin:30px 0 20px 10px;
+		text-align: center;
+		line-height: 80px;
+	}
+	.topright-triangle {
+		position: absolute;
+		top: -1px;
+		right: -1px;
+    	width:0;
+    	height:0;
+    	border-width:20px 0 0 20px;
+    	border-style:solid;
+    	border-color: red transparent;	
+	}
+	.box3 {
+		position: relative;
+		height: 80px;
+		width: 180px;
+		border:1px solid #888;
+		margin:30px 0 20px 10px;
+		text-align: center;
+		line-height: 80px;
+	}
+	.toptriangle-b {
+		position: absolute;
+		top: -28px;
+		left: 20px;
+    	width:0;
+    	height:0;
+    	border-width:15px;
+    	border-style:solid;
+    	border-color: transparent transparent #fff transparent;
+    }
+	</style>
+</head>
+<body>
+<div class="box1">第一个气泡框！
+	<div class="toptriangle"></div>
+</div>
+<div class="box2">第二个气泡框！
+	<div class="topright-triangle"></div>
+</div>
+<div class="box3">第三个气泡框！
+	<div class="toptriangle"></div>
+	<div class="toptriangle-b"></div>
+</div>
+</body>
+</html>
