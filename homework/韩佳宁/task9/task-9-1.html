@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task-9-1</title>
+    <style media="screen">
+    div,a,body,span{
+      margin: 0;
+      padding: 0;
+      text-decoration: none;
+      list-style: none;
+    }
+    a{
+      display: inline-block;
+      height: 32px;
+      width: 65px;
+      text-decoration: none;
+      vertical-align: middle;
+    }
+    span{
+      display: inline-block;
+      height: 32px;
+      line-height: 32px;
+      font-size: 1rem;
+      vertical-align: middle;
+    }
+    .button{
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      background: url(img/sprites.png) 0 0 no-repeat;
+      vertical-align: middle;
+    }
+    .fast{background-position: 0 0;}
+    .play{background-position: 0 -42px;}
+    .stop{background-position: 0 -82px;}
+    a:hover>.fast,a:hover>.span1{
+      background-position: 0 -124px;
+    }
+    a:hover>.play,a:hover>.span2{
+      background-position: 0 -166px;
+    }
+    a:hover>.stop,a:hover>.span3{
+      background-position: 0 -208px;
+    }
+
+  </style>
+  </head>
+  <body>
+
+<a class="fast" href="#"><div class="button fast"></div><span class="span1">前进</span></a>
+<a class="play"  href="#"><div class="button play"></div><span class="span2">播放</span></a>
+<a class="stop"  href="#"><div class="button stop"></div><span class="span3">停止</span></a>
+
+  </body>
+</html>

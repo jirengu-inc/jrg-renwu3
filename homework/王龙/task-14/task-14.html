@@ -199,8 +199,8 @@ hr{
 		  <style type="text/css">
 		  #our-work{
 		  	width: 960px;
-		  	margin: 0 auto ;
-
+		  	margin: 15px auto ;
+		  	border-
 		  }
 		 /* #our-work>.item:nth-child(n){
 		  	margin-left: 8px;
@@ -212,37 +212,93 @@ hr{
 		  }
 		  		#our-work .item{
 		  			float: left;
-		  			width: 50%;
+		  			max-width: 50%;
 		  			padding: 10px;
 		  			box-sizing: border-box;
+		  		}
+		  		#our-work .item img{
+		  			max-width: 100%;
+		  			display: block;
+
+		  		}
+		  		.clear{
+		  			/**/clear: both;
 		  		}
 		  </style>
 		  <div id="our-work" class="tl-c">
 		       <h2>Our Work</h2>
 		       <hr/>
-		     
-			        <div class="item">
-				        <a href="#"><img class="img-portfolio img-responsive" src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/portfolio-1.jpg"></a>
-				    </div>
-				    <div class="item">
-				      	<a href="#"><img class="img-portfolio img-responsive" src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/portfolio-2.jpg"></a>	 
-				    </div>
-				    <div class="item">
-				      	<a href="#"><img class="img-portfolio img-responsive" src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/portfolio-3.jpg"></a>
-				    </div>
-				    <div class="item">
-				       	<a href="#"><img class="img-portfolio img-responsive" src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/portfolio-4.jpg"></a>	 
-					</div>
+		       	<!-- 	<div class=""> -->
+				        <div class="item">
+					        <a href="#"><img class="img-portfolio img-responsive" src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/portfolio-1.jpg"></a>
+					    </div>
+					    <div class="item">
+					      	<a href="#"><img class="img-portfolio img-responsive" src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/portfolio-2.jpg"></a>	 
+					    </div>
+					    <div class="item">
+					      	<a href="#"><img class="img-portfolio img-responsive" src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/portfolio-3.jpg"></a>
+					    </div>
+					    <div class="item">
+					       	<a href="#"><img class="img-portfolio img-responsive" src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/portfolio-4.jpg"></a>	 
+						</div>
+				      <div class="clear"></div> 
 				<a href="#" class="btn-detail">View More Items</a>
 		  </div>
-		  
-		  <div id="buttons-below">
-
+		  <style type="text/css">
+		  	#buttons-below{
+		  		background-color: #337ab7;
+			    padding: 30px 0;
+			    color: white;
+			    line-height: 1.5;
+			    height: 150px;
+		  	}
+		  </style>
+		  <style type="text/css">
+		  #buttons-below{
+		  	position: relative;
+		  }
+		  .v-ly{
+		  	position: absolute;
+		  	top: 50%;
+		  	left: 50%;
+		  	transform: translate(-50%,-50%);
+		  }
+		  .btn-dark{
+		  	background-color:rgba(0,0,0,0.4);
+		  }
+		  </style>
+		  <div id="buttons-below" class="tl-c">
+		  		<div class="v-ly">
+ 					<h3>The buttons below are impossible to resist.</h3>
+                    <a href="#" class="s-btn btn-light">Click Me!</a>
+                    <a href="#" class="s-btn btn-dark">Look at Me!</a>
+		  		</div>
+                  
 		  </div>
 </div>
- 
+ <style type="text/css">
+ 	#footer{
+ 		text-align: center;
+ 		position: relative;
+ 		height: 500px
+ 	}
+ 	.lonely-a{
+ 		display: block;
+ 	}
+ 	.underline-of-a:hover{
+ 		border-bottom: 1px solid;
+ 	}
+ </style>
   <div id="footer">
+  	<div class="v-ly">
+		<h3>Start Bootstrap</h3>
 
+		<p>3481 Melrose Place
+		Beverly Hills, CA 90210</p>
+
+		 <a href="#" class="lonely-a">(123) 456-7890</a>		
+		 <a href="#" class="lonely-a underline-of-a">name@example.com</a>
+	</div>
   </div>
 </body>
 </html>
