@@ -1,0 +1,115 @@
+body,header,footer,div,ul,li,p {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: "微软雅黑";
+}
+
+ul,li{
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #eee;
+}
+
+.m-t-md {
+  margin-top: 10px;
+}
+
+.m-l-md {
+  margin-left: 10px;
+}
+
+.wrapper{
+  width: 900px;
+  margin: 0 auto;
+}
+
+.bg-black {
+  background-color: #555;
+}
+
+.bg-gray {
+  background-color: #eee;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+header {
+  height: 50px;
+  line-height: 50px;
+}
+
+.left-panel {
+  width: 200px;
+  text-align: left;
+}
+
+.right-panel {
+  width: 700px;
+}
+
+.logo {
+  height: 36px;
+  padding-top: 7px;
+}
+
+.nav li{
+  float: left;
+}
+
+.nav li a{
+  display: inline-block;
+  padding: 0 15px;
+  line-height: 50px;
+}
+
+.nav li a:hover{
+  color: #fff;
+}
+
+.content .wrapper{
+  height: 510px;
+}
+
+.content .left-panel{
+  height: 500px;
+}
+
+.content .right-panel{
+  border: 10px solid #fff;
+  color: #666;
+  padding: 20px;
+}
+
+.content ul li{
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+footer {
+  height: 40px;
+  line-height: 40px;
+}
+
+footer li {
+  float: left;
+}
+
+footer li a{
+  padding: 0 4px;
+}
