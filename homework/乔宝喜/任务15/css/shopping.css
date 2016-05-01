@@ -129,7 +129,7 @@ text-align: center;
 	line-height: 24px;
 	
 }
-#Services .services-content .Responsive-Design-padding{
+#Services .services-content .icon-laptop{
 	margin: 0 44px;
 
 }
@@ -148,28 +148,28 @@ text-align: center;
     color: white;
     margin-bottom: 28px;
     }
-#Portfolio{
+#portfolio{
 	height: 1234px;
 	background-color: #f7f7f7;
 }
-#Portfolio .wrap{
+#portfolio .text-wrap{
 	width: 1140px;
 	margin: 0 auto;
 	text-align: center;
 	
 }
-#Portfolio .wrap>h1{
+#portfolio .text-wrap>h1{
 	font-size: 30px;
 	padding-top: 160px;
 }
-#Portfolio .wrap p{
+#portfolio .text-wrap p{
 	font-size:14px;
 	padding-top: 30px;
 }
-#Portfolio .wrap ul{
+#portfolio .text-wrap ul{
 	padding-top: 40px;
 }
-#Portfolio .wrap li{
+#portfolio .text-wrap li{
 	float: left;
 	width: 360px;
 	height: 360px;
@@ -177,16 +177,16 @@ text-align: center;
 	background: white;
 	
 }
-#Portfolio .wrap li img{
+#portfolio .text-wrap li img{
 	width: 360px;
 	height: 260px;
 	transition: opacity 1s;
 
 }
-#Portfolio .wrap li a{
+#Portfolio .text-wrap li a{
 	position: relative;
 }
-#Portfolio .wrap li a>span{
+#Portfolio .text-wrap li a>span{
 	display: inline-block;
 	position: absolute;
 	width: 360px;
@@ -197,90 +197,90 @@ text-align: center;
 	opacity: 0;
 	transition: opacity 1s;
 }
-#Portfolio .wrap li a:hover span{
+#Portfolio .text-wrap li a:hover span{
 	opacity: 0.8;
 	
 }
-#Portfolio .wrap .spacing{
+#Portfolio .text-wrap .spacing{
 	margin: 30px 30px 0 30px;
 }
 
-#Portfolio .wrap li h1{
+#Portfolio .text-wrap li h1{
 	font-size: 14px;
 	margin: 30px 0 10px 0;
 }
-#Portfolio .wrap li span{
+#Portfolio .text-wrap li span{
 font-size: 14px;
 }
-#About{
+#about{
 	height: 1800px;
 	width: 1140px;
 	margin: 0 auto;
    position: relative;
 }
-#About .about-head{
+#about .about-head{
 	text-align: center;
 
 
 }
-#About>.about-head>h1{
+#about>.about-head>h1{
 	font-size: 32px;
 	margin-top: 116px;
 	margin-bottom: 30px;
 }
-#About>.about-head>span{
+#about>.about-head>span{
 	font-size: 14px;
 	
 }
-#About>ul{
+#about>ul{
 	margin-top: 80px;
 	width: 1140px;
   position: relative;
   z-index: 1;
 }
-#About>ul>li{
+#about>ul>li{
 	 margin-bottom: 132px;
 }
-#About .text-left{
+#about .text-left{
 	width: 1040px;
     padding-left:100px ;
 }
-#About .text-right{
+#about .text-right{
 	width: 1040px;
     padding-left:490px ;
 }
 
-#About .text-left>.wrap{
+#about .text-left>.wrap{
 	width: 345px;
 	display: inline-block;
 	margin-right: 40px;
 	line-height: 26px;
 	text-align: right;	
 }
-#About .text-right>.wrap{
+#about .text-right>.wrap{
 	width: 345px;
 	display: inline-block;
 	margin-left: 40px;
 	line-height: 26px;	
 	text-align: left;
 }
-#About li>.wrap h1{
+#about li>.wrap h1{
 	font-size: 14px;
 }
-#About li>.wrap>p{
+#about li>.wrap>p{
 	font-size: 14px;
 	
 }
-#About li>img{
+#about li>img{
 	width: 156px;
 	height: 156px;
 	border: 7px solid #f1f1f1;
 	border-radius: 50%;
 }
-#About .middel{
+#about .icon-end{
 	padding-left:calc(490px) ;
 }
-#About .middel .circular{
+#about .icon-end .text{
 	width: 156px;
 	height: 156px;
 	border: 7px solid #f1f1f1;
@@ -288,7 +288,7 @@ font-size: 14px;
 	background-color: #fed136;
 	display: table;
 }
-#About .middel .circular ul{
+#about .icon-end .text ul{
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;
@@ -297,7 +297,7 @@ font-size: 14px;
 	color: white;
 }
 
-#About .line{
+#about .line{
 	height: 1050px;
 	display: inline-block;
 	width: 4px;
@@ -308,55 +308,55 @@ font-size: 14px;
 
 }
 
-#Team{
+#team{
 	height: 890px;
 	background-color: #f7f7f7;
 	display: table;
-	width: 100%;
+
 
 }
 
-#Team .Team-content{
+#team .team-content{
  text-align: center;
  display: table-cell;
  vertical-align: middle;
 
 }
-#Team .Team-content h1{
+#team .team-content h1{
 	font-size: 34px;
 	margin-bottom: 30px;
 }
-#Team .Team-content>p{
+#team .team-content>p{
 	font-size: 12px;
 	color: #8f8f8f;
 	margin-bottom: 77px;
 }
-#Team .Team-content>ul{
+#team .team-content>ul{
 	width: 1140px;
 	margin: 0 auto;
     margin-bottom: 56px;
 }
-#Team .Team-content>ul>li{
+#team .team-content>ul>li{
 	float: left;
 
 }
-#Team .Team-content>ul>li:nth-child(1),#Team .Team-content>ul>li:nth-child(2){
+#team .team-content>ul>li:nth-child(1),#Team .Team-content>ul>li:nth-child(2){
 	margin: 0 90px 0 60px;
 }
-#Team .Team-content>ul>li:nth-child(3){
+#team .team-content>ul>li:nth-child(3){
 	margin: 0 60px 0 60px;
 }
-#Team .Team-content>ul>li>img{
+#team .team-content>ul>li>img{
 	width: 226px;
 	height: 226px;
 	border: 7px solid #ffffff;
 	border-radius: 50%;
 	margin-bottom: 30px;
 }
-#Team .Team-content>ul strong{
+#team .team-content>ul strong{
 	display:block;
 }
-#Team .Team-content>ul span{
+#team .team-content>ul span{
 	
 	display:block;
   padding-top: 6px;
@@ -370,10 +370,10 @@ font-size: 14px;
     url('../font3/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
     url('../font3/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 }
-#Team .Team-content-iconfont{
+#team .team-content-iconfont{
 padding-left:37px ;
 }
-#Team .Team-content-iconfont>li{
+#team .team-content-iconfont>li{
 	float: left;
     font-family:"iconfont" !important;
     font-size:16px;font-style:normal;
@@ -384,7 +384,7 @@ padding-left:37px ;
     margin: 0 7px;
    
 }
-#Team .Team-content-iconfont>li>a{
+#team .team-content-iconfont>li>a{
 	color: white;
 	 width: 40px;
     height: 40px;
@@ -394,10 +394,10 @@ padding-left:37px ;
     display: inline-block;
     transition: background-color 0.3s;
 }
-#Team .Team-content-iconfont>li>a:hover{
+#team .team-content-iconfont>li>a:hover{
 	background-color: #fed136;
 }
-#Team .Team-content-foonter p:nth-child(1){
+#team .team-content-foonter p:nth-child(1){
 	margin-bottom: 14px;
 }
 #logos{
