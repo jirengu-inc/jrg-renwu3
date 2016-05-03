@@ -150,16 +150,16 @@
         var $newli=$('.wrap li').eq(0).clone();
         $newli.find('img').attr('src',products[i].img);
         $newli.find('.text').text(products[i].name);
-        $newli.find('price').text(products[i].price);
+        $newli.find('.price').text(products[i].price);
         $('.wrap').append($newli);
       }
     }
     $('.btn').on('click',addNewLi);
-    $('.wrap li').on('mouseover',function(){
+    $('.wrap').on('mouseover','li',function(){
       $(this).find('.modal').show();
       $(this).find('.buy').show();
     })
-    $('.wrap li').on('mouseout',function(){
+    $('.wrap').on('mouseout','li',function(){
       $(this).find('.modal').hide();
       $(this).find('.buy').hide();
     })
