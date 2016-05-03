@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        p{
+            height: 70px;
+            line-height: 70px;
+        }
+        .btn{
+            display: none;
+            height: 50px;
+            width: 100px;
+            border: 1px solid red;
+            color: red;
+            position: fixed;
+            bottom: 100px;
+            right: 100px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>10</p>
+<p>11</p>
+<p>12</p>
+<p>13</p>
+<div class="btn">回到顶部</div>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    var goTop= (function () {
+        var isbind = false;
+        function init($el) {
+            !isbind && _bind($el);
+        }
+        function _bind($el) {
+            $(window).on("scroll",function () {
+                if(_isShow()){
+                    _do($el);
+                }
+                else {
+                    _hide($el);
+                }
+            });
+            isbind = true;
+        }
+        function _do($el) {
+            $el.show();
+            $el.on("click",function () {
+                $(window).scrollTop(0);
+            })
+        }
+        function _isShow() {
+            var winScrollTop = $(window).scrollTop();
+            return (winScrollTop > 350) ? true : false;
+        }
+        function _hide($el) {
+            $el.hide();
+        }
+        return{
+            init:init
+        }
+    })();
+    goTop.init($('.btn'));
+</script>
+</body>
+</html>

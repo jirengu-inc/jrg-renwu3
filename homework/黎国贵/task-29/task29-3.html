@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task29-3</title>
+    <style>
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            text-align: center;
+        }
+        li{
+            list-style: none;
+            height: 50px;
+            line-height: 50px;
+            margin: 5px 5px;
+            border:1px solid #ccc;
+            text-align: left;
+        }
+        .btn{
+            display: inline-block;
+            height: 50px;
+            line-height: 50px;
+            width: 100px;
+            text-decoration: none;
+            border: 1px solid green;
+            color: orangered;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<ul class="ul">
+    <li>内容1</li>
+    <li>内容2</li>
+</ul>
+<a class="btn">click me</a>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    var $li = $("li"),
+            $ul = $(".ul"),
+            $button = $(".btn"),
+            curs = 2,
+            winHeigth = $(window).height(),
+            winScrollTop = $(window).scrollTop(),
+            nodeTop = $button.offset().top;
+//    var islocked = false;//设置一个状态锁
+    $ul.on("mouseenter","li",function () {
+        $(this).css( "backgroundColor", "green");
+    });
+    $ul.on("mouseleave","li",function () {
+        $(this).css( "backgroundColor", "");
+    });
+    if(nodeTop<winHeigth){
+        console.log(1);
+        ajax();
+    }
+    $(window).on("scroll",function () {
+//        if(islocked){   //判断状态是否锁上，一旦锁上终止函数，不与后台交互
+//            return;
+//        }
+        if(!isShow($button)){
+            return;
+        }
+//        islocked = true;//产生AJAX前立刻上锁，防止用户多次点击
+        $button.html('<img src="http://i2.hdslb.com/icon/a81e85d69ee8379310884ac95ebf0bea.gif"/>');
+        ajax();
+    });
+    function ajax() {
+        $.ajax({
+            url: 'task29-3.php',
+            type: 'get',
+            dataTypr:'json',
+            data: {
+                present:curs,
+                len: 10
+            },
+            success: function(json){
+                onSuccess(json);
+            },
+            error: function(){
+                onError();
+            }
+        });
+    }
+    function onSuccess(json) {
+        json = JSON.parse(json);
+        if(json.status===1){
+            console.log(json.data);
+            for (var i =0;i<json.data.length;i++){
+                $ul.append("<li>"+json.data[i]+"</li>");
+            }
+            curs +=10;
+            islocked = false;//开锁
+            $button.html('click me');
+        }
+        else{
+            alert("后台数据有问题");
+            islocked = false;//开锁
+            $button.html('click me');
+        }
+    }
+    function onError() {
+        alert("异常");
+        islocked = false;//开锁
+        $button.html('click me');
+    }
+    function isShow() {
+        return (winHeigth+winScrollTop>=nodeTop) ? true : false;
+    }
+</script>
+</body>
+</html>
