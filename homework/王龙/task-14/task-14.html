@@ -86,7 +86,7 @@ hr{
 	width: 250px;
 }
 
-.fa{
+.services .fa{
     font-size: 90px;
 }
 .s-btn{
@@ -280,24 +280,39 @@ hr{
  	#footer{
  		text-align: center;
  		position: relative;
- 		height: 500px
+ 		height: 500px;
+ 		line-height: 1.5;
+ 		font-size: 14px;
  	}
  	.lonely-a{
- 		display: block;
+ 		 color: #337ab7;
  	}
  	.underline-of-a:hover{
  		border-bottom: 1px solid;
+ 	}
+ 	#footer li{
+ 		display: inline-block;
+ 	}
+ 	#footer ul{
+ 		margin: 20px auto;
+ 	}
+ 	#footer li>.fa{
+ 		 font-size: 3em;
+ 		 color: #337ab7;
  	}
  </style>
   <div id="footer">
   	<div class="v-ly">
 		<h3>Start Bootstrap</h3>
-
-		<p>3481 Melrose Place
-		Beverly Hills, CA 90210</p>
-
-		 <a href="#" class="lonely-a">(123) 456-7890</a>		
-		 <a href="#" class="lonely-a underline-of-a">name@example.com</a>
+		<p>3481 Melrose Place Beverly Hills, CA 90210</p>
+		<p><a href="#" class="lonely-a"><i class="fa fa-phone-square" aria-hidden="true" style="font-size:14px;"></i>&nbsp;&nbsp;(123) 456-7890</a></p>		
+		<p><a href="#" class="lonely-a underline-of-a"><i class="fa fa-send" aria-hidden="true" style="font-size:14px;"></i>&nbsp;&nbsp;name@example.com</a></p>
+		<ul>
+			<li><i class="fa fa-facebook" aria-hidden="true"></i></li>
+			<li><i class="fa fa-twitter" aria-hidden="true"></i></li>
+			<li><i class="fa fa-dribbble" aria-hidden="true"></i></li>
+		</ul>
+		<hr/>
 	</div>
   </div>
 </body>

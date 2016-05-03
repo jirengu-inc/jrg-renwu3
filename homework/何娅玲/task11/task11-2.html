@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        header,footer{
+            height: 50px;
+            background: red;
+        }
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+
+        }
+        section{
+            overflow: hidden;
+        }
+        .left{
+            float: left;
+            width: 200px;
+            height: 100px;
+            background: palegreen;
+        }
+        .right{
+            height: 100px;
+            background: sandybrown;
+            overflow: hidden;
+
+        }
+    </style>
+</head>
+<body>
+<header>header</header>
+<section class="clear">
+    <div class="left">left</div>
+    <div class="right">right</div>
+</section>
+<footer>footer</footer>
+
+
+</body>
+</html>
