@@ -46,7 +46,7 @@
             winHeigth = $(window).height(),
             winScrollTop = $(window).scrollTop(),
             nodeTop = $button.offset().top;
-//    var islocked = false;//设置一个状态锁
+    var islocked = false;//设置一个状态锁
     $ul.on("mouseenter","li",function () {
         $(this).css( "backgroundColor", "green");
     });
@@ -54,20 +54,29 @@
         $(this).css( "backgroundColor", "");
     });
     if(nodeTop<winHeigth){
-        console.log(1);
         ajax();
     }
+    var clock;
     $(window).on("scroll",function () {
-//        if(islocked){   //判断状态是否锁上，一旦锁上终止函数，不与后台交互
-//            return;
-//        }
+        if(islocked){   //判断状态是否锁上，一旦锁上终止函数，不与后台交互
+            return;
+        }
         if(!isShow($button)){
             return;
         }
-//        islocked = true;//产生AJAX前立刻上锁，防止用户多次点击
+        islocked = true;//产生AJAX前立刻上锁，防止用户多次点击
+        if(clock) clearTimeout(clock);
+        clock = setTimeout(function(){
+            if(!isShow($button)) return;
+            ajax();
+            console.log("触发ajax啦");
+        }, 100);
         $button.html('<img src="http://i2.hdslb.com/icon/a81e85d69ee8379310884ac95ebf0bea.gif"/>');
         ajax();
+        console.log("触发ajax啦");
     });
+
+
     function ajax() {
         $.ajax({
             url: 'task29-3.php',
@@ -88,7 +97,6 @@
     function onSuccess(json) {
         json = JSON.parse(json);
         if(json.status===1){
-            console.log(json.data);
             for (var i =0;i<json.data.length;i++){
                 $ul.append("<li>"+json.data[i]+"</li>");
             }
