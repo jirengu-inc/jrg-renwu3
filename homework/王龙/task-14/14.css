@@ -117,16 +117,13 @@ hr{
     color: white;
 	margin: 0 auto;
 }
-
 #main>.services .item{
 	float: left;
 	width: 250px;
 }
-
 .services .fa{
     font-size: 90px;
 }
-
 .services>.wrap{
 	display: inline-block;
 }
@@ -135,13 +132,10 @@ hr{
 	display: block;
 	clear:both;
 }
-
 #our-work{
 	width: 960px;
 	margin: 15px auto ;
 }
-		 
-
 #our-work .item{
 	float: left;
 	max-width: 50%;

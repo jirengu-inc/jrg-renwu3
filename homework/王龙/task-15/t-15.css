@@ -1,0 +1,207 @@
+@charset "utf-8";
+/*reset*/
+html,body,div,ul,li,h1,h3{
+    padding: 0;
+    margin: 0;
+}
+body {
+    /*margin-top: 50px;*/
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+}
+.p15{
+    padding: 0 15px;
+}
+ul{list-style: none;}
+a{text-decoration: none;color: black;}
+
+/*public*/
+.tl-l{
+    text-align: left;
+}
+.tl-c{
+    text-align: center;
+}
+.hv-position{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.v-position{
+    position: absolute;
+    top:50%;
+    transform: translate(0,-50%);
+}
+.v-table{
+    display: table-cell;
+    vertical-align: middle;
+}
+.clear:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+/*center*/
+.center{
+    width: 1000px;
+    margin: 0 auto;
+}
+/*head*/
+#head .nav>li{
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+}
+#head .nav>li:first-child{
+    font-size: 18px;
+}
+/*
+box-shadow
+默认值：none
+适用于：所有元素
+继承性：无
+动画性：是，除了内、外阴影切换时
+计算值：指定值
+取值：
+none： 无阴影
+<length>①： 第1个长度值用来设置对象的阴影水平偏移值。可以为负值
+<length>②： 第2个长度值用来设置对象的阴影垂直偏移值。可以为负值
+<length>③： 如果提供了第3个长度值则用来设置对象的阴影模糊值。不允许负值
+<length>④： 如果提供了第4个长度值则用来设置对象的阴影外延值。可以为负值
+<color>： 设置对象的阴影的颜色。
+inset： 设置对象的阴影类型为内阴影。该值为空时，则对象的阴影类型为外阴影
+*/
+.nav-fixed-top{
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background: white;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.19);
+}
+#head .nav>li:hover .sub-nav{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    min-width: 160px;
+    display: block;
+    z-index: 10;
+    background: white;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    box-shadow: 0 35px 12px rgba(0,0,0,0.175);
+    /*background-clip: padding-box;*/
+}
+/*padding-top: 5px;*/
+.sub-nav{
+    display: none;
+}
+.sub-nav .fa{
+    padding-right:3px ;
+    font-size: 12px;
+}
+.sub-nav>li:last-child{
+    border-top: 1px solid rgba(0, 0, 0, 0.24);
+}
+.sub-nav>li{
+    padding-top: 3px;
+}
+.sub-nav>li:last-child{
+    padding: 3px 20px;
+    font-size: 12px;
+    color: lightgrey;
+    line-height: 1.7;
+}
+.sub-nav>li>a{
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+}
+.sub-nav>li>a:hover{
+    background: lightgrey;
+}
+.introduce,.bottom{
+    background: #B84D45;
+    color:white;
+    width: 100%;
+    height: 250px;
+    position: relative;
+}
+.banner ul{
+    background: rgba(211, 211, 211, 0.34);
+    border-radius: 4px;
+    border: 1px solid rgba(169, 169, 169, 0.46);
+    margin: 20px 15px;
+    line-height: 40px;
+    height: 40px;
+}
+
+.banner li{
+    display: inline-block;
+    padding-left: 10px;
+}
+.banner li:not(:first-child)::before{
+    content: "/";
+    display: inline-block;
+    padding-right: 10px;
+}
+.banner li:not(:last-child)>a{
+    color: darkred;
+}
+.continner>.wrap{
+    width:33.33%;
+    padding: 15px;
+    float: left;
+    box-sizing: border-box;
+}
+.continner>.wrap>.border{
+    border: 1px solid rgba(215, 215, 215, 0.82);
+    border-radius: 5px;
+    padding: 5px;
+}
+.continner>.wrap img{
+    max-width: 100%;
+}
+.continner>.wrap img:hover{
+    opacity: .6;
+}
+.brief{
+    margin: 18px auto;
+}
+.btn{
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+    border: 1px solid rgba(215, 215, 215, 0.82);
+    border-radius: 5px;
+    padding: 0 10px;
+}
+.big{
+    height: 0;
+    border-top: 1px solid rgba(208, 205, 205, 0.38);
+    max-width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.bottom{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height:170px;
+}
+.footer{
+    font-size: 12px;
+    margin: 50px auto;
+}
+.under-line{
+    color: #803630;
+}
+.under-line:hover{
+    text-decoration: underline;
+}
+
+
