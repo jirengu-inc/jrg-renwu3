@@ -1,5 +1,4 @@
-  
-  @charset utf-8;
+@charset "utf-8";
   /*tag*/
  *{padding: 0;margin: 0;}
  ul{list-style: none;}
@@ -98,7 +97,7 @@ hr{
 	background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/callout.jpg);
 	background-repeat: no-repeat;
 	background-position: center;
-	background-attachment: scroll;;
+	background-attachment: scroll;
     background-size: cover;
     text-align: center;
     height: 400px;
@@ -107,8 +106,7 @@ hr{
 }
 
 .introduce{
-	height: 210px;
-	position: relative;
+	padding: 60px 0;
 }
 
 .services{
@@ -117,16 +115,13 @@ hr{
     color: white;
 	margin: 0 auto;
 }
-
 #main>.services .item{
 	float: left;
 	width: 250px;
 }
-
 .services .fa{
     font-size: 90px;
 }
-
 .services>.wrap{
 	display: inline-block;
 }
@@ -135,13 +130,10 @@ hr{
 	display: block;
 	clear:both;
 }
-
 #our-work{
 	width: 960px;
 	margin: 15px auto ;
 }
-		 
-
 #our-work .item{
 	float: left;
 	max-width: 50%;
@@ -154,19 +146,16 @@ hr{
 }
 #buttons-below{
 	background-color: #337ab7;
-    padding: 30px 0;
+    padding: 70px 0;
     color: white;
     line-height: 1.5;
-    height: 150px;
-    position: relative;
 }
 /*footer*/
 #footer{
 	text-align: center;
-	position: relative;
-	height: 500px;
 	line-height: 1.5;
 	font-size: 14px;
+	padding: 90px 0;
 }
 #footer fa{
 	font-size:14px;
