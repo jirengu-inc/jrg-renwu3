@@ -1,0 +1,192 @@
+html,body,ul,li,input, textarea{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.layout{
+  width: 1200px;
+  margin:0 auto;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+.padding-min{
+  padding: 50px 0;
+}
+.padding-middle{
+  padding: 100px 0;
+}
+.padding-big{
+  padding: 150px 0;
+}
+.gray-bg{
+  background-color: #f7f7f7;
+}
+.center{
+  text-align: center;
+}
+.float{
+  float: left;
+}
+.bfc{
+  overflow: auto;
+}
+.yellow-btn{
+  color: white;
+  background-color: #fed136;
+  font-size: 18px;
+  padding: 20px 40px;
+  border-radius: 3px;
+}
+.yellow-btn:hover{
+ background-color: #fec503;
+}
+#header {
+  position: relative;
+  background: url(./img/header-bg.jpg) no-repeat 25% 25%;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  display: table;
+}
+#header .nav li{
+  position: relative;
+  top: 20px;
+  left: 650px;
+  padding: 15px;
+  color: white;
+}
+#header .layout{
+  position: absolute;
+  top: 25%;
+}
+h3{/*Start Bootstrap*/
+  position: absolute;
+  top: 8px;
+  left: 60px;
+  color:#fed136;
+}
+h2{
+  font-size: 40px;
+}
+#header .layout h2{
+ color: white;
+ font-style: italic;
+}
+#header .layout h1{
+  color: white;
+  font-size: 75px;
+}
+#services p,#portfolio p,#portfolio li p,#about p,#team p,#contact p{
+  font-style: italic;
+  color: #777;
+}
+#services .fa-stack{
+  font-size: 50px;
+}
+#services .fa-circle{
+  color: #fed136;
+}
+#team .fa-stack,#footer .fa-stack {
+  color: #222;
+}
+#team .fa-stack:hover{
+  color: #fed136;
+}
+#footer .fa-stack:hover{
+  color: #fed136;
+}
+.fa-shopping-cart,.fa-laptop,.fa-lock,.fa-twitter,.fa-facebook,.fa-linkedin{
+  color: white;
+}
+#services li p{
+  font-size: 14px;
+}
+#portfolio img{
+  width: 370px;
+}
+#portfolio ul>li{
+  background-color: white;
+  /*width: 370px;*/
+  margin:15px;
+}
+#services ul>li{
+  width: 364px;
+  margin:18px;
+}
+#team ul>li{
+  width: 240px;
+  margin:80px;
+}
+#about .timeline img,#about .photo5{
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 7px solid #f1f1f1;
+}
+#about .photo5{
+  background-color:  #fed136;
+  margin: 0 auto;
+}
+#about .photo5 strong{
+  color: white;
+  font-size: 20px;
+  line-height: 1.5em;
+}
+#about .text-left{
+  text-align: right;
+  width: 390px;
+  margin-top: -165px;
+  margin-left: 45px;
+  border-right: 3px solid #f1f1f1;
+  padding-right: 165px;
+  padding-bottom:130px;
+}
+#about .text-right{
+  text-align: left;
+  width: 390px;
+  margin-top: -165px;
+  margin-left:600px;
+  border-left: 3px solid #f1f1f1;
+  padding-left: 165px;
+  padding-bottom:130px;
+}
+#team img{
+  border-radius: 50%;
+  border: 7px solid white;
+}
+#logo img{
+  margin: 30px;
+}
+#contact{
+  background:url(img/map-image.png);
+  background-color: black;
+}
+#contact h2{
+  color: white;
+}
+#contact form{
+  position: relative;
+}
+#contact form [type="text"]{
+  width: 500px;
+  height: 60px;
+  margin:12px 520px 12px 0;
+}
+#contact form textarea{
+  position: absolute;
+  top: 12px;
+  left: 610px;
+  width: 500px;
+  height: 240px;/*input之间没有外边距合并*/
+}
+#footer p a{
+  color: #fed136;
+}
+#footer p a:hover{
+  text-decoration: underline;
+}
