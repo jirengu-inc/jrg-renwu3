@@ -47,7 +47,7 @@ a{
 }
 #header {
   position: relative;
-  background: url(./img/header-bg.jpg) no-repeat 25% 25%;
+  background: url(../img/header-bg.jpg) no-repeat 25% 25%;
   background-size: cover;
   height: 100%;
   width: 100%;
@@ -163,7 +163,7 @@ h2{
   margin: 30px;
 }
 #contact{
-  background:url(img/map-image.png);
+  background:url(../img/map-image.png);
   background-color: black;
 }
 #contact h2{

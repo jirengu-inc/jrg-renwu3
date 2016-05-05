@@ -1,0 +1,145 @@
+body,html,ul,li,h2,h3,h4{
+  margin: 0;
+  padding: 0;
+  /*background-color: pink;*/
+}
+body,html{
+  width: 100%;
+  height: 100%;/*否则header height:100%没效果*/
+  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+a{
+  text-decoration: none;
+  color: #337ab7;
+}
+ul{
+  list-style: none;
+}
+h2{
+  font-size: 56px;
+}
+h3{
+  font-size: 30px;
+}
+h4{
+  font-size: 24px;
+}
+hr.small{
+  max-width:100px;
+}
+.layout {/*中心内容*/
+  width: 960px;
+  margin:0 auto;
+}
+.table{
+  display: table;
+  height: 100%;
+
+}
+.vertical-text-center{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.text-center{
+  text-align: center;
+}
+.clear:after{
+  content: '';
+  display: block;
+  clear:both;
+}
+.float{
+  float: left;
+}
+.gray-btn{
+  color: white;
+  background: rgba(0,0,0,0.4);
+  font-size: 18px;
+  padding: 10px 16px;
+}
+.gray-btn:hover{
+ background: #000;
+}
+.white-btn{
+  color: black;
+  background-color: white;
+  font-size: 18px;
+  padding: 10px 16px;
+}
+.white-btn:hover{
+ background: #d6e4f0;
+}
+#services .white-btn,#our-work .gray-btn{
+  font-size: 14px;
+}
+#services p,#footer p{
+  font-size: 14px;
+  margin: 22px 0;
+}
+#call-to-action .btn{
+  margin:0 10px;
+  line-height: 75px;/*行内元素*/
+}
+#about{
+  padding: 50px 0;
+}
+#services{
+  padding: 50px 0;
+  background-color: #337ab7;
+  color: white;
+}
+#our-work{
+  padding:50px 0;
+}
+#call-to-action{
+  padding:50px 0;
+  background-color: #337ab7;
+  color: white;
+}
+#footer{
+  padding: 100px 0;
+}
+
+#header {
+  background: url(../img/bg.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+#header p{
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+#about a:hover{
+  text-decoration: underline;
+}
+
+.fa-circle{
+  color: white;
+}
+.fa-cloud,.fa-compass,.fa-flask,.fa-shield{
+  color: #337ab7;
+}
+.fa-stack{
+  font-size: 50px;
+}
+#services .services-list>li{
+  width: 25%;
+}
+
+#callout{
+  background: url(../img/callout.jpg);
+  background-size: cover;
+  color: white;
+  width: 100%;
+  height: 400px;
+}
+
+#our-work .work-list img{
+  width: 450px;
+}
+#our-work .work-list>li{
+  margin: 15px;
+}
