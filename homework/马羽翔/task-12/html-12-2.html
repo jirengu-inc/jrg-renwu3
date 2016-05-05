@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task-12-2</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+		html,body  {
+			margin: 0;
+			padding: 0;
+		}
+		#header,#footer {
+			height:60px;
+			width:100%;
+			background-color: #ccc;
+		}
+		#main {
+			padding-left: 200px;
+			*zoom:1;
+		}
+		#main:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.content {
+			float:left;
+			width:100%;
+			min-height: 60px;
+			background-color: green;
+		}
+		.aside {
+			position: relative;
+			left: -200px;
+			float:left;
+			margin-left: -100%;
+			width: 200px;
+			min-height: 60px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+<div id="header">header</div>
+<div id="main">
+	<div class="content">两栏圣杯布局</div>
+	<div class="aside">定宽左侧边栏</div>
+</div>
+<div id="footer">footer</div>
+</body>
+</html>
