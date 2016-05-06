@@ -109,7 +109,7 @@
       turning=true;
       var $win=$('.window');
       var targetNum=(num+curNum+4)%imgCount;    // 计算目标图片 子弹条转换用
-      if(num>0){                                // 大于0 向右转
+      if(num>=0){                                // 大于0 向右转
         $win.animate({left:'-='+(num*imgWidth)},function(){  // 先变换 
           for(var i=0;i<num;i++){
             $win.append($win.children().first())    // 再移动元素
@@ -119,13 +119,13 @@
         });
       };
       if(num<0){                               // 小于0 向左转
-        for(var i=0;i<-num;i++){
-          $win.css('left',-imgWidth);          // 首先移动元素 但是为了让它看起来没动 我们先移动1步
-          $win.prepend($win.children().last()); //紧接着 在移动元素过去 
-          $win.animate({left:0},function(){    // 变换
-            turning=false;
-          }); 
-        }                                    
+        for(var i=0;i<-num;i++){        
+          $win.prepend($win.children().last());  // 首先移动元素 
+        }
+        $win.css('left',imgWidth*num);        //再切换窗口
+        $win.animate({left:0},function(){    // 变换
+          turning=false;
+        });                                    
       }
       $('.bullet').children().removeClass('active');
       $('.bullet').children().eq(targetNum).addClass('active');
