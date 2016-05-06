@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>task12-2</title>
+  <style>
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .header,
+  .footer {
+    height: 40px;
+    background: #ccc;
+  }
+  
+  .content {
+    height: 200px;
+    padding-left:200px;
+  }
+  
+  .content:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
+  .main {
+    width: 100%;
+    height: 150px;
+    background: green;
+    float: left;
+  }
+  
+  .main-left {
+    width: 200px;
+    height: 100%;
+    background: red;
+    float: left;
+    margin-left: -100%;
+    position: relative;
+    left: -200px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="header">头部</div>
+  <div class="content">
+    <div class="main">圣杯布局的原理是通过float浮动元素的特性，使用负margin进行偏移置于同一行，利用父容器padding预留空间，再通过position定位到所需位置。圣杯布局的原理是通过float浮动元素的特性，使用负margin进行偏移置于同一行，利用父容器padding预留空间，再通过position定位到所需位置。圣杯布局的原理是通过float浮动元素的特性，使用负margin进行偏移置于同一行，利用父容器padding预留空间，再通过position定位到所需位置。
+    </div>
+    <div class="main-left">做侧边栏，固定宽度</div>
+  </div>
+  <div class="footer">尾部</div>
+</body>
+
+</html>
