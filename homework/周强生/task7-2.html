@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>task7-2</title>
+    <style>
+        .hero-name{
+        }
+        .hero-descpration
+    </style>
+</head>
+<body>
+<form name="my-favourite-hero" action="#">
+    <div id="nickname">
+        <!--text文本内容-->
+        <span class="hero-name">英雄名称:</span><input name="hero-name" type="text" placeholder="起个好听的名字吧"/>
+    </div>
+    <div id="password">
+        <!--password密码-->
+        <span class="hero-pwd">解锁密码</span> <input name="hero-pwd" type="password" placeholder="给英雄设置密码"/>
+    </div>
+    <div id="sex">
+        <!--单选圆角框-->
+        <span>英雄性别</span><input type="radio" name="hero-sex" checked/>男
+        <input type="radio" name="hero-sex"/>女
+    </div>
+    <div id="attack-range">
+        <!--多选方角框-->
+        <span>攻击范围</span><input name="attack" type="radio"/>斧头帮
+        <input name="attack" type="checkbox" checked/>长臂猿
+    </div>
+    <div id="">
+        <span>攻击方式</span><input name="attack" type="checkbox" checked/>dps
+        <input name="attack" type="checkbox"/>aoe
+    </div>
+    <div id="hero-description">
+        <!--textarea标签，注意是标签。文本域，写一段文字用-->
+        这是文本域<textarea name="#" cols="30" rows="10" placeholder="描述下你的英雄吧"></textarea>
+    </div>
+    <div>
+        <!--selected下拉列表-->
+        <select name="技能列表" >
+            <option value="表头">技能列表</option>
+            <option value="天神下凡">天神下凡</option>
+            <option value="死亡之指">死亡之指</option>
+        </select>
+    </div>
+    <button type="submit">subimt有啥用</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 25-3</title>
+  <style>
+    body{
+      font-size: 12px;
+    }
+    ul{
+      margin: 0;
+      padding: 0;
+    }
+    .ct{
+      width: 700px;
+      margin: 0 auto;
+    }
+    .wrap{
+      margin-right: -20px;
+      margin-bottom: -20px;
+    }
+    .wrap::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .ct li{
+      list-style: none;
+    }
+    .wrap li{
+      float: left;
+      position: relative;
+      padding: 10px 20px; 
+      width: 178px;
+      margin: 0 20px 20px 0;
+      border: 1px solid #eee;
+    }
+    .wrap li .text{
+      margin-bottom: 3px;
+      line-height: 16px;
+      height: 32px;
+      color: #666;
+    }
+    .img-box{    
+      text-align: center;
+    }
+    .price{
+      color: #c81623;
+    }
+    .buy{
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -18px 0 0 -35px;
+      padding: 10px;
+      border: 1px solid #c81623;
+      cursor: pointer;
+      color: red;
+      background-color: white;
+    }
+    .modal{
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #999;
+      width: 220px;
+      height: 202px;
+      opacity: 0.6;
+    }
+    .btn{
+      cursor: pointer;
+      padding: 10px 20px;
+      color: red;
+      border: 1px solid red;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="ct">
+    <h1>珠宝首饰</h1>
+    <ul class="wrap">
+      <li> 
+        <div class="modal"></div>
+        <div class="img-box"><img src="yin.jpg" alt=""></div>
+        <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+        <span class="buy">立即抢购</span>
+        <span class="price">￥1699.00</span>
+      </li>
+      <li>
+        <div class="modal"></div>
+        <div class="img-box"><img src="yin.jpg" alt=""></div>
+        <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+        <span class="buy">立即抢购</span>
+        <span class="price">￥1699.00</span>
+      </li>
+      <li>
+        <div class="modal"></div>
+        <div class="img-box"><img src="yin.jpg" alt=""></div>
+        <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+        <span class="buy">立即抢购</span>
+        <span class="price">￥1699.00</span>
+      </li>
+      <li>
+        <div class="modal"></div>
+        <div class="img-box"><img src="yin.jpg" alt=""></div>
+        <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+        <span class="buy">立即抢购</span>
+        <span class="price">￥1699.00</span>
+      </li>
+      <li>
+        <div class="modal"></div>
+        <div class="img-box"><img src="yin.jpg" alt=""></div>
+        <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+        <span class="buy">立即抢购</span>
+        <span class="price">￥1699.00</span>
+      </li>
+      <li>
+        <div class="modal"></div>
+        <div class="img-box"><img src="yin.jpg" alt=""></div>
+        <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+        <span class="buy">立即抢购</span>
+        <span class="price">￥1699.00</span>
+      </li>
+    </ul>
+    <span class="btn">添加</span>
+  </div>
+
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    var products = [
+    {
+      img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+      name: '珂兰 黄金手 猴哥款',
+      price: '￥405.00'
+    },{
+      img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+      name: '珂兰 黄金转运珠 猴哥款',
+      price: '￥100.00'
+    },{
+      img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+      name: '珂兰 黄金手链 3D猴哥款',
+      price: '￥45.00'
+    }
+    ];
+    function addNewLi(){
+      for(var i=0;i<products.length;i++){
+        var $newli=$('.wrap li').eq(0).clone();
+        $newli.find('img').attr('src',products[i].img);
+        $newli.find('.text').text(products[i].name);
+        $newli.find('.price').text(products[i].price);
+        $('.wrap').append($newli);
+      }
+    }
+    $('.btn').on('click',addNewLi);
+    $('.wrap').on('mouseover','li',function(){
+      $(this).find('.modal').show();
+      $(this).find('.buy').show();
+    })
+    $('.wrap').on('mouseout','li',function(){
+      $(this).find('.modal').hide();
+      $(this).find('.buy').hide();
+    })
+  </script>
+</body>
+</html>

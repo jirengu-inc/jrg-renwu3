@@ -1,0 +1,172 @@
+@charset "utf-8";
+  /*tag*/
+ *{padding: 0;margin: 0;}
+ ul{list-style: none;}
+ a{text-decoration: none;color:black;}
+   html, body {
+    width: 100%;/*相对宽高*/
+    height: 100%;
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+ h1{
+	font-size: 4.5em;
+    font-weight: 700;
+}
+hr{
+    max-width: 100px;
+    height: 0;
+    margin: 25px auto; 
+}
+/* public */
+.color-of-a{
+	color:#337ab7;
+}
+.color-of-vertically{
+	color: white;
+}
+.color-of-a:hover{
+	border-bottom: 2px solid #337ab7;
+}
+.lh{
+	line-height: 1.5;
+}
+.tl-c{
+	text-align: center;
+}
+.s-btn{
+	display: inline-block;
+    line-height: 35px;
+    height: 35px;
+    background: white;
+    font-size: 12px;
+    width: 90px;
+    margin-top: 10px;
+}
+.s-btn:hover{
+	opacity: .5;
+	filter:alpha(opacity=50); 
+}
+.btn-dark{
+  	background-color:rgba(0,0,0,0.4);
+}
+.btn-detail{
+	height: 38px;
+    line-height: 38px;
+    background: rgb(140, 135, 135);
+    font-size: 1em;
+    color: rgb(249, 243, 243);
+    display: inline-block;
+    padding: 0 10px;
+    margin-top: 20px;
+}
+.btn-detail:hover{
+	opacity: .8;
+	filter:alpha(opacity=80); 
+}
+
+.v-table-layout{
+    display: table-cell; 
+    vertical-align: middle;
+}
+ 
+.v-position-layout{
+	position: relative;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+}
+.clear{
+    content: "";
+	display: block;
+	clear:both;
+}
+/* header */
+#header{
+    background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/bg.jpg);
+	background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    display: table;  /*存在的理由跟table一样，谁也不会单独的写td*/
+}
+
+/*main*/
+#vertically{
+	background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/14/img/callout.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: scroll;
+    background-size: cover;
+    text-align: center;
+    height: 400px;
+    display: table;
+    width: 100%;
+}
+
+.introduce{
+	padding: 60px 0;
+}
+
+.services{
+	background-color: #337ab7;
+    padding: 30px 0;
+    color: white;
+	margin: 0 auto;
+}
+#main>.services .item{
+	float: left;
+	width: 250px;
+}
+.services .fa{
+    font-size: 90px;
+}
+.services>.wrap{
+	display: inline-block;
+}
+#main>.services>.wrap:after{
+	content: "";
+	display: block;
+	clear:both;
+}
+#our-work{
+	width: 960px;
+	margin: 15px auto ;
+}
+#our-work .item{
+	float: left;
+	max-width: 50%;
+	padding: 10px;
+	box-sizing: border-box;
+}
+#our-work .item img{
+	max-width: 100%;
+	display: block;
+}
+#buttons-below{
+	background-color: #337ab7;
+    padding: 70px 0;
+    color: white;
+    line-height: 1.5;
+}
+/*footer*/
+#footer{
+	text-align: center;
+	line-height: 1.5;
+	font-size: 14px;
+	padding: 90px 0;
+}
+#footer fa{
+	font-size:14px;
+}
+#footer li{
+	display: inline-block;
+}
+#footer ul{
+	margin: 20px auto;
+}
+#footer li>.fa{
+	 font-size: 3em;
+	 color: #337ab7;
+}

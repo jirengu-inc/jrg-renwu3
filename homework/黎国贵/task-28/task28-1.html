@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task28-1</title>
+    <style type="text/css">
+
+        #nav{
+            height: 40px;
+            margin-top: 20px;
+            background: blue;
+        }
+        #header{
+            background: red;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+        }
+        #content{
+            min-height: 800px;
+            background: #ccc;
+            padding: 10px;
+            overflow: auto;
+        }
+        #content .aside{
+            float: left;
+            width: 100px;
+            min-height: 400px;
+            background: green;
+        }
+        #content .main{
+            /*两栏布局*/
+            overflow: auto;
+            background: #fff;
+            padding-left: 20px;
+            min-height: 800px;
+        }
+        #footer{
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+<div id="header">header</div>
+<div id="nav">nav</div>
+<div id="content">
+    <div class="aside">aside</div>
+    <div class="main">main</div>
+</div>
+<div id="footer">footer</div>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+        $.fn.stickup = function () {
+            var $cur = this;
+            var $height = $cur.height();
+            var $width = $cur.width();
+            var $offsetleft = $cur.offset().left;
+            var $offsettop = $cur.offset().top;
+
+            var $clone = $cur.clone();
+            $clone.css({opacity: 0}).insertBefore($cur).hide();
+
+            $(window).on("scroll", function () {  //窗口滚动事件
+                var scrollTop = $(this).scrollTop();
+                if (scrollTop >= $offsettop) {   //一旦滚动条距顶的距离大于等于元素距文档顶的距离,就让它粘在上面
+//                if(!isFixed()){    //每次滚动都进行isFixed()判断
+                    setFixed();
+//                }
+                }
+                else {
+                    unsetFixed();
+                }
+
+            });
+    //      function isFixed(){
+    //          return $cur.data("data-fixed");  //给当前元素绑定一个定位符
+    //       }
+            function setFixed() {
+//        $cur.data("data-fixed",true);
+                $cur.css({                //消除fixed后的影响
+                    position: 'fixed',
+                    top: 0,
+                    left: $offsetleft,
+                    width: $width,
+                    height: $height,
+                    margin:0,
+                    zIndex: 19999
+                });
+                $clone.show();
+            }
+
+            function unsetFixed() {
+//        $cur.data("data-fixed",false)
+                $cur.attr("style", "");//.css({})的样式写在style属性里的
+                $clone.hide();
+            }
+        };
+        $("#nav").stickup();
+</script>
+</body>
+</html>

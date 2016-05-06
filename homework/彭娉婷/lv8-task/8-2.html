@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>8-2</title>
+	<style type="text/css">
+		body {
+			padding: 0 40px;
+		}
+		ul>li {
+			display: inline-block;
+			margin-right: 40px;
+			text-indent: -2em;
+		}
+		.nav {
+			background: black;
+			color: green;
+			height: 60px;
+			line-height: 60px;
+		}
+		a {
+			text-decoration: none;
+			color: green;
+		}
+		#content .title {
+			text-align: center;
+			color: green;
+		}
+		#content .desc {
+			text-indent: 2em;
+			font-size: 13px;
+			color: #666;
+		}
+		#content h3 {
+			border-bottom: 1px dashed #ccc;
+		}
+		#content p {
+			text-indent: 2em;
+		}
+		.tree li {
+			display: block;
+		}
+		.tree>li>a:first-child:before {
+			content: '+';
+			color: #666;
+		}
+		.tree>li:first-child>a:before {
+			content: '-';
+			color: #666;
+		}
+		.tree>li:nth-child(1)>ul>li {
+			color: #666;
+		}
+		.tree>li:nth-child(2)>ul>li {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="header">
+		<ul class="nav">
+			<li><a href="">首页</a></li>
+			<li><a href="">简介</a></li>
+			<li><a href="">作品</a></li>
+			<li><a href="">关于</a></li>
+		</ul>
+	</div>
+	<div id="content">
+		<h1 class="title">前端学习</h1>
+		<p class="desc">这是我的前端学习笔记</p>
+		<h3>第一章</h3>
+		<p>这是我的前端学习笔
+			记这是我是<span class="text-less"> 特别的</span> 的前端学习笔
+			记这是我的前端学习笔记这是
+			我的前端学习,笔记这是我, 的前端, 
+			学习笔记
+		</p>
+		<h3>第二章</h3>
+		<p>这是我的前端学习笔
+			记这是我的前端学习笔
+			记这是我的<span class="text-less"> 特别的</span>前端学习笔记这是
+			我的前端学习,笔记这是我, 的前端, 
+			学习笔记
+		</p>
+		<ul class="tree">
+			<li class="open has-child">
+				<a href="#">记笔记</a>
+				<ul>
+					<li>jscode</li>
+					<li>博客</li>
+					<li>Github</li>
+				</ul>
+			</li>
+			<li class="has-child">
+				<a href="#">做作业</a>
+				<ul>
+					<li>jscode</li>
+					<li>博客</li>
+					<li>Github</li>
+				</ul>
+			</li>
+			<li><a href="#">多思考</a></li>
+			<li><a href="#">多练习</a></li>
+		</ul>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

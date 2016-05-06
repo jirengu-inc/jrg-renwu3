@@ -54,9 +54,9 @@ h4{
     text-align: center;
 }
 
-.clear{
+.clear:after{
     content:"";
-    display:inline-block;
+    display:block;
     clear:both;
 }
 /*自定义开始*/

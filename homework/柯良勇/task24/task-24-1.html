@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 24-1</title>
+</head>
+<body>
+  <script>
+    function ajax(opts){
+      var request = new  XMLHttpRequest();
+      var str = '';
+      for(i in opts.data){
+        str += i+'='+opts.data[i]+'&';
+      }
+      str = str.substr(0, str.length-1); 
+      if(opts.type.toLowerCase() === 'get'){
+        request.open('GET', opts.url+'?'+str, true);
+        request.send();
+      }
+      if(opt.type.toLowerCase() === 'post'){
+        resuest.open('POST', opt.url, true);
+        ajax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        request.send(str);
+      }
+      request.onreadystatechange=function(){
+        if(request.readyState==4 && request.status==200){
+          var responsetext=JSON.parse(request.responseText);
+          opts.success(responsetext);
+        }
+        if(request.status!==200){
+          opts.error();
+        }
+      }
+    }
+    document.querySelector('#btn').addEventListener('click', function(){
+      ajax({
+        url: 'getData.php',   //接口地址
+        type: 'get',               // 类型， post 或者 get,
+        data: {
+          username: 'xiaoming',
+          password: 'abcd1234'
+        },
+        success: function(ret){
+            console.log(ret);       // {status: 0}
+          },
+          error: function(){
+           console.log('出错了')
+         }
+       })
+    });
+  </script>
+</body>
+</html>

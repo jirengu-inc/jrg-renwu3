@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>双飞翼布局两列</title>
+    <style>
+
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .clear{
+            zoom: 1;
+        }
+        header,footer{
+            height: 50px;
+            background: red;
+        }
+        .main,.left{
+            height: 100px;
+            float: left;
+
+        }
+        .box{
+        }
+        .left{
+            width: 200px;
+            background: palegreen;
+            margin-left: -100%;
+            opacity: 0.5;
+
+
+        }
+
+        .main{
+            width: 100%;
+            background: seagreen;
+
+        }
+        .wrap{
+            background: pink;
+            height: 100%;
+            margin: 0 0 0 200px;
+        }
+    </style>
+</head>
+<body>
+    <header>hedaer</header>
+    <section class="clear box">
+        <div class="main">
+            <div class="wrap">wrap</div>
+        </div>
+        <div class="left">left</div>
+    </section>
+ <footer>footer</footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+.box{
+  width: 200px;
+  height: 120px;
+  border: 1px solid #ccc;
+  margin: 50px;
+  position: relative;
+}
+
+.arrow {
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+}
+
+.arrow-top{
+  border-bottom-color: #ccc;
+  position: absolute;
+  left: 10px;
+  top: -20px;
+}
+
+.arrow-right{
+  border-color: red red transparent transparent;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.arrow-top-border{
+  border: 9px solid transparent;
+  border-bottom-color: #fff;
+  position: absolute;
+  left: 11px;
+  top: -17px;
+  z-index: 1;
+}
+
+.arrow-top-border1{
+  border-bottom-color: #ccc;
+  position: absolute;
+  left: 10px;
+  top: -20px;
+}

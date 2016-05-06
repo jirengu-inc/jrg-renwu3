@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>level-11-2</title>
+    <style>
+    html,body,div{
+      margin:0;
+      padding:0
+    }
+    #header{
+      height: 70px;
+      background-color: red;
+      font-size: 22px;
+    }
+    #footer{
+      height: 50px;
+      background-color: red;
+    }
+    #content{
+    }
+    #content>.aside{
+      background-color: purple;
+      width: 200px;
+      float: left;
+    }
+    #content>.main{
+      background-color: pink;
+      height: 300px;
+      overflow: auto;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="header">header</div>
+        <div id="content">
+            <div class="aside">aside</div>
+            <div class="main">
+                我是main
+                我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+            </div>
+        </div>
+        <div id="footer"></div>
+  </body>
+</html>
