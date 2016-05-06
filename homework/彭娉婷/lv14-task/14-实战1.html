@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>实战1</title>
+  <link rel="stylesheet" href="css/font-awesome.css">
+  <style type="text/css">
+   body,html {
+    margin: 0;
+    padding: 0;
+    height: 100%;/*否则header height:100%没效果*/
+    font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  a{
+    text-decoration: none;
+  }
+  h1{
+    font-size: 64px;
+  }
+  h2{
+    font-size: 56px;
+  }
+  h3{
+    font-size: 32px;
+  }
+  h4{
+    font-size: 24px;
+  }
+  .layout {/*中心内容*/
+    width: 960px;
+    margin:0 auto;
+  }
+  #header {
+    background: url(./img/bg.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    display: table;
+  }
+  #header .layout,#callout .layout{/*垂直水平居中*/
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+  #header .layout h2{
+   margin-bottom:0;
+ }
+ #header .layout p{
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+.gray-btn{
+  color: white;
+  background: rgba(0,0,0,0.4);
+  font-size: 18px;
+  padding: 10px 16px;
+}
+.gray-btn:hover{
+ background: #000;
+}
+#about,#services,#our-work,#call-to-action,#footer{/*水平居中*/
+  text-align: center;
+  padding: 50px 0;
+}
+.blue-link,.fa-facebook,.fa-twitter,.fa-dribbble{
+  color: #337ab7;
+}
+#content #about .blue-link:hover{
+  text-decoration: underline;
+}
+.blue-background{
+  background-color: #337ab7;
+  color: white;
+  overflow: auto;
+  padding: 50px 0;
+  text-align: center;
+}
+hr.small{
+  max-width:100px;
+}
+#services hr.small{
+  margin-top:-10px;
+}
+#services .layout>ul{
+  list-style: none;
+  float: left;
+}
+#services .layout>ul p{
+  font-size: 14px;
+}
+.white-btn{
+  color: black;
+  background-color: white;
+  font-size: 12px;
+  padding: 6px 12px;
+}
+.white-btn:hover{
+ background: #d6e4f0;
+}
+.fa-circle{
+  color: white;
+}
+.fa-cloud,.fa-compass,.fa-flask,.fa-shield{
+  color: #337ab7;
+}
+.fa-stack{
+  font-size: 50px;
+}
+#callout{
+  background: url(./img/callout.jpg) no-repeat center center;
+  background-size: cover;
+  width: 100%;
+  height: 400px;
+  display: table;
+}
+#callout .layout h1{
+  color: white;
+}
+#our-work p{
+  font-size: 30px;
+}
+#our-work hr.small,#footer hr.small{
+  opacity: 0.2;
+}
+#our-work .gray-btn{
+  /*display: block;*//*有点问题*/
+  clear: both;
+  font-size: 13px;
+}
+#our-work .work-box{
+  float: left;
+  margin:15px;
+}
+#call-to-action .white-btn,#call-to-action .gray-btn{
+  font-size: 18px;
+  padding: 12px 14px;
+  margin: 0 10px;
+}
+#call-to-action h4{
+  margin:35px;
+}
+#footer strong{
+  font-size: 18px;
+}
+#footer p{
+  font-size: 14px;
+}
+</style>
+</head>
+<body>
+  <div id="header" class="bg-img">
+    <div class="layout">
+      <h2>Start Bootstrap</h2>
+      <p>Free Bootstrap Themes & Templates</p>
+      <a class="gray-btn" href="#">Find Out More</a>
+    </div>
+  </div>
+
+  <div id="content" >
+    <!-- about -->
+    <div id="about" class="layout">
+      <h4>Stylish Portfolio is the perfect theme for your next project!</h4>
+      <p>This theme features some wonderful photography courtesy of
+        <a class="blue-link" href="#">Death to the Stock Photo.</a>
+      </p>
+    </div>
+    <!-- services -->
+    <div id="services" class="blue-background">
+      <div class="layout">
+        <h3>Our Services</h3>
+        <hr class="small">
+        <ul>
+          <li>
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-cloud fa-stack-1x"></i>
+            </span>
+          </li>
+          <li><strong>Service Name</strong></li>
+          <li><p>Lorem ipsum dolor sit amet,</br>consectetur adipisicing elit.<p></li>
+          <li><a class="white-btn" href="#">Learn More</a></li>
+        </ul>
+        <ul>
+          <li>
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-compass fa-stack-1x"></i>
+            </span>
+          </li>
+          <li><strong>Service Name</strong></li>
+          <li><p>Lorem ipsum dolor sit amet, </br>consectetur adipisicing elit.<p></li>
+          <li><a class="white-btn" href="#">Learn More</a></li>
+        </ul>
+        <ul>
+          <li>
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-flask fa-stack-1x"></i>
+            </span>
+          </li>
+          <li><strong>Service Name</strong></li>
+          <li><p>Lorem ipsum dolor sit amet, </br>consectetur adipisicing elit.<p></li>
+          <li><a class="white-btn" href="#">Learn More</a></li>
+        </ul>
+        <ul>
+          <li>
+            <span class="fa-stack fa-lg">
+              <i class="fa fa-circle fa-stack-2x"></i>
+              <i class="fa fa-shield fa-stack-1x"></i>
+            </span>
+          </li>
+          <li><strong>Service Name</strong></li>
+          <li><p>Lorem ipsum dolor sit amet, </br>consectetur adipisicing elit.<p></li>
+          <li><a class="white-btn" href="#">Learn More</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- callout -->
+    <div id="callout" class="bg-img">
+      <div class="layout">
+        <h1>Vertically Centered Text</h1>
+      </div>
+    </div>
+    <!-- our-work -->
+    <div id="our-work" class="layout">
+      <p>Our Work</p>
+      <hr class="small">
+      <div class="work-box">
+        <a href="#"><img src="./img/portfolio-1.jpg" width="450px" height="300px"></a>
+      </div>
+      <div class="work-box">
+        <a href="#"><img src="./img/portfolio-2.jpg" width="450px" height="300px"></a>
+      </div>
+      <div class="work-box">
+       <a href="#"><img src="./img/portfolio-3.jpg" width="450px" height="300px"></a>
+     </div>
+     <div class="work-box">
+      <a href="#"><img src="./img/portfolio-4.jpg" width="450px" height="300px"></a>
+    </div>
+    <a class="gray-btn" href="#">View More Items</a>
+  </div>
+  <!-- call-to-action -->
+  <div id="call-to-action" class="blue-background">
+    <div class="layout">
+      <h4>The buttons below are impossible to resist.</h4>
+      <a class="white-btn" href="#">Click Me!</a>
+      <a class="gray-btn" href="#">Look at Me!</a>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <div class="layout">
+    <h4><strong>Start Bootstrap</strong></h4>
+    <p>3481 Melrose Place<br/>Beverly Hills, CA 90210</p>
+    <p><i class="fa fa-phone fa-fw"></i> (123) 456-7890</p>
+    <p><i class="fa fa-envelope-o fa-fw"></i><a class="blue-link" href="#">name@example.com</a></p><br>
+    <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+    <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+    <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+    <hr class="small">
+    <p>Copyright &copy Your Website 2014</p>
+  </div>
+</div>
+</body>
+</html>

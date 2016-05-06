@@ -1,6 +1,8 @@
-html,body,ul,li,input, textarea{
+html,body,ul,li,input,textarea,h1,h2,h3,h4,h5,h6{
   padding: 0;
   margin: 0;
+}
+body,html{
   height: 100%;
   font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
@@ -13,6 +15,10 @@ li{
 }
 a{
   text-decoration: none;
+}
+h2{
+  font-size: 40px;
+  margin-bottom: 25px;
 }
 .padding-min{
   padding: 50px 0;
@@ -32,8 +38,24 @@ a{
 .float{
   float: left;
 }
-.bfc{
-  overflow: auto;
+.clear:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+#services p,#portfolio p,#portfolio li p,#about p,#team p,#contact p{
+  font-style: italic;
+  color: #777;
+  font-size: 14px;
+}
+.table{
+  display: table;
+  height: 100%;
+}
+.vertical-text-center{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }
 .yellow-btn{
   color: white;
@@ -45,51 +67,68 @@ a{
 .yellow-btn:hover{
  background-color: #fec503;
 }
-#header {
-  position: relative;
-  background: url(./img/header-bg.jpg) no-repeat 25% 25%;
-  background-size: cover;
-  height: 100%;
+#navbar{
   width: 100%;
-  display: table;
+  height: 75px;
+  position: fixed;
+  top:0;
+  left: 0;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 100;
 }
-#header .nav li{
-  position: relative;
-  top: 20px;
-  left: 650px;
-  padding: 15px;
-  color: white;
-}
-#header .layout{
-  position: absolute;
-  top: 25%;
-}
-h3{/*Start Bootstrap*/
-  position: absolute;
-  top: 8px;
-  left: 60px;
-  color:#fed136;
-}
-h2{
-  font-size: 40px;
-}
-#header .layout h2{
- color: white;
- font-style: italic;
-}
-#header .layout h1{
-  color: white;
-  font-size: 75px;
-}
-#services p,#portfolio p,#portfolio li p,#about p,#team p,#contact p{
+#navbar .navbar-header{
+  float: left;
+  text-align: left;
+  height: 75px;
+  line-height: 75px;
+  color: #fed136;
+  font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+  font-size: 21px;
   font-style: italic;
-  color: #777;
+}
+#navbar .navbar-nav li{
+  float: right;
+  width: 108px;
+  height: 75px;
+  text-align: right;
+  line-height: 75px;
+}
+#navbar .navbar-nav li>a{
+  color: #fff;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 18px;
+}
+#navbar .navbar-nav li>a:hover{
+  color: #fed136;
+}
+#header{
+  width: 100%;
+  height: 100%;
+  background: url('../img/header-bg.jpg') no-repeat;
+  background-size: cover;
+  background-position: 0;
+  color: #fff;
+}
+#header h2{
+  margin-bottom: 25px;
+  font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: normal;
+}
+#header h1{
+  margin-bottom: 50px;
+  font-size: 75px;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 #services .fa-stack{
   font-size: 50px;
 }
 #services .fa-circle{
   color: #fed136;
+}
+.fa-shopping-cart,.fa-laptop,.fa-lock,.fa-twitter,.fa-facebook,.fa-linkedin{
+  color: white;
 }
 #team .fa-stack,#footer .fa-stack {
   color: #222;
@@ -100,26 +139,26 @@ h2{
 #footer .fa-stack:hover{
   color: #fed136;
 }
-.fa-shopping-cart,.fa-laptop,.fa-lock,.fa-twitter,.fa-facebook,.fa-linkedin{
-  color: white;
-}
-#services li p{
-  font-size: 14px;
+#services ul>li{
+  width: 33.3333%;
 }
 #portfolio img{
   width: 370px;
 }
 #portfolio ul>li{
   background-color: white;
-  /*width: 370px;*/
   margin:15px;
 }
-#services ul>li{
-  width: 364px;
-  margin:18px;
+#portfolio .text-wrap{
+  padding: 25px;
+}
+#team img{
+  border-radius: 50%;
+  border: 7px solid white;
 }
 #team ul>li{
   width: 240px;
+  height: 240px;
   margin:80px;
 }
 #about .timeline img,#about .photo5{
@@ -155,15 +194,14 @@ h2{
   padding-left: 165px;
   padding-bottom:130px;
 }
-#team img{
-  border-radius: 50%;
-  border: 7px solid white;
+#team ul{
+ margin-bottom: 45px;
 }
 #logo img{
-  margin: 30px;
+  margin: 0 30px;
 }
 #contact{
-  background:url(img/map-image.png);
+  background:url(../img/map-image.png);
   background-color: black;
 }
 #contact h2{
@@ -190,3 +228,4 @@ h2{
 #footer p a:hover{
   text-decoration: underline;
 }
+

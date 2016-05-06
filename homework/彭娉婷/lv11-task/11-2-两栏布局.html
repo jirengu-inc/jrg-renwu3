@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>11-2-两栏布局</title>
+  <style type="text/css">
+  body{
+    margin: 0;
+    padding: 0;
+  }
+    #header,#footer{
+      height: 40px;
+      background-color: red;
+    }
+    .aside{
+      width: 200px;
+      /*min-height: 100px;*/
+      opacity: 0.1;
+      float: left;
+    }
+    /*#content:after{
+      content: '';
+      display: block;
+      clear: both;
+    }  无效*/
+
+    .main{
+      overflow: hidden;
+      min-height: 100px;
+      background-color: pink;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">header</div>
+  <div id="content">
+    <div class="aside">aside </div>
+    <div class="main">
+      我是main
+      我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+      我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+      我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+      我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+      我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+      我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+      我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+      我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+      我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main...
+
+    </div>
+  </div>
+  <div id="footer"></div>
+</body>
+</html>

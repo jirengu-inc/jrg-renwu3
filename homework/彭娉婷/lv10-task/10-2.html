@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>10-2</title>
+  <style type="text/css">
+
+    .test_triangle_border .top-gay,.right-red,.top-white{
+      width:300px;
+      height: 150px;
+      border:2px solid #ccc;
+      margin-top: 30px;
+      margin-left: 30px;
+      position:relative;
+    }
+    .test_triangle_border .top-gay span{
+     width:0;
+     height:0;
+     border-width: 20px;
+     border-style:solid;
+     border-color:transparent transparent #ccc transparent;
+     position: absolute;
+     top: -40px;
+     left: 20px;
+   }
+
+   .test_triangle_border .right-red span{
+    width:0;
+    height:0;
+    border-width: 20px;
+    border-style:solid;
+    border-color:red red transparent transparent;
+    /*border-top:20px solid red;
+    border-right: 20px solid red;
+    border-bottom: 20px solid white;
+    border-left: 20px solid white;*/
+    position: absolute;
+    right: 0;
+
+  }
+
+
+  .test_triangle_border .top-white span{
+   width:0;
+   height:0;
+   border-width: 20px;
+   border-style:solid;
+   border-color:transparent transparent #ccc transparent;
+   position: absolute;
+   top: -40px;
+   left: 20px;
+ }
+
+
+ .top-white em{
+  width:0;
+  height:0;
+  border-width:20px;
+  border-style:solid;
+  border-color:transparent transparent white transparent;
+  position:absolute;
+  top: -38px;
+  left: 20px;
+}
+</style>
+</head>
+<body>
+  <div class="test_triangle_border">
+
+    <div class="top-gay">
+      <span></span>
+    </div>
+
+    <div class="right-red">
+      <span></span>
+    </div>
+
+    <div class="top-white">
+     <span></span>
+     <em></em>
+   </div>
+
+
+ </body>
+ </html>

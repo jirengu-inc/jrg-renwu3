@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>task12-3</title>
+  <style>
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+  
+  .header,
+  .footer {
+    height: 40px;
+    background: #ccc;
+  }
+  
+  .content {
+    height: 200px;
+  }
+  
+  .content:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  
+  .wrap {
+    width: 100%;
+    height: 200px;
+    float: left;
+  }
+  
+  .main {
+    height: 200px;
+    margin: 0px 200px;
+    background: green;
+  }
+  
+  .main-left {
+    width: 200px;
+    height: 100%;
+    background: red;
+    float: left;
+    margin-left: -100%;
+  }
+  
+  .main-right {
+    width: 200px;
+    height: 100%;
+    background: yellow;
+    float: left;
+    margin-left: -200px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="header">头部</div>
+  <div class="content">
+    <div class="wrap">
+      <div class="main">双飞翼布局的原理跟圣杯布局类似，区别在于没有使用padding与position进行偏移，而是在主要内容栏外面包裹一个div，然后通过左右margin来收缩主要内容空间。
+      </div>
+    </div>
+    <div class="main-left">做侧边栏，固定宽度</div>
+    <div class="main-right">右侧边栏，固定宽度</div>
+  </div>
+  <div class="footer">尾部</div>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task-12-4</title>
+	<meta charset="UTF-8">
+	<style type="text/css">
+		html,body {
+			margin: 0;
+			padding:0;
+		}
+		#header,#footer {
+			width: 100%;
+			min-height: 40px;
+			background-color: #ccc;
+		}
+		#main {
+			margin: 5px 0;
+			border:1px dashed;
+			width: 100%;
+			*zoom:1;
+		}
+		#main:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.mid {
+			float: left;
+			width: 100%;
+			background-color: #fff;
+		}	
+		.mid .mid-content {
+			min-height: 80px;
+			background-color: yellow;
+			margin: 0 0 0 220px;
+			padding-left: 5px;
+		}
+		.aside {
+			float: left;
+			width: 200px;
+			min-height: 20px;
+			background-color: red;
+			margin-left: -100%;
+			padding-left: 5px;
+		}
+	</style>
+</head>
+<body>
+<div id="header"><h1>header</h1></div>
+<div id="main">
+	<div class="mid">
+		<div class="mid-content">两栏式双飞翼布局</div>
+	</div>
+	<div class="aside">侧边栏</div>
+</div>
+<div id="footer"><h1>footer</h1></div>
+</body>
+</html>
