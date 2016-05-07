@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level25</title>
+	<style type="text/css">
+		div,ul,li{
+			margin: 0;
+			padding: 0;
+		}
+		ul:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		li{
+			list-style: none;
+		}
+		.wrap{
+			width: 715px;
+			margin: 0 auto;
+		}
+		.goods{
+			float: left;
+			border:1px solid rgba(0, 0, 0, 0.14);
+			text-align:center;
+			margin:0 6px 10px 0;
+			position: relative;
+			height: 199px;
+		}
+		.introduce{
+			font-size: 5px;
+			margin:0 30px;
+			width: 170px;
+			text-align: left;
+		}
+		.price{
+			text-align: left;
+			color: red;
+			margin: 10px 30px;
+		}
+		.btn-add{
+			display: block;
+			width: 40px;
+			height: 18px;
+			text-decoration: none;
+			color: red;
+			padding: 5px 12px;
+			border: 1px solid red;
+			border-radius: 5px;
+			margin-top: 10px;
+			line-height: 18px;
+			text-align: center;
+		}
+		.pack{
+			height: 200px;
+			background: rgba(204, 204, 204, 0.3);
+			position: absolute;
+			top: 0;
+			right:0;
+			width: 230px;
+			display: none;
+		}
+		.buy{
+			text-decoration: none;
+			color: red;
+			padding: 5px 5px;
+			border: 1px solid red;
+			border-radius: 5px;
+			background: white;
+			position: absolute;
+			top: 85px;
+			right: 86px;
+		}
+
+	</style>
+</head>
+<body>
+<div class="main">
+	<div class="wrap">
+		<h3>珠宝首饰</h3>
+		<ul class="content">
+			<li class="goods">
+				<div class="pack">
+					<a href="#" class="buy">立即抢购</a>
+				</div>
+				<img src="../img/ring.jpg">
+				<p class="introduce">藏美千足金和田玉金镶玉路路通吊坠</p>
+				<p class="price">￥1699.00</p>
+			</li>
+			<li class="goods">
+				<div class="pack">
+					<a href="#" class="buy">立即抢购</a>
+				</div>
+				<img src="../img/ring.jpg">
+				<p class="introduce">藏美千足金和田玉金镶玉路路通吊坠</p>
+				<p class="price">￥1699.00</p>
+			</li>
+			<li class="goods">
+				<div class="pack">
+					<a href="#" class="buy">立即抢购</a>
+				</div>
+				<img src="../img/ring.jpg">
+				<p class="introduce">藏美千足金和田玉金镶玉路路通吊坠</p>
+				<p class="price">￥1699.00</p>
+			</li>
+			<li class="goods">
+				<div class="pack">
+					<a href="#" class="buy">立即抢购</a>
+				</div>
+				<img src="../img/ring.jpg">
+				<p class="introduce">藏美千足金和田玉金镶玉路路通吊坠</p>
+				<p class="price">￥1699.00</p>
+			</li>
+			<li class="goods">
+				<div class="pack">
+					<a href="#" class="buy">立即抢购</a>
+				</div>
+				<img src="../img/ring.jpg">
+				<p class="introduce">藏美千足金和田玉金镶玉路路通吊坠</p>
+				<p class="price">￥1699.00</p>
+			</li>
+			<li class="goods">
+				<div class="pack">
+					<a href="#" class="buy">立即抢购</a>
+				</div>
+				<img src="../img/ring.jpg">
+				<p class="introduce">藏美千足金和田玉金镶玉路路通吊坠</p>
+				<p class="price">￥1699.00</p>
+			</li>
+		</ul>
+		<a href="#" class="btn-add">添加</a>
+	</div>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	var $goods=$(".goods");
+	var $ul=$(".content");
+	var $btnAdd=$(".btn-add");
+	var products = [
+    {
+        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+        name: '珂兰 黄金手 猴哥款',
+        price: '￥405.00'
+    },{
+        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+        name: '珂兰 黄金转运珠 猴哥款',
+        price: '￥100.00'
+    },{
+        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+        name: '珂兰 黄金手链 3D猴哥款',
+        price: '￥45.00'
+    }
+];
+	function addLi(){          //创建新的li
+		for(var i=0;i<products.length;i++){
+			var $newLi=$goods.eq(0).clone();   //克隆ul中的第一个li
+			$newLi.find("img").attr("src",products[i].img);   //将克隆的li的img元素的src属性替换
+			$newLi.find(".introduce").text(products[i].name);  //将克隆的li的introduce类名的元素的text文本替换
+			$newLi.find("price").text(products[i].price);   //将克隆的li的price类名的元素的text文本替换
+			$ul.append($newLi);  //将克隆的li元素添加到ul的子元素尾部
+		}
+	}
+	$btnAdd.on("click",function(){
+		addLi();
+	});
+	$ul.on("mouseenter",".goods",function(){
+		$(this).find(".pack").show();
+	})
+	$ul.on("mouseleave",".goods",function(){
+		$(this).find(".pack").hide();
+	})
+</script>
+</body>
+</html>

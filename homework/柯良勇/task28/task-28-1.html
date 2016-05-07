@@ -1,0 +1,90 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>task 28-1</title>
+  <style>
+    #header{
+      height: 80px;
+      line-height: 80px;
+      text-align: center;
+      background-color: red;
+    }
+    #nav{
+      height: 40px;
+      margin-top: 20px;
+      background-color: blue;
+    }
+    #aside{
+      float: left;
+      width: 100px;
+      height: 400px;
+      background-color: green;
+    }
+    #main{
+      float: left;
+      width: 1200px;
+      height: 800px;
+      padding-left: 20px; 
+      margin-left: -10px;
+      background-color: white;
+    }
+    #content{
+      padding: 10px;
+      background-color: #ccc;
+    }
+    #content::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    #footer{
+      height: 20px;
+      background-color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">header</div>
+  <div id="nav">nav</div>
+  <div id="content">
+    <div id="aside">aside</div>
+    <div id="main">main</div>
+  </div>
+  <div id="footer">footer</div>
+  <script src="jquery1.9.1.min.js"></script>
+  <script>
+    var $nav=$('#nav'),
+    $curW=$nav.width(),        //这里原本用.data('width') 结果是undefined
+    $curH=$nav.height(),
+    $top=$nav.offset().top,
+    $left=$nav.offset().left;
+
+    var $cloneNav=$nav.clone().insertBefore($nav).hide();
+
+    $(window).on('scroll',function(){
+      var $scrolltop=$(window).scrollTop();
+      if($scrolltop>$top){
+        fixed();
+      }
+      if($scrolltop<$top){
+        unfixed();
+      }
+    });
+
+    function fixed(){
+      $cloneNav.css({
+        position: 'fixed',
+        left: $left,
+        top: 0,
+        width: $curW,
+        margin: 0
+      }).show();
+      $nav.css('visibility','hide');
+    }
+    function unfixed(){
+      $cloneNav.hide();
+      $nav.css('visibility','visible');
+    }
+  </script>
+</body>
+</html>

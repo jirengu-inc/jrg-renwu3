@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task</title>
+  <style>
+    body,ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    .ct{
+      position: relative;
+      margin: 10px auto 30px auto;
+      width: 294px;
+      height: 184px;
+    }
+    .ct li{
+      list-style: none;
+    }
+    .ct a{
+      text-decoration: none;
+    }
+    .ct .arrow{
+      position: absolute;
+      top: 50%;
+      padding: 6px 11px;
+      border-radius: 50%;
+      background-color: #666;
+      color: white;
+    }
+    .ct .pre{
+      left: 10px;
+    }
+    .ct .next{
+      right: 10px;
+    }
+    .ct .bullet::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .ct .bullet{
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      margin-left: -60px;
+    }
+    .ct .bullet li{
+      float: left;
+      margin: 0 5px;
+      width: 20px;
+      height: 5px;
+      border-radius: 2px;
+      background-color: white;
+    }
+    .ct .bullet li.active{
+      background-color: #999;
+    }
+    .window li{
+      position: absolute;
+    }
+    .hide{
+      display: none;
+    }
+  </style>   
+</head>
+<body>
+  <div class="ct">
+    <ul class="window">
+      <li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+      <li class="hide"><a href="#"><img src="img/2.jpg" alt=""></a></li>
+      <li class="hide"><a href="#"><img src="img/3.jpg" alt=""></a></li>
+      <li class="hide"><a href="#"><img src="img/4.jpg" alt=""></a></li>
+    </ul>
+    <a href="#" class="next arrow">></a>
+    <a href="#" class="pre arrow"><</a>
+    <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+
+  <div class="ct">
+    <ul class="window">
+      <li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+      <li class="hide"><a href="#"><img src="img/2.jpg" alt=""></a></li>
+      <li class="hide"><a href="#"><img src="img/3.jpg" alt=""></a></li>
+      <li class="hide"><a href="#"><img src="img/4.jpg" alt=""></a></li>
+    </ul>
+    <a href="#" class="next arrow">></a>
+    <a href="#" class="pre arrow"><</a>
+    <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+
+  <div class="ct">
+    <ul class="window">
+      <li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+      <li class="hide"><a href="#"><img src="img/2.jpg" alt=""></a></li>
+      <li class="hide"><a href="#"><img src="img/3.jpg" alt=""></a></li>
+      <li class="hide"><a href="#"><img src="img/4.jpg" alt=""></a></li>
+    </ul>
+    <a href="#" class="next arrow">></a>
+    <a href="#" class="pre arrow"><</a>
+    <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+
+
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    var curNum=[0,0,0];
+    var targetNum=[0,0,0];
+    var turning=[false,false,false];                      //现在值 目标值  状态锁  用数组分开
+    var imgCount=$('.window').eq(0).children().length;
+
+    $('.next').on('click',function(){turn(1,this)});     //点击箭头切换 将this传递下去
+    $('.pre').on('click',function(){turn(-1,this)});     
+
+    $('.bullet').on('click','li',function(){        // 点击子弹条切换  将this传递下去
+      var i=$(this).parents('.ct').index();
+      turn($(this).index()-curNum[i],this);                
+    });
+
+    var clock=setInterval(function(){             //自动切换   
+      turn(1,$('.window').eq(0));
+      turn(1,$('.window').eq(1));
+      turn(1,$('.window').eq(2));
+    },2000);
+
+    function turn(num,origin){                   // 主函数 turn
+      var $parent=$(origin).parents('.ct');
+      var i=$parent.index();
+      if(turning[i])return;
+      turning[i]=true;
+      targetNum[i]=(num+curNum[i]+4)%imgCount;
+      $parent.children('.bullet').children().removeClass('active');
+      $parent.children('.bullet').children().eq(targetNum[i]).addClass('active');
+      $parent.children('.window').children().eq(curNum[i]).fadeOut(500);
+      $parent.children('.window').children().eq(targetNum[i]).fadeIn(500,function(){
+        turning[i]=false;  
+      });
+      curNum[i]=targetNum[i];
+    }
+  </script>
+</body>
+</html>

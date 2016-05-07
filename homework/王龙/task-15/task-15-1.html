@@ -13,11 +13,11 @@
         <div class="wrap clear">
             <a href="#" class="logo">Start Bootstrap</a>
             <ul class="nav-bar">
-                <li><a href="#">SERVICES</a></li>
-                <li><a href="#">PORTFOLIO</a></li>
-                <li><a href="#">ABOUT</a></li>
-                <li><a href="#">TEAM</a></li>
-                <li><a href="#">CONTACT</a></li>
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#porttfolo">PORTFOLIO</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#team">TEAM</a></li>
+                <li><a href="#contact-us">CONTACT</a></li>
             </ul>
         </div>
     </div>
@@ -201,7 +201,7 @@
         </div>
         <div class="jion"></div>
 
-        <div class="even">
+        <div>
             <div class="last clear">
                 <h4>Be Part
                     <br>Of Our
@@ -219,7 +219,7 @@
         <p class="section-brief">Lorem ipsum dolor sit amet consectetur.</p>
         <ul class="team-col clear">
             <li>
-                <img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/team/5.jpg" alt="" class="img-circle">
+                <img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/team/5.jpg" alt="" class="img-circle img-border">
                 <h3><strong>Kay Garland</strong></h3>
                 <h3>Lead Designern</h3>
                 <ul class="team-col-bottom">
@@ -229,7 +229,7 @@
                 </ul>
             </li>
             <li>
-                <img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/team/6.jpg" alt="" class="img-circle">
+                <img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/team/6.jpg" alt="" class="img-circle img-border">
                 <h3><strong>Diana Pertersen</strong></h3>
                 <h3>Lead Designern</h3>
                 <ul class="team-col-bottom">
@@ -249,15 +249,15 @@
                 </ul>
             </li>
         </ul>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+        <p class="section-brief">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
     </div>
 </div>
 <div id="logos">
-    <ul>
-        <li><img src="" alt=""></li>
-        <li><img src="" alt=""></li>
-        <li><img src="" alt=""></li>
-        <li><img src="" alt=""></li>
+    <ul class="clear">
+        <li><img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/logos/envato.jpg" alt=""></li>
+        <li><img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/logos/designmodo.jpg" alt=""></li>
+        <li><img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/logos/themeforest.jpg" alt=""></li>
+        <li><img src="http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/logos/creative-market.jpg" alt=""></li>
     </ul>
 </div>
 <div id="contact-us">
@@ -266,27 +266,43 @@
         <p class="section-brief">Lorem ipsum dolor sit amet consectetur.</p>
         <form action="">
             <div class="half">
-                <input type="text" placehold="Your Name *">
-                <input type="text" placehold="Your Name *">
-                <input type="text"  placehold="Your Name *">
+                <input type="text" placeholder="Your Name *">
+                <input type="text" placeholder="Your mail *">
+                <input type="text"  placeholder="Your phone *">
             </div>
             <div class="half">
-                <textarea class="form-control" placeholder="Your Message *" id="message"></textarea>
+                <textarea class="form-control" placeholder="Your Message *" id="message" rows="3"></textarea>
             </div>
+            <div class="clear"></div>
+            <a href="" class="big-btn">Send Message</a>
         </form>
-        <a href="" class="big-btn">Send Message</a>
+
     </div>
 </div>
 <div id="footer">
     <ul>
-        <li>Copyright © Your Website 2014</li>
-        <li>
+        <li class="font-bold">Copyright © Your Website 2014</li>
+        <li class="font-bold">
             <i class="fa fa-facebook" aria-hidden="true"></i>
             <i class="fa fa-twitter" aria-hidden="true"></i>
             <i class="fa fa-dribbble" aria-hidden="true"></i>
         </li>
-        <li><a href="">Privacy Policy</a>&nbsp;<a href="">Terms of Use</a></li>
+        <li><a href="" class="under-line">Privacy Policy</a>&nbsp;<a href="" class="under-line">Terms of Use</a></li>
     </ul>
 </div>
 </body>
+<script >
+    window.onscroll = function () {
+        var t =document.documentElement.scrollTop||document.body.scrollTop;
+        var nav =document.getElementById("nav");
+        console.log(t)
+        if(t>=80) {     //当拖动到距离顶部100px处时，左边导航固定，不随滚动条滚动
+            nav.className="nav-fixed-top";
+        }else{
+            var reg = new RegExp('(\\s|^)' +"nav-fixed-top"+ '(\\s|$)');
+            nav.className = head.className.replace(reg,' ');
+        }
+    }
+
+</script>
 </html>

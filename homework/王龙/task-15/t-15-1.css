@@ -42,6 +42,9 @@ ul{list-style: none;}
 .nav-bar{
     float: right;
 }
+.nav-bar>a:visited{
+
+}
 .nav-bar>li{
     float: left;
     padding: 0 15px;
@@ -102,7 +105,7 @@ ul{list-style: none;}
     font-weight: 400;
     margin-bottom: 75px;
 }
-#services,#porttfolo,#about,#team{
+#services,#porttfolo,#about,#team,#contact-us{
     padding-bottom: 200px;
     padding-top: 200px;
     text-align: center;
@@ -148,7 +151,7 @@ ul{list-style: none;}
     left: 0;
 }
 
-#porttfolo{
+#porttfolo,#team{
     background-color: #f7f7f7;
 }
 #porttfolo .item{
@@ -245,10 +248,10 @@ ul{list-style: none;}
     background-color: #fed136;
     width: 200px;
     border: 7px solid #f1f1f1;
-    position: absolute;
-    left: 0;
+    /*position: absolute;*/
+    /*left: 0;*/
     text-align: center;
-    transform: translate(-50%,0);
+    /*transform: translate(-50%,0);*/
 }
 
 .jion{
@@ -266,4 +269,66 @@ ul{list-style: none;}
 }
 .team-col-bottom>li{
     display: inline-block;
+}
+.img-border{
+    border: 6px solid white;
+}
+#logos li {
+    float: left;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 25%;
+    text-align: center;
+}
+#contact-us{
+    background: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/map-image.png) center no-repeat;
+    background-size: cover;
+    background-color: #222;
+    color: white;
+}
+.half{
+    float: left;
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.half input,.half textarea{
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    padding: 20px;
+    margin: 20px;
+    box-sizing: border-box;
+    border: 0;
+    outline: none;
+}
+.half textarea{
+    height: 200px;
+}
+#footer{
+    padding: 35px 0;
+}
+#footer li{
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
+.under-line{
+    color: #fed136;
+}
+.under-line:hover{
+    text-decoration: underline;
+}
+.font-bold{
+    font-weight: bold;
+}
+
+.nav-fixed-top{
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    background-color: black !important;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.19);
 }
