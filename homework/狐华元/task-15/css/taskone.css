@@ -1,0 +1,311 @@
+/*base style*/
+html,body,div,ul,li,p,h1,h2,h3,h4,p,span {
+  margin: 0;
+  padding: 0;
+}
+
+html,body {
+  width: 100%;
+  height: 100%;
+  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif,"微软雅黑";
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 4.6rem;
+}
+
+h3 {
+  font-size: 2.2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
+h5 {
+  font-size: 1.4rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #333;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.pull-left {
+  float: left;
+}
+
+.layout {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.p-r-md{
+  padding-right: 5px;
+}
+
+.clearfix:after{
+  content:"";
+  display: block;
+  clear: both;
+}
+
+/*header style*/
+header{
+  line-height: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 1;
+  border: 1px solid #eee;
+}
+
+header a {
+  display: inline-block;
+  padding: 0 16px;
+}
+
+header .logo {
+  float: left;
+  font-size: 1.3rem;
+}
+
+header .nav>li{
+  float: left;
+}
+
+.dropdown>a:after{
+  content:"";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top-color: #666;
+  position: relative;
+  left: 3px;
+  top: 3px;
+}
+
+.dropdown>a:hover::after{
+  border-top-color: #333;
+}
+
+.dropdown{
+  position: relative;
+}
+
+.dropdown>ul {
+  border: 1px solid #ccc;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  min-width: 140px;
+  line-height:28px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  display: none;
+}
+
+.dropdown>ul a{
+  padding: 0 12px;
+  display: block;
+}
+
+.dropdown>ul a:hover{
+  background-color: #eee;
+}
+
+.dropdown>ul .dropdown-nav-select{
+  line-height: 40px;
+  color: #ccc;
+}
+
+.dropdown-nav-select:before{
+  content:"";
+  display: block;
+  border-top: 1px solid #eee;
+}
+
+.dropdown-nav-select span{
+  padding-left: 12px;
+}
+
+li.dropdown:hover>ul {
+  display: block;
+}
+
+/*introduce style*/
+.introduce {
+  background-color: #b84d45;
+  padding: 100px 0 50px 0;
+}
+
+.introduce h1{
+  font-weight: normal;
+}
+
+.introduce span{
+  font-size: 1.6rem;
+}
+
+/*content style*/
+#content{
+  padding: 30px 0;
+}
+.breadcrumb {
+  background-color: #eee;
+  border-radius: 5px;
+  line-height: 32px;
+  padding-left: 12px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb ul li {
+  display: inline-block;
+}
+.breadcrumb ul li.current:before {
+  content: "/";
+  padding: 0 8px;
+}
+
+.home-link a {
+  color: #b84d45;
+}
+
+.home-link a:hover {
+  color: #803630;
+  text-decoration: underline;
+}
+
+/*works style*/
+.works ul li {
+  float: left;
+  width: 332px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.works ul li:nth-child(3n+1) {
+  padding-left:0;
+}
+
+.works ul li:nth-child(3n) {
+  padding-right:0;
+}
+
+.work-information {
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.work-img {
+  position: relative;
+}
+
+.work-img img {
+  width: 100%;
+  border: 1px solid #eee;
+  box-sizing: border-box;
+}
+
+.work-img:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: none;
+}
+
+.work-img:hover:before {
+  display: block;
+}
+
+
+.work-description {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.work-description a{
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.work-description a:hover{
+  background-color: #eee;
+}
+
+.work-description p{
+  padding: 12px 0;
+  font-size: 1.2rem;
+}
+
+/*about style*/
+.about{
+  background-color: #b84d45;
+  padding: 50px 0;
+  color: #fff;
+}
+
+.about h4 {
+  font-size: 2rem;
+  font-weight: normal;
+}
+
+.about span {
+  font-size: 1.4rem;
+}
+
+/*footer style*/
+footer{
+  padding: 50px 0;
+}
+
+footer p {
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+footer p a{
+  color: #b84d45;
+}
+
+footer p a:hover{
+  color: #803630;
+  text-decoration: underline;
+}

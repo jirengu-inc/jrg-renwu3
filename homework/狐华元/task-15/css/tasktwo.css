@@ -1,0 +1,329 @@
+/*base style*/
+html,body,div,ul,li,p,h1,h2,h3,h4,p,span {
+  margin: 0;
+  padding: 0;
+}
+
+html,body {
+  width: 100%;
+  height: 100%;
+  font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif,"微软雅黑";
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 4.6rem;
+}
+
+h3 {
+  font-size: 2.2rem;
+}
+
+h4 {
+  font-size: 1.8rem;
+}
+
+h5 {
+  font-size: 1.4rem;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #666;
+}
+
+.block {
+  display: block;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.pull-left {
+  float: left;
+}
+
+.layout {
+  width: 960px;
+  margin: 0 auto;
+}
+
+/*button style*/
+.btn {
+  padding: 12px 20px;
+  font-size: 1.2rem;
+}
+
+.btn-dark {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btn-dark:hover {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.btn-light {
+  color: #666;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.btn-light:hover {
+  color: #666;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+/*text*/
+.text-center {
+  text-align: center;
+}
+
+.text-white {
+  color: #fff;
+}
+
+.text-dark {
+  color: #333;
+}
+
+/*header style*/
+header {
+  width: 100%;
+  height: 100%;
+  background: url("../img/bg.jpg") no-repeat center center;
+  background-size: cover;
+  display: table;
+}
+
+header .wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+header h4 {
+  font-weight: normal;
+  padding-bottom: 20px;
+}
+
+/*about style*/
+#about {
+  padding: 50px 0;
+}
+
+#about h3 {
+  font-weight: 400;
+}
+
+#about p {
+  font-size: 1.6rem;
+  font-weight: 100;
+  line-height: 2em;
+}
+
+#about p a {
+  color: #337ab7;
+}
+
+#about p a:hover {
+  color: #23527c;
+  text-decoration: underline;;
+}
+
+/*services style*/
+.line {
+  display: inline-block;
+  width: 100px;
+  height: 1px;
+  background-color: #fff;
+}
+
+#services {
+  padding: 60px 0;
+  background-color: #337ab7;
+}
+
+#services h3 {
+  font-weight: 400;
+}
+
+.services-all:after {
+  content: '';
+  display: block;;
+  clear: both;
+}
+
+.services-all li {
+  width: 240px;
+  padding: 30px 15px 0;
+  box-sizing: border-box;
+  float: left;
+}
+
+.services-all li .services-icon {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  background-color: #fff;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.services-icon .fa {
+  font-size: 3.6rem;
+  color: #337ab7;
+  line-height: 80px;
+}
+
+.services-all li h5 {
+  margin: 12px 0;
+}
+
+.services-all .more {
+  padding: 6px 10px;
+  margin-top: 12px;
+}
+
+/*callout style*/
+#callout {
+  width: 100%;
+  height: 400px;
+  background: url("../img/callout.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+#callout h1 {
+  padding-top: 160px;
+}
+
+/*portfolio style*/
+#portfolio {
+  padding: 60px 40px;
+}
+
+#portfolio h3 {
+  font-weight: 400;
+}
+
+#portfolio .line {
+  background-color: #ddd;
+}
+
+#portfolio .btn {
+  font-size: 1rem;
+  padding: 8px 12px;
+}
+
+.portfolio-imgs:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.portfolio-imgs li {
+  width: 480px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.portfolio-imgs li a {
+  display: inline-block;
+  background-color: transparent;
+  position: relative;
+}
+
+.portfolio-imgs li a:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.3);
+  display: none;
+}
+
+.portfolio-imgs li a:hover::before{
+  display: block;
+}
+
+.portfolio-imgs li img {
+  width: 100%;
+  border: 0;
+  display: block;
+}
+
+/*btn-action style*/
+#btn-action {
+  background-color: #337ab7;
+  padding: 60px;
+}
+
+#btn-action h4 {
+  font-weight: 500;
+}
+
+#btn-action .btn-group {
+  padding-top: 15px;
+}
+
+.btn-group .btn {
+  margin: 0 10px;
+}
+
+/*footer style*/
+footer {
+  padding: 80px;
+}
+
+footer h5{
+  margin: 0 0 8px 0;
+}
+
+footer ul {
+  padding: 10px 0;
+}
+
+.contact li .fa {
+  padding-right: 6px;
+}
+
+footer a{
+  color: #337ab7;
+}
+
+footer a:hover{
+  color: #23527c;
+}
+
+.contact li a:hover {
+  text-decoration: underline;;
+}
+
+.social li {
+  display: inline-block;
+}
+
+.social .fa {
+  font-size: 3rem;
+  padding: 0 10px;
+}
+
+footer .line {
+  background-color: #ddd;
+  margin: 10px 0;
+}
+
+footer .copyright {
+  color: #999;
+}
