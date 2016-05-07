@@ -1,0 +1,113 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>task 28-2</title>
+  <style>
+    #ct{
+      width: 900px;
+      margin: 0 auto;
+    }
+    #header{
+      height: 40px;
+      background-color: red;
+    }
+    .nav{
+      height: 40px;
+      margin-top: 20px;
+      border: 1px solid black;
+      background-color: yellow;
+    }
+    .aside{
+      float: left;
+      width: 200px;
+      height: 400px;
+      background-color: pink;
+    }
+    .main{
+      float: left;
+      width: 680px;
+      height: 400px;
+      margin-left: 20px;
+      background-color: blue;
+    }
+    .content{
+      background-color: white;
+    }
+    .content::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    #footer{
+      height: 20px;
+      background-color: gray;
+    }
+  </style>
+</head>
+<body>
+  <div id="ct">
+    <div id="header">header</div>
+    <div class="nav th1">nav111</div>
+    <div class="content">
+      <div class="aside">aside</div>
+      <div class="main">main</div>
+    </div>
+    <div class="nav th2">nav222</div>
+    <div class="content">
+      <div class="aside">aside</div>
+      <div class="main">main</div>
+    </div>
+    <div class="nav th3">nav333</div>
+    <div class="content">
+      <div class="aside">aside</div>
+      <div class="main">main</div>
+    </div>
+    <div class="nav th4">nav444</div>
+    <div class="content">
+      <div class="aside">aside</div>
+      <div class="main">main</div>
+    </div>
+  </div>
+  <div id="footer">footer</div>
+  <script src="jquery1.9.1.min.js"></script>
+  <script>
+
+    $.fn.stick=function(){
+      var $nav=this,
+      $curW=$nav.width(),        
+      $curH=$nav.height(),
+      $top=$nav.offset().top,
+      $left=$nav.offset().left,
+      $cloneNav=$nav.clone().insertBefore($nav).hide();
+
+      $(window).on('scroll',function(){
+        var $scrolltop=$(window).scrollTop();
+        if($scrolltop>$top){
+          fixed();
+        }
+        if($scrolltop<$top){
+          unfixed();
+        }
+      });
+
+      function fixed(){
+        $cloneNav.css({
+          position: 'fixed',
+          left: $left,
+          top: 0,
+          width: $curW,
+          margin: 0
+        }).show();
+        $nav.css('visibility','hide');
+      }
+      function unfixed(){
+        $cloneNav.hide();
+        $nav.css('visibility','visible');
+      }
+    }
+    $('.th1').stick();
+    $('.th2').stick();
+    $('.th3').stick();
+  </script>
+</body>
+</html>
