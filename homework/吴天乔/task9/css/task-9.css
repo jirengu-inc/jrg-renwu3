@@ -1,0 +1,111 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors WTQ (you@example.org)
+ * @date    2016-05-07 15:44:00
+ * @version $Id$
+ */
+/*task-9-1*/
+a{
+	font-size: 14px;
+	line-height: 20px;
+	text-decoration: none;
+}
+.icon{
+	display: inline-block;
+	padding-left: 20px;
+	background: url(../img/sprite.png) no-repeat;
+	background-size: 20px;
+}
+.forward{
+	background-position: 0 0px;
+}
+.forward:hover{
+	background-position: -1px -77px;
+}
+.start{
+	background-position: 2px -25px;
+}
+.start:hover{
+	background-position: -1px -106px;
+}
+.stop{
+	background-position: -1px -52px;
+}
+.stop:hover{
+	background-position: 1px -131px;
+}
+/*task-9-1*/
+/*task-9-2*/
+@font-face{
+	font-family: "iconfont";
+	src: url("../font/iconfont.eot");/*IE9*/
+	src: url("../font/iconfont.eot?#iefix")format('embedded-opentype'), 
+			 url('../font/iconfont.woff') format('woff'),
+  		 url('../font/iconfont.ttf') format('truetype'), 
+ 			 url('../font/iconfont.svg#iconfont') format('svg');
+	}
+.iconfont{
+  font-family:"iconfont" !important;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: normal;
+}
+a:hover>.iconfont{
+	color: #a75fc0;
+}
+/*task-9-2*/
+/*task-9-3*/
+div{
+	margin-bottom: 20px;
+}
+.border1{
+	width: 0;
+	border-top: 50px solid #0600FF;
+	border-right: 50px solid #FFFF00;
+	border-bottom: 50px solid #008B00;
+	border-left: 50px solid #FF0400;
+}
+.border2{
+	width: 0;
+	border-top: 50px solid #0600FF;
+	border-right: 50px solid #fff;
+	border-bottom: 50px solid #fff;
+	border-left: 50px solid #fff;
+}
+.border3{
+	width: 0;
+	border-top: 50px solid #fff;
+	border-right: 50px solid #fff;
+	border-bottom: 50px solid #fff;
+	border-left: 50px solid #FF0400;
+}
+.border4{
+	width: 0;
+	border-top: 50px solid #fff;
+	border-right: 50px solid #FFFF00;
+	border-bottom: 50px solid #fff;
+	border-left: 50px solid #fff;
+}
+.border5{
+	width: 0;
+	border-top: 50px solid #fff;
+	border-right: 50px solid #fff;
+	border-bottom: 50px solid #008B00;
+	border-left: 50px solid #fff;
+}
+.border6{
+	width: 0;
+	border-top: 50px solid #fff;
+	border-right: 50px solid #fff;
+	border-bottom: 50px solid #FF0400;
+	border-left: 50px solid #FF0400;
+}
+.border7{
+	width: 0;
+	border-top: 50px solid #fff;
+	border-right: 50px solid #008B00;
+	border-bottom: 50px solid #008B00;
+	border-left: 50px solid #fff;
+}
+/*task-9-3*/
