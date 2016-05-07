@@ -72,14 +72,10 @@ li{
 }
 /*summary*/
 #summary{
-	width: 100%;
-	display: table;
 	text-align: center;
 }
 .ct2{
 	padding: 60px 0;
-	display: table-cell;
-	vertical-align: middle;
 }
 .ct2 h2{
 	font-weight: 500;
@@ -95,6 +91,7 @@ li{
 	color: #6ca3dd;
 }
 .ct2 p a:hover{
+	color: #465479;
 	border-bottom: 2px solid rgb(35,82,124);
 }
 /*wrap1*/
@@ -176,7 +173,7 @@ li{
 #wrap2 h1{
 	color: #fff;
 	font-size: 3.7em;
-	line-height: 400px;
+	padding: 170px 0;
 }
 /*wrap3*/
 .ct4{
