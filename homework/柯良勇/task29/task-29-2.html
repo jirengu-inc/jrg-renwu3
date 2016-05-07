@@ -46,25 +46,31 @@
   </div>
   <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>
-    $.fn.lazy=function(){
-      var clock;
-      if(clock)clearInterval(clock);
+    $.fn.lazy=function(){               // 定义插件 lazy
+      var clock;                               
+      if(clock)clearTimeout(clock);
       var $node=this;
-      var clock=setTimeout(function(){
-        var nodeTop=$node.offset().top,
-            scroll=$(window).scrollTop(),
-            winH=$(window).height();
-        $node.data('loaded',false);
-        if(!$node.data('loaded')&&scroll+winH>nodeTop){
-          console.log(1);
-          $node.attr('src',$node.attr('data-src'));
-          $node.data('loaded',true);
+      clock=setTimeout(function(){
+        if($node.attr('loaded')){
+          return;
         }
-      },2000)
+        var nodeTop=$node.offset().top,
+        scroll=$(window).scrollTop(),
+        winH=$(window).height();
+        if((scroll+winH)>nodeTop){
+          $node.attr('src',$node.attr('data-src'));
+          $node.attr('loaded',true);
+        }
+      },300)
     };
-    $(window).on('scroll',function(){
-      $('.list li img').lazy();
-    });
+
+    function checkShow(){                 // 把对img做懒加载的动作 稍微包一下
+      $('img').each(function(){
+        $(this).lazy();
+      })
+    }
+    checkShow();                          //  先加载一次
+    $(window).on('scroll',checkShow);     //  滚动条滚动再加载
   </script>
 </body>
 </html>
