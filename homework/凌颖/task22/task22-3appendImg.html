@@ -20,11 +20,10 @@
 <script>
    var ct = document.querySelector(".ct");
    var img = document.querySelector(".img-preview");
-   ct.addEventListener("click",function(e){
+   ct.addEventListener("mouseover",function(e){
        e.target = ct.target;
        var data =e.target.getAttribute("data-img");
        img.innerHTML = "<img src='"+data+"'/>";
-
    },false);
 
 

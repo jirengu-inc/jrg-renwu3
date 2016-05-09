@@ -18,6 +18,7 @@
          start = document.getElementById("btn-add-start"),
          end = document.getElementById("btn-add-end");
     var wrap = document.querySelector(".ct");
+
      function noSpace(str){
          var patt = /^\s+$/g;
           return patt.test(str);
@@ -28,7 +29,7 @@
     },false);
     start.addEventListener("click",function(e){
         var li = document.createElement("li");
-        if(!noSpace(content.value)){
+        if((!noSpace(content.value)) && content.value !== ""){
             li.innerText =  content.value;
             wrap.insertBefore(li,wrap.firstChild);
         }else{
@@ -37,7 +38,7 @@
     },false);
     end.addEventListener("click",function(e){
         var li = document.createElement("li");
-        if(!noSpace(content.value)){
+        if(!noSpace(content.value)  && content.value !== ""){
             li.innerText = content.value;
             wrap.appendChild(li);
         }else{
