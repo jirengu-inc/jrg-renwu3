@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+        .ct li{
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+<ul class="ct">
+    <li data-img="1.jpg">鼠标放置查看图片1</li>
+    <li data-img="2.jpg">鼠标放置查看图片2</li>
+    <li data-img="3.jpg">鼠标放置查看图片3</li>
+</ul>
+<div class="img-preview">
+</div>
+<script>
+   var ct = document.querySelector(".ct");
+   var img = document.querySelector(".img-preview");
+   ct.addEventListener("click",function(e){
+       e.target = ct.target;
+       var data =e.target.getAttribute("data-img");
+       img.innerHTML = "<img src='"+data+"'/>";
+
+   },false);
+
+
+
+
+
+</script>
+</body>
+</html>

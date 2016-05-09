@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+      .wrap{
+          width:800px;
+          border:1px solid #ccc;
+          border-radius:5px;
+          margin:0 auto;
+      }
+        .nav{
+            border-bottom:1px solid #ccc;
+            list-style:none;
+            margin:0;
+            padding:0;
+            overflow: hidden;
+        }
+        .nav li{
+            float:left;
+            width:33.2%;
+            padding:15px 0;
+            text-align:center;
+            border-right:1px solid #ccc;
+        }
+      .nav li:hover,.nav li.active{
+          background-color:#ccc;
+      }
+      .nav li:last-child{
+          border:none;
+      }
+       .card{
+           display: none;
+           min-height:300px;
+           padding:30px 10px;
+       }
+      .card.active{
+          display:block;
+      }
+    </style>
+</head>
+<body>
+<div class="wrap d">
+    <ul class="nav">
+        <li  class="">tab1</li>
+        <li class="">tab2</li>
+        <li  class="active">tab3</li>
+    </ul>
+    <div class="card ">tab1 的内容dskafjesd登记三分</div>
+    <div class="card">tab2 的内容的我方认为过分投入高特</div>
+    <div class="card active">tab3 的内容发热个人体会体会</div>
+</div>
+<script>
+    var Utils = {
+        hasClass : function(ele,cla){
+            return new RegExp("\\b"+cla+"\\b","g").test(ele.className);
+        },
+        sigleAddClass : function(ele,cla){
+            if(!Utils.hasClass(ele,cla))  return ele.className += " "+ cla;
+        },
+        sigleRemoveClass : function(ele,cla){
+           ele.className = ele.className.replace(new RegExp("\\b"+cla+"\\b","g"),"");
+        },
+        indexOf : function(ele){
+            var pars = ele.parentElement,
+                 sibs = pars.children;
+            for(var i = 0;i<sibs.length;i++){
+                if(ele === sibs[i]){
+                    return i;
+                }
+            }
+            return -1;
+        },
+        removeClass : function(ele,cla){
+            if(ele.length && ele.length >0){
+                for(var i = 0;i<ele.length;i++){
+                    Utils.sigleRemoveClass(ele[i],cla);
+                }
+            }else{
+                Utils.sigleRemoveClass(ele,cla);
+            }
+        },
+        addClass : function(ele,cla){
+            if(ele.length && ele.length>0){
+                for(var i = 0;i<ele.length;i++){
+                    Utils.sigleAddClass(ele[i],cla);
+                }
+            }else{
+                Utils.sigleAddClass(ele,cla);
+            }
+        }
+    };
+    var navWrap = document.querySelector(".nav");
+    navWrap.addEventListener("click",function(e){
+         var navLi = navWrap.children,
+              target = e.target,
+              index = Utils.indexOf(target),
+              cards =document.querySelectorAll(".card");
+     if (index>-1){
+         Utils.removeClass(navLi,"active");
+         Utils.addClass(target,"active");
+         Utils.removeClass(cards,"active");
+         Utils.addClass(cards[index],"active");
+     }
+    })
+</script>
+</body>
+</html>
