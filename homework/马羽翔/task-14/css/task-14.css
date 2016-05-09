@@ -151,17 +151,24 @@ h1,h2,h3 {
 	text-align: center;
 }
 .portfolio {
-	width:100%;
+	width:auto;
 	min-height:330px;
 	padding-bottom: 50px;
 }
-.portfolio:after {
-	content:"";
+.work-showlist {
+	*zoom:1;
+	margin-bottom: 20px;
+}
+.work-showlist:after {
+	content: "";
 	display: block;
-	clear:both;
+	clear: both;
+}
+.work-img {
+	float: left;
+	margin-bottom: 10px;
 }
 .portfolio-img {
-	float:left;
 	margin:0 10px 20px 10px;
 	max-width: 450px;
 }
