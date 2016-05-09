@@ -157,27 +157,21 @@
         bind : function () {
             var cur = this;
             this.next.on("click",function (e) {
-                e.preventDefault();
-                cur.stop();
-                cur.playNext();
-                cur.autoPlay();
+                e.preventDefault();     
+                cur.playNext();             
             });
             this.prev.on("click",function (e) {
-                e.preventDefault();
-                cur.stop();
-                cur.playPrev();
-                cur.autoPlay();
+                e.preventDefault();               
+                cur.playPrev();               
             });
-            this.bullet.find("li").on("mouseenter",function () {
-                cur.stop();
+            this.bullet.find("li").on("mouseenter",function () {               
                 var index = $(this).index();  //找出点击bullet的li元素的编号
                 if (index>cur.cur){
                     cur.playNext(index-cur.cur);
                 }
                 else if(index<cur.cur){
                     cur.playPrev(cur.cur-index);
-                }
-                cur.autoPlay();
+                }               
             });
         },
         playNext: function (idx) {
