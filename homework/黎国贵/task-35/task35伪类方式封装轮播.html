@@ -21,15 +21,23 @@
         a{
             text-decoration: none;
         }
-        .carousel{
+        .layout1{
             position: absolute;
             overflow: hidden;
             width: 800px;
             height: 450px;
-            left: 50%;
-            top: 50%;
-            margin-top: -225px;
-            margin-left: -400px;
+            left: 20%;
+            top: 0;
+            border:1px solid #000000;
+            background-color: #eeeeee;
+        }
+        .layout2{
+            position: absolute;
+            overflow: hidden;
+            width: 800px;
+            height: 450px;
+            left: 20%;
+            top: 470px;
             border:1px solid #000000;
             background-color: #eeeeee;
         }
@@ -92,18 +100,28 @@
     </style>
 </head>
 <body>
-<div class="carousel">
+<div class="carousel layout1">
     <ul class="ct clear">
         <li data-id="0"><a href="#"><img src="http://img3.imgtn.bdimg.com/it/u=147654999,1594512744&fm=206&gp=0.jpg" alt=""></a></li>
         <li data-id="1"><a href="#"><img src="http://img2.imgtn.bdimg.com/it/u=1982575782,2849787114&fm=206&gp=0.jpg" alt=""></a></li>
         <li data-id="2"><a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=2038227690,1193789315&fm=206&gp=0.jpg" alt=""></a></li>
         <li data-id="3"><a href="#"><img src="http://img0.imgtn.bdimg.com/it/u=2542542714,2595053638&fm=206&gp=0.jpg" alt=""></a></li>
     </ul>
+    <a class="prev arrow" href="#"><</a>
+    <a class="next arrow" href="#">></a>
+    <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="carousel layout2">
     <ul class="ct clear">
-        <li data-id="0"><a href="#"><img src="http://img0.imgtn.bdimg.com/it/u=1953635593,462135137&fm=21&gp=0.jpg" alt=""></a></li>
-        <li data-id="1"><a href="#"><img src="http://img3.imgtn.bdimg.com/it/u=1163459066,2695808335&fm=21&gp=0.jpg" alt=""></a></li>
-        <li data-id="2"><a href="#"><img src="http://img0.imgtn.bdimg.com/it/u=1710800138,1363740178&fm=21&gp=0.jpg" alt=""></a></li>
-        <li data-id="3"><a href="#"><img src="http://img2.imgtn.bdimg.com/it/u=872978861,820840485&fm=21&gp=0.jpg" alt=""></a></li>
+        <li data-id="0"><a href="#"><img src="http://img3.imgtn.bdimg.com/it/u=147654999,1594512744&fm=206&gp=0.jpg" alt=""></a></li>
+        <li data-id="1"><a href="#"><img src="http://img2.imgtn.bdimg.com/it/u=1982575782,2849787114&fm=206&gp=0.jpg" alt=""></a></li>
+        <li data-id="2"><a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=2038227690,1193789315&fm=206&gp=0.jpg" alt=""></a></li>
+        <li data-id="3"><a href="#"><img src="http://img0.imgtn.bdimg.com/it/u=2542542714,2595053638&fm=206&gp=0.jpg" alt=""></a></li>
     </ul>
     <a class="prev arrow" href="#"><</a>
     <a class="next arrow" href="#">></a>
@@ -119,9 +137,9 @@
     function Carousel($node){
         this.ct = $node ;
         var $children = this.ct.children("li");
-        this.prev = $(".prev");
-        this.next = $(".next");
-        this.bullet = $(".bullet");
+        this.prev = this.ct.siblings(".prev");
+        this.next = this.ct.siblings(".next");
+        this.bullet = this.ct.siblings(".bullet");
         this.length = $children.size();//克隆前图片的数量
         this.imgWidth = this.ct.children("li").width();
         this.cur = 0;
@@ -131,8 +149,6 @@
         var imgRealCount = this.ct.children().size();//克隆后图片的数量
         this.ct.css({left:0-this.imgWidth,width:imgRealCount*this.imgWidth});
     }
-
-
     Carousel.prototype = {
         init:function () {
             this.bind();
@@ -161,6 +177,7 @@
                 else if(index<cur.cur){
                     cur.playPrev(cur.cur-index);
                 }
+                cur.autoPlay();
             });
         },
         playNext: function (idx) {
@@ -203,7 +220,6 @@
         autoPlay:function  (){//自动播放
             var cur = this;
             start = setInterval(function () { //编号start为全局变量，不然的话stop函数找不到这个编号了
-                console.log(this);
                 cur.playNext();
             },2000)
         },
@@ -212,13 +228,13 @@
         }
     };
 
-    //选择播放第一个ct的图片列表
-//    var $node1 = $('.ct').eq(0);
-//    var carousel1 = new Carousel($node1);
-//    carousel1.init();
+
+    var $node1 = $('.ct').eq(0);
+    var carousel1 = new Carousel($node1);
+    carousel1.init();
 
 
-    //选择播放第二个ct的图片列表
+
     var $node2 = $('.ct').eq(1);
     var carousel2 = new Carousel($node2);
     carousel2.init();
