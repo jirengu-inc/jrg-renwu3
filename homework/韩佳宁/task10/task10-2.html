@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task10-2</title>
+    <style media="screen">
+      .block{
+        width: 400px;
+        height: 300px;
+        margin: 40px;
+      }
+      .page1,.page2,.page3{
+        width: 360px;
+        height:260px;
+        border:1px solid #ccc;
+      }
+      .tri1{
+        width: 0px;
+        height: 0px;
+        position: relative;
+        left: 20px;
+        border-top: 20px solid white;
+        border-right: 20px solid white;
+        border-bottom: 20px solid #ccc;
+        border-left: 20px solid white;
+      }
+      .tri2{
+        width: 0px;
+        height: 0px;
+        position: relative;
+        left: 320px;
+        border-top: 20px solid red;
+        border-right: 20px solid red;
+        border-bottom: 20px solid white;
+        border-left: 20px solid white;
+      }
+      .tri3{
+        width: 39px;
+        height: 39px;
+        background: white;
+        position: relative;
+        left: 40px;
+        top:20px;
+        z-index: 2;
+        border-top: 1px solid #ccc;
+        border-right: 1px solid white;
+        border-bottom: 1px solid white;
+        border-left: 1px solid #ccc;
+transform:rotate(45deg);
+      }
+    </style>
+  </head>
+  <body>
+<div class="block">
+  <div class="tri1"></div>
+  <div class="page1">
+
+  </div>
+</div>
+<div class="block">
+  <div class="page2">
+      <div class="tri2"></div>
+  </div>
+</div>
+<div class="block">
+  <div class="tri3"></div>
+  <div class="page3">
+
+  </div>
+</div>
+
+  </body>
+</html>
