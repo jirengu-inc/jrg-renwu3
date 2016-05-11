@@ -1,0 +1,132 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors WTQ (you@example.org)
+ * @date    2016-05-11 13:57:18
+ * @version $Id$
+ */
+/*reset*/
+body, div, ul, li, h1, p, a{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: "微软雅黑","sans-serif";
+	font-size: 14px;
+	color: #000;
+	line-height: 20px;
+}
+h1{
+	font-size: 2em;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.clearfix:after { 
+    content:" "; 
+    display:block; 
+    height:0; 
+    clear:both; 
+} 
+.clearfix {*zoom:1;}/*IE/7/6*/
+/*reset*/
+/*task-10-1*/
+.wrap{
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#header{
+	margin-bottom: 10px;
+	padding: 5px 0;
+	background-color: #333;
+}
+.logo{
+	display: block;
+	float: left;
+	width: 200px;
+	height: 40px;
+	background: url(../img/jirengu.png) 0 0 no-repeat;
+	background-size: contain;
+}
+#header .nav{
+	float: right;
+}
+.nav>li{
+	display: inline-block;
+}
+.nav>li>a{
+	display: inline-block;
+	padding: 10px;
+	color: #fff;
+}
+#content{
+	margin-bottom: 10px;
+}
+.aside, 
+.main{
+	float: left;
+	background-color: #eee;
+}
+.aside{
+	width: 190px;
+	height: 500px;
+	margin-right: 10px;
+}
+.main{
+	width: 680px;
+	padding: 20px 10px;
+}
+.main h1{
+	line-height: 60px;
+}
+#footer{
+	background-color: #333;
+}
+#footer .nav{
+	float: left;
+}
+/*task-10-1*/
+/*task-10-2*/
+.box{
+	position: relative;
+	width: 200px;
+	height: 100px;
+	margin: 40px;
+	text-align: center;
+	border: 1px solid #bbb;
+}
+.triangle-top{
+	position: absolute;
+	top: -30px;
+	left: 10px;
+	width: 0;
+	border-top: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 15px solid #888;
+	border-left: 15px solid transparent;
+}
+.triangle-topright{
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 0;
+	border-top: 10px solid #ff0000;
+	border-right: 10px solid #ff0000;
+	border-bottom: 10px solid transparent;
+	border-left: 10px solid transparent;
+}
+.triangle-top-b{
+	position: absolute;
+	top: -29px;
+	left: 10px;
+	width: 0;
+	border-top: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 15px solid #fff;
+	border-left: 15px solid transparent;
+}
+/*task-10-2*/
