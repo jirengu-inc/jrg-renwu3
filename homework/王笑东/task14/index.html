@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>居中布局</title>
+  <style>
+    html,body,h1,h2,p,ul{
+      margin: 0px;
+      padding: 0px;
+    }
+    html,body{
+      height:100%;
+      font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+  @font-face {font-family: 'iconfont';
+    src: url('iconfont.eot'); /* IE9*/
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+  }
+.icon1{
+  font-size: 60px !important;
+}
+.icon2 a{
+  text-decoration: none;
+}
+.icon3{
+  font-size: 40px !important;
+}
+.icon-3:before { content: "\e6c4"; }
+.icon-4:before { content: "\e6c5"; }
+.icon-10:before { content: "\e6cb"; }
+.icon-8:before { content: "\e6c9"; }
+.icon-7:before { content: "\e6c8"; }
+.icon-09:before { content: "\e67e"; }
+.icon-101:before { content: "\e67f"; }
+.icon-11:before { content: "\e680"; }
+.icon-12:before { content: "\e681"; }
+
+    li{
+      list-style: none;
+    }
+    #header{
+      display: table;
+      background: url(image/bg.jpg) no-repeat center center scroll;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      background-size:cover;
+    }
+    #header .headcontent{
+      width: 960px;
+      margin: 0 auto;
+      display: table-cell;
+      vertical-align:middle;
+    }
+    #header .headcontent h1{
+      font-size: 4.5em;
+      font-weight: 700;
+    }
+    .btn{
+      text-decoration: none;
+      display: inline-block;
+      margin: 20px 0;
+      padding: 10px;
+    }
+    .botton1{
+      background-color: #6d7e83;
+      color:#fff;
+    }
+    .botton1:hover{
+      background-color: #363e42; 
+    }
+    .botton2{
+      background-color: #fff;
+      color:#000;
+    }
+    .botton2:hover{
+      background-color: #d6e4f0;
+    }
+    .botton3{
+      background-color: #999;
+      color:#fff;
+    }
+    .botton3:hover{
+      background-color: #4c4c4c; 
+    }
+    .botton4{
+      display: inline-block;
+      background-color: #fff;
+      color:#000;
+      margin-right:10px;
+    }
+    .botton4:hover{
+      background-color: #d6e4f0;
+    }
+    .botton5{
+      display: inline-block;
+      background-color: #1f496e;
+      color:#fff;
+      margin-left: 10px;
+    }
+    .botton5:hover{
+      background-color: #0f2436;
+    }
+    .container{
+      width: 960px;
+      margin: 0 auto;
+    }
+    .project{
+      margin-top: 40px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .project .container a{
+      text-decoration: none;
+    }
+    .servicelist{
+      display: inline-block;
+      width: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .servicelist:after{
+      content:'';
+      display: block;
+      clear: both;
+    }
+    .servicelist .list{
+      margin:0 40px;
+    }
+    .services{
+      text-align: center;
+      background-color: #337ab7;
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+    .services .container h1{
+      color: white;
+    }
+    .services .container hr{
+      margin-top: 20px;
+      margin-bottom: 40px;
+      width: 100px;
+      border:0;
+      border-top:1px solid white;
+    }
+    .list ul li{
+      color: white;
+      font-size: 12px;
+    }
+    .list ul li:nth-of-type(2){
+      font-size: 1.5em;
+      line-height: 50px;
+    }
+    .list{
+      float: left;
+    }
+    .centertext {
+      background: url(image/callout.jpg) no-repeat center center scroll;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      background-size:cover;
+      padding: 140px 0;
+    }
+    .centertext h1{
+      font-size: 3.5em;
+      color: white;
+      font-weight: 700;
+    }
+    .ourwork{
+      text-align: center;
+      margin-top: 80px;
+      margin-bottom: 20px;
+    }
+
+    .ourwork .container hr{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 100px;
+      border:0;
+      border-top:1px solid #eeeeee;
+    }
+    .pic-item{
+      margin-left: -20px;
+    }
+    .pic-item:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .pic-item > li{
+      float: left;
+      margin-left: 25px;
+      margin-top: 25px;
+      width: 450px;
+      height: 300px;
+    }
+    .pic-item > li:hover{
+      opacity:0.8;
+    }
+    .pic-item > li > a > img{
+      width: 100%;
+      height: 100%;
+    }
+    .resist{
+      background-color: #337ab7;
+      text-align: center;
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+    .resist p{
+      color: #fff;
+      font-size: 1.5em;
+    }
+    #footer{
+      text-align: center;
+      padding-top: 60px;
+      padding-bottom: 60px;
+    }
+    #footer .container h2{
+      line-height: 50px;
+    }
+    .contact{
+      display: block;
+      margin: 10px 0;
+    }
+    .wechat > li{
+      display: inline-block;
+      margin: 10px 15px;
+    }
+    .wechat > li > a{
+      text-decoration: none;
+      color: #337ab7;
+    }
+    .wechat > li > a:hover{
+      color: #23527c;
+    }
+    #footer .container hr{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      width: 100px;
+      border:0;
+      border-top:1px solid #f6f6f6;
+    }
+    #footer .container p{
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<!--头部-->
+ <div id="header">
+   <div class="headcontent">
+    <h1>Start Bootstrap</h1>
+    <p>Free Bootstrap Themes & Templates</p>
+    <a href="#" class="btn botton1">Find Out More</a>
+   </div>
+ </div>
+<!--内容部分-->
+  <div id="content">
+<!--第一部分-->
+    <div class="project">
+      <div class="container">
+        <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
+        <p>This theme features some wonderful photography courtesy of <a href="#">Death to the Stock Photo.</a></p>
+      </div>
+    </div>
+<!--第二部分-->
+    <div class="services">
+      <div class="container">
+        <h1>Our Services</h1>
+        <hr>
+          <ul class="servicelist">
+          <li class="list">
+            <ul>
+              <li class="iconfont icon1">&#xe67e</li>
+              <li>Service Name</li>
+              <li>Lorem ipsum dolor sit amet,</li>
+              <li>consectetur adipisicing elit.</li>
+              <li><a href="#" class="btn botton2">Learn More</a></li>
+            </ul>
+          </li>
+          <li class="list">
+            <ul>
+              <li class="iconfont icon1">&#xe67f</li>
+              <li>Service Name</li>
+              <li>Lorem ipsum dolor sit amet,</li>
+              <li>consectetur adipisicing elit.</li>
+              <li><a href="#" class="btn botton2">Learn More</a></li>
+            </ul>
+          </li>
+          <li class="list">
+            <ul>
+              <li class="iconfont icon1">&#xe681</li>
+              <li>Service Name</li>
+              <li>Lorem ipsum dolor sit amet,</li>
+              <li>consectetur adipisicing elit.</li>
+              <li><a href="#" class="btn botton2">Learn More</a></li>
+            </ul>
+          </li>
+          <li class="list">
+            <ul>
+              <li class="iconfont icon1">&#xe680</li>
+              <li>Service Name</li>
+              <li>Lorem ipsum dolor sit amet,</li>
+              <li>consectetur adipisicing elit.</li>
+              <li><a href="#" class="btn botton2">Learn More</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+<!--第三部分-->
+    <div class="centertext">
+      <div class="container">
+        <h1>Vertically Centered Text</h1>
+      </div>
+    </div>
+<!--第四部分-->
+    <div class="ourwork">
+      <div class="container">
+        <h1>Our Work</h1>
+        <hr>
+        <ul class="pic-item">
+          <li><a href="#"><img src="image/portfolio-1.jpg"></a></li>
+          <li><a href="#"><img src="image/portfolio-2.jpg"></a></li>
+          <li><a href="#"><img src="image/portfolio-3.jpg"></a></li>
+          <li><a href="#"><img src="image/portfolio-4.jpg"></a></li>
+        </ul>
+        <a href="#" class="btn botton3">View More Items</a>
+      </div>
+    </div>
+<!--第五部分-->
+    <div class="resist">
+      <div class="container">
+      <p>The buttons below are impossible to resist.</p>
+      <a href="#" class="btn botton4">Click Me!</a>
+      <a href="#" class="btn botton5">Look at Me!</a> 
+      </div>
+    </div>
+  </div>
+<!--尾部-->
+  <div id="footer">
+    <div class="container">
+      <h2>Start Bootstrap</h2>
+      <p>3481 Melrose Place</p>
+      <p>Beverly Hills, CA 90210</p>
+      <ul class="contact">
+        <li class="iconfont icon2">&#xe6c4 (123) 456-7890</li>
+        <li class="iconfont icon2">&#xe6c5 <a href="#">name@abc.com</a></li>
+      </ul>
+      <ul class="wechat">
+        <li class="iconfont icon3"><a href="#">&#xe6cb</a></li>
+        <li class="iconfont icon3"><a href="#">&#xe6c9</a></li>
+        <li class="iconfont icon3"><a href="#">&#xe6c8</a></li>
+      </ul>
+      <hr>
+      <p>Copyright © Your Website 2014</p>
+    </div>
+  </div>
+
+</body>
+</html>
