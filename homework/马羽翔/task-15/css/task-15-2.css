@@ -1,0 +1,413 @@
+/*通用样式*/
+html,body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font-family: sans-serif;
+	color:#333;
+}
+ul,li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	cursor: pointer;
+}
+.row1-col2 {
+	float: left;
+	width: 50%;
+}
+.row1-col3 {
+	float:left;
+	width: 33.33%;
+} 
+.row1-col4 {
+	float:left;
+	width: 25%;
+}
+.row2-col3 {
+	float:left;
+	width: 33.33%;
+	height: 50%;
+}
+.clear {
+	*zoom:1;
+}
+.clear:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.layout {
+	width: 1140px;
+	height: auto;
+	margin: 0 auto;
+}
+.btn {
+	cursor: pointer;
+	text-align: center;
+	padding: 16px 12px;
+	font-size: 14px;
+	border:1px solid transparent;
+}
+.yellow-white-btn {
+	background-color: #fed136;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 700;
+	padding: 18px 22px;
+	border-radius: 4px;
+}
+.yellow-white-btn:hover {
+	background-color: #fec503;
+}
+.img-circle {
+	border-radius: 50%;
+}
+.part-title{
+	margin: 0 auto;
+	text-align: center;
+	border:1px solid transparent;
+}
+.part-title h1 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	font-size: 34px;
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+}
+.part-title h3 {
+	margin-top: 20px;
+	margin-bottom: 60px;
+	color:#777;
+	font-style: italic;
+}
+.short-passage > h4 {
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 18px;
+}
+.short-passage > h5 {
+	font-family: Arial,sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: italic;
+	color: #777;
+}
+.short-passage > p {
+	color:#777;
+	font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+	line-height: 1.75;
+}
+/*nav样式*/
+.nav-bar {
+	position: fixed;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 70px;
+	background-color: #222;
+	z-index: 9;
+}
+.nav-bar .web-logo {
+	margin:10px 10px;
+	float: left;
+	width: 220px;
+	height: 50px;
+	text-align: center;
+}
+.nav-bar .web-logo a {
+	color: #fed136;
+	font-size: 30px;
+	font-family: "Helvetica Neue",Helvetica,Arial,cursive;
+	line-height: 50px;
+}
+.nav-bar .menu {
+	float: right;
+	margin: 10px 20px;
+	height: 50px;
+	text-align: right;
+}
+.nav-bar .menu .option {
+	display: inline-block;
+	padding: 0 12px;
+	text-align: center;
+	height: 50px;
+}
+.nav-bar .option > a {
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	line-height: 50px;
+	color: #fff;
+}
+.nav-bar .option > a:hover {
+	color: #fec503;
+}
+/*header样式*/
+#header {
+	width: 100%;
+	height: 100%;
+	background: url("../img/header-bg.jpg") 0 0 no-repeat;
+	background-size: cover;
+	display: table;
+}
+.text-vertical-center {
+	vertical-align: middle;
+	display: table-cell;
+	text-align: center;
+}
+#header .welcome-subtitle {
+	margin-top:20px;
+	margin-bottom: 10px;
+	font-size: 40px;
+	font-style: italic;
+	color: #fff; 
+}
+#header .welcome-title {
+	font-size: 70px;
+	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+	color: #fff; 
+	margin-bottom: 30px;
+}
+/*service部分*/
+.service {
+	padding-top: 110px;
+	padding-bottom: 200px;
+}
+.service-display {
+	margin: 0 30px;
+}
+.service-item {
+	padding: 15px;
+	text-align: center;
+}
+.service-icon {
+	font-size: 64px;
+}
+.service-icon .icon-bg {
+	color: #fed136;
+}
+.service-icon .icon {
+	color: #fff;
+}
+/*portfolio部分*/
+.portfolio {
+	padding: 150px 0;
+	background-color:#f7f7f7;
+}
+.gallery {
+	padding-top: 30px;
+}
+.gallery .frame {
+	position: relative;
+	border-bottom:1px solid transparent;
+	background-color: #fff;
+	margin: 0 15px 30px 15px;
+	text-align: center;
+}
+.service-img img {
+	width: 100%;
+	height: auto;
+}
+.portfolio-hover-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #fec503;
+	width: 100%;
+	height: 253px;
+	line-height: 253px;
+	text-align: center;
+	color: #fff;
+	font-size: 36px;
+	opacity:0;
+} 
+.service-img:hover .portfolio-hover-img {
+	opacity: 0.8;
+}
+/*about部分*/
+.about {
+	margin-top: 80px;
+	margin-bottom:150px;
+}
+.timeline {
+	position: relative;
+	margin:0 0 60px 0;
+	padding: 0 10px;: 
+}
+.timeline >li:before {
+	position: absolute;
+	width: 2px;
+	top: 0;
+	bottom: 0;
+	left: 50%;
+	content: "";
+	background-color: #ddd;
+	z-index: 2;
+}
+.timeline >li {
+	margin-bottom: 100px;
+	min-height: 190px;
+}
+.period2009-2011,.period2012 {
+	position: relative;
+	float: left;
+	text-align: right;
+	width: 59%;
+}
+.period2011,.period2014 {
+	position: relative;
+	float: right;
+	text-align: left;
+	width:59%;
+}
+.description2009-2011,.description2012 {	
+	position: absolute;
+	left: 0 ;
+	top: 0;
+	text-align: right;
+	width: 65%;	
+	padding-right: 40px;
+}
+.description2011,.description2014 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-align: left;
+	padding-left: 40px; 
+	width: 65%;
+}
+.timeline-img2009-2011,.timeline-img2012 {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
+	border: 4px solid #ddd;
+	z-index: 3;
+}
+.timeline-img2011,.timeline-img2014 {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
+	border: 4px solid #ddd;
+	z-index: 3;
+}
+.future-circle {
+	position: relative;
+	top: 0px;
+	left: 41%;
+	background-color: #fed136;
+	border-radius: 50%;
+	border: 4px solid #ddd;
+	height: 200px;
+	width: 200px;
+	text-align: center;
+	z-index: 3;
+}
+.future-circle > h4 {
+	position: absolute;
+	top: 10%;
+	left: 30%;
+	color: #fff;
+	font-size: 20px;
+	line-height: 1.8;
+	font-weight: bold;
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+/*team部分*/
+.team {
+	margin-top: 80px;
+	padding-top: 90px;
+	padding-bottom: 180px;
+	background-color: #f7f7f7;
+}
+.member {
+	margin-bottom: 50px;
+	padding: 0 15px;
+	text-align: center;
+}
+.member .white-border {
+	border: 6px solid #fff;
+}
+.socialweb-link {
+	display: inline-block;
+	font-size: 20px;
+}
+.socialweb-link .icon-bg {
+	color:#333;
+}
+.socialweb-link:hover .icon-bg{
+	color:#fed136;
+}
+.teampart-content p {
+	margin:0 200px;
+	text-align: center;
+}
+/*ads-bar部分*/
+.ads-bar {
+	height: 150px;
+}
+.logo-img {
+	height: 150px;
+	text-align: center;
+}
+.ads-bar img {
+	margin: 50px auto;
+}
+/*contact部分*/
+.contact {
+	padding: 150px 0;
+	background-color: #222;
+	background-image: url("../img/map-image.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.contact .white-h1 {
+	color:#fff;
+}
+.information-form {
+	text-align: center;
+}
+.information-input {
+	width: 92%;
+	margin-bottom: 20px;
+	font-size: 14px;
+	line-height: 1.5;
+	padding: 20px 4px;
+	border-radius: 4px;
+}
+.information-input-textarea {
+	overflow: auto;
+	height: 200px;
+}
+/*footer部分*/
+#footer {
+	padding: 25px 0;
+}
+.copyright {
+	color: #333;
+	font-weight: bold;
+	text-align: center;
+}
+.share {
+	text-align: center;
+}
+.user-read {
+	text-align: center;
+}
+.user-read-link {
+	font-weight: bold;
+	color: #fed136;
+	line-height: 50px;
+}
+.user-read-link:hover {
+	text-decoration: underline;
+	color: #fec503;
+}
