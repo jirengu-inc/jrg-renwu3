@@ -38,13 +38,8 @@ h1,h2,h3,h4,h5 {
 	font-size: 14px;
 	background-color: #fff;
 }
-/*header样式*/
-#header {
-	width: 100%;
-	height: auto;
-	margin-bottom: 40px;
-}
-#header nav {
+/*nav部分*/
+nav {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -92,9 +87,15 @@ nav .option {
 nav .option:hover {
 	background-color: #ccc;
 }
-#header .top-label {
-	width: 100%;
+/*header样式*/
+#header {
 	background-color: #b84d45;
+	height: auto;
+	margin-bottom: 40px;
+}
+
+#header .top-label {
+	
 	padding-top:60px;
 	padding-bottom: 60px;
 	color: #fff; 
