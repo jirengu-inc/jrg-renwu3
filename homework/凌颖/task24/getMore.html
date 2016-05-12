@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加载更多</title>
+</head>
+<style>
+    #ct>li{
+        border:1px solid #ccc;
+        padding:10px;
+        margin:10px;
+        list-style:none;
+    }
+    .btn{
+        width:80px;
+        height:40px;
+        line-height:40px;
+        border-radius: 3px;
+        border:1px solid crimson;
+        text-align: center;
+        color:crimson;
+    }
+    #loadMore{
+        display:block;
+        margin:10px auto;
+        cursor:pointer;
+    }
+</style>
+<body>
+<ul id="ct">
+    <li>内容1</li>
+    <li>内容2</li>
+</ul>
+
+<a class="btn" id="loadMore">加载更多</a>
+<script src="ajax.js"></script>
+<script>
+    var loadMore =document.getElementById('loadMore'),
+               ct = document.getElementById('ct'),
+              cur = 3,
+            isLoading = false;//设置一个状态锁，防止在加载的数据回来之前用户多次点击
+ loadMore.addEventListener('click',function(){
+     if(isLoading){
+         return;
+     }
+     isLoading = true;
+     document.getElementById('loadMore').innerText = '正在...';
+      ajax({
+        url:'/getMore',
+        type:'get',
+        data:{
+            start :cur,
+            len : 5
+        },
+        dataType:'json',
+        success : function(json){
+            onSuccess(json);
+        },
+        error : function(){
+            onError();
+        }
+    });
+});
+  function onSuccess (json){
+      isLoading=false;
+      loadMore.innerText='加载更多';
+      if(json.status == 0){
+          setTimeout(function(){
+              for(var k = 0;k<json.data.length;k++){
+                  var item = document.createElement("li");
+                  item.innerText = json.data[k];
+                  ct.appendChild(item);
+              }
+              cur += 5;
+          },1000)
+      }else{
+          alert('获取数据失败');
+      }
+  }
+
+  function onError(){
+      isLoading = false;
+      document.getElementById('loadMore').innerText = '加载更多';
+      alert('系统异常');
+  }
+
+</script>
+</body>
+</html>
