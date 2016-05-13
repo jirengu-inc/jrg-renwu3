@@ -1,0 +1,283 @@
+/* jrg.css */
+body,ul,li,header,h1,h2,p {
+	margin: 0;
+	padding: 0;
+}
+html,body {
+	width: 100%;
+	height: 100%;
+	font-family: '微软雅黑';
+}
+a {
+	text-decoration: none;
+}
+li {
+	list-style: none;
+}
+#head {
+	width: 100%;
+	height: 100%;
+	background: url(../images/bg.jpg);
+	background-size: 100% 100%;
+	position: relative;
+	display: table;
+}
+.innerhead {
+	display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+#head h1,#head p,#head a {
+	text-align: center;
+	color: #000;
+	
+}
+#head h1 {
+	font-size: 50px;
+	font-weight: bold;
+}
+#head p {
+	margin: 20px auto;
+	font-size: 18px;
+}
+#head a {
+	display: block;
+	margin: 0 auto;
+	width: 140px;
+	height: 40px;
+	line-height: 40px;
+	background: #666;
+	color: #fff;
+	font-size: 14px;
+}
+#content {
+	padding-top: 50px;
+}
+#innerContent {
+}
+.list_tit {
+	width: 960px;
+	margin: 0 auto;
+}
+#content p {
+	text-align: center;
+	font-size: 20px;
+	color: #000;
+	line-height: 30px;
+}
+#about_me {
+	background: #337ab7;
+}
+#inner_warp {
+	width: 960px;
+	margin: 0 auto;
+} 
+.inner_about:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.inner_about {
+	margin-top: 50px;
+}
+.inner_about li {
+	float: left;
+	width: 225px;
+	margin-right: 20px;
+	text-align: center;
+}
+.inner_about .services-icon {
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	background-color: #fff;
+	border-radius: 50%;
+	text-align: center;
+}
+
+.services-icon .fa {
+	font-size: 3.6rem;
+	color: #337ab7;
+	line-height: 80px;
+}
+#about_me {
+	margin-top: 50px;
+	padding: 50px 0;
+}
+#about_me .inner_about p {
+	font-size: 14px;
+	color: #fff;
+}
+#about_me .inner_about div {
+	font-size: 18px;
+	color: #fff;
+}
+#about_me .inner_about a {
+	font-size: 14px;
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #fff;
+	color: #666;
+	margin-top: 6px;
+}
+.inner_about li:last-child {
+	margin: 0;
+}
+#about_me h2 {
+	font-size: 24px;
+	color: #fff;
+	text-align: center;
+	font-weight: bold;
+}
+#about_me .bor_bottom {
+	display: block;
+	width: 100px;
+	margin: 10px auto 0;
+	border-bottom: 1px solid #fff;
+}
+.Vertically {
+	display: table;
+	width: 100%;
+	height: 400px;
+	color: #fff;
+	background: url(../images/callout.jpg) no-repeat center center scroll;
+	background-size: cover;
+}
+.Vertically span {   
+	display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 48px;
+    font-weight: bold;
+}
+#showimg{
+	margin-top: 50px;
+}
+#showimg h2 {
+	font-size: 24px;
+	color: #666;
+	text-align: center;
+	font-weight: bold;
+}
+#showimg .bor_bottom {
+	display: block;
+	width: 100px;
+	margin: 10px auto 0;
+	border-bottom: 1px solid #999;
+}
+#showimg .img_btn {
+	display: block;
+	margin: 0 auto;
+	width: 160px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: #666;
+	color: #fff;
+}
+.img_box {
+	width: 960px;
+	margin: 0 auto;
+}
+.img_box:after {
+	display: block;
+	content:'';
+	clear: both;
+}
+.img_box li {
+	padding: 20px;
+	float: left;
+	width: 440px;
+	height: auto;
+}
+.img_box li img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.check_me {
+	margin-top: 50px;
+	padding: 50px;
+	background: #337ab7;
+}
+#innerContent .check_me p {
+	text-align: center;
+	line-height: 30px;
+	color: #fff;
+	font-size: 22px;
+}
+#innerContent .check_btn {
+	width: 260px;
+	margin: 20px auto 0; 
+}
+#innerContent .check_btn a {
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+#innerContent .check_btn a:first-child {
+	margin-right: 20px;
+	background: #fff;
+	color: #666;
+}
+#innerContent .check_btn a:last-child {
+	margin: 0;
+	background: rgba(0,0,0,0.4);
+	color: #fff;
+}
+footer {
+	padding: 100px 0;
+	text-align: center;
+}
+footer .fa{
+	margin-right: 6px;
+}
+footer h2 {
+	line-height: 40px;
+	font-size: 18px;
+	color: #000;
+}
+footer p {
+	line-height: 20px;
+	font-size: 14px;
+	color: #333;
+}
+footer p a {
+	font-size: 14px;
+	color: #337ab7;
+}
+footer div {
+	line-height: 20px;
+	font-size: 14px;
+	color: #777;
+}
+#foot .icon_box {
+	
+}
+.icon_box li {
+	display: inline-block;
+}
+
+.icon_box .fa {
+	font-size: 3rem;
+	padding: 0 10px;
+}
+footer a{
+	color: #337ab7;
+}
+
+footer a:hover{
+	color: #23527c;
+}
+
+#foot .bor_bottom {
+	display: block;
+	width: 100px;
+	margin: 10px auto;
+	border-bottom: 1px solid #999;
+}
