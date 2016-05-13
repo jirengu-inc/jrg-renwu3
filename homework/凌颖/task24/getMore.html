@@ -25,12 +25,13 @@
         margin:10px auto;
         cursor:pointer;
     }
-    .ui-loading{
+    .loading{
         width: 20px;
         height: 20px;
         display: inline-block;
         background: url(img/loading_sprite.png);
         -webkit-background-size: auto 20px;
+        background-size: auto 20px;
         -webkit-animation: am-rotate 1s steps(12) infinite;
         animation: am-rotate 1s steps(12) infinite;
     }
@@ -68,11 +69,11 @@
               cur = 3,
             isLoading = false;//设置一个状态锁，防止在加载的数据回来之前用户多次点击
  loadMore.addEventListener('click',function(){
-     if(islocked){   //判断状态是否锁上，一旦锁上终止函数，不与后台交互
+     if(isLoading){   //判断状态是否锁上，一旦锁上终止函数，不与后台交互
          return;
      }
-     islocked = true;//产生AJAX前立刻上锁，防止用户多次点击
-     document.getElementById('loadMore').innerText = '请稍等<i class="ui-loading"></i>';
+     isLoading = true;//产生AJAX前立刻上锁，防止用户多次点击
+     document.getElementById('loadMore').innerHTML = '<i class="loading"></i>';
       ajax({
         url:'/getMore',
         type:'get',
@@ -98,7 +99,7 @@
                   ct.appendChild(item);
               }
               cur += 5;
-              islocked = false;//开锁
+              isLoading = false;//开锁
               document.getElementById('loadMore').innerText = '加载更多';
           },1000)
       }else{
