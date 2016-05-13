@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 25-1</title>
+  <style>
+    body{
+      font-size: 12px;
+    }
+    ul{
+      margin: 0;
+      padding: 0;
+    }
+    .tab{
+      overflow: hidden;
+      margin-right: -10px;
+      margin-top: 30px;
+      border: 1px solid #ccc;
+      border-bottom: none;
+      border-radius: 2px;
+      width: 159px;
+    }
+    .tab li{
+      float: left;
+      line-height: 30px;
+      list-style: none;
+    }
+    .tab li a{
+      border-left: 1px solid #ccc;
+      padding: 0 8px 0 8px;
+      text-decoration: none;
+      color: #666;
+    }
+    .content{
+      width: 700px;
+      border: 1px solid #ccc;
+    }
+    .wrap{
+      margin-right: -20px;
+      margin-bottom: -20px;
+    }
+    .wrap::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .content li{
+      list-style: none;
+    }
+    .wrap li{
+      float: left;
+      position: relative;
+      padding: 10px 20px; 
+      width: 178px;
+      margin: 0 20px 20px 0;
+      border: 1px solid #eee;
+    }
+    .wrap li .text{
+      margin-bottom: 3px;
+      line-height: 16px;
+      height: 32px;
+      color: #666;
+    }
+    .img-box{    
+      text-align: center;
+    }
+    .price{
+      color: #c81623;
+    }
+    .buy{
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin: -18px 0 0 -35px;
+      padding: 10px;
+      border: 1px solid #c81623;
+      cursor: pointer;
+      color: red;
+      background-color: white;
+    }
+    .modal{
+      display: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: #999;
+      width: 220px;
+      height: 202px;
+      opacity: 0.6;
+    }
+    .content .hide{
+      display: none;
+    }
+  </style>   
+</head>
+<body>
+  <div class="ct">
+    <ul class="tab">   
+      <li><a href="#">热门</a></li>  
+      <li><a href="#">珠宝首饰</a></li>   
+      <li><a href="#">奢侈品</a></li>   
+    </ul>
+    <div class="content"> 
+      <ul class="wrap">
+        <li> 
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+      </ul>
+      <ul class="wrap hide">
+        <li> 
+          <div class="modal"></div>
+          <div class="img-box"><img src="neck.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1639.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥169.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥99.00</span>
+        </li>
+      </ul>
+      <ul class="wrap hide">
+        <li> 
+          <div class="modal"></div>
+          <div class="img-box"><img src="jin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美金和镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1800.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1799.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="jin.jpg" alt=""></div>
+          <div class="text">藏美千足路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1099.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥199.00</span>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+  <div class="ct">
+    <ul class="tab">   
+      <li><a href="#">热门</a></li>  
+      <li><a href="#">珠宝首饰</a></li>   
+      <li><a href="#">奢侈品</a></li>   
+    </ul>
+    <div class="content"> 
+      <ul class="wrap">
+        <li> 
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+      </ul>
+      <ul class="wrap hide">
+        <li> 
+          <div class="modal"></div>
+          <div class="img-box"><img src="neck.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1639.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥169.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥99.00</span>
+        </li>
+      </ul>
+      <ul class="wrap hide">
+        <li> 
+          <div class="modal"></div>
+          <div class="img-box"><img src="jin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美金和镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1800.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1799.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="jin.jpg" alt=""></div>
+          <div class="text">藏美千足路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1699.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏金镶玉路路通吊坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥1099.00</span>
+        </li>
+        <li>
+          <div class="modal"></div>
+          <div class="img-box"><img src="yin.jpg" alt=""></div>
+          <div class="text">藏美千足金和田坠</div>
+          <span class="buy">立即抢购</span>
+          <span class="price">￥199.00</span>
+        </li>
+      </ul>
+      
+    </div>
+  </div>
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    function Tab($node){
+      this.$node=$node;
+      this.$tabLi=$node.find('.tab li');
+      this.$conLi=$node.find('.content li');
+      this.bind();
+    }
+
+    Tab.prototype={
+      bind:function(){
+        var This=this;
+        this.$tabLi.on('click',function(e){
+          e.preventDefault();
+          $(this).find('a').css({'color':'red',});
+          $(this).siblings().find('a').css({'color':'#666',});
+          $(this).css({'background-color':'#ccc'});
+          $(this).siblings().css({'background-color':'white'});
+          var i=$(this).index();
+          This.$node.find('.wrap').eq(i).show();
+          This.$node.find('.wrap').eq(i).siblings().hide();
+        });
+        this.$conLi.on('mouseover',function(){
+          $(this).find('.modal').show();
+          $(this).find('.buy').show();
+        });
+        this.$conLi.on('mouseout',function(){
+          $(this).find('.modal').hide();
+          $(this).find('.buy').hide();
+        })
+      }
+    }
+    
+    var tab1=new Tab($('.ct').eq(0));
+    var tab1=new Tab($('.ct').eq(1));
+  </script>
+</body>
+</html>
