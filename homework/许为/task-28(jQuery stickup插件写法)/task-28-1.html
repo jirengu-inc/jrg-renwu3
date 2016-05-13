@@ -75,15 +75,17 @@
 		$(window).on("scroll",function(){
 			var scrollTop=$(this).scrollTop(); //获取窗口滚动条垂直滚动的距离
 			if(scrollTop>=offsetTop){
-				if (!isChange()) {    //判断是否已将$nav设置为了fixed，避免反复设置
+				if (!isChange()) {//判断是否已将$nav设置为了fixed，避免反复设置
 					setChange();
 				}
 		}else{
-			    cancelChange();
+				cancelChange();
+
 			}
 		});
 
 		function isChange(){       //标记函数，标记是否已将$nav设置为了fixed
+			// console.log(!!$nav.attr("identify"));
 			return !!$nav.data("identify");
 		}
 		function setChange(){       //将原有的nav设为fixed,用clone元素进行占位
@@ -93,7 +95,8 @@
 				"left":offsetLeft,
 				"top":0,
 				"width":width,
-				"height":height
+				"height":height,
+				"z-index":9999
 			});
 			$cloneNav.show();
 		}
@@ -101,7 +104,7 @@
 			$nav.data("identify",false);
 			$nav.removeAttr('style');
 			$cloneNav.hide();
-			console.log($nav.attr("identify"));
+			// console.log($nav.attr("identify"));
 		}
 
 	}

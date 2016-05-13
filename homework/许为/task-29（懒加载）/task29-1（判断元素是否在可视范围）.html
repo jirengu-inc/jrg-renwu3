@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level29</title>
+<style type="text/css">
+	body{
+  height:2000px;
+  position:relative;
+}
+div{
+  width:100px;
+height:100px;
+border:solid;
+  position:absolute;
+  top:40%;
+}
+</style>
+</head>
+<body>
+  <div>hello</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	function isVisible($node){
+		var spaceTop=$node.offset().top,     //元素上边界距离文档的高度
+			spaceBottom=spaceTop+$node.height(),  //元素下边界距离文档的高度
+			widH=$(window).height();    //可视窗口的高度
+		$(window).on("scroll",function(){
+			var scrollTop=$(this).scrollTop();     //滚动条垂直滚动的距离
+			if ($node.data("isConsole")==="yes") {
+				return;
+			}
+			if (scrollTop+widH>=spaceTop&&scrollTop<=spaceBottom) {
+				//判断元素的上边界与下边界的位置
+				$node.data('isConsole', 'yes');
+				console.log("true");
+			}
+			else{
+				console.log("false");
+			}
+		});
+
+	}
+	isVisible($("div"));
+</script>
+</body>
+</html>
