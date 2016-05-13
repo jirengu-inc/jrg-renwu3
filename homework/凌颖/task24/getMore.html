@@ -35,6 +35,12 @@
 <a class="btn" id="loadMore">加载更多</a>
 <script src="ajax.js"></script>
 <script>
+    /*
+    *入参：{start：3 ，len：5}
+    *回参：{data：['内容3'，'内容4'，'内容5'，'内容6'，'内容7']}
+    *url: /getMore?start=3&len=5
+    * type:get
+    * */
     var loadMore =document.getElementById('loadMore'),
                ct = document.getElementById('ct'),
               cur = 3,
