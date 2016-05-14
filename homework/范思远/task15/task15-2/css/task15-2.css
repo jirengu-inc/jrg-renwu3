@@ -1,0 +1,443 @@
+html,
+body,
+ul,
+li,
+h1,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+hr {
+  opacity: 0;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.layout {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+#nav {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background: #2C2C34;
+  padding: 20px 0;
+  z-index: 10;
+}
+
+#nav:after,
+#nav ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#nav .layout>a {
+  font-family: Helvetica;
+  float: left;
+  font-size: 25px;
+  font-style: italic;
+  color: #FFFAA0;
+}
+
+#nav ul {
+  float: right;
+  margin-right: -9px;
+  margin-top: 6px;
+}
+
+#nav ul li {
+  float: left;
+  margin-left: 20px;
+}
+
+#nav ul a {
+  font-size: 18px;
+  color: white;
+  padding: 10px;
+}
+
+#nav a:hover {
+  color: #FFE27F;
+}
+
+#header {
+  width: 100%;
+  height: 100%;
+  background: url(../img/header-bg.jpg) no-repeat;
+  background-size: cover;
+}
+
+#header>.content {
+  text-align: center;
+  padding-top: 300px;
+  color: white;
+}
+
+#header p {
+  font-size: 45px;
+  font-style: italic;
+  margin-bottom: 30px;
+}
+
+#header h1 {
+  font-size: 80px;
+  margin-bottom: 50px;
+}
+
+#header a {
+  color: white;
+  font-size: 20px;
+  background: #FFD742;
+  padding: 20px 30px;
+  border-radius: 5px;
+}
+
+#header a:hover {
+  background: #FFC400;
+  transition: background-color 0.3s;
+}
+
+#main .contact,
+#main .team,
+#main .about .layout>h1,
+#main .about .layout>p,
+#main .services,
+#main .portfolio {
+  text-align: center;
+}
+
+#main .services {
+  margin-top: 150px;
+  margin-bottom: 150px;
+}
+
+#main .contact .layout>p,
+#main .team .layout>p,
+#main .about .layout>p,
+#main .services p,
+#main .portfolio .layout>p {
+  margin-top: 20px;
+  color: #787878;
+  font-style: italic;
+}
+
+#main .portfolio li p {
+  margin-top: 5px;
+  color: #787878;
+  font-style: italic;
+}
+
+#main .portfolio li h3 {
+  margin-top: 20px;
+}
+
+#footer ul:after,
+.blogroll ul:after,
+#main .team ul:after,
+#main .services ul:after,
+#main .portfolio ul:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#main .services ul,
+#main .portfolio ul {
+  margin-right: -50px;
+}
+
+#main .services li,
+#main .portfolio li {
+  float: left;
+  margin: 100px 48px 30px 0;
+  position: relative;
+}
+
+#main .services span {
+  font-size: 50px;
+  color: white;
+  background: #FFDE52;
+  padding: 20px;
+  border-radius: 45px;
+}
+
+#main .services h3 {
+  margin-top: 40px;
+}
+
+#main .portfolio,
+#main .team {
+  background: #F6F6F6;
+  padding: 150px 0;
+}
+
+#main .portfolio img {
+  width: 368px;
+  max-height: 100%;
+  box-shadow: 5px 3px 10px #ccc;
+}
+
+#main .portfolio a:hover {
+  opacity: 0.1;
+}
+
+#main .portfolio .icon {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  font-size: 50px;
+  padding: 106px 159px;
+  background: #FFD64E;
+  color: white;
+  opacity: 0;
+  z-index: 1;
+}
+
+#main .portfolio .icon:hover {
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+#main .about {
+  padding: 150px 0;
+}
+
+#main .about li {
+  padding-top: 60px;
+  padding-bottom: 100px;
+  width: 600px;
+  position: relative;
+}
+
+#main .about li h3 {
+  margin: 10px 0;
+}
+
+#main .about .right {
+  margin-left: 600Px;
+  border-left: 1px solid #D2D2D2;
+}
+
+#main .about .right div {
+  text-align: left;
+  padding-left: 120px;
+}
+
+#main .about .left {
+  border-right: 1px solid #D2D2D2;
+}
+
+#main .about .left div {
+  text-align: right;
+  padding-right: 120px;
+}
+
+#main .about .left:first-child {
+  padding-top: 0;
+  margin-top: 80px;
+}
+
+#main .about img {
+  position: absolute;
+  border: 10px solid #E8E8E8;
+  border-radius: 50%;
+  max-width: 150px;
+}
+
+#main .about .right img {
+  top: 58px;
+  left: -85px;
+}
+
+#main .about .img-1 {
+  top: -8px;
+  right: -85px;
+}
+
+#main .about .img-3 {
+  top: 58px;
+  right: -85px;
+}
+
+#main .about li>h3 {
+  background: #FFC354;
+  width: 110px;
+  border: 10px solid #E8E8E8;
+  border-radius: 50%;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  margin-left: 518px;
+}
+
+#main .about li:last-child {
+  border-right: 1px solid #D2D2D2;
+  padding-bottom: 0px;
+}
+
+#main .team h1 {
+  font-size: 40px;
+}
+
+#main .team li {
+  float: left;
+}
+
+#main .team .container >li {
+  margin: 0px 77px;
+  padding-top: 100px;
+  padding-bottom: 50px;
+}
+
+#main .team .container img {
+  border-radius: 50%;
+  border: 10px solid #E4E4E4;
+}
+
+#main .team .container h3 {
+  margin-top: 20px;
+}
+
+#main .team .container p {
+  margin-top: 5px;
+  font-size: 14px;
+  font-style: italic;
+  color: #8F8F8F;
+}
+
+#main .team .container>li ul {
+  margin-left: 35px;
+  margin-top: 20px;
+}
+
+#main .team .container>li li {
+  margin: 0 8px;
+}
+
+#footer .icon-wrap a,
+#main .team .container>li a {
+  color: white;
+  background: black;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+#footer .icon-wrap a:hover,
+#main .team .container>li a:hover {
+  background: #FFB624;
+  transition: background-color 0.3s;
+}
+
+.blogroll li {
+  float: left;
+  margin: 80px 50px;
+}
+
+#main .contact {
+  width: 100%;
+  height: 100%;
+  background: url(../img/map-image.png) no-repeat;
+  background-size: cover;
+  background-color: #232323;
+}
+
+#main .contact .layout {
+  padding: 150px 0;
+}
+
+#main .contact h1 {
+  color: white;
+}
+
+#main .contact form:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+#main .contact ul {
+  float: left;
+  margin-top: 80px;
+}
+
+#main .contact textarea,
+#main .contact input {
+  padding: 20px 30px;
+  border-radius: 5px;
+}
+
+#main .contact li input {
+  width: 520px;
+  margin-bottom: 30px;
+}
+
+#main .contact textarea {
+  float: right;
+  font-size: 20px;
+  width: 520px;
+  height: 195px;
+  margin-top: 80px;
+}
+
+#main .contact form>input {
+  float: right;
+  font-size: 20px;
+  color: white;
+  background-color: #FFE13A;
+  border: none;
+  margin-right: 490px;
+}
+
+#main .contact form>input:hover {
+  background-color: #FFC900;
+}
+
+#footer .wrap {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+#footer .wrap li {
+  float: left;
+}
+
+#footer .wrap>li {
+	margin:0 200px;
+}
+#footer .wrap p{
+	margin-left:-110px;
+}
+
+#footer .wrap li {
+  margin-right: 15px;
+}
+#footer .link a{
+	color:#FFC901;
+	margin-right:10px;
+}
+#footer .link a:hover{
+	color:#FF8600;
+	text-decoration: underline;
+}
