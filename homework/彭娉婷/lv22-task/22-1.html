@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>22Dom、事件代码部分-1</title>
+</head>
+<body>
+
+  <ul class="ct">
+    <li>这里是</li>
+    <li>饥人谷</li>
+    <li>前端6班</li>
+  </ul>
+  <input class="ipt-add-content" placeholder="添加内容"/>
+  <button id="btn-add-start">开头添加</button>
+  <button id="btn-add-end">结尾添加</button>
+
+  <script type="text/javascript">
+    //给子元素绑定事件
+    // var ct = document.querySelector('.ct').children;
+    // for (var i = 0; i < ct.length; i++) {
+    //   ct[i].addEventListener('click',function(){
+    //     console.log(this.innerText);
+    //   });
+    // }
+    //事件代理
+    var ct = document.querySelector('.ct');
+    console.log(ct);
+      ct.addEventListener('click', function(e){
+        console.log(e.target.innerText);
+      });
+
+      var ct = document.querySelector('.ct');
+      var btnStart =document.querySelector('#btn-add-start');
+      var btnEnd =document.querySelector('#btn-add-end');
+      var ipt =document.querySelector('.ipt-add-content');
+
+      ct.addEventListener('click',function(e){
+        console.log(e.target.innerText);
+      })
+
+      btnStart.addEventListener('click',function(){
+        var newLi = document.createElement("li");
+        newLi.innerText=ipt.value;
+        ct.insertBefore(newLi,ct.firstChild);
+      })
+
+      btnEnd.addEventListener('click',function(){
+        var newLi = document.createElement("li");
+        newLi.innerText=ipt.value;
+        ct.appendChild(newLi);
+      })
+
+</script>
+
+
+</body>
+</html>

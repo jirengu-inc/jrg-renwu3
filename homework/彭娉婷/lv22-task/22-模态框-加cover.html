@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>模态框</title>
+  <style type="text/css">
+    h3{
+      margin: 0;
+      padding: 0;
+      line-height: 60px;
+    }
+    a{
+      text-decoration: none;
+      color: black;
+    }
+    .model-dialog{
+      display: none;
+    }
+    .cover{
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #000;
+      opacity: 0.4;
+      z-index: 99;
+
+    }
+    .modelCt{
+      width: 400px;
+      position: fixed;
+      left: 50%;
+      top:50%;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      border: 1px solid #ccc;
+      background: #fff;
+      z-index: 100;
+
+    }
+    .header,.content{
+      position: relative;
+      border-bottom: 1px solid #ccc;
+    }
+    .header a{
+      position: absolute;
+      top: 0px;
+      right: 0px;
+    }
+    .footer .btn{
+      float: right;
+      margin: 10px;
+    }
+    .footer:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .show{
+      display: block;
+    }
+    .hidden{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+ <div class="btn-group">
+   <button class="btn-model">点我1</button>
+ </div>
+
+
+ <div id="model-1 "class="model-dialog">
+   <div class="cover"></div>
+   <div class="modelCt">
+     <div class="header">
+       <h3>我是标题1</h3>
+       <a class="close" href="#">×</a>
+     </div>
+     <div class="content">
+       <p>我是内容1</p>
+       <p>我是内容2</p>
+     </div>
+     <div class="footer">
+       <a class="btn btn-cancel" href="#">取消</a>
+       <a class="btn btn-confirm" href="#">确定</a>
+     </div>
+   </div>
+ </div>
+
+ <script type="text/javascript">
+   var btn = document.querySelector('.btn-model');
+   var model =document.querySelector('.model-dialog');
+   // var cover =document.querySelector('.cover');
+   // var modelCt =document.querySelector('.modelCt');
+
+ //加cover
+ btn.addEventListener('click',function(e){
+  // e.stopPropagation();
+  showModel(model);
+});
+
+ model.addEventListener('click',function(e){
+  // e.stopPropagation();
+  if (hasClass(e.target,'close')||hasClass(e.target,'btn-cancel')||hasClass(e.target,'cover')) {
+    hideModel(model);
+  }
+
+});
+
+//  cover.addEventListener('click',function(){
+//   hideModel(model);
+// });
+
+
+//先用最土的方法，添加类名
+ // btn.addEventListener('click',function(){
+ //  modelCt.className=Utils.removeClass(modelCt,'hidden');
+ //  modelCt.className=Utils.addClass(modelCt,'show');
+
+ // });
+ // modelCt.addEventListener('click',function(e){
+ //  if (e.target===close||e.target===cancel) {
+ //  modelCt.className=Utils.removeClass(modelCt,'show');
+ //  modelCt.className=Utils.addClass(modelCt,'hidden');
+ //  }
+ // })
+
+
+
+
+
+function showModel(model){
+  model.style.display = 'block';
+}
+function hideModel(model){
+  model.style.display = 'none';
+}
+function hasClass (ele, cls){
+  return !!ele.className.match(new RegExp('\\b'+cls+'\\b'));
+}
+
+
+
+</script>
+</body>
+</html>
