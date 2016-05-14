@@ -22,6 +22,34 @@ app.get('/getMore', function(req, res) {
 	});
 });
 
+/**
+ * 发送 GET 请求， 有参数
+ * GET /form
+ * 返回响应数据
+ */
+app.post('/form', function(req, res) {
+	var  username= req.body.username;
+	var MSG = {
+		'USERNAME_EXIST': '用户名已经存在',
+		'USERNAME_TYPE_ERROR': '用户名格式不正确',
+		'USERNAME_USEABLE': '用户名可用',
+		'PASSWORD_TYPE_ERROR': '密码格式不正确',
+		'PASSWORD_NOT_MATCH': '两次密码输入不一致'
+	};
+	var obj = {};
+	if (username === 'lynn123'){
+		obj = {
+			status:1,
+			msg_type:MSG.USERNAME_EXIST
+		};
+	}else{
+		obj ={
+			status:0
+		}
+	}
+	res.send(obj);
+});
+
 
 /**
  * 发送 GET 请求, 有参数
@@ -37,7 +65,7 @@ app.get('/user/:uid', function(req, res) {
 	});
 });
 
-/**
+/**getmore
  * 发送 GET 请求
  * GET /username
  *
