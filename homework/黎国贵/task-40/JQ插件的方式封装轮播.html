@@ -21,50 +21,48 @@
         a{
             text-decoration: none;
         }
-        .layout1{
+        .carousel{
             position: absolute;
-            overflow: hidden;
-            width: 800px;
-            height: 450px;
-            left: 20%;
-            top: 0;
+            width: 310px;
+            height: 206px;
+            left: 50%;
+            margin-left: -160px;
             border:1px solid #000000;
             background-color: #eeeeee;
+        }
+        .layout1{
+            top: 0;
         }
         .layout2{
-            position: absolute;
-            overflow: hidden;
-            width: 800px;
-            height: 450px;
-            left: 20%;
-            top: 470px;
-            border:1px solid #000000;
-            background-color: #eeeeee;
+            top: 33%;
+        }
+        .layout3{
+            top: 66%;
         }
         .carousel .ct{
-            position:absolute;
+            position: absolute;
         }
         .carousel .ct li{
-            float: left;
+            position: absolute;
+            display: none;
         }
         .carousel .ct img{
-            width: 800px;
-            height: 450px;
+            width: 310px;
+            height: 206px;
         }
         .arrow{
             position:absolute;
             top: 50%;
-            width: 50px;
-            height: 50px;
-            margin-top: -25px;
-            line-height: 50px;
+            width: 30px;
+            height: 30px;
+            margin-top: -15px;
+            line-height: 30px;
             text-align: center;
             background-color: #4E443C;
             color:#fff;
             border-radius: 50%;
             opacity: 0.8;
             box-shadow: 0 0 2px #999;
-            font-size:28px;
         }
         .arrow:hover{
             opacity:1;
@@ -82,30 +80,25 @@
             transform:translateX(-50%);
         }
         .bullet li{
-            width: 30px;
-            height: 10px;
+            width: 16px;
+            height: 4px;
             display: inline-block;
             background-color: #fff;
             cursor: pointer;
-            border-radius: 3px;
+            border-radius: 2px;
         }
         .bullet li.active{
             background-color: #000;
-        }
-        .clear:after{
-            content: "";
-            display: block;
-            clear:both;
         }
     </style>
 </head>
 <body>
 <div class="carousel layout1">
-    <ul class="ct clear">
-        <li data-id="0"><a href="#"><img src="http://img3.imgtn.bdimg.com/it/u=147654999,1594512744&fm=206&gp=0.jpg" alt=""></a></li>
-        <li data-id="1"><a href="#"><img src="http://img2.imgtn.bdimg.com/it/u=1982575782,2849787114&fm=206&gp=0.jpg" alt=""></a></li>
-        <li data-id="2"><a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=2038227690,1193789315&fm=206&gp=0.jpg" alt=""></a></li>
-        <li data-id="3"><a href="#"><img src="http://img0.imgtn.bdimg.com/it/u=2542542714,2595053638&fm=206&gp=0.jpg" alt=""></a></li>
+    <ul class="ct">
+        <li data-id="0"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg" alt=""></a></li>
+        <li data-id="1"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg" alt=""></a></li>
+        <li data-id="2"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg" alt=""></a></li>
+        <li data-id="3"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg" alt=""></a></li>
     </ul>
     <a class="prev arrow" href="#"><</a>
     <a class="next arrow" href="#">></a>
@@ -117,11 +110,27 @@
     </ul>
 </div>
 <div class="carousel layout2">
-    <ul class="ct clear">
-        <li data-id="0"><a href="#"><img src="http://img3.imgtn.bdimg.com/it/u=147654999,1594512744&fm=206&gp=0.jpg" alt=""></a></li>
-        <li data-id="1"><a href="#"><img src="http://img2.imgtn.bdimg.com/it/u=1982575782,2849787114&fm=206&gp=0.jpg" alt=""></a></li>
-        <li data-id="2"><a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=2038227690,1193789315&fm=206&gp=0.jpg" alt=""></a></li>
-        <li data-id="3"><a href="#"><img src="http://img0.imgtn.bdimg.com/it/u=2542542714,2595053638&fm=206&gp=0.jpg" alt=""></a></li>
+    <ul class="ct">
+        <li data-id="0"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg" alt=""></a></li>
+        <li data-id="1"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg" alt=""></a></li>
+        <li data-id="2"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg" alt=""></a></li>
+        <li data-id="3"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg" alt=""></a></li>
+    </ul>
+    <a class="prev arrow" href="#"><</a>
+    <a class="next arrow" href="#">></a>
+    <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="carousel layout3">
+    <ul class="ct">
+        <li data-id="0"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg" alt=""></a></li>
+        <li data-id="1"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg" alt=""></a></li>
+        <li data-id="2"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg" alt=""></a></li>
+        <li data-id="3"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg" alt=""></a></li>
     </ul>
     <a class="prev arrow" href="#"><</a>
     <a class="next arrow" href="#">></a>
@@ -147,21 +156,15 @@
             var isAnimate =true;//全局变量状态锁，允许执行自动播放的功能
             $next.on("click",function (e) {
                 e.preventDefault();
-                stop();
                 playNext();
-                autoPlay();
             });
             $prev.on("click",function (e) {
                 e.preventDefault();
-                stop();
                 playPrev();
-                autoPlay();
             });
             $bullet.find("li").on("mouseenter",function (e) {
-                stop();
                 var index = $(this).index();  //找出点击bullet的li元素的编号
                 play(index);   //让相应li元素编号的图片淡入
-                autoPlay();
             });
             function  playNext () {//设置传递给play()的参数
                 play((cur+1)%length);
@@ -186,7 +189,7 @@
                 me.find(".bullet").children().removeClass("active").eq(cur).addClass("active");
             }
             function autoPlay (){//自动播放
-                autoPlayTime = autoPlayTime || 1000;
+                autoPlayTime = autoPlayTime || 2000;
                 start = setInterval(function () { //编号start为全局变量，不然的话stop函数找不到这个编号了
                     playNext();
                 },autoPlayTime)
