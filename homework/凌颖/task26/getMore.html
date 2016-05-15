@@ -11,6 +11,10 @@
         margin:10px;
         list-style:none;
     }
+    #ct>li.active{
+       background-color:green;
+        color:#fff;
+    }
     .btn{
         width:120px;
         height:45px;
@@ -56,63 +60,55 @@
 </ul>
 
 <a class="btn" id="loadMore">加载更多</a>
-<script src="ajax.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
+    $('#ct').on('mouseenter','li',function(){
+        $(this).addClass('active');
+    });
+    $('#ct').on('mouseleave','li',function(){
+        $(this).removeClass('active');
+    });
+
     /*
     *入参：{start：3 ，len：5}
     *回参：{data：['内容3'，'内容4'，'内容5'，'内容6'，'内容7']}
     *url: /getMore?start=3&len=5
     * type:get
     * */
-    var loadMore =document.getElementById('loadMore'),
-               ct = document.getElementById('ct'),
-              cur = 3,
-            isLoading = false;//设置一个状态锁，防止在加载的数据回来之前用户多次点击
- loadMore.addEventListener('click',function(){
+      var cur = 3,
+          isLoading = false;//设置一个状态锁，防止在加载的数据回来之前用户多次点击
+    $('#loadMore').on('click',function(){
      if(isLoading){   //判断状态是否锁上，一旦锁上终止函数，不与后台交互
          return;
      }
      isLoading = true;//产生AJAX前立刻上锁，防止用户多次点击
-     document.getElementById('loadMore').innerHTML = '<span>请稍等</span><i class="loading"></i>';
-      ajax({
+        $('#loadMore').html('<span>请稍等</span><i class="loading"></i>') ;
+        $.ajax({
         url:'/getMore',
         type:'get',
         data:{
             start :cur,
             len : 5
         },
-        dataType:'json',
-        success : function(json){
-            onSuccess(json);
+        success : function(json) {
+            setTimeout(function () {
+                $.each(json.data,function(k,ele){
+                    var item = '<li>' + json.data[k] + '</li>';
+                    $('#ct').append(item);
+                })
+                cur += 5;
+                isLoading = false;//开锁
+                $('#loadMore').text('加载更多');
+            }, 1000)
         },
         error : function(){
-            onError();
+            isLoading = false;
+            $('#loadMore').text('加载更多');
+            alert('系统异常');
         }
     });
 });
-  function onSuccess (json){
-      if(json.status == 0){
-          setTimeout(function(){
 
-              for(var k = 0;k<json.data.length;k++){
-                  var item = document.createElement("li");
-                  item.innerText = json.data[k];
-                  ct.appendChild(item);
-              }
-              cur += 5;
-              isLoading = false;//开锁
-              document.getElementById('loadMore').innerText = '加载更多';
-          },1000)
-      }else{
-          alert('获取数据失败');
-      }
-  }
-
-  function onError(){
-      isLoading = false;
-      document.getElementById('loadMore').innerText = '加载更多';
-      alert('系统异常');
-  }
 
 </script>
 </body>

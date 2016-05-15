@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery</title>
+    <style>
+        .div{
+            width:80px;
+            height:30px;
+            border-radius:15px;
+           border:1px solid #ccc;
+            margin:10px;
+            text-align: center;
+            line-height:30px;
+            padding:10px;
+            background:darkred;
+        }
+
+        .div.active{
+            background:lightblue;
+        }
+        .toggleShow{
+            display: none;
+        }
+        .place{
+            height:600px;
+        }
+        .scollNumber{
+            font-size:50px;
+            width:600px;
+            height:600px;
+            background-color:darkred;
+            color:#fff;
+            margin-top:150px;
+            text-align: center;
+            line-height:300px;
+        }
+        .toggleClass{
+            background:#fff;
+        }
+        .show{
+            border:1px solid #ccc;
+            width:300px;
+            height:150px;
+        }
+    </style>
+</head>
+<body>
+<div class="div">click变色</div>
+<div class="place">
+    <div class="div div2">hover 变色</div>
+    <input class="changeIpt" type="text" placeholder="写小写字母试试"/>
+    <select class="select">
+        <option>la~la~la~</option>
+        <option>biu~biu~biu~</option>
+        <option>hahahahaha~</option>
+    </select>
+    <div class="show" style="margin-top:10px;"></div>
+   <div class="scollNumber">
+
+   </div>
+</div>
+
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+    $(function(){
+        $('.div').on('click',function(){
+            $(this).toggleClass("active");
+        });
+        $(window).scroll(function(){
+           $('.scollNumber').html("滑动高度为："+$(document).scrollTop());
+        });
+        $('.div2').hover(function(){
+            $(this).toggleClass("toggleClass");
+        });
+        $('.changeIpt').on('focus',function(){
+            $(this).css('border','1px solid blue');
+        }).on('keydown',function(){
+            $(this).val($(this).val().toUpperCase());
+        }).on('blur',function(){
+            $(this).css('border','1px solid #ccc');
+            console.log($(this).val());
+        });
+      $('.select').on('change',function(){
+         $('.show').text($(this).val());
+      });
+    });
+
+
+</script>
+
+
+</body>
+</html>
