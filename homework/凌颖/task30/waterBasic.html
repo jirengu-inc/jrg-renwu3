@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流</title>
+    <style>
+        .content{
+            position:relative;
+        }
+        .item{
+            position:absolute;
+            width:150px;
+            margin:0 10px 10px 0;
+            transition:all 1s;
+            font-weight:bold;
+        }
+        .h1{
+            height:250px;
+            background: -webkit-linear-gradient(#FFF, #888);
+            background: -o-linear-gradient(#FFF, #888);
+            background: -moz-linear-gradient(#FFF, #888);
+            background: linear-gradient(#FFF, #888);
+        }
+        .h2{
+            height:350px;
+            background:linear-gradient(#BFDFFF,#4D7AFF);
+            background:-webkit-linear-gradient(#BFDFFF,#4D7AFF);
+            background: -o-linear-gradient(#BFDFFF,#4D7AFF);
+            background: -moz-linear-gradient(#BFCFFF,#4D7AFF);
+        }
+        .h3{
+            height:300px;
+            background:linear-gradient(#99B3FF,#0059B2);
+            background:-webkit-linear-gradient(#99B3FF,#0059B2);
+            background: -o-linear-gradient(#99B3FF,#0059B2);
+            background: -moz-linear-gradient(#99B3FF,#0059B2);
+        }
+        .h4{
+            height:200px;
+            background:linear-gradient(#FFF,#FFEFBF);
+            background:-webkit-linear-gradient(#FFF,#FFEFBF);
+            background: -o-linear-gradient(#FFF,#FFEFBF);
+            background: -moz-linear-gradient(#FFF,#FFEFBF);
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="content">
+    <div class="item h1">
+        1
+    </div>
+    <div class="item h3">
+        2
+    </div>
+    <div class="item h2">
+        3
+    </div>
+    <div class="item h4">
+        4
+    </div>
+    <div class="item h1">
+        5
+    </div>
+    <div class="item h2">
+        6
+    </div>
+    <div class="item h3">
+        7
+    </div>
+    <div class="item h2">
+        8
+    </div>
+    <div class="item h1">
+        9
+    </div>
+    <div class="item h4">
+        10
+    </div>
+    <div class="item h3">
+        11
+    </div>
+    <div class="item h1">
+        12
+    </div>
+    <div class="item h3">
+        13
+    </div>
+    <div class="item h4">
+        14
+    </div>
+    <div class="item h1">
+        15
+    </div>
+    <div class="item h4">
+        16
+    </div>
+    <div class="item h3">
+        17
+    </div>
+    <div class="item h2">
+        18
+    </div>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  function render() {
+       var $itemW = $('.item').outerWidth(true);
+        var $winW = $(window).width();
+        var count = parseInt($winW/$itemW);
+        var sumItemHeight = [];
+        for(var i = 0;i<count;i++){
+            sumItemHeight.push(0);//取得原始第一列的横排top值
+        }
+        $('.item').each(function(){
+            var $cur =$(this);//千万不要粗心写成$('this')----- this表示dom原生对象，$(this)表示jquery对象
+            var idx = 0,
+               minItemHeight =sumItemHeight[0];
+            for(var i=0;i<sumItemHeight.length;i++){//遍历所有的盒子比较高度，取得最短高度的下标和高度值
+                if(sumItemHeight[i]<minItemHeight){
+                    idx=i;
+                    minItemHeight = sumItemHeight[i];
+                }
+            }
+
+            $cur.css({
+                left: $itemW*idx,
+                top: minItemHeight
+            });
+            sumItemHeight[idx] = $cur.outerHeight(true) + sumItemHeight[idx];//放入一个盒子后更新高度值值和
+        });
+    }
+        render();
+        $(window).on('resize',function(){
+            render();//当调整浏览器窗口的大小时时重新渲染
+        });
+
+
+</script>
+</body>
+</html>
