@@ -8,59 +8,56 @@ html,body{
   margin: 0;
   padding: 0;
 }
+.layout{
+  margin: 0 auto;
+}
 .main{
   margin: 0 auto;
-  width: 520px;
-  height: 160px;
-  background:#ccc;
-  overflow: auto;
-
-
+  width: 800px;
+  background: #ccc;
+  padding-bottom: 20px;
 }
 .block{
-  width: 160px;
-  height: 60px;
-  margin: 10px;
-  background: green;
+  margin-left: -40px;
+}
+.block:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.box{
+  width: 240px;
+  height: 80px;
+  margin-left: 40px;
+  margin-top: 20px;
   float: left;
-}
-.block:first-child{
-  margin-left: 0;
-}
-.block:nth-child(3){
-  margin-right: 0;
-
-}
-.block:nth-child(4){
-  margin-left: 0;
-
-}
-.block:nth-child(6){
-margin-right: 0;
-
+  background: green;
 }
     </style>
   </head>
   <body>
-    <div class="main">
+    <div class="main" class="layout">
       <div class="block">
+       <div class="box">
         1
-      </div>
-      <div class="block">
+       </div>
+       <div class="box">
         2
-      </div>
-      <div class="block">
+       </div>
+       <div class="box">
         3
-      </div>
-      <div class="block">
+       </div>
+       <div class="box">
         4
-      </div>
-      <div class="block">
+       </div>
+       <div class="box">
         5
-      </div>
-      <div class="block">
+       </div>
+       <div class="box">
         6
-      </div>
+       </div>
+       </div>
     </div>
   </body>
 </html>
