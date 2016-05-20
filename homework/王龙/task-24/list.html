@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style>
+        .ct{
+            border:1px solid gray;
+            border-radius: 5px;
+            padding: 15px;
+			margin-top:10px;
+        }
+        .btn{
+            color: black;
+            border-radius: 5px;
+            height: 40px;
+            line-height: 40px;
+            width:50px;
+            display: inline-block;
+            padding: 0 15px;
+            margin-top: 15px;
+            position: relative;
+            background: pink;
+            color:#fff;
+        }
+        .btn-group{
+            text-align: center;
+        }
+        .btn:hover{
+            background: #36C3E5;
+            color: #fff;
+        }
+        .loading{
+            /**/display: none;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: gray;
+            background: url(http://img.xker.com/xkerfiles/allimg/1504/2232502a1-12.gif);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<input type="hidden" name="current" id="current" value="2">
+<div id="list">
+    <div class="ct">内容 1</div>
+    <div class="ct">内容 2</div>
+    <div class="ct">内容 3</div>
+    <div class="ct">内容 4</div>
+    <div class="ct">内容 5</div>
+</div>
+<div class="btn-group">
+    <div  class="btn">load
+        <div class="loading">
+        </div>
+    </div>
+</div>
+<script>
+    var btn = document.querySelector('.btn'),
+	        ct=document.querySelector('.ct'),
+            cover=document.querySelector('.loading'),
+            current=document.querySelector('#current'),
+    list = document.querySelector('#list');
+
+    btn.addEventListener('click',function(event){
+	    event.stopImmediatePropagation();
+        cover.style.display='block';
+        ajax({
+            url: '/load',   //接口地址
+            type: 'get',               // 类型， post 或者 get,
+            data: {
+                current: current.value
+            },
+            success: function(ret){
+                ret.data.forEach(function(e,i){
+				    var node = ct.cloneNode(true);
+					node.innerText=e;
+                    list.insertBefore(node,list.lastChild.nextSibling);
+                });
+                current.value = Number(current.value) +1 ;
+				cover.style.display='none';
+            },
+            error: function(){
+                console.log('出错了');
+				cover.style.display='block';
+            }
+        })
+    });
+
+    function ajax(opts){
+        var xhr = createXHR();
+        var param = '';
+        for (var key in opts.data) {
+            param += key + '=' + opts.data[key] + '&';
+        }
+        param = param.substring(0,param.length-1)
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                opts.success(JSON.parse(xhr.responseText));
+            }
+            if (xhr.readyState === 4 && xhr.status >= 500) {
+                opts.error();
+            }
+        };
+        var method = opts.type.toLowerCase();
+        if (method === 'post') {
+            xhr.open(opts.type, opts.url, true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send(param);
+        }
+        if (method === 'get') {
+            xhr.open(opts.type, opts.url + '?' + param, true);
+            xhr.send();
+        }
+    }
+    function createXHR(){
+        var xhr = null;
+        try {
+            // Firefox, Opera 8.0+, Safari，IE7+
+            xhr = new XMLHttpRequest();
+        }
+        catch (e) {
+            // Internet Explorer
+            try {
+                xhr = new ActiveXObject("Msxml2.XMLHTTP");
+            }
+            catch (e) {
+                try {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                catch (e) {
+                    xhr = null;
+                }
+            }
+        }
+        return xhr;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>validate</title>
+    <link rel="stylesheet" type="text/css" href="./task-14/Font-Awesome-master/css/font-awesome.min.css">
+    <style id="styleElement">
+        body{
+            font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+        }
+        span,div,ul,li,body{
+            padding: 0;
+            margin: 0;
+        }
+        .ct{
+            margin: 0 auto;
+            width: 1024px;
+            border:1px solid #ccc;
+            border-radius:5px;
+            padding: 20px;
+        }
+
+
+        .item-group{
+            text-align: center;
+        }
+
+        .btn{
+            color: black;
+            border-radius: 5px;
+            height: 40px;
+            line-height: 40px;
+            width:50px;
+            display: inline-block;
+            padding: 0 15px;
+            margin-top: 15px;
+            position: relative;
+            background: pink;
+            color:#fff;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn:hover{
+            background: rgba(228, 26, 99, 0.61);
+            color: #fff;
+        }
+        .btn:before{
+            content: '';
+            display: none;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: gray;
+            background: url(http://img.xker.com/xkerfiles/allimg/1504/2232502a1-12.gif);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 5px;
+
+        }
+
+        /*white-space:nowrap; 强制在同一行内显示所有文本，合并文本间的多余空白，直到文本结束或者遭遇br对象。*/
+
+        .item-group{
+            margin: 25px;
+            text-align: center;
+            font-size: 0;
+            position: relative;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .layout>.item-group.error{
+            box-shadow: 0 0 14px 4px rgba(255, 0, 0, .6);
+        }
+        /*calc(100% - 31px);*/
+        .item-group>input{
+            width: calc(100% - 43px);
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 0 4px 4px 0;
+            outline: none;
+            height: 44px;
+            padding: 4px 12px;
+            box-sizing: border-box;
+        }
+
+        .item-group > .add-on{
+            border: 1px solid #ccc;
+            font-size: 14px;
+            padding: 4px 5px;
+            border-radius: 4px 0 0 4px;
+            height: 34px;
+            line-height: 34px;
+            margin-right: -1px;
+            display: inline-block;
+            width: 31px;
+            text-align: center;
+            vertical-align: top;
+        }
+        .btn.active:before{display:block ;}
+        .layout{
+            float: left;
+            width: 50%;
+        }
+        .layout:last-child{
+            background: pink;
+            color: #fff;
+            float: right;
+            border-radius: 5px;
+            padding: 10px;
+            box-sizing: border-box;
+
+        }
+        .valid:after{
+            content: '';
+            clear: both;
+            display: block;
+        }
+        .item-group>.tip{
+            display: none;
+            font-size: 12px;
+            background: pink;
+            position: absolute;
+            border-radius: 5px;
+            padding: 10px;
+            /*top: 50%;*/
+            /*transform: translate(-106%,-50%);*/
+            z-index: 10;
+            text-align: left;
+            right: 100%;
+            margin-right: 20px;
+            top:0;
+        }
+        .item-group>.tip.active{
+            display: block;
+        }
+        .tip:after{
+            content: ' ';
+            display: inline-block;
+            border: 1px solid transparent;
+            padding: 5px;
+            background: pink;
+            transform: rotate(45deg);
+            position: absolute;
+            right: -3px;
+            top: 42%;
+        }
+        /*circle;*/
+        .tip> ul{
+            list-style-type: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="ct">
+    <form action="" class="valid">
+        <div class="layout">
+            <div class="item-group">
+                <!--<lable class="lable">用户名</lable>-->
+                <span class="add-on">
+                    <i class="fa fa-user" aria-hidden="true" title="用户名"></i>
+                </span>
+                <input type="text" name="userName"  id="userName"  class="error" placeholder="请输入用户名">
+                <div class="tip">
+                    只能是字母、数字、下划线，3-10个字符
+                </div>
+            </div>
+            <div class="item-group">
+                <span class="add-on"><i class="fa fa-eye-slash" aria-hidden="true" title="密码"></i></span>
+                <input type="password" name="password" id="password" placeholder="请输入密码">
+                <div class="tip">
+                    <ul>
+                        <li>大写字母、小写、数字、下划线最少两种</li>
+                        <li>6-15个字符</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="item-group">
+                <span class="add-on">
+                    <i class="fa fa-unlock-alt" aria-hidden="true" title="再输入一次"></i>
+                </span>
+                <input type="password" name="pwd"  id="pwd" placeholder="请在输入一次密码">
+                <div class="tip">
+                    两次输入密码不一致
+                </div>
+            </div>
+
+            <div class="item-group center">
+                <div  class="btn">注&nbsp;&nbsp;册</div>
+            </div>
+        </div>
+        <div class="layout">
+            <h3>行内元素问题&定位</h3>
+            <p>①：行内元素间的4px:<br>
+                <style>
+                    .big,.small{
+                        border: 1px solid gray;
+                    }
+                </style>
+                <span class="big">big</span>
+                <span class="small">small</span>
+            </p>
+
+            <p>②：行内元素间的vertical-align默认baseline：<br>
+                <style>
+                    .item-group > .add-on-test{
+                        border: 1px solid #ccc;
+                        font-size: 14px;
+                        padding: 4px 5px;
+                        border-radius: 4px 0 0 4px;
+                        height: 34px;
+                        line-height: 34px;
+                        margin-right: -1px;
+                        display: inline-block;
+                        width: 31px;
+                        text-align: center;
+                        background: #fff;
+                        color: #ccc;
+                        /*vertical-align: top;*/
+                    }
+                    .item-group>.test{
+                        width:300px;
+                        font-size: 14px;
+                        border: 1px solid #ccc;
+                        border-radius: 0 4px 4px 0;
+                        outline: none;
+                        height: 44px;
+                        padding: 4px 12px;
+                        box-sizing: border-box;
+                    }
+
+                </style>
+                <div class="item-group">
+                    <!--<lable class="lable">用户名</lable>-->
+                    <span class="add-on-test">
+                        <i class="fa fa-user" aria-hidden="true" title="用户名"></i>
+                    </span>
+                    <input type="text" class="test" name="userName" placeholder="请输入用户名">
+                </div>
+            </p>
+            <p>
+                ③：每当你用百分数的时候，都要这样问自己：基准是什么，是谁的宽度/高度<br>
+                transform: translate(-106%,-50%);是基于自己的宽度向左移动（宽度*-106%），自己的宽度不固定移动的多少不一致<br>
+                应该：right: 100%; margin-right: 20px;
+            </p>
+        </div>
+    </form>
+</div>
+
+<script>
+    //password
+     var btn = document.querySelector('.btn'),
+             password = document.querySelector('#password'),
+             pwd = document.querySelector('#pwd'),
+             userName = document.querySelector('#userName');
+
+    btn.addEventListener('click', function(event){
+        event.stopImmediatePropagation();
+        btn.classList.add('active');
+        if( checkUserName(userName.value) && checkPassword(password.value) && checkPwd()){
+            btn.classList.remove('active');
+            alert('注册成功');
+        }else{
+            //提示不合理的输入项
+        }
+    });
+
+     //btn.classList.add('active')
+     userName.addEventListener('change', function(event){
+            if(checkUserName(this.value)){
+                removeClass(this.parentNode,'error');
+                removeClass(this.nextElementSibling,'active');
+            }else{
+                console.log(this.nextElementSibling)
+                addClass(this.parentNode,'error');
+                addClass(this.nextElementSibling,'active');
+            }
+     });
+
+    password.addEventListener('input', function(event){
+        if(checkPassword(this.value)){
+            removeClass(this.parentNode,'error');
+            removeClass(this.nextElementSibling,'active');
+        }else{
+            console.log(this.nextElementSibling)
+            addClass(this.parentNode,'error');
+            addClass(this.nextElementSibling,'active');
+        }
+    });
+
+    pwd.addEventListener('input', function(event){
+        checkPwd();
+    });
+
+    function checkPwd(){
+        var pwdValue = pwd.value;
+        if(!checkPassword(pwdValue)){
+            addClass(pwd.parentNode,'error');
+            addClass(pwd.nextElementSibling, 'active');
+            return false;
+        }else if(pwdValue !== password.value){
+            pwd.nextElementSibling.innerText = '两次输入不一致，请再次输入';
+            addClass(pwd.nextElementSibling, 'active');
+            addClass(pwd.parentNode,'error');
+            return false;
+        } else{
+            removeClass(pwd.parentNode, 'error');
+            removeClass(pwd.nextElementSibling, 'active');
+            return true;
+        }
+    }
+
+    function checkPassword(str){
+
+        if (str.length < 6 || str.length > 20) {
+            return false;
+        }
+        if (/[^A-Za-z_0-9]/.test(str)) {
+            return false;
+        }
+        if (/(^\d+$)|(^[a-z]+$)|([A-Z]+$)|(^_+$)/.test(str)) {
+            return false;
+        }
+        return true;
+    }
+    //大写字母、小写字母、数字、下划线最少两种,长度为6~15
+
+
+    function checkUserName(str){
+        return /^[A-Za-z_0-9]{3,10}$/g.test(str);
+    }
+    function addClass(el,cls){
+        if(!this.hasClass(el,cls)){
+            el.className+=' '+cls;
+        }
+    }
+
+
+    function hasClass(el, cls) {
+        return new RegExp('(\\s|^)' + cls + '(\\s|$)','g').test(el.className)
+    }
+
+
+
+    function removeClass(el,cls){
+        if(hasClass(el,cls)){
+            el.className = el.className.replace(new RegExp('(\\s|^)' + cls + '(\\s|$)','g'),'')
+        }
+    }
+</script>
+</body>
+</html>
