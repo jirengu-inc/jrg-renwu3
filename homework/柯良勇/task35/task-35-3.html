@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 35</title>
+  <style>
+    body,ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    .ct{
+      position: relative;
+      overflow: hidden;
+      left: 50%;
+      margin-left: -147px;
+      margin-top: 40px;
+      width: 294px;
+      height: 184px;
+    }
+    .ct li{
+      list-style: none;
+    }
+    .ct a{
+      text-decoration: none;
+    }
+    .ct .arrow{
+      position: absolute;
+      top: 50%;
+      padding: 6px 11px;
+      border-radius: 50%;
+      background-color: #666;
+      color: white;
+    }
+    .ct .pre{
+      left: 10px;
+    }
+    .ct .next{
+      right: 10px;
+    }
+    .ct .bullet::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .ct .bullet{
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      margin-left: -60px;
+    }
+    .ct .bullet li{
+      float: left;
+      margin: 0 5px;
+      width: 20px;
+      height: 5px;
+      border-radius: 2px;
+      background-color: white;
+    }
+    .ct .bullet li.active{
+      background-color: #999;
+    }
+    .window li{
+      float: left;
+    }
+    .window{
+      position: absolute;
+    }
+  </style>   
+</head>
+<body>
+  <div class="ct">
+    <ul class="window">
+      <li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+      <li><a href="#"><img src="img/2.jpg" alt=""></a></li>
+      <li><a href="#"><img src="img/3.jpg" alt=""></a></li>
+      <li><a href="#"><img src="img/4.jpg" alt=""></a></li>
+    </ul>
+    <a href="#" class="next arrow">></a>
+    <a href="#" class="pre arrow"><</a>
+    <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="ct">
+    <ul class="window">
+      <li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+      <li><a href="#"><img src="img/2.jpg" alt=""></a></li>
+      <li><a href="#"><img src="img/3.jpg" alt=""></a></li>
+      <li><a href="#"><img src="img/4.jpg" alt=""></a></li>
+    </ul>
+    <a href="#" class="next arrow">></a>
+    <a href="#" class="pre arrow"><</a>
+    <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <script src="jquery1.9.1.min.js"></script>
+  <script>
+
+    function Carousel($node){                        //  Carousel的属性
+      this.$node=$node;
+      this.curNum=0;
+      this.turning=false;
+      this.imgWidth=$('img').width();
+      this.$win=$node.find('.window');
+      this.$bullet=$node.find('.bullet');
+      this.$win.prepend(this.$win.children().last().clone());
+      this.$win.append(this.$win.children().eq(1).clone());                  
+      this.imgCount=this.$win.children().length;
+      this.$win.css('width',this.imgCount*this.imgWidth);                      
+      this.$win.css('left',-this.imgWidth);
+      this.bind();
+      this.autoPlay();
+    }
+
+    Carousel.prototype = {
+      bind:function(){                                      // 事件绑定函数 bind
+        var This=this;
+        this.$node.find('.next').on('click',function(){This.turn(1)});   
+        this.$node.find('.pre').on('click',function(){This.turn(-1)});   
+        this.$node.find('.bullet').on('click','li',function(){           
+          This.turn($(this).index()-This.curNum);                         
+        });
+      },
+
+      autoPlay:function(){                                // 自动切换函数 autoPlay
+        var This=this;
+        clock=setInterval(function(){
+          This.turn(1);
+        },2000);
+      },
+
+      turn:function(num){                                 // 切换函数 turn
+        if(this.turning) return;
+        this.turning=true;
+        this.targetNum=(num+this.curNum+4)%(this.imgCount-2);        
+        var This=this;
+        this.$win.animate({left:'-='+(num*This.imgWidth)},function(){  
+          if(This.targetNum===0){
+            This.$win.css('left',-This.imgWidth);                 
+          };
+          if(This.targetNum===3){                                    
+            This.$win.css('left',-(This.imgCount-2)*This.imgWidth);
+          };
+          This.turning=false;  
+        });
+        this.$bullet.children().removeClass('active');
+        this.$bullet.children().eq(this.targetNum).addClass('active');
+        this.curNum=this.targetNum;
+      }
+    }
+    var $node1 = $('.ct').eq(0);
+    var $node2 = $('.ct').eq(1);
+    var carousel1 = new Carousel($node1);
+    var carousel2 = new Carousel($node2);
+  </script>
+</body>
+</html>

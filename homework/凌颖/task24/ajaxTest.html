@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax1</title>
+</head>
+<body>
+<input id="username" type="text" placeholder="username"/>
+<button id="btn">发送</button>
+<dl id="ct">
+
+</dl>
+<script type="text/javascript">
+    /*
+    *
+    * */
+    document.getElementById('btn').addEventListener('click',function(){
+        var username =document.getElementById("username").value;
+        var xml = new XMLHttpRequest();
+        var url = '/username/'+username;
+        xml.onreadystatechange = function(){
+            if(xml.status == 200 && xml.readyState == 4){
+                dealWith(xml.responseText);
+            }
+        };
+        xml.open('get',url,true);
+        xml.send();
+    });
+   function dealWith(str){
+       var userInfo =JSON.parse(str);
+       var str ='';
+       str += '<dt>姓名</dt>'+
+               '<dd>'+document.getElementById("username").value+'</dd>'+
+               '<dt>年纪</dt>'+
+               '<dd>'+userInfo.age+'</dd>'+
+               '<dt>性别</dt>'+
+               '<dd>'+userInfo.sex+'</dd>';
+       document.getElementById('ct').innerHTML = str;
+       console.log(str);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 22-1</title>
+  <style>
+    ul,li,div{
+      margin: 0;
+      padding: 0;
+    }
+    .ct:after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .tab-list>li{
+      float: left;
+      width: 150px;
+      height: 30px;
+      line-height: 30px;
+      list-style: none;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+    .tab-list>li:hover{
+      cursor: pointer;
+    }
+    .box{
+      display: none;
+      width: 414px;
+      height: 200px;
+      padding: 40px 20px;
+      border: 1px solid #ccc;
+    }
+    .active{
+      display: block;
+    }
+    .none{
+      display: none;
+    }
+    .bg-color{
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <div class="ct">
+    <ul class="tab-list">
+      <li class="bg-color">tab1</li>
+      <li>tab2</li>
+      <li>tab3</li>
+    </ul>
+    <div class="box active">内容1</div>
+    <div class="box">内容2</div>
+    <div class="box">内容3</div>
+  </div>
+  <script>
+    //addClass removeClass  添加删除claa模块
+    function hasClass(el, cls){
+      var regex=new RegExp('\\b'+cls+'\\b','g');
+      return regex.test(el.className);
+    }
+
+    function addClass(el,cls){
+      if(hasClass(el,cls)===false){
+        el.className += " "+cls;
+      }        
+    }
+
+    function removeClass(el,cls){
+      if(el.length){
+        for(var i=0;i<el.length;i++){
+          removeClass(el[i],cls);
+        }
+      }else removeOneEl(el,cls);
+      function removeOneEl(element,cls){
+        if(hasClass(el,cls)===true){
+          var regex=new RegExp('\\b'+cls+'\\b','g');
+          el.className=el.className.replace(regex,"");
+          el.className=el.className.replace(/\s{2}/g," ");
+        }     
+      }
+    }
+    // children No. 判断子元素序列
+    function getNumber(e,node){  
+      for(var i=0;i<3;i++){
+        if(e.target.innerText===node.children[i].innerText){
+          return i+1;
+        }
+      }
+    }
+    //main 主程序    
+    var tab=document.getElementsByClassName('tab-list')[0];
+    var ct=document.getElementsByClassName('ct')[0];
+    tab.addEventListener('click',bgColor,false);
+    tab.addEventListener('click',changeCon,false);
+    function bgColor(e){
+      removeClass(tab.children,'bg-color');
+      addClass(e.target,'bg-color');
+    }
+    function changeCon(e){
+      var i=getNumber(e,tab);
+      removeClass(ct.children,'active');
+      addClass(ct.children[i],'active');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加载更多</title>
+</head>
+<style>
+    #ct>li{
+        border:1px solid #ccc;
+        padding:10px;
+        margin:10px;
+        list-style:none;
+    }
+    #ct>li.active{
+        background-color:cornflowerblue;
+        color:#fff;
+    }
+    .btn{
+        width:200px;
+        height:100px;
+        line-height:100px;
+        text-align: center;
+    }
+    .btn img{
+        width:200px;
+        height:200px;
+    }
+    #loadMore{
+        display:block;
+        margin:10px auto;
+        cursor:pointer;
+    }
+
+</style>
+<body>
+<ul id="ct">
+    <li>内容1</li>
+    <li>内容2</li>
+    <li>内容3</li>
+    <li>内容4</li>
+    <li>内容5</li>
+    <li>内容6</li>
+    <li>内容7</li>
+    <li>内容8</li>
+    <li>内容9</li>
+    <li>内容10</li>
+    <li>内容11</li>
+    <li>内容12</li>
+</ul>
+
+<a class="btn" id="loadMore">加载更多</a>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $('#ct').on('mouseenter','li',function(){
+        $(this).addClass('active');
+    });
+    $('#ct').on('mouseleave','li',function(){
+        $(this).removeClass('active');
+    });
+
+    /*
+     *入参：{start：11 ，len：5}
+     *回参：{data：['内容11'，'内容12'，'内容13'，'内容14'，'内容15']}
+     *url: /getMore?start=3&len=5
+     * type:get
+     * */
+    var    delay,
+            cur = 13,
+            $btn =$('#loadMore');
+    $.data.isSend=false;
+    $(window).on('scroll',function(){
+        if(delay){
+            clearInterval(delay);
+        }
+        var delay = setTimeout(function(){
+            if(isVisible($btn)) {
+                checkShow();
+            }
+        }, 800)
+    });
+    function isVisible($ele){
+        var scrollT = $(window).scrollTop(),
+                winH = $(window).height(),
+                offsetT = $ele.offset().top;
+        if(scrollT+winH>offsetT){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function checkShow() {
+        if($.data.isSend) return;
+        $btn.html('<img src="img/load.gif">');
+        $.data.isSend=true;
+        $.ajax({
+            url: '/getMore',
+            type: 'get',
+            data: {
+                start: cur,
+                len: 5
+            },
+            success: function (json) {
+                $.each(json.data, function (k, ele) {
+                    var item = '<li>' + json.data[k] + '</li>';
+                    $('#ct').append(item);
+                })
+                cur += 5;
+                $.data.isSend=false;
+            },
+            error: function () {
+                $.data.isSend=false;
+                $btn.text('出错了');
+                alert('系统异常');
+            }
+        });
+    }
+
+
+</script>
+</body>
+</html>

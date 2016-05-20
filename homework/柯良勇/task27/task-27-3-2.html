@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 不操作DOM</title>
+  <style>
+    body,ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    .ct{
+      position: absolute;
+      overflow: hidden;
+      left: 50%;
+      top: 50%;
+      margin-left: -147px;
+      margin-top: -92px;
+      width: 294px;
+      height: 184px;
+    }
+    .ct li{
+      list-style: none;
+    }
+    .ct a{
+      text-decoration: none;
+    }
+    .ct .arrow{
+      position: absolute;
+      top: 50%;
+      padding: 6px 11px;
+      border-radius: 50%;
+      background-color: #666;
+      color: white;
+    }
+    .ct .pre{
+      left: 10px;
+    }
+    .ct .next{
+      right: 10px;
+    }
+    .ct .bullet::after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .ct .bullet{
+      position: absolute;
+      left: 50%;
+      bottom: 10px;
+      margin-left: -60px;
+    }
+    .ct .bullet li{
+      float: left;
+      margin: 0 5px;
+      width: 20px;
+      height: 5px;
+      border-radius: 2px;
+      background-color: white;
+    }
+    .ct .bullet li.active{
+      background-color: #999;
+    }
+    .window li{
+      float: left;
+    }
+    .window{
+      position: absolute;
+    }
+  </style>   
+</head>
+<body>
+  <div class="ct">
+    <ul class="window">
+      <li><a href="#"><img src="img/1.jpg" alt=""></a></li>
+      <li><a href="#"><img src="img/2.jpg" alt=""></a></li>
+      <li><a href="#"><img src="img/3.jpg" alt=""></a></li>
+      <li><a href="#"><img src="img/4.jpg" alt=""></a></li>
+    </ul>
+    <a href="#" class="next arrow">></a>
+    <a href="#" class="pre arrow"><</a>
+    <ul class="bullet">
+      <li class="active"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <script src="jquery1.9.1.min.js"></script>
+  <script>
+    var curNum=0;
+    var turning=false;
+    var imgWidth=$('img').width();
+    var $win=$('.window');
+
+    $win.prepend($win.children().last().clone());
+    $win.append($win.children().eq(1).clone());                    //给头尾加两个元素
+    var imgCount=$win.children().length;
+    $win.css('width',imgCount*imgWidth);                         // 动态设置ul的宽度
+    $win.css('left',-imgWidth);
+
+    $('.next').on('click',function(){turn(1)});                  //点击下一张 步数1
+    $('.pre').on('click',function(){turn(-1)});                 //点击前一张 步数-1
+
+    $('.bullet').on('click','li',function(){                    // 点击子弹条  转换图片
+      turn($(this).index()-curNum);                            // 计算步数 传入turn
+    });
+
+    var clock=setInterval(function(){
+      turn(1);
+    },2000);
+
+    function turn(num){                                            // 主函数 turn 传入切换的步数
+      if(turning) return;
+      turning=true;
+      var targetNum=(num+curNum+4)%(imgCount-2);                  // 计算目标图片 子弹条转换用
+      $win.animate({left:'-='+(num*imgWidth)},function(){        // 先变换 
+        if(targetNum===0){
+            $win.css('left',-imgWidth);                           // 余数等于0时 换到1位
+          };
+        if(targetNum===3){                                     // 余数等于3时 换到4位
+          $win.css('left',-(imgCount-2)*imgWidth);
+        }  
+        turning=false;
+      });
+      $('.bullet').children().removeClass('active');
+      $('.bullet').children().eq(targetNum).addClass('active');
+      curNum=targetNum;
+    }
+  </script>
+</body>
+</html>

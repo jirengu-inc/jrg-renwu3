@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>task-7-2</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<form name="myform" action="task-7.php" method="post">
+	<div>
+	姓名：	<input name="username" type="text" placeholder="用户名" maxlength=10>
+	</div>
+	<div>
+	密码：	<input name="password" type="password" placeholder="密码" />
+	</div>
+	<div>
+	性别：	<input name="sex" type="radio" value="male" checked/>男
+		<input name="sex" type="radio" value="female" />女
+	</div>
+	<div>
+	取向：	<input name="sexualty" type="radio" value="male" />男
+		<input name="sexualty" type="radio" value="female" checked/>女</div>
+	<div>
+	爱好：	<input name="dota" type="checkbox" />刀塔
+		<input name="travel" type="checkbox" checked />旅游
+		<input name="pat" type="checkbox" checked/>宠物
+	</div>
+	<div>
+	评论：<textarea name="comment" rows="8" cols="30" placehoder="ddd" maxlength=250 ></textarea>
+	</div>
+	<div>
+	我的car：<select name="mycar">
+			<option value="saab">萨博</option>
+			<option value="honda">本田</option>
+			<option value="ford">福特</option>
+			<option value="audi">奥迪</option>
+			<option value="other">其它</option>
+		</select>
+		<button type="submit">提交</button>
+	</div>
+	</form>
+</body>
+</html>

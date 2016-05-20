@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task10-1两栏布局</title>
+	<style type="text/css">
+		html,body,p,h3,div,ul,li,a,img{
+			margin: 0;
+			padding: 0;
+			font-family: "Microsoft Yahei";
+		}
+		a{
+			border-radius: 3px;
+			text-decoration: none;
+
+		}
+		a:hover{
+			background-color: red;
+		}
+		.header,.footer{
+			height: 50px;
+			background-color: black;
+			clear: both;
+			/* 清除对footer的影响 */
+		}
+
+		.head-nav{
+			width: 900px;
+			margin: 0 auto;
+		}
+
+		.index{
+			float: right;
+		}
+
+		.index>li{
+			display: inline-block;
+			color: white;
+			line-height: 50px;
+			width: 80px;
+		}
+		.index>li>a{
+			/* text-decoration: none; */
+
+			color: white;
+		}
+
+		.container{
+			overflow: auto;
+			width: 900px;
+			margin: 15px auto;
+			
+		}
+		.left-bar{
+			width: 200px;
+			height: 500px;
+			/* margin-right: 10px; */
+			float: left;
+			background-color: #ccc;
+		}
+		.content{
+			width: 680px;
+			padding-left: 20px;
+			float: right;
+			
+		}
+		.myWork{
+			background-color: #ccc;
+			padding: 10px;
+		}
+		.foot-nav{
+			width:900px;
+			margin: 0 auto;
+			color: white;
+		}
+		.foot-nav>ul li{
+
+			display: inline-block;
+			line-height: 50px;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		.foot-nav>ul li a{
+			
+			/* text-decoration: none; */
+			color: white;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="header">
+		<div class="head-nav">
+			<a class="myPage" href="#">
+				<img src="img/jirengu.png" alt="饥人谷logo">
+			</a>
+		
+			<ul class="index">
+				<li>
+					<a href="#" class="introduce">技能</a>
+				</li>
+				<li>
+					<a href="#" class="introduce">经历</a>
+				</li>
+				<li>
+					<a href="#" class="introduce">作品</a>
+				</li>
+				<li>
+					<a href="#" class="introduce">关于</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="left-bar"></div>
+		<div class="content">
+			<div class="myWork">
+				<h3>我的作品</h3>
+				<artical>
+					为了，为了自己的相信吧，</br>
+					为了说不清道不明的一切吧。</br>
+					为了独自承担的错误，为了默默忍受的痛苦。</br>
+					为了无人知晓的艰辛，为了自我认可的理念。</br>
+					为了可恨可笑的过去，为了可憎可怕的未来。</br>
+					为了自我陶醉的微笑，为了永藏心底的美好。</br>
+					为了绝不后退的决心，为了残存不灭的理想。</br>
+					为了不问缘由的信任，为了人同此心的善良。</br>
+				</artical>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="foot-nav">
+			<ul>
+				<li><a href="#" class="course">饥人谷</a></li>
+				<li><a href="#" class="course">JSCODE</a></li>
+				<li><a href="#" class="course">JSBIN</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

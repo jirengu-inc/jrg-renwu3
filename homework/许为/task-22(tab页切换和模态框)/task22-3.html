@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level22</title>
+</head>
+<body>
+	<ul class="ct">
+		<li data-img="../img/baobao.jpg">鼠标放置查看图片1</li>
+		<li data-img="../img/nianqr.jpg">鼠标放置查看图片2</li>
+		<li data-img="../img/ss.jpg">鼠标放置查看图片3</li>
+	</ul>
+	<div class="img-preview"></div>
+	<script type="text/javascript">
+		var ct=document.querySelector(".ct");
+		var show=document.querySelector(".img-preview");
+		ct.addEventListener("click",function(e){
+			var img=document.createElement("img");
+			var target=e.target;
+			var site=target.getAttribute("data-img");
+			img.setAttribute("src",site);
+			if(show.firstChild){   //判断是否存在img标签
+				show.replaceChild(img,show.firstChild);
+			}else{
+				show.appendChild(img);
+			}
+		})
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<ul class="ct">
+    <li>这里是</li>
+    <li>饥人谷</li>
+    <li>前端6班</li>
+</ul>
+<input id="ipt-add-content" placeholder="添加内容"/>
+<button id="btn-add-start">开头添加</button>
+<button id="btn-add-end">结尾添加</button>
+<script>
+    var content = document.getElementById("ipt-add-content"),
+         start = document.getElementById("btn-add-start"),
+         end = document.getElementById("btn-add-end");
+    var wrap = document.querySelector(".ct");
+
+     function noSpace(str){
+         var patt = /^\s+$/g;
+          return patt.test(str);
+     }
+    wrap.addEventListener("click",function(e){
+        e.target = wrap.target;
+        console.log(e.target.innerText);
+    },false);
+    start.addEventListener("click",function(e){
+        var li = document.createElement("li");
+        if((!noSpace(content.value)) && content.value !== ""){
+            li.innerText =  content.value;
+            wrap.insertBefore(li,wrap.firstChild);
+        }else{
+            console.log("请填写非空字符");
+        }
+    },false);
+    end.addEventListener("click",function(e){
+        var li = document.createElement("li");
+        if(!noSpace(content.value)  && content.value !== ""){
+            li.innerText = content.value;
+            wrap.appendChild(li);
+        }else{
+            console.log("请填写非空字符");
+        }
+    },false);
+</script>
+</body>
+</html>

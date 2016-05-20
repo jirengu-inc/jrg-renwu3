@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        header{
+            height: 40px;
+            line-height: 40px;
+            background: #f0f9ff;
+        }
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        h1{
+            float: left;
+        }
+        .topAbout{
+            float: right;
+        }
+        .topAbout li{
+            float: left;
+            padding-left: 20px;
+        }
+        .center{
+            width: 900px;
+            margin:0 auto;
+            overflow: hidden;
+        }
+
+        .left{
+            width: 200px;
+            background: yellowgreen;
+            height: 200px;
+            float: left;
+        }
+        .right{
+            width: 700px;
+            background: pink;
+            height: 200px;
+            float: left;
+        }
+        footer{
+            background: #328905;
+            height: 40px;
+            line-height: 40px;
+        }
+        footer li{
+            float: left;
+            margin-right: 20px;
+
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="center">
+        <h1><img src="http://www.jirengu.com/data/upload/2016/0321/16/56efb29eadb87.png" alt="" width="50"/></h1>
+        <ul class="topAbout">
+            <li><a href="#">技能</a></li>
+            <li><a href="#">作品</a></li>
+            <li><a href="#">关于</a></li>
+        </ul>
+    </div>
+</header>
+<section class="clear center">
+    <nav class="left">
+        <p>左边</p>
+    </nav>
+    <section class="right">
+        <h3>右边</h3>
+    </section>
+</section>
+<footer>
+    <ul class="center clear">
+        <li><a href="#">关于我们</a></li>
+        <li><a href="#">联系我们</a></li>
+    </ul>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+*{
+	margin:0;
+	padding: 0;
+}
+body{
+	font-family: "微软雅黑";
+}
+a{
+	text-decoration: none;
+	color: #000;
+}
+a:hover{
+	opacity: 0.7;
+}
+li{
+	list-style: none;
+}
+.content{
+	width: 1000px;
+	margin:0 auto;
+}
+/*header*/
+#header{
+	width: 100%;
+	border-bottom: 1px solid #eee;
+	background-color: #fff;
+	position: fixed;
+	top: 0;
+	height: 50px;
+	z-index: 5;
+}
+.nav>li{
+	float: left;
+	padding-right:30px; 
+	font-size: 14px;
+	line-height: 50px;
+}
+.nav .home{
+	font-size: 22px;
+}
+.list .iconfont{
+	font-size: 10px;
+}
+.list{
+	position: relative;
+}
+.list ul{
+	display: none;
+	background-color: #fff;
+	width: 160px;
+	position: absolute;
+	left: -20px;
+	top: 100%;
+	border:1px solid;
+	border-color: transparent #eee #eee #eee;
+	padding-top: 5px;
+}
+.list li{
+	padding-left: 24px;
+	line-height: 30px;
+}
+.list:hover .meun{
+	display: block;
+}
+.meun li:hover{
+	background-color: #eee;
+}
+.meun .iconfont{
+	font-size: 14px;
+}
+.clear{
+	clear: both;
+}
+.list .meun p{
+	padding-left: 24px;
+	border-top: 1px solid #eee;
+	font-size: 12px;
+	color: #333;
+}
+/*about*/
+#about{
+	margin-top: 51px;
+	background-color: #b84d45;
+}
+#about h1{
+	font-size:3.6em; 
+	font-weight: normal;
+	color: #fff;
+	line-height: 1.5em;
+}
+#about p{
+	font-size: 1.5em;
+	color: #efd8d6;
+}
+#about .content{
+	padding: 64px 0;
+}
+/*main*/
+#main .title a{
+	color: #b84d45;
+	font-size: 14px;
+}
+#main .title a:hover{
+	border-bottom: 1px solid #b84d45;
+}
+#main .iconfont{
+	color: #ccc;
+}
+#main .title{
+	line-height: 2.4em;
+	background-color: #eee;
+	padding-left: 16px;
+	margin: 40px 0 20px 0;
+	font-size: 14px;
+	color: #333;
+}
+#main .works img{
+	height: 195px;
+	width: 310px;
+}
+#main .project{
+	float: left;
+	border:1px solid #ccc;
+	border-radius: 3px;
+	padding: 5px;
+	margin-bottom: 30px;
+	text-align: center;
+}
+#main .center{
+	margin-left: 16px;
+	margin-right: 16px;
+}
+#main h2{
+	font-weight: normal;
+	line-height: 2.5em;
+	margin-top: 10px;
+}
+#main p{
+	font-size: 14px;
+}
+#main .btn{
+	display: block;
+	margin: 20px auto 30px auto;
+	width: 50px;
+	height: 30px;
+	line-height: 30px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	font-size: 14px;
+}
+#main .btn:hover{
+	background-color: #eee;
+}
+/*message*/
+#message{
+	background-color: #b84d45;
+	margin-top: 40px;text-align: center;
+	color: #fff;
+}
+#message h2{
+	font-size: 1.9em;
+	line-height: 1.4em;
+	font-weight: normal;
+}
+#message p{
+	font-size: 18px;
+	line-height: 2em;
+}
+#message .content{
+	padding: 50px 0;
+}
+/*footer*/
+#footer{
+	padding: 70px 0 60px 0;
+	text-align: center;
+	font-size: 14px;
+}
+#footer hr{
+	background-color: #ccc;
+	border:0;
+	height: 1px;
+	margin-bottom: 24px;
+}
+#footer a{
+	color: #b84d45;
+}

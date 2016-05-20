@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圣杯布局</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.head{
+			height: 50px;
+			background: #ccc;
+		}
+		.foot{
+			height: 50px;
+			background: #ccc;
+		}
+		
+		.container{
+			padding: 0 200px;
+
+		}
+
+		.main{
+			width: 100%;
+			float:left;
+			background-color: #3a5;
+		}
+
+		.container:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		.left{
+			background-color: #a49;
+			width: 200px;
+			float:left;
+			margin-left: -100%;
+			position: relative;
+			left:-200px;
+
+		}
+		.right{
+			background-color: #168;
+			width: 200px;
+			float:left;
+			margin-left: -200px;
+			position: relative;
+			left: 200px;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="head">这是头这石头</div>
+	<div class="container">
+		<div class="main">
+			这个是圣杯布局，两侧边栏固定宽度，中间自适应这个是圣杯布局，两侧边栏固定宽度，中间自适应
+			这个是圣杯布局，两侧边栏固定宽度，中间自适应这个是圣杯布局，两侧边栏固定宽度，中间自适应
+			这个是圣杯布局，两侧边栏固定宽度，中间自适应这个是圣杯布局，两侧边栏固定宽度，中间自适应
+			这个是圣杯布局，两侧边栏固定宽度，中间自适应这个是圣杯布局，两侧边栏固定宽度，中间自适应
+			这个是圣杯布局，两侧边栏固定宽度，中间自适应
+		</div>
+		<div class="left">左侧边栏，固定宽度</div>
+		<div class="right">右侧边栏，固定宽度</div>		
+	</div>
+	<div class="foot">这世界脚部</div>
+</body>
+</html>

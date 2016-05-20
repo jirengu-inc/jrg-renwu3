@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+body{margin: 0;padding: 0;}
+#header{
+  height: 50px;
+  background: red;
+}
+#footer{
+  height: 50px;
+  background: red;
+}
+#content{
+  /* background: pink; */
+  padding: 0 200px;
+ 
+}
+#content:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+.main{
+  float: left;
+  width: 100%;
+  background: gray;
+  height: 300px;
+}
+.aside-left{
+  width:200px;
+  height:100px;
+  background: #D4B7B7;
+  float: left;
+  margin-left:-100% ;
+  position: relative; 
+  left:-200px;
+  top:0;
+  
+}
+.aside-right{
+  width:200px;
+  height:100px;  
+  float: left;
+  background: green;
+  margin-left: -200px;
+   /* transform: translate(100%,0); */
+  position: relative; 
+  left:200px;
+  top:0;
+}
+  </style>
+</head>
+<body>
+      <div id="header">header</div>
+  
+      <div id="content">
+          <div class="main">
+                xxxxxxxxxxxxxxxasdffffff                  ffffffffffffffffffffffffffffff
+          </div>
+          <div class="aside-left">aside-left</div>
+          <div class="aside-right">aside-right</div>
+      </div>
+            
+      <div id="footer"></div>
+</body>
+</html>

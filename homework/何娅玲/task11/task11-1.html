@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .nav{
+            height: 40px;
+            line-height: 40px;
+            background: seagreen;
+        }
+        .nav>li{
+            float: left;
+            padding: 0 20px;
+            position: relative;
+
+        }
+
+        .nav>li>a{
+            color: floralwhite;
+        }
+        .nav>li>ul{
+            display: none;
+            width: 100%;
+            background: #cccccc;
+            padding: 0 10px;
+            position: absolute;
+            top: 40px;
+            left: 0;
+        }
+        .nav>li:hover>ul{
+            display: block;
+        }
+        .nav>li:hover>ul a{
+            color: red;
+        }
+        .nav>li:hover>ul a:hover{
+            color: #003366;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <ul class="nav clear">
+        <li>
+            <a href="#">前端</a>
+            <ul>
+                <li><a href="#">HTML</a></li>
+                <li><a href="#">css</a></li>
+                <li><a href="#">javascript</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">服务器</a>
+            <ul>
+                <li><a href="#">node</a></li>
+                <li><a href="#">PHP</a></li>
+                <li><a href="#">java</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

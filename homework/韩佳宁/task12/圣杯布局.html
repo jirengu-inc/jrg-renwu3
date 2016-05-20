@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>圣杯布局</title>
+    <style media="screen">
+      html,body,p{
+        margin: 0;
+        padding: 0;
+      }
+      #header,#footer{
+        height: 40px;
+        line-height: 40px;
+        background: #222;
+        color: white;
+        text-align: center;
+      }
+      #main .content{
+        overflow: auto;/*用BFC空间包裹浮动元素*/
+        padding: 0 200px;/*包裹三栏的夫元素预留出左右padding空间*/
+      }
+
+      .center{
+        width: 100%;
+        background: pink;
+        float: left;
+        text-align: center;
+      }
+      .left,.right{
+        width: 200px;
+        background: yellow;
+        float: left;
+        text-align: center;
+      }
+      .left{
+        margin-left: -100%;
+        position: relative;
+        left: -200px;
+      }
+      .right{
+        margin-left: -200px;
+        position: relative;
+        right: -200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <p>圣杯布局</p>
+    </div>
+    <div id="main">
+      <div class="content">
+        <div class="center">
+          <p>中间栏</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+        </div>
+        <div class="left">
+          <p>侧边栏定宽</p>
+          <p>左栏的margin-left是-100%</p>
+          <p>position: relative;</p>
+          <p>left: -200px;</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+        </div>
+        <div class="right">
+          <p>侧边栏定宽</p>
+          <p>右栏的margin-left是负的自身宽度</p>
+          <p>position: relative;</p>
+          <p>right: -200px;</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+          <p>内容</p>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <p>圣杯布局</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 31</title>
+  <style>
+    html,body,ul,li,p,div{
+      margin: 0;
+      padding: 0;
+    }
+    .ct{
+      width: 900px;
+      margin: 0 auto;
+    }
+    .list{
+      position: relative;
+      margin-right: -10px;
+    }
+    .list:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .list .item{
+      position: absolute;
+      margin: 10px;
+      padding: 0 0 10px 0;
+      width: 280px;
+      border: 1px solid #dfdfdf;
+      background-color: white;
+      transition: all .8s;
+      opacity: 0;
+      list-style: none;
+    }
+    .list img{
+      margin: 10px;
+      width: 260px;
+    }
+    .list .header{
+      height: 25px;
+      margin: 0 12px;
+      border-bottom: 1px solid #dbdbdb;
+    }
+    .list .desp{
+      font-size: 12px;
+      line-height: 1.8;
+      margin: 10px 15px 0;
+      color: #777371;
+    }
+    #flag{
+      visibility: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="ct">
+    <ul class="list">
+<!--     <li class="item">
+      <a href="#" class="link">
+        <img src="" alt="">
+      </a>
+      <h4 class="header"></h4>
+      <p class="desp"></p>
+    </li> -->
+  </ul>
+  <div id="flag">看不见</div>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+
+
+  var perPageCount=9;   // 主函数 waterFall的初期设定
+  var curPage=0;
+  var loading=false;   // ajax锁
+  var clock;
+  waterFall();       // 先加载并布局1次
+  $(window).on('scroll',function(){
+    if(clock){
+      clearTimeout(clock);
+    };
+    clock=setTimeout(function(){
+      if(checkShow($('#flag'))){
+        waterFall();
+      }
+    },200);
+  });
+
+  // 函数checkShow 给定元素 查看元素是否出现
+  function checkShow($node){
+    scroll=$(window).scrollTop();
+    winH=$(window).height();
+    nodeH=$node.offset().top;
+    if(nodeH<scroll+winH){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  // 主函数 waterFall  成功获取数据后调用其他函数(进行创建元素并摆放) 主功能实现
+  function waterFall(){    
+    if(loading===true)return;
+    loading=true;
+    curPage++;             
+    $.ajax({
+      url: 'http://platform.sina.com.cn/slide/album_tech',
+      type: 'GET',
+      dataType: 'jsonp',
+      jsonp:'jsoncallback',
+      data: {
+        app_key: '1271687855',
+        num: perPageCount,
+        page: curPage
+      }
+    })
+    .done(function(ret) {
+      if(ret.status.code==='0'){
+        creatAppend($('.list'),ret.data);
+      }
+    })
+    .fail(function() {
+      alert('获取数据失败');
+    });
+  }
+
+  // 函数creatAppend 接受data创建元素并append到指定节点 
+  function creatAppend($node,data){  
+    var html='';                    
+    for(var i=0;i<data.length;i++){
+      html += '<li class="item">';
+      html += '<a href="'+data[i].url+'" class="link"><img src="'+data[i].img_url+'" alt=""></a>';
+      html += '<h4 class="header">'+data[i].short_name+'</h4>';
+      html += '<p class="desp">'+data[i].short_intro+'</p>';
+      html += '</li>';        
+    }
+    var $li=$(html);
+    $node.append($li);
+    var defer=[];                   
+    $(html).find('img').each(function(){
+      var dfd=$.Deferred();
+      $(this).on('load',function(){
+        dfd.resolve();         // 加载完 设定状态为完成
+      });
+      defer.push(dfd);             // 当图片加载完成后 调用position进行瀑布流摆放
+    });
+    $.when.apply(null,defer).done(function(){  // $.when不接受数组对象 使用apply
+      setPosition($li);
+    })
+  }
+  
+  // 函数position 对元素进行瀑布流摆放                                   
+  var min,itemWidth,colNum,cloHeight;  
+  function setPosition($node){         
+    if(min===undefined){          // 如果min未定义 则说明首次执行 进行函数position的初期设定
+      itemWidth=$('.item').outerWidth(true),   
+      colNum=parseInt($('.list').width()/itemWidth),
+      cloHeight=[];
+      for(var i=0;i<colNum;i++){
+        cloHeight.push(0);
+      };
+    };
+    $node.each(function() {
+      min=0;
+      for(var i=0;i<colNum;i++){
+        if(cloHeight[i]<cloHeight[min]){
+          min=i;
+        }
+      } 
+      $(this).css({
+        left: min*itemWidth,
+        top: cloHeight[min],
+        opacity:1
+      });
+      cloHeight[min] += $(this).outerHeight(true);
+      $('.list').height(Math.max.apply(null,cloHeight));
+      loading=false;
+    });
+  }
+  </script>
+</body>
+</html>

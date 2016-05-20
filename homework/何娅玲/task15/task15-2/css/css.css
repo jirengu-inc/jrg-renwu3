@@ -1,0 +1,460 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
+a{
+    text-decoration: none;
+    color: #777;
+}
+li{
+    list-style: none;
+}
+.clear:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.clear{
+    zoom: 1;
+}
+.imgCircle{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+.imgBlock{
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+.center{
+    width: 1170px;
+    margin: 0 auto;
+}
+nav{
+    width: 100%;
+    height: 75px;
+    position: fixed;
+    top:0;
+    left: 0;
+    background-color: #000;
+    z-index: 2;
+    overflow: hidden;
+}
+.navbar-header{
+    float: left;
+    text-align: center;
+    height: 75px;
+    line-height: 75px;
+
+    font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+    font-size: 21px;
+    font-style: italic;
+}
+.navbar-header a{
+    color: #fed136;
+}
+.navbar-nav{
+    float: right;
+}
+.navbar-nav li{
+    float: left;
+    width: 108px;
+    height: 75px;
+    text-align: right;
+    line-height: 75px;
+}
+.navbar-nav li>a{
+    color: #fff;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 18px;
+}
+ .navbar-nav li>a:hover{
+    color: #fed136;
+}
+
+.baner{
+    width: 100%;
+    height: 978px;
+    background: url('../image/header-bg.jpg') no-repeat;
+    background-size: cover;
+    background-position: 0;
+    color: #fff;
+
+}
+.table{
+    display: table;
+    height: 100%;
+}
+.wrap{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+.baner .wrap h2{
+    font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 40px;
+    font-style: italic;
+    font-weight: normal;
+}
+.baner .wrap h1{
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 75px;
+    margin-top: 20px;
+}
+.btn{
+    display: inline-block;
+    color: #fff;
+    background-color: #fed136;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    border-radius: 3px;
+    font-size: 18px;
+    width: 220px;
+    height: 65px;
+    text-align: center;
+    line-height: 65px;
+    cursor: pointer;
+    margin-top: 40px;
+}
+.btn:hover{
+    background-color: #fec503;
+}
+/*services*/
+.services{
+    padding: 150px 0;
+}
+ h2{
+    font-size: 40px;
+    text-align: center;
+}
+ h3{
+    font-size: 16px;
+    font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    margin-bottom: 75px;
+    color: #777;
+    text-align: center;
+}
+h4{
+    font-size: 18px;
+    text-align: center;
+}
+p{
+    text-align: center;
+    margin: 0 0 10px;
+    line-height: 20px;
+}
+.servicesList{
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.servicesList li{
+    width: 370px;
+    height: 240px;
+    padding:0 15px;
+    float: left;
+}
+.servicesList span{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    color: #fff;
+    font-size: 60px;
+    text-align: center;
+    line-height: 100px;
+    background-color: #fed136;
+}
+.servicesList h4{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+/*portfolio*/
+.portfolio{
+    background-color: #eee;
+    padding: 150px 0;
+}
+.portfolio p{
+    font-style:italic;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.portfolio h3{
+    margin-top: 10px;
+}
+.portfolioList{
+    margin-left: -30px;
+}
+.portfolioList>li{
+    margin-left: 30px;
+    margin-bottom: 30px;
+    width: 370px;
+    height: 360px;
+    float: left;
+    background-color: #fff;
+}
+.portfolioList>li a{
+    display: block;
+    width: 100%;
+    height: 260px;
+    margin-bottom: 30px;
+}
+.portfolioList>li>a .portfolioHover{
+    width: 100%;
+    height: 100%;
+    display: table;
+    text-align: center;
+    background: rgba(254, 209, 54,.9);
+    opacity: 0;
+}
+.portfolioList>li>a .portfolioHover:hover{
+    opacity: 1;
+}
+.portfolioHover i{
+    font-size: 70px;
+    color: #fff;
+}
+.pic1{
+    background: url('../image/roundicons.png') no-repeat;
+    background-size: cover;
+}
+.pic2{
+    background: url('../image/startup-framework.png') no-repeat;
+    background-size: cover;
+}
+.pic3{
+    background: url('../image/treehouse.png') no-repeat;
+    background-size: cover;
+}
+.pic4{
+    background: url('../image/golden.png') no-repeat;
+    background-size: cover;
+}
+.pic5{
+    background: url('../image/escape.png') no-repeat;
+    background-size: cover;
+}
+.pic6{
+    background: url('../image/dreams.png') no-repeat;
+    background-size: cover;
+}
+/*about*/
+.about{
+    padding: 150px;
+}
+.aboutWrap>li{
+    margin-bottom: 100px;
+}
+.aboutWrap>li .aboutList{
+    margin-left: 50%;
+}
+.aboutWrap>li .aboutImg,.aboutWrap>li .aboutText{
+    float: left;
+}
+.aboutWrap>li .aboutImg{
+    width: 170px;
+    height: 170px;
+    margin-left: -85px;
+}
+.aboutWrap>li img{
+    border: 7px solid #f1f1f1;
+}
+.aboutWrap>li .aboutText{
+    width: 480px;
+}
+.aboutLeft .aboutText{
+    margin-left: -668px;
+}
+.aboutRight .aboutText{
+    padding-left: 18px;
+}
+.aboutLeft h4,.aboutLeft p{
+    text-align: right;
+}
+.aboutRight h4,.aboutRight p{
+    text-align: left;
+}
+.aboutText h4{
+    margin-bottom: 10px;
+}
+.line{
+    position: relative;
+}
+.line:before{
+    content: '';
+    display: block;
+    border-left: 2px solid #f1f1f1;
+    height: 100px;
+    position: absolute;
+// top:170px;
+    top:100%;
+}
+.imgSpecial{
+    background-color: #fed136;
+    border: 7px solid #f1f1f1;
+    color: #fff;
+}
+.imgSpecial h4{
+    margin: 45px 0;
+    text-align: center;
+}
+/*team*/
+.team{
+    background-color: #f7f7f7;
+    padding: 150px 0;
+}
+.teamList h4{
+    margin-top: 25px;
+}
+.teamList>li{
+    float: left;
+    width: 390px;
+    height: 360px;
+    margin-bottom: 50px;
+}
+.teamList>li img{
+    display: block;
+    width: 240px;
+    height: 240px;
+    margin: 0 auto;
+    border: 7px solid #fff;
+}
+.teamList>li>ul{
+    text-align: center;
+}
+.teamList>li>ul li{
+    display: inline-block;
+}
+.teamList>li>ul li,.footerCenter>li{
+    width: 40px;
+    height: 40px;
+    padding: 0 5px;
+}
+.teamList>li>ul li a,.footerCenter>li a{
+    color: #fff;
+    background-color: #000;
+    font-size: 20px;
+    text-align: center;
+    line-height: 40px;
+}
+.teamList>li>ul li a:hover,.footerCenter>li a:hover{
+    background-color: #fec503;
+}
+.teamList>li>p{
+    height: 24px;
+    line-height: 24px;
+}
+.teamText{
+    padding: 0 200px;
+    font-size: 16px;
+}
+/*ad*/
+.ad ul>li{
+    width: 25%;
+    height: 150px;
+    line-height: 150px;
+    float: left;
+}
+.ad ul>li a{
+    display: block;
+    margin: 50px;
+}
+/*contact*/
+.contact{
+    background-color: #222;
+    background: url('../image/map.jpg') no-repeat;
+    background-size: cover;
+    color: #fff;
+    padding: 150px 0;
+}
+.contact form{
+    margin-left: -15px;
+    margin-right: -15px;
+    text-align: center;
+}
+.contact form input[type="submit"]{
+    border:0px;
+}
+.formList{
+    float: left;
+    padding: 0 15px;
+    width: 570px;
+}
+.formList li,.user-message textarea{
+    background-color: #fff;
+    border-radius: 8px;
+}
+.formList li{
+    margin-bottom: 25px;
+    padding:20px;
+}
+.formList li>input{
+    width: 100%;
+    border:0px;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.formList li>input:focus,.message textarea:focus{
+    outline: none;
+}
+.message{
+    float: left;
+    padding: 0 15px;
+    width: 570px;
+}
+.message textarea{
+    height: 180px;
+    width: 530px;
+    padding: 20px;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+/*footer*/
+#footer{
+    padding: 25px 0;
+}
+.footerLeft,.footerCenter,.footerRight{
+    float: left;
+    width: 33.33%;
+    height: 40px;
+    text-align:center;
+    line-height: 40px;
+}
+.footerCenter li{
+    display: inline-block;
+}
+.footerRight li{
+    display: inline-block;
+    padding: 0 5px;
+}
+.footerRight li>a{
+    color: #fed136;
+}
+.footerRight li>a:hover{
+    color: #fec503;
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

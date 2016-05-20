@@ -1,0 +1,231 @@
+html,body,ul,li,input,textarea,h1,h2,h3,h4,h5,h6{
+  padding: 0;
+  margin: 0;
+}
+body,html{
+  height: 100%;
+  font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.layout{
+  width: 1200px;
+  margin:0 auto;
+}
+li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+h2{
+  font-size: 40px;
+  margin-bottom: 25px;
+}
+.padding-min{
+  padding: 50px 0;
+}
+.padding-middle{
+  padding: 100px 0;
+}
+.padding-big{
+  padding: 150px 0;
+}
+.gray-bg{
+  background-color: #f7f7f7;
+}
+.center{
+  text-align: center;
+}
+.float{
+  float: left;
+}
+.clear:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+#services p,#portfolio p,#portfolio li p,#about p,#team p,#contact p{
+  font-style: italic;
+  color: #777;
+  font-size: 14px;
+}
+.table{
+  display: table;
+  height: 100%;
+}
+.vertical-text-center{
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.yellow-btn{
+  color: white;
+  background-color: #fed136;
+  font-size: 18px;
+  padding: 20px 40px;
+  border-radius: 3px;
+}
+.yellow-btn:hover{
+ background-color: #fec503;
+}
+#navbar{
+  width: 100%;
+  height: 75px;
+  position: fixed;
+  top:0;
+  left: 0;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 100;
+}
+#navbar .navbar-header{
+  float: left;
+  text-align: left;
+  height: 75px;
+  line-height: 75px;
+  color: #fed136;
+  font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+  font-size: 21px;
+  font-style: italic;
+}
+#navbar .navbar-nav li{
+  float: right;
+  width: 108px;
+  height: 75px;
+  text-align: right;
+  line-height: 75px;
+}
+#navbar .navbar-nav li>a{
+  color: #fff;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 18px;
+}
+#navbar .navbar-nav li>a:hover{
+  color: #fed136;
+}
+#header{
+  width: 100%;
+  height: 100%;
+  background: url('../img/header-bg.jpg') no-repeat;
+  background-size: cover;
+  background-position: 0;
+  color: #fff;
+}
+#header h2{
+  margin-bottom: 25px;
+  font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 40px;
+  font-style: italic;
+  font-weight: normal;
+}
+#header h1{
+  margin-bottom: 50px;
+  font-size: 75px;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+#services .fa-stack{
+  font-size: 50px;
+}
+#services .fa-circle{
+  color: #fed136;
+}
+.fa-shopping-cart,.fa-laptop,.fa-lock,.fa-twitter,.fa-facebook,.fa-linkedin{
+  color: white;
+}
+#team .fa-stack,#footer .fa-stack {
+  color: #222;
+}
+#team .fa-stack:hover{
+  color: #fed136;
+}
+#footer .fa-stack:hover{
+  color: #fed136;
+}
+#services ul>li{
+  width: 33.3333%;
+}
+#portfolio img{
+  width: 370px;
+}
+#portfolio ul>li{
+  background-color: white;
+  margin:15px;
+}
+#portfolio .text-wrap{
+  padding: 25px;
+}
+#team img{
+  border-radius: 50%;
+  border: 7px solid white;
+}
+#team ul>li{
+  width: 240px;
+  height: 240px;
+  margin:80px;
+}
+#about .timeline img,#about .photo5{
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 7px solid #f1f1f1;
+}
+#about .photo5{
+  background-color:  #fed136;
+  margin: 0 auto;
+}
+#about .photo5 strong{
+  color: white;
+  font-size: 20px;
+  line-height: 1.5em;
+}
+#about .text-left{
+  text-align: right;
+  width: 390px;
+  margin-top: -165px;
+  margin-left: 45px;
+  border-right: 3px solid #f1f1f1;
+  padding-right: 165px;
+  padding-bottom:130px;
+}
+#about .text-right{
+  text-align: left;
+  width: 390px;
+  margin-top: -165px;
+  margin-left:600px;
+  border-left: 3px solid #f1f1f1;
+  padding-left: 165px;
+  padding-bottom:130px;
+}
+#team ul{
+ margin-bottom: 45px;
+}
+#logo img{
+  margin: 0 30px;
+}
+#contact{
+  background:url(../img/map-image.png);
+  background-color: black;
+}
+#contact h2{
+  color: white;
+}
+#contact form{
+  position: relative;
+}
+#contact form [type="text"]{
+  width: 500px;
+  height: 60px;
+  margin:12px 520px 12px 0;
+}
+#contact form textarea{
+  position: absolute;
+  top: 12px;
+  left: 610px;
+  width: 500px;
+  height: 240px;/*input之间没有外边距合并*/
+}
+#footer p a{
+  color: #fed136;
+}
+#footer p a:hover{
+  text-decoration: underline;
+}
+

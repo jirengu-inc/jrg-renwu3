@@ -1,0 +1,107 @@
+@charset "UTF-8";
+/**
+ * 
+ * @authors WTQ (you@example.org)
+ * @date    2016-05-05 20:48:58
+ * @version $Id$
+ */
+/*reset*/
+body, div, ul, li, h1, h3, p, a, span{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: "微软雅黑","sans-serif";
+	font-size: 14px;
+	color: #000;
+	line-height: 20px;
+}
+li{
+	list-style: none;
+}
+a{
+	color: #328905;
+	text-decoration: none;
+}
+/*reset*/
+/*task-8-1*/
+.btn{
+		display: inline-block;
+		padding: 0 10px;
+		font-size: 1em;
+		line-height: 30px;
+		color: #fff;
+		text-decoration: none;
+		background-color: #f26738;
+		border-style: none;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+	.btn:hover{
+		background-color: #c14d21;
+	}
+	.btn:active{
+		background-color: #e25f31;
+	}
+/*task-8-1*/	
+/*task-8-2*/
+#header{
+	background-color: #333333;
+}
+.nav{
+	padding: 10px;
+}
+.nav>li{
+	display: inline-block;
+}
+.nav>li>a{
+	display: inline-block;
+	padding: 5px 10px;
+	font-size: 1.2em;
+}
+.nav>li>a:hover{
+	color: #fff;
+	background-color: #827717;
+}
+.nav>li>a:active{
+	background-color: #999999;
+}
+#content .title{
+	line-height: 80px;
+	color: #006E00;
+	text-align: center;
+}
+#content .desc{
+	color: #818181;
+}
+#content h3{
+	margin: 10px 0;
+	line-height: 30px;
+	border-bottom: 1px dashed #ccc;
+}
+#content p{
+	text-indent: 2em;
+}
+.tree{
+	margin: 10px 0;
+	padding-left: 28px;
+}
+.tree>li>a{
+	font-size: 1.1em;
+}
+.tree>li>a:before{
+	content: "+";
+}
+.tree>.open>a:before{
+	content: "-";
+}
+.has-child ul{
+	display: none;
+	padding-left: 25px;
+}
+.open ul{
+	display: block;
+	color: #818181;
+}
+
+/*task-8-2*/

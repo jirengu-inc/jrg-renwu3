@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>10-1</title>
+  <style type="text/css">
+    *{
+      margin: 0;
+    }
+    #header, #footer{
+      width: 1010px;
+      margin: 0 auto;
+      background-color: black;
+      height: 50px;
+
+    }
+    #main{
+      width: 910px;
+      margin: 0 auto;
+    }
+    .nav>li,.buttom>li{
+      display: inline-block;
+      line-height: 50px;
+      margin-right: 25px;
+
+    }
+    .nav a,.buttom a{
+      color: white;
+      text-decoration: none;
+    }
+    .nav{
+      position: relative;
+      left: 600px;
+    }
+    .buttom{
+      font-size: 10px;
+      padding-left: 55px;
+    }
+    img{
+      padding-left: 45px;
+      max-width:200px;
+      max-height: 50px;
+      position: relative;
+      top:-65px;
+    }
+    #main .sider{
+      width: 200px;
+      height: 530px;
+      background-color: #eee;
+      margin-top: 10px;
+    }
+    #main .content{
+      width: 700px;
+      background-color: #eee;
+      float: right;/*此处应浮动*/
+    }
+    .content h1{
+      margin: 30px 20px;
+    }
+    .content p{
+      margin: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">
+    <ul class="nav">
+      <li><a href="#">技能</a></li>
+      <li><a href="#">经历</a></li>
+      <li><a href="#">作品</a></li>
+      <li><a href="#">关于</a></li>
+    </ul>
+    <img src="http://cdn.jirengu.com/public/logo-tiny.png" alt="logo">
+
+  </div>
+
+
+  <div id="main">
+   <div class="content">
+      <h1>我的作品</h1>
+      <p>生活很美好</p>
+      <p>心情不错</p>
+      <p>代码写得很漂亮</p>
+    </div>
+    <div class="sider"></div>
+
+  </div>
+
+
+  <div id="footer">
+    <ul class="buttom">
+      <li><a href="#">饥人谷</a></li>
+      <li><a href="#">JSCODE</a></li>
+      <li><a href="#">JSBIN</a></li>
+    </ul>
+  </div>
+</body>
+</html>

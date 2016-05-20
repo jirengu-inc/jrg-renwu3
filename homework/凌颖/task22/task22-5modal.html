@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+.cover{
+    position:fixed;
+    background:rgb(0,0,0);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.4;
+}
+.modal-content{
+    width:800px;
+    border:1px solid #000;
+    position:fixed;
+    top:50%;
+    left:50%;
+    margin-top:-200px;
+    margin-left:-400px;
+    background:#fff;
+    border-radius:8px;
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+    z-index: 100;
+    padding:10px;
+}
+.modal-title{
+    padding:20px auto;
+    position:relative;
+}
+.modal-title .close{
+    position:absolute;
+    right:20px;
+    top:5px;
+    cursor:pointer;
+}
+.btns{
+ text-align: right;
+}
+#modal{
+    display:none;
+}
+        .btn{
+            background-color:#fff;
+        }
+</style>
+</head>
+<body>
+<button class="click btn">模态框</button>
+<div class="modal" id="modal">
+    <div class="cover"></div>
+    <div class="modal-content">
+        <div class="modal-title">
+            <h2>我是标题</h2>
+            <a class="close">×</a>
+        </div>
+        <hr/>
+        <div class="modal-body">
+            <p>
+                电视剧啊放大师傅的恢复健康的数量和国家肯定
+                是不够健康十分乐观不付款就打开了更好看对方就死
+                了更好看了还款时间管理好话说开了个
+                电视剧啊放大师傅的恢复健康的数量和国家肯定
+                是不够健康十分乐观不付款就打开了更好看对方就死
+                了更好看了还款时间管理好话说开了个
+            </p>
+            <hr/>
+            <div class="btns">
+                <button class="cancel btn">取消</button>
+                <button class="confirm btn">确定</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    var btn = document.querySelector(".click.btn"),
+            modal = document.querySelector("#modal"),
+            modalct =document.querySelector(".modal");
+    function hasClass(ele,cls){
+        return !!ele.className.match(new RegExp('\\b'+cls+'\\b'));
+    };
+    function showModal(modal){
+        modal.style.display = "block";
+    };
+    function hideModal(modal){
+        modal.style.display = "none";
+    };
+
+    btn.addEventListener("click",function(e){
+        e.stopPropagation();
+        showModal(modal);
+    });
+
+    modalct.addEventListener("click",function(e){
+        e.stopPropagation();
+        if(hasClass(e.target,"cancel") || hasClass(e.target,"close") || hasClass(e.target,"cover")){
+            hideModal(modal);
+        }
+    })
+
+</script>
+</body>
+</html>

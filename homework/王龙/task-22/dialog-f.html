@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--
+Created using JS Bin
+http://js.jirengu.com
+
+Copyright (c) 2016 by anonymous (http://js.jirengu.com/cofecahoxe/11/edit)
+
+Released under the MIT license: http://jsbin.mit-license.org
+-->
+<meta name="robots" content="noindex">
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+<style id="jsbin-css">
+body,div,h2{
+  padding: 0;
+  margin:0;
+}
+a{
+  text-decoration: none;
+  color:black;
+}
+.modal{
+  display:none;
+}
+.modal-dialog{
+  position: fixed;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+  border:1px solid gray;
+  background: #fff;
+  border-radius: 6px;
+  width:500px;
+   z-index: 10;
+}
+.cover{
+    position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #000;
+        opacity: 0.4;
+        z-index: 9;
+}
+.header{
+   padding:0 20px; 
+  border-bottom:1px solid gray;
+  height: 40px;
+  line-height:40px;  
+  text-align: justify;
+}
+.header:after{
+    content:"";
+    display:inline-block;
+    width: 100%;
+    height: 0px;
+}
+h2{
+ display:inline-block;
+}
+.content{
+  padding: 10px;
+  border-bottom:1px solid gray;
+}
+
+.modal-dialog .footer{
+  text-align:right;
+  height: 40px;
+  line-height: 40px;
+}
+.btn{
+  margin-right: 14px;
+  display: inline-block;
+  border:1px solid gray;
+  height: 30px;
+  line-height:28px;
+  border-radius: 6px;
+  padding:0 10px;
+}
+.btn:hover{
+  background: gray;
+  color:#fff;
+  border:1px solid pink;
+}
+</style>
+</head>
+<body>
+  <a href="#" class="btn" id="btn">open</a>
+    <br>
+  <div class="modal">
+     <div class="cover"></div>
+  
+<div class="modal-dialog">
+    <div class="header">
+       <h2>title</h2> <a class="close" href="#">×</a>
+    </div>
+    <div class="content">
+      1. dom对象的innerText和innerHTML有什么区别？ <br>
+      2. elem.children和elem.childNodes的区别？ <br>
+      3. 查询元素有几种常见的方法？ <br>
+      4. 如何创建一个元素？如何给元素设置属性？ <br>
+      5. 元素的添加、删除？
+    </div>
+    <div class="footer">
+        <a href="#" class="btn">确定</a>
+        <a href="#" class="btn" id="cansel">取消</a>
+    </div>
+</div>
+    </div>
+
+<script id="jsbin-javascript">
+   var dialog =document.querySelector('.modal');      
+      document.querySelector('#btn').addEventListener('click',function (event) {
+         event.stopImmediatePropagation();//这句话让我调试了好久；
+        console.log( dialog.style.display);
+      dialog.style.display  = 'block';
+});
+var arr= [document.querySelector('#cansel'),
+ document.querySelector('.close'),
+        document.body ];
+arr.forEach(function(e,i){
+  e.addEventListener('click',function (event) {
+    event.preventDefault();
+   event.stopImmediatePropagation();
+ dialog.style.display='none';
+ 
+      });
+});
+ 
+</script>
+</body>
+</html>

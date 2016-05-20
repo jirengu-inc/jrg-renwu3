@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 30</title>
+  <style>
+    .ct{
+      position: relative;
+    }
+    .item{
+      position: absolute;
+      margin: 10px 10px 0 0;
+      width: 200px;
+      transition: all 1s;
+    }
+    .h1{
+      height: 200px;
+      background-color: green;
+    }
+    .h2{
+      height: 300px;
+      background-color: yellow;
+    }
+    .h3{
+      height: 400px;
+      background-color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div class="ct">
+    <div class="item h1">1</div>
+    <div class="item h2">2</div>
+    <div class="item h1">3</div>
+    <div class="item h3">4</div>
+    <div class="item h2">5</div>
+    <div class="item h1">6</div>
+    <div class="item h3">7</div>
+    <div class="item h2">8</div>
+    <div class="item h3">9</div>
+    <div class="item h1">10</div>
+    <div class="item h2">11</div>
+    <div class="item h1">12</div>
+    <div class="item h3">13</div>
+    <div class="item h3">14</div>
+  </div>
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    $.fn.render=function(){             //感觉这种形式挺好用 就又包装成这样了
+      var $node=this;                   //定义部分
+        $child=$node.children();
+        width=$child.eq(0).outerWidth(true);
+        colNum=Math.floor($node.width()/width);
+        arr=[];
+        min=0;
+      for(var i=0;i<colNum;i++){                 //按算出来的列宽 初始化数组
+        arr.push(0);
+      }
+      $child.each(function(){                   //函数主体 针对每个子元素
+        for(var i=0;i<arr.length;i++){          //计算最短的是哪一列
+          if(arr[i]<arr[min]){
+            min=i;
+          }
+        }
+        $(this).css({                           //按照算出的最小列序号 定位置 
+          left: min*width,
+          top: arr[min]
+        });
+        arr[min]+=$(this).outerHeight(true);//完成后 把新的高度赋给最短的那一列
+      });
+    };
+
+    $('.ct').render();
+
+    $(window).on('resize',function(){
+      $('.ct').render();     
+    })
+    
+  </script>
+</body>
+</html>

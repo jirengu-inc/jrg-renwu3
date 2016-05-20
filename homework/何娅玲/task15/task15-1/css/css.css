@@ -1,0 +1,145 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+    color: #777;
+}
+li{
+    list-style: none;
+}
+.clear:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.clear{
+    zoom: 1;
+}
+.center{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+/*Í·²¿µ¼º½*/
+#header{
+
+}
+#header nav ul{
+    height: 40px;
+    line-height: 40px;
+}
+#header nav li{
+    float: left;
+    padding: 0 20px;
+}
+#header nav li a:hover{
+    color: #000000;
+}
+#header nav li:first-of-type a{
+    font-size: 22px;
+}
+.pagehead{
+    height: 136px;
+    padding:  60px 15px;
+    background: #b84d45;
+}
+.pagehead h2{
+    font-size: 60px;
+    color: #fff;
+}
+.pagehead p{
+    color: #fff;
+    font-size: 24px;
+    margin: 6px;
+}
+
+#content{
+    margin-top: 30px;
+
+}
+.myconent{
+    height: 20px;
+    padding: 15px 20px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.myconent a{
+    color: #b84d45;
+}
+.myconent span{
+    color:  #000000;
+}
+.picList{
+    margin-top: 20px;
+
+}
+.picList li{
+    float: left;
+    width: 30%;
+    text-align: center;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.picList .pic:hover{
+    opacity: 0.8;
+}
+.picList .pic img{
+    width: 100%;
+}
+.picList li h2{
+    font-size: 26px;
+    margin: 20px 0 16px;
+}
+.picList li p{
+    font-size: 20px;
+    margin: 15px 0;
+}
+.picList .btn{
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+footer .wrap{
+    height: 72px;
+    margin-top: 50px;
+    padding: 50px 0;
+    background: #b84d45;
+    color: #fff;
+    text-align: center;
+}
+
+footer .wrap h3{
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+footer .wrap p{
+    font-size: 18px;
+    margin: 10px 0;
+}
+.copy{
+    margin-top: 30px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+    border-top: 1px solid rgba(204, 204, 204, 0.34);
+
+
+}
+
+.copy a{
+    color: #b84d45;
+}
+.copy a:hover{
+    text-decoration: underline;
+    color: #800a33;
+}

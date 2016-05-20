@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>左右浮动的三栏布局</title>
+    <style media="screen">
+      body,html{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      p{
+        margin: 0;
+      }
+      .left{
+        float: left;
+        width: 150px;
+        background: yellow;
+        padding-bottom: 2000px;
+        margin-bottom: -2000px;
+      }
+      .right{
+        float: right;
+        width: 150px;
+        background: yellow;
+        padding-bottom: 2000px;
+        margin-bottom: -2000px;
+      }
+      .center{
+        margin:0 180px ;
+        background: #ccc;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main" class="clearfix">
+     <div class="left">
+      左浮 定宽
+     </div>
+     <div class="right">
+      右浮 定宽
+     </div>
+     <div class="center">
+
+      <p>内容居中放置 </p>
+      <p>左右两边留下足够的margin</p>
+      <p>html文件中 </p>
+      <p>三个区块先后顺序是 左 右 中</p>
+      <p>左右浮动后,脱离文档流</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+     </div>
+   </div>
+  </body>
+</html>

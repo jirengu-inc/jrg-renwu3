@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>task11-1</title>
+  <style>
+  * {
+    padding: 0px;
+    margin: 0px;
+  }
+  
+  #nav {
+    height: 40px;
+    width: 400px;
+    background: #ccc;
+  }
+  
+  .menu {
+    line-height: 40px;
+    font-size: 0px;
+  }
+  
+  .menu>li {
+    list-style: none;
+    display: inline-block;
+    font-size: 20px;
+    padding: 0px 10px;
+    position: relative;
+  }
+  
+  .menu>li>a {
+    text-decoration: none;
+    color: #050505;
+  }
+  
+  .menu>li:hover {
+    background: #848484;
+  }
+  
+  .submenu>li>a {
+    text-decoration: none;
+    color: #050505;
+  }
+  
+  .submenu>li {
+    list-style: none;
+  }
+  
+  .submenu {
+    display: none;
+  }
+  
+  .menu>li:hover .submenu {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 100%;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .menu>li:hover .s1>li {
+    padding: 0px 19px;
+  }
+  
+  .menu>li:hover .s2>li {
+    padding: 0px 9px;
+  }
+  
+  .submenu>li:hover {
+    background: #848484
+  }
+  </style>
+</head>
+
+<body>
+  <div id="nav">
+    <ul class="menu">
+      <li><a href="">前端</a>
+        <ul class="submenu">
+          <li><a href="">JavaScript</a></li>
+          <li><a href="">CSS</a></li>
+          <li><a href="">HTML</a></li>
+        </ul>
+      </li>
+      <li><a href="">服务端</a>
+        <ul class="submenu s1">
+          <li><a href="">Node</a></li>
+          <li><a href="">PHP</a></li>
+          <li><a href="">Java</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="">前端工具</a>
+        <ul class="submenu s2">
+          <li><a href="">Sublime</a></li>
+          <li><a href="">WebStrom</a></li>
+          <li><a href="">Git</a></li>
+        </ul>
+      </li>
+      <li><a href="">HTML</a></li>
+      <li><a href="">NODE</a></li>
+    </ul>
+  </div>
+</body>
+
+</html>

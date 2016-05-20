@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level27</title>
+	<style type="text/css">
+		div,ul,li{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		img{
+			width: 350px;
+			height: 220px;
+		}
+		.model{
+			position: absolute;
+			top: 50%;
+			width: 30px;
+			height: 30px;
+			margin-top: -15px;
+			text-decoration: none;
+			color: black;
+			font-size: 25px;
+			background: gray;
+			border-radius: 50%;
+			text-align: center;
+			line-height: 30px;
+		}
+		.next{
+			right: 20px;
+		}
+		.pre{
+			left: 20px;
+		}
+		.casement{
+			position: relative;
+			width: 350px;
+			height: 220px;
+		}
+		.casement .sole-img{
+			position: absolute;
+			display: none;
+		}
+		.check li{
+			width: 50px;
+			height: 10px;
+			background: white;
+			display: inline-block;
+			cursor: pointer;
+
+		}
+		.check{
+			position: absolute;
+			top: 87%;
+			left: 55px;
+		}
+		.check .checkboom{
+			background: gray;
+		}
+	</style>
+</head>
+<body>
+<div class="casement">
+	<ul class="loading-img">
+		<li class="sole-img"><img src="../img/shi1.jpg"></li>
+		<li class="sole-img"><img src="../img/shi2.jpg"></li>
+		<li class="sole-img"><img src="../img/shi3.jpg"></li>
+		<li class="sole-img"><img src="../img/shi4.jpg"></li>
+	</ul>
+	<a href="#" class="model pre"><</a>
+	<a href="#" class="model next">></a>
+	<ul class="check">
+		<li class="checkboom"></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	var $soleImg=$(".sole-img"),
+		$pre=$(".pre"),
+		$next=$(".next"),
+		$check=$(".check")
+		imgNumber=$(".loading-img").children().length;
+	var curIdx=0;
+	var keyAnimate=false;
+	$soleImg.eq(0).css("display","block");
+
+	$pre.on("click",function(){
+		playPre(curIdx);
+	});
+	$next.on("click",function(){
+		playNext(curIdx);
+	});
+	$check.on("click","li",function(){
+		var idx=$(this).index();
+		playSelect(idx);
+	});
+	autoPlay();
+	function playNext(idx){
+		if(keyAnimate){
+			return;
+		}
+		keyAnimate=true;
+		$soleImg.eq(idx).fadeOut();
+		curIdx=(curIdx+1)%imgNumber;
+		$soleImg.eq(curIdx).fadeIn(function(){
+			keyAnimate=false;
+		});
+		$check.children().removeClass("checkboom").eq(curIdx).addClass('checkboom');
+	}
+	function playPre(idx){
+		if(keyAnimate){
+			return;
+		}
+		keyAnimate=true;
+		$soleImg.eq(idx).fadeOut();
+		curIdx=(curIdx+3)%imgNumber;
+		$soleImg.eq(curIdx).fadeIn(function(){
+			keyAnimate=false;
+		});
+		$check.children().removeClass("checkboom").eq(curIdx).addClass('checkboom');
+	}
+	function playSelect(idx){
+		if (keyAnimate) {
+			return;
+		}
+		keyAnimate=true;
+		$soleImg.eq(curIdx).fadeOut();
+		$soleImg.eq(idx).fadeIn(function(){
+			keyAnimate=false;
+		});
+		curIdx=idx;
+		$check.children().removeClass("checkboom").eq(idx).addClass('checkboom');
+	}
+	function autoPlay(){
+		setInterval(function(){
+			playNext(curIdx);
+			$check.children().removeClass("checkboom").eq(curIdx).addClass('checkboom');
+		},2000);
+	}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task26-1</title>
+    <style>
+        .ct{
+            border:1px solid #000000;
+        }
+    </style>
+</head>
+<div class="ct">
+    <p>1</p>
+    <img class="node" id="id" src="http://oimagec8.ydstatic.com/image?id=7034227508965040609&product=adpublish" title="title">
+    <p>2</p>
+</div>
+<body>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    var $ct = $(".ct");
+    var $node= $(".node");
+    var $p = $('p');
+    $node.addClass("active");//给元素 $node 添加 class active
+    $node.removeClass("active");//给元素 $noed 删除 class active
+    $node.hide();//隐藏元素$node
+    $node.show();//展示元素$node
+    $node.attr('id');//获取元素$node 的id属性
+    $node.attr('src');//获取元素$node 的src属性
+    $node.attr('title');//获取元素$node 的title属性
+    $node.attr('id','hello');//修改元素$node 的id属性
+    $node.attr('src','https://www.baidu.com/img/bd_logo1.png');//修改元素$node 的id属性
+    $node.attr('title','world');//修改元素$node 的id属性
+    $node.attr('data-src','hi');//给$node 添加自定义属性data-src
+    $ct.prepend($node);//在$ct 内部最开头添加元素$node
+    $ct.append($node);//在$ct 内部最末尾添加元素$node
+    $node.remove();//删除$node
+    $ct.empty();//把$ct里内容清空
+    $ct.html('<div class="btn"></div>');//在$ct 里设置 html <div class="btn"></div>
+    $ct.height('200px');$ct.width("500px");//获取、设置$node 的宽度、高度
+    $ct.innerHeight('200px');$ct.outerWidth("500px");//包括padding，但不包括border
+    $ct.outerHeight('200px');$ct.outerWidth("500px");//包括padding，border
+    $ct.outerHeight(true);$ct.outerWidth(true);//包括padding，border,margin
+    $(window).scrollTop();//获取窗口滚动条垂直滚动距离
+    $ct.offset();//.offset()返回一个包含top 和 left属性的对象。
+    $node.offset().top;//获取 $node 到根节点垂直偏移距离
+    $node.offset().left;//获取 $node 到根节点水平偏移距离
+    $p.css({
+        color:"red",
+        fontSize:"14px"
+    });//修改 $p 的样式，字体颜色设置红色，字体大小设置14px
+    $ct.children().each(function () {
+        $(this).text($(this).text()+$(this).text());
+    });//遍历节点，把每个节点里面的文本内容重复一遍
+    $ct.find($(".item"));//从$ct 里查找 class 为 .item的子元素
+    $ct.children();//获取$ct 里面的所有孩子
+    $node.parents(".ct").find(".panel");//对于$node，向上找到 class 为’.ct’的父亲，在从该父亲找到’.panel’的孩子
+    $p.length;//获取选择元素的数量
+    $node.index();//获取当前元素在兄弟中的排行
+</script>
+</body>
+</html>

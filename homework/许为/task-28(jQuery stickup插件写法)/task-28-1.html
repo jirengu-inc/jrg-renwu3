@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level28</title>
+<style type="text/css">
+	body{
+		padding: 5px;
+		margin: 0;
+	}
+	div{
+		margin: 0;
+		padding: 0;
+	}
+	#header{
+		width: 1334px;
+		height: 80px;
+		text-align: center;
+		line-height: 80px;
+		background: red;
+		margin: 0px 5px 25px 0px;
+	}
+	.navigation{
+		width: 1334px;
+		height: 40px;
+		background-color: blue;
+	}
+	#main{
+		width: 1314px;
+		height: 1500px;
+		background-color: gray;
+		padding: 10px;
+	}
+	.side{
+		width: 100px;
+		height: 400px;
+		background-color: green;
+		float: left;
+	}
+	.content{
+		width: 1214px;
+		height: 1500px;
+		float: left;
+		background-color: white;
+	}
+	#footer{
+		width:1334px;
+		height: 27px;
+		line-height: 27px;
+		background-color: rgba(0, 0, 0, 0.78);
+	}
+</style>
+</head>
+<body>
+<div id="header">header</div>
+<div class="navigation">nav</div>
+<div id="main">
+	<div class="side">aside</div>
+	<div class="content">main</div>
+</div>
+<div id="footer">footer</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	$.fn.stickup=function(){       //jQuery插件写法
+		var $nav=this,
+		width=$nav.width(),
+		height=$nav.height(),
+		offsetTop=$nav.offset().top, //获取$nav上方到窗口的距离
+		offsetLeft=$nav.offset().left;  //获取$nav上方到窗口的距离
+		var $cloneNav=$nav.clone()
+						  .css("opacity",0)  //clone$nav元素，并设置clone元素的属性
+						  .insertBefore($nav)
+						  .hide();
+
+		$(window).on("scroll",function(){
+			var scrollTop=$(this).scrollTop(); //获取窗口滚动条垂直滚动的距离
+			if(scrollTop>=offsetTop){
+				if (!isChange()) {//判断是否已将$nav设置为了fixed，避免反复设置
+					setChange();
+				}
+		}else{
+				cancelChange();
+
+			}
+		});
+
+		function isChange(){       //标记函数，标记是否已将$nav设置为了fixed
+			// console.log(!!$nav.attr("identify"));
+			return !!$nav.data("identify");
+		}
+		function setChange(){       //将原有的nav设为fixed,用clone元素进行占位
+			$nav.data("identify",true);
+			$nav.css({
+				"position":"fixed",
+				"left":offsetLeft,
+				"top":0,
+				"width":width,
+				"height":height,
+				"z-index":9999
+			});
+			$cloneNav.show();
+		}
+		function cancelChange(){   //恢复原位，重新隐藏clone元素
+			$nav.data("identify",false);
+			$nav.removeAttr('style');
+			$cloneNav.hide();
+			// console.log($nav.attr("identify"));
+		}
+
+	}
+	$(".navigation").stickup();
+
+</script>
+</body>
+</html>

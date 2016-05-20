@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>task14</title>
+  <style>
+  html,
+  body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    font-family: Arial;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    opacity: 0.7;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  @font-face {
+    font-family: 'iconfont';
+    src: url('iconfont/iconfont.eot');
+    /* IE9*/
+    src: url('iconfont/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont/iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont/iconfont.svg#iconfont') format('svg');
+    /* iOS 4.1- */
+  }
+  
+  .iconfont {
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  #content>.services .icon-s1 {
+    font-size: 50px;
+    color: #2B70FF;
+    background-color: white;
+    border-radius: 50%;
+    padding: 10px;
+  }
+  
+  #header {
+    width: 100%;
+    height: 100%;
+    background: url(img/bg.jpg) no-repeat;
+    background-size: cover;
+    display: table;
+  }
+  
+  #header>.content {
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 25px;
+  }
+  
+  #header>.content>h1 {
+    margin-bottom: -10px;
+  }
+  
+  #header>.content>p {
+    margin-bottom: 25px;
+    font-size: 18px;
+    color: #191919;
+  }
+  
+  #header>.content>a {
+    background-color: #858585;
+    color: white;
+    font-size: 13px;
+    padding: 15px;
+  }
+  
+  #content>.introduce {
+    width: 100%;
+    padding: 50px 0;
+    text-align: center;
+  }
+  
+  #content>.introduce p:nth-child(1) {
+    font-size: 25px;
+  }
+  
+  #content>.introduce p:nth-child(2) {
+    margin-top: -15px;
+    font-size: 17px;
+    color: #484848;
+  }
+  
+  #content>.introduce a {
+    color: #597BFF;
+  }
+  
+  #content>.services {
+    background-color: #2B70FF;
+    padding-bottom: 60px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  #content>.services>p {
+    padding-top: 50px;
+    color: white;
+    font-size: 25px;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  
+  #content>.services hr {
+    width: 100px;
+    opacity: 0.5;
+    margin-bottom: 30px;
+  }
+  
+  #content>.services ul {
+    padding-left: 0px;
+  }
+  
+  #content>.services li {
+    display: inline-block;
+    margin: 20px;
+  }
+  
+  #content>.services li h3 {
+    margin-top: 25px;
+  }
+  
+  #content>.services li p {
+    margin-bottom: 25px;
+    margin-top: -10px;
+  }
+  
+  #content>.services a {
+    color: black;
+    background-color: white;
+    padding: 10px;
+  }
+  
+  #content>.img {
+    width: 100%;
+    padding: 200px 0px;
+    background: url(img/callout.jpg) 0 0 no-repeat;
+    background-size: cover;
+  }
+  
+  #content>.img h1 {
+    font-size: 50px;
+    color: white;
+    text-align: center;
+  }
+  
+  #content>.main {
+    width: 960px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  #content>.main>p {
+    font-size: 25px;
+    margin: 50px 0 15px 0;
+  }
+  
+  #content>.main>hr {
+    width: 100px;
+    opacity: 0.5;
+  }
+  
+  #content>.main>ul {
+    margin-top: 20px;
+    padding: 0px;
+  }
+  
+  #content>.main>ul:after {
+    content: "";
+    display: block;
+    clear: both;
+    margin-bottom: 30px;
+  }
+  
+  #content>.main li {
+    float: left;
+  }
+  
+  #content>.main img {
+    width: 460px;
+    height: 300px;
+  }
+  
+  #content>.main li:nth-child(2) {
+    margin-left: 40px;
+  }
+  
+  #content>.main li:nth-child(3) {
+    margin-top: 40px;
+  }
+  
+  #content>.main li:nth-child(4) {
+    margin-top: 40px;
+    margin-left: 40px
+  }
+  
+  #content>.main>a {
+    color: white;
+    background-color: #7E7E7E;
+    padding: 10px;
+  }
+  
+  .call-button {
+    background-color: #2B70FF;
+    text-align: center;
+    margin-top: 50px;
+    padding: 50px 0;
+    color: white;
+  }
+  
+  .call-button p {
+    font-size: 20px;
+  }
+  
+  .call-button a {
+    color: black;
+    padding: 10px;
+  }
+  
+  a.btn-s1 {
+    background-color: white;
+  }
+  
+  a.btn-s2 {
+    background-color: #595959;
+  }
+  
+  #footer {
+    margin-top: 80px;
+    text-align: center;
+  }
+  
+  #footer h4 {
+    font-size: 20px;
+    margin-bottom: -5px;
+  }
+  
+  #footer p {
+    font-size: 15px;
+  }
+  
+  #footer ul {
+    margin-left: -40px;
+  }
+  
+  #footer a {
+    color: #3784FF;
+  }
+  
+  #footer .icon-s2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    overflow: hidden;
+  }
+  
+  #footer>.icon-s2>li {
+    color: #045AFF;
+    font-size: 50px;
+    float: left;
+  }
+  
+  #footer>.icon-s2>li:nth-child(1) {
+    width: 100%;
+  }
+  
+  #footer>.icon-s2>li:nth-child(2) {
+    margin-left: -50%;
+    position: relative;
+    right: 100px;
+    bottom: -8px;
+  }
+  
+  #footer>.icon-s2>li:nth-child(3) {
+    margin-left: -50%;
+    position: relative;
+    left: 50px;
+    bottom: 0px;
+  }
+  
+  #footer>hr {
+    width: 100px;
+    margin-top: 20px;
+    opacity: 0.5;
+  }
+  
+  #footer p:last-child {
+    margin-top: 20px;
+  }
+  </style>
+</head>
+
+<body>
+  <div id="header">
+    <div class="content">
+      <h1>Start Bootstrap</h1>
+      <p>Free Bootstrap Themes & Templates</p>
+      <a href="#">Find Out More</a>
+    </div>
+  </div>
+  <div id="content">
+    <div class="introduce">
+      <div class="content">
+        <p>Stylish Portfolio is the perfect theme for your next project!</p>
+        <p>This theme features some wonderful photography courtesy of
+          <a href="#">Death to the Stock Photo</a></p>
+      </div>
+    </div>
+    <div class="services">
+      <p>Our Services</p>
+      <hr>
+      <ul class="content">
+        <li>
+          <span class="iconfont icon-s1">&#xe61c;</span>
+          <h3>Service Name</h3>
+          <p>Lorem ipsum dolor sit amet,
+            <br> consectetur adipisicing elit.</p>
+          <a href="#">Learn More</a>
+        </li>
+        <li>
+          <span class="iconfont icon-s1">&#xe64e;</span>
+          <h3>Service Name</h3>
+          <p>Lorem ipsum dolor sit amet,</br>
+            consectetur adipisicing elit.</p>
+          <a href="#">Learn More</a>
+        </li>
+        <li>
+          <span class="iconfont icon-s1">&#xe684;</span>
+          <h3>Service Name</h3>
+          <p>Lorem ipsum dolor sit amet,</br>
+            consectetur adipisicing elit.</p>
+          <a href="#">Learn More</a>
+        </li>
+        <li>
+          <span class="iconfont icon-s1">&#xe604;</span>
+          <h3>Service Name</h3>
+          <p>Lorem ipsum dolor sit amet,
+            <br> consectetur adipisicing elit.</p>
+          <a href="#">Learn More</a>
+        </li>
+    </div>
+    <div class="img">
+      <h1>Vertically Centered Text</h1>
+    </div>
+    <div class="main">
+      <p>Our Work</p>
+      <hr>
+      <ul>
+        <li>
+          <a href="#"><img src="img/portfolio-1.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img src="img/portfolio-2.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img src="img/portfolio-3.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img src="img/portfolio-4.jpg"></a>
+        </li>
+      </ul>
+      <a href="#">View More items</a>
+    </div>
+    <div class="call-button">
+      <p>The buttons below are impossible to resist.</p>
+      <a href="#" class="btn-s1">Click Me!</a>
+      <a href="#" class="btn-s2">Look at Me!</a>
+    </div>
+  </div>
+  <div id="footer">
+    <h4>Start Bootstrap</h4>
+    <p>3481 Melrose Place
+      <br> Beverly Hills, CA 90210
+    </p>
+    <ul class="tel">
+      <li class="iconfont">&#xe601;(123) 456-7890</li>
+      <li class="iconfont">&#xe624; <a href="">name@example.com</a></li>
+    </ul>
+    <ul class="icon-s2">
+      <li class="iconfont">&#xe634;</li>
+      <li class="iconfont">&#x3596;</li>
+      <li class="iconfont">&#xe609;</li>
+    </ul>
+    <hr>
+    <p>Copyright © Your Website 2014</p>
+  </div>
+</body>
+
+</html>

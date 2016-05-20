@@ -1,0 +1,34 @@
+body,html{
+  padding:0;
+  margin: 0;
+}
+a,ul,li{
+  padding:0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+  color: black;
+}
+a{
+  margin: 0 8px;
+}
+nav>ul>li{
+  vertical-align: top;
+}
+nav>ul{
+    background: #ccc;
+}
+.item{
+  display: inline-block;
+}
+.list{
+  border: 1px solid #ccc;
+  display: none;
+}
+
+.item:hover>ul{
+  position: absolute;
+  top: 18px;
+  background: #ccc;
+  display:block;
+}

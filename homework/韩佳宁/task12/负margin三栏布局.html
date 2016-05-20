@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>负margin三栏布局</title>
+    <style media="screen">
+      html,body,p{
+        margin: 0;
+        padding:0;
+      }
+      #header,#footer{
+        height: 40px;
+        background: #222;
+        color: white;
+      }
+      .content{
+        float: left;
+        width: 100%;
+      }
+      .clearfix:after{
+          content: '';
+          display: block;
+          clear: both;
+      }
+      .center{
+        background: pink;
+        height: 100%;
+        margin: 0 250px;
+        text-align: center;
+
+      }
+      .left,.right{
+        float: left;
+        background: yellow;
+        width: 220px;
+        text-align: center;
+      }
+      .left{
+        margin-left: -100%;
+      }
+      .right{
+        margin-left: -220px;
+      }
+      .main{
+        overflow: auto;
+      }
+      #footer{
+
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      负margin三栏布局
+    </div>
+    <div class="main" class="clearfix">
+
+
+    <div class="content" class="clearfix">
+      <div class="center">
+        <p>中间部分用两个嵌套的DIV</p>
+        <p>外层添加浮动</p>
+        <p>内层放主要内容</p>
+        <p>左右留出足够的margin</p>
+        <p>留出的margin值必须大于侧边栏的固定宽度!!</p>
+        <p>留出的margin值必须大于侧边栏的固定宽度!!</p>
+        <p>留出的margin值必须大于侧边栏的固定宽度!!</p>
+        <p>留出的margin值必须大于侧边栏的固定宽度!!</p>
+        <p>高度由内容撑开</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <p>负margin三栏布局</p>
+        <p>负margin三栏布局</p>
+        <p>负margin三栏布局</p>
+        <p>负margin三栏布局</p>
+      </div>
+    </div>
+    <div class="left">
+      <p>左浮</p>
+      <p>定宽220px</p>
+      <p>margin-left:-100%</p>
+      <p>100%表示和父元素相同的宽度</p>
+      <p>-100%让第一个侧边栏定位到.main同一行的左侧</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>负margin三栏布局</p>
+      <p>负margin三栏布局</p>
+      <p>负margin三栏布局</p>
+      <p>负margin三栏布局</p>
+    </div>
+    <div class="right">
+      <p>左浮</p>
+      <p>定宽220px</p>
+      <p>margin-left:-220px</p>
+      <p>220px是这个侧边栏的自身宽度</p>
+      <p>-220p让其定位到.main的右侧</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>内容</p>
+      <p>负margin三栏布局</p>
+      <p>负margin三栏布局</p>
+      <p>负margin三栏布局</p>
+      <p>负margin三栏布局</p>
+    </div>
+    </div>
+
+  <div id="footer">
+    负margin三栏布局
+  </div>
+  </body>
+</html>

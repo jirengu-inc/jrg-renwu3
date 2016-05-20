@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<!--html头部-->
+<head>
+    <!--告诉浏览器用什么编码方式解析该html文档-->
+    <meta charset="utf-8">
+    <!--html文档标题-->
+    <title>task6-5</title>
+    <!--样式表-->
+    <style>
+        /*类选择器，对wrap类设置样式*/
+        .wrap{
+            /*设置width 可以阻止它从左到右撑满容器。然后就可以设置左右外边距为 auto 来使其水平居中。*/
+            /*元素会占据你所指定的宽度，然后剩余的宽度会一分为二成为左右外边距。*/
+            /*唯一的问题是，当浏览器窗口比元素的宽度还要窄时，浏览器会显示一个水平滚动条来容纳页面。*/
+            /*用max-width代替width可以使浏览器更好的处理小窗口的情况*/
+            width: 900px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<!--html主体-->
+<body>
+<div id="header">
+    <div class="wrap"></div>
+</div>
+<div id="content">
+    <div class="wrap"></div>
+</div>
+<div id="footer">
+    <div class="wrap"></div>
+</div>
+
+</body>
+</html>

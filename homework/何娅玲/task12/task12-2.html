@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>圣杯布局两列</title>
+    <style>
+
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .clear{
+            zoom: 1;
+        }
+        header,footer{
+            height: 50px;
+            background: red;
+        }
+        .main,.left{
+            height: 100px;
+            float: left;
+
+        }
+        .box{
+            padding: 0 0 0 200px ;
+        }
+        .left{
+            width: 200px;
+            background: palegreen;
+            margin-left: -100%;
+            opacity: 0.5;
+            position: relative;
+            left: -200px;
+
+        }
+
+
+        .main{
+            width: 100%;
+            background: seagreen;
+
+        }
+    </style>
+</head>
+<body>
+    <header>hedaer</header>
+    <section class="clear box">
+        <div class="main">main zczxc zc asdf asds fdsdf dsf sdfsdf sdfdsf sdf ssfdgs gsdf sdf s</div>
+        <div class="left">left</div>
+
+    </section>
+ <footer>footer</footer>
+</body>
+</html>

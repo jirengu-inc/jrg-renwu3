@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>隐藏域</title>
+</head>
+<body>
+	<form action="数值自增.ashx" method="post"> 
+	<input type="hidden" name="_viewstate" value="a" /> 
+	<input type="hidden" name="_div" value="@n" /> 
+	<!-- <input name="txt" type="text" value="@value" />--> 
+	<div>@n</div> 
+	<input type="submit" value="click" /> 
+	</form>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<ul class="ct">
+    <li>这里是</li>
+    <li>饥人谷</li>
+    <li>前端6班</li>
+</ul>
+<script>
+    var wrap = document.querySelector(".ct");
+
+    wrap.addEventListener("click",function(e){
+        e.target = wrap.target;
+        console.log(e.target.innerText);
+    },false);
+
+</script>
+</body>
+</html>

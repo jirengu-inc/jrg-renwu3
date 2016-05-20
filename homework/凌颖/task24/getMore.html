@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>加载更多</title>
+</head>
+<style>
+    #ct>li{
+        border:1px solid #ccc;
+        padding:10px;
+        margin:10px;
+        list-style:none;
+    }
+    .btn{
+        width:120px;
+        height:45px;
+        line-height:40px;
+        border-radius: 3px;
+        border:1px solid crimson;
+        text-align: center;
+        color:crimson;
+    }
+    #loadMore{
+        display:block;
+        margin:10px auto;
+        cursor:pointer;
+    }
+    .loading{
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        background: url(img/loading_sprite.png);
+        -webkit-background-size: auto 20px;
+        background-size: auto 20px;
+        -webkit-animation: am-rotate 1s steps(12) infinite;
+        animation: am-rotate 1s steps(12) infinite;
+    }
+    @-webkit-keyframes am-rotate {
+        from {
+            background-position: 0 0; }
+        to {
+            background-position: -240px 0; }
+    }
+    @-webkit-keyframes am-rotate2 {
+        from {
+            background-position: 0 0; }
+        to {
+            background-position: -444px 0; }
+    }
+
+</style>
+<body>
+<ul id="ct">
+    <li>内容1</li>
+    <li>内容2</li>
+</ul>
+
+<a class="btn" id="loadMore">加载更多</a>
+<script src="ajax.js"></script>
+<script>
+    /*
+    *入参：{start：3 ，len：5}
+    *回参：{data：['内容3'，'内容4'，'内容5'，'内容6'，'内容7']}
+    *url: /getMore?start=3&len=5
+    * type:get
+    * */
+    var loadMore =document.getElementById('loadMore'),
+               ct = document.getElementById('ct'),
+              cur = 3,
+            isLoading = false;//设置一个状态锁，防止在加载的数据回来之前用户多次点击
+ loadMore.addEventListener('click',function(){
+     if(isLoading){   //判断状态是否锁上，一旦锁上终止函数，不与后台交互
+         return;
+     }
+     isLoading = true;//产生AJAX前立刻上锁，防止用户多次点击
+     document.getElementById('loadMore').innerHTML = '<span>请稍等</span><i class="loading"></i>';
+      ajax({
+        url:'/getMore',
+        type:'get',
+        data:{
+            start :cur,
+            len : 5
+        },
+        dataType:'json',
+        success : function(json){
+            onSuccess(json);
+        },
+        error : function(){
+            onError();
+        }
+    });
+});
+  function onSuccess (json){
+      if(json.status == 0){
+          setTimeout(function(){
+
+              for(var k = 0;k<json.data.length;k++){
+                  var item = document.createElement("li");
+                  item.innerText = json.data[k];
+                  ct.appendChild(item);
+              }
+              cur += 5;
+              isLoading = false;//开锁
+              document.getElementById('loadMore').innerText = '加载更多';
+          },1000)
+      }else{
+          alert('获取数据失败');
+      }
+  }
+
+  function onError(){
+      isLoading = false;
+      document.getElementById('loadMore').innerText = '加载更多';
+      alert('系统异常');
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>For task 37</title>
+  <style>
+    p,ul,li{
+      padding: 0;
+      margin: 0;
+    }
+    .dialog{
+      position: absolute;
+      left: 50%;
+      top: 30%;
+      margin-left: -175px;
+      width: 350px;
+      box-shadow: 0 0 5px 2px rgba(0,0,0,0.5);
+    }
+    .dialog .dialog-head{
+      padding: 10px;
+      color: white;
+      background-color: #676666;
+    }
+    .dialog .dialog-head p{
+      float: left;
+      margin: 0 190px 0 10px;
+    }
+    .dialog-head .close{
+      cursor: pointer;
+    }
+    .dialog .dialog-con{
+      padding: 30px;
+      background-color: #eee;
+    }
+    .dialog .dialog-footer{
+      text-align: center;
+      padding-bottom: 20px;
+      background-color: #eee;
+    }
+    .dialog .dialog-footer span{
+      margin-right: 10px;
+      padding: 5px;
+      color: white;
+      background-color: #e33100;
+      cursor: pointer;
+    }
+    .move{
+      opacity: 0.8;
+      cursor: move;
+    }
+  </style>
+</head>
+<body>
+  <button id="open1">打开1</button>
+  <button id="open2">打开2</button>
+  <button id="open3">打开3</button>
+  <button id="open4">打开4</button>
+  <button id="open5">打开5</button>
+
+<!--   <div class="dialog">
+    <div class="dialog-head">
+      <p>欢迎来到饥人谷</p>
+      <span>×</span>
+    </div>
+    <div class="dialog-con">
+      <ul><li>列表1</li><li>列表2</li><li>列表1</li><li>列表1</li></ul>
+    </div>
+    <div class="dialog-footer">
+      <span>取消</span>
+      <span>确定</span>
+    </div>
+  </div> -->
+
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+
+    function Dialog(){};   // 创建空函数
+    Dialog.prototype={     // 设置函数原型
+      defaultOpts:{       //初期设定
+        title: '',
+        message: '',
+        isShowCloseBtn: true,
+        isShowConfirmBtn: false,
+        onClose: function(){},
+        onConfirm: function(){}
+      },
+
+      setOpts:function(opts){  // 处理输入参数
+        if(typeof opts === 'string'){
+          this.opts=$.extend({}, this.defaultOpts, {message:opts});
+        }else if(typeof opts === 'object'){
+          this.opts=$.extend({}, this.defaultOpts, opts);
+        }
+      },
+
+      open:function(opts){   // 函数open 打开dialog
+        this.setOpts(opts);  // 处理参数 创造html 设置部分按钮有无 绑定事件
+        this.createHtml();
+        this.setButton();
+        this.bindEvent();
+      },
+
+      createHtml:function(){   // 根据参数 创建html
+        var html='<div class="dialog" style="display:none">'  
+        +'<div class="dialog-head">'
+        +'<p>'+this.opts.title+'</p>'
+        +'<span class="close">×</span>'
+        +'</div>'
+        +'<div class="dialog-con">'
+        +this.opts.message
+        +'</div>'
+        +'<div class="dialog-footer">'
+        +'<span class="close">取消</span>'
+        +'<span class="commit">确定</span>'
+        +'</div>'
+        +'</div>';
+        this.$dialog=$(html);
+        $('body').append(this.$dialog);
+      },
+
+      setButton:function(){     // 根据参数 设置部分按钮的有无
+        var $dialog=this.$dialog;
+        if(this.opts.isShowCloseBtn){
+          $dialog.find('.dialog-head .close').show();
+        }else{
+          $dialog.find('dialog-head .close').hide();
+        };
+        if(this.opts.isShowConfirmBtn){
+          $dialog.find('.dialog-head .cancel').show();
+        }else{
+          $dialog.find('dialog-head .cancel').hide();
+        };
+        if(this.opts.title){
+          $dialog.find('.dialog-head').show();
+        }else{
+          $dialog.find('.dialog-head').hide();
+        };
+        $dialog.show();
+      },
+      
+      bindEvent:function(){       // 给按钮绑定事件
+        var $dialog=this.$dialog;
+        this.drag=false;
+        var _this=this;
+        $dialog.find('.close').on('click',function(){
+          _this.opts.onClose();
+          $dialog.hide();
+        });
+        $dialog.find('.commit').on('click',function(){
+          _this.opts.onConfirm();
+          $dialog.hide();
+        });
+        $dialog.on('mousedown',function(e){
+          $dialog.addClass('move');
+          console.log('add');
+          _this.left=e.pageX-_this.$dialog.offset().left;
+          _this.top=e.pageY-_this.$dialog.offset().top;
+          _this.drag=true;
+        });
+        $dialog.on('mouseup',function(){
+          _this.drag=false;
+          $dialog.removeClass('move');
+          console.log('remove');
+        });
+        $('body').on('mousemove',function(e){
+          if(_this.drag){
+            $dialog.css({
+              marginLeft:0,
+              left: +e.pageX-_this.left,
+              top: e.pageY-_this.top
+            });
+          };
+        });
+      },
+    }
+    // js主体 如下
+    $('#open1').on('click',function(){
+      var dialog1 = new Dialog();
+      dialog1.open('hello, 这里是饥人谷');
+    });
+
+    $('#open2').on('click',function(){
+      var dialog2 = new Dialog();
+      dialog2.open('<a href="http://jirengu.com">饥人谷</a>');
+    });
+
+    $('#open3').on('click',function(){
+      var dialog3 = new Dialog();
+      dialog3.open({
+        title: '欢迎来到饥人谷',
+        message: 'hello',
+        isShowCloseBtn: true,
+        isShowConfirmBtn: true,
+        onClose: function(){
+          alert('close')
+        },
+        onConfirm: function(){
+          alert('确定');
+        }
+      });
+    });
+
+    var tpl = '<ul><li>列表1</li><li>列表2</li><li>列表1</li><li>列表1</li></ul>';
+    $('#open4').on('click',function(){
+      var dialog4 = new Dialog();
+      dialog4.open({
+        title: '欢迎来到饥人谷',
+        message: tpl,
+        isShowCloseBtn: true,
+        isShowConfirmBtn: true,
+        onClose: function(){
+          alert('close')
+        },
+        onConfirm: function(){
+          alert('确定');
+        }
+      });
+    });
+
+    $('#open5').on('click',function(){
+      var dialog5 = new Dialog();
+      dialog5.open({
+        title: '欢迎来到饥人谷',
+        message: 'hello',
+        isShowCloseBtn: false,
+        isShowConfirmBtn: false
+      });
+    });
+
+  </script>
+</body>
+</html>
