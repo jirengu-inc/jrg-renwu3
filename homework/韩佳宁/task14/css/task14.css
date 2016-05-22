@@ -1,0 +1,172 @@
+html,body,a,ul,li,hr,h1{
+  margin: 0;
+  padding: 0;
+  list-style: none;;
+  text-decoration: none;
+}
+html,body{
+  width: 100%;
+  height: 100%;
+  /*width:100%,会向上级父元素追溯,所以这里必须先对根元素设置100%*/
+}
+
+#header{
+  width: 100%;
+  height: 100%;
+  background: #ccc url(../img/bg.jpg) round;
+  text-align: center;/*让行内元素水平居中,可被继承*/
+  display: flex;
+}
+#header .header-wrap{
+  margin: auto;
+}
+
+.layout{
+  width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  /*用于内容的包装,定宽 左右居中*/
+}
+.btn{
+  background: white;
+  color: #337ab7;
+  width: 50px;
+  height: 40px;
+  padding: 10px 15px;
+  line-height: 40px;
+  border-radius: 10px;
+}
+#main .self-info .layout{
+  padding: 60px 0;
+}
+#main .skill{
+  background: #337ab7;
+  padding-bottom: 45px;
+}
+#main .skill h2{
+  width: 180px;
+  padding: 15px;
+  margin: 25px auto;
+  margin-top: -30px;
+  border-bottom: 2px solid white;
+  color: white;
+}
+#main .skill ul{
+  margin-left: -120px;
+  margin-right: -120px;
+}
+#main .skill ul:after {
+  content: '';
+  display: block;;
+  clear: both;
+}
+#main .skill ul>li{
+  float: left;
+  width: 150px;
+  margin-left: 120px;
+}
+.icon-round{
+  width: 150px;
+  height: 150px;
+  background: white;
+  border-radius: 100%;
+}/*白色圆*/
+#main .icon-round>i{
+  color: #337ab7;
+font-size: 100px;
+line-height: 100%;
+position: relative;
+top:25px;
+}/*图标大小及位置调整*/
+
+#main ul>li:nth-of-type(3) i{
+  font-size: 60px;
+  position: relative;
+  top:45px;/*这个图标选的不好,本身比别的大一圈,需要额外调整*/
+}
+.notice{
+  padding: 250px 0;
+  background: #ccc url(../img/bg2.jpg) ;
+
+}
+.notice h1{
+  margin: 0 auto;
+  font-size: 60px;
+  color: white;
+  font-weight:bolder;
+  text-align: center;
+}
+.work ul{
+  margin-left: -40px;
+  margin-right: -40px;
+}
+.work ul:after {
+  content: '';
+  display: block;;
+  clear: both;
+}
+.work ul>li{
+  float: left;
+  width: 500px;
+  height: 300px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  background: #ccc;
+}
+.work h2{
+  width: 20%;
+  padding: 15px 0;
+  margin: 15px auto;
+  border-bottom: 2px solid black;
+}
+.work img{
+  width: 100%;
+  height: 100%;
+}
+.blog{
+    background: #337ab7;
+}
+.blog .layout{
+  padding: 40px 0;
+}
+.blog h2{
+  width: 180px;
+  padding: 15px;
+  margin: 15px auto;
+  border-bottom: 2px solid white;
+  color: white;
+}
+
+.blog ul>li{
+  display: inline-block;
+  padding: 10px;
+}
+#footer{
+  padding: 30px 0;
+}
+#footer span{
+  line-height: 1.5;
+}
+#footer ul{
+margin: 0 auto;
+width: 240px;
+}
+#footer ul:after {
+  content: '';
+  display: block;
+  clear: both;
+  text-align: center;
+}
+#footer ul>li{
+  float: left;
+  width: 70px;
+  height: 70px;
+  margin: 5px;
+  margin-bottom: 10px;
+
+}
+#footer .layout .social li a{
+  font-size: 40px;
+  color: #337ab7;
+  font-style:normal !important;
+}
