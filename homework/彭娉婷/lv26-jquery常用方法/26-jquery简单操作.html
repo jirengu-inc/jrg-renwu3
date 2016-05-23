@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jquery简单操作</title>
+  <style type="text/css">
+
+  body{
+    font-size: 12px;
+  }
+  a{
+    text-decoration: none;
+     color: black;
+  }
+  .test1,.test3,.test5{
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }
+  .click-test{
+    padding:40px;
+    border: 1px solid #ccc;
+    text-align: center;
+
+  }
+  .mouse-test{
+    padding:40px;
+    border: 1px solid #ccc;
+    background-color: blue;
+
+  }
+
+  </style>
+</head>
+<body>
+  <div class="test1">
+    <a class="btn click-test" href="#">点我变红再变蓝</a>
+  </div>
+
+  <div class="test2">
+    <p>窗口滚动时的垂直滚动距离</p>
+    <span class="scroll-distance"></span>
+  </div>
+
+  <div class="test3">
+    <a class="btn mouse-test" href="#">放置鼠标变红,移出鼠标变白</a>
+  </div>
+
+  <input type="text"></input>
+
+  <div class="test5">
+    <select class="selec">
+      <option value='movie'>电影</option>
+      <option value='music'>音乐</option>
+      <option value='travel'>旅行</option>
+    </select>
+  </div>
+
+
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script src="./js/jquery.color.js"></script>
+<script type="text/javascript">
+
+  $('.click-test').on('click',function(){
+    $(this).animate({
+      backgroundColor: 'red',
+    },1000).animate({
+      backgroundColor: 'blue',
+    });
+  });
+
+
+  $(document).on('scroll',function(){
+    console.log('1');
+    $('.scroll-distance').text($(document).scrollTop());
+  });
+
+
+
+  $('.mouse-test').on('mouseenter',function(){
+    $(this).animate({
+      backgroundColor:'red'
+    });
+  }).on('mouseleave',function(){
+    $(this).animate({
+      backgroundColor:'white'
+    });
+  });
+
+
+  $('input').on('focus',function(){
+    $(this).css('outlineColor','blue');
+  }).on('keyup',function(){
+     $(this).val($(this).val().toUpperCase());
+   }).on('blur',function(){
+     $(this).css('outlineColor',' ');
+     console.log($(this).val());
+   });
+
+
+  $('.selec').on('change',function(){
+    $(this).val();
+  });
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
