@@ -43,7 +43,6 @@
   <a class='btn btn-add' href="#">加载更多</a>
 
   <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
-  <script src="./js/jquery.color.js"></script>
   <script type="text/javascript">
 
     $('.content li').on('mouseenter',function(){
@@ -52,55 +51,34 @@
       $(this).css('backgroundColor','white');
     });
 
-    var cur =2;
-    document.querySelector('.btn-add').addEventListener('click', function(){
-      ajax({
-        url: '24-getData.php',   //接口地址
+    var cur =3;
+    $('.btn-add').on('click', function(){
+      $.ajax({
+        url: '/getData',   //接口地址
         type: 'get',               // 类型， post 或者 get,
         data: {
-          start: cur,
+          sta: cur,
           len: 6
         },
         dataType:'json',
         success: function(json){
+          console.log(json);
             onSuccess(json);       // {status: 0}
           },
-          error: function(json){
-           onError('出错了');
+          error: function(){
+           onError();
          }
        })
     });
 
-
-    function ajax(opts){
-      var xmlHttp=new XMLHttpRequest();
-      var str='';
-      for(k in opts.data){
-        str += k+'='+opts.data[k]+'&';
-      }
-      str=str.substr(0,str.length-1);
-
-      if (opts.type.toLowerCase()==='get') {
-        xmlHttp.open('GET',opts.url+'?'+str,true);
-        xmlHttp.send();
-      }
-      if (opts.type.toLowerCase()==='post') {
-        xmlHttp.open('POST',opts.url,true);
-        xmlHttp.setRequestHeader('content-type','application/x-www-form-urlencoded');
-        xmlHttp.send(str);
-      }
-      xmlHttp.onreadystatechange=function(){
-        if (xmlHttp.readyState===4&&xmlHttp.status===200) {
-          var responsetext =JSON.parse(xmlHttp.responseText);
-          opts.success(responsetext);
-        }
-        if (xmlHttp.readyState===4&&xmlHttp.status===404) {
-          opts.error();
-        }
-      }
-    }
     function onSuccess(json){
-      if (json.status==1){
+      // json = JSON.parse(json);
+      console.log(json.status);
+        console.log(json.data);
+      if (json.status==0){
+        console.log(typeof json);
+        console.log(json.status);
+        console.log(json.data);
         append(json.data);
         cur+=6;
       }
@@ -115,7 +93,7 @@
 
     function append(arr){
       for (var i = 0; i < arr.length; i++) {
-        $('.content').append('<li>'+arr[i]+'</li>');
+        $('.content').append('<li>内容'+arr[i]+'</li>');
       }
     }
 
