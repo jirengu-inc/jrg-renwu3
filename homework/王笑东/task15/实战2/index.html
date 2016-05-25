@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>实战2</title>
+  <style>
+  html,body,ul,li{
+  	margin: 0;
+  	padding: 0;
+  }
+  a{
+    text-decoration: none;
+  }
+  li{
+    list-style: none;
+  }
+  @font-face {font-family: 'iconfont';
+    src: url('iconfont.eot'); /* IE9*/
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+  .iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
+  
+  #header{
+    background-color: #fff;
+    position:fixed; 
+    top:0; 
+    left:0; 
+    width:100%;
+    height:40px;
+    z-index:99; 
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e7e7e7;
+  }
+  .container{
+    width: 1000px;
+    margin: 0 auto;
+  }
+  .common{
+    list-style: none;
+    display: inline-block;
+  	padding: 10px;
+  	line-height: 50px;
+  }
+  .item{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    border-top: 1px solid #a54039;
+    background-color: #fff;
+  }
+  .item>li{
+    width: 150px;
+    padding: 0 0 0 20px;
+    line-height: 30px;
+  }
+  .item>li:nth-of-type(-1n+3):hover{
+    background-color: #f5f5f5;
+  }
+  .item>li>a{
+    color: #404040;
+  }
+  .nav>li{
+    padding: 0px 10px;
+    position: relative;
+  }
+  .nav>li:first-child{
+    font-size: 1.2em;
+  }
+  .nav>li>a{
+    color: #777;
+  }
+  .nav>li>a:hover{
+    color: #333;
+  }
+  .mywork:hover .item{
+    display: block;
+  }
+  .page{
+    background-color: #b84d45;
+    padding-top: 60px;  
+    padding-bottom: 30px;
+    color: #fff;
+  }
+  .works{
+    margin:20px 0;
+  }
+  .works-nav{
+    background-color: #f5f5f5;
+    padding: 10px 0 10px 15px;
+  }
+  .works-nav>span{
+    color: #cd8681;
+  }
+  .works-nav>span>a{
+    color: #cd8681;
+  }
+  .works-nav>span>a:hover{
+    text-decoration: underline;
+  }
+  .work-example{
+    margin-top:40px;
+  }
+  .examples{
+    margin-left: -20px;
+  }
+  .examples:after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .examples>li{
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    width: 307px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 5px;
+  }
+  .examples>li>a:first-child{
+    width: 307px;
+    height: 201px;
+    display: block;
+    background-size: 100% auto;
+  }
+  .examples>li>a:hover{
+    opacity: 0.7;
+  }
+  .content{
+    text-align: center;
+  }
+  .creative>a:first-child{
+    background: url(img/creative.jpg) no-repeat center center; 
+  }
+  .agency>a{
+    background: url(img/agency.jpg) no-repeat center center; 
+  }  
+  .freelancer>a{
+    background: url(img/freelancer.jpg) no-repeat center center; 
+  }
+  .grayscale>a{
+    background: url(img/grayscale.jpg) no-repeat center center; 
+  }
+  .landing>a{
+    background: url(img/landing-page.jpg) no-repeat center center; 
+  }
+  .stylish>a{
+    background: url(img/stylish-portfolio.jpg) no-repeat center center; 
+  }
+  .full-width>a{
+    background: url(img/full-width-pics.jpg) no-repeat center center; 
+  }
+  .one>a{
+    background: url(img/one-page-wonder.jpg) no-repeat center center; 
+  }
+  .half>a{
+    background: url(img/half-slider.jpg) no-repeat center center; 
+  }
+  .full-slider>a{
+    background: url(img/full-slider.jpg) no-repeat center center; 
+  }
+  .btn{
+    color: #333;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    border:1px solid #ccc;
+    border-radius: 5px;
+    padding:6px 12px;
+    margin-bottom: 20px;
+  }
+  .btn:hover{
+    background-color: #e6e6e6;
+  }
+  .aboutme{
+    color: #fff;
+    background-color: #b84d45;
+    text-align: center;
+    padding: 20px 0;
+  }
+  #footer{
+    padding: 20px 0;
+    color: #c87670;
+    text-align: center;
+  }
+  #footer .container>hr{
+    border-top: 1px solid #eee;
+  }
+  #footer .container>p>a{
+    text-decoration: none;
+    color: #c87670;
+  }
+  #footer .container>p>a:hover{
+    text-decoration: underline;
+  }
+  </style>
+</head>
+<body>
+<!--头部-->
+ <div id="header">
+   <div class="container">
+	<ul class="nav">
+		<li class="common"><a href="#">饥人谷</a></li>
+		<li class="common mywork">
+			<a href="#">我的作品<span class="triangle iconfont">&#xe650;</span></a>
+			<ul class="item">
+				<li class="iconfont"><a href="#">&#xe61f; 作品1</a></li>
+				<li class="iconfont"><a href="#">&#xe62b; 作品2</a></li>
+				<li class="iconfont"><a href="#">&#xe633; 作品3</a></li>
+				<hr>
+				<li>作品4</li>
+			</ul>
+		</li>
+		<li class="common"><a href="#">博客</a></li>
+		<li class="common"><a href="#">项目</a></li>
+		<li class="common"><a href="#">关于我</a></li>
+	</ul>
+   </div>
+ </div>
+ <div id="main">
+  <div class="page">
+   <div class="container">
+       <h1>页面特征</h1>
+      <p>不需要处理响应式，不使用 Bootstrap，不需要 js。</p>
+      <p>图标使用 font-awesome,页面中心内容固定宽度1000px</p>
+   </div>
+  </div>
+  <div class="works">
+    <div class="container">
+       <div class="works-nav">
+         <span><a href="#">首页</a> / 我的作品</span>
+       </div>
+       <div class="works-example">
+         <ul class="examples">
+           <li class="creative">
+            <a href="#"></a>
+            <div class="content">
+              <h3>Creative</h3>
+              <h5>A one page creative theme.</h5>  
+              <a href="#" class="btn">查看</a>
+            </div>
+           </li>
+           <li class="agency">
+             <a href="#"></a>
+             <div class="content">
+             <h3>Agency</h3>
+             <h5>A one page agency theme.</h5>  
+             <a href="#" class="btn">查看</a>
+            </div>
+           </li>
+           <li class="freelancer">
+             <a href="#"></a>
+             <div class="content">
+             <h3>Freelancer</h3>
+             <h5>A one page freelancer theme.</h5>  
+             <a href="#" class="btn">查看</a>
+            </div>
+           </li>
+           <li class="grayscale">
+             <a href="#"></a>
+             <div class="content">
+             <h3>Grayscale</h3>
+             <h5>A multipurpose one page theme.</h5>  
+             <a href="#" class="btn">查看</a>
+            </div>
+           </li>
+           <li class="landing">
+             <a href="#"></a>
+             <div class="content">
+             <h3>Landing Page</h3>
+             <h5>A clean, functional landing page theme.</h5>  
+             <a href="#" class="btn">查看</a>
+            </div>
+           </li>
+           <li class="stylish">
+             <a href="#"></a>
+             <div class="content">
+             <h3>Stylish Portfolio</h3>
+             <h5>A stylish Bootstrap portfolio theme.</h5>  
+             <a href="#" class="btn">查看</a>
+            </div>
+           </li>
+           <li class="full-width">
+             <a href="#"></a>
+             <div class="content">
+             <h3>Full Width Pics</h3>
+             <h5>Full width picture backgrounds.</h5>  
+             <a href="#" class="btn">查看</a>
+            </div>
+           </li>
+           <li class="one">
+             <a href="#"></a>
+             <div class="content">
+             <h3>One Page Wonder</h3>
+             <h5>A simple one page website template.</h5>  
+             <a href="#" class="btn">查看</a>
+            </div>
+           </li>
+           <li class="half">
+             <a href="#"></a>
+             <div class="content">
+             <h3>Half Slider</h3>
+             <h5>A half page image slider template.</h5>  
+             <a href="#" class="btn">查看</a>
+            </div>
+           </li>
+           <li class="full-slider">
+             <a href="#"></a>
+             <div class="content">
+             <h3>Full Slider</h3>
+             <h5>A full page image slider template.</h5>  
+             <a href="#" class="btn">查看</a>
+            </div>
+           </li>
+         </ul>
+       </div>
+    </div>
+  </div>
+    <div class="aboutme">
+      <div class="container">
+        <h2>想更详细的了解我？</h2>
+        <h4>下载简历，打我电话找我吧</h4>
+      </div>
+    </div>
+ </div>
+ <div id="footer">
+   <div class="container">
+     <hr>
+     <p>模板来自<a href="#">start Bootstrap.</a></p>
+   </div>
+ </div>
+</body>
+</html>
