@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>task7</title>
+	<style>
+	body,form,ul{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		font-family:"Microsoft YaHei";
+		font-size:20px;
+	}
+	li{
+		list-style-type: none;
+		 margin-top: 10px;
+	}
+	textarea{
+		width: 400px; 
+		height: 200px
+	}
+	input,textarea{
+		margin-left:10px;
+	}
+	.form-area{
+		margin:40px;
+	}
+	.input-text{
+		width:200px;
+		height:20px;
+	}
+	.car-selector{
+		height:20px;
+		width:49px;
+	}
+	/*.radio-class{
+		width:20px;
+		height:20px;
+		
+	}
+	.radio-class input:checked{
+		background-color: #821134;
+		}*/
+		</style>
+	</head>
+	<body>
+		<form name="firstForm" class="form-area" method="post">
+			<ul>
+				<li>
+					<span>姓名:</span><input class="input-text" type="text"  name="username" placeholder="用戶名">
+				</li>
+				<li>
+					<span>密码:</span><input class="input-text" type="password" name="pwd" >
+				</li>
+				<li>
+					<span>性別:</span>
+					<input type="radio" name="sex" value="男" checked="true">男
+					<input type="radio" name="sex" value="女">女
+				</li>
+				<li>
+					<span>取向:</span>
+					<input type="radio" name="sex-orientation" value="男">男
+					<input type="radio" name="sex-orientation" value="女" checked="true">女
+				</li>
+				<li>
+					<span>爱好:</span>
+					<input type="checkbox" name="hobby" value="dota">dota
+					<input type="checkbox" name="hobby" value="dota">旅游
+					<input type="checkbox" name="hobby" value="dota">宠物
+				</li>
+				<li>
+					<span>评论:</span><textarea name="comment" placeholder="ddd"></textarea>
+				</li>
+				<li>
+					<span>我的Car:</span>
+					<select name="mycar" class="car-selector">
+						<option value="奔驰">奔驰</lable></option>
+						<option value="宝马">宝马</option>
+						<option value="奥迪">奥迪</option>
+					</select>
+					<input type="submit" value="提交">
+				</li>
+			</ul>
+		</form>
+	</body>
+	</html>
