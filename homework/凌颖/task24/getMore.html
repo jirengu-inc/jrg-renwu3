@@ -73,7 +73,7 @@
          return;
      }
      isLoading = true;//产生AJAX前立刻上锁，防止用户多次点击
-     document.getElementById('loadMore').innerHTML = '<i class="loading"></i>';
+     document.getElementById('loadMore').innerHTML = '<span>请稍等</span><i class="loading"></i>';
       ajax({
         url:'/getMore',
         type:'get',
@@ -93,6 +93,7 @@
   function onSuccess (json){
       if(json.status == 0){
           setTimeout(function(){
+
               for(var k = 0;k<json.data.length;k++){
                   var item = document.createElement("li");
                   item.innerText = json.data[k];

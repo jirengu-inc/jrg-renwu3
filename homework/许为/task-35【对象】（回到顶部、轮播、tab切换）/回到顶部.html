@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level29</title>
+<style type="text/css">
+	a{
+		border:1px solid red;
+		padding: 10px;
+		position: fixed;
+		left:90%;
+		top: 90%;
+		color: black;
+		text-decoration: none;
+		display: none;
+	}
+</style>
+</head>
+<body>
+	<div>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容3</p>
+		<p>内容2</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容3</p>
+		<p>内容2</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容3</p>
+		<p>内容2</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容3</p>
+		<p>内容2</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容3</p>
+		<p>内容2</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容3</p>
+		<p>内容2</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容3</p>
+		<p>内容2</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容1</p>
+		<p>内容3</p>
+		<p>内容2</p>
+<!-- 		<a href="#">回到顶部</a> -->
+	</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	// var $a=$("a");
+	// $(window).on("scroll",function(){
+	// 	var scrollTop=$(this).scrollTop();
+	// 	console.log(scrollTop);
+	// 	if (scrollTop>=170) {
+	// 	$a.css("display","block");
+	// 	$a.on("click",function(){
+	// 		scrollTop=0;
+	// 	});
+	// }else{
+	// 	$a.removeAttr('style');
+	// }
+	// });
+	function GoTop(){
+		this.target=$('<a href="#">回到顶部</a>');
+		this.ct=$("div");
+	}
+	GoTop.prototype.createNode=function(){
+			this.ct.append(this.target);
+		}
+	GoTop.prototype.bindEvent=function(){
+			var _this=this;
+			$(window).on("scroll",function(){
+				var scrollTop=$(this).scrollTop();
+				if (scrollTop>=170) {
+					_this.target.css("display","block");
+					_this.target.on("click",function(){
+						scrollTop=0;
+					});
+				}else{
+					_this.target.removeAttr('style');
+				}
+			});
+		}
+	var top1=new GoTop();
+	top1.createNode();
+	top1.bindEvent();
+</script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab</title>
+    <style>
+        ul,div{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .tab{
+            display: inline-block;
+            border: 1px solid gainsboro;
+            padding: 10px 15px;
+            border-radius: 4px 4px 0 0;
+            margin-left: 10px;
+            border-bottom-color: transparent;
+            cursor: pointer;
+        }
+
+        div[class^="tab-content"] {
+            display: none;
+            border: 1px solid gainsboro;
+            height: 130px;
+            padding: 15px
+        }
+
+        .tab-nav>.active{
+            box-shadow: 5px 0px 4px 0px rgba(0,0,0,.6);
+        }
+        .ct .show{
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+  <div class="ct">
+        <ul class="tab-nav">
+            <li class="tab active">tab1</li>
+            <li class="tab ">tab2</li>
+            <li class="tab ">tab3</li>
+        </ul>
+         <div class="tab-content-0 show">
+             tab1
+         </div>
+         <div class="tab-content-1">
+              tab2
+         </div>
+         <div class="tab-content-2">
+              tab3
+         </div>
+    </div>
+  <script>
+      var hasClass = function (el, cls) {
+          return new RegExp('(\\s|^)' + cls + '(\\s|$)','g').test(el.className)
+      }
+
+      var addClass= function(el,cls){
+          if(!hasClass(el,cls)){
+              el.className+=' '+cls;
+          }
+      }
+
+      var removeClass= function(el,cls){
+          if(hasClass(el,cls)){
+              el.className = el.className.replace(new RegExp('(\\s|^)' + cls + '(\\s|$)','g'),'')
+          }
+      }
+      var nav = document.querySelector('.tab-nav');
+      nav.addEventListener('click',function(event){
+          if(event.target.tagName.toLowerCase() === 'li'){
+              if(!hasClass(event.target,'active')){
+                  Array.prototype.forEach.call(nav.children,function (e,i) {
+                      if(e===event.target){
+                          addClass(event.target,'active');
+                          addClass(document.querySelector('.tab-content-'+i),'show')
+                      }else{
+                          removeClass(e,'active');
+                          removeClass(document.querySelector('.tab-content-'+i),'show')
+                      }
+                  })
+              }
+          }
+      });
+
+  </script>
+</body>
+</html>

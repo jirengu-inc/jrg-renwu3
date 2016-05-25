@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>stickup插件</title>
+</head>
+<style>
+    #header{
+        background:#90C5DB;
+        height: 80px;
+        line-height: 80px;
+        text-align: center;
+    }
+    #nav{
+        height: 40px;
+        margin-top: 20px;
+        background: #FFCCCC;
+    }
+    #content{
+        min-height: 800px;
+        background: #ccc;
+        padding: 10px;
+        overflow: auto;
+    }
+    #content .aside{
+        float: left;
+        width: 100px;
+        min-height: 400px;
+        background: #337AB7;
+    }
+    #content .main{
+        overflow: auto;
+        background: #fff;
+        padding-left: 20px;
+        min-height: 800px;
+    }
+    #footer{
+        background: #333;
+    }
+
+</style>
+<body>
+<div id="header">header</div>
+<div id="nav">nav导航导航导航导航导航导航导航</div>
+<div id="content">
+    <div class="aside">aside</div>
+    <div class="main">main</div>
+</div>
+<div id="footer">footer</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    $.fn.stickup =function(){
+        var $cur = this,
+            curW = $cur.width(),
+            curH = $cur.height(),
+            offsetT = $cur.offset().top,
+            offsetL = $cur.offset().left;
+        var $curClone = $cur.clone()
+                            .css('opacity','0')
+                            .insertBefore($cur)
+                            .hide();
+        $(window).on('scroll',function(){
+            var scrollT=$(this).scrollTop();
+          if(scrollT >= offsetT){
+              if(!isFixed()){
+                  setFixed();
+              }
+          }else{
+              if(isFixed()){
+                  unSetFixed();
+              }
+          }
+        });
+        function isFixed(){
+            return !!$cur.attr('data-fixed');
+        }
+        function setFixed(){
+            $cur.attr('data-fixed',true)
+                    .css({
+                        'position':'fixed',
+                        'width':curW,
+                        'top':0,
+                        'left':offsetL,
+                        'z-index':99,
+                        'margin':0
+                    });
+            $curClone.show();
+        }
+        function unSetFixed(){
+            $cur.removeAttr('data-fixed')
+                    .removeAttr('style');
+            $curClone.hide();
+        }
+    };
+    $('#nav').stickup();
+</script>
+</body>
+</html>

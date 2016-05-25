@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>22Dom、事件代码部分-2</title>
+</head>
+<body>
+
+  <ul class="ct">
+    <li data-img="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg">鼠标放置查看图片1</li>
+    <li data-img="http://cdn.jirengu.com/book.jirengu.com/img/13.jpg">鼠标放置查看图片2</li>
+    <li data-img="http://cdn.jirengu.com/book.jirengu.com/img/14.jpg">鼠标放置查看图片3</li>
+  </ul>
+  <div class="img-preview"></div>
+
+
+  <script type="text/javascript">
+
+      var ct = document.querySelector('.ct');
+      var imgPreview=document.querySelector('.img-preview');
+      var imgNode =document.createElement('img');
+
+      ct.addEventListener('click',function(e){
+        imgNode.setAttribute('src',e.target.getAttribute('data-img'));
+        imgPreview.appendChild(imgNode);
+      })
+
+</script>
+
+
+</body>
+</html>

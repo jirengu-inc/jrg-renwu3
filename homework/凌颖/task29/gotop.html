@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回到顶部</title>
+    <style>
+        p{
+            line-height: 3;
+        }
+        #go-top{
+            border:1px solid #1974c9;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #1974c9;
+            line-height:25px;
+            text-align:center;
+            cursor:pointer;
+            display:none;
+        }
+        .visible{
+            border:1px solid salmon;
+        }
+    </style>
+</head>
+<body>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容3</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容4</p>
+<p>内容4</p>
+<p class="visible">查看可视</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容6</p>
+<p>内容1</p>
+<p>内容7</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容1</p>
+<p>内容6</p>
+<p>内容1</p>
+<p>内容7</p>
+<p>内容1</p>
+<p>内容1</p>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    var goTop = {
+        init: function(){
+            if($('#go-top').length>0){
+                return;
+            }
+            var $goTop = $('<div id="go-top">回到<br/>顶部</div>');
+            $('body').append($goTop);
+            this.$goTop = $goTop;
+            this.bind();
+        },
+        bind: function(){
+            var self = this;
+            $(window).on('scroll',function(){
+                var offsetT = $('body').scrollTop();
+                if(offsetT>100){
+                    self.$goTop.show();
+                }else{
+                    self.$goTop.hide();
+                }
+            });
+            this.$goTop.on('tap',function(){
+                $(window).scrollTop(0);
+            });
+        }
+    };
+/*var goTop =(function(){
+   var $goTop = $('<div id="go-top">回到<br/>顶部</div>');
+    $('body').append($goTop);
+    function init(){
+        $(window).on('scroll',function(){
+            var offsetTop = $(this).scrollTop();
+            if(offsetTop>100){
+                $goTop.show();
+            }else{
+                $goTop.hide();
+            }
+            $goTop.on('click',function(){
+                $(window).scrollTop(0);
+            })
+        });
+    }
+    return{
+        init:init
+    }
+})();*/
+goTop.init();
+goTop.init();//测试了下，并不会写两次
+    function isVisible($node){
+        $(window).on('scroll',function(){
+            var scrollT = $(window).scrollTop(),
+                    winH = $(window).height(),
+                    offsetT = $('.visible').offset().top,
+                   offsetH = $('.visible').height();
+            if($('.visible').hasClass('isConsole')){
+                return;
+            }
+            if(scrollT+winH >offsetT && scrollT<(offsetT+offsetH)){
+                $('.visible').addClass('isConsole');
+                console.log('你看见我');
+                return true;
+            }else{
+                console.log('你看不见我');
+                return false;
+            }
+        });
+    }
+    isVisible()
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>22-Dom、事件代码部分</title>
+  <style type="text/css">
+
+    .model-tab{
+      border: 1px solid #ccc;
+    }
+    .model-tab * {
+      box-sizing: border-box;
+    }
+
+    ul,li{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+    }
+    .tabs:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    ul>li{
+      float: left;
+      width: 33.33333%;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+
+    }
+    ul>li:last-child{
+     border-right: none;
+
+   }
+   ul .active{
+    background-color: #ccc;
+
+  }
+  .content{
+    display: none;
+    height: 150px;
+
+  }
+  .wrap .active{
+    display: block;
+  }
+
+</style>
+</head>
+<body>
+
+
+
+
+
+
+  <div class="model-tab">
+    <ul class="tabs">
+      <li>tab1</li>
+      <li>tab2</li>
+      <li>tab3</li>
+    </ul>
+
+    <div class="wrap">
+      <div class="content">内容1</div>
+      <div class="content">内容2</div>
+      <div class="content">内容3</div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    var tabs = document.querySelector('.tabs');
+    var wrap =document.querySelector('.wrap');
+    tabs.addEventListener('click',function(e){
+      for (var k = 0; k < wrap.children.length; k++) {
+        wrap.children[k]=Utils.removeClass(wrap.children[k],'active');
+        tabs.children[k]=Utils.removeClass(tabs.children[k],'active');
+      }
+
+      var i = Utils.findIndex(e.target);
+      wrap.children[i].className=Utils.addClass(wrap.children[i],'active');
+      tabs.children[i].className=Utils.addClass(tabs.children[i],'active');
+    });
+
+
+    var Utils = {
+      findIndex:function(ele){
+        var parent = ele.parentElement;
+        var siblings=parent.children;
+        for (var i = 0; i < siblings.length; i++) {
+          if (siblings[i]===ele) {return i;}
+        }
+        return -1;
+      },
+
+      addClass:function(el, cls){
+        if(!Utils.hasClass(el,cls)){
+          return el.className+' '+cls;
+        }
+      },
+
+      removeClass:function(el,cls){
+        var patt = new RegExp('\\b'+cls+'\\b','g');
+        return el.className = el.className.replace(patt,'').replace(/\s{2,}/g,'');
+      },
+
+
+      hasClass:function(el,cls){
+        var patt = new RegExp('\\b'+cls+'\\b','g');
+        console.log(el);
+        return patt.test(el.className);
+      },
+    };
+
+  </script>
+
+
+</body>
+</html>

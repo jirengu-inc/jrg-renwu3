@@ -106,7 +106,6 @@
     var imgWidth=$(window).width();
     var $win=$('.window');
     var imgCount=$win.children().length;
-
     // for(var i=0;i<imgCount;i++){
     //   $('.box').eq(i).css('background-image','url('+$('.box').eq(i).attr('data-img')+')');
     // }
@@ -114,20 +113,16 @@
     $('.window>li').css('width',imgWidth);    
     $win.prepend($win.children().last().clone());
     $win.append($win.children().eq(1).clone());                    //给头尾加两个元素
-
     $win.css('width',(imgCount+2)*imgWidth);                         // 动态设置ul的宽度
     $win.css('left',-imgWidth);
-
     $('.bullet').on('click','li',function(){                    // 点击子弹条  转换图片
       turn($(this).index()-curNum);                            // 计算步数 传入turn
     });
-
     setBg(0);
     $('.box').eq(imgCount+1).css('background-image','url('+$('.box').eq(imgCount+1).attr('data-img')+')');
     var clock=setInterval(function(){
       turn(1);
     },2000);
-
     function turn(num){                                            // 主函数 turn 传入切换的步数
       if(turning) return;
       turning=true;
@@ -146,7 +141,6 @@
       curNum=targetNum;
       turning=false;
     }
-
     function setBg(num){
       var targetNum=(num+curNum+4)%(imgCount); 
       if($('.box').eq(targetNum+1).data('loaded'))return;

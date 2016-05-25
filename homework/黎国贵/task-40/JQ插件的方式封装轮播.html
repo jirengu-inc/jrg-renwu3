@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQ插件的方式封装轮播</title>
+    <style>
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position: relative;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .carousel{
+            position: absolute;
+            width: 310px;
+            height: 206px;
+            left: 50%;
+            margin-left: -160px;
+            border:1px solid #000000;
+            background-color: #eeeeee;
+        }
+        .layout1{
+            top: 0;
+        }
+        .layout2{
+            top: 33%;
+        }
+        .layout3{
+            top: 66%;
+        }
+        .carousel .ct{
+            position: absolute;
+        }
+        .carousel .ct li{
+            position: absolute;
+            display: none;
+        }
+        .carousel .ct img{
+            width: 310px;
+            height: 206px;
+        }
+        .arrow{
+            position:absolute;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            margin-top: -15px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #4E443C;
+            color:#fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            box-shadow: 0 0 2px #999;
+        }
+        .arrow:hover{
+            opacity:1;
+        }
+        .prev{
+            left: 10px;
+        }
+        .next{
+            right:10px;
+        }
+        .bullet{
+            position:absolute;
+            bottom:10px;
+            left: 50%;
+            transform:translateX(-50%);
+        }
+        .bullet li{
+            width: 16px;
+            height: 4px;
+            display: inline-block;
+            background-color: #fff;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+        .bullet li.active{
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+<div class="carousel layout1">
+    <ul class="ct">
+        <li data-id="0"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg" alt=""></a></li>
+        <li data-id="1"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg" alt=""></a></li>
+        <li data-id="2"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg" alt=""></a></li>
+        <li data-id="3"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg" alt=""></a></li>
+    </ul>
+    <a class="prev arrow" href="#"><</a>
+    <a class="next arrow" href="#">></a>
+    <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="carousel layout2">
+    <ul class="ct">
+        <li data-id="0"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg" alt=""></a></li>
+        <li data-id="1"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg" alt=""></a></li>
+        <li data-id="2"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg" alt=""></a></li>
+        <li data-id="3"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg" alt=""></a></li>
+    </ul>
+    <a class="prev arrow" href="#"><</a>
+    <a class="next arrow" href="#">></a>
+    <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="carousel layout3">
+    <ul class="ct">
+        <li data-id="0"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg" alt=""></a></li>
+        <li data-id="1"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg" alt=""></a></li>
+        <li data-id="2"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg" alt=""></a></li>
+        <li data-id="3"><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg" alt=""></a></li>
+    </ul>
+    <a class="prev arrow" href="#"><</a>
+    <a class="next arrow" href="#">></a>
+    <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+
+    $.fn.carousel= function(fadeTime,autoPlayTime) {
+        this.each(function () {
+            var me = $(this);
+            $next = me.find(".next");
+            $prev = me.find(".prev");
+            $bullet = me.find(".bullet");
+            $children = me.find(".ct").children("li");
+            var length = $children.size();
+            var cur = 0;
+            var isAnimate =true;//全局变量状态锁，允许执行自动播放的功能
+            $next.on("click",function (e) {
+                e.preventDefault();
+                playNext();
+            });
+            $prev.on("click",function (e) {
+                e.preventDefault();
+                playPrev();
+            });
+            $bullet.find("li").on("mouseenter",function (e) {
+                var index = $(this).index();  //找出点击bullet的li元素的编号
+                play(index);   //让相应li元素编号的图片淡入
+            });
+            function  playNext () {//设置传递给play()的参数
+                play((cur+1)%length);
+            }
+            function  playPrev () {//设置传递给play()的参数
+                play((length+cur-1)%length);
+            }
+            function play(index) {//让选中的元素淡入
+                if(!isAnimate){
+                    return;
+                }
+                isAnimate = false; //完成图片淡入淡出前，不允许执行自动播放功能
+                fadeTime = fadeTime || 400;
+                me.find(".ct").children("li").eq(cur).fadeOut(fadeTime);//当前图片淡出
+                me.find(".ct").children("li").eq(index).fadeIn(fadeTime,function (){
+                    isAnimate=true;
+                });
+                cur = index;       //当前编号改为选中的编号
+                setBullet();
+            }
+            function setBullet() {//给相应bullet的li元素加上背景色
+                me.find(".bullet").children().removeClass("active").eq(cur).addClass("active");
+            }
+            function autoPlay (){//自动播放
+                autoPlayTime = autoPlayTime || 2000;
+                start = setInterval(function () { //编号start为全局变量，不然的话stop函数找不到这个编号了
+                    playNext();
+                },autoPlayTime)
+            }
+            function stop() {//停止自动播放功能
+                clearInterval(start);
+            }
+            play(0);//一开始设为播放第0个图片
+            autoPlay();
+        });
+    };
+    $('.carousel').carousel();
+
+
+
+</script>
+</body>
+</html>
