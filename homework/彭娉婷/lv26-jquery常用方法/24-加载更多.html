@@ -73,12 +73,7 @@
 
     function onSuccess(json){
       // json = JSON.parse(json);
-      console.log(json.status);
-        console.log(json.data);
       if (json.status==0){
-        console.log(typeof json);
-        console.log(json.status);
-        console.log(json.data);
         append(json.data);
         cur+=6;
       }
