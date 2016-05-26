@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>实战3</title>
+  <style>
+      html,body,h1,h2,p,ul,li{
+      margin: 0px;
+      padding: 0px;
+    }
+    html,body{
+      height:100%;
+      font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+    a{
+      text-decoration: none;
+    }
+    @font-face {font-family: 'iconfont';
+    src: url('iconfont.eot'); /* IE9*/
+    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('iconfont.woff') format('woff'), /* chrome、firefox */
+    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+    .iconfont{
+    font-family:"iconfont" !important;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;}
+
+    .container{
+      width: 1000px;
+      margin: 0 auto;
+    }
+    #header{
+      display: table;
+      background: url(img/header-bg.jpg) no-repeat center center scroll;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      background-size:cover;
+      color: #fff;
+    }
+      .header-content{
+        width: 1000px;
+        margin: 0 auto;
+        display: table-cell;
+        vertical-align:middle;
+      }
+      .header-content>h2{
+        font-size: 2em;
+        font-weight: 700;
+      }
+      .header-content>h1{
+        font-size: 4.5em;
+        font-weight: 700;
+      }
+      .button{
+        display: inline-block;
+        text-decoration: none;
+        margin: 40px 0;
+        padding: 30px 40px;
+        color: #fff;
+        background-color: #fed136;
+        font-weight: 700;
+        font-size: 1.3em;
+        border-radius: 5px;
+      }
+      .button:hover{
+        background-color: #fec503;
+      }
+      .services{
+        margin: 100px 0;
+        text-align: center;
+      }
+      .services>h3{
+        font-size: 1.5em;
+        font-family: "Droid Serif","Helvetica Neue";
+        color: #777;
+      }
+      .icon-content{
+        list-style: none;
+        padding-top: 40px;
+      }
+      .icon-content:after{
+        content:'';
+        display: block;
+        clear: both;
+      }
+      .content{
+        float: left;
+        padding-left: 16px;
+      }
+      .content>.iconfont{
+        background-color: #fed136;
+        color:#fff;
+        width: 80px;
+        height: 80px;
+        font-size: 50px !important;
+        font-weight: 600;
+        line-height: 80px;
+        margin: 0 auto;
+        border-radius: 100%;
+        margin-bottom: 20px;
+      }
+      .content>h4{
+        font-family: "Droid Serif","Helvetica Neue";
+        color: #777;
+        line-height: 5px;
+        font-size: 10px;
+      }
+      .portfolio{
+        padding: 100px 0;
+        text-align: center;
+        background-color: #f7f7f7;
+      }
+      .portfolio>.container>h3{
+        font-size: 16px;
+        font-family: "Droid Serif","Helvetica Neue";
+        color: #777;
+      }
+      .pic-content{
+        list-style: none;
+        padding-top: 40px;
+        margin-left: -30px;
+      }
+      .pic-content:after{
+        content:'';
+        display: block;
+        clear: both;
+      }
+      .pic{
+        float: left;
+        margin-left: 30px;
+        margin-top: 30px;
+        width:312px;
+        background-color: #fff;
+      }
+      .pic>h3{
+        font-size: 16px;
+        font-family: "Droid Serif","Helvetica Neue";
+        color: #777;
+      }
+      .pic-content>li>a{
+        display: block;
+        width: 312px;
+        height: 225px;
+        background-size: 100% auto;
+        margin-bottom: 20px;
+      }
+      .round-icons>a{
+        background: url(img/portfolio/roundicons.png) no-repeat center center;
+      }
+      .startup>a{
+        background: url(img/portfolio/startup-framework.png) no-repeat center center;
+      }
+      .treehouse>a{
+        background: url(img/portfolio/treehouse.png) no-repeat center center;
+      }
+      .golden>a{
+        background: url(img/portfolio/golden.png) no-repeat center center;
+      }
+      .escape>a{
+        background: url(img/portfolio/escape.png) no-repeat center center;
+      }
+      .dreams>a{
+        background: url(img/portfolio/dreams.png) no-repeat center center;
+      }
+      .pic-hover{
+        position: absolute;
+        background-color: #ebc236;
+        opacity: 0;
+        width: 312px;
+        height: 225px;
+
+      }
+      .pic-hover:hover{
+        opacity: 0.9;
+        cursor:pointer;
+      }
+      .pic-hover-content{
+        position: absolute;
+        width: 312px;
+        height: 20px;
+        text-align: center;
+        top: 50%;
+        color: #fff;
+        margin-top: -20px;
+      }
+      .cross{
+        font-size: 40px !important;
+        font-weight: 700;
+      }
+      .about{
+        padding: 100px 0;
+        text-align: center;
+      }
+      .about .container>h1{
+        font-size: 3em;
+      }
+      .about .container>h3{
+        font-size: 16px;
+        font-family: "Droid Serif","Helvetica Neue";
+        color: #777;
+      }
+      .timeline{
+        margin-top: 50px;
+        list-style: none;
+        position: relative;
+      }
+      .timeline:before{
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 2px;
+        background-color: #f1f1f1;
+        margin-left: 6px;
+      }
+      .timeline>li{
+        display: table;
+        margin-bottom: 100px;
+        min-height: 100px;
+      }
+      .timeline>li:before{
+        content: " ";
+        display: table;
+      }
+      .timeline-image{
+        width: 100px;
+        height: 100px;
+        left: 50%;
+        margin-left: -50px;
+        position: absolute;
+        z-index: 10;
+        background-color: #fed136;
+        color: #fff;
+        border-radius: 100%;
+        border: 7px solid #f1f1f1;
+        text-align: center;
+      }
+      .timeline-image>h4{
+        font-size: 18px;
+        line-height: 18px;
+      }
+      .img-circle{
+        border-radius: 50%;
+        vertical-align: middle;
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      .timeline-content{
+        width: 38%;
+        float: left;
+        padding: 0 30px 20px 20px;
+        text-align: right;
+      }
+      .timeline-head>h3{
+        font-size: 1.3em;
+        line-height: 0.5;
+      }
+      .timeline-body>p{
+        font-size: 16px;
+        font-family: "Droid Serif","Helvetica Neue";
+        color: #777;
+      }
+      .timeline-panel{
+        width: 38%;
+        float:right;
+        text-align: left;
+        padding:0 30px 20px 20px;
+      }
+      .team{
+        padding-top: 100px;
+        padding-bottom: 100px;
+        background-color: #f7f7f7;
+        text-align: center;
+      }
+      .team>.container>h1{
+        font-size: 2.5em;
+      }
+      .team>.container>h3{
+        font-size: 16px;
+        font-family: "Droid Serif","Helvetica Neue";
+        color: #777;
+      }
+      .team>.container>p{
+        font-size: 16px;
+        font-family: "Droid Serif","Helvetica Neue";
+        color: #777;
+      }
+      .ourteamer{
+        margin-top: 55px;
+        margin-bottom: 35px;
+        text-align: center;
+        list-style: none;
+        margin-left: -26px;
+      }
+      .ourteamer:after{
+        content:'';
+        display: block;
+        clear: both;
+      }
+      .ourteamer>li{
+        float: left;
+        width: 315px;
+        margin-left: 26px;
+      }
+      .teamerpic{
+        display: block;
+        width: 240px;
+        height: 240px;
+        border:7px solid #fff;
+        border-radius: 100%;
+        margin: 25px auto;
+      }
+      .person>h2{
+        font-size: 20px;
+        line-height: 0.3;
+      }
+      .person>h4{
+        font-size: 14px;
+        font-family: "Droid Serif","Helvetica Neue";
+        color: #777;
+        line-height: 0.3;
+      }
+      .icon-space{
+        width: 140px;
+        margin: 0 auto;
+      }
+      .icon{
+        text-align: center;
+        list-style: none;
+        margin-left: -10px;
+      }
+      .icon:after{
+        content:'';
+        display: block;
+        clear: both;
+      }
+      .social-icon{
+        float: left;
+        font-size: 40px !important;
+        margin-left: 10px;
+      }
+      .social-icon:hover{
+        color: #fed136;
+        cursor: pointer;
+      }
+      .logo{
+        margin-top: 50px;
+        margin-bottom: 50px;
+        margin-left: -20px;
+        text-align: center;
+      }
+      .logo>.container>img{
+        display: inline-block;
+        margin-left: 20px;
+        margin-right: 20px;
+      }
+      .logo>.container>img:hover{
+        cursor: pointer;
+      }
+      .contact{
+        display: block;
+        background-color: #222;
+        background-image: url(img/map-image.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        padding:150px 0;
+        background-size:cover;
+        color: #fff;
+      }
+      .contact>.container>h1{
+        font-size: 2.4em;
+      }
+      .contact>.container>h3{
+        font-size: 16px;
+        font-family: "Droid Serif","Helvetica Neue";
+        color: #777;
+      }
+      .row{
+        margin:50px auto;
+      }
+      .row:after{
+        content:'';
+        display: block;
+        clear: both;
+      }
+      .text-row{
+        float: left;
+      }
+      .textarea-row{
+        float: right;
+      }
+      .form-control{
+        display: block;
+        margin-top: 20px;
+        width: 480px;
+        height: 50px;
+      }
+      .formarea-control{
+        margin-top: 20px;
+        width: 480px;
+        height: 200px;
+      }
+      #footer{
+        text-align: center;
+        margin: 15px auto;
+      }
+      .footer-content{
+        display: inline-block;
+        width: 300px;
+        height: 20px;
+        line-height: 20px;
+        margin: 20px auto;
+      }
+      .left-content{
+        vertical-align: top;
+      }
+      .middle-content{
+        margin-left: 90px;
+      }
+      .footer-link{
+        list-style: none;
+        text-align: center;
+        margin-left: -10px;
+      }
+      .footer-link:after{
+        content:'';
+        display: block;
+        clear: both;
+      }
+      .footer-link>li{
+        float: left;
+        margin-left: 10px;
+      }
+      .footer-link>li>a{
+        color: #fed54a;
+      }
+      .footer-link>li:hover{
+        text-decoration: underline;
+      }
+  </style>
+ </head>
+ <body>
+ 	<div id="header">
+      <div class="header-content">
+        <h2>Welcome To Our Studio!</h2> 
+        <h1>IT'S NICE TO MEET YOU</h1>
+        <a href="#" class="button">TELL ME MORE</a>
+      </div>
+ 	</div>
+  <div id="content">
+    <div class="container">
+      <div class="services">
+        <h1>SERVICES</h1>
+        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+        <ul class="icon-content">
+          <li class="content">
+            <div class="iconfont">&#xe65a;</div>
+            <h2>E-Commerce</h2>
+            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing</h4>
+            <h4>elit. Minima maxime quam architecto quo inventore </h4>
+            <h4>harum ex magni, dicta impedit.</h4>
+          </li>
+          <li class="content">
+            <div class="iconfont">&#xe6b3;</div>
+            <h2>Responsive Design</h2>
+            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing</h4>
+            <h4>elit. Minima maxime quam architecto quo inventore </h4>
+            <h4>harum ex magni, dicta impedit.</h4>
+          </li>
+          <li class="content">
+            <div class="iconfont">&#xe69e;</div>
+            <h2>Web Security</h2>
+            <h4>Lorem ipsum dolor sit amet, consectetur adipisicing</h4>
+            <h4>elit. Minima maxime quam architecto quo inventore </h4>
+            <h4>harum ex magni, dicta impedit.</h4>
+          </li>
+       </ul>
+      </div>
+    </div>
+    <div class="portfolio">
+      <div class="container">
+        <h1>PORTFOLIO</h1>
+        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+        <ul class="pic-content">
+          <li class="pic round-icons">
+            <div class="pic-hover">
+              <div class="pic-hover-content">
+                <i class="iconfont cross">&#xe727;</i>
+              </div>
+            </div>
+            <a href="#"></a>
+            <h2>Round Icons</h2>
+            <h3>Graphic Design</h3>             
+          </li>
+          <li class="pic startup">
+            <div class="pic-hover">
+              <div class="pic-hover-content">
+                <i class="iconfont cross">&#xe727;</i>
+              </div>
+            </div>
+            <a href="#"></a>
+            <h2>Startup Framework</h2>
+            <h3>Website Design</h3>
+          </li>
+          <li class="pic treehouse">
+            <div class="pic-hover">
+              <div class="pic-hover-content">
+                <i class="iconfont cross">&#xe727;</i>
+              </div>
+            </div>
+            <a href="#"></a>
+            <h2>Treehouse</h2>
+            <h3>Website Design</h3>
+          </li>
+          <li class="pic golden">
+            <div class="pic-hover">
+              <div class="pic-hover-content">
+                <i class="iconfont cross">&#xe727;</i>
+              </div>
+            </div>
+          <a href="#"></a>
+          <h2>Golden</h2>
+          <h3>Website Design</h3>
+          </li>
+          <li class="pic escape">
+            <div class="pic-hover">
+              <div class="pic-hover-content">
+                <i class="iconfont cross">&#xe727;</i>
+              </div>
+            </div>
+            <a href="#"></a>
+            <h2>Escape</h2>
+            <h3>Website Design</h3>
+          </li>
+          <li class="pic dreams">
+            <div class="pic-hover">
+              <div class="pic-hover-content">
+                <i class="iconfont cross">&#xe727;</i>
+              </div>
+            </div>
+            <a href="#"></a>
+            <h2>Dreams</h2>
+            <h3>Website Design</h3>
+          </li>
+        </ul>   
+      </div>
+    </div>
+    <div class="about">
+      <div class="container">
+        <h1>ABOUT</h1>
+        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+        <ul class="timeline">
+          <li>
+            <div class="timeline-image">
+              <img src="img/about/1.jpg" alt="" class="img-circle">
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-head">
+                <h3>2009-2011</h3>
+                <h3>Our Humble Beginnings</h3>
+              </div>
+              <div class="timeline-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="timeline-image">
+              <img src="img/about/2.jpg" alt="" class="img-circle">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-head">
+                <h3>MARCH 2011</h3>
+                <h3>An Agency is Born</h3>
+              </div>
+              <div class="timeline-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="timeline-image">
+              <img src="img/about/3.jpg" alt="" class="img-circle">
+            </div>
+            <div class="timeline-content">
+              <div class="timeline-head">
+                <h3>DECEMBER 2012</h3>
+                <h3>Transition to Full Service</h3>
+              </div>
+              <div class="timeline-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="timeline-image">
+              <img src="img/about/4.jpg" alt="" class="img-circle">
+            </div>
+            <div class="timeline-panel">
+              <div class="timeline-head">
+                <h3>JULY 2014</h3>
+                <h3>Phase Two Expansion</h3>
+              </div>
+              <div class="timeline-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt ut voluptatum eius sapiente, totam reiciendis temporibus qui quibusdam, recusandae sit vero unde, sed, incidunt et ea quo dolore laudantium consectetur!</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="timeline-image">
+              <h4>BE PART<br>
+                  OF OUR <br>
+                  STORY! <br>
+              </h4>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="team">
+      <div class="container">
+        <h1>OUR AMAZING TEAM</h1>
+        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+        <ul class="ourteamer">
+          <li>
+            <div class="person">
+              <img src="img/team/5.jpg" alt="" class="teamerpic">
+              <h2>Kay Garland</h2>
+              <h4>Lead Designer</h4>
+            </div>
+            <div class="icon-space">
+              <ul class="icon">
+              <li class="iconfont social-icon">&#xe734;</li>
+              <li class="iconfont social-icon">&#xe72e;</li>
+              <li class="iconfont social-icon">&#xe731;</li>
+            </ul>
+            </div>
+          </li>
+          <li>
+            <div class="person">
+              <img src="img/team/6.jpg" alt="" class="teamerpic">
+              <h2>Larry Parker</h2>
+              <h4>Lead Marketer</h4>
+            </div>
+            <div class="icon-space">
+              <ul class="icon">
+              <li class="iconfont social-icon">&#xe734;</li>
+              <li class="iconfont social-icon">&#xe72e;</li>
+              <li class="iconfont social-icon">&#xe731;</li>
+            </ul>
+            </div>
+          </li>
+          <li>
+            <div class="person">
+              <img src="img/team/7.jpg" alt="" class="teamerpic">
+              <h2>Diana Pertersen</h2>
+              <h4>Lead Developer</h4>
+            </div>
+            <div class="icon-space">
+              <ul class="icon">
+              <li class="iconfont social-icon">&#xe734;</li>
+              <li class="iconfont social-icon">&#xe72e;</li>
+              <li class="iconfont social-icon">&#xe731;</li>
+            </ul>
+            </div>
+          </li>
+        </ul>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non </p>
+        <p>quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+      </div>
+    </div>
+    <div class="logo">
+      <div class="container">
+        <img src="img/logos/envato.jpg" alt="">
+        <img src="img/logos/designmodo.jpg" alt="">
+        <img src="img/logos/themeforest.jpg" alt="">
+        <img src="img/logos/creative-market.jpg" alt="">
+      </div>
+    </div>
+    <div class="contact">
+      <div class="container">
+        <h1>CONTACT US</h1>
+        <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+        <div class="row">
+          <div class="text-row">
+           <input type="text" class="form-control" placeholder="   Your Name *" id="name">
+           <input type="text" class="form-control" placeholder="   Your Mail *" id="name">
+           <input type="text" class="form-control" placeholder="   Your Phone *" id="name">
+          </div>
+         <div class="textarea-row">
+           <textarea class="formarea-control" placeholder="  Your Message *" id="message"></textarea>
+          </div>
+       </div>
+        <a href="#" class="button">TELL ME MORE</a>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="container">
+      <div class="footer-content left-content">
+        <span>Copyright © Your Website 2014</span>
+      </div>
+      <div class="footer-content middle-content">
+        <ul class="icon">
+          <li class="iconfont social-icon">&#xe734;</li>
+          <li class="iconfont social-icon">&#xe72e;</li>
+          <li class="iconfont social-icon">&#xe731;</li>
+        </ul>
+      </div>
+      <div class="footer-content right-content">
+        <ul class="footer-link">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+ </body>
+ </html>

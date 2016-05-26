@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        ul,li,body{padding: 0;
+            margin: 0;
+            font: 12px/150% Arial,Verdana,"\5b8b\4f53";
+            color: #666;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        .tab {
+            border: 1px solid #ccc;
+            border-radius: 5px 5px 0 0;
+            display: inline-block;
+            margin-left: 5px;
+        }
+        .tab li a {
+            padding: 5px 10px;
+        }
+        .tab ul {
+            font-size: 0;
+            list-style: none;
+            /*padding: 0 10px;*/
+            margin: 0;
+        }
+        .tab li {
+            display: inline-block;
+            font: 14px/150% Arial,Verdana,"\5b8b\4f53";
+            color: #666;
+            height: 35px;
+            line-height: 35px;
+        }
+        .tab li:hover{
+            background: #ccc;
+            color: #fff;
+        }
+        .tab li:not(:first-child):before {
+            content: '';
+            display: inline-block;
+            border: 1px solid #ccc;
+            height: 25px;
+            margin: 5px 0;
+            vertical-align: top;
+        }
+        .nav{
+            width: 710px;
+            margin: 10px auto;
+
+        }
+        .tab-content{
+            /*border: 1px solid #ccc;*/
+            /*margin-top: -1px;*/
+        }
+        div[class^='tab-view']{
+            display: none;
+            /*padding: 5px;*/
+        }
+        .tab-content>.active{
+            display: block;
+        }
+
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .list-layout{
+            box-sizing: border-box;
+            float: left;
+            width: 33.33%;
+            text-align: center;
+        }
+        .list-item:hover>.cover{
+            opacity: 1;
+        }
+        .list-layout>.list-item{
+            margin: 5px;
+        }
+        .list-item{
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            padding: 5px;
+            text-align: center;
+            position: relative;
+        }
+
+        .list-price{
+            color: red;
+        }
+        .btn{
+            height: 35px;
+            line-height: 35px;
+            display: inline-block;
+            border: 1px solid darkred;
+            border-radius: 5px;
+            background: #fff;
+            color: darkred;
+            padding: 5px 15px;
+        }
+        .cover>a{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+        }
+        .cover{
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(169, 169, 169, 0.57);
+        }
+    </style>
+</head>
+<body>
+<!--http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg-->
+<div class="nav">
+    <div class="tab">
+        <ul>
+            <li><a href="#tab-view-1"  data-index="tab-view-1">热门</a></li>
+            <li><a href="#tab-view-2"  data-index="tab-view-2">珠宝首饰</a></li>
+            <li><a href="#tab-view-3"  data-index="tab-view-3">奢侈品</a></li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <div class="tab-view-1 active clear">
+            <div  class="list-layout">
+                <div class="list-item">
+                    <div class="list-img">
+                        <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    </div>
+                    <p class="list-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="list-price">￥1699.00</p>
+                    <div class="cover">
+                        <a href="#" class="btn">立即抢购</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-layout">
+                <div class="list-item">
+                    <div class="list-img">
+                        <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    </div>
+                    <p class="list-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="list-price">￥1699.00</p>
+                    <div class="cover">
+                        <a href="#" class="btn">立即抢购</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-layout">
+                <div class="list-item">
+                    <div class="list-img">
+                        <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    </div>
+                    <p class="list-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="list-price">￥1699.00</p>
+                    <div class="cover">
+                        <a href="#" class="btn">立即抢购</a>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="tab-view-2 clear">
+
+            <div class="list-layout">
+                <div class="list-item">
+                    <div class="list-img">
+                        <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    </div>
+                    <p class="list-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="list-price">￥1699.00</p>
+                    <div class="cover">
+                        <a href="#" class="btn">立即抢购</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list-layout clear">
+                <div class="list-item">
+                    <div class="list-img">
+                        <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    </div>
+                    <p class="list-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="list-price">￥1699.00</p>
+                    <div class="cover">
+                        <a href="#" class="btn">立即抢购</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-view-3 clear">
+            <div class="list-layout">
+                <div class="list-item">
+                    <div class="list-img">
+                        <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    </div>
+                    <p class="list-name">藏美千足金和田玉金镶玉路路通吊坠</p>
+                    <p class="list-price">￥1699.00</p>
+                    <div class="cover">
+                        <a href="#" class="btn">立即抢购</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <a href="#" class="btn" id="append">添&nbsp;加</a>
+</div>
+<script>
+    var products = [
+        {
+            img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+            name: '珂兰 黄金手 猴哥款',
+            price: '￥405.00'
+        },{
+            img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+            name: '珂兰 黄金转运珠 猴哥款',
+            price: '￥100.00'
+        },{
+            img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+            name: '珂兰 黄金手链 3D猴哥款',
+            price: '￥45.00'
+        }
+    ];
+    $('.tab').on('click','li',function (event) {
+        event.preventDefault();
+        event.stopPropagation()
+        var view = $(event.target).attr('data-index');
+        $(".tab-content> div[class^='tab-view']").each(function (i,e) {
+              $(e).hasClass(view) ?  $(e).addClass('active') :  $(e).removeClass('active');
+        });
+    });
+    $('#append').on('click',function (event) {
+        event.preventDefault();
+        event.stopPropagation()
+        products.forEach(function(e,i){
+            var $layout = $('.tab-view-1>.list-layout:first-child').clone(true,true);
+            $layout.find('img').attr('src',e.img);
+            $layout.find('.list-name').text(e.name);
+            $layout.find('.list-price').text(e.price);
+            console.log($layout)
+            $('.tab-view-1').append($layout);
+        });
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>全屏轮播</title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+  <style type="text/css">
+     html,body,ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+    }
+    a{
+      text-decoration: none;
+    }
+    html,body,#header,#header .carousel,#header .img-ct{
+      width: 100%;
+      height: 100%;
+    }
+    .carousel{
+      position: relative;
+      width: 310px;
+      height: 206px;
+      overflow: hidden;
+    }
+    .carousel .img-ct{
+      position: absolute;
+    }
+    .clearfix:after{
+      content: ' ';
+      display: block;
+      clear: both;
+    }
+    .carousel .img-ct .item{
+      position: relative;
+      float: left;
+      height: 100%;
+
+    }
+    .item .cover{
+      position:absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+
+    }
+    .arrow{
+      position: absolute;
+      top:50%;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      margin-top: -15px;
+      text-align: center;
+      background-color: #4E443C;
+      color: white;
+      border-radius: 30px;
+      box-shadow: 0 0 2px #999;
+      opacity: 0.8;
+    }
+    .arrow:hover {
+      opacity: 1;
+    }
+    .pre{
+      left: 10px;
+    }
+    .next{
+      right: 10px;
+    }
+    .bullet{
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .bullet li{
+      width: 16px;
+      height: 4px;
+      display: inline-block;
+      background-color: white;
+      border-radius: 3px;
+    }
+    .bullet .active{
+      background-color: #666;
+    }
+
+
+  </style>
+</head>
+<body>
+  <div id="header">
+    <div class="carousel">
+      <ul class="img-ct">
+        <li class="item">
+          <div class="cover" data-bg-img="./img/carousel/1.png"></div>
+        </li>
+        <li class="item">
+          <div class="cover" data-bg-img="./img/carousel/2.png"></div>
+        </li>
+        <li class="item">
+          <div class="cover" data-bg-img="./img/carousel/3.png"></div>
+        </li>
+        <li class="item">
+          <div class="cover" data-bg-img="./img/carousel/4.png"></div>
+        </li>
+      </ul>
+      <div class="pre arrow"><</div>
+      <div class="next arrow">></div>
+
+      <ul class="bullet">
+        <li class="active"><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+        <li><a href="#"></a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript">
+    var $pre=$('.pre'),
+    $next=$('.next'),
+    $bullet=$('.bullet'),
+    $imgCt=$('.img-ct'),
+    $items=$imgCt.children(),
+    imgCount=$imgCt.children().length,
+    width=$(window).width(),
+    isAnimate=false,
+    curIdx=0,
+    clock;
+
+    $items.last().clone().prependTo($imgCt);
+    $items.first().clone().appendTo($imgCt);
+    $imgCt.find('.item').css('width', width);
+    $imgCt.find('.cover').css('width', width);
+    imgRealCount = $imgCt.children().length;
+    $imgCt.css({
+     width: width*imgRealCount,
+     left:0-width
+   });
+
+    $pre.on('click',function(){
+    playPre();//idx=(imgCount+curIdx-1)%imgCount
+  });
+    $next.on('click',function(){
+    playNext();//idx=(curIdx+1)%imgCount
+  });
+    $bullet.find('li').on('click',function(){
+      idx=$(this).index();
+      if(idx > curIdx){
+        playNext(idx-curIdx);
+      }else if(idx < curIdx){
+        playPre(curIdx-idx);
+      }
+    });
+   // autoPlay();
+   setBg(1);
+   function playNext(idx){
+    idx=idx||1;
+    if(isAnimate==true){return;}
+    isAnimate==true;
+     setBg((idx+curIdx+1)%imgRealCount);
+    $imgCt.animate({
+      left: '-='+width*idx
+    }, function() {
+      curIdx=(idx+curIdx)%imgCount;
+      console.log(curIdx);
+      if(curIdx===0){
+        $imgCt.css({left: 0-width,});
+      }
+      isAnimate=false;
+      console.log(curIdx);
+      setBullet();
+    });
+  }
+  function playPre(idx){
+    idx=idx||1;
+    if(isAnimate==true){return;}
+    isAnimate==true;
+    setBg((imgRealCount+curIdx+1-idx)%imgRealCount);
+    $imgCt.animate({
+      left: '+='+width*idx
+    }, function() {
+      curIdx=(imgCount+curIdx-idx)%imgCount;
+      if(curIdx===(imgCount-1)){
+        $imgCt.css({left: -width*imgCount,});
+      }
+      isAnimate=false;
+      setBullet();
+    });
+  }
+
+  function setBullet(){
+    $bullet.children().removeClass().eq(curIdx).addClass('active');
+  }
+  function stopAuto(){
+    clearTimeout(clock);
+  }
+  function autoPlay(){
+    clock=setInterval(function(){
+      playNext();
+    },2000);
+  }
+   //这里为了性能让图片用了懒加载
+      function setBg(idx){
+        var idx = idx || 0,
+          $node = $imgCt.children().eq(idx)
+          $cover = $node.find('.cover'),
+          imgUrl = $cover.attr('data-bg-img');
+        if($node.data('isBgSet')) return;
+        $cover.css('background-image', 'url('+imgUrl+')');
+        $node.data('isBgSet', true);
+
+      }
+</script>
+
+</body>
+</html>

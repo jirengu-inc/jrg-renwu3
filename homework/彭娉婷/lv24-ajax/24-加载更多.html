@@ -25,13 +25,21 @@
     .btn{
       display: block;
       width: 65px;
+      height: 20px;
       padding: 15px;
       margin: 10px auto;
       border: 1px solid #E27272;
       border-radius: 3px;
       text-align: center;
     }
-  </style>
+    .btn-add img{
+
+      width: 65px;
+      height: 20px;
+
+    }
+  }
+</style>
 </head>
 <body>
 
@@ -45,15 +53,19 @@
   <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
   <script type="text/javascript">
 
-    $('.content li').on('mouseenter',function(){
+    $('.content').on('mouseenter','li',function(){
       $(this).css('backgroundColor','green');
-    }).on('mouseleave',function(){
+    }).on('mouseleave','li',function(){
       $(this).css('backgroundColor','white');
     });
 
     var cur =3;
-    $('.btn-add').on('click', function(){
-      $.ajax({
+    $('.btn-add').on('click', function(e){
+      e.preventDefault();
+      if($(this).data('isloading')){return;}//状态锁
+        $(this).data('isloading',true).html('<img src="./img/loading.gif" />');
+
+      ajax({
         url: '/getData',   //接口地址
         type: 'get',               // 类型， post 或者 get,
         data: {
@@ -62,27 +74,27 @@
         },
         dataType:'json',
         success: function(json){
-          console.log(json);
             onSuccess(json);       // {status: 0}
           },
-          error: function(){
-           onError();
+          error: function(json){
+           onError('出错了');
          }
        })
     });
 
+
     function onSuccess(json){
-      // json = JSON.parse(json);
+      $('.btn-add').data('isloading',false).text('加载更多');
       if (json.status==0){
         append(json.data);
         cur+=6;
       }
       else
         alert('获取数据失败');
-
     }
 
     function onError(){
+      $('.btn-add').data('isloading',false).text('加载更多');
       alert('系统异常');
     }
 
@@ -91,6 +103,36 @@
         $('.content').append('<li>内容'+arr[i]+'</li>');
       }
     }
+
+
+    function ajax(opts){
+      var xmlHttp=new XMLHttpRequest();
+      var str='';
+      for(k in opts.data){
+        str += k+'='+opts.data[k]+'&';
+      }
+      str=str.substr(0,str.length-1);
+
+      if (opts.type.toLowerCase()==='get') {
+        xmlHttp.open('GET',opts.url+'?'+str,true);
+        xmlHttp.send();
+      }
+      if (opts.type.toLowerCase()==='post') {
+        xmlHttp.open('POST',opts.url,true);
+        xmlHttp.setRequestHeader('content-type','application/x-www-form-urlencoded');
+        xmlHttp.send(str);
+      }
+      xmlHttp.onreadystatechange=function(){
+        if (xmlHttp.readyState===4&&xmlHttp.status===200) {
+          var responsetext =JSON.parse(xmlHttp.responseText);
+          opts.success(responsetext);
+        }
+        if (xmlHttp.readyState===4&&xmlHttp.status===404) {
+          opts.error();
+        }
+      }
+    }
+
 
   </script>
 

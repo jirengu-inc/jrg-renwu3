@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    .ct,.ct2{
+  background: pink;
+  height:150px;
+  width:300px;
+  margin:0 auto;
+  position: relative;
+}
+
+.tip{
+     border: 1px solid red;
+    border-radius: 4px;
+    right: 100%;
+    top: 50%;
+    position: absolute;
+    margin-right: 10px;
+    padding: 15px;
+}
+
+.tip2{
+    border: 1px solid red;
+    border-radius: 4px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+}
+.tip3{
+    border: 1px solid red;
+    border-radius: 4px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    margin-left: -50px;
+    margin-top: -25px;
+    text-align: center;
+    padding: 6px 0;
+}
+
+.ct2{
+    display: table;
+    padding: 30px;
+}
+
+.tip4{
+    display: table-cell;
+    border: 1px solid red;
+    border-radius: 4px;
+    vertical-align: middle;
+    text-align: center;
+  
+}
+
+
+  </style>
+</head>
+<body>
+<h1>定位</h1>
+  <div class="ct">
+    <div class="tip">
+      12345
+    </div>
+  </div>
+<h1>居中</h1>
+  <div class="ct2">
+    <div class="tip2">
+      transform: translate(-50%,-50%)
+    </div>
+  </div>
+  
+  <h1>居中</h1>
+  <div class="ct2">
+    <div class="tip3">固定宽高</div>
+  </div>
+  <h1>居中</h1>
+  <div class="ct2">
+    <div class="tip4">固定宽高</div>
+  </div>
+</body>
+</html>

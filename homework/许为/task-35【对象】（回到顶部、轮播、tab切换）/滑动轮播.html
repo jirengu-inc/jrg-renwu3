@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level35</title>
+<style type="text/css">
+	body,ul{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	.carousel{
+		position: relative;
+		width: 400px;
+		height: 220px;
+		overflow: hidden;
+		margin: 10px;
+	}
+	.carousel:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.loading-img:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.loading-img{
+		position: absolute;
+	}
+	.loading-img li{
+		float: left;
+	}
+	.loading-img li img{
+		width: 400px;
+		height: 220px;
+	}
+	.sel-img{
+		position: absolute;
+		top: 90%;
+		left: 27%;
+	}
+	.sel-img li{
+		width: 40px;
+		height: 10px;
+		border-radius: 10px;
+		background-color: rgba(181, 180, 178, 0.98);
+		display: inline-block;
+		cursor: pointer;
+	}
+	.sel-img .select{
+		background-color: #0E0106;
+	}
+	.model{
+		text-decoration: none;
+		color: black;
+		width: 40px;
+		height: 40px;
+		background: gray;
+		border-radius: 50%;
+		position: absolute;
+		top: 50%;
+		font-size: 32px;
+		text-align: center;
+		line-height: 40px;
+		margin-top: -20px;
+		opacity: 0.5;
+	}
+	.model:hover{
+		opacity: 1;
+	}
+	.next{
+		left:87%;
+	}
+	.pre{
+		left:3%;
+	}
+</style>
+</head>
+<body>
+	<div class="carousel">
+		<ul class="loading-img">
+			<li><a href="#"><img src="../img/portfolio-1.jpg"></a></li>
+			<li><a href="#"><img src="../img/portfolio-2.jpg"></a></li>
+			<li><a href="#"><img src="../img/portfolio-3.jpg"></a></li>
+			<li><a href="#"><img src="../img/portfolio-4.jpg"></a></li>
+		</ul>
+		<a href="#" class="next model">></a>
+		<a href="#" class="pre model"><</a>
+		<ul class="sel-img">
+			<li class="select"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+	<div class="carousel">
+		<ul class="loading-img">
+			<li><a href="#"><img src="../img/portfolio-1.jpg"></a></li>
+			<li><a href="#"><img src="../img/portfolio-2.jpg"></a></li>
+			<li><a href="#"><img src="../img/portfolio-3.jpg"></a></li>
+			<li><a href="#"><img src="../img/portfolio-4.jpg"></a></li>
+		</ul>
+		<a href="#" class="next model">></a>
+		<a href="#" class="pre model"><</a>
+		<ul class="sel-img">
+			<li class="select"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	function Carousel($node){
+		this.$node=$node;
+		this.loadimg=$node.find(".loading-img");
+		this.wid=$node.find("img").width();
+		this.next=$node.find(".next");
+		this.pre=$node.find(".pre");
+		this.sel=$node.find(".sel-img");
+		this.imgNumber=this.loadimg.children().length;
+		//获取基本的dom元素
+		this.loadimg.prepend(this.loadimg.children().eq(3).clone());
+		this.loadimg.append(this.loadimg.children().eq(1).clone());
+		this.imgLength=this.loadimg.children().length;
+		//头尾分别添加一张图片
+		this.loadimg.css("width",this.wid*this.imgLength);
+		this.loadimg.css("left",0-this.wid);
+		//修改ul的宽度以及初始的显示位置
+		this.key=false;   //状态锁
+		this.curIdx=0;   //起始显示的图片的编号
+
+		this.bound();
+		this.autoPlay();
+	}
+
+	Carousel.prototype={
+		bound:function(){
+			var _this=this;   //保存this
+			_this.next.on("click",function(){
+				_this.stopAutoPlay();
+				_this.playNext(1);
+				_this.autoPlay();
+			});
+			_this.pre.on("click",function(){
+				_this.stopAutoPlay();
+				_this.playPre(1);
+				_this.autoPlay();
+
+			});
+			_this.sel.on("click","li",function(){
+				_this.stopAutoPlay();
+				var num=$(this).index();
+				if (num>_this.curIdx) {
+					_this.playNext(num-_this.curIdx);
+				}
+				if (num<_this.curIdx) {
+					_this.playPre(_this.curIdx-num);
+				}
+				_this.autoPlay();
+
+			});
+		},
+		playNext:function(idx){   //向前切换函数
+			if(this.key){
+				return;
+			}
+			this.key=true;
+			var _this=this;
+			this.loadimg.animate({
+				left:"-="+_this.wid*idx
+			}, function(){
+				_this.curIdx=_this.curIdx+idx;
+				if (_this.curIdx===_this.imgNumber) {
+					_this.loadimg.css('left', 0-_this.wid);
+					_this.curIdx=0;
+				}
+				_this.changeSel();
+				_this.key=false;
+			});
+
+		},
+		playPre:function(idx){   //向后切换函数
+			if (this.key) {
+				return;
+			}
+			this.key=true;
+			var _this=this;
+			this.loadimg.animate({
+				left: "+="+idx*_this.wid
+			}, function(){
+				_this.curIdx=_this.curIdx-idx;
+				if (_this.curIdx===-1) {
+					_this.loadimg.css('left', 0-_this.wid*_this.imgNumber);
+					_this.curIdx=_this.imgNumber-1;
+				}
+				_this.changeSel();
+				_this.key=false;
+			});
+		},
+		changeSel:function(){       //修改对应的图片状态栏的样式
+			this.sel.children().removeClass('select').eq(this.curIdx).addClass('select');
+		},
+		autoPlay:function(){       //自动切换函数
+			var _this=this;
+			this.clock=setInterval(function(){
+				_this.playNext(1);
+			}, 5000);
+		},
+		stopAutoPlay:function(){       //停止自动切换函数
+			clearInterval(this.clock);
+		}
+	}
+
+	var $node1=$(".carousel").eq(0);
+	var $node2=$(".carousel").eq(1);
+	var c1=new Carousel($node1);
+	var c2=new Carousel($node2);
+</script>
+</body>
+</html>
