@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>瀑布流实战</title>
+    <style>
+        html,body,ul,li,p,div{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        ul,li{
+            list-style: none;
+        }
+        .wrap{
+            width:900px;
+            margin:0 auto;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        #pic-ct{
+            position: relative;
+        }
+        #pic-ct .item{
+            position: absolute;
+            padding: 0 0 10px 0;
+            width: 280px;
+            margin: 10px;
+            border: 1px solid #DFDFDF;
+            background: #FFF;
+            opacity: 0;
+            transition: all .8s;
+        }
+        #pic-ct .item img{
+            margin: 10px;
+            width: 260px;
+        }
+        #pic-ct .item .header{
+            height: 25px;
+            margin: 0 12px;
+            border-bottom: 1px solid #DBDBDB;
+        }
+        #pic-ct .desp{
+             font-size: 12px;
+             line-height: 1.8;
+             margin: 10px 15px 0;
+             color: #777371;
+         }
+        #load{
+            height: 20px;
+        }
+        .hide{
+            display: none;
+        }
+        #go-top{
+            border:1px solid #1974c9;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #1974c9;
+            line-height:25px;
+            text-align:center;
+            cursor:pointer;
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="ct-waterfall">
+        <ul id="pic-ct" class="clearfix">
+
+            <!-- 用于计算 item 宽度和列数，但不展示出来-->
+            <li class="item hide"></li>
+        </ul>
+        <div id="load">我是看不见的</div>
+    </div>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+    var delay;
+    var $load =$('#load');
+    var isSend = false;
+  $(window).on('scroll',function(){//滚动窗口show内容
+        if(isVisible($load)){//2.如果读完了加载下一页
+            checkShow();
+            nowPage++;
+        }
+  });
+function isVisible($ele){//1.检查内容是否被读完
+    var scrollT = $(window).scrollTop(),
+            winH = $(window).height(),
+            offsetT = $ele.offset().top;
+    if(scrollT+winH>offsetT){
+        return true;
+    }else{
+        return false;
+    }
+}
+    checkShow();//原始加载一次
+    var nowPage = 1,
+            perPageCount = 9;
+    function checkShow(){
+       if(isSend) return;
+        isSend = true;//状态锁 防止多次ajax
+        $.ajax({
+            url: 'http://platform.sina.com.cn/slide/album_tech',
+            dataType: 'jsonp',
+            jsonp:"jsoncallback",
+            data: {
+                app_key: '1271687855',
+                num: perPageCount,
+                page: nowPage
+            },
+            success: function(ret){
+                if(ret.status.code == 0 ){
+                    place(ret.data);//摆放数据
+                }
+                isSend = false;
+            },
+            error: function(){
+                console.log('error');
+            }
+        })
+    }
+    function place($nodeList){
+        var $nodes = renderPlace($nodeList); //如何让节点生成html
+                waterFull($nodes);//节点生成完后加载瀑布流
+    }
+    function renderPlace($data){//数据渲染成html
+        var html ="";
+        var  $items;
+        for(var k=0;k<$data.length;k++){
+            html+= '<li class="item"><a href="#" class="link"><img src="'+$data[k].img_url+'" alt="">'+
+                    '</a><h4 class="header">'+$data[k].short_name+'</h4><p class="desp">'+
+                    $data[k].short_intro+'</p></li>';
+        }
+        $items = $(html);//这样才能得到html的jquery集合，并可以使用jquery方法
+        //console.log($items);
+       $('#pic-ct').append($items);
+        return $items;
+    }
+    var $itemW = $('.item').outerWidth(true);//全局变量是避免每加载一次ajax，新数据的第一排的top被定位为0
+    var $winW = $('#pic-ct').width();
+    var count = parseInt($winW/$itemW);
+    var sumItemHeight = [];
+    console.log($itemW+'+'+$winW+'+'+count);
+    for(var i = 0;i<count;i++){
+        sumItemHeight.push(0);//取得原始第一列的横排top值
+    }
+    function waterFull($nodes){
+        $nodes.each(function(){
+            var  $cur = $(this);
+            $(this).find('img').on('load',function(){
+              var  idx = 0,
+                        minItemHeight = sumItemHeight[0];
+                for(var i = 0;i<sumItemHeight.length;i++){
+                    if(minItemHeight > sumItemHeight[i]){
+                        idx = i;
+                        minItemHeight = sumItemHeight[i];
+                    }
+                }
+                $cur.css({
+                    left: $itemW*idx,
+                    top: minItemHeight,
+                    opacity: 1
+                });
+                sumItemHeight[idx] = $cur.outerHeight(true) + sumItemHeight[idx];//放入一个盒子后更新高度值值和
+                $('#pic-ct').height(Math.max.apply(null,sumItemHeight));//这是js方法操作撑开item父容器的高度
+            })
+        });
+    }
+  var goTop = {
+        init: function(){
+            if($('#go-top').length>0){
+                return;
+            }
+            var $goTop = $('<div id="go-top">回到<br/>顶部</div>');
+            $('body').append($goTop);
+            this.$goTop = $goTop;
+            this.bind();
+        },
+        bind: function(){
+            var self = this;
+            $(window).on('scroll',function(){
+                var offsetT = $('body').scrollTop();
+                if(offsetT>600){
+                    self.$goTop.show();
+                }else{
+                    self.$goTop.hide();
+                }
+            });
+            this.$goTop.on('click',function(){
+                $(window).scrollTop(0);
+            });
+        }
+    };
+
+goTop.init();
+
+</script>
+</body>
+</html>

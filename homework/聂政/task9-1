@@ -6,7 +6,6 @@
 		.btn{
 			color: white;
 			font-size: 20px;
-
 			line-height: 25px;
 			padding: 2px;
 			border: 0px;
