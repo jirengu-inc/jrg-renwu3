@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ajax封装</title>
+</head>
+<body>
+  <script type="text/javascript">
+
+    function ajax(opts){
+      ServletActionContext.getResponse().setHeader("Access-Control-Allow-Origin", "*");
+      var xmlHttp=new XMLHttpRequest();
+      var str='';
+      for(k in opts.data){
+        str += k+'='+opts.data[k]+'&';
+      }
+      str=str.substr(0,str.length-1);
+
+      if (opts.type.toLowerCase()==='get') {
+        xmlHttp.open('GET',opts.url+'?'+str,true);
+        xmlHttp.send();
+      }
+      if (opts.type.toLowerCase()==='post') {
+        xmlHttp.open('POST',opts.url,true);
+        xmlHttp.setRequestHeader('content-type','application/x-www-form-urlencoded');
+        xmlHttp.send(str);
+      }
+      xmlHttp.onreadystatechange=function(){
+        if (xmlHttp.readyState===4&&xmlHttp.status===200) {
+          var responsetext =JSON.parse(xmlHttp.responseText);
+          opts.success(responsetext);
+        }
+        if (xmlHttp.readyState===4&&xmlHttp.status===404) {
+          opts.error();
+        }
+      }
+    }
+
+
+  document.querySelector('#btn').addEventListener('click', function(){
+    ajax({
+        url: 'getData.php',   //接口地址
+        type: 'get',               // 类型， post 或者 get,
+        data: {
+          username: 'xiaoming',
+          password: 'abcd1234'
+        },
+        success: function(ret){
+            console.log(ret);       // {status: 0}
+          },
+          error: function(){
+           console.log('出错了')
+         }
+       })
+  });
+</script>
+
+</body>
+</html>
