@@ -61,7 +61,7 @@
 
                 <dt>在输一次</dt>
                 <dd>
-                    <input id="passowrd2" type="password" placeholder="在输入一次密码"></input>
+                    <input id="password2" type="password" placeholder="在输入一次密码"></input>
                 </dd>
                 <dd class="msg msg-pwd2"></dd>
 
@@ -86,17 +86,18 @@
                 'PASSWORD_NOT_MATCH': '两次密码输入不一致'
             };
 
-            $('#username').on('click',function(){
+            $('#username').on('change',function(){
                 testExist()&&testUsLegal();
             });
 
-            $('#password1').on('click',function(){
+            $('#password1').on('change',function(){
                 testPsw1();
             });
-            $('#password2').on('click',function(){
+            $('#password2').on('change',function(){
                 testPsw2();
             });
-            $('#btn-register').on('click',function(){
+            $('#btn-register').on('click',function(e){
+                e.preventDefault();
                 if(testUsLegal()&&testPsw1()&&testPsw2()){
                     testExist(function(canUse){
                       if(canUse){
@@ -120,11 +121,11 @@
                 console.log(ret);
                 if (ret.status==1&&ret.msg_type==='USERNAME_EXIST'){
                     $('#username').addClass('error');
-                    $('.msg-un').innerText('MSG.USERNAME_EXIST');
+                    $('.msg-un').text(MSG.USERNAME_EXIST);
                     handle&&handle(false);
                 }else if(ret.status==0){
                     $('#username').removeClass('error');
-                    $('.msg-un').innerText('MSG.USERNAME_USEABLE');
+                    $('.msg-un').text(MSG.USERNAME_USEABLE);
                     handle&&handle(true);
                 }
             },
@@ -138,41 +139,45 @@
         function testUsLegal(){
             if(!isLegalUsername(username)){
                 $('#username').addClass('error');
-                $('.msg-un').innerText('MSG.USERNAME_TYPE_ERROR');
+                $('.msg-un').text(MSG.USERNAME_TYPE_ERROR);
                 return false;
             }else{
                 $('#username').removeClass('error');
-                $('.msg-un').innerText('MSG.USERNAME_USEABLE');
+                $('.msg-un').text(MSG.USERNAME_USEABLE);
                 return true;
             }
         }
 
         function testPsw1(){
             var psw1=$('#password1').val();
+            console.log(isLegalPassword(psw1));
             if (!isLegalPassword(psw1)){
                 $('#password1').addClass('error');
-                $('.msg-pwd1').innerText('MSG.PASSWORD_TYPE_ERROR');
+                $('.msg-pwd1').text(MSG.PASSWORD_TYPE_ERROR);
                 return false;
             }else{
                 $('#password1').removeClass('error');
-                $('.msg-pwd1').innerText('');
+                $('.msg-pwd1').text('');
                 return true;
             }
         }
         function testPsw2(){
             var psw1=$('#password1').val();
             var psw2=$('#password2').val();
+            console.log(psw1);
+            console.log(psw2);
+             console.log(isLegalPassword(psw2));
             if (!isLegalPassword(psw2)){
                 $('#password2').addClass('error');
-                $('.msg-pwd2').innerText('MSG.PASSWORD_TYPE_ERROR');
+                $('.msg-pwd2').text(MSG.PASSWORD_TYPE_ERROR);
                 return false;
             }else if(psw2!==psw1){
                 $('#password2').addClass('error');
-                $('.msg-pwd2').innerText('MSG.PASSWORD_NOT_MATCH');
+                $('.msg-pwd2').text(MSG.PASSWORD_NOT_MATCH);
 
             }else{
                 $('#password2').removeClass('error');
-                $('.msg-pwd2').innerText('');
+                $('.msg-pwd2').text('');
                 return true;
             }
         }
@@ -182,15 +187,16 @@
         }
 
         function isLegalPassword(str){
-            if(str.length<6&&str.length>15){
+            if(str.length<6||str.length>15){
                 return false;
             }
-            if(/[^A-Za-z_0-9]/){
+            if(str.match(/[^A-Za-z_0-9]/)){
                 return false;
             }
             if(str.match(/(^[A-Z]{6,20}$)|(^[a-z]{6,20}$)|(^[0-9]{6,20}$)|(^_{6,20}$)/g)){
                 return false;
             }
+            return true;
         }
 
 

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>model ct</title>
+	<style type="text/css">
+		html,body{
+			width:100%;
+			height:100%;
+			margin:0;
+			padding:0;
+		}
+		a{
+			text-decoration: none;
+			color:#333;
+		}
+		.button-row{
+			padding:10px;
+		}
+		.cover{
+			position:fixed;
+			top:0;
+			right:0;
+			bottom:0;
+			left:0;
+			background-color: #bbb;
+			opacity: 0.6;
+			z-index:2;
+			display: none;
+		}
+		#modal-ct{
+			position:absolute;
+			top:50%;
+			left:50%;
+			margin-top:-90px;
+			margin-left:-160px;
+			width:320px;
+			height:180px;
+			background-color: #fff;
+			z-index:3;
+			display: none;
+		}
+		.header{
+			position:relative;
+			height:30px;
+			line-height:30px;
+			border-bottom:1px dashed #ccc;
+		}
+		.header>h4{
+			float:left;
+			font-size: 14px;
+			margin: 0;
+			padding-left:10px;
+		}
+		.header .close{
+			position:absolute;
+			top:0;
+			right:0;
+			padding-right:10px;
+			line-height: 30px;
+		}
+		.content{
+			padding:0 10px;
+		}
+		.footer{
+			position:absolute;
+			left:0;
+			right:0;
+			bottom:0;
+			border-top: 1px dashed #ccc;
+			padding:6px 10px;
+			height:30px;
+			line-height:30px;
+			text-align: right;
+			font-size: 12px;
+		}
+		.btn{
+			display: inline-block;
+			cursor: pointer;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			padding: 0 8px;
+		}
+		.btn:hover{
+			opacity: 0.8;
+		}
+	</style>
+</head>
+<body>
+<div class="button-row">
+	<button type="button" class="btn">点我！</button>
+</div>
+<div class="cover"></div>
+<div id="modal-ct">
+	<div class="header">
+		<h4>提示</h4>
+		<a href="#" class="close">×</a>
+	</div>
+	<div class="content">
+		<p>我是内容</p>
+		<p>我是内容</p>
+	</div>
+	<div class="footer">
+		<a href="#" class="btn confirm">确定</a>
+		<a href="#" class="btn cancel">取消</a>
+	</div>
+</div>
+
+<script>
+var cover=document.querySelector(".cover"),
+    modalCt=document.querySelector("#modal-ct"),
+    buttonRow=document.querySelector(".button-row");
+function hasClass(element, className) { 
+	var reg=new RegExp('(\\s|^)'+className+'(\\s|$)'); 
+	return element.className.match(reg); 
+} 
+
+buttonRow.addEventListener("click",function(e){
+	e.stopPropagation();
+	var target=e.target;
+	if(target.tagName.toLowerCase()==="button"){
+		cover.style.display="block";
+		modalCt.style.display="block";	
+	}
+})	
+cover.addEventListener("click",function(e){
+	var target=e.target;
+	if(target.getAttribute("id")!=="modal-ct"){
+		cover.style.display="none";
+		modalCt.style.display="none";	
+	}
+})	
+modalCt.addEventListener("click",function(e){
+	var target=e.target;
+	if(hasClass(target,"close")||hasClass(target,"cancel")){
+		cover.style.display="none";
+		modalCt.style.display="none";
+	}
+})
+</script>
+</body>
+</html>

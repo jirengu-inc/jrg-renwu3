@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>2</title>
+</head>
+<body>
+<ul class="ct">
+    <li data-img="http://7xpvnv.com2.z0.glb.qiniucdn.com/c2a922e2-33d5-4701-a1c5-47ba7c49f103">放上来试试</li>
+    <li data-img="http://7xpvnv.com2.z0.glb.qiniucdn.com/fbc101e4-2bac-437c-a2c9-542dea6e0ee4">放上来试试</li>
+    <li data-img="http://7xpvnv.com2.z0.glb.qiniucdn.com/9170b465-fe8c-4e83-bae1-bd3a407fb928">放上来试试</li>
+</ul>
+<div class="img-preview"></div>
+<script>
+var ct=document.querySelector(".ct"),
+    imgPreview=document.querySelector(".img-preview");
+ct.addEventListener("mouseover",function(e){
+	if(e.target.tagName.toLowerCase()==="li"){
+		while(imgPreview.hasChildNodes()){
+        	imgPreview.removeChild(imgPreview.firstChild);
+    	} 
+		var img=document.createElement("img");
+    	img.src=e.target.getAttribute("data-img");
+    	imgPreview.appendChild(img);
+	}
+},false)
+ct.addEventListener("mouseout",function(){
+		while(imgPreview.hasChildNodes()){
+        	imgPreview.removeChild(imgPreview.firstChild);
+	}
+},false) 	
+</script>
+</body>
+</html>
