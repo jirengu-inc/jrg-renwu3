@@ -1,0 +1,132 @@
+html,body,ul,li,a,h1{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+}
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:visited{
+  color: black;
+  text-decoration: none;
+}
+.layout{
+  width: 1000px;
+  margin: 0 auto;
+}
+.clearfix:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+#header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+}
+#header nav>a,#header nav>ul>li{
+  display: block;
+  float: left;
+  margin: 0 10px;
+  height: 50px;
+  line-height: 50px;
+}
+#header nav>a{
+  font-size: 1.25rem;
+}
+#header nav>ul>li>ul{
+display: none;
+background: white;
+z-index: 2;
+padding: 0 15px;
+}
+#header nav>ul>li:hover ul{
+  display: block;
+}
+#main .trait{
+    background: #b84d45;
+    padding: 50px 0;
+    margin-top: 50px;
+    color: white;
+}
+#main .trait .layout h1{
+  font-size:60px;
+  margin: 20px 0;
+}
+#main>.bar{
+  padding: 10px 0;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  background: #ccc;
+}
+#main>.bar a:first-child{
+  margin-left: 20px;
+  color: red;
+}
+#main .bar a:first-child:after{
+  content: ' /';
+}
+#main .work .layout .warp{
+  margin: 0 -25px;
+}
+#main .work .layout .img-wrap{
+  width: 315px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 25px;
+  margin-left: 25px;
+  float: left;
+}
+#main .work .layout img{
+  width: 307px;
+  height: 202px;
+  margin: 4px;
+}
+#main .work .img-wrap .caption{
+  padding:8px;
+  height: 150px;
+  text-align: center;
+}
+#main .btn{
+    vertical-align: middle;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.4;
+    border-radius: 4px;
+}
+ #main h3{
+  font-family: Helvetica, Arial, sans-serif;/*换字体后才有黑粗的效果*/
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 24px;
+}
+#footer{
+  text-align: center;
+  padding: 90px 0;
+}
+#footer .call-me{
+  background-color: #b84d45;
+  padding: 40px 0;
+  color: white;
+}
+#footer .copyright{
+  padding-top: 60px;
+}
+#footer a:link {
+  color: red;
+  text-decoration: none;
+}
+#footer a:visited {
+  color: red;
+  text-decoration: none;
+}
+#footer hr{
+  margin-bottom: 20px;
+  width:1000px;
+}
