@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>tab</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		ul,li {
+			list-style: none;
+			margin:0;
+			padding:0;
+		}
+		.ct {
+			width:300px;
+			height: 180px;
+			border:1px solid #ccc;
+			border-radius: 4px;
+		}
+		.tab-ct {
+			height:34px;
+			line-height:34px;
+			width:100%;
+			border-bottom: 1px solid #ccc;
+		}
+		.tab {
+			width:99px;
+			float:left;
+			border-right:1px solid #ccc;
+			text-align: center;
+		}
+		.tab:last-child {
+			border-right:none;
+		}
+		.tab-ct:after {
+			content:"";
+			display:block;
+			clear:both;
+		}
+		.content {
+			padding:10px;
+			display: none;
+		}
+		.highlight {
+			background-color:#bbb;
+		}
+		.active {
+			display:block;
+		}
+	</style>
+</head>
+<body>
+<div class="ct">
+	<ul class="tab-ct">
+		<li class="tab highlight">tab1</li>
+		<li class="tab">tab2</li>
+		<li class="tab">tab3</li>
+	</ul>
+	<div class="content active">内容1</div>
+	<div class="content">内容2</div>
+	<div class="content">内容3</div>
+</div>
+<script>
+    function hasClass(element, className) { 
+		var reg=new RegExp('(\\s|^)'+className+'(\\s|$)'); 
+		return element.className.match(reg); 
+	} 
+	function addSingleClass(element, className) { 
+		if (!this.hasClass(element, className)) { 
+			element.className+=" "+className; 
+		} 
+	} 
+	function removeSingleClass(element, className) { 
+		if (hasClass(element, className)) { 
+			var reg=new RegExp('(\\s|^)'+className+'(\\s|$)'); 
+			element.className=element.className.replace(reg,' '); 
+		}
+		var regs=new RegExp('(\\s+)');
+		element.className=element.className.replace(regs," "); 
+	}
+	function addClass(element,className){
+		if(element.length){
+			for(var i=0;i<element.length;i++){
+				addSingleClass(element[i],className);
+			}
+		}
+		else {
+			addSingleClass(element,className);
+		}
+	} 
+	function removeClass(element,className){
+		if(element.length){
+			for(var i=0;i<element.length;i++){
+				removeSingleClass(element[i],className);
+			}
+		}
+		else {
+			removeSingleClass(element,className);
+		}
+	}
+	function indexOf(el){
+        var parent=el.parentElement;
+        var children=parent.children;
+	    for(var i=0;i<children.length;i++){
+	        if(el===children[i]){
+	        	return i;
+	        } 
+	    }
+    	return -1;
+    }
+    
+
+	var tabCt=document.querySelector(".tab-ct"),
+		tab=document.querySelectorAll(".tab"); 
+	tabCt.addEventListener("click",function(e){
+		var target=e.target,
+			index=indexOf(target),
+			content=document.querySelectorAll(".content");
+
+		if (index>-1) {
+			removeClass(tab,"highlight");
+			addClass(target,"highlight");
+			removeClass(content,"active");
+			addClass(content[index],"active");	
+		}		
+	})
+</script>
+</body>
+</html>
