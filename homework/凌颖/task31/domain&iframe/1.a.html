@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>1.a.com</title>
+<style>
+  .container{
+    width: 900px;
+    margin: 0 auto;
+	  text-align: center;
+  }
+
+	.box{
+		border:1px solid salmon;
+		height:300px;
+		width:600px;
+		margin-top:20px;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <button>获取数据</button>
+    <div class="box">
+		<iframe src="//a.com:8080/static/a.html" frameborder="0"> </iframe>
+		<p></p>
+    </div>
+  </div>
+
+
+  	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+		document.domain = "a.com";
+		$("button").on("click",function(){
+				window.name = location.href;
+				var iframe = window.frames[0];
+				$(".box>p").text('iframe的域名是'+iframe.window.name);
+		})
+
+  	</script>
+</body>
+</html>
