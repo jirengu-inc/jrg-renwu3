@@ -1,0 +1,49 @@
+.navigator{/*当然，宽度可以你自己定义*/
+width: 100%;
+margin: 0;
+}
+.navigator ul{/*这里必须设置内边距和外边距，因为浏览器会自动给ul设定值，会把导航栏挤歪*/
+padding: 0;
+margin: 0;
+list-style-type: none;
+}
+.navigator li{/*本来ul是竖直排列的，对所有li元素进行float:left他就会自动全部靠左*/
+float: left;
+position :relative;
+}
+.navigator ul li a,.navigator ul li a:visited {/*这里设置text-decoration是为了防止a标签自己的样式*/
+display: block;
+text-align: center;
+text-decoration: none;/*不对文本设置效果 */
+width: 184px;/*每一块的宽度*/
+height: 50px;/*每一块的高度*/
+color: black;/*文字颜色 */
+border: 1px solid #fff;/*边框大小和颜色 */
+border-width: 1px 1px 0 0;/*四个边框的宽度 ,注意，左右边框没有像素哦，仔细看导航栏左右有缝隙*/
+background: #CCCCCC;/*背景颜色 */
+line-height: 50px;/*这是一个技巧，这里将height和line-height设置为一样的高度文字就会水平竖直居中 */
+font-size: 17px;
+}
+.navigator ul li:hover a {/*这是一个css伪类，将鼠标移上去的时候字体和背景都会变色，移开又会变回来 */
+color: #fff;
+background: #CCCCFF;
+}
+.navigator ul li ul {/*这里是为了将导航栏里的内容隐藏*/
+display: none;
+}
+.navigator ul li:hover ul {/*这里就是弹出的下拉菜单了*/
+display: block;
+position: absolute;
+top: 51px;
+left: 0;
+width: 185px;
+}
+.navigator ul li:hover ul li a {/*这里当然是定义下拉菜单里的a标签了*/
+display: block;
+background: #CCFFFF;
+color: #000;
+}
+.navigator ul li:hover ul li a:hover {/*这个是伪类，上面有说*/
+background: #dfc184;
+color: #000;
+}
