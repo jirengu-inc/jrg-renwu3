@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		.box4,.box-top,.box-left,.box-right,.box-bottom,.box-left-bottom,.box-right-bottom{
+		width: 0px;
+		height: 0px;
+		}
+		.box4{
+		border-top: 160px solid blue;
+		border-right: 160px solid yellow;
+		border-left: 160px solid red;
+		border-bottom: 160px solid green;
+		margin: 20px auto;
+		}
+		.box-top{
+		border-top: 160px solid blue;
+		border-right: 160px solid transparent;
+		border-left: 160px solid transparent;
+		margin: 20px auto;
+		}
+		.box-left{
+		border-top: 160px solid transparent;
+		border-left: 160px solid red;
+		border-bottom: 160px solid transparent;
+		margin: 20px auto;
+		}
+		.box-right{
+		border-top: 160px solid transparent;
+		border-right: 160px solid yellow;
+		border-bottom: 160px solid transparent;
+		margin: 20px auto;
+		}
+		.box-bottom{
+		border-right: 160px solid transparent;
+		border-bottom: 160px solid green;
+		border-left: 160px solid transparent;
+		margin: 20px auto;
+		}
+		.box-left-bottom{
+		border-top: 160px solid transparent;
+		border-left: 160px solid red;
+		margin: 20px auto;
+		}
+		.box-right-bottom{
+		border-right: 160px solid green;
+		border-top: 160px solid transparent;
+		margin: 20px auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="box4"></div>
+	<div class="box-top"></div>
+	<div class="box-left"></div>
+	<div class="box-right"></div>
+	<div class="box-bottom"></div>
+	<div class="box-left-bottom"></div>
+	<div class="box-right-bottom"></div>
+
+</body>
+</html>
