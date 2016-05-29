@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>导航条stickup</title>
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+  <style type="text/css">
+   .header{
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    background-color: red;
+  }
+  .nav{
+    height: 40px;
+    /*width: 100%;*/
+    line-height: 40px;
+    margin-top: 20px;
+    background-color: blue;
+  }
+  .content{
+    padding: 10px;
+    background-color: #ccc;
+    min-height: 800px;
+  }
+  .aside{
+    float:left;
+    width: 100px;
+    min-height: 400px;
+    background-color: green;
+  }
+  .main{
+    overflow: hidden;
+    min-height: 800px;
+    background-color: #fff;
+  }
+  .footer{
+    background-color: #333;
+    opacity:
+  }
+</style>
+</head>
+<body>
+  <div class="header">header</div>
+  <div class="nav">nav</div>
+  <div class="content">
+    <div class="aside">aside</div>
+    <div class="main">main</div>
+  </div>
+  <div class="footer">footer</div>
+
+
+  <script type="text/javascript">
+  var $nav=$('.nav'),
+      // height=$nav.height(),
+      width=$nav.width(),
+      offsetTop=$nav.offset().top,
+      offsetLeft=$nav.offset().left;
+  var $navClone=$nav.clone().css({opacity: '0',display:'none'}).insertBefore($nav);
+
+    $(window).on('scroll',function(){
+      var scrollTop=$(this).scrollTop();
+      if(scrollTop>=offsetTop){
+        if(!isFixed()){
+          setFixed();
+       }
+      }else{
+        if(isFixed()){
+          unsetFixed();
+        }
+      }
+    });
+
+    function isFixed(){
+      return $nav.data('fixData');
+    }
+    function setFixed(){
+      $nav.data('fixData', true);
+      $nav.css({
+        position:'fixed',
+        width:width,
+        top: '0',
+        left: offsetLeft,
+        marginTop:'0',
+        'z-index': 9999
+
+      });
+      $navClone.show();
+    }
+    function unsetFixed(){
+      $nav.data('fixData', false);
+      $nav.removeAttr('style');
+      $navClone.hide();
+
+    }
+  </script>
+
+</body>
+</html>
