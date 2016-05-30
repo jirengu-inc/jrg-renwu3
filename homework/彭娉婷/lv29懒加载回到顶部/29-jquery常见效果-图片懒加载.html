@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>图片懒加载</title>
+  <style type="text/css">
+    ul{
+      list-style: none;
+    }
+    .container{
+      width: 800px;
+      margin: 0 auto;
+    }
+    .clearfix:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    li{
+      float: left;
+      margin: 10px;
+    }
+    p{
+      float: left;
+    }
+
+  </style>
+</head>
+<body>
+  <ul class="container">
+    <li><a href="#"><img src="./img/loading.gif" alt="" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a></li>
+    <li><a href="#"><img src="./img/loading.gif" alt="" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a></li>
+    <li><a href="#"><img src="./img/loading.gif" alt="" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a></li>
+    <li><a href="#"><img src="./img/loading.gif" alt="" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a></li>
+    <li><a href="#"><img src="./img/loading.gif" alt="" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a></li>
+    <li><a href="#"><img src="./img/loading.gif" alt="" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a></li>
+    <li><a href="#"><img src="./img/loading.gif" alt="" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a></li>
+    <li><a href="#"><img src="./img/loading.gif" alt="" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a></li>
+    <li><a href="#"><img src="./img/loading.gif" alt="" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a></li>
+    <li><a href="#"><img src="./img/loading.gif" alt="" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a></li>
+    <li><a href="#"><img src="img/loading.gif" data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg" /></a></li>
+    <p id="hello">hello </p>
+    <li><a href="#"><img src="img/loading.gif"  data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg" /></a></li>
+    <li><a href="#"><img src="img/loading.gif"  data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg" /></a></li>
+    <li><a href="#"><img src="img/loading.gif"  data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg" /></a></li>
+    <li><a href="#"><img src="img/loading.gif"  data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg" /></a></li>
+    <li><a href="#"><img src="img/loading.gif"  data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg" /></a></li>
+    <li><a href="#"><img src="img/loading.gif"  data-src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg" /></a></li>
+  </ul>
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+  <script type="text/javascript">
+  //第一次打开加载肉眼可见图片
+  //
+  //向下滚动时加载肉眼可见图片
+  //
+  //加载函数
+  //
+  //肉眼可见
+
+  var clock;
+  $(window).on('scroll',function(){
+    //防止频繁滚动
+    if(clock){
+      clearTimeout(clock);
+    }
+    clock=setTimeout(function(){
+      checkShow();
+    },500);
+
+  });
+
+
+  checkShow();
+
+  function checkShow(){
+    $('.container img').each(function(){
+      // console.log('1');
+      var $cur=$(this);
+
+      if(!!isloaded($cur)){return;}//判断是否已加载
+
+      if(isShow($cur)){
+        showImg($cur);
+      }
+
+    })
+  }
+
+
+
+
+  function isShow($cur){//判断是否肉眼可见
+
+   var offsetTop=$cur.offset().top,
+   winH=$(window).height(),
+   scrollTop=$(window).scrollTop();
+   if(winH+scrollTop>offsetTop){
+    return true;
+  }else{
+    return false;
+  }
+
+}
+
+function showImg($cur){
+  $cur.attr('src',$cur.attr('data-src'));
+  $cur.data('isloaded',true);
+}
+function isloaded($cur){
+  return $cur.data('isloaded');
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>
