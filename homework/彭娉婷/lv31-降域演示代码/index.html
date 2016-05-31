@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>1.a.com</title><!-- 假设现在是1.a.com -->
+</head>
+<body style="background-color: white">
+  <h3>这里是1.a.com</h3>
+  <button>获取数据</button>
+  <div class="box">
+    <iframe src="//a.com/index2.html" frameborder="0"></iframe>
+    <p></p>
+  </div>
+
+
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+  <script type="text/javascript">
+    document.domain='a.com';
+    window.name=location.href;
+    $('button').on('click',function(){
+      var iframe=window.frames[0];
+      console.log(iframe.window.name);
+      $('.box>p').text('iframe的src是'+iframe.window.name);
+    })
+
+
+</script>
+
+</body>
+</html>
