@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>stickup</title>
+    <style>
+        html,body{
+            padding:0;
+            margin: 0;
+
+        }
+
+        .layout{
+            margin: 0 auto;
+            width: 1024px;
+            text-align: center;
+        }
+        .head{
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            background: paleturquoise;
+            padding: 15px;
+            height: 35px;
+            line-height: 35px;
+        }
+        .nav{
+            background: aquamarine;
+            /*padding: 10px;*/
+            text-align: left;
+            margin-top: 10px;
+            height: 40px;
+        }
+        .content >div{
+            float: left;
+        }
+        .content:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+      .work{
+          margin: 10px 0 10px 10px;
+          background: cornflowerblue;
+          width: calc(100% - 240px);
+          height: 430px;
+      }
+
+        .aside{
+            width: 200px;
+            background: burlywood;
+            padding: 15px;
+            height: 400px;
+            margin: 10px 0;
+        }
+        footer{
+            background: bisque;
+            padding: 15px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="layout">
+    <header class="head">
+        head
+    </header>
+    <nav id="nav" class="nav">nav1</nav>
+    <div class="content">
+        <div class="aside">aside</div>
+        <div class="work">work</div>
+    </div>
+    <footer>footer</footer>
+</div>
+<div class="layout">
+    <header class="head">
+        head
+    </header>
+    <nav id="nav" class="nav">nav2</nav>
+    <div class="content">
+        <div class="aside">aside</div>
+        <div class="work">work</div>
+    </div>
+    <footer>footer</footer>
+</div>
+<div class="layout">
+    <header class="head">
+        head
+    </header>
+    <nav id="nav" class="nav">nav3</nav>
+    <div class="content">
+        <div class="aside">aside</div>
+        <div class="work">work</div>
+    </div>
+    <footer>footer</footer>
+</div>
+<div class="layout">
+    <header class="head">
+        head
+    </header>
+    <nav id="nav" class="nav">nav4</nav>
+    <div class="content">
+        <div class="aside">aside</div>
+        <div class="work">work</div>
+    </div>
+    <footer>footer</footer>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+//    var $nav = $('#nav'),
+//            $navClone = $nav.clone().attr('id','x'),
+//            topDistace = $nav.offset().top;
+//    $navClone.css({visibility: 'hidden', display: 'none'}).insertBefore($nav);
+
+    $(function () {
+        $('.nav').each(function (i,e) {
+             new Stickup($(e))
+        })
+    })
+
+    function Stickup($nav){
+        this.$nav=$nav;
+        this.$navClone = $nav.clone().attr('id','x');
+        this.topDistace = $nav.offset().top;
+        this.$navClone.css({visibility: 'hidden', display: 'none'}).insertBefore($nav);
+        this.bindEvent()
+    }
+
+    Stickup.prototype.bindEvent=function () {
+        var that = this;
+        $(window).on('scroll',function (e) {
+            //show
+            var winOffset = $(this).scrollTop();
+            if(winOffset>=that.topDistace){
+                if(!that.isFixed(that.$nav)){
+                    that.setFixed(that.$nav,that.$navClone)
+                }
+            }else{
+                //hidden
+                that.resetFixed(that.$nav,that.$navClone)
+            }
+        });
+        $(window).on('resize',function (e) {
+            if(that.isFixed(that.$nav)){
+                that.resizeFixed(that.$nav,that.$navClone);
+            }
+        });
+    }
+
+    Stickup.prototype.isFixed=function (nav) {
+        return !! nav.attr('fixed')
+    }
+
+    Stickup.prototype.setFixed = function (nav,clone) {
+        clone.show();
+        nav.attr('fixed',true);
+        this.resizeFixed(nav,clone);
+
+    }
+    Stickup.prototype.resizeFixed=function (nav,clone) {
+        nav.css({position: 'fixed',
+            left:clone.offset().left,
+            top:0,
+            width: clone.width(),
+            height:clone.height(),
+            margin:0});
+    }
+    Stickup.prototype.resetFixed = function (nav,clone){
+        nav.removeAttr('fixed').removeAttr('style');
+        clone.hide();
+    }
+
+    
+</script>
+</body>
+</html>
