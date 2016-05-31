@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无限轮播-滚动轮播效果</title>
+</head>
+<style>
+    ul,li{
+        list-style: none;
+    }
+    html,body,ul,li,p{
+        margin:0;
+        padding:0;
+    }
+    a{
+        text-decoration: none;
+    }
+    .carousel{
+        position:relative;
+        width:400px;
+        height:300px;
+        overflow:hidden;
+        float:left;
+        margin:100px 20px;
+       border-radius:15px;
+        border:1px solid #1e347b;
+    }
+    .carousel .img-ct{
+        position:absolute;
+    }
+    .carousel .img-ct:after{
+        content:"";
+        display:block;
+        clear:both;
+    }
+    .img-ct li{
+        float:left;
+    }
+    .img-ct li img{
+        width:400px;
+        height:300px;
+    }
+    .arrow{
+        width:30px;
+        height:30px;
+        color:#fff;
+        border-radius:50%;
+        background-color:rgba(0,0,0,0.5);
+        display:block;
+        position:absolute;
+        top:50%;
+        margin-top:-15px;
+        text-align: center;
+        line-height:30px;
+        cursor:pointer;
+    }
+    .arrow:hover {
+        background-color:rgba(0,0,0,1);
+    }
+    .pre{
+        left:10px;
+    }
+    .next{
+        right:10px;
+    }
+  h1{
+      color:#1e347b;
+      font-weight: bold;
+      text-align: center;
+  }
+</style>
+<body>
+<h1>对象的思想做轮播插件</h1>
+<div class="carousel" id="carousel1">
+    <ul class="img-ct">
+        <li data-id="0"><a href="#"><img src="img/1.jpg"/></a></li>
+        <li data-id="1"><a href="#"><img src="img/2.jpg"/></a></li>
+        <li data-id="2"><a href="#"><img src="img/3.jpg"/></a></li>
+        <li data-id="3"><a href="#"><img src="img/4.jpg"/></a></li>
+        <li data-id="4"><a href="#"><img src="img/5.jpg"/></a></li>
+    </ul>
+    <a class="pre arrow"> < </a>
+    <a class="next arrow"> > </a>
+</div>
+<div class="carousel" id="carousel2">
+    <ul class="img-ct">
+        <li data-id="0"><a href="#"><img src="img/1.jpg"/></a></li>
+        <li data-id="1"><a href="#"><img src="img/2.jpg"/></a></li>
+        <li data-id="2"><a href="#"><img src="img/3.jpg"/></a></li>
+        <li data-id="3"><a href="#"><img src="img/4.jpg"/></a></li>
+        <li data-id="4"><a href="#"><img src="img/5.jpg"/></a></li>
+    </ul>
+    <a class="pre arrow"> < </a>
+    <a class="next arrow"> > </a>
+</div>
+<div class="carousel" id="carousel3">
+    <ul class="img-ct">
+        <li data-id="0"><a href="#"><img src="img/1.jpg"/></a></li>
+        <li data-id="1"><a href="#"><img src="img/2.jpg"/></a></li>
+        <li data-id="2"><a href="#"><img src="img/3.jpg"/></a></li>
+        <li data-id="3"><a href="#"><img src="img/4.jpg"/></a></li>
+        <li data-id="4"><a href="#"><img src="img/5.jpg"/></a></li>
+    </ul>
+    <a class="pre arrow"> < </a>
+    <a class="next arrow"> > </a>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    function Carousel($carousel){
+        this.$carousel = $carousel;
+        var $ct = this.$ct = this.$carousel.find('.img-ct');
+        this.pre = this.$carousel.find('.pre');
+        this.next = this.$carousel.find('.next');
+        this.imgWidth = $ct.find('li').width();
+        this.imgCount = $ct.find('li').size();
+
+
+        this.$ct.css('width',this.imgCount * this.imgWidth);
+        this.bind();
+    }
+
+    Carousel.prototype = {
+        bind : function(){
+            var $this = this;
+            $this.pre.on('click',function(){
+                $this. playPre();
+            })
+            $this.next.on('click',function(){
+                $this. playNext();
+            })
+        },
+        playPre : function(){
+           this.$ct.prepend(this.$ct.children().last());
+            this.$ct.animate({'left':'+=(0-this.imgCount)'});
+        },
+        playNext : function(){
+            this.$ct.append(this.$ct.children().first());
+            this.$ct.animate({'right':'0-this.imgCount'});
+        }
+    }
+$('.carousel').each(function(){
+    new Carousel($(this));
+});
+</script>
+</body>
+</html>
