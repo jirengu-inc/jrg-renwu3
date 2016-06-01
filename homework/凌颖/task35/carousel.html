@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无限轮播-滚动轮播效果</title>
+</head>
+<style>
+    ul,li{
+        list-style: none;
+    }
+    html,body,ul,li,p{
+        margin:0;
+        padding:0;
+    }
+    a{
+        text-decoration: none;
+    }
+    .carousel{
+        position:relative;
+        width:400px;
+        height:250px;
+        float:left;
+        margin:100px 20px;
+       border-radius:15px;
+        border:1px solid #1e347b;
+    }
+    .carousel .img-ct:after{
+        content:"";
+        display:block;
+        clear:both;
+    }
+    .img-ct li{
+        position:absolute;
+        display: none;
+    }
+    .img-ct li img{
+        width:400px;
+        height:250px;
+        border-radius:15px;
+    }
+    .arrow{
+        width:30px;
+        height:30px;
+        color:#fff;
+        border-radius:50%;
+        background-color:rgba(0,0,0,0.5);
+        display:block;
+        position:absolute;
+        top:50%;
+        margin-top:-15px;
+        text-align: center;
+        line-height:30px;
+        cursor:pointer;
+    }
+    .arrow:hover {
+        background-color:rgba(0,0,0,1);
+    }
+    .pre{
+        left:10px;
+    }
+    .next{
+        right:10px;
+    }
+  h1{
+      color:#1e347b;
+      font-weight: bold;
+      text-align: center;
+  }
+    .control{
+        position:absolute;
+        bottom:10px;
+        left:50%;
+        transform:translateX(-50%);
+    }
+
+    .control li{
+        float:left;
+        width:18px;
+        height:5px;
+        background-color:rgba(255,255,255,0.5);
+        border-radius:5px;
+        margin:0 4px;
+        cursor:pointer;
+    }
+    .control li.active,.control li:hover{
+        background-color:rgba(0,0,0,0.8);
+    }
+    .clearfix:after{
+        content:"";
+        display:block;
+        clear:both;
+    }
+</style>
+<body class="clearfix">
+<h1>对象的思想做轮播插件</h1>
+<div class="carousel" id="carousel1">
+    <ul class="img-ct">
+        <li data-id="0"><a href="#"><img src="img/1.jpg"/></a></li>
+        <li data-id="1"><a href="#"><img src="img/2.jpg"/></a></li>
+        <li data-id="2"><a href="#"><img src="img/3.jpg"/></a></li>
+        <li data-id="3"><a href="#"><img src="img/5.jpeg"/></a></li>
+    </ul>
+    <a class="pre arrow"> < </a>
+    <a class="next arrow"> > </a>
+    <ul class="control clearfix">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="carousel" id="carousel2">
+    <ul class="img-ct">
+        <li data-id="0"><a href="#"><img src="img/1.jpg"/></a></li>
+        <li data-id="1"><a href="#"><img src="img/2.jpg"/></a></li>
+        <li data-id="2"><a href="#"><img src="img/3.jpg"/></a></li>
+        <li data-id="3"><a href="#"><img src="img/5.jpeg"/></a></li>
+    </ul>
+    <a class="pre arrow"> < </a>
+    <a class="next arrow"> > </a>
+    <ul class="control clearfix">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="carousel" id="carousel3">
+    <ul class="img-ct">
+        <li data-id="0"><a href="#"><img src="img/1.jpg"/></a></li>
+        <li data-id="1"><a href="#"><img src="img/2.jpg"/></a></li>
+        <li data-id="2"><a href="#"><img src="img/3.jpg"/></a></li>
+        <li data-id="3"><a href="#"><img src="img/5.jpeg"/></a></li>
+    </ul>
+    <a class="pre arrow"> < </a>
+    <a class="next arrow"> > </a>
+    <ul class="control clearfix">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+    function Carousel($node){
+        this.$carousel = $node;
+        var $ct = this.$ct = this.$carousel.find('.img-ct');
+        this.items = $ct.find('li');
+        this.pre = this.$carousel.find('.pre');
+        this.next = this.$carousel.find('.next');
+        this.imgCount = this.items.length;
+        this.control = this.$carousel.find('.control');
+        this.curIdx = 0;//初始化为第一张
+        this.isAnimate = false;
+        this.bind();//加载bind()
+    }
+
+    Carousel.prototype = {
+        bind : function(){
+            var $this = this;
+            this.play(this.curIdx);//默认播放第一张
+            this.autoPlay();//自动播放
+            this.pre.on('click',function(){
+                $this.playPre();
+            });
+            this.next.on('click',function(){
+                $this.playNext();
+            });
+            $this.control.on('click','li',function(){
+                var idx = $(this).index();
+                play(idx);
+            });
+        },
+        playPre : function(){
+            this.play((this.curIdx+this.imgCount-1)%this.imgCount);
+        },
+        playNext : function(){
+            this.play((this.curIdx+1)%this.imgCount);
+        },
+        play : function(idx){
+            var $this = this;
+            if($this.isAnimate) return;
+            $this.isAnimate = true;
+            $this.items.eq($this.curIdx).fadeOut(500);
+            $this.items.eq(idx).fadeIn(500,function(){
+                $this.isAnimate =false;
+            });
+            $this.curIdx = idx;
+            $this.control.children().removeClass("active").eq($this.curIdx).addClass('active');
+        },
+        stopAuto : function(){
+            var $this = this;
+            clearInterval(clock);
+            console.log(clock);
+        },
+        autoPlay : function (){
+            var $this = this;
+          clock = setInterval(function(){
+              $this.playNext();
+            }, 3000)//可是我试过stopAuto不能暂停自动播放，试过在Carousel函数里面加this.clock 也不行
+        }
+    };
+
+$('.carousel').each(function(){
+    new Carousel($(this));//每一个都new一遍
+});
+
+</script>
+</body>
+</html>

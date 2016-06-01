@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>a.com</title>
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-size: 14px;
+    }
+    .register{
+      margin: 30px;
+    }
+    .register-ct dd {
+      margin-left: 86px;
+    }
+    .register-ct dt {
+      width: 86px;
+      float: left;
+      height: 24px;
+      line-height: 24px;
+    }
+    .register-ct input {
+      height: 24px;
+      line-height: 24px;
+      padding-left: 10px;
+      margin:10px 0;
+
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h3>获取个人信息</h3>
+    <!-- <form id="register-form" action=""> -->
+    <dl class="register-ct">
+      <dt>name:</dt>
+      <dd>
+        <input id="name" type="text">
+      </dd>
+
+
+      <dt>age:</dt>
+      <dd>
+        <input type="text" id="age">
+      </dd>
+
+
+      <dt>sex:</dt>
+      <dd>
+        <input type="text" id="sex">
+      </dd>
+
+      <dt>place:</dt>
+      <dd>
+        <input type="text" id="place">
+      </dd>
+
+      <dd><button id="btn-register">获取信息</button></dd>
+    </dl>
+    <!-- </form> -->
+  </div>
+
+
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+  <script type="text/javascript">
+   //a.com请求 b.com给我用户数据
+   //模拟jsonp跨域请求
+   var $name=$('#name'),
+   $age=$('#age'),
+   $sex=$('#sex'),
+   $place=$('#place');
+//法一
+window.data=function(data){
+  console.log('1');
+  $name.val(data.name);
+  $age.val(data.age);
+  $sex.val(data.sex);
+  $place.val(data.place);
+  console.log(data);
+
+}
+
+$('#btn-register').on('click',function(){
+  var script=document.createElement('script');
+  script.src='//b.com/data.js';
+  document.body.appendChild(script);
+})
+
+
+
+   //法二
+   $('#btn-register').on('click',function(){
+    $.ajax({
+      url:'//b.com/data.js',
+      type:'get',
+      dataType:'jsonp',
+      jsonp:'callback',
+      jsonpCallback:'data',
+      success:function(ret){
+        onsuccess(ret);
+      },
+      error:function(){
+        alert('服务器开小差...');
+      }
+
+    })
+  });
+
+   function onsuccess(data){
+    $name.val(data.name);
+    $age.val(data.age);
+    $sex.val(data.sex);
+    $place.val(data.place);
+    console.log(data);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+</script>
+
+</body>
+</html>
