@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<style>
+		.box{
+			width: 300px;
+			height: 150px;
+			border: 2px solid #ccc;
+			margin: 50px 50px;
+		}
+		.top{
+			width: 0;
+			height: 0;
+			border-left: 16px solid transparent;
+			border-right: 16px solid transparent;
+			border-bottom: 16px solid #ccc;
+			position: relative;
+			left: 16px;
+			bottom: 16px;
+		}
+		.right{
+			width: 0;
+			heigth: 0;
+			border-top: 16px solid red;
+			border-left: 16px solid transparent;
+			position: relative;
+			left: 284px;
+		}
+		.top-n{
+			width: 0;
+			height: 0;
+			border-left: 16px solid transparent;
+			border-right: 16px solid transparent;
+			border-bottom: 16px solid #ccc;
+			position: relative;
+			left: 16px;
+			bottom: 16px;
+		}
+		.top-white{
+			width: 0;
+			height: 0;
+			border-left: 16px solid transparent;
+			border-right: 16px solid transparent;
+			border-bottom: 16px solid white;
+			position: relative;
+			left: 16px;
+			bottom: 30px;
+		}		
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="top"></div>
+	</div>
+	<div class="box">
+		<div class="right"></div>
+	</div>
+	<div class="box">
+		<div class="top-n"></div>
+		<div class="top-white"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>轮播</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <style type="text/css">
+        html, body,.layout,.img-ct{
+            height: 100%;
+            width: 100%;
+        }
+
+        html,body,ul,li,p{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .layout{
+            margin: 0 auto;
+            background: deeppink;
+            position: relative;
+            overflow: hidden;
+        }
+        .img-ct{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+
+        .img-ct img{
+            /*width: 480px;*/
+            /*height: 360px;*/
+            height: 100%;
+            width: 100%;
+        }
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .arrow{
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+        }
+        .circle{
+            border-radius: 50%;
+            width: 20px;
+            display: inline-block;
+            height: 20px;
+            text-align: center;
+            background: rgba(177, 162, 162, 0.59);
+            opacity: 1;
+            color: #fff;
+            cursor: pointer;
+        }
+        .pre{
+            left: 15px;
+        }
+        .next{
+            right: 15px;
+        }
+        .bullet{
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .active{
+            background: #fff;
+            color: black;
+        }
+        .circle:hover {
+            box-shadow: 0 0 23px pink;
+        }
+        /*.img-ct>li:nth-child(1){*/
+            /*background: url("http://cdn.jirengu.com/book.jirengu.com/img/6.jpg");*/
+            /*background-repeat: no-repeat;*/
+            /*background-size: cover;*/
+            /*background-position: center center;*/
+
+        /*}*/
+        /*.img-ct>li:nth-child(2){*/
+            /*background: url("http://cdn.jirengu.com/book.jirengu.com/img/7.jpg");*/
+
+        /*}*/
+        /*.img-ct>li:nth-child(3){*/
+            /*background: url("http://cdn.jirengu.com/book.jirengu.com/img/8.jpg");*/
+            /*background-repeat: no-repeat;*/
+            /*background-size: cover;*/
+            /*background-position: center;*/
+        /*}*/
+        /*.img-ct>li:nth-child(4){*/
+            /*background: url("http://cdn.jirengu.com/book.jirengu.com/img/9.jpg");*/
+            /*background-repeat: no-repeat;*/
+            /*background-size: cover;*/
+            /*background-position: center;*/
+        /*}*/
+        .img-ct>li{
+            list-style: none;
+            float: left;
+            position: relative;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+        .main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            color: #fff;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="layout">
+    <ul class="img-ct">
+        <li data-id=0 data-bg-img="http://cdn.jirengu.com/book.jirengu.com/img/6.jpg">
+            <div class="main">
+                <h3>夜空中最亮的星</h3>
+                <p>是否在意</p>
+            </div>
+        </li>
+        <li data-id=1 data-bg-img="http://cdn.jirengu.com/book.jirengu.com/img/7.jpg">
+            <div class="main">
+                <h3>只是因为在人群中看了你一眼</h3>
+                <p>是否在意</p>
+            </div>
+        </li>
+        <li data-id=2 data-bg-img="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg">
+            <div class="main">
+                <h3>往城市边缘开</h3>
+                <p>把车窗都咬下来</p>
+            </div>
+        </li>
+        <li data-id=3 data-bg-img="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg">
+            <div class="main">
+                <h3>夜空中最亮的星</h3>
+                <p>是否在意</p>
+            </div>
+        </li>
+    </ul>
+    <a class="pre arrow circle" href="#"><</a>
+    <a class="next arrow circle" href="#">></a>
+    <ul class="bullet">
+        <li class="circle"></li>
+        <li class="circle"></li>
+        <li class="circle"></li>
+        <li class="circle"></li>
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    function looperPlay($parent) {
+        var   current=0,
+                isAnimate = false,
+                $bullet=$parent.find('.bullet>li'),
+                $ct= $parent.find('.img-ct'),
+                width=$(window).width(),
+                $pre= $parent.find('.pre'),
+                $next= $parent.find('.next'),
+                size = $bullet.size();
+        $parent.find('.img-ct>li').width(width);
+        $ct.css({width: size*width});//left: 0-
+
+        $pre.on('click',function () {
+            playPre();
+        });
+
+        $next.on('click',function () {
+            playNext()
+        });
+
+        $bullet.on('click',function () {
+            var index = $(this).index();
+            if(current>index){
+                playPre(current-index);
+            }
+            if(index>current){
+                playNext(index-current);
+            }
+            //play($(this).index())
+        })
+
+        setBg(0);
+        setBullet();
+        var auto=setInterval(function () {
+            playNext();
+        },3000);
+        //clearInterval(auto);
+
+        function setBg(idx){
+                    var $node= $ct.children('[data-id='+current+']'),
+                    imgUrl = $node.attr('data-bg-img');
+            //if($node.data('isBgSet')) return;
+            $node.css('background-image', 'url('+imgUrl+')');
+            $node.data('isBgSet', true);
+
+        }
+
+        //注释：使用 "+=" 或 "-=" 来创建相对动画（relative animations）。
+        function play(step,callback) {
+            if(isAnimate)  return;
+            isAnimate = true;
+            $ct.animate({left: step},function(){
+                callback();
+                isAnimate = false;
+            });
+        }
+
+        function playNext(step) {
+            var step = step || 1;
+            play( '-='+(width*step),function () {
+                for(var i=0 ; i<step;i++){
+                    $ct.children().first().appendTo($ct);
+                }
+                current= (current+step)%size;
+                $ct.css({ left: 0});
+                setBullet();
+                setBg();
+            });
+        }
+
+        function playPre(step) {
+            var step = step || 1;
+
+            for(var i = 0;i < step;i++){
+                $ct.children().last().prependTo($ct);
+            }
+            $ct.css({ left: 0-(width*step)});
+            play( '+='+(width*step),function () {
+                current=(size+current-step)%size;
+                setBullet();
+                setBg();
+            });
+        }
+        function setBullet(){
+            $bullet.removeClass('active').eq(current).addClass('active');
+        }
+    }
+    looperPlay($('.layout'));
+</script>
+</body>
+</html>

@@ -122,15 +122,12 @@
             width=$looper.width();
             size = $bullet.size();
 
-            $ct.prepend($looper.last().clone());
-            $ct.append($looper.first().clone()),
-            len=$ct.children().size();
-            console.log(len)
-            $ct.css({ left: 0-width,width: len*width});//left: 0-width,
+
+    $ct.css({width: size*width});//left: 0-width,
     setBullet();
     init();
     $bullet.on('click',function () {
-         var index = $(this).index();
+        var index = $(this).index();
         if(current>index){
             playPre(current-index);
         }
@@ -144,10 +141,10 @@
     }
     function init() {
         auto=setInterval(function () {
-            playPre();
+            playNext();
         },3000);
     }
-   //注释：使用 "+=" 或 "-=" 来创建相对动画（relative animations）。
+    //注释：使用 "+=" 或 "-=" 来创建相对动画（relative animations）。
     function play(step,callback) {
         if(isAnimate)  return;
         isAnimate = true;
@@ -160,23 +157,23 @@
     function playNext(step) {
         var step = step || 1;
         play( '-='+(width*step),function () {
-            current= (current+step)%size;
-            if(current === 0){
-                $ct.css({ left: 0-width,});
+            for(var i=0 ; i<step;i++){
+                $ct.children().first().appendTo($ct);
             }
+            current= (current+step)%size;
+            $ct.css({ left: 0});
             setBullet();
         });
     }
 
     function playPre(step) {
         var step = step || 1;
-
+        for(var i = 0;i < step;i++){
+            $ct.children().last().prependTo($ct);
+        }
+        $ct.css({ left: 0-(width*step)});
         play( '+='+(width*step),function () {
             current=(size+current-step)%size;
-            if(current === (size-1)){
-                $ct.css({ left: 0-width*size});
-                current =  size-1;
-            }
             setBullet();
         });
     }

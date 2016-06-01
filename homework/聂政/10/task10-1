@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<style>
+  		*{
+  			font-family: "微软雅黑"；
+		}
+		a{
+ 			text-decoration: none;
+  			color: white;
+		}
+		.header{
+  			height: 60px;
+  			width: 100%;
+  			background: #333;
+		}
+		.header-child{
+  			width: 900px;
+ 			  height: 60px;
+  			clear: both;
+        margin: 0 auto;
+		}
+		.header-child img{
+  			height: 45px;
+  			float: left;
+		}
+		.nav li{
+			 margin: 10px;
+       padding: 10px 0;
+			 float: right;
+			 color: white;
+			 list-style: none;
+		}
+		.container{
+  			width: 900px;
+  			height: 500px;
+  			margin: 15px auto 0 auto;
+  			clear: both;
+		}
+		.aside{
+  			width: 200px;
+  			height: 500px;
+  			background-color: #eee;
+  			float: left;
+		}
+		.main{
+  			width: 685px;
+  			height: 200px;
+  			background-color: #eee;
+  			float: right;
+		}
+		.main h1{
+  			line-height: 2;
+		}
+		.main p{
+  		line-height: 1.5;
+		}
+		.footer{
+  			height: 50px;
+  			width: 100%;
+  			background: #333;
+		}
+		.container-f{
+  			width: 900px;
+  			height: 50px;
+  			margin: 0 auto;
+  			clear: both;
+		}
+		.nav-f li{
+  			font-size: 14px;
+  			list-style: none;
+  			padding: 15px 0;
+  			margin-right: 10px;
+  			color: white;  
+  			float: left;
+		}
+  	</style>
+</head>
+<body>
+	<div class="header">
+	  <div class="header-child"> 	
+        <img src="http://cdn.jirengu.com/public/logo-tiny.png">
+	    <ul class="nav">
+        	<li><a href="#">技能</a></li>
+        	<li><a href="#">经历</a></li>        
+        	<li><a href="#">作品</a></li>
+        	<li><a href="#">关于</a></li>
+        </ul>
+      </div>
+	</div>
+	<div class="container">
+		<div class="aside"></div>
+		<div class="main">
+            <h2>我的作品</h2>
+            <p>
+            生活很美好
+            </br>
+            心情不错
+            </br>
+            代码写的很漂亮
+            </p>
+        </div>
+	</div>
+	<div class="footer">
+     	<div class="container-f">
+	  	<ul class="nav-f">
+        	<li><a href="#">饥人谷</a></li>
+        	<li><a href="#">JSCODE</a></li>
+        	<li><a href="#">JSBIN</a></li>
+      </ul>
+      	</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery使用</title>
+	<link rel="stylesheet" type="text/css" href="css/task25.css">
+</head>
+<body>
+	<ul class="nav-jewelry">
+		<li class="cont-jewelry">
+			<a id="btn-more" href="#">珠宝玉器</a>
+			<span class="icon-goto">></span>
+			<ul class="content-jewelry">
+				<li><a href="#">翡翠</a></li>
+				<li><a href="#">玉石</a></li>
+				<li><a href="#">宝石</a></li>
+				<li><a href="#">水晶</a></li>
+				<li><a href="#">玛瑙</a></li>
+				<li><a href="#">珍珠</a></li>
+				<li><a href="#">钻石</a></li>
+				<li><a href="#">琥珀</a></li>
+				<li><a href="#">和田</a></li>
+			</ul>
+		</li>
+		<li class="cont-jewelry">
+			<a id="btn-more" href="#">珠宝玉器</a>
+			<span class="icon-goto">></span>
+			<ul class="content-jewelry">
+				<li><a href="#">翡翠</a></li>
+				<li><a href="#">玉石</a></li>
+				<li><a href="#">宝石</a></li>
+				<li><a href="#">水晶</a></li>
+				<li><a href="#">玛瑙</a></li>
+				<li><a href="#">珍珠</a></li>
+			</ul>
+		</li>
+		<li class="cont-jewelry">
+			<a id="btn-more" href="#">珠宝玉器</a>
+			<span class="icon-goto">></span>
+			<ul class="content-jewelry">
+				<li><a href="#">翡翠</a></li>
+				<li><a href="#">玉石</a></li>
+				<li><a href="#">宝石</a></li>
+				<li><a href="#">水晶</a></li>
+				<li><a href="#">玛瑙</a></li>
+				<li><a href="#">珍珠</a></li>
+			</ul>
+		</li>
+		<li class="cont-jewelry">
+			<a id="btn-more" href="#">珠宝玉器</a>
+			<span class="icon-goto">></span>
+			<ul class="content-jewelry">
+				<li><a href="#">翡翠</a></li>
+				<li><a href="#">玉石</a></li>
+				<li><a href="#">宝石</a></li>
+				<li><a href="#">珍珠</a></li>
+			</ul>
+		</li>
+		<li class="cont-jewelry">
+			<a id="btn-more" href="#">珠宝玉器</a>
+			<span class="icon-goto">></span>
+			<ul class="content-jewelry">
+				<li><a href="#">翡翠</a></li>
+				<li><a href="#">玉石</a></li>
+				<li><a href="#">宝石</a></li>
+				<li><a href="#">水晶</a></li>
+				<li><a href="#">玛瑙</a></li>
+				<li><a href="#">珍珠</a></li>
+			</ul>
+		</li>
+	</ul>
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	
+	<script>
+		$('.cont-jewelry').on('mouseenter',function(){
+			// $(this).addClass("hover");
+			// $(this).find('.content-jewelry').show();
+			$(this).find('.content-jewelry').css('display','block');
+		})
+		$('.cont-jewelry').on('mouseleave',function(){
+			// $(this).removeClass("hover");
+			// $(this).find('.content-jewelry').hide();
+			$(this).find('.content-jewelry').css('display','none');
+		})
+	</script>
+
+</body>
+</html>

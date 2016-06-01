@@ -78,6 +78,7 @@
 			}//去除其他tab的active
 
 				// for(k in children){
+				// 	console.log(k);
 				// 	 console.log(children[k].className);
 				// 	if(i!== k){
 				// 		//console.log(children[k].className);
@@ -123,7 +124,7 @@
 		}
 		function removeClass(el, cls){
 			if(hasClass(el, cls)){
-				console.log(el);
+			
 			el.className = el.className.replace(new RegExp('\\b'+cls+'\\b', 'g'),"");
 				
 			}
