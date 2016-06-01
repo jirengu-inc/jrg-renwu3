@@ -8,6 +8,9 @@ li{
 a{
 	text-decoration: none;
 }
+.content-jewelry a{
+	color: #111;
+}
 .cont-jewelry{
 	position: relative;
 	background-color: #9B2E4D;
