@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery使用</title>
+	<link rel="stylesheet" type="text/css" href="css/task25.css">
+</head>
+<body>
+	<ul class="nav-jewelry">
+		<li class="cont-jewelry">
+			<a id="btn-more" href="#">珠宝玉器</a>
+			<span class="icon-goto">></span>
+			<ul class="content-jewelry">
+				<li>翡翠</li>
+				<li>玉石</li>
+				<li>宝石</li>
+				<li>水晶</li>
+				<li>玛瑙</li>
+				<li>珍珠</li>
+				<li>钻石</li>
+				<li>琥珀</li>
+				<li>和田</li>
+			</ul>
+		</li>
+		<li class="cont-jewelry">
+			<a id="btn-more" href="#">珠宝玉器</a>
+			<span class="icon-goto">></span>
+			<ul class="content-jewelry">
+				<li>翡翠</li>
+				<li>玉石</li>
+				<li>宝石</li>
+				<li>水晶</li>
+				<li>玛瑙</li>
+				<li>珍珠</li>
+			</ul>
+		</li>
+		<li class="cont-jewelry">
+			<a id="btn-more" href="#">珠宝玉器</a>
+			<span class="icon-goto">></span>
+			<ul class="content-jewelry">
+				<li>翡翠</li>
+				<li>玉石</li>
+				<li>宝石</li>
+				<li>水晶</li>
+				<li>玛瑙</li>
+				<li>珍珠</li>
+			</ul>
+		</li>
+		<li class="cont-jewelry">
+			<a id="btn-more" href="#">珠宝玉器</a>
+			<span class="icon-goto">></span>
+			<ul class="content-jewelry">
+				<li>翡翠</li>
+				<li>玉石</li>
+				<li>宝石</li>
+				<li>珍珠</li>
+			</ul>
+		</li>
+		<li class="cont-jewelry">
+			<a id="btn-more" href="#">珠宝玉器</a>
+			<span class="icon-goto">></span>
+			<ul class="content-jewelry">
+				<li>翡翠</li>
+				<li>玉石</li>
+				<li>宝石</li>
+				<li>水晶</li>
+				<li>玛瑙</li>
+				<li>珍珠</li>
+			</ul>
+		</li>
+	</ul>
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	
+	<script>
+		$('.cont-jewelry').on('mouseenter',function(){
+			// $(this).addClass("hover");
+			// $(this).find('.content-jewelry').show();
+			$(this).find('.content-jewelry').css('display','block');
+		})
+		$('.cont-jewelry').on('mouseleave',function(){
+			// $(this).removeClass("hover");
+			// $(this).find('.content-jewelry').hide();
+			$(this).find('.content-jewelry').css('display','none');
+		})
+	</script>
+</body>
+</html>
