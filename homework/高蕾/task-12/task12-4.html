@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task12-4</title>
+	<style>
+	html,body{
+		margin: 0;
+		padding: 0;
+	}
+		#header, #footer{
+			width: 100%;
+			height: 40px;
+			background: #ccc;
+			
+		}
+		#container{
+			width: 100%;
+			height: 100px;
+		}
+		#container:after{
+			content: '';
+			display: block;
+			clear: both;
+
+		}
+	     .main{
+			width: 100%;
+			background:pink;
+			height:100px;
+			float: left;
+		}
+		.main .wrap{
+			height: 100px;
+			margin:0 200px; 
+			background: green;
+		}
+		 .aside-left{
+			width: 200px;
+			background: red;
+			height:100px;
+			float: left;
+			margin-left:-100%;
+		
+		}
+	   .aside-right{
+			width: 200px;
+			background: yellow;
+			height:100px;
+			float: left;
+			margin-left: -200px;
+		
+		}
+
+     
+
+	</style>
+</head>
+<body>
+	<div id="header">头部</div>
+	<div id="container">
+
+	<div class="main"><div class="wrap"></div></div>
+	<div class="aside-left">左侧边栏</div>
+	<div class="aside-right">右侧边栏</div>
+	</div>
+	<div id="footer">尾部</div>
+</body>
+</html>
