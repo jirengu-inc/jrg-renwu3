@@ -433,9 +433,10 @@
 
 	<script>
 		$('.mod-tab .tabs li').on('click',function () {
-			console.log(1);
+			
 			var $this = $(this);
 			var index = $this.index();
+			console.log(index);
 
 			$this.siblings().removeClass('active');
 			$this.addClass('active');
