@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task12-2</title>
+	<style>
+    html,body{
+    	margin: 0;
+    	padding:0;
+    }
+
+		#header, #footer{
+			height: 40px;
+			line-height: 40px;
+			background: #ccc;
+			
+		}
+		#container{
+			padding: 0 200px;
+		}
+		
+		#container:after{
+			content: '';
+			display: block;
+			clear: both;
+
+		}
+		#container .main{
+			width: 100%;
+			background: green;
+			height:100px;
+			float: left;
+		}
+		#container .aside-left{
+			position: relative;
+			left: -200px;
+			width: 200px;
+			background: red;
+			height:80px;
+			float: left;
+			margin-left:-100%;
+		}
+		#container .aside-right{
+			position: relative;
+			left: 200px;
+			width: 200px;
+			background: yellow;
+			height:80px;
+			float: left;
+			margin-left: -200px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="header">头部</div>
+	<div id="container">
+	<div class="main">圣杯布局指两边顶宽，中间自适应的三栏布局，中间栏要放在文档流前面以优先渲染</div>
+	<div class="aside-left">左侧边栏</div>
+	<div class="aside-right">右侧边栏</div>
+	</div>
+	<div id="footer">尾部</div>
+</body>
+</html>

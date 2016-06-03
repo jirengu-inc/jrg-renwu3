@@ -1,0 +1,52 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.content-jewelry a{
+	color: #111;
+}
+.cont-jewelry{
+	position: relative;
+	background-color: #9B2E4D;
+	height: 30px;
+	width: 220px;
+	margin: 0 10px;
+	padding-left: 10px;
+}
+.icon-goto{
+	color: #fff;
+}
+#btn-more{
+	display: inline-block;
+	width: 200px;
+	height: 30px;
+	line-height: 30px;
+	color: #fff;
+}
+.content-jewelry:after{
+	content: "";
+	display: table;
+	clear: both;
+}
+.content-jewelry{
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 100%;
+	padding: 5px 10px;
+	width: 280px;
+	border: 1px solid #ccc;
+}
+.content-jewelry li{
+	float: left;
+	width: 120px;
+}
+.hover .content-jewelry{
+	display: block;
+}

@@ -5,9 +5,30 @@
 	<title>Document</title>
 </head>
 <body>
+	 <input id="ipt" type="text">
+	 <button>获取表单内容</button>
+	 <button>设置表单内容</button>
 
-	
+	 <button>获取表单属性</button>
+	 <button>设置表单属性为textarea</button>
+
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script>
+
+		$("button").eq(0).on('click',function(){
+		    console.log($("#ipt").val());
+		})
+		$("button").eq(1).on('click',function(){
+		    $("#ipt").val('设置表单内容');
+		})
+		$("button").eq(2).on('click',function(){
+		   console.log($("#ipt").attr('type'));
+		})
+		$("button").eq(3).on('click',function(){
+		    $("#ipt").attr("type","textarea");
+		})
+
 		function ajax(opts){
 		    var xmlhttp = new XMLHttpRequest();
 		    xmlhttp.onreadystatechange = function () {
@@ -34,22 +55,22 @@
 		    };
 		}//封装ajax
 
-		document.querySelector('#btn').addEventListener('click', function(){
-		    ajax({
-		        url: 'getData.php',   //接口地址
-		        type: 'get',               // 类型， post 或者 get,
-		        data: {
-		            username: 'xiaoming',
-		            password: 'abcd1234'
-		        },
-		        success: function(ret){
-		            console.log(ret);       // {status: 0}
-		        },
-		        error: function(){
-		           console.log('出错了')
-		        }
-		    })
-		});
+		// document.querySelector('#btn').addEventListener('click', function(){
+		//     ajax({
+		//         url: 'getData.php',   //接口地址
+		//         type: 'get',               // 类型， post 或者 get,
+		//         data: {
+		//             username: 'xiaoming',
+		//             password: 'abcd1234'
+		//         },
+		//         success: function(ret){
+		//             console.log(ret);       // {status: 0}
+		//         },
+		//         error: function(){
+		//            console.log('出错了')
+		//         }
+		//     })
+		// });
 
 	</script>
 </body>

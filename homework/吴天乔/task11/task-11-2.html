@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>BFC实现两栏布局</title>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#header, #footer{
+		height: 80px;
+		background: red;
+	}
+	#content{
+		position: relative;
+	}
+	.aside{
+		float: left;
+		width: 200px;
+		height: 40px;
+		background: #ccc;
+	}
+	.main{
+		background: pink;
+		overflow: hidden;
+	}
+</style>
+</head>
+<body>
+   <div id="header">header</div>
+    <div id="content">
+        <div class="aside">aside</div>
+        <div class="main">
+            我是main 
+            我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main... 我是main 
+            我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main... 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main... 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main... 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main... 
+        </div>
+    </div>
+    <div id="footer"></div>
+</body>
+</html>
