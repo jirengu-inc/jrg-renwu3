@@ -1,10 +1,10 @@
 function ajax(opts){
 		    var xmlhttp = new XMLHttpRequest();
 		    xmlhttp.onreadystatechange = function () {
-		    	if(xmlhttp.status == 200 && xmlhttp.readyState == 4){
+		    	if(xmlhttp.status === 200 && xmlhttp.readyState === 4){
 		    		 opts.success(JSON.parse(xmlhttp.responseText));
 		    	}
-				if (xmlhttp.readyState == 4 && xmlhttp.status >= 500){
+				if (xmlhttp.readyState === 4 && xmlhttp.status >= 500){
                 	opts.error();
            		}
 		    };
@@ -17,12 +17,12 @@ function ajax(opts){
 		
 		    dataStr = dataStr.substr(0,dataStr.length-1);//截取字符串的方式去掉最后的&
 		 
-		    if (opts.type.toLowerCase() == "post") {
+		    if (opts.type.toLowerCase() === "post") {
 		    	xmlhttp.open(opts.type,opts.url,true);
 		    	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		    	xmlhttp.send(dataStr);
 		    };
-		    if (opts.type.toLowerCase() == "get") {
+		    if (opts.type.toLowerCase() === "get") {
 		    	xmlhttp.open(opts.type,opts.url+'?'+dataStr,true);
 		    	xmlhttp.send();
 		    };

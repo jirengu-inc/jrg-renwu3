@@ -8,12 +8,14 @@
 			font-size: 20px;
 			line-height: 25px;
 			padding: 2px;
+			margin-left: 5px;
 			border: 0px;
 			background-color: orange;
 			border-radius: 5px;
 			box-sizing:content-box;
-			display: inline-block;
+			display: block;
 			cursor: pointer;
+			float: left;
 		}
 		a{
 			text-decoration: none;

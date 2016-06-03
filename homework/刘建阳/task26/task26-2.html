@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 10px;
+		}
+		#bt{
+
+			width: 180px;
+			height: 120px;
+			border: none;
+		}
+		.wrap{
+			padding-top: 110px;
+			height: 650px;
+			background-color: #ac7;
+			font-size: 24px;
+		}
+		div{
+			border: 1px solid;
+			line-height: 100px;
+			height: 100px;
+		}
+		.selected{
+			display: inline-block;
+			border: 1px solid;
+			width: 150px;
+			height: 18px;
+		}
+	</style>
+</head>
+<body>
+	<button id="bt">点击颜色变化</button>
+	<div>鼠标移入和移出背景变化</div>
+	<span>激活输入框颜色变化</span><input id="ipt">
+	<br>
+	<span>请选择下面任意一项</span>
+	<select class="option">		
+		<option>1、2、3</option>
+		<option>一、二、三</option>
+		<option>one、two、three</option>
+	</select>
+	<p>您选择的内容是<span class="selected"></span>
+	</p>
+	<p class='wrap'>
+		滚动的垂直距离<span></span>
+	</p>
+
+	<script type="text/javascript" src="../js/jquery-2.2.4.js"></script>
+	<script>
+		$('#bt').on('click',function () {
+			var $this = $(this);
+			setTimeout(function () {
+				$this.css('background-color','red');
+			}, 3000);
+			setTimeout(function () {
+				$this.css('background-color','blue');
+			}, 1000);
+		});
+		
+
+		$(document).on('scroll',function () {
+			$('.wrap').find('span').text($(document).scrollTop());
+		});
+
+
+		$('div').on('mouseenter',function () {
+			$(this).css('background-color','red');
+		});
+		$('div').on('mouseleave',function () {
+			$(this).css('background-color','white');
+		});
+
+
+		$('#ipt').on('focusin',function () {
+			$(this).css('border-color','blue');
+		})
+		$('#ipt').on('keyup',function () {
+			$(this).val($(this).val().toUpperCase());
+			console.log($(this).val());
+		})
+		$('#ipt').on('focusout',function () {
+			$(this).css('border-color','#ccc');
+		})
+		
+
+		$('.option').on('change',function () {
+			$('.selected').text($(this).val());
+		})
+		
+	</script>
+</body>
+</html>
