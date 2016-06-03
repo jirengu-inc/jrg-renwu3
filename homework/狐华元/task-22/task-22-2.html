@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task-22-2</title>
+  </head>
+  <body>
+    <ul class="ct">
+      <li>这里是</li>
+      <li>饥人谷</li>
+      <li>前端6班</li>
+    </ul>
+    <input class="ipt-add-content" placeholder="添加内容"/>
+    <button id="btn-add-start">开头添加</button>
+    <button id="btn-add-end">结尾添加</button>
+    <script>
+      var addtext = document.querySelector(".ipt-add-content"),
+        ct = document.querySelector(".ct"),
+        before = document.querySelector("#btn-add-start"),
+        after = document.querySelector("#btn-add-end");
+
+      ct.addEventListener("click",function(e){
+        console.log(e.target.innerText)
+      },false);
+
+      before.addEventListener("click",function(){
+        var nodeBefore = document.createElement("li");
+        nodeBefore.innerText = "这里是"+addtext.value;   ct.insertBefore(nodeBefore,ct.childNodes[0]);
+        addtext.value = "";
+      },false);
+      
+      after.addEventListener("click",function(){
+        var nodeAfter = document.createElement("li");
+        nodeAfter.innerText = "前端六班"+addtext.value;
+        ct.appendChild(nodeAfter);
+        addtext.value = "";
+      },false);
+    </script>
+  </body>
+</html>

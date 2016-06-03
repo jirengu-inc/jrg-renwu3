@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task-22-4</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      ul,li,div,span {
+        margin:0;
+        padding:0;
+      }
+      .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+      }
+      ul {
+        list-style: none;
+      }
+      ul > li {
+        float: left;
+        width: 33.33%;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-right: 1px solid #d2d2d2;
+        border-bottom: 1px solid #d2d2d2;
+      }
+      ul > li:last-child {
+        border-right: 0;
+      }
+      ul > li.active {
+        background-color: #eee;
+      }
+      .tabs-content {
+        border: 1px solid #d2d2d2;
+        height: 200px;
+      }
+      .tabs-content .content {
+        display: none;
+      }
+      .tabs-content .active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabs-content">
+      <ul class="clearfix">
+        <li class="active">tab1</li>
+        <li>tab2</li>
+        <li>tab3</li>
+      </ul>
+      <div class="content active">内容1</div>
+      <div class="content">内容2</div>
+      <div class="content">内容3</div>
+    </div>
+    <script>
+      var tabs = document.querySelectorAll("ul>li"),
+          content = document.querySelectorAll(".tabs-content>div");
+      for(var i=0;i<tabs.length;i++){
+        tabs[i].num = i;
+        tabs[i].onclick = function(){
+          for(var j=0;j<content.length;j++){
+           tabs[j].className = "";
+           content[j].style.display="none";
+          }
+          this.className+=" active";
+        content[this.num].style.display="block";
+        }
+      }
+    </script>
+  </body>
+</html>
