@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>加载</title>
+  <style>
+    ul,li {
+        margin:0;
+        padding: 0;
+        list-style:none;      
+    }
+    a {
+      text-decoration: none;
+    }
+    .content-ct {
+      border:1px solid #ee6aa7;
+      border-radius: 5px;
+      height:40px;
+      margin:10px;
+      padding:4px;
+    }
+    .content-ct .content {
+        color:#ee6aa7;
+    }
+    .content-ct:hover {
+      border:1px solid #ee6aa7;
+      background-color:#ee6aa7;
+    }
+    .content-ct:hover .content{
+        color:#fff;      
+    }
+    .btn-ct {
+      text-align: center;
+    }
+    .btn {
+      display:inline-block;
+      margin:0 auto;
+      border:1px solid #ee6aa7;
+      border-radius:4px;
+      color: #ee6aa7;
+      padding:4px 6px;
+    }
+    .btn:hover {
+      background-color:#ee6aa7;
+      color:#fff;
+    }
+  </style>
+</head>
+<body>
+<ul class="news">
+    <li class="content-ct"><a href="#" class="content">内容1</a></li>
+    <li class="content-ct"><a href="#" class="content">内容2</a></li> 
+</ul> 
+<div class="btn-ct"><a href="#" class="btn">加载更多</a></div>
+<script>
+    var news=document.querySelector(".news"),
+        btn=document.querySelector(".btn"),
+        cur=3,
+        isLocked=false;
+    
+        btn.addEventListener("click",function(){
+            if(isLocked==true){
+                return;  
+            }
+            isLocked=true;
+            btn.innerHTML="正在加载";
+            ajax({
+                url: '/loadMore',   
+                type: 'get', 
+                dataType:'json',              
+                data: {
+                    index:cur,
+                    len:5
+                },
+                success: function(ret){
+                    success(ret);       
+                },
+                error: function(){
+                   error();
+                }
+            })
+        })
+        
+        function ajax(opts){
+            var xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if (xhr.readyState==4&&xhr.status==200){
+                    var json=JSON.parse(xhr.responseText);
+                    opts.success(json);
+                }
+                if(xhr.status==404){
+                    opts.error();
+                }
+            }
+            var dataStr="";
+            for(key in opts.data){
+                dataStr+=key+'='+opts.data[key]+'&';
+            }
+            dataStr=dataStr.substr(0,dataStr.length-1);
+            if(opts.type.toLowerCase()=='post'){
+                xhr.open(opts.type,opts.url,true);
+                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xhr.send(dataStr);
+            }
+            if(opts.type.toLowerCase()=='get'){
+                xhr.open(opts.type,opts.url+"?"+dataStr,true);
+                xhr.send(null);
+            }
+        }
+    
+        function success(ret){
+            if(ret.status==1) {
+                for(var j=0;j<ret.data.length;j++){
+                    var newList=document.createElement("li"),
+                        newA=document.createElement("a"),
+                        newCont=document.createTextNode(ret.data[j]);
+                    newList.setAttribute("class","content-ct");
+                    newA.setAttribute("class","content");
+                    newA.setAttribute("href","#");
+                    news.appendChild(newList);
+                    newList.appendChild(newA);
+                    newA.insertBefore(newCont,null);
+                }
+                cur+=5;
+                btn.innerHTML="加载更多";
+                isLocked=false;
+            }
+            if(ret.status==0) {
+                btn.innerHTML="已是最新";
+                isLocked=false;
+                return;
+            }
+        }
+    
+        function error(){
+            isLocked=false;
+            btn.innerHTML="加载更多";
+            slert("出错啦");
+            return;
+        }
+</script>
+</body>
+</html>

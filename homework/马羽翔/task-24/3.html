@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="../font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css"/>
+    <style>
+        * {
+            margin:0;
+            padding:0;
+        }
+        #reg {
+            position:absolute;
+            top:20px;
+            right:20px;
+            border: 1px solid #b4b4b4;
+            border-radius: 4px;
+            width:280px;
+            height:310px;
+        }
+        .header {
+            text-align: center;
+        }
+        .header h4 {
+            margin:20px auto;
+        }
+        #reg dl {
+            padding: 0 10px;
+        }
+      
+        #reg dt {
+            height:30px;
+            line-height: 30px;
+        }
+        #reg dd {
+            height: 30px;
+            line-height: 30px;
+            font-size: 16px;
+            text-align: left;
+            -webkit-margin-start: 0;
+        }
+        #reg dd input {
+            font-size: 14px;
+        }
+        #reg dd .tick {
+            color:#2eb106;
+            opacity:0;
+        }
+        input {
+            width:230px;
+            border:1px solid #ccc;
+            border-radius: 4px;
+            padding:2px 4px;
+        }
+        .footer {
+            margin:20px auto;
+            text-align: center;
+        }
+        .footer .btn {
+            border-radius: 5px;
+            border:0;
+            padding:6px 10px;
+            font-size: 14px;
+            cursor:pointer;
+        }
+        p {
+            position: fixed;
+            top:342px;
+            right:196px;
+            font-size: 12px;
+            color:#f70707;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+   <form id="reg" action="">
+        <div class="header"><h4>欢迎注册</h4></div>
+        <dl class="content">
+            <dt>用户名</dt><dd><input id="username" type="text" placeholder="5-10位英文数字下划线"><span><i class="icon-check-sign tick"></i></span></dd>
+            <dt>密码</dt><dd><input id="psw1" type="password" placeholder="六位英文、数字密码"><span><i class="icon-check-sign tick"></i></span></dd>
+            <dt>密码确认</dt><dd><input id="psw2" type="password" placeholder="确认密码"><span><i class="icon-check-sign tick"></i></span></dd>
+        </dl>
+        <div class="footer"><button class="btn" type="submit">马上注册</button></div>
+    </form>
+    <p>*helloworld已注册</p>
+    <script>
+        var reg=document.getElementById("reg"),
+            username=document.getElementById("username"),
+            psw1=document.getElementById("psw1"),
+            psw2=document.getElementById("psw2"),
+            dtUsn=document.getElementsByTagName("dt")[0],
+            dtPsw1=document.getElementsByTagName("dt")[1],
+            dtPsw2=document.getElementsByTagName("dt")[2],
+            btn=document.querySelector(".btn"),
+            icons=document.getElementsByTagName("i");
+        
+        reg.addEventListener("change",function(e){
+                var target=e.target;
+                e.stopPropagation();
+                if(target.getAttribute("id")=="username"){
+                    if(checkName()){
+                        checkAvail();
+                    }
+                }
+                if(target.getAttribute("id")=="psw1"){
+                    checkPsw();
+                    if(checkPsw()){
+                        checkPswAgain();
+                    }
+                }
+                if(target.getAttribute("id")=="psw2"){
+                    checkPswAgain();
+                }
+            })
+        
+        btn.addEventListener("click",function(e){
+            e.preventDefault();
+            if((icons[0].style.opacity==1)&&(icons[1].style.opacity==1)&&(icons[2].style.opacity==1)){
+                alert("注册中...");         
+            }
+        })
+        
+        function checkName(){
+            if (username.value==""){
+                username.style.border="1px solid #ccc";
+                icons[0].style.opacity=0;
+                dtUsn.innerHTML="用户名";
+                return false;
+            }
+            else {
+               if (username.value.match(/^\w{5,10}$/)){
+                   username.style.border="1px solid #ccc";
+                   dtUsn.innerHTML="用户名";
+                   return true;
+                }
+                else {
+                    username.style.border="1px solid #f70707";
+                    icons[0].style.opacity=0;
+                    dtUsn.innerHTML="用户名";
+                    var illTxt=document.createElement("span"),
+                        illCont=document.createTextNode("非法用户名");
+                    illTxt.style.color="#f70707";
+                    illTxt.style.fontSize="12px";
+                    dtUsn.appendChild(illTxt);
+                    illTxt.insertBefore(illCont,null);
+                    return false;
+                } 
+            }
+        }
+        
+        function checkAvail(){
+            if(dtUsn.lastElementChild==null){
+                var illTxt=document.createElement("span"),
+                    illCont=document.createTextNode("检测重名...");
+                illTxt.style.color="#f70707";
+                illTxt.style.fontSize="12px";
+                dtUsn.appendChild(illTxt);
+                illTxt.insertBefore(illCont,null);
+            }
+            ajax({
+                url: '/register',   
+                type: 'post', 
+                dataType:'json',              
+                data: {
+                    name:username.value,
+                },
+                success: function(ret){
+                    success(ret);       
+                },
+                error: function(){
+                   error();
+                }
+            })
+        }
+        
+        function checkPsw(){
+            if (psw1.value==""){
+                psw1.style.border="1px solid #ccc";
+                icons[1].style.opacity=0;
+                icons[2].style.opacity=0;
+                dtPsw1.innerHTML="密码";
+                return false;
+            }
+            else{
+                if(psw1.value.match(/^[A-Za-z0-9]{6}$/)){
+                    icons[1].style.opacity=1;
+                    psw1.style.border="1px solid #ccc";
+                    dtPsw1.innerHTML="密码";
+                    return true;
+                }
+                else{
+                    psw1.style.border="1px solid #f70707";
+                    icons[1].style.opacity=0;
+                    icons[2].style.opacity=0;
+                    dtPsw1.innerHTML="密码";
+                    var illTxt=document.createElement("span"),
+                        illCont=document.createTextNode("非法密码");
+                    illTxt.style.color="#f70707";
+                    illTxt.style.fontSize="12px";
+                    dtPsw1.appendChild(illTxt);
+                    illTxt.insertBefore(illCont,null);
+                    return false;
+                }
+            }
+        }
+            
+        
+        function checkPswAgain(){
+            var goOn=checkPsw(psw1.value);
+            if(!goOn){
+                icons[2].style.opacity=0;
+                return false;
+            }
+            if(psw2.value==""){
+                psw2.style.border="1px solid #ccc";
+                icons[2].style.opacity=0;
+                dtPsw2.innerHTML="密码确认";
+                return false;
+            }
+            else {
+                if(psw2.value==psw1.value){
+                    icons[2].style.opacity=1;
+                    psw2.style.border="1px solid #ccc";
+                    dtPsw2.innerHTML="密码确认";
+                    return true;
+                }
+                else{
+                    psw2.style.border="1px solid #f70707";
+                    icons[2].style.opacity=0;
+                    dtPsw2.innerHTML="密码确认";
+                    var illTxt=document.createElement("span"),
+                        illCont=document.createTextNode("密码不一致");
+                    illTxt.style.color="#f70707";
+                    illTxt.style.fontSize="12px";
+                    dtPsw2.appendChild(illTxt);
+                    illTxt.insertBefore(illCont,null);
+                    return false;
+                }
+            }
+        }
+    
+        function ajax(opts){
+            var xhr=new XMLHttpRequest();
+            xhr.onreadystatechange=function(){
+                if (xhr.readyState==4&&xhr.status==200){
+                    var json=JSON.parse(xhr.responseText);
+                    opts.success(json);
+                }
+                if(xhr.status==404){
+                    opts.error();
+                }
+            }
+            var dataStr="";
+            for(key in opts.data){
+                dataStr+=key+'='+opts.data[key]+'&';
+            }
+            dataStr=dataStr.substr(0,dataStr.length-1);
+            if(opts.type.toLowerCase()=='post'){
+                xhr.open(opts.type,opts.url,true);
+                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                xhr.send(dataStr);
+            }
+            if(opts.type.toLowerCase()=='get'){
+                xhr.open(opts.type,opts.url+"?"+dataStr,true);
+                xhr.send(null);
+            }
+        }
+        
+        function success(ret){
+            if(ret.status==1&&ret.name=="available"){
+                dtUsn.innerHTML="用户名";
+                icons[0].style.opacity=1;
+                username.style.border="1px solid #ccc";
+            }
+            if(ret.status==0&&ret.name=="unavailable") {
+                 var illTxt=document.createElement("span"),
+                     illCont=document.createTextNode("用户名重复");
+                dtUsn.innerHTML="用户名";
+                illTxt.style.color="#f70707";
+                illTxt.style.fontSize="12px";
+                dtUsn.appendChild(illTxt);
+                illTxt.insertBefore(illCont,null);
+                icons[0].style.opacity=0;
+                username.style.border="1px solid #f70707";
+                return ret=false;
+            }
+        }
+        
+        function error(){
+            var illTxt=document.createElement("span"),
+                illCont=document.createTextNode("网络不好！");
+            dtUsn.innerHTML="用户名";
+            illTxt.style.color="#f70707";
+            illTxt.style.fontSize="12px";
+            dtUsn.appendChild(illTxt);
+            illTxt.insertBefore(illCont,null);
+            username.style.border="#f70707";
+            icons[0].style.opacity=0;
+            return false;
+        }
+    </script>
+</body>
+</html>
