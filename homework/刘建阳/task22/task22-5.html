@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		html,body{
+			height: 100%;
+			width: 100%;
+		}
+		/* 	.btn-group{
+			width: 60px;
+			height: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			text-align: center;
+			line-height: 20px;
+			
+		}
+		#btn-modal{
+			background: #fff;
+			border: none;
+		} */
+		.modal-dialog{
+			 display: none; 
+
+		}
+		.cover{
+			position: absolute;
+			background: #999;
+			left:0;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			z-index: 1;
+		}
+		.modal-ct{
+			width: 400px;
+			height: 200px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-top: -100px;
+			margin-left: -200px;
+			z-index: 2;
+			background: #fff;
+		}
+		a{
+			text-decoration: none;
+		}
+		.header{
+			position: relative;
+		}
+
+		.close{
+			position: absolute;
+			top: 2px;
+			right: 15px;
+			font-size: 20px;
+		}
+
+		.footer{
+			overflow: hidden;
+			padding: 10px 0;
+		}
+		.btn{
+			float: right;
+			margin-right:15px;
+			color: #000;
+		}
+	</style>
+</head>
+<body>
+	<div class="btn-group">
+	      <button id="btn-modal">点我1</button>
+	  </div>
+
+	  <div id="modal-1" class="modal-dialog">
+	    <div class="cover"></div>
+	    <div class="modal-ct">
+	      <div class="header">
+	        <h3>我是标题1</h3>
+	        <a class="close" href="#">×</a>
+	      </div>
+	      <hr>
+	      <div class="content">
+	          <p>我是内容1</p>
+	          <p>我是内容1</p>
+	      </div>
+	      <div class="footer">
+	        <a class="btn btn-confirm" href="#">确定</a>
+	        <a class="btn btn-cancel" href="#">取消</a>
+	      </div>
+	    </div>  
+	  </div>
+	  
+	  <script>
+	  	var btn = document.getElementById("btn-modal"),
+			modal = document.getElementById("modal-1"),
+			cover = document.querySelector(".cover"),
+			close = document.querySelector(".close"),
+			confirm = document.querySelector(".btn-confirm"),
+			cancel = document.querySelector(".btn-cancel");
+
+	  	btn.addEventListener('click', function () {
+	  		modal.style.display="block";
+	  	});
+
+	  	modal.addEventListener('click', function (e) {
+	  		if (e.target===cover||e.target===close||e.target===cancel) {
+	  			modal.style.display="none";
+	  		};
+	  	});
+	  </script>
+</body>
+</html>

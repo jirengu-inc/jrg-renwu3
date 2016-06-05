@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>JS Bin</title>
+    <style>
+        body{
+            font-family: "Microsoft YaHei",tahoma,arial,"Hiragino Sans GB","\5b8b\4f53",sans-serif;
+            padding: 0;
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+            color: #666;
+        }
+        .clear:after{
+            content: '';
+            display: block;
+            clear:both;
+        }
+        .ct{
+            width:200px;
+            background: #B1191A;
+            color:#fff;
+            font-size:14px;
+            white-space: nowrap;
+            position: relative;
+            margin-top: 150px;
+            margin-left: 50px;
+        }
+
+        .ct > .item {
+            text-align: left;
+            height:35px;
+            line-height:35px;
+
+        }
+        .ct > .item >span{
+            padding-left: 10px;
+            width: 100%;
+            display: inline-block;
+            position: relative;
+            box-sizing: border-box;
+            border-left: 1px solid #B1191A;
+        }
+        .ct > .item >span:after{
+            content: '>';
+            display: inline-block;
+            position: absolute;
+            right: 10px;
+        }
+        .item:hover>.wraper{
+            display: block;
+        }
+        .item>span:hover{
+            color: #B1191A;
+            background: #fff;
+        }
+        .item>span:hover:after{
+            color: transparent;
+        }
+        .item>span:hover:before{
+            content: '';
+            border: 2px solid #fff;
+            display: inline-block;
+            position: absolute;
+            right: -1px;
+            height: 100%;
+            box-sizing: border-box;
+            z-index: 3;
+        }
+        .wraper{
+            position: absolute;
+            top: 0;
+            left: 100%;
+            border: 1px solid #ccc;
+            padding: 15px;
+            width:450px;
+            display: none;
+        }
+
+        .info{
+            width:398px;
+            float:left;
+        }
+        .row lable{
+            font-weight: bolder;
+            color: #666;
+            float:left;
+        }
+        .row a{
+            padding-left:10px;
+            float:left;
+        }
+        .row a:before{
+            content: '|';
+            display: inline-block;
+            padding-right: 10px;
+            color: #ccc;
+        }
+        .wraper>.row:last-child>.info{
+            border-top:1px solid #ccc;
+        }
+        .ct>.item:last-child{border-bottom: 1px solid #B1191A;}
+        .ct>.item:first-child{border-top: 1px solid #B1191A;}
+
+
+    </style>
+</head>
+<body>
+<div class="ct">
+    <div class="item">
+        <span>家居、家具、家装、厨具</span>
+        <div class="wraper">
+            <div class="row clear">
+                <lable>厨具&nbsp;></lable>
+                <div class="info ">
+                    <a href="#">烹饪锅具</a>
+                    <a href="#">刀剪菜板</a>
+                    <a href="#">厨房配件</a>
+                    <a href="#">水具酒具</a>
+                    <a href="#">餐具茶具/咖啡具</a>
+                </div>
+            </div>
+
+            <div class="row clear">
+                <lable>厨具&nbsp;></lable>
+                <div class="info ">
+                    <a href="#">烹饪锅具</a>
+                    <a href="#">刀剪菜板</a>
+                    <a href="#">厨房配件</a>
+                    <a href="#">水具酒具</a>
+                    <a href="#">餐具茶具/咖啡具</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="item">
+        <span>家居、家具、家装、厨具</span>
+        <div class="wraper">
+            <div class="row clear">
+                <lable>厨具2&nbsp;></lable>
+                <div class="info ">
+                    <a href="#">烹饪锅具</a>
+                    <a href="#">刀剪菜板</a>
+                    <a href="#">厨房配件</a>
+                    <a href="#">水具酒具</a>
+                    <a href="#">餐具茶具/咖啡具</a>
+                </div>
+            </div>
+
+            <div class="row clear">
+                <lable>厨具2&nbsp;></lable>
+                <div class="info ">
+                    <a href="#">烹饪锅具</a>
+                    <a href="#">刀剪菜板</a>
+                    <a href="#">厨房配件</a>
+                    <a href="#">水具酒具</a>
+                    <a href="#">餐具茶具/咖啡具</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="item">
+        <span>家居、家具、家装、厨具</span>
+        <div class="wraper">
+            <div class="row clear">
+                <lable>厨具3&nbsp;></lable>
+                <div class="info ">
+                    <a href="#">烹饪锅具</a>
+                    <a href="#">刀剪菜板</a>
+                    <a href="#">厨房配件</a>
+                    <a href="#">水具酒具</a>
+                    <a href="#">餐具茶具/咖啡具</a>
+                </div>
+            </div>
+
+            <div class="row clear">
+                <lable>厨具3&nbsp;></lable>
+                <div class="info ">
+                    <a href="#">烹饪锅具</a>
+                    <a href="#">刀剪菜板</a>
+                    <a href="#">厨房配件</a>
+                    <a href="#">水具酒具</a>
+                    <a href="#">餐具茶具/咖啡具</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>

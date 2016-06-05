@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task22-3</title>
+</head>
+<body>
+	<ul class="ct">
+	    <li data-img="./img/11.jpg">鼠标放置查看图片1</li>
+	    <li data-img="./img/13.jpg">鼠标放置查看图片2</li>
+	    <li data-img="./img/14.jpg">鼠标放置查看图片3</li>
+	</ul>
+	<div class="img-preview"></div>
+	<script>
+		var ct = document.querySelector(".ct"),
+			preview = document.querySelector(".img-preview"),
+			li = document.querySelectorAll("li");
+			
+		
+		/*for (var i = 0; i < li.length; i++) {
+			li[i].addEventListener('mouseenter', function (e) {
+			if (preview.innerHTML) {
+				preview.innerHTML = '';
+			};//保证div中只有一个图片
+			var img = document.createElement("img");
+			img.src = this.getAttribute('data-img');
+			preview.appendChild(img);
+		})
+		};	*/	
+
+
+			ct.addEventListener('mouseover', function (e) {
+				if(e.target.tagName!=="LI"){
+					return ;
+				}
+			if (preview.innerHTML) {
+				preview.innerHTML = '';
+			};//保证div中只有一个图片
+			var img = document.createElement("img");
+			img.src = e.target.getAttribute('data-img');
+			preview.appendChild(img);
+		});
+	</script>
+</body>
+</html>

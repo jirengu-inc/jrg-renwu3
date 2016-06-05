@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="./jquery.color.js"></script>
+    <title>Title</title>
+    <style>
+        html,body{
+            height: 150%;
+        }
+        .text{
+            margin-left: 50px;
+        }
+        p{
+            white-space: pre;
+        }
+        .btn{
+            height: 35px;
+            line-height: 35px;
+            border: 1px solid ;
+            color: #C12695;
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            background: #fff;
+            opacity: 1;
+        }
+        .scroll{
+            position: fixed;
+            right: 10px;
+            top: 20px;
+            border: 1px solid pink;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .s3{
+            width: 150px;
+            height: 150px;
+            border: 1px solid #8bcc90;
+            border-radius:5px ;
+            background: #8bcc90;
+        }
+        .form-txt{
+            padding: 10px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: 1px solid;
+            outline: none;
+            box-shadow: 0px 0px 26px pink;
+        }
+
+    </style>
+</head>
+<body>
+
+<h3>背景色变为红色再变为蓝色</h3>
+<a href="#" class="btn">背景色变为红色再变为蓝色</a>
+<div class="scroll">
+<h3>当窗口滚动时，获取垂直滚动距离</h3>
+    <span class="content">0</span>
+</div>
+<h3>当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色</h3>
+<div class="s3">
+</div>
+
+<h3>当选择 select 后，获取用户选择的内容</h3>
+<select name="" id="test">
+    <option value="1">1-text</option>
+    <option value="2">2-text</option>
+    <option value="3">3-text</option>
+</select>
+<span class="view"></span>
+
+<h3>当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</h3>
+<input type="text" class="form-txt">
+
+<script>
+    $('.btn').on('click',function (e) {
+        var $btn= $(this)
+        $btn.animate({
+            backgroundColor:"red"
+        },300).animate({
+            backgroundColor:"blue"
+        },400);
+    });
+
+    $(document).on("scroll",function (e) {
+        $(".content").text($(document).scrollTop());
+    });
+
+    $('.s3').on('mouseenter',function () {
+        $(this).css({ backgroundColor:"red"});
+    }).on('mouseleave',function () {
+        $(this).css({ backgroundColor:"#fff"});
+    })
+    $('#test').on('change',function () {
+        $('.view').empty();
+        $('.view').text($(this).val()+'  '+  $(this).children(':selected').text())
+    });
+
+    $('.form-txt').blur(function () {
+        $(this).css('border-color','');
+    }).focus(function () {
+        console.log( $(this).val())
+        $(this).css('border-color','blue');
+    }).on('input', function(x) {
+        $(this).val( $(this).val().toUpperCase())
+    });
+</script>
+</body>
+</html>

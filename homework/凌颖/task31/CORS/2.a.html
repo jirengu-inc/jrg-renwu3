@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>2.a.com</title>
+<style>
+  .container{
+    width: 900px;
+    margin: 0 auto;
+	  text-align: center;
+  }
+
+	.box{
+		border:1px solid salmon;
+		height:300px;
+		width:600px;
+		margin-top:20px;
+}
+</style>
+</head>
+<body>
+  <div class="container">
+    <button>获取数据</button>
+    <div class="box">
+		<p>我的名字：<span class="name"></span></p>
+    </div>
+  </div>
+
+
+  	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+		$("button").on("click",function(){
+			$.get('//b.com:8080/b/b.js', {name:"lynn"})
+					.done(function(ret){
+						$(".name").text(ret.msg)
+					}).fail(function(ret){
+				console.log(ret.errorMsg);
+			})
+
+		});
+
+
+
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>1</title>
+</head>
+<body>
+
+<ul class="ct">
+    <li>这里是</li>
+    <li>饥人谷</li>
+    <li>前端6班</li>
+</ul>
+<script>
+var ctLi=document.getElementsByTagName('li');
+var ctList=[];
+for(var i=0;i<ctLi.length;i++){
+		ctList.push(ctLi[i]);
+		ctList[i].onclick=function showText(){
+			console.log(this.innerText);	
+		}
+	}	
+</script>
+</body>
+</html>

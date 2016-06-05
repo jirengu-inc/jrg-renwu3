@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单注册</title>
+
+	<style>
+	* {
+	    box-sizing: border-box;
+	}
+	body {
+	    font-size: 14px;
+	}
+	.register{
+		margin: 30px;
+	}
+	.register-ct dd {
+	    margin-left: 86px;
+	}
+	.register-ct dt {
+	    width: 86px;
+	    float: left;
+	    height: 24px;
+	    line-height: 24px;
+	}
+	.register-ct input {
+	    height: 24px;
+	    line-height: 24px;
+	    padding-left: 10px;
+	    border: 1px solid #ccc;
+	    border-radius: 3px;
+	}
+	.register-ct input.error{
+		border-color: red;
+	}
+	.register-ct .msg{
+		margin-top: 10px;
+		margin-bottom: 10px;
+		color: #aaa;
+		height: 12px;
+	    font-size: 12px;
+	}
+	</style>
+</head>
+<body>
+	
+	<div class="register">
+		<h3>注册</h3>
+		<form id="register-form" action="">
+			<dl class="register-ct">
+				<dt>用户名</dt>
+				<dd>
+					<input id="username" type="text" placeholder="用户名(findmoon被注册过)">
+				</dd>
+				<dd class="msg msg-un">只能是字母、数字、下划线，3-10个字符</dd>
+				
+				<dt>邮箱</dt>
+				<dd>
+					<input id="email" type="text" placeholder="(4523@qq.com已用)常用邮箱">
+				</dd>
+				<dd class="msg msg-em">中间@符号连接，以.cn/.com结尾的邮箱</dd>
+
+				<dt>密码:</dt>
+				<dd>
+					<input type="password" id="password1" placeholder="密码">
+				</dd>
+				<dd class="msg msg-pwd1">大写字母、小写、数字、下划线最少两种，6-15个字符</dd>
+
+				<dt> 在输一次:</dt>
+				<dd>
+					<input type="password" id="password2" placeholder="在输入一次密码"> 
+				</dd>
+				<dd class="msg msg-pwd2"></dd>
+
+				<dd><button id="btn-register">注册</button></dd>
+			</dl>		
+		</form>
+	</div>
+
+	<script type="text/javascript" src="validate.js"></script>
+	<script type="text/javascript" src="ajax.js"></script>
+	<script>
+		var username = document.getElementById('username'),
+			password1 = document.getElementById('password1'),
+			password2 = document.getElementById('password2'),
+			email = document.getElementById('email');
+
+		var btnRegister = document.getElementById('btn-register');
+
+		var msgUn = document.querySelector('.msg-un'),
+			msgEm = document.querySelector('.msg-em'),
+			msgPwd1 = document.querySelector('.msg-pwd1'),
+			msgPwd2 = document.querySelector('.msg-pwd2');
+
+		var MSG = {
+    	'USERNAME_EXIST': '用户名已经存在',
+    	'USERNAME_TYPE_ERROR': '用户名格式不正确',
+    	'USERNAME_USEABLE': '用户名可用',
+    	'EMAIL_TYPE_ERROR': '邮箱格式不正确',
+    	'EMAIL_EXIST': '该邮箱已经注册',
+    	'EMAIL_USEABLE': '邮箱可用',
+    	'PASSWORD_TYPE_ERROR': '密码格式太简单',
+    	'PASSWORD_NOT_MATCH': '两次密码输入不一致'
+    };
+
+			username.addEventListener('change', function () {
+				testUser()&&userValidate();
+			})
+			email.addEventListener('change', function (){
+				testEmail()&&emailValidate();
+			})
+			password1.addEventListener('change', function () {
+				testPwd1();
+			})
+			password2.addEventListener('change', function (){
+				testPwd2();
+			})
+			
+			//点击注册按钮
+			btnRegister.addEventListener('click', function () {
+				this.preventDefault();
+				if(testUser()&&testEmail()&&testPwd1()&&testPwd2()){
+						alert('注册成功');
+				}
+			})
+
+			/*验证是否已经被注测*/
+			/*约定数据格式
+			地址：username
+			传参：data{name : name}
+			回参：data{
+					status:0//可用
+					       1//已经存在
+					}
+			type;post
+			
+			 */
+			function userValidate () {
+		
+
+				ajax({
+					url: '/username',
+					type: 'post',
+					data: {
+						name: username.value
+					},
+					success:function(json){
+					
+						if (json.status===0) {
+							removeClass(username,'error');
+							msgUn.innerText=MSG.USERNAME_USEABLE;
+						}
+						if(json.status===1){
+							msgUn.innerText=MSG.USERNAME_EXIST;
+							addClass(username,'error');
+						}
+					},
+					error: function(){
+						alert("网络连接错误");
+					}
+				});
+
+			}
+
+
+			/*测试用户名格式是否正确*/
+			function testUser () {
+				var name = username.value;
+				if (!isLegalUsername(name)) {
+						addClass(username,'error');
+						msgUn.innerText = MSG.USERNAME_TYPE_ERROR;
+						return false;
+				}else{
+					msgUn.innerText = '';
+					removeClass(username,'error');
+					return true;
+				};
+			}
+
+			
+
+			/*验证邮箱是否被注册*/
+			/*约定数据格式
+			地址： email
+			传参：data{emailvalue : emailvalue}
+			回参：data{
+					status:0//可用
+					       1//已经存在
+					}
+			type;post
+			 */
+			function emailValidate(){
+			
+				ajax({
+					url: '/email',
+					type: 'post',
+					data: {
+						emailvalue: email.value
+					},
+					success: function(json){
+						if(json.status === 0){
+							removeClass(email,'error');
+							msgEm.innerText=MSG.EMAIL_USEABLE;
+						}
+						if(json.status === 1){
+							msgEm.innerText=MSG.EMAIL_EXIST;
+							addClass(email,'error');
+						}
+					},
+					error: function(){
+						alert('网络连接错误');
+					}
+
+				});
+
+			}
+
+			/*邮箱格式是否正确*/
+			function testEmail(){
+				var emailvalue = email.value;
+				if (!isLegalEmail(emailvalue)) {
+					addClass(email,'error');
+					msgEm.innerText=MSG.EMAIL_TYPE_ERROR;
+					return false;
+				}else{
+					msgEm.innerText= '';
+					removeClass(email,'error');
+					return true;
+				};
+			}
+			
+			//密码格式是否正确
+			function testPwd1(){
+				
+				if(!isLegalPassword(password1.value)){
+					addClass(password1,'error');
+					msgPwd1.innerText=MSG.PASSWORD_TYPE_ERROR;
+				}else{
+					removeClass(password1,'error');
+					msgPwd1.innerText='';
+				}
+			}
+
+			//第二次密码确认
+			function testPwd2(){
+				if (password1.value!==password2.value) {
+					addClass(password2,'error');
+					msgPwd2.innerText=MSG.PASSWORD_NOT_MATCH;
+				}else{
+					removeClass(password2,'error');
+					msgPwd2.innerText='';
+				}
+			}
+	</script>
+</body>
+</html>

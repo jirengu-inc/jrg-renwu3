@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>回到顶部</title>
+  <style type="text/css">
+  .gotop{
+    padding: 15px;
+    border: 1px solid red;
+    width: 70px;
+  }
+  </style>
+</head>
+<body>
+  <p>内容1</p>
+  <p>内容1</p>
+  <p>内容1</p>
+  <p>内容3</p><p>内容1</p>
+  <p>内容1</p><p>内容1</p>
+  <p>内容1</p>
+  <p>内容1</p>
+  <p>内容4</p><p>内容1</p>
+  <p>内容1</p><p>内容1</p>
+  <p>内容1</p><p>内容1</p>
+  <p>内容6</p><p>内容1</p>
+  <p>内容7</p>
+  <p>内容1</p>
+  <p>内容4</p><p>内容1</p>
+  <p>内容1</p><p>内容1</p>
+
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+  //没有进行封装的
+  // var $GoTop=$('<div class="gotop">回到顶部</div>').css({display:'none'}).appendTo($('body'));
+  //     $(window).on('scroll',function(){
+  //       var offset=$(window).scrollTop();
+  //       if(offset>100){
+  //         $GoTop.show();
+  //         gotop();
+  //       }else{
+  //         $GoTop.hide();
+  //       }
+  //     })
+  //     function gotop(){
+  //       $GoTop.on('click',function(){
+  //         $(window).scrollTop(0);
+  //       })
+  //     }
+
+
+      var GoTop={
+        init:function(){
+          if($('.gotop').length > 0){return;}
+          var $goTop=$('<div class="gotop">回到顶部</div>').css({display:'none'}).appendTo($('body'));
+          this.$goTop=$goTop;
+          this.bind();
+        },
+        bind:function(){
+          var self=this;
+          $(window).on('scroll',function(){
+            var offset=$(window).scrollTop();
+            if(offset>100){
+              self.$goTop.show();
+            }else{
+              self.$goTop.hide();
+            }
+          })
+          self.$goTop.on('click',function(){
+            $(window).scrollTop(0);
+          })
+        }
+      }
+      GoTop.init();
+
+      //闭包封装
+      // var GoTop=(function(){
+      //   var $goTop=$('<div class="gotop">回到顶部</div>').css({display:'none'}).appendTo($('body'));
+      //   function init(){
+      //     $(window).on('scroll',function(){
+      //       var offset=$(window).scrollTop();
+      //       if(offset>100){
+      //         $goTop.show();
+      //       }else{
+      //         $goTop.hide();
+      //       }
+      //     })
+      //     $goTop.on('click',function(){
+      //       $(window).scrollTop(0);
+      //     });
+      //   }
+      //   return {
+      //     init:init
+      //   }
+      // })();
+
+      // GoTop.init();
+
+
+
+
+</script>
+
+</body>
+</html>

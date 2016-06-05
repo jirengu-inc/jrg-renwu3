@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        .content{
+            position: relative;
+
+        }
+
+
+
+        .item{
+            position: absolute;
+            width: 200px;
+            margin-right: 10px;
+            margin-top: 10px;
+            transition: all 1s;
+        }
+
+        .h1{
+            height: 200px;
+            background-color: #f4b300;
+        }
+
+        .h2{
+            height: 300px;
+            background-color: #691BB8;
+        }
+
+        .h3{
+            height: 400px;
+            background-color: #006ac1;
+        }
+
+    </style>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        //
+        $(function () {
+            var waterFall =  (function ($) {
+                    function  render() {
+                        var  itemWidth = $('.item').outerWidth(true),
+                                size = Math.floor($(window).width()/itemWidth),
+                                columnHeight=new Array(size);
+                        columnHeight.fill(0,0,columnHeight.lenght)
+
+                        $('.item').each(function (i,e) {
+                            var minValue = min(columnHeight);
+                            if(minValue){
+                                $(e).css({
+                                    left:itemWidth*(minValue.index),
+                                    top:minValue.value
+                                })
+                                columnHeight[minValue.index]+= $(e).outerHeight(true)
+                            }
+                        });
+                    }
+
+                    function bindEvent() {
+                        $(window).on('resize', function(){
+                            render();
+                        })
+                    }
+                    bindEvent();
+                    function min(arr) {
+                        if( arr && arr instanceof Array ){
+                            var temp={value:arr[0],index:0};
+                            for(var i=1;i<arr.length;i++){
+                                if(arr[i]< temp.value){
+                                    temp.value =arr[i]
+                                    temp.index=i;
+                                }
+                            }
+                            return temp;
+                        }
+                    }
+
+                return {render:render};
+            })(jQuery)
+            waterFall.render();
+        });
+
+    </script>
+
+</head>
+<body>
+<div class="content">
+    <div class="item h1">
+        1
+    </div>
+    <div class="item h3">
+        2
+    </div>
+    <div class="item h2">
+        3
+    </div>
+    <div class="item h1">
+        4
+    </div>
+    <div class="item h1">
+        5
+    </div>
+    <div class="item h3">
+        6
+    </div>
+    <div class="item h3">
+        7
+    </div>
+    <div class="item h2">
+        8
+    </div>
+    <div class="item h1">
+        9
+    </div>
+    <div class="item h3">
+        10
+    </div>
+    <div class="item h3">
+        11
+    </div>
+    <div class="item h3">
+        12
+    </div>
+    <div class="item h2">
+        13
+    </div>
+    <div class="item h2">
+        14
+    </div>
+</div>
+
+</body>
+</html>
