@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level27</title>
+<style type="text/css">
+	div,ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	img{
+		width: 500px;
+		height: 400px;
+	}
+	.loading-img{
+		position: absolute;
+	}
+	.loading-img:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.loading-img .sole-img{
+		float: left;
+	}
+	.wrap-check{
+		position: absolute;
+		top: 94%;
+		left: 26%;
+	}
+	.wrap-check li{
+		width: 40px;
+		height: 10px;
+		background: black;
+		display: inline-block;
+	}
+	.wrap-check .check{
+		background: red;
+	}
+	.casement{
+		position: relative;
+		width: 500px;
+		height: 400px;
+		overflow: hidden;
+	}
+	.model{
+		text-decoration: none;
+		color: black;
+		width: 40px;
+		height: 40px;
+		background: gray;
+		border-radius: 50%;
+		position: absolute;
+		top: 50%;
+		font-size: 32px;
+		text-align: center;
+		line-height: 40px;
+		margin-top: -20px;
+		opacity: 0.5;
+	}
+	.model:hover{
+		opacity: 1;
+	}
+	.pre{
+		left: 20px;
+	}
+	.next{
+		right: 20px;
+	}
+
+</style>
+</head>
+<body>
+	<div class="casement">
+		<ul class="loading-img">
+			<li class="sole-img"><img src="../img/portfolio-1.jpg"></li>
+			<li class="sole-img"><img src="../img/portfolio-2.jpg"></li>
+			<li class="sole-img"><img src="../img/portfolio-3.jpg"></li>
+			<li class="sole-img"><img src="../img/portfolio-4.jpg"></li>
+		</ul>
+		<a href="#" class="pre model"><</a>
+		<a href="#" class="next model">></a>
+		<ul class="wrap-check">
+			<li class="check"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	var $pre=$(".pre"),
+		$next=$(".next"),
+		$loadingImg=$(".loading-img"),
+		$wrapCheck=$(".wrap-check");
+	var width=$(".sole-img").width();
+	var imgAmount=$loadingImg.children().length;
+	$loadingImg.append($loadingImg.children().eq(0).clone());
+	$loadingImg.prepend($loadingImg.children().eq(3).clone());
+	var imgNumber=$loadingImg.children().length;
+	$loadingImg.css("width",width*imgNumber);
+	$loadingImg.css("left",0-width);
+	var curIdx=0;
+	var keyAnimate=false;
+	$next.on("click",function(){
+		stopAutoPlay();
+		playNext();
+		autoPlay();
+
+	});
+	$pre.on("click",function(){
+		stopAutoPlay();
+		playPre();
+		autoPlay();
+	});
+	$wrapCheck.on("click","li",function(){
+		stopAutoPlay();
+		var liNumber=$(this).index();
+		if(liNumber>curIdx){
+			playNext(liNumber-curIdx);
+		}else if (liNumber<curIdx) {
+			playPre(curIdx-liNumber);
+		}
+		autoPlay();
+	});
+	autoPlay();
+	function playNext(idx){
+		var idx = idx || 1;
+		if (keyAnimate) {
+			return;
+		}
+		keyAnimate=true;
+		$loadingImg.animate({
+			left:"-="+(width*idx)
+			},function(){
+				curIdx=curIdx+1*idx;
+				if(curIdx===imgAmount){
+					$loadingImg.css("left",0-width);
+					curIdx=0;
+				}
+				state();
+				keyAnimate=false;
+
+		});
+
+	}
+	function playPre(idx){
+		var idx = idx || 1;
+		if (keyAnimate) {
+			return;
+		}
+		keyAnimate=true;
+		$loadingImg.animate({
+			left:"+="+(width*idx)
+		},function(){
+			curIdx =  curIdx -idx;
+			if(curIdx === -1){
+				$loadingImg.css({"left": 0-width*imgAmount});
+				curIdx=imgAmount-1;
+			}
+			state();
+			keyAnimate=false;
+		});
+	}
+	function state(){
+		$wrapCheck.children().removeClass("check").eq(curIdx).addClass('check');
+	}
+	function autoPlay(){
+		clock=setInterval(function(){
+			playNext();
+		},3000);
+	}
+	function stopAutoPlay(){
+		clearInterval(clock);
+	}
+
+</script>
+</body>
+</html>

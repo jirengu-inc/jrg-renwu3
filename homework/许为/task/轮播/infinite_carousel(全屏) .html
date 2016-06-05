@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level27</title>
+<style type="text/css">
+	html,body{
+		width: 100%;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	.casement{
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		height: 100%;
+		position: relative;
+		overflow: hidden;
+	}
+	.ul-img{
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+	}
+	.loading-img{
+		height:100%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		float: left;
+	}
+	.ul-check{
+		position: absolute;
+		top: 86%;
+		left:39%;
+	}
+	.ul-check li{
+		width: 50px;
+		height: 10px;
+		background: white;
+		display: inline-block;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+	.ul-check .check{
+		background: gray;
+	}
+
+</style>
+</head>
+<body>
+	<div class="casement">
+		<ul class="ul-img">
+			<li class="loading-img" data-img="../img/portfolio-1.jpg"></li>
+			<li class="loading-img" data-img="../img/portfolio-2.jpg"></li>
+			<li class="loading-img" data-img="../img/portfolio-3.jpg"></li>
+			<li class="loading-img" data-img="../img/portfolio-4.jpg"></li>
+		</ul>
+		<ul class="ul-check">
+			<li class="check"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+/*参数说明：curIdx代表当前图片的编号，从0开始
+            idx代表跳过图片的数量*/
+	var $ulImg=$(".ul-img"),
+		$ulCheck=$(".ul-check"),
+		$loadingImg=$(".loading-img"),
+		$ulCheck=$(".ul-check"),
+		imgWidth=$(window).width();
+		imgAmount=$ulImg.children().length; //获取clone之前的图片数量
+
+	$ulImg.prepend($loadingImg.last().clone());
+	$ulImg.append($loadingImg.first().clone());
+	var imgNumber=$ulImg.children().length;  //获取clone之后的图片数量
+
+	$ulImg.children().css("width",imgWidth);   //设置li的宽度等于图片的宽度
+	$ulImg.css({"width":imgWidth*imgNumber,"left":0-imgWidth}); //设置ul的宽度和left
+
+	var curIdx=0;  //当前展示的第一张图片的编号
+	var keyAnimate=false; //状态锁，放置用户重复点击点选按钮
+
+	setBg(1);
+	autoPlay();
+
+	$ulCheck.on("click","li",function(){
+		stopAutoPlay();
+		var coding=$(this).index();
+		if (curIdx>coding) {
+			playPre(curIdx-coding);
+		}
+		else if(curIdx<coding) {
+			playNext(coding-curIdx);
+		}
+		autoPlay();
+	});
+
+	function playNext(idx){
+		if (keyAnimate) {
+			return;
+		}
+		keyAnimate=true;
+		setBg(curIdx+idx+1);  //当用户点击的时候加载相应的图片
+		$ulImg.animate({"left":"-="+idx*imgWidth},function(){
+			curIdx=curIdx+idx;
+			if(curIdx===imgAmount){
+				$ulImg.css("left",0-imgWidth);
+				curIdx=0;
+			}               //没有左右切换，不需要此判断
+			keyAnimate=false;
+			choose();
+		});
+	}
+	function playPre(idx){
+		if (keyAnimate) {
+			return;
+		}
+		keyAnimate=true;
+		setBg(curIdx);   //当用户点击的时候加载相应图片
+		$ulImg.animate({"left":"+="+idx*imgWidth},function(){
+			curIdx=curIdx-idx;
+			keyAnimate=false;
+			choose();
+		});
+
+	}
+
+	function setBg(para){     //异步加载图片
+		var imgUrl=$ulImg.children().eq(para).attr("data-img");
+		$ulImg.children().eq(para).css("background-image","url("+imgUrl+")");
+	}
+	function choose(){
+		$ulCheck.children().removeClass("check").eq(curIdx).addClass('check');
+	}
+	function autoPlay(){
+		clock=setInterval(function(){
+			playNext(1);
+		},3000);
+	}
+	function stopAutoPlay(){
+		clearInterval(clock);
+	}
+</script>
+</body>
+</html>
