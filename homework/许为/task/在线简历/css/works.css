@@ -55,3 +55,13 @@
 		background-color:rgba(128, 128, 128, 0.66);
 		opacity: 1;
 	}
+	.wrap-works .moreworks{
+		color: black;
+		position: relative;
+		top: 312px;
+		right: 62px;
+		cursor: pointer;
+	}
+	.wrap-works .moreworks:hover{
+		font-weight: bold;
+	}

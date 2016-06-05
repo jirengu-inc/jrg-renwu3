@@ -1,0 +1,53 @@
+.wrap-contact{
+	background: url(../../img/map-image.png) 0 0 no-repeat;
+	background-color: black;
+}
+.contact{
+	margin: 0 auto;
+	padding: 110px 0;
+	text-align: center;
+}
+.contact:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.contact h2{
+	color: white;
+	margin-bottom: 15px;
+	font-size: 50px;
+}
+.contact p{
+	color: gray;
+	font-size: 17px;
+	margin-bottom: 58px;
+	font-style: italic;
+}
+.wrap-input{
+	width: 555px;
+	height: 236px;
+	float: left;
+}
+textarea{
+	display: inline-block;
+	width: 500px;
+	height: 241px;
+	float: left;
+	margin-left: 75px;
+	border-radius: 5px;
+}
+.username,.email,.phone{
+	display: block;
+	width: 555px;
+	margin-left: 10px;
+	height: 65px;
+	margin-bottom: 20px;
+	border-radius: 5px;
+}
+input:focus{
+	border-color: red;
+}
+.send{
+	position: relative;
+	top: 40px;
+}

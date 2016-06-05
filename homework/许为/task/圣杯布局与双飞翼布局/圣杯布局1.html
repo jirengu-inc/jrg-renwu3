@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>level12</title>
+<style type="text/css">
+	html,body{
+		margin: 0;
+		padding: 0;
+	}
+	#header,#footer{
+		height: 25px;
+		background: gray;
+	}
+	#content:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	#content{
+		padding: 0  250px;
+	}
+	.main{
+		background: green;
+		float: left;
+	}
+	.left{
+		width: 200px;
+		background: red;
+		float: left;
+		margin-left: -100%;
+		position: relative;
+		right: 250px;
+	}
+	.right{
+		width: 200px;
+		background: yellow;
+		float: left;
+		margin-left: -200px;
+		position: relative;
+		left: 250px;
+	}
+</style>
+</head>
+<body>
+ <div id="header">头部</div>
+ <div id="content">
+ 	<div class="main">
+ 		圣杯布局指两边顶宽的圣杯布局指两
+ 		边顶宽的圣杯布局指两边顶宽的圣杯
+ 		圣杯布局指两边顶宽的布局指两边顶宽
+ 		圣杯布局指两边顶宽的的圣杯布局指两边顶宽的
+ 		杯布局指两边顶宽的的圣杯布局指两边顶宽的
+ 		杯布局指两边顶宽的的圣杯布局指两边顶宽的
+ 		杯布局指两边顶宽的的圣杯布局指两边顶宽的
+ 	</div>
+ 	<div class="left">
+		左侧边栏，固定宽度
+ 	</div>
+ 	<div class="right">
+ 		右侧边栏，固定宽度
+ 	</div>
+ </div>
+ <div id="footer">尾部</div>
+</body>
+</html>
