@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level37</title>
+<style type="text/css">
+	.Dialog{
+		border: 1px solid black;
+		width: 293px;
+		position: absolute;
+		top: 30%;
+		left: 40%;
+	}
+	.Dialog-header{
+		border-bottom: 1px solid black;
+		padding: 5px 10px;
+		background-color: #676666;
+		color: white;
+	}
+	.Dialog-header h3{
+		margin: 0;
+	}
+	.Dialog-header p{
+		margin: 0;
+		position: absolute;
+		top:4px;
+		left: 280px;
+		font-family: fantasy;
+		cursor: pointer;
+	}
+	.Dialog-content{
+		padding: 13px 17px;
+	}
+	.Dialog-footer{
+		width: 95px;
+		margin:13px auto;
+	}
+	.Dialog-footer a{
+		text-decoration: none;
+		color: white;
+		padding: 5px;
+		background-color: red;
+		border-radius: 5px;
+	}
+</style>
+</head>
+<body>
+	<button id="open1" type="button">打开1</button>
+	<button id="open2" type="button">打开2</button>
+	<button id="open3" type="button">打开3</button>
+	<button id="open4" type="button">打开4</button>
+	<button id="open5" type="button">打开5</button>
+	<div class="Dialog">
+		<div class="Dialog-header">
+			<h3>欢迎来到饥人谷</h3>
+			<p>X</p>
+		</div>
+		<div class="Dialog-content">hello</div>
+		<div class="Dialog-footer">
+			<a href="#" class="cancel">取消</a>
+			<a href="#" class="ensure">确定</a>
+		</div>
+	</div>
+</body>
+</html>

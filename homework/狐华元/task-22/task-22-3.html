@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task-22-3</title>
+  </head>
+  <body>
+    <ul class="ct">
+      <li data-img="http://img15.3lian.com/2016/h1/48/202.jpg">鼠标放置查看图片1</li>
+      <li data-img="http://img15.3lian.com/2016/h1/48/201.jpg">鼠标放置查看图片2</li>
+      <li data-img="http://img15.3lian.com/2016/h1/48/205.jpg">鼠标放置查看图片3</li>
+    </ul>
+    <div class="img-preview">
+    </div>
+    <script>
+      var ct = document.querySelector(".ct"),
+          preview = document.querySelector(".img-preview");
+      ct.addEventListener("mouseover",function(e){
+        var imgsrc = e.target.getAttribute("data-img");
+        preview.innerHTML = "<img src="+imgsrc+" />";
+      },false);
+    </script>
+  </body>
+</html>

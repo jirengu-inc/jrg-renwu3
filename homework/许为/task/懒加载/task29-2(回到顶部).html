@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level29</title>
+<style type="text/css">
+	a{
+		border:1px solid red;
+		padding: 10px;
+		position: fixed;
+		left:90%;
+		top: 90%;
+		color: black;
+		text-decoration: none;
+		display: none;
+	}
+</style>
+</head>
+<body>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容3</p>
+	<p>内容2</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容3</p>
+	<p>内容2</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容3</p>
+	<p>内容2</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容3</p>
+	<p>内容2</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容3</p>
+	<p>内容2</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容3</p>
+	<p>内容2</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容3</p>
+	<p>内容2</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容1</p>
+	<p>内容3</p>
+	<p>内容2</p>
+	<a href="#">回到顶部</a>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	var $a=$("a");
+	$(window).on("scroll",function(){
+		var scrollTop=$(this).scrollTop();
+		console.log(scrollTop);
+		if (scrollTop>=170) {
+		$a.css("display","block");
+		$a.on("click",function(){
+			scrollTop=0;
+		});
+	}else{
+		$a.removeAttr('style');
+	}
+	});
+
+</script>
+</body>
+</html>

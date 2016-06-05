@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level35</title>
+<style type="text/css">
+	.navigation{
+		margin: 20px 0 0 20px;
+	}
+	.navigation:after{
+		content:"";
+		display: block;
+		clear: both;
+	}
+	.navigation>li{
+		width: 200px;
+		height: 36px;
+		text-align: center;
+		display: inline-block;
+		margin-left: -9px;
+		list-style: none;
+		border: 1px solid black;
+		line-height: 36px;
+	}
+	.active{
+		background-color: rgba(165, 159, 159, 0.38);
+	}
+	.content{
+		width: 602px;
+		height: 300px;
+		border: 1px solid black;
+		margin-left: 51px;
+		margin-top: -1px;
+		display: none;
+	}
+	.c-active{
+		display: block;
+	}
+</style>
+</head>
+<body>
+ 	<div class="wrap-navigation">
+ 		<ul class="navigation">
+ 			<li class="active">tab1</li>
+ 			<li>tab2</li>
+ 			<li>tab3</li>
+ 		</ul>
+ 		<div class="content c-active">内容1</div>
+ 		<div class="content">内容2</div>
+ 		<div class="content">内容3</div>
+ 	</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	function ChangeTab($node){
+		this.node=$node;
+		this.ul=$node.find('.navigation');
+		this.content=$node.find('.content');
+		this.bound();
+	}
+	ChangeTab.prototype={
+		bound:function(){
+			var _this=this;
+			_this.ul.on("click","li",function(){
+				var num=$(this).index();
+				_this.ul.children().removeClass('active').eq(num).addClass('active');
+				_this.content.removeClass('c-active').eq(num).addClass('c-active');
+			});
+		}
+	}
+	var $node1=$(".wrap-navigation");
+	var c1=new ChangeTab($node1);
+</script>
+</body>
+</html>

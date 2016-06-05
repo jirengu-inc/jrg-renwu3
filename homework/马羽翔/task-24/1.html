@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>1</title>
+	<style>
+        .left {
+            position:relative;
+            width:360px;
+            height:320px;
+            border:1px dashed #ccc;
+        }
+        #ct {
+            position:absolute;
+            top:8px;
+            left:380px;
+            width:280px;
+            height:320px;
+            margin: 0;
+            border:1px dashed #ccc;
+        }
+		#name {
+			display: inline-block;
+			height: 20px;
+			width:60px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+		#password {
+			display: inline-block;
+			height: 20px;
+			width:60px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+		}
+        p > span {
+            color:#aaa;
+            font-style: italic;
+            font-size: 12px;
+        }
+	</style>
+</head>
+<body>
+<dl id="ct">
+	
+</dl>
+<div class="left">
+    <p>name:<input type="text" name="name" id="name" placeholder="name"><span>("xiaoming"有数据)</span></p>
+    <p>password:<input type="text" name="password" id="password" placeholder="password"><span>（"xiaoming"密码："abcd1234")</span></p>
+	<p>
+	    method:
+	    <select name="method" id="method">
+	        <option value="get">get</option>
+	        <option value="post">post</option>        
+	    </select>
+    </p>
+    <button id="btn">可以点</button>
+</div>
+
+<script>
+    
+var name=document.getElementById('name').value,
+    psd=document.getElementById("password").value,
+    method=document.getElementById("method").value,
+    url;   
+
+document.getElementById('name').addEventListener('change',function(e){
+    e.stopPropagation();
+    name=document.getElementById('name').value;
+})
+
+document.getElementById('password').addEventListener('change',function(e){
+    e.stopPropagation();
+    psd=document.getElementById('password').value;
+}) 
+
+document.getElementById('method').addEventListener('change',function(e){
+    e.stopPropagation();
+    method=document.getElementById('method').value;
+}) 
+    
+document.querySelector('#btn').addEventListener('click', function(e){
+    e.stopPropagation();
+    ajax({
+        url: switchUrl(),   //接口地址
+        type: method,               // 类型， post 或者 get,
+        data: {
+            name: name,
+            password: psd
+        },
+        success: function(ret){
+            dealWith(ret);       // {status: 0/status:1}
+        },
+        error: function(){
+           error();
+        }
+    })
+});
+    
+function switchUrl(){
+    return url=(method=="get")?'/tryget':'/trypost';
+}
+    
+function ajax(opts){
+    xhr=new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if (xhr.readyState==4&&(xhr.status==200||xhr.status==304)){
+        var json=JSON.parse(xhr.responseText);
+        opts.success(json);
+        }
+        if(xhr.status==404){
+            opts.error();
+        }
+    }
+    var dataStr="";
+    for(key in opts.data){
+        dataStr+=key+'='+opts.data[key]+'&';
+    }
+    dataStr=dataStr.substr(0,dataStr.length-1);
+    if(opts.type.toLowerCase()=='post'){
+        xhr.open(opts.type,opts.url,true);
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhr.send(dataStr);
+    }
+    if(opts.type.toLowerCase()=='get'){
+        xhr.open(opts.type,opts.url+"?"+dataStr,true);
+        xhr.send();
+    }
+}
+   
+function error(){
+    document.getElementById('ct').innerHTML="<p>获取数据失败</p>";
+}
+    
+function dealWith(userInfo){
+    console.log(userInfo.status);
+    if(userInfo.status==0){
+        var str1='<p>抱歉,没有';
+        str1+=userInfo.name+'的信息</p>';
+        document.getElementById('ct').innerHTML=str1;
+    }
+    if(userInfo.status==1){
+        var str2='<dt>姓名:</dt>';
+        str2+='<dd>'+userInfo.name+'</dd>';
+        str2+='<dt>ID：</dt>';
+        str2+='<dd>'+userInfo.id+'</dd>';
+        str2+='<dt>级别：</dt>';
+        str2+='<dd>'+userInfo.lvl+'</dd>';
+        str2+='<dt>角色：</dt>';
+        str2+='<dd>'+userInfo.character+'</dd>';
+        document.getElementById('ct').innerHTML=str2;    
+    }
+    if(userInfo.status==2){
+        document.getElementById('ct').innerHTML="<p>密码错误</p>";
+    }
+}
+</script>
+</body>
+</html>
+
+

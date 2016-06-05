@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>无限加载+jsonp+瀑布流</title>
+  <style type="text/css">
+    html,body,ul,li,p,div{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    ul,li{
+      list-style: none;
+    }
+    .ct-waterfall{
+      width:900px;
+      margin: 0 auto;
+    }
+    #pic-ct{
+      position: relative;
+
+    }
+    #pic-ct .item{
+      position: absolute;
+      padding:0 0 10px 0;
+      width: 280px;
+      margin: 10px;
+      border:1px solid #ccc;
+    }
+    #pic-ct .item img{
+      margin: 10px;
+      width: 260px;
+    }
+    #pic-ct .item .header{
+      height: 25px;
+      margin: 0 12px;
+      border-bottom: 1px solid #DBDBDB;
+    }
+    #pic-ct .desp{
+      font-size: 12px;
+      line-height: 1.8;
+      margin: 10px 15px 0;
+      color: #777371;
+    }
+    #load{
+      visibility: hidden;
+    }
+    .hide{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="ct-waterfall">
+      <ul id="pic-ct">
+        <li class="item hide"></li>
+
+      </ul>
+      <div id="load">看不见的</div>
+    </div>
+  </div>
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+  <script type="text/javascript">
+  //1.$('#load')是否肉眼可见
+    //1.1获取数据
+  //2.将数据拼装成dom放置页面
+    //2.1图片懒加载
+    //2.2等待图片加载完毕
+  //3.瀑布流的处理
+  var $picCt=$('#pic-ct'),
+  $load=$('#load'),
+  $item=$('.item');//计算宽度
+
+  //防止滚动太频繁，只在最后一次事件响应的时候执行 checkshow
+  var clock;
+  $(window).on('scroll',function(){
+    if(clock){
+      clearTimeout(clock);
+    }
+    clock=setTimeout(function(){
+      checkShow();
+    },300);
+  });
+
+  //用户第一次打开页面，还未滚动窗口的时候需要执行一次 checkShow
+  checkShow();
+  function checkShow(){
+    if(isVisible($load)){
+      getData();
+    }
+  }
+
+  function isVisible($cur){
+    var winH=$(window).height(),
+    scrollTop=$(window).scrollTop(),
+    offsetTop=$cur.offset().top;
+    if(offsetTop<winH+scrollTop){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  var curPage=1,
+  perPageCount=20,
+  defereds = [];
+  function getData(){
+    $.ajax({
+      url:'http://platform.sina.com.cn/slide/album_tech',
+      type:'get',
+      dataType:'jsonp',
+      jsonp:'jsoncallback',
+      // jsonpCallback: 'func',
+      data:{
+        app_key:'1271687855',
+        format:'json',
+        size:'img',
+        page:curPage,
+        num:perPageCount
+      },
+      success:function(ret){
+        console.log(ret);
+        if(ret && ret.status && ret.status.code==='0'){
+         placeAndLoad(ret.data);//摆放dom以及图片懒加载
+         curPage++;
+       }else{
+        alert('get error data');
+      }
+    },
+    error:function(){
+      alert('服务器开小差...');
+    }
+  });
+
+  }
+
+  function placeAndLoad(nodeList){
+  var $nodes = renderData(nodeList);  //生成节点，摆放dom
+
+  //图片懒加载
+  $nodes.find('img').each(function(){
+    if(!!isloaded($(this))){return;}
+    if(isVisible($(this))){
+      showImage($(this));//懒加载
+    }
+
+    //等图片加载完，执行瀑布流
+    var defer = $.Deferred();//延时对象
+    $(this).load(function(){
+      defer.resolve();
+    });
+    defereds.push(defer);
+  });
+  $.when.apply(null,defereds).done(function() { //当所有的图片都执行 resolve 后，即全部图片加载后，执行下面的内容
+    console.log('new images all loaded ...');
+    //当节点里的图片全部加载后再使用瀑布流计算，否则会因为图片未加载 item 高度计算错误导致瀑布流高度计算出问题
+    waterFall($nodes);
+  });
+
+}
+
+function renderData(items){
+  var tpl=[],
+  $nodes;
+  for (var i = 0; i < items.length; i++) {
+    tpl.push('<li class="item">');
+    tpl.push('<a href="'+ items[i].url+'" class="link">');
+    tpl.push('<img src="img/loading.gif" data-src="'+items[i].img_url+'" alt=""/></a>');
+    tpl.push('<h4 class="header">'+items[i].short_name+'</h4>');
+    tpl.push('<p class="desp">'+items[i].short_intro+'</p>');
+    tpl.push('</li>');
+  }
+  tpl=tpl.join('');
+    // $picCt.append($(tpl));
+    // return $(tpl);
+    $nodes=$(tpl);//注意点
+    $picCt.append($nodes);
+    return $nodes;
+  }
+
+  function showImage($cur){
+    $cur.attr('src', $cur.attr('data-src'));
+    $cur.data('isloaded',true);
+  }
+  function isloaded($cur){
+    return $cur.data('isloaded');
+  }
+
+  var colItemHeight=[];
+  function waterFall($nodes){
+    var winWidth=$picCt.width(),
+    itemWidth=$item.outerWidth(true),
+    itemNum=Math.floor(winWidth/itemWidth);
+
+    if(colItemHeight.length==0){
+      for (var i = 0; i < itemNum; i++) {
+       colItemHeight.push(0);
+     }
+   }
+
+   $nodes.each(function(){
+    var $cur =$(this);
+    var obj=getIndexOfMin(colItemHeight),
+    minH=obj.minH,
+    idx=obj.idx;
+    $cur.css({
+     top: minH,
+     left: idx*itemWidth
+   });
+    colItemHeight[idx]+=$cur.outerHeight(true);
+    $('#pic-ct').height(Math.max.apply(null,colItemHeight));
+  });
+ }
+ function getIndexOfMin(array){
+  var min=array[0],
+  idx=0;
+  for (var i = 0; i < array.length; i++) {
+    if(array[i]<min){
+      min=array[i];
+      idx=i;
+    }
+  }
+  return{
+    minH:min,
+    idx:idx
+  };
+}
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level29</title>
+<style type="text/css">
+	body{
+		margin: 0;
+		padding: 0;
+	}
+	ul{
+		width: 960px;
+		margin: 0 auto;
+	}
+	ul:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	li{
+		float: left;
+		margin-top: 20px;
+		margin-right: 10px;
+		margin-bottom: 20px;
+		list-style: none;
+
+	}
+	img{
+		width: 300px;
+		height: 400px;
+	}
+</style>
+</head>
+<body>
+	<ul>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+		<li><img data-src="../img/shi3.jpg"></li>
+	</ul>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+	var clock;
+	$(window).on("scroll",function(){
+		if(clock){
+			clearTimeout(clock);
+		}
+		clock=setTimeout(function(){
+			load();
+		},500);
+//为性能考虑，在这里添加一个延时函数，用户在鼠标滑动完成之后过一段事件执行事件响应函数
+//但这里的延迟时间不能太长，太长会有明显的加载延迟
+	});
+	load(); //初次展示的时候必须执行一次
+	function load(){
+		$("img").each(function(){
+			var $img=$(this);
+
+			if ($img.data("isLoad")==="yes") {
+				console.log($img.data("isLoad"));
+				return;
+			}
+			if (reach($img)) {
+				$img.attr("src",$img.attr("data-src"));
+				$img.data("isLoad","yes");  //给加载过的图片加一个标识，避免重复加载
+			}
+
+		});
+	}
+	function reach($el){
+		var widH=$(window).height(),
+			scrollTop=$(window).scrollTop(),
+			offsetTop=$el.offset().top;
+		if(widH+scrollTop>=offsetTop){
+			return true;
+		}
+		else{
+			return false;
+		}
+
+	}
+
+</script>
+</body>
+</html>
