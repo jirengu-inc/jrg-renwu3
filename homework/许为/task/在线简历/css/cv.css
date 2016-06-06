@@ -68,16 +68,21 @@
 	}
 	.ability li{
 		list-style: none;
+	}
+	.ability li span{
 		font-weight: bold;
 	}
 	.download-cv{
 		position: absolute;
-		top: 31%;
+		top: 49%;
 		left: 55%;
 		width: 400px;
 		background-color: gray;
 		padding:10px;
 		border-radius: 5px;
+	}
+	.download-cv:hover{
+		font-weight: bold;
 	}
 	.download-cv a{
 		text-decoration: none;

@@ -1,0 +1,42 @@
+.copyright{
+	padding: 50px 0;
+}
+.script a{
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	background: black;
+	border-radius: 50%;
+	line-height: 48px;
+	text-align: center;
+}
+.script{
+	margin-left: 155px;
+	display: inline-block;
+}
+.script a:hover{
+	background: yellow;
+}
+.copyright .icon-twitter,.copyright .icon-facebook,.copyright .icon-linkedin{
+	color: white;
+}
+.copyright p{
+	display: inline-block;
+	margin-left: 92px;
+}
+.privacy{
+	color: yellow;
+	text-decoration: none;
+	margin-left: 235px;
+}
+.terms{
+	color: yellow;
+	text-decoration: none;
+	margin-left: 20px;
+}
+.privacy:hover{
+	text-decoration: underline;
+}
+.terms:hover{
+	text-decoration: underline;
+}

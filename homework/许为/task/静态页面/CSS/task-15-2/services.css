@@ -1,0 +1,40 @@
+.services{
+	text-align: center;
+	padding: 150px 0;
+}
+.services li{
+	width: 360px;
+	margin-left: 23px;
+}
+.services h2{
+	font-size: 40px;
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+.services>p{
+	font-size: 16px;
+	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: italic;
+	margin-bottom: 75px;
+	color: #777;
+}
+.services span{
+	font-size: 74px;
+	color: white;
+	display: block;
+	background: #fed136;
+	border:1px solid #fed136;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	line-height: 120px;
+	margin: 0 auto;
+}
+.services li>h3{
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	margin: 20px 0;
+}
+.services li>p{
+	color: #777;
+}

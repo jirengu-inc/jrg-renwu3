@@ -1,0 +1,126 @@
+.about{
+	text-align: center;
+	padding: 110px 0;
+} 
+ .about h2{
+	font-size: 40px;
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+	margin-bottom: 15px;
+} 
+ .about>p{
+	font-size: 16px;
+	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: italic;
+	margin-bottom: 75px;
+	color: #777;
+} 
+.left{
+	float: left;
+	margin-bottom: 70px;
+}
+.right{
+	float: right;
+	margin-bottom: 70px;
+}
+.li-left{
+	margin-left: 123px;
+	margin-right: 19px;
+}
+.li-right{
+	margin-right: 74px;
+	margin-left: 18px;
+}
+.breath{
+	width: 396px;
+}
+.text-right{
+	text-align: right;
+}
+.time{
+	font-weight: bold;
+	font-size: 20px;
+}
+.title{
+	font-weight: bold;
+	font-size: 20px;
+}
+.text-left{
+	text-align: left;
+}
+.about .right-infinite{
+	display: block;
+	padding-left: 0px;
+	margin-right: 400px;
+	border: 1px solid;
+	width: 142px;
+	height: 132px;
+	border-radius: 50%;
+	padding: 5px;
+	background:gray;
+}
+.about .left-infinite{
+	display: block;
+	margin-left: 400px;
+	padding-right: 0px;
+	border: 1px solid;
+	width: 142px;
+	height: 132px;
+	border-radius: 50%;
+	padding: 5px;
+	background:gray;
+}
+.striping1{
+	width: 2px;
+	height: 69px;
+	border: 1px solid;
+	border-color: transparent transparent transparent rgba(0, 0, 0, 0.26);
+	position: relative;
+	top: 143px;
+	left: 612px;
+}
+.striping2{
+	width: 2px;
+	height: 69px;
+	border: 1px solid;
+	border-color: transparent transparent transparent rgba(0, 0, 0, 0.26);
+	position: relative;
+	top: 286px;
+	left: 612px;
+}
+.striping3{
+	width: 2px;
+	height: 69px;
+	border: 1px solid;
+	border-color: transparent transparent transparent rgba(0, 0, 0, 0.26);
+	position: relative;
+	top: 429px;
+	left: 612px;
+}
+.striping4{
+	width: 2px;
+	height: 69px;
+	border: 1px solid;
+	border-color: transparent transparent transparent rgba(0, 0, 0, 0.26);
+	position: relative;
+	top: 572px;
+	left: 612px;
+}
+.part-story{
+	width: 156px;
+	height: 156px;
+	background: yellow;
+	color: white;
+	text-align: center;
+	border: 5px solid gray;
+  	border-radius: 50%; 
+	font-weight: bold;
+	font-size: 20px;
+	position: relative;
+	left: 531px;
+	padding: 5px;
+}
+.part-story p{
+	position: relative;
+	top: 64px;
+}

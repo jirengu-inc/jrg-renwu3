@@ -1,0 +1,54 @@
+.wrap-team{
+	background: rgba(128, 128, 128, 0.08);
+}
+.team{
+	text-align: center;
+	margin: 0 auto;
+	padding: 110px 0;
+}
+.team h2{
+	font-size: 50px;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+.team>p:first-of-type{
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+.team>p:nth-of-type(2){
+	font-size: 16px;
+	color: gray;
+	margin-top: 64px;
+	padding: 0 180px;
+}
+.team li{
+	margin-left: 134px;
+}
+.team img{
+	border-radius: 50%;
+	padding: 5px;
+	background: white;
+}
+.team .name{
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 23px;
+}
+.team .job{
+	color: gray;
+	margin-bottom: 10px;
+}
+.team a{
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	background: black;
+	border-radius: 50%;
+	line-height: 48px;
+}
+.team a:hover{
+	background: yellow;
+}
+.team .icon-twitter,.team .icon-facebook,.team .icon-linkedin{
+	color: white;
+}
