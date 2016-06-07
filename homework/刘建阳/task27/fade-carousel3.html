@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>carousel three</title>
+<style type="text/css">
+
+		
+		html,body,ul,li,p{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		
+		.carousel{
+			position: relative;
+			width: 310px;
+			height: 206px;
+			overflow: hidden;
+		}
+		.carousel .img-ct{
+			position: absolute;
+		}
+		.carousel .img-ct img{
+			width: 310px;
+			height: 206px;
+		}
+		.carousel .img-ct:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.carousel .img-ct li{
+			float: left;
+		}
+
+		.arrow{
+			position: absolute;
+		    top: 50%;
+		    margin-top: -15px;
+		    width: 30px;
+		    height: 30px;
+		    line-height: 30px;
+		    text-align: center;
+		    background: #4E443C;
+		    color: #fff;
+		    border-radius: 30px;
+		    box-shadow: 0 0 2px #999;
+		    opacity: 0.8
+		}
+		.arrow:hover {
+		    opacity: 1;
+		}
+		.pre{
+			left: 10px;
+		}
+		.next{
+			right: 10px;
+		}
+		ul.bullet {
+			position: absolute;
+		    bottom: 10px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		}
+		ul.bullet li {
+		    width: 16px;
+		    height: 4px;
+		    border-radius: 2px;
+		    background: #fff;
+		    display: inline-block;
+		    cursor: pointer;
+		}
+
+		ul.bullet li.active {
+		    background: #666;
+		}
+
+
+		</style>
+</head>
+<body>
+	
+	<div class="carousel">
+		<ul class="img-ct">
+			<li><a href="#"><img src="img/0.jpg"></a></li>
+			<li><a href="#"><img src="img/1.jpg"></a></li>
+			<li><a href="#"><img src="img/2.jpg"></a></li>
+			<li><a href="#"><img src="img/3.jpg"></a></li>
+		</ul>
+		<a class="pre arrow" href="#"><</a>
+		<a class="next arrow" href="#">></a>
+		<ul class="bullet">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+
+	<div class="carousel">
+		<ul class="img-ct">
+			<li><a href="#"><img src="img/4.jpg"></a></li>
+			<li><a href="#"><img src="img/5.jpg"></a></li>
+			<li><a href="#"><img src="img/6.jpg"></a></li>
+			<li><a href="#"><img src="img/7.jpg"></a></li>
+		</ul>
+		<a class="pre arrow" href="#"><</a>
+		<a class="next arrow" href="#">></a>
+		<ul class="bullet">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+
+	<div class="carousel">
+		<ul class="img-ct">
+			<li><a href="#"><img src="img/8.jpg"></a></li>
+			<li><a href="#"><img src="img/9.jpg"></a></li>
+			<li><a href="#"><img src="img/10.jpg"></a></li>
+			<li><a href="#"><img src="img/0.jpg"></a></li>
+		</ul>
+		<a class="pre arrow" href="#"><</a>
+		<a class="next arrow" href="#">></a>
+		<ul class="bullet">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		function eachPlay(idx){
+		      var     $ctIdx = $('.img-ct').eq(idx),
+		              $wrap=$ctIdx.parents('.carousel'),
+		              imgCount=$ctIdx.children().length,
+		              $bullet=$wrap.find('.bullet'),
+		              $pre = $wrap.find('.pre'),
+		              $next = $wrap.find('.next');
+		      var curIdx = 0;
+		      var isAnimate = false;
+		      $pre.on('click',function(){
+		          playPre();
+		      });
+		      $next.on('click',function(){
+		          playNext();
+		      });
+		      $bullet.on('click','li',function(){
+		          var idxs = $(this).index();
+		           play(idxs);
+		      });
+
+		      function playNext(){
+		          play((curIdx+1)%imgCount);
+		      }
+		      function playPre(){
+		          play((curIdx+imgCount-1)%imgCount);
+		      }
+
+		      function play(idxs){
+		          if(isAnimate) return;
+		          isAnimate = true;
+
+		          curIdx = idxs;
+		          $ctIdx.children().eq(curIdx).siblings().fadeOut(500);
+		          $ctIdx.children().eq(curIdx).fadeIn(500,function(){
+		              isAnimate = false;
+		          });
+		          
+		          setBullet();
+		          
+		      }
+
+		      function setBullet(){
+		      	$bullet.children().removeClass("active")
+		          				  .eq(curIdx).addClass('active');
+		      }
+		      function stopAuto(){
+		          clearInterval(clock);
+		      }
+		      function autoPlay(){
+		          clock = setInterval( function(){
+		          	 playNext();
+		          },3000);
+		      }
+
+	
+		      return {
+		          'play':play,
+		          'playNext':playNext,
+		          'playPre':playPre,
+		          'autoPlay':autoPlay,
+		          'stopAuto':stopAuto
+		      }
+		  }
+
+		  $ct = $('.img-ct');
+		  $ct.each(function(index, el){
+		      var temp =  eachPlay(index);
+		      temp.autoPlay();
+		  });
+		  
+		  // $.each($ct,function(index, el){		  	
+		  //     var temp =  eachPlay(index);
+		      // temp.autoPlay();
+		  // });
+
+
+
+
+
+			/*var 
+				//$pre = $('.pre'),
+				$next = $('.next'),
+				$bullet = $('.bullet');
+				
+
+
+			var curIdx = 0;
+			var isAnimate = false;
+
+			$next.on('click', function(){
+				$ct = $(this).parents('.carousel').find('.imgt-ct');
+				imgCount = $ct.children().size();
+				$items = $ct.children();
+				playNext();
+			});
+			// $pre.on('click', function(){
+			// 	playPre();
+			// });
+			// $bullet.find('li').on('click', function(){
+			// 	var idx = $(this).index();
+			// 	play(idx);
+			// });
+
+			// play(0);
+			// autoPlay();
+
+			function playNext(){
+
+				play((curIdx+1)%imgCount)
+			}
+
+			function playPre(){
+				play((imgCount+curIdx-1)%imgCount)
+			}
+			function play(idx){
+				curIdx = idx;
+				if(isAnimate) return;
+				isAnimate = true;
+				$items.eq(curIdx).siblings().fadeOut(500);
+				$items.eq(curIdx).fadeIn(500, function(){
+					isAnimate = false;
+				});
+						
+				setBullet();
+			}
+
+			function setBullet(){
+				$bullet.children().removeClass('active')
+								  .eq(curIdx).addClass('active');
+			}
+			function stopAuto(){
+				clearInterval(clock);
+			}
+
+			function autoPlay(){
+				clock = setInterval(function(){
+					playNext();
+				}, 2000);	
+			}*/
+	</script>
+</body>
+</html>
