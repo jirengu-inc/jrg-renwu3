@@ -62,6 +62,7 @@
 			border-radius: 5px;
 			border: 1px solid;
 			background-color: #555;
+			cursor: pointer;
 		}
 
 		.bullet .active{
@@ -149,8 +150,10 @@
 					return ;
 				};
 				isAnimate = true;
-
-				setBg(curIdx+1+idx);
+				for (var inter = 1; inter <= idx; inter++) {//idx代表轮播跳转的间隔或距离，并不是序号
+					setBg(curIdx+1+inter);
+				};
+				
 
 					$ct.animate({left:'-='+(imgWidth*idx)},function(){
 						curIdx = (curIdx+idx)%imgCount;
@@ -176,7 +179,10 @@
 				};
 				isAnimate = true;
 
-				setBg(curIdx+1-idx);
+				for (var inter = 1; inter <= idx; inter++) {//idx代表轮播跳转的间隔或距离，并不是序号
+					setBg(curIdx+1-inter);
+				};
+				
 
 				$ct.animate({left:'+='+(imgWidth*idx)},function(){
 					curIdx = (imgCount+curIdx-idx)%imgCount;
