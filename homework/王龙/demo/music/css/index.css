@@ -1,0 +1,13 @@
+.music {
+    position: fixed;
+    left: 50%;
+    top:50%;
+    font-size: 20px;
+    background: pink;
+    padding: 6px;
+    border-radius: 6px;
+    color: #fff;
+    box-shadow: 0 0 10px pink;
+    cursor: move;
+}
+

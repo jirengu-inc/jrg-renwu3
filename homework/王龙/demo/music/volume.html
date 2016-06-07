@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Live Demo</title>
+
+    <style type="text/css" media="screen">
+        *{margin:0;padding:0;list-style-type:none;}
+        a,img{border:0;}
+        body{font:12px/180% Arial, Helvetica, sans-serif, "新宋体";}
+        .clearfix:after, .container:after {content:"\0020";display:block;height:0;clear:both;visibility:hidden;overflow:hidden;}
+        .clearfix, .container {display:block;}
+        p, table, hr, .box { margin-bottom:25px; }
+        .box p { margin-bottom:10px; }
+        ul li h4 {text-decoration: underline}
+        ul li h5 {margin-bottom: 0.5em}
+        ul li pre {border: 1px solid #eee; background: #fafcfc; padding: 10px 0 0 0; margin: 5px 10px}
+        /* example */
+        .container{width:720px;margin:0 auto;}
+        .example{border: 1px dashed #d8d8d8; padding: 10px; margin: 10px;}
+        #example-21 #rating-21, #example-21 #result-21{float: left; margin-right: 5px;}
+        #example-31 #rating-31 {border: 1px solid #d8d8d8; border-width: 0 1px 0 1px}
+        #example-32 .rating-32 {border: 1px solid #d8d8d8; border-width: 0 1px 0 1px; margin-bottom: 20px}
+        #currentval-32 {border: 1px solid #d8d8d8; padding: 4px}
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+    <h3 id="basic"><strong>1) Default Using</strong> - <a href="#toc">top</a></h3>
+    <ul>
+        <li>
+            <h4>Example 1.1</h4>
+            <h5>HTML</h5>
+
+<pre>
+&lt;div id=&quot;rating-1&quot;&gt;&lt;/div&gt;
+</pre>
+
+            <h5>JavaScript</h5>
+<pre>
+$('#rating-11').slidy();
+</pre>
+            <h5>Result</h5>
+
+            <div class="example">
+                <div id="rating-11"></div>
+            </div>
+
+        </li>
+    </ul>
+
+    <hr />
+
+    <h3 id="custom-parameter"><strong>2) Custom parameter</strong> - <a href="#toc">top</a></h3>
+    <ul>
+        <li>
+            <h4>Example 2.1</h4>
+            <h5>HTML</h5>
+<pre>
+&lt;div id=&quot;rating-21&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;result-21&quot;&gt;&lt;/div&gt;
+</pre>
+
+            <h5>JavaScript</h5>
+<pre>
+$('#rating-21').slidy({
+	maxval: 24, interval: 1, defaultValue: 8,
+	finishedCallback: function (value) {
+		$('#result-21').html('You selected: ' + value);
+	}
+});
+</pre>
+
+            <h5>Result</h5>
+            <div id="example-21" class="example">
+                <div id="rating-21"></div>
+                <div id="result-21"></div>
+                <div class="clearfix"></div>
+            </div>
+
+        </li>
+        <li>
+            <h4>Example 2.2</h4>
+            <h5>HTML</h5>
+<pre>
+&lt;div id=&quot;rating-22&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;result-22&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;currentval-22&quot;&gt;&lt;/div&gt;
+</pre>
+
+            <h5>JavaScript</h5>
+			<pre>
+$('#rating-22').slidy({
+	maxval: 12, interval: 1, defaultValue: 4,
+	finishedCallback: function (value) {
+		$('#result-22').html('You selected: ' + value);
+	},
+	moveCallback: function (value) {
+		$('#currentval-22').html('&lt;strong&gt;' + value + '&lt;/strong&gt;');
+	}
+});
+			</pre>
+
+            <h5>Result</h5>
+            <div id="example-22" class="example">
+                <div id="rating-22"></div>
+                <div id="result-22"></div>
+                <div id="currentval-22"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    </ul>
+    <hr />
+
+    <h3 id="custom-theme"><strong>3) Custom theme</strong> - <a href="#toc">top</a></h3>
+    <ul>
+        <li>
+            <h4>Example 3.1</h4>
+            <h5>HTML</h5>
+<pre>
+&lt;div id=&quot;rating-31&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;result-31&quot;&gt;&lt;/div&gt;
+</pre>
+
+            <h5>JavaScript</h5>
+<pre>
+$('#rating-31').slidy({
+	theme: {
+		image: 'themes/red.png',
+		width: 161,
+		height: 34
+	},
+	maxval: 10,
+	interval: 1,
+	defaultValue: 1,
+	finishedCallback: function (value) {
+		$('#result-31').html('You selected ' + value);
+	}
+});
+</pre>
+
+            <h5>Result</h5>
+            <div id="example-31" class="example">
+                <div id="rating-31"></div>
+                <div id="result-31"></div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="clear"></div>
+        </li>
+        <li>
+            <h4>Example 3.2</h4>
+            <p>Apply slidy on many elements! In this case, we apply slidy to all element with class "rating-32"</p>
+            <h5>HTML</h5>
+<pre>
+&lt;div class=&quot;rating-32&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;rating-32&quot;&gt;&lt;/div&gt;
+</pre>
+
+            <h5>JavaScript</h5>
+<pre>
+$('.rating-32').slidy({
+	theme: {
+		image: 'images/blue.png',
+		width: 161,
+		height: 34
+	},
+	maxval: 10,
+	interval: 1,
+	defaultValue: 1,
+	finishedCallback: function (value) {
+		$('#currentval-32').html('You selected <strong>' + value + '</strong>')
+	},
+	moveCallback: function (value) {
+		$('#currentval-32').html('&lt;strong&gt;' + value + '&lt;/strong&gt;')
+	}
+});
+</pre>
+
+            <h5>Result</h5>
+            <div id="example-32" class="example">
+                <h6>First one</h6>
+                <div class="rating-32"></div>
+                <div id="currentval-32"></div>
+
+                <h6>Second One</h6>
+                <div class="rating-32"></div>
+                <div class="clearfix"></div>
+            </div>
+        </li>
+    </ul>
+</div><!-- end div .container -->
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript" src="./js/rating.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $('#rating-11').slidy();
+
+        $('#rating-21').slidy({
+            maxval: 24  ,
+            interval: 2,
+            defaultValue: 8,
+            finishedCallback:function (value){
+                $('#result-21').html('You selected: ' + value);
+            }
+        });
+
+        $('#rating-22').slidy({
+            maxval: 1,
+            interval: 0.1,
+            defaultValue: 0.4,
+            finishedCallback:function (value){
+                $('#result-22').html('You selected: ' + value);
+            },
+            moveCallback:function (value){
+                $('#currentval-22').html('<strong>' + value + '</strong>');
+            }
+        });
+
+        $('#rating-31').slidy({
+            theme: {
+                image: 'images/red.png',
+                width: 161,
+                height: 34
+            },
+            width: 161,
+            maxval: 10,
+            interval: 1,
+            defaultValue: 1,
+            finishedCallback: function (value){
+                $('#result-31').html('You selected ' + value);
+            }
+        });
+
+        $('.rating-32').slidy({
+            theme: {
+                image: 'images/red.png',
+                width: 161,
+                height: 34
+            },
+            width: 161,
+            maxval: 10,
+            interval: 1,
+            defaultValue: 1,
+            finishedCallback: function (value){
+                $('#currentval-32').html('You selected <strong>' + value + '</strong>')
+            },
+            moveCallback: function (value){
+                $('#currentval-32').html('<strong>' + value + '</strong>')
+            }
+        });
+
+    })
+</script>
+
+</body>
+</html>

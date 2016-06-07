@@ -1,0 +1,209 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>html5音乐播放器</title>
+
+    <style>
+        li{list-style-type:none;margin:5px;}
+        a{text-decoration:none;color:blue;}
+        #musicTitle{font-size:30px;}
+    </style>
+
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        //音乐资源
+        var myMusics = new Array(
+                {src:"http://www.17sucai.com/preview/425045/2015-10-19/Music/Tara&筷子兄弟 小苹果.mp3",title:"Tara&筷子兄弟 小苹果"},
+                {src:"http://www.17sucai.com/preview/425045/2015-10-19/Music/悲怆第三章.mp3",title:"悲怆第三章"},
+                {src:"http://www.17sucai.com/preview/425045/2015-10-19/Music/Sound of My Dream.mp3",title:"Sound of My Dream"}
+        );
+        //数组下标
+        var index = -1;
+        //播放状态 单曲循环：0 列表循环：1 随机播放：2
+        var playState = 1;
+        //创建音乐列表
+        function createBox(){
+            var html="";
+            for(var i=0;i<myMusics.length;i++){
+                html+="<li>"+(i+1)+"  <a href='javascript:clickName("+i+");'>"+myMusics[i].title+"</a></li>"
+            }
+            return html
+        }
+        //页面加载
+        $(document).ready(function(){
+            $("#"+"box").append(createBox());
+            playMusic(1);
+
+            //按钮"下一首"单击事件
+            $("#nextMusic").click(function(){
+                playMusic(1,1);
+            });
+            //按钮"上一首"单击事件
+            $("#lastMusic").click(function(){
+                playMusic(2);
+            });
+            ////按钮"播放/暂停"单击事件
+            $("#playMusic").click(function(){
+                if($(this).val()=="播放"){
+                    $(this).val("暂停");
+                    document.getElementById("media").play();
+                }else if($(this).val()=="暂停"){
+                    $(this).val("播放");
+                    document.getElementById("media").pause();
+                }
+            });
+            //静音
+            $('#muted').on('click',function (e) {
+                var media = document.getElementById("media")
+                media.muted=(media.muted ? false : true)
+            });
+            //音量 the range [0, 1]
+            $('#volume').on('click',function (e) {
+                var media = document.getElementById("media")
+                console.log(media.volume)
+            })
+
+            //快进
+            $("#fast").click(function(){
+                var media = document.getElementById("media");
+                media.currentTime+=5;
+            });
+            //快退
+            $("#rewind").click(function(){
+                var media = document.getElementById("media");
+                media.currentTime-=5;
+            });
+            //播放状态
+            $("#playState").change(function(){
+                playState = $(this).val();
+            });
+
+            $("li").mouseover(function(){
+                $(this).css("background-color","#F0F0F0");
+            });
+
+            $("li").mouseout(function(){
+                $(this).css("background-color","#FFFFFF");
+                $($("li")[index]).css("background-color","#F0F0F0");
+            });
+
+
+        });
+
+        //点击名字播放音乐
+        function clickName(i){
+            index=i;
+            playMusic(0);
+        }
+
+        //音乐播放
+        function playMusic(s,n){
+            $("#playMusic").val("暂停");
+            if(s==0){//点击名字播放音乐
+
+            }else if(s==1){//下一首
+                $("#playMusic").val("暂停");
+                if(playState==0){//单曲循环
+                    if(n==0){
+
+                    }else if(n==1){
+                        index++;
+                        if(index>=myMusics.length){
+                            index=0;
+                        }
+                    }
+                }else if(playState==1){//列表循环
+                    index++;
+                    if(index>=myMusics.length){
+                        index=0;
+                    }
+                }else if(playState==2){//随机播放
+                    index = Math.floor(Math.random()*myMusics.length);
+                }
+            }else if(s==2){//上一首
+                index--;
+                if(index<0){
+                    index=myMusics.length-1;
+                }
+            }
+
+
+            //修改audio资源路径
+            $("#media").attr("src",myMusics[index].src);
+            //音乐播放
+            $("#media").play;
+            //显示音乐名称
+            $("#musicTitle").text(myMusics[index].title);
+            $("title").text(myMusics[index].title);
+            //重置li列表背景色
+            $("#box").children("li").css("background-color","#FFFFFF");
+            $("#box").children("li").css("font-weight","normal");
+
+            //修改播放音乐背景色
+            $($("#box").children("li")[index]).css("background-color","#F0F0F0");
+            $($("#box").children("li")[index]).css("font-weight","bold");
+
+            $("#sliding").offset({left:60});
+        }
+        //时间获取
+        function timeupdate(){
+            //获取audio元素
+            var media = document.getElementById("media");
+            //音乐当前位置
+            var curr = Math.floor(media.currentTime);
+            //音乐长度
+            var dur = Math.floor(media.duration);
+            $("#totalTime").text("时长："+formatTime(dur));
+            $("#currTime").text("当前："+formatTime(curr));
+        }
+        //音乐计时格式
+        function formatTime(time){
+
+            var h=0,i=0,s=parseInt(time);
+            if(s>60){
+                i=parseInt(s/60);
+                s=parseInt(s%60);
+                if(i > 60) {
+                    h=parseInt(i/60);
+                    i = parseInt(i%60);
+                }
+            }
+            var zero=function(v){
+                return (v>>0)<10?"0"+v:v;
+            };
+            return (zero(h)+":"+zero(i)+":"+zero(s));
+        };
+    </script>
+</head>
+
+<body>
+
+<audio id="media" src="" autoplay="autoplay" onended="playMusic(1,0)" ontimeupdate="timeupdate()" ></audio>
+
+<div style="float:left;margin-left:50px;width:450px;height:200px;">
+    <p id="musicTitle"></p>
+    <p id="currTime" >当前：00:00:00</p>
+    <p id="totalTime" >时长：00:00:00</p>
+
+    <input id="lastMusic" type="button" value="上一首" />
+    <input id="rewind" type="button" value="<<" />
+    <input id="playMusic" type="button" value="暂停" />
+    <input id="fast" type="button" value=">>" />
+    <input id="nextMusic" type="button" value="下一首"  />
+
+    <input id="muted" type="button" value="toggle 静音" />
+
+
+    <input id="volume" type="button" value="音量" />
+    <select id="playState">
+        <option value="0">单曲循环</option>
+        <option value="1" selected>列表循环</option>
+        <option value="2">随机播放</option>
+    </select>
+    <ul id="box" style="border:1px solid black;padding:0px;height:300px;width:300px;overflow-y:auto;"></ul>
+</div>
+
+</body>
+</html>
