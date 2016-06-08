@@ -135,9 +135,9 @@ function error(){
 function dealWith(userInfo){
     console.log(userInfo.status);
     if(userInfo.status==0){
-        var str1='<p>抱歉,没有';
-        str1+=userInfo.name+'的信息</p>';
-        document.getElementById('ct').innerHTML=str1;
+        var str1='抱歉,没有';
+        str1+=userInfo.name+'的信息';
+        document.getElementById('ct').innerText=str1;
     }
     if(userInfo.status==1){
         var str2='<dt>姓名:</dt>';

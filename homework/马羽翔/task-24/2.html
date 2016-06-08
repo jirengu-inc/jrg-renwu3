@@ -59,6 +59,7 @@
         isLocked=false;
     
         btn.addEventListener("click",function(){
+            event.preventDefault();
             if(isLocked==true){
                 return;  
             }

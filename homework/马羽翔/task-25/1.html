@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导航栏</title>
+    <link rel="stylesheet" href="../font-awesome/Font-Awesome-master4.6.3/css/font-awesome.min.css">
+    <style>
+        ul,li {
+            list-style: none;
+            margin:0;
+            padding:0;
+        }
+        a {
+            text-decoration: none;
+        }
+        .nav {
+            position:fixed;
+            top:10px;
+            left: 10px;
+            background-color: #e60e0e;
+        }
+        .nav > .item {
+            position:relative;
+            border-bottom: 1px solid red;
+            width:160px;
+            height:30px;
+            line-height:30px;
+        }
+        .nav > .item > a {
+            display: block;
+            margin:0 16px;
+            color:#fff;
+            font-size: 14px;
+        }
+        .nav > .item > .sec-nav {
+            position:absolute;
+            top:0;
+            left:100%;
+            margin-right:-6px;
+            border:1px solid #ccc;
+            width:230px;
+            background-color: #fff;
+            display: none;
+        }
+        .nav > .item > .sec-nav:after {
+            content:"";
+            display: block;
+            clear:both;
+        }
+        .nav .sec-nav > li {
+            float:left;
+            width:50%;
+            height:24px;
+            line-height:24px;
+            text-align: center;
+        }
+        .nav .sec-nav a {
+            display: block;
+            color:#333;
+            font-size:14px;
+        }        
+    </style>
+</head>
+<body>
+<ul class="nav">
+    <li class="item">
+        <a href="#">珠宝玉器</a>
+        <ul class="sec-nav">
+            <li><a href="#">黄金</a></li>
+            <li><a href="#">钻石</a></li>
+            <li><a href="#">翡翠</a></li>
+            <li><a href="#">珍珠</a></li>
+            <li><a href="#">黄金</a></li>
+            <li><a href="#">钻石</a></li>
+            <li><a href="#">翡翠</a></li>
+            <li><a href="#">珍珠</a></li>
+        </ul>
+    </li>
+    <li class="item">
+        <a href="#">珠宝玉器</a>
+        <ul class="sec-nav">
+            <li><a href="#">黄金</a></li>
+            <li><a href="#">钻石</a></li>
+            <li><a href="#">翡翠</a></li>
+            <li><a href="#">珍珠</a></li> 
+        </ul>
+    </li>
+    <li class="item">
+        <a href="#">珠宝玉器</a>
+        <ul class="sec-nav">
+            <li><a href="#">翡翠</a></li>
+            <li><a href="#">珍珠</a></li>
+            <li><a href="#">黄金</a></li>
+            <li><a href="#">钻石</a></li>
+            <li><a href="#">翡翠</a></li>
+            <li><a href="#">珍珠</a></li>
+        </ul>   
+    </li>
+    <li class="item">
+        <a href="#">珠宝玉器</a>
+        <ul class="sec-nav">
+            <li><a href="#">翡翠</a></li>
+            <li><a href="#">珍珠</a></li>
+        </ul>
+    </li>
+    <li class="item">
+        <a href="#">珠宝玉器</a>
+        <ul class="sec-nav">
+            <li><a href="#">黄金</a></li>
+            <li><a href="#">钻石</a></li>
+            <li><a href="#">翡翠</a></li>
+            <li><a href="#">珍珠</a></li>
+            <li><a href="#">黄金</a></li>
+            <li><a href="#">钻石</a></li>
+            <li><a href="#">翡翠</a></li>
+            <li><a href="#">珍珠</a></li>
+        </ul>
+    </li>
+</ul>
+    <script src="../jquery1.12.4/jquery-1.12.4.min.js"></script>
+    <script>
+        var $item=$(".item"),
+            $secNav=$(".sec-nav");
+        $item.on('mouseenter',function(){
+            $(this).find('.sec-nav').show();
+        });
+        $item.on('mouseleave',function(){
+            $(this).find('.sec-nav').hide();
+        });
+    </script>   
+</body>
+</html>
