@@ -16,7 +16,7 @@ var ct=document.querySelector(".ct"),
     imgPreview=document.querySelector(".img-preview");
 ct.addEventListener("mouseover",function(e){
 	if(e.target.tagName.toLowerCase()==="li"){
-		while(imgPreview.hasChildNodes()){
+		if(imgPreview.hasChildNodes()){
         	imgPreview.removeChild(imgPreview.firstChild);
     	} 
 		var img=document.createElement("img");
@@ -25,7 +25,7 @@ ct.addEventListener("mouseover",function(e){
 	}
 },false)
 ct.addEventListener("mouseout",function(){
-		while(imgPreview.hasChildNodes()){
+		if(imgPreview.hasChildNodes()){
         	imgPreview.removeChild(imgPreview.firstChild);
 	}
 },false) 	

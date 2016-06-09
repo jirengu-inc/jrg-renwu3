@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .slider-wrap{
+            margin-top: 43px;
+            line-height: 20px;
+            height: 20px;
+            width: 200px;
+            float: left;
+            margin-left: 25px;
+            background: pink;
+        }
+        .slider{
+            width: 100%;
+            height: 4px;
+            border-radius: 20px;
+            margin-top: 6px;
+            position: relative;
+            border: none;
+            background: black;
+        }
+        .slider-range{
+            background-color: #fff;
+            height: 4px;
+            border-radius: 5px;
+            font-size: 1px;
+            line-height: 4px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .slider-handle{
+            /*margin: -4px 0 0 -7px;*/
+            position: absolute;
+            left: 0%;
+            top: 0;
+            margin: -4px 0 0 0px;
+            width: 13px;
+            height: 13px;
+            outline: none;
+            background: black;
+            border-radius: 50%;
+            transform: translate(-50%,0);
+        }
+        .rightTip {
+            position: absolute;
+            border: 1px solid;
+            width: 25px;
+            padding: 1px;
+            left: 75%;
+            top: -22px;
+            border-radius: 9px 9px 9px 0;
+            font-size: 13px;
+            background: pink;
+            color: #fff;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="slider-wrap">
+    <div class="slider">
+        <div class="slider-range">
+        </div>
+        <a href="javascript:void(0)" class="slider-handle" draggable="true">
+            <spa class="rightTip">1</spa>
+        </a>
+    </div>
+</div>
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<!--<script src="./js/zxx.drag.1.0.js"></script>-->
+<script>
+
+
+
+    //startDrag($('.slider-handle').get(0),$('.slider-wrap').get(0))
+    (function($){
+        var defaultOptions={
+            maxValue:1,//最大值
+            defaultValue:0.5,//默认值
+            lastCallBack:null,//鼠标松开是调用
+            moveCallback:null,//鼠标移动中
+            direction:'x',//方向   x y all
+            unit:0.1,//进度单位
+            width:200
+        }
+        $.fn.slider=function (options) {
+            $.extend(defaultOptions, options);//copy至defaultOptions
+            this.each(function() {
+                var handleBtn = $(this);
+                var utils={
+                    currentX: 0,
+                    currentY: 0,
+                    currentValue:1,//移动步长个数
+                    previousValue: 0,
+                    scalePerStep: 20,
+                    stepSize:10,
+                    clickedOnCursor: false,
+                    init:function () {
+                        this.stepSize = options.maxValue / options.unit;//最大值中包含步长的总个数
+                        this.scalePerStep = options.width / this.stepSize;
+                        this.currentX = $(handleBtn).offset().left+ ($(handleBtn).width())*0.5;
+                        this.currentY = $(handleBtn).offset().top;
+                        this.setValue(options.defaultValue/options.unit)
+                        return this;
+                    },
+                    bindEvent:function () {
+                        $(document).mouseup(function() {//鼠标按键被松开
+                            if (utils.clickedOnCursor) {
+                                defaultOptions.lastCallBack && defaultOptions.lastCallBack.call(this, utils.currentValue * options.unit,handleBtn);
+                                utils.clickedOnCursor=false
+                            }
+                        }).mousemove(function(e) {//鼠标被移动
+                            e.preventDefault();
+                            e.stopPropagation();
+                            utils.handle(e);
+                        });
+                        handleBtn.mousedown(function(e) {// 鼠标按钮被按下
+                            e.preventDefault();
+                            utils.clickedOnCursor = true;
+                        });
+                        return this;
+                    },
+                    handle: function(e) {
+                        // console.log(e)
+                        if (utils.clickedOnCursor) {
+                            if(e.pageX < this.currentX){
+                                return ;
+                            }
+                            var pos = [];
+                            pos[0] = e.pageX - this.currentX;
+                            //在宽度为options.width包含stepSize个步长，移动pos[0]相当于几个步长
+                            var curStep = pos[0] * this.stepSize / options.width //Math.floor();
+                            //拖动比例过小时区整数1
+                            //this.currentValue = curStep <= 1 ? 1 : curStep;
+                            //拖动超出范围，取最大步长个数
+                            this.currentValue = (curStep >= this.stepSize ? this.stepSize: curStep);
+                            //if (this.previousValue != this.currentValue) {
+                                this.setValue(this.currentValue);
+                              //  this.previousValue = this.currentValue;
+                            //}
+                        }
+                    },
+                    setValue: function(currentValue) {
+                        options.moveCallback && options.moveCallback.call(this, currentValue * options.unit,handleBtn);
+                        // true=right; false=left
+                        //var newLeftPos =  currentValue > this.previousValue ?  currentValue * utils.scalePerStep :
+                         //var newLeftPos = options.width - Math.floor(currentValue * utils.scalePerStep);
+                        $(handleBtn).css({
+                            'left':  (currentValue * utils.scalePerStep)  + 'px'
+                        });
+                        utils.isCalled = false;
+                    }
+                }
+                utils.init().bindEvent();
+            });
+        }
+    })(jQuery)
+
+        $('.slider-handle').slider({
+            maxValue:1,//最大值
+            defaultValue:0.5,//默认值
+            direction:'x',//方向   x y all
+            unit:0.1,//进度单位
+            width:200,
+            moveCallback:function (pos,target) {
+                $('.slider-range').width(pos*100+'%')
+                $('.rightTip').css('display','block');
+                $('.rightTip').text(pos)
+            },
+            lastCallBack:function (value,target) {
+                $('.rightTip').css('display','none');
+                console.log(value)
+            }
+        });
+
+
+
+    //(function () {
+        function Move($target) {
+            this.target=$target;
+            this.flag=false;
+            this.currentX = $target.offset().left;
+            this.currentY = $target.offset().top;
+            this.eventBind()
+        }
+        Move.prototype.eventBind=function () {
+            var that = this;
+            //是移动对象  鼠标按钮被按下
+            this.target.on('mousedown',function () {
+                that.flag = true;
+            });
+
+
+            //鼠标按键被松开
+            $(document).on('mouseup', function(){
+                that.flag = false;
+//                this.left = getCss(target, "left");
+//                this.top = getCss(target, "top");
+
+            });
+
+            $(document).on('mousemove' , function(event){
+                var e = event ? event: window.event;
+                if(that.flag){
+                    var nowX = e.clientX, nowY = e.clientY;
+                    var disX = nowX - that.currentX, disY = nowY - that.currentY;
+                    that.target.css({'left': disX})
+//                    this.target[0].style.left = parseInt(this.left) + disX + "px";
+//                    this.target[0].style.top = parseInt(this.top) + disY + "px";
+                }
+
+                if (typeof callback == "function") {
+                    callback(parseInt(params.left) + disX, parseInt(params.top) + disY);
+                }
+            });
+        }
+    //}())
+
+    var target  = $('.slider-handle');
+   // new Move(target)
+</script>
+</body>
+</html>

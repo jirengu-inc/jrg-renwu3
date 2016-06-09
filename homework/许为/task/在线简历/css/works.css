@@ -1,0 +1,67 @@
+	.works{
+		background-color: rgba(128, 128, 128, 0.2);
+		padding-top: 8px;
+	}
+	.wrap-works{
+		width: 1300px;
+		margin: 0 auto;
+	}
+	.wrap-works:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.wrap-works h3{
+		font-size: 55px;
+		font-weight: bold;
+		margin:25px auto;
+		width: 113px;
+	}
+	.wrap-works li{
+		list-style: none;
+		float: left;
+		margin-left: 85px;
+		margin-bottom: 65px;
+		position: relative;
+		width: 300px;
+		height: 300px;
+		cursor: pointer;
+		opacity: 0;
+	}
+	.wrap-works .li1{
+		background: url(../../img/waterFull.gif) 0 0 no-repeat;
+		background-size: 300px 300px;
+	}
+	.wrap-works .li2{
+		background: url(../../img/lunbo.gif) 0 0 no-repeat;
+		background-size: 300px 300px;
+	}
+	.wrap-works .li3{
+		background: url(../../img/Tabqiehuan.gif) 0 0 no-repeat;
+		background-size: 300px 300px;
+	}
+	.wrap-works .describle{
+		font-weight: bold;
+		font-size: 34px;
+		margin:0;
+		width: 300px;
+		height: 300px;
+		text-align: center;
+		line-height: 300px;
+		color: white;
+		opacity: 0;
+	}
+	.wrap-works .describle:hover{
+		background-color:rgba(128, 128, 128, 0.66);
+		opacity: 1;
+	}
+	.wrap-works .moreworks{
+		color: black;
+		position: relative;
+		top: 312px;
+		right: 62px;
+		cursor: pointer;
+	}
+	.wrap-works .moreworks:hover{
+		font-weight: bold;
+	}

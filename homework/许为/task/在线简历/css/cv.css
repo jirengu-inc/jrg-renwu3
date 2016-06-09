@@ -1,0 +1,90 @@
+	.cv{
+		padding-top: 30px;
+	}
+	.wrap-cv{
+		width: 1300px;
+		margin: 0 auto;
+		position: relative;
+	}
+	.wrap-cv h3{
+		font-size: 55px;
+		margin: 0 auto;
+		width: 113px;
+	}
+	.personal-information{
+		margin-left: 145px;
+		width: 400px;
+	}
+	.personal-information p{
+		width: 382px;
+		background: gray;
+		padding: 10px;
+		border-radius: 5px;
+	}
+	.personal-information ul{
+		padding-left: 0;
+	}
+	.personal-information li{
+		list-style: none;
+	}
+	.work-experience{
+		margin-left: 145px;
+		width: 400px;
+	}
+	.work-experience>p{
+		width: 382px;
+		background: gray;
+		padding: 10px;
+		border-radius: 5px;
+	}
+	.experience1{
+		margin-top: 10px;
+	}
+	.experience1 .place{
+		font-weight: bold;
+		line-height: 0px;
+	}
+	.experience2{
+		margin-top: 43px;
+	}
+	.experience2 .place{
+		font-weight: bold;
+		line-height: 0px;
+	}
+	.ability{
+		width: 400px;
+		position: absolute;
+		top: 8%;
+		left: 55%;
+	}
+	.ability p{
+		width: 382px;
+		background: gray;
+		padding: 10px;
+		border-radius: 5px;
+	}
+	.ability ul{
+		padding-left: 0;
+	}
+	.ability li{
+		list-style: none;
+	}
+	.ability li span{
+		font-weight: bold;
+	}
+	.download-cv{
+		position: absolute;
+		top: 49%;
+		left: 55%;
+		width: 400px;
+		background-color: gray;
+		padding:10px;
+		border-radius: 5px;
+	}
+	.download-cv:hover{
+		font-weight: bold;
+	}
+	.download-cv a{
+		text-decoration: none;
+		color: black;
+	}

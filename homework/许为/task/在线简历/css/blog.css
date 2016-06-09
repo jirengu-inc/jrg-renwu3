@@ -1,0 +1,19 @@
+	.blog{
+		padding-top: 30px;
+	}
+	.wrap-blog{
+		text-align: center;
+		width: 1300px;
+		margin-top: 0;
+		margin-left: auto;
+		margin-right: auto;
+		margin-bottom: 50px;
+	}
+	.wrap-blog a{
+		text-decoration: none;
+		color: black;
+		font-size: 33px;
+	}
+	.wrap-blog a:hover{
+		color: red;
+	}

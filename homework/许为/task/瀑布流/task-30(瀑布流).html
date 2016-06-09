@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level30</title>
+<style type="text/css">
+	.item{
+		position: absolute;
+		width: 300px;
+		margin:10px 0 0 10px;
+		transition: all 1s;
+	}
+	.h1{
+		height: 250px;
+		background-color: blue;
+	}
+	.h2{
+		height: 450px;
+		background-color: yellow;
+	}
+	.h3{
+		height: 320px;
+		background-color: red;
+	}
+</style>
+</head>
+<body>
+	<div class="item h2">1</div>
+	<div class="item h1">2</div>
+	<div class="item h3">3</div>
+	<div class="item h3">4</div>
+	<div class="item h1">5</div>
+	<div class="item h2">6</div>
+	<div class="item h3">7</div>
+	<div class="item h1">8</div>
+	<div class="item h2">9</div>
+	<div class="item h3">10</div>
+	<div class="item h2">12</div>
+	<div class="item h2">13</div>
+	<div class="item h1">14</div>
+	<div class="item h3">15</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+function fallModel(){
+	var elWidth=$(".item").eq(0).outerWidth(true),//单个标签宽度
+		containWidth=$(window).width(),    //容器宽度
+		elNum=parseInt(containWidth/elWidth),
+		elArr=[];
+	for(var i=0;i<elNum;i++){   //定义一个数组，元素个数等于容器摆放标签的列数
+		elArr.push(0);
+	}
+	$(".item").each(function(){
+		var $item=$(this);
+			 idx=0,
+			 minHeight=elArr[0];
+		for(var i=0;i<elNum;i++){  //判断数组中元素的最小值
+			if(elArr[i]<minHeight){
+				idx=i;
+				minHeight=elArr[i];
+			}
+		}
+		elArr[idx]=$item.outerHeight(true)+elArr[idx];  //重新计算高度
+		$item.css({
+			left:idx*elWidth,
+			top:minHeight
+		});
+	});
+}
+fallModel();
+$(window).on("resize",function(){  //监听调整浏览器窗口大小的事件
+	fallModel();
+})
+</script>
+</body>
+</html>

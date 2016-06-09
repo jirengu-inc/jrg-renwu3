@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>代理</title>
+    <style>
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        body {
+            margin:0;
+            padding:0;
+        }
+        ul,li {
+            padding:0;
+            margin:0;
+            list-style:none;
+        }
+        a {
+            text-decoration: none;
+            color:#e70303;
+        }
+        .list {
+            position: relative;
+            height:450px;
+            margin-bottom:30px;
+        }
+        .layout {
+            margin:0 auto;
+            width:700px;
+            height:auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        .clearfix:after {
+            content:"";
+            display:block;
+            clear:both;
+        }
+        .panel {
+            border:1px solid #ccc;
+            border-radius:5px;
+            width:700px;
+            height:auto;
+            text-align: center;
+        }
+        .panel .product-ct {
+            position: relative;
+            float: left;
+            width:33.33%;
+        }
+        .panel .cover {
+            position:absolute;
+            top:0;
+            right:0;
+            bottom:0;
+            left:0;
+            background-color: #fff;
+            opacity:0.4;
+            display: none;
+        }
+        .panel .product-ct .hover {
+            display: block;
+        } 
+        .panel .product {
+            display:block;
+            border-radius: 5px;
+            background-color: #fafaf9;
+            height:auto;
+        } 
+        .panel .dec {
+            margin: 0;
+            height:30px;
+            color:#333;
+            font-size:14px;
+        }
+        .panel .price {
+            margin: 0;
+            height:30px;
+            line-height: 30px;
+            color: #f20707;
+            font-size:14px;
+        }
+        .product:after {
+            content: "";
+            border-bottom:1px solid #e70303;
+            display: block;
+            height:0;
+            width:150px;
+            margin:0 auto 20px auto;
+        }
+        .btn {
+            padding: 0 8px;
+            width:70px;
+            height:40px;
+            line-height: 40px;
+            background-color: #fff;
+            border:1px solid #e70303;
+            text-align: center;
+            display:block;
+        }
+        .product-ct .btn {
+            position:absolute;
+            top:50%;
+            left:50%;
+            margin-top:-20px;
+            margin-left: -35px;
+            display: none;
+        }
+        .list > .btn {
+            margin:20px auto;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="list layout">
+    <h2>珠宝首饰</h2>
+    <ul class="panel clearfix">
+        <li class="product-ct">
+            <div class="cover"></div>
+            <a href="#" class="btn">立即抢购</a>
+            <a class="product" href="#">
+                <img src="2-1.jpg" alt="product">
+                <p class="dec">藏美千足银戒指</p>
+                <p class="price">￥1700.00</p>               
+            </a>
+        </li>
+        <li class="product-ct">
+            <div class="cover"></div>
+            <a href="#" class="btn">立即抢购</a>
+            <a class="product" href="#">
+                <img src="2-1.jpg" alt="product">
+                <p class="dec">藏美千足银戒指</p>
+                <p class="price">￥1700.00</p>               
+            </a>
+        </li>
+        <li class="product-ct">
+            <div class="cover"></div>
+            <a href="#" class="btn">立即抢购</a>
+            <a class="product" href="#">
+                <img src="2-1.jpg" alt="product">
+                <p class="dec">藏美千足银戒指</p>
+                <p class="price">￥1700.00</p>               
+            </a>
+        </li>
+        <li class="product-ct">
+            <div class="cover"></div>
+            <a href="#" class="btn">立即抢购</a>
+            <a class="product" href="#">
+                <img src="2-1.jpg" alt="product">
+                <p class="dec">藏美千足银戒指</p>
+                <p class="price">￥1700.00</p>               
+            </a>
+        </li>
+        <li class="product-ct">
+            <div class="cover"></div>
+            <a href="#" class="btn">立即抢购</a>
+            <a class="product" href="#">
+                <img src="2-1.jpg" alt="product">
+                <p class="dec">藏美千足银戒指</p>
+                <p class="price">￥1700.00</p>               
+            </a>
+        </li>
+        <li class="product-ct">
+            <div class="cover"></div>
+            <a href="#" class="btn">立即抢购</a>
+            <a class="product" href="#">
+                <img src="2-1.jpg" alt="product">
+                <p class="dec">藏美千足银戒指</p>
+                <p class="price">￥1700.00</p>               
+            </a>
+        </li>
+    </ul>
+    <a href="#" class="btn">更多宝贝</a>   
+</div>
+   
+<script src="../jquery1.12.4/jquery-1.12.4.min.js"></script>
+<script>
+var products = [
+    {
+        img: '3-1.jpg',
+        name: '珂兰 黄金手 猴哥款',
+        price: '￥405.00'
+    },
+    {
+        img: '3-1.jpg',
+        name: '珂兰 黄金转运珠 猴哥款',
+        price: '￥100.00'
+    },
+    {
+        img: '3-1.jpg',
+        name: '珂兰 黄金手链 3D猴哥款',
+        price: '￥45.00'
+    }
+];
+    
+function addProductHtml(products){
+    var html="";
+    html+="<li class='product-ct'>";
+    html+="    <div class='cover'></div>";
+    html+="    <a href='#' class='btn'>立即抢购</a>";
+    html+="    <a class='product' href='#'>";
+    html+="         <img src="+products.img+" alt='product'>";
+    html+="         <p class='dec'>"+products.name+"</p>";
+    html+="         <p class='price'>"+products.price+"</p>";               
+    html+="    </a>";
+    html+="</li>";
+    return html;
+}
+    
+var $panel=$(".panel"),
+    $button=$(".list > .btn");
+    
+    $button.on("click",function(e){
+        e.preventDefault();
+        $.each(products,function(index,ele){
+            $(".panel").append(addProductHtml(ele));            
+        })
+    });
+    
+    $panel.delegate(".product-ct","mouseenter mouseleave",function(){
+        $(this).find('.cover').toggleClass("hover");
+        $(this).find('.btn').toggleClass("hover");
+    });
+</script>    
+</body>
+</html>

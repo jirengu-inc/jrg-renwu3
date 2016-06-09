@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>level28</title>
+<style type="text/css">
+	body{
+		margin: 0;
+		padding: 10px;
+	}
+	div{
+		margin: 0;
+		padding: 0;
+	}
+	#main:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.total{
+		margin: 0 auto;
+		width: 900px;
+	}
+	.total:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	#header{
+		width: 900px;
+		height: 50px;
+		background-color: red;
+	}
+	.wrap{
+		margin-top: 20px;
+	}
+	.navigation{
+		width: 898px;
+		height: 30px;
+		background-color: yellow;
+		border:1px solid black;
+		float: left
+	}
+	.side1,.side2,.side3,.side4{
+		width: 200px;
+		height: 400px;
+		background-color: pink;
+		float: left;
+	}
+	.content1,.content2,.content3,.content4{
+		width:650px;
+		height: 400px;
+		background-color: blue;
+		float: left;
+		margin-left: 50px;
+	}
+	#footer{
+		width: 900px;
+		height: 50px;
+		background-color: rgba(0, 0, 0, 0.25);
+	}
+</style>
+</head>
+<body>
+	<div class="total">
+		<div id="header">header</div>
+		<div id="main">
+		<div class="wrap">
+			<div class="navigation">nav1</div>
+			<div class="side1">aside1</div>
+			<div class="content1">main1</div>
+		</div>
+		<div class="wrap">
+			<div class="navigation">nav2</div>
+			<div class="side2">aside2</div>
+			<div class="content2">main2</div>
+		</div>
+		<div class="wrap">
+			<div class="navigation">nav3</div>
+			<div class="side3">aside3</div>
+			<div class="content3">main3</div>
+		</div>
+		<div class="wrap">
+			<div class="navigation">nav4</div>
+			<div class="side4">aside4</div>
+			<div class="content4">main4</div>
+		</div>
+		</div>
+		<div id="footer">footer</div>
+	</div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script type="text/javascript">
+$(".navigation").each(function(){
+	var $navigation=$(this),
+		width=$navigation.width(),
+		height=$navigation.height(),
+		offsetTop1=$navigation.offset().top,
+		offsetLeft=$navigation.offset().left;
+		$cloneNav=$navigation.clone()
+							  .css("opacity",0)
+							  .insertBefore($navigation)
+							  .hide()
+	$(window).on("scroll",function(){
+		var scrollTop=$(this).scrollTop();
+		if (scrollTop>=offsetTop1) {
+			setChange();
+		}else{
+			cancelChange();
+		}
+	});
+	function setChange(){
+		$navigation.css({
+			"position":"fixed",
+			"width":width,
+			"height":height,
+			"left":offsetLeft,
+			"top":0
+		});
+		$cloneNav.show();
+	}
+	function cancelChange(){
+		$navigation.removeAttr('style');
+		$cloneNav.hide();
+	}
+
+});
+</script>
+</body>
+</html>

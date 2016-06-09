@@ -1,0 +1,17 @@
+.wrap-contact{
+	background: rgba(138, 5, 5, 0.74);
+}
+.contact{
+	margin: 0px auto;
+	padding:57px 0;
+	text-align: center;
+}
+.p-contact-title{
+	color: white;
+	font-size: 28px;
+}
+.p-contact{
+	margin-top: 20px;
+	color: white;
+	font-size: 20px;
+}

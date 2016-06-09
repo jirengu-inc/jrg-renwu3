@@ -1,0 +1,160 @@
+.contact{
+		background-color: rgba(128, 128, 128, 0.2);
+		padding-top: 10px;
+		padding-bottom: 80px;
+		position: relative;
+	}
+	.wrap-contact{
+		width: 1300px;
+		margin: 0 auto;
+	}
+	.wrap-contact h3{
+		font-size: 55px;
+		margin: 25px auto;
+		width: 233px;
+	}
+	.contact form{
+		width:1200px;
+		margin-right: 0;
+	}
+	form:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.wrap-input{
+		float: left;
+	}
+	.icon-user{
+		margin-left: 149px;
+		font-size: 27px;
+	}
+	.username{
+		display: block;
+		margin-left: 184px;
+		margin-top: -30px;
+		width: 283px;
+		height: 28px;
+	}
+	.wrap-input .icon-envelope{
+		position: relative;
+		left: 146px;
+		top: 29px;
+		font-size: 27px;
+	}
+	.email{
+		display: block;
+		width: 283px;
+		height: 28px;
+		margin-left: 184px;
+	}
+	.message{
+		display: block;
+		float: left;
+		width: 290px;
+		height: 259px;
+		margin-left: 37px;
+	}
+	.sendmessage{
+		position: relative;
+		top: 276px;
+		right: 131px;
+		padding: 10px;
+		background-color: rgba(128, 128, 128, 0.78);
+		cursor: pointer;
+	}
+	.sendmessage:hover{
+		background-color: gray;
+	}
+	.phone{
+		width: 300px;
+		background-color: gray;
+		padding-left: 10px;
+		position: absolute;
+		top: 26%;
+		left: 66%;
+	}
+	.phone p{
+		display: inline-block;
+	}
+	.myemail{
+		width: 300px;
+		background-color: gray;
+		padding-left: 10px;
+		position: absolute;
+		top: 46%;
+		left: 66%;
+	}
+	.myemail p{
+		display: inline-block;
+	}
+	.weixin	{
+		width: 300px;
+		background-color: gray;
+		padding-left: 10px;
+		position: absolute;
+		top: 68%;
+		left: 66%;
+	}
+	.weixin p{
+		display: inline-block;
+		cursor: pointer;
+	}
+	.weixin p:hover{
+		font-weight: bold;
+	}
+	.wrap-hint{
+		position: relative;
+		display: none;
+	}
+	.email-hint{
+		border:1px solid black;
+		width: 200px;
+		padding: 5px;
+		margin-left: 190px;
+		margin-top: 8px;
+		background-color: white;
+	}
+	.caret1{
+		position: absolute;
+		top: -19px;
+		width: 0px;
+		border-top:10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 10px solid black;
+		border-left: 10px solid transparent;
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 197px;
+	}
+	.caret2{
+		position: absolute;
+		top: -18px;
+		width: 0px;
+		border-top:10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 10px solid white;
+		border-left: 10px solid transparent;
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 197px;
+	}
+	.weixin-code{
+		top:12%;
+		left: 1%;
+		border:1px solid rgba(128, 128, 128, 0.84);
+		padding: 30px 275px;
+		position: absolute;
+		background-color: rgba(128, 128, 128, 0.84);
+		display: none;
+		width: 63px;
+		height: 320px;
+	}
+	.weixin-code p{
+		position: absolute;
+		top: -4%;
+		left: 97%;
+		font-size: 23px;
+		font-weight: bold;
+		cursor: pointer;
+	}

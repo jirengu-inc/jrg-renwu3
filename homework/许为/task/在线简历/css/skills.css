@@ -1,0 +1,67 @@
+.wrap-skills{
+		width: 1300px;
+		margin: 100px auto;
+	}
+	.wrap-skills h3{
+		font-size: 55px;
+		font-weight: bold;
+		margin:25px auto;
+		width: 113px;
+	}
+	.wrap-skills .htcs{
+		border-top: 9px solid rgba(0, 0, 0, 0.07);
+		border-left: 9px solid rgba(0, 0, 0, 0.75);
+		border-right: 9px solid rgba(0, 0, 0, 0.75);
+		border-bottom: 9px solid rgba(0, 0, 0, 0.75);
+		border-radius: 50%;
+		width: 115px;
+		padding: 60px;
+		font-size: 100px;
+		float: left;
+		margin-left: 173px;
+		opacity: 0;
+	}
+	.wrap-skills .js{
+		border-top: 9px solid rgba(0, 0, 0, 0.07);
+		border-left: 9px solid rgba(0, 0, 0, 0.75);
+		border-right: 9px solid rgba(0, 0, 0, 0.07);
+		border-bottom: 9px solid rgba(0, 0, 0, 0.75);
+		border-radius: 50%;
+		width: 115px;
+		padding: 60px;
+		font-size: 100px;
+		float: left;
+		margin-left: 100px;
+		opacity: 0;
+	}
+	.wrap-skills .jq{
+		border-top: 9px solid rgba(0, 0, 0, 0.07);
+		border-left: 9px solid rgba(0, 0, 0, 0.75);
+		border-right: 9px solid rgba(0, 0, 0, 0.07);
+		border-bottom: 9px solid rgba(0, 0, 0, 0.75);
+		border-radius: 50%;
+		width: 115px;
+		padding: 60px;
+		font-size: 100px;
+		float: left;
+		margin-left: 100px;
+		opacity: 0;
+	}
+	.wrap-skills .htcs-li{
+		display: inline-block;
+		margin-left: 198px;
+		font-size: 31px;
+		font-weight: bold;
+	}
+	.wrap-skills .js-li{
+		display: inline-block;
+		margin-left: 215px;
+		font-size: 31px;
+		font-weight: bold;
+	}
+	.wrap-skills .jq-li{
+		display: inline-block;
+		margin-left: 224px;
+		font-size: 31px;
+		font-weight: bold;
+	}

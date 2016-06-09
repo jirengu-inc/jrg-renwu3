@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	html,body,ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+		color: black;
+	}
+	.container{
+		font-size: 14px;
+		height: 40px;
+		line-height: 40px;
+		background: #ccc;
+		width: 80%;
+		margin: 10px auto;
+	}
+	.nav .head{
+		padding: 0 10px;
+		float: left;
+		line-height: 40px;
+		position: relative;
+	}
+	.child{
+		position: absolute;
+		border: 1px solid #ccc;
+		left: 0;
+		top: 100%;
+		display: none;
+	}
+	.head:hover{
+		background: #5f5f5c;
+	}
+	.head:hover ul{
+		display: block;
+	}
+	.child>li:hover{
+		background: #ccc;
+	}
+</style>
+</head>
+<body>
+    <div class="container">
+	    <ul class="nav">
+	    	<li class="head front">
+	    		<a href="#">前端</a>
+				<ul class="child">
+					<li><a href="#">JavaScript</a></li>
+					<li><a href="#">CSS</a></li>
+					<li><a href="#">HTML</a></li>
+				</ul>
+	    	</li>
+	    	<li class="head behind">
+	    		<a href="#">服务端</a>
+	    		<ul class="child">
+	    			<li><a href="#">Node</a></li>
+	    			<li><a href="#">PHP</a></li>
+	    			<li><a href="#">Java</a></li>
+	    		</ul>
+	    	</li>
+	    	<li class="head toolf">
+	    		<a href="#">前端工具</a>
+				<ul class="child">
+					<li><a href="#">Sublime</a></li>
+					<li><a href="#">Webstorm</a></li>
+					<li><a href="#">Git</a></li>
+				</ul>
+	    	</li>
+	    	<li class="head"><a href="#">HTML</a></li>
+	    	<li class="head"><a href="#">NODE</a></li>
+	    </ul>
+	 </div>
+</body>
+</html>

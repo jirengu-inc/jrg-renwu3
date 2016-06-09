@@ -1,0 +1,19 @@
+#main .wrap-require{
+	background: rgba(138, 5, 5, 0.74);
+}
+h2{
+	color: white;
+	font-size: 65px;
+	padding-top: 57px;
+}
+.require p{
+	color: white;
+	font-size: 24px;
+}
+.require p:first-of-type{
+	padding-top: 10px;
+	padding-bottom: 8px;
+}
+.require p:last-of-type{
+	padding-bottom: 57px;
+}
