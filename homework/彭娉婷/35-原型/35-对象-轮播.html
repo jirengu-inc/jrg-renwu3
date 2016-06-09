@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>创建对象-轮播-改变dom顺序</title>
+  <style type="text/css">
+    body,ul,li{
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+    }
+    a{
+      text-decoration: none;
+    }
+    .carousel{
+      position: relative;
+      width: 310px;
+      height: 206px;
+      overflow: hidden;
+    }
+    .carousel .img-ct{
+      position: absolute;
+    }
+    .carousel .img-ct img{
+      width: 310px;
+      height: 206px;
+    }
+    .clearfix:after{
+      content: ' ';
+      display: block;
+      clear: both;
+    }
+    .carousel .img-ct li{
+      float: left;
+    }
+    .arrow{
+      position: absolute;
+      top:50%;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      margin-top: -15px;
+      text-align: center;
+      background-color: #4E443C;
+      color: white;
+      border-radius: 30px;
+      box-shadow: 0 0 2px #999;
+      opacity: 0.8;
+    }
+    .arrow:hover {
+      opacity: 1;
+    }
+    .pre{
+      left: 10px;
+    }
+    .next{
+      right: 10px;
+    }
+    .bullet{
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .bullet li{
+      width: 16px;
+      height: 4px;
+      display: inline-block;
+      background-color: white;
+      border-radius: 3px;
+    }
+    .bullet .active{
+      background-color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div id="c1" class="carousel">
+    <ul class="img-ct clearfix">
+      <li><a href="#"><img src="./img/carousel/1.jpg"></a></li>
+      <li><a href="#"><img src="./img/carousel/2.png"></a></li>
+      <li><a href="#"><img src="./img/carousel/3.png"></a></li>
+      <li><a href="#"><img src="./img/carousel/4.png"></a></li>
+    </ul>
+
+    <div class="pre arrow"><</div>
+    <div class="next arrow">></div>
+
+    <!-- <ul class="bullet">
+      <li class="active"><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+    </ul> -->
+  </div>
+
+   <div id="c2" class="carousel">
+    <ul class="img-ct clearfix">
+      <li><a href="#"><img src="./img/carousel/1.jpg"></a></li>
+      <li><a href="#"><img src="./img/carousel/2.png"></a></li>
+      <li><a href="#"><img src="./img/carousel/3.png"></a></li>
+      <li><a href="#"><img src="./img/carousel/4.png"></a></li>
+    </ul>
+
+    <div class="pre arrow"><</div>
+    <div class="next arrow">></div>
+
+    <!-- <ul class="bullet">
+      <li class="active"><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+    </ul> -->
+  </div>
+
+
+  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+  <script type="text/javascript">
+   function Carousel($carousel){
+    this.$carousel=$carousel;
+    this.$pre=$carousel.find('.pre');
+    this.$next=$carousel.find('.next');
+
+    var $imgCt=this.$imgCt=$carousel.find('.img-ct');
+    this.width=$imgCt.children().width();
+    this.imgCount=$imgCt.children().size();
+
+    $imgCt.css({
+     width: this.width*this.imgCount,
+     left:0
+   });
+    this.bind();
+  }
+  Carousel.prototype={
+    bind:function(){
+      var self=this;
+      this.$pre.on('click',function(){
+      self.playPre();
+     });
+      this.$next.on('click',function(){
+      self.playNext();
+     });
+  },
+    playNext:function(){
+      var $imgCt=this.$imgCt;
+      $imgCt.animate({
+        left: 0-this.width//左移一张图片，$imgCt.children().first()变为第二张图片，改变了dom顺序
+      }, function() {
+        $imgCt.append($imgCt.children().first());
+        $imgCt.css('left',0);
+
+      });
+    },
+    playPre:function(){
+      this.$imgCt.prepend(this.$imgCt.children().last());
+      this.$imgCt.css('left', 0-this.width);
+      this.$imgCt.animate({'left': 0});
+   }
+   // playPre:function(){//会出现短暂白屏
+   //    var $imgCt=this.$imgCt;
+   //    $imgCt.animate({
+   //      left: 0+this.width
+   //    }, function() {
+   //      $imgCt.prepend($imgCt.children().last());
+   //      $imgCt.css('left',0);
+
+   //    });
+   //  }
+
+
+}
+$('.carousel').each(function(){
+  new Carousel($(this));
+});
+
+
+
+
+ </script>
+
+</body>
+</html>
