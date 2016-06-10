@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>一些小效果</title>
+    <style>
+        a {
+            text-decoration: none;
+            color:#333;
+        }
+        .ct {
+            margin:40px auto;
+            width:300px;
+            height:1200px;
+        }
+        .show-box {
+            border:1px solid #ccc;
+            border-radius: 5px;
+            width:200px;
+            height:140px;
+            margin-bottom: 10px;
+        }
+        .red {
+            background-color: red;
+        }
+        input {
+            display:block;
+            border-radius: 5px;
+            width:200px;
+            margin-bottom: 10px;
+        }
+        select {
+            display: block;
+            width:200px;
+        }
+        p {
+            font-size: 12px;
+            color:#333;
+        }
+        .btn {
+            display: inline-block;
+            width:200px;
+            height:20px;
+            line-height: 20px;
+            border:1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            text-align: center;
+            font-size:12px;
+        }
+        .scroll {
+            position:fixed;
+            bottom:20px;
+            border:1px solid #ccc;
+            width:200px;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<body>
+   <div class="ct">
+       <div class='show-box'></div>
+        <input type="text">
+        <select name="sel" id="">
+            <option value="male">male</option>
+            <option value="female">female</option>
+        </select>
+        <p>you selected male</p>
+        <a href="#" class="btn">可以点</a>
+        <div class='scroll'>
+            <p></p>
+        </div>    
+   </div>
+<script src="../jquery1.12.4/jquery-1.12.4.min.js"></script>
+<script>
+    $('.btn').on('click',function(){
+        $('.btn').css('background-color','red');
+        setTimeout(function(){
+            $('.btn').css('background-color','blue');
+        },1000);
+        setTimeout(function(){
+            $('.btn').css('background-color','white');
+        },2600);
+    });
+    $('.show-box').on('mouseenter mouseleave',function(){
+        $(this).toggleClass('red');
+    });
+    $('input').on('focusin',function(){
+        $(this).css('border-color','blue');
+    });
+    $('input').on('focusout',function(){
+        $(this).css('border-color','#ccc');
+        console.log($(this).val());
+    });
+    $('input').on('keyup',function(){
+        $(this).val($(this).val().toUpperCase());
+    });
+    $('select').on('change',function(){
+       $('.ct > p').text('you selected '+ $(this).val()); 
+    });
+    $(document).on('scroll',function(){
+        $('.scroll > p').text('滚轮滚动距离为：'+$(document).scrollTop());
+    });
+</script>    
+</body>
+</html>
