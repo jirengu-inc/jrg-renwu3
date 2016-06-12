@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fullscree carousel</title>
+	<style type="text/css">
+		html,body,div,li,ul{
+			padding: 0;
+			margin: 0;
+		}
+		html,body,#head,#head .carousel,#head .img-ct,#head .item{
+			height: 100%;
+			width: 100%;
+		}
+		li{
+			list-style: none;
+		}
+		.carousel{
+			position: relative;
+			overflow: hidden;
+		}
+	
+		#head .img-ct{
+			position: absolute;
+		}
+		#head .img-ct:after{
+			content: '';
+			display: table;
+			clear: both;
+		}
+		#head .item{
+			position: relative;
+			float: left;
+	/*		background: url('img/0.jpg');*/
+			background-size: cover;
+			background-position: 0 0;
+			background-repeat: no-repeat;
+		}
+		#head .item h1,#head .item p{
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.txt{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+		}
+
+		.bullet{
+			position: absolute;
+			left: 50%;
+			bottom: 10px;
+			transform: translateX(-50%);
+		}
+		
+		.bullet li{
+			display: inline-block;
+			width: 30px;
+			height: 10px;
+			border-radius: 5px;
+			border: 1px solid;
+			background-color: #555;
+			cursor: pointer;
+		}
+
+		.bullet .active{
+			background-color: #fff;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="head">
+		<div class="carousel">
+			<ul class="img-ct">
+				<li class="item bg" data-img="./img/4.jpg">
+					<div class="txt">
+						<h1>梦中可相逢</h1>
+						<p>花落两不知，人去不再回</p>
+					</div>
+				</li>
+				<li class="item bg" data-img="./img/5.jpg">
+					<div class="txt">
+						<h1>梦中可相逢</h1>
+						<p>花落两不知，人去不再回</p>
+					</div>
+				</li>
+				<li class="item bg" data-img="./img/6.jpg">
+					<div class="txt">
+						<h1>梦中可相逢</h1>
+						<p>花落两不知，人去不再回</p>
+					</div>
+				</li>
+				<li class="item bg" data-img="./img/7.jpg">
+					<div class="txt">
+						<h1>梦中可相逢</h1>
+						<p>花落两不知，人去不再回</p>
+					</div>
+				</li>
+			</ul>
+
+			<ul class="bullet">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	 <script type="text/javascript">
+		var $ct = $('.img-ct'),
+			$items = $ct.children(),
+			$bullet = $('.bullet'),
+			imgCount = $ct.children().size(),
+			imgWidth = $(window).width();
+
+		
+			$ct.prepend($items.last().clone());
+			$ct.append($items.first().clone());
+			$ct.find('.bg').css('width',imgWidth);
+			imgRealCount = $ct.children().size();
+			$ct.css({'width':imgRealCount*imgWidth,'left':0-imgWidth});
+
+			$bullet.find('li').on('click',function(){
+				var idx = $(this).index();
+
+				if(idx>curIdx){
+					playNext(idx-curIdx);
+				}else if(idx<curIdx){
+					playPre(curIdx-idx);
+				};
+			});
+
+
+			var curIdx = 0;
+		    var isAnimate = false;
+
+		    setBg(1);
+		    autoPlay();
+			
+
+			function playNext(idx) {
+				var idx = idx||1;
+				if (isAnimate) {
+					return ;
+				};
+				isAnimate = true;
+				for (var inter = 1; inter <= idx; inter++) {//idx代表轮播跳转的间隔或距离，并不是序号
+					setBg(curIdx+1+inter);
+				};
+				
+
+					$ct.animate({left:'-='+(imgWidth*idx)},function(){
+						curIdx = (curIdx+idx)%imgCount;
+						setBullet(curIdx);
+
+						if(curIdx===0){
+							$ct.css('left',0-imgWidth);
+						};
+						isAnimate=false;
+					});				
+			};
+
+			function autoPlay(){
+				setInterval(function(){
+					playNext();
+				},2000);
+			}
+
+			function playPre(idx) {
+				var idx = idx||1;
+				if (isAnimate) {
+					return ;
+				};
+				isAnimate = true;
+
+				for (var inter = 1; inter <= idx; inter++) {//idx代表轮播跳转的间隔或距离，并不是序号
+					setBg(curIdx+1-inter);
+				};
+				
+
+				$ct.animate({left:'+='+(imgWidth*idx)},function(){
+					curIdx = (imgCount+curIdx-idx)%imgCount;
+					setBullet(curIdx);
+
+					if(curIdx===(imgCount-1)){
+							$ct.css('left',0-imgWidth*imgCount);
+						};
+						isAnimate=false;
+					});				
+			}
+
+			function setBullet(idx){
+				$bullet.find('li').removeClass('active')
+								  .eq(idx).addClass('active');
+			}
+
+
+			
+			function setBg(idx){
+				var idx = idx||0;
+				var $bg = $ct.find('.bg').eq(idx);
+
+				var imgUrl = $bg.attr('data-img');
+
+				if($bg.data('isBgSet')){ return ;};
+
+				$bg.css('background-image','url('+imgUrl+')');
+				$bg.data('isBgSet', true);
+
+			}
+	</script>
+
+</body>
+</html>

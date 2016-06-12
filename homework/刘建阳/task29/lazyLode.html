@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lazyLode</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+		li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		.lazy-load{
+			border: 1px solid;
+			margin: 0 auto;
+			width: 1000px;
+		}
+		.lazy-load:after{
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		.lazy-load li{
+			float: left;
+			margin: 10px 15px;
+		}
+
+		.lazy-load li img{
+			width: 303px;
+			height: 360px;
+		}
+	</style>
+</head>
+<body>
+	<ul class="lazy-load">
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+		<li><a href="#"><img src="img/blank.jpg" data-src="img/8.jpg"></a></li>
+	</ul>
+
+	<script src="http://kejian.jirengu.com/static/js/jquery-1.11.1.min.js"></script>
+
+	<script type="text/javascript">
+		var clock;
+
+		$(window).on('scroll',function() {
+			if(clock){
+				clearTimeout(clock);
+			};
+
+			clock = setTimeout(function(){
+				console.log(1);
+				showImg();
+			}, 500);
+		});
+
+		showImg();
+
+		function showImg(){
+			var $img = $('.lazy-load img');
+			$img.each(function(){
+				var $cur = $(this);
+
+				if ($cur.attr('is-load')) {
+					return ;
+				};
+
+				if(isVisible($cur)){
+					$cur.attr('src',$cur.attr('data-src'));
+					$cur.attr('is-load',true);
+				}else{
+					return ;
+				};
+			});
+		}
+
+		function isVisible($node){
+
+			return ($(window).scrollTop() + $(window).height()) >= $node.offset().top?true:false;
+		}
+	</script>
+</body>
+</html>

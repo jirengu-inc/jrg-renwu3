@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>isVisible</title>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	<style type="text/css">
+		.wrap{
+			height: 1200px;
+			position: relative;
+		}
+		.wrap .visible{
+			height: 20px;
+			width: 80px;
+			position: absolute;
+			top: 70%;
+			background-color: #a47;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="visible">是否可见</div>
+	</div>
+
+	<script type="text/javascript">
+		function isVisible($node){
+			return ($(window).scrollTop() + $(window).height()) >= $node.offset().top?true:false;
+		}
+
+/*		$(window).on('scroll',function(){
+			if(isVisible($('.visible'))){
+				console.log(true);
+			}
+		});*/
+
+		$(window).on('scroll',function(){
+			if($('.visible').data('visi-data')){
+				return;
+			}
+			if(isVisible($('.visible'))){
+				$('.visible').data('visi-data',true);
+				console.log(true);
+			}
+		});
+	</script>
+	
+</body>
+</html>

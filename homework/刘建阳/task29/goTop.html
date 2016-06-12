@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		.wrap{
+			height: 1500px;
+			position: relative;
+		}
+
+		.go-top{
+			display: none;
+			position: fixed;
+			right: 50px;
+			bottom: 50px;
+			width: 100px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			cursor: pointer;
+			color: #b44;
+			background-color: #2a5;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		滚动超过100px时显示回到顶部按钮	
+	</div>
+
+	
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*原始的 jquery 使用方法*/
+		// var $goTop = $('<div class="go-top">回到顶部</div>');
+		// $('body').append($goTop);
+		// $(window).on('scroll',function(){
+		// 	if($(window).scrollTop() > 100){
+		// 		$goTop.css('display','block');
+		// 	}else{
+		// 		$goTop.hide();
+		// 	}
+		// });
+		
+		// $goTop.on('click',function(){
+		// 	$(window).scrollTop(0);
+		// });
+
+		/*简单的包转一下*/
+/*		var goTop = {
+			init: function(){
+				if ($('.go-top').length>0) {
+					return ;
+				};
+
+				var $goTop = $('<div class="go-top">回到顶部</div>');
+				$('body').append($goTop);
+
+				this.$goTop = $goTop;
+				this.bind();
+			},
+			bind: function(){
+				var _self = this;
+
+				$(window).on('scroll',function(){
+					if ($(window).scrollTop() > 100) {
+						_self.$goTop.show();
+					}else{
+						_self.$goTop.hide();
+					};
+				});
+
+				_self.$goTop.on('click',function(){
+					$(window).scrollTop(0);
+				});
+			}
+		};
+*/
+		//goTop.init();
+
+		/*用立即执行函数表达式，来实现封装*/
+		var goTop = (function(){
+			var $goTop = $('<div class="go-top">回到顶部</div>');
+			$('body').append($goTop);
+
+			function init(){
+				$(window).on('scroll',function(){
+					if($('body').scrollTop() > 100){
+						$goTop.show();
+					}else{
+						$goTop.hide();
+					};
+				});
+
+				$goTop.on('click',function(){
+					$(window).scrollTop(0);
+				});
+			};
+			
+			return {
+				init: init
+			};
+		})();
+
+		goTop.init();
+
+	</script>
+</body>
+</html>

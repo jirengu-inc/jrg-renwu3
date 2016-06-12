@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>tabs切换模版</title>
+  <style type="text/css">
+    .mod-tab {
+      border: 1px solid #ccc;
+    }
+    .mod-tab * {
+      box-sizing: border-box;
+    }
+    .mod-tab ul,
+    .mod-tab li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .mod-tab .tabCt:after {
+      content: '';
+      height: 0;
+      display: table;
+      clear: both;
+    }
+    .mod-tab .tabCt li {
+      float: left;
+      width: 33.3%;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      cursor: pointer;
+    }
+    .mod-tab .tabCt li:last-child {
+      border-right: none;
+    }
+    .mod-tab .tabCt .active {
+      background: #eee;
+    }
+    .mod-tab .panel {
+      display: none;
+      height: 180px;
+      padding: 20px;
+    }
+    .mod-tab .active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="tab1" class="mod-tab">
+   <ul class="tabCt">
+     <li class="active">tab1</li>
+     <li>tab2</li>
+     <li>tab3</li>
+   </ul>
+   <div class="panel active">内容1</div>
+   <div class="panel">内容2</div>
+   <div class="panel">内容3</div>
+ </div>
+
+ <div id="tab2" class="mod-tab">
+   <ul class="tabCt">
+     <li class="active">tab1</li>
+     <li>tab2</li>
+     <li>tab3</li>
+   </ul>
+   <div class="panel active">内容1</div>
+   <div class="panel">内容2</div>
+   <div class="panel">内容3</div>
+ </div>
+
+ <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+ <script type="text/javascript">
+
+  function TabsSwitch($modTab){
+    this.$modTab=$modTab;
+    this.tabs=$modTab.find('.tabCt').children();
+    this.panels=$modTab.find('.panel');
+    this.bind();
+  }
+  TabsSwitch.prototype={
+    bind:function(){
+      var $tabs=this.tabs,
+          $panels=this.panels;
+      $tabs.on('click',function(){
+        var index=$tabs.index($(this)[0]);//or $(this).index()
+
+        if(index>-1){
+          $tabs.removeClass('active')
+          $panels.removeClass('active');
+          $(this).addClass('active');
+          $panels.eq(index).addClass('active');
+        }
+      });
+    }
+  }
+  $('.mod-tab').each(function(){
+    new TabsSwitch($(this));
+  })
+
+
+
+</script>
+
+</body>
+</html>

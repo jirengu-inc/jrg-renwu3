@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>9-2-1</title>
+	<style>
+	ul{
+		margin: 10px 0px 0px -20px;
+	}
+	ul li {
+		list-style: none;
+		display:inline-block;
+		background: url(img/result.png) no-repeat;
+		height:40px;
+		line-height: 40px;
+		font-size: 30px;
+	}
+	ul li:hover{
+		color: #A663BE;
+		cursor: pointer;
+	}
+	ul li.foward{
+		background-position: 0px 0px;
+	}
+	ul li.start{
+		background-position: 0px -43px;
+	}
+	ul li.stop{
+		background-position: -4px -90px;
+	}
+	ul li.foward:hover{
+		background-position: -1px -135px;
+	}
+	ul li.start:hover{
+		background-position: -5px -184px;
+	}
+	ul li.stop:hover{
+		background-position: 0px -228px;
+	}
+	ul li span{
+		margin-left:30px;
+		font-family: "Microsoft Yahei";
+	}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="foward">
+			<span>前进</span>
+		</li>
+		<li class="start">
+			<span>开始</span>
+		</li>
+		<li class="stop">
+			<span>停止</span>
+		</li>
+	</ul>
+</body>
+</html>

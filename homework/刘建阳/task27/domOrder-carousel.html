@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>改变dom位置顺序</title>
+	<style type="text/css">			
+			html,body,ul,li,p{
+				margin: 0;
+				padding: 0;
+			}
+			li{
+				list-style: none;
+			}
+			a{
+				text-decoration: none;
+			}
+			
+			.carousel{
+				position: relative;
+				left:460px;
+				top: 220px;
+				width: 310px;
+				height: 206px;
+				overflow: hidden;
+			}
+			.carousel .img-ct{
+				position: absolute;
+			}
+			.carousel .img-ct img{
+				width: 310px;
+				height: 206px;
+			}
+			.carousel .img-ct:after{
+				content: '';
+				display: block;
+				clear: both;
+			}
+			.carousel .img-ct li{
+				float: left;
+			}
+
+			.arrow{
+				position: absolute;
+			    top: 50%;
+			    margin-top: -15px;
+			    width: 30px;
+			    height: 30px;
+			    line-height: 30px;
+			    text-align: center;
+			    background: #4E443C;
+			    color: #fff;
+			    border-radius: 30px;
+			    box-shadow: 0 0 2px #999;
+			    opacity: 0.8
+			}
+			.arrow:hover {
+			    opacity: 1;
+			}
+			.pre{
+				left: 10px;
+			}
+			.next{
+				right: 10px;
+			}
+			ul.bullet {
+				position: absolute;
+			    bottom: 10px;
+			    left: 50%;
+			    transform: translateX(-50%);
+			}
+			ul.bullet li {
+			    width: 16px;
+			    height: 4px;
+			    border-radius: 2px;
+			    background: #fff;
+			    display: inline-block;
+			    cursor: pointer;
+			}
+
+			ul.bullet li.active {
+			    background: #666;
+			}
+
+
+			</style>
+	</head>
+	<body>
+		
+		<div class="carousel">
+			<ul class="img-ct">
+				<li><a href="#"><img src="img/0.jpg"></a></li>
+				<li><a href="#"><img src="img/1.jpg"></a></li>
+				<li><a href="#"><img src="img/2.jpg"></a></li>
+				<li><a href="#"><img src="img/3.jpg"></a></li>
+			</ul>
+			<a class="pre arrow" href="#"><</a>
+			<a class="next arrow" href="#">></a>
+			<ul class="bullet">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+		<script type="text/javascript">
+			var $ct = $('.img-ct'),
+				$items = $ct.children(),
+				$next = $('.netx'),
+				$pre = $('.pre'),
+				$bullet = $('.bullet'),
+				imgWidth = $items.width(),
+				imgCount = $items.length;
+
+			//$ct.prependTo($items.last());
+			$ct.css({left:0-imgWidth,width:3*imgWidth});
+
+
+			var curidx = 0;
+			var isAnimate = false;
+
+
+		</script>
+</body>
+</html>

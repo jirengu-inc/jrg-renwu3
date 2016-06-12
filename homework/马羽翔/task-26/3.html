@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery load more</title>
+    <style>
+     ul,li {
+        margin:0;
+        padding: 0;
+        list-style:none;      
+    }
+    a {
+      text-decoration: none;
+    }
+    .content-ct {
+      border:1px solid #ee6aa7;
+      border-radius: 5px;
+      height:40px;
+      margin:10px;
+      padding:4px;
+    }
+    .content {
+        color:#ee6aa7;
+    }
+    .hover {
+      background-color:#ee6aa7;
+      color:#fff;
+    }        
+    .btn-ct {
+      text-align: center;
+    }
+    .btn {
+      display:inline-block;
+      margin:0 auto;
+      border:1px solid #ee6aa7;
+      border-radius:4px;
+      color: #ee6aa7;
+      padding:4px 6px;
+    }
+    .btn:hover {
+      background-color:#ee6aa7;
+      color:#fff;
+    }
+    </style>
+</head>
+<body>
+<div class='ct'>
+    <ul class="news">
+        <li class="content-ct"><a href="#" class="content">内容1</a></li>
+        <li class="content-ct"><a href="#" class="content">内容2</a></li> 
+    </ul> 
+    <div class="btn-ct"><a href="#" class="btn">加载更多</a></div>
+</div>  
+<script src="../jquery1.12.4/jquery-1.12.4.min.js"></script>
+<script>
+    var cur=3,
+        isLocked=false;
+    
+    $('.news').on('mouseenter mouseleave','.content-ct',function(){
+        $(this).toggleClass('hover');
+        $(this).find('a').toggleClass('hover');
+    })
+    
+    $('.ct').on('click','.btn',function(e){
+        e.preventDefault();
+        if(isLocked){
+            return;
+        }
+        isLocked=true;
+        $('.btn').text('正在加载');
+        $.get({
+            url:'2.php',
+            dataType:'JSON',
+            chche:false,
+            data:{
+                start:cur,
+                len:6
+            },
+            success:function(ret){
+                success(ret);
+            },
+            error:function(){
+                error();;
+            },
+            complete:function(){
+                compelete();
+            }
+        });
+    });
+    function success(ret){
+        if(ret.status==1){
+            for(var j=0;j<ret.data.length;j++){
+                var $li=$("<li class='content-ct'></li>");
+                $li.append($("<a class='content'>"+ret.data[j]+"</a>"));
+                $('ul').append($li);
+            }
+            cur+=6;
+        }
+        else{
+            alert("获取数据失败");
+        }
+    }
+    function error(){
+        alert('连接数据库出错');
+    }
+    function compelete(){
+        isLocked=false;
+        $('.btn').text('加载更多');
+    }
+</script>  
+</body>
+</html>
