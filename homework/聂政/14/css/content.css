@@ -1,0 +1,120 @@
+@charset "UTF-8";
+	html,body,ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	html,body,.head,.container{
+		width: 100%;
+		height: 100%;
+	}
+	ul{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+	}
+	i{
+		width: 50px;
+		height: 50px;
+		padding: 20px;
+		margin: 60px;
+		border: 1px solid white;
+		border-radius: 80px;
+		background: white;
+	}
+	.container{
+		width:960px;
+		margin: 0 auto;
+		text-align: center;
+	}
+	#skill{
+		background: #337ab7;
+		padding: 50px 0px 50px 0px;
+		color: white;
+
+	}
+	#skill ul{
+		overflow: auto;
+		text-align: center;
+	}
+	#skill li{
+		font-size: 16px;
+		margin: 20px 10px;
+		float: left;
+	}
+	#skill .container h1,p,a{
+		margin-top: 30px;
+	}
+	#skill .container a{
+		color: black;
+		padding: 5px 10px;
+		background: white;
+	}
+	#skill .container a:hover{
+		background: #337ab7;
+	}
+	#anotherimg{
+		width: 100%;
+		height: 500px;
+		background-image: url(../img/anotherimg.JPG);
+		background-size: cover;
+	}
+	#products .myimg-ct:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	#products .container .myimg-ct{
+		width: 980px;
+		margin-left: -20px;
+		overflow: auto;
+
+	}
+	#products img{
+		width: 470px;
+	}
+	#products .myimg{
+
+		margin-left: 20px;
+		float: left;
+	}
+	#products a{
+		display: block;
+	}
+	#footer{
+		background: #1f659c;
+		margin-top: 50px;
+		padding: 50px;
+	}
+	#footer a{
+		color: green;
+		background: white;
+		padding: 5px 10px;
+		margin: 0 5px;
+		display: inline-block;
+	}
+	#footer a:hover{
+		background: #1f660c;
+	}
+	#more{
+		color: black;
+	}
+	#more .container a{
+		line-height: 2.5;
+		font-size: 18px;
+	}
+	#more .icon-lists{
+		width: 250px;
+		margin: 20px auto;
+	}
+	#more .icon-lists:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	#more .icon-lists li{
+		margin: ;
+		float: left;
+	}
+
+

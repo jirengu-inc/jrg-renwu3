@@ -1,0 +1,31 @@
+@charset "UTF-8";
+	#head{
+		display: table;
+		width: 100%;
+		height: 100%;
+		position: relative;
+		background-image: url(../img/bg.jpg);
+		background-size: cover;
+
+	}
+	#head .container{
+		display: table-cell;
+		text-align: center;
+		vertical-align: middle;
+	}
+	#head h1{
+		font-size: 50px;
+	}
+	#head p{
+		margin-bottom: 50px;
+	}
+	#head a{
+		margin-top: 100px;
+		padding: 10px;
+		color: white;
+		background: #5f5f5c;
+		
+	}
+	#head a:hover{
+		background: #333;
+	}
