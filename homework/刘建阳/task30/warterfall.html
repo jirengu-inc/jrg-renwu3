@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流</title>
+	<style type="text/css">
+		.container{
+			position: relative;
+			margin: 0 auto;
+			padding: 5px;
+		}
+		.item{
+			position: absolute;
+			width: 150px;
+			margin-top: 10px;
+			margin-left: 10px;
+			transition:all 1s;
+		}
+		.h1{
+			background-color: #a1a;
+			height: 320px;
+		}
+		.h2{
+			background-color: #1a1;
+			height: 500px;
+		}
+		.h3{
+			background-color: #1aa;
+			height: 440px;
+		}
+		.h4{
+			background-color: #aa1;
+			height: 200px;
+		}
+		.h5{
+			background-color: #a69;
+			height: 350px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="item h1">
+			1
+		</div>
+		<div class="item h2">
+			2
+		</div>
+		<div class="item h1">
+			3
+		</div>
+		<div class="item h3">
+			4
+		</div>
+		<div class="item h4">
+			5
+		</div>
+		<div class="item h2">
+			6
+		</div>
+		<div class="item h1">
+			7
+		</div>
+		<div class="item h5">
+			8
+		</div>
+		<div class="item h2">
+			9
+		</div>
+		<div class="item h4">
+			10
+		</div>
+		<div class="item h1">
+			11
+		</div>
+		<div class="item h5">
+			12
+		</div>
+		<div class="item h4">
+			13
+		</div>
+		<div class="item h1">
+			14
+		</div>
+	</div>
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+		/*	function warterFall(){
+				var nodeWidth = $('.item').outerWidth(true),
+					colNum = Math.floor($('.container').width()/nodeWidth),
+					colSumHeight = [];
+				for (var i = 0; i < colNum; i++) {
+					colSumHeight.push(0);
+				};
+				
+
+				$('.item').each(function(){
+					var $cur = $(this);
+
+					var minH = colSumHeight[0],
+						idx = 0;
+					for (var i = 0; i < colSumHeight.length; i++) {
+						if(minH > colSumHeight[i]){
+							minH = colSumHeight[i];
+							idx = i;
+						};
+					};
+
+					$cur.css({
+						left: idx*nodeWidth,
+						top: minH
+					});
+					colSumHeight[idx] += $cur.outerHeight(true);
+				});
+			}
+
+			warterFall();
+
+			$(window).on('resize',function(){
+				warterFall();
+			});*/
+/*
+		var warterFall = ({
+
+			colSumHeight: [],
+
+			init: function($ele){
+				var nodeWidth = $ele.find('.item').outerWidth(true);
+				
+				this.$ele = $ele;
+				this.nodeWidth = nodeWidth;
+				this.start();
+				this.bind();
+				
+			},
+			start: function(){
+				var _self = this;
+				$(window).on('resize',function(){
+					_self.bind();
+				});
+			},
+			bind: function(){
+					var _self = this;
+
+					var colNum = Math.floor(this.$ele.width()/this.nodeWidth);				
+					for (var i = 0; i < colNum; i++) {
+						this.colSumHeight[i] = 0;
+					};
+					//console.log(colNum);
+				//当窗口变化时colNum、容器宽度$ele.width()都会变化，变化的量如果放在init()函数中就会固定住，使页面的渲染与计算产生问题(窗口变化需要重新init(),所以也可以在on('resize'）绑定_self.init()解决这个问题)
+				//this.colSumHeight[i] = 0;也是一个关键的赋值语句，之前使用push会一直往数组的最后一位添加0，窗口改变重新计算colNum，但由于是push方法，所以this.colSumHeight并没有重新计算，而是继续在末尾添加，得不到实际的栏数，所以应该从[0]开始赋值操作
+				//colSumHeight如果作为一个var声明的=[]的变量，每次运行时复位空也可以用push
+
+					_self.$ele.find('.item').each(function(){
+						var $cur = $(this);
+
+						var minH = _self.colSumHeight[0],
+							idx = 0;
+						for (var i = 0; i < _self.colSumHeight.length; i++) {
+							if(minH > _self.colSumHeight[i]){
+								minH = _self.colSumHeight[i];
+								idx = i;
+							};
+						};
+						// console.log(_self.colSumHeight);
+						// console.log($cur);
+						
+						_self.idx = idx;
+						//console.log(idx);
+						_self.minH = minH;
+						_self.placeItem($cur);
+						// 函数的调用必须放在idx和minH赋值语句的后面，因为placeItem中用得到这两个变量，如果没有复制就调用函数，idx或minH会出现错误，console.log()调试时用到的，保留以提醒
+
+					});
+			},
+			placeItem: function($ele){
+					$ele.css({
+						left: this.idx*this.nodeWidth,
+						top: this.minH
+					});
+					this.colSumHeight[this.idx] += $ele.outerHeight(true);
+					//console.log(this.colSumHeight[this.idx]);
+			}	
+
+		});
+*/
+	//	warterFall.init($('.container'));
+
+
+/*		// 方法3， 把功能都绑定到一个对象上
+
+			var WaterFall = {
+
+				//[0,0,0,0]
+				//[20, 10, 30, 15]
+
+				arrColHeight: [],
+
+				init: function( $ct ){
+					this.$ct = $ct;
+					this.$items = $ct.find('.item'),
+					this.itemWidth = this.$items.outerWidth(true);
+
+					this.bind();
+					this.start();
+				},
+
+				bind: function(){
+					var me = this;
+					$(window).on('resize', function(){
+						me.start();
+					});
+				},
+
+				start: function(){
+					var me = this;
+					this.colNum = Math.floor( this.$ct.width() / this.itemWidth );
+					//this.arrColHeight = [];
+					for(var i=0; i<this.colNum; i++){
+						this.arrColHeight[i] = 0;
+					}
+					this.$items.each(function(){
+						me.placeItem( $(this) );
+					});
+				},
+
+				placeItem: function( $el ) {
+					// 1. 找到arrColHeight的最小值，得到是第几列
+					// 2. 元素left的值是 列数*宽度
+					// 3. 元素top的值是 最小值
+					// 4. 放置元素的位置，把arrColHeight对应的列数的值加上当前元素的高度
+					var obj = this.getIndexOfMin(this.arrColHeight),
+						idx = obj.idx,
+						min = obj.min;
+					$el.css({
+						left: idx * this.itemWidth,
+						top: min
+					});
+					this.arrColHeight[idx] += $el.outerHeight(true);
+				},
+
+				getIndexOfMin: function( arr ){
+					var min = arr[0],
+						idx = 0;
+					for(var i = 1; i< arr.length; i++){
+						if(min > arr[i]){
+							min = arr[i];
+							idx = i;
+						}
+					}
+					return {min: min, idx: idx};
+				}
+			}
+
+			WaterFall.init($('.container'));
+
+*/
+
+		var warterFall = (function(){
+				var nodeWidth = $('.item').outerWidth(true);
+				
+				
+
+				function placeItem(){
+					        var	colNum = Math.floor($('.container').width()/nodeWidth),
+								colSumHeight = [];
+							for (var i = 0; i < colNum; i++) {
+								colSumHeight.push(0);
+							};
+
+						$('.item').each(function(){
+							var $cur = $(this);
+
+							var minH = colSumHeight[0],
+								idx = 0;
+							for (var i = 0; i < colSumHeight.length; i++) {
+								if(minH > colSumHeight[i]){
+									minH = colSumHeight[i];
+									idx = i;
+								};
+							};
+
+							$cur.css({
+								left: idx*nodeWidth,
+								top: minH
+							});
+							colSumHeight[idx] += $cur.outerHeight(true);
+						});
+					}
+
+					function init(){
+						$(window).on('resize',function(){
+							placeItem();
+						});
+					}
+				
+				placeItem();
+				return {
+					init: init
+				}
+			
+		})();
+		
+		warterFall.init();
+
+		});
+	</script>
+</body>
+</html>
