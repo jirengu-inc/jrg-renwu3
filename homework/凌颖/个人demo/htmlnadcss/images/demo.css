@@ -1,0 +1,39 @@
+#wrap #leftBody .leftDiv1 h2 {
+	color:#000000;
+	font-size:24px;
+	font-weight:normal;
+	margin:25px 0 20px 0;
+}
+#wrap #leftBody .leftDiv1  p {
+	color:#555555;
+}
+#wrap #leftBody .leftDiv1  p a {
+	color:#0074C5;
+}
+
+#wrap #leftBody .leftDiv2 h2 {
+	color:#000000;
+	font-size:24px;
+	font-weight:normal;
+	margin:25px 0 20px 0;
+}
+
+#wrap #leftBody .leftDiv2 ul li {
+	width:270px;
+	height:170px;
+	background:#F1F2EA;
+	border:1px solid #D5D7CA;
+	padding:6px;
+	float:left;
+	margin:0 25px 25px 0;
+}
+#wrap #leftBody .leftDiv2 ul li p {
+	font-size:16px;
+	color:#000000;
+	margin-top:10px;
+	font-weight:bold;
+}
+
+#wrap #leftBody .leftDiv3 {
+	clear:both;
+}

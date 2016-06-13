@@ -1,0 +1,256 @@
+/*home*/
+#home{
+    width:100%;
+    height:100%;
+    background:url(../images/bg.png) repeat;
+}
+#home_content{
+    width:900px;
+    height:100%;
+    padding-top:100px;
+    margin:0 auto;
+    text-align:center;
+    
+}
+#home_head_content{
+    width:900px;
+    height:250px;
+    position: relative;
+}
+
+#home_head_content img{
+    width:150px;
+    height:150px;
+    transition: box-shadow 2s ease 0s;
+    border: 2px solid #091b3b;
+    border-radius: 75px;
+    position:absolute;
+    left:375px;
+    top:100px;
+}
+#home_info{
+   width:500px;
+   height:400px;
+   opacity: 0;
+   position:absolute;
+}
+#home_info1{
+    width:500px;
+    margin:10px auto 0 auto;
+}
+#home_info_box{
+    border-top:2px solid #091b3b;
+    width:400px
+}
+/*about*/
+#about{
+    width:100%;
+    height:100%;
+    background:url("../images/bg3.jpg") repeat;
+    overflow:hidden;
+}
+#about_content{
+    width:900px;
+    height:100%;
+    padding-top:30px;
+    margin:0 auto;
+    text-align:center; 
+}
+#about_content .title{
+    width:300px;
+    height:15%;
+    margin:0px auto;
+    opacity:0;
+}
+#about_content .title h2{
+    font-weight:normal;
+    border-top:2px solid #333;
+    padding-top:10px;
+}
+#about_list_content{
+    width:900px;
+    height:200px;
+    border-radius:25px;
+    background: rgba(170,170,170,0.5)
+}
+.about_list{
+    width:200px;
+    height:200px;
+    float:left;
+    margin-left:10px;
+}
+#about_list1{
+    margin-left:50px;
+}
+.about_list_cn{
+    width:130px;
+    height:50px;
+}
+.about_list_cn p{
+    float:right;
+}
+#about_en_edu{
+    background:url("../images/education.png") no-repeat center center;
+}
+#about_en_age{
+    background:url("../images/touxiang.png") no-repeat center center;
+}
+#about_en_loc{
+    background:url("../images/location.png") no-repeat center center;
+}
+#about_en_sta{
+    background:url("../images/woshou2.png") no-repeat center center;
+}
+.about_list_eg{
+    width:130px;
+    height:130px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 1);
+    text-align:center;
+    line-height: 130px;
+    margin-top:20px;
+}
+.about_list_eg{
+  animation: spin 10s linear infinite;
+  animation-play-state:running;
+}
+.about_list_eg:hover{
+ animation-play-state:paused;
+}
+@keyframes spin {
+  100% {transform: rotate(1turn); }
+}
+#about_cn_edu{
+    width:130px;
+    height:50px;
+}
+#about_info{
+    width:900px;
+    height:200px;
+    background:url("../images/bgg.png")no-repeat left;
+    outline:#697d8d dotted thick;
+}
+#about_info p {
+	text-align: center;
+	line-height: 40px;
+	position: relative;
+	bottom: -300px;
+}
+/*skill*/
+#skill{
+    width:100%;
+    height:100%;
+    background:url(../images/bg4.png) repeat;
+}
+#skill_content{
+    width:900px;
+    height:100%;
+    padding-top:30px;
+    margin:0 auto;
+    text-align:center; 
+}
+#skill_content .title{
+    width:300px;
+    height:15%;
+    margin:0px auto;
+    opacity:0;
+}
+#skill_content .title h2{
+    font-weight:normal;
+    border-top:2px solid #333;
+    padding-top:10px;
+}
+#skill_list_content{
+    width:900px;
+    height:300px;
+}
+.skill_list{
+    width:200px;
+    height:auto;
+    float:left;
+    border-radius:25px;
+    background:rgba(170,170,170,0.5);
+    margin-left:20px;
+}
+
+.skill_list_img:hover{
+    cursor: pointer;
+}
+.skill_name {
+    text-align: center;
+    width: 100%;
+    position: relative;
+}
+.skill_flag {
+    margin: 20px auto;
+    width: 20px;
+    height: 20px;
+}
+
+.skill_int{
+    width:200px;
+    height:150px;
+    border-radius:25px;
+    text-align:left;
+    background: rgba(170,170,170,0.5);
+}
+.skill_int ul li{
+    padding-top:10px;
+    width:150px;
+}
+/*demo*/
+#demo{
+    width:100%;
+    height:100%;
+    background:url(../images/bg.png);
+}
+#demo_content,#contact_content {
+    width:900px;
+    height:100%;
+    padding-top:30px;
+    margin:0 auto;
+    text-align:center;
+}
+#demo_content .title,#contact_content .title{
+    width:300px;
+    height:15%;
+    margin:0px auto;
+    opacity:0;
+}
+#demo_content .title h2,#contact_content .title h2{
+    font-weight:normal;
+    border-top:2px solid #333;
+    padding-top:10px;
+}
+#demo_list_content a{
+    display:block;
+    width:200px;
+    height:220px;
+    background: rgba(170,170,170,0.5);
+    border-radius:50px;
+    margin:10px;
+    color:#1d2f51;
+    text-decoration:none;
+    position:relative;
+}
+#demo_list_content a img{
+    border:none;
+}
+#demo_list_content a:hover{
+    cursor:pointer;
+}
+/*contact*/
+#contact{
+    width:100%;
+    height:100%;
+    background:url(../images/bg4.png);
+}
+.href{
+   width:900px;
+   height:400px;
+   margin-top:100px;
+   background:url(../images/bg5.png) no-repeat top left;
+}
+.href a img{
+   border:none;
+}

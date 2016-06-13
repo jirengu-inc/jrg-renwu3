@@ -1,0 +1,82 @@
+html,body{
+    border: 0 none;
+    font-family: inherit;
+    font-size: 100%;
+    font-style: inherit;
+    font-weight: inherit;
+    margin:0px;
+    color:#1d2f51;
+}
+
+header{
+    width:100%;
+    height:80px;
+    position:fixed;
+    z-index:100;
+    background:rgba(190,190,190,0.4);
+}
+#header_logo img{
+    border-radius: 30px;
+    height: 60px;
+    transition: box-shadow 0.5s ease 0s;
+    width: 60px;
+    margin:10px 35px;
+    float:left;
+}
+#header_p{
+    height:60px;
+    width:80px;
+    float:left;
+    
+}
+#header_p1{
+    border-bottom:1px solid #091b3b;
+    height:20px;
+    line-height:20px;
+    margin:0px 5px ;
+    padding: 5px 10px 10px 0px;
+    
+}
+#header_p2{
+    margin:5px 0px;
+}
+nav{
+    float:right;
+}
+nav ul li{
+    width:50px;
+    height:60px;
+    line-height:60px;
+    display:inline;
+    float:left;
+    margin:auto 25px;    
+}
+nav ul li a{
+    text-decoration: none;
+    color:#333;
+}
+nav ul li a:hover{
+    background:rgba(203,224,241,0.5);
+    color:black;
+}
+aside{
+    height:auto;
+    position: fixed;
+    left:50px;
+    width:50px;
+    top:200px;
+    z-index:100;
+}
+aside a.selected {
+    background:url(../images/check.png) no-repeat scroll center center;
+
+}
+aside a{
+    background:url(../images/check-transparent.png) no-repeat scroll center center;
+    height:26px;
+    position:relative;
+    padding:10px;
+    width:26px;
+    display:block;
+}
+
