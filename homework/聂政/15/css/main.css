@@ -1,0 +1,131 @@
+@charset "UTF-8";
+html,body,ul,li{
+	margin: 0;
+	padding: 0;
+}
+ul,li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+.layout{
+	width: 1000px;
+	margin: 0 auto;
+}
+.hd>ul:after{
+	content: '';
+	display: block;
+	clear: both;
+}
+.hd .layout .nav a{
+	color: #777777;
+}
+.hd .nav>li{
+	padding: 20px 40px 20px 0px;
+	text-align: center;
+	float: left;
+}
+
+.hd .nav>li a:hover{
+	color: black;
+}
+.hd .nav .hidden{
+	position: absolute;
+	margin-top: 20px;
+	background: #fff;
+	min-width: 120px;
+	border: 1px solid #fff;
+	display: none;
+	z-index: 1;
+}
+.hd .nav .hidden>li{
+	position: relative;
+	padding-left: 10px;
+	line-height: 30px;
+	text-align: left;
+}
+.hd .divider{
+	border-bottom: 1px solid#ccc;
+}
+.hd .nav .hidden>li:hover{
+	cursor: pointer;
+	background: #ccc;
+}
+.hd .nav>li:hover ul{
+	display: block;
+}
+.hd .nav .hidden>li:hover{
+	background: #ccc;
+}
+#introduction{
+	position: relative;
+	width: 100%;
+	padding: 60px 0 60px 0;
+	color: white;
+	background: #b84d45;
+	z-index: 0;
+}
+#products{
+	width: 100%;
+}
+#products .pt-header{
+	margin: 50px auto;
+	padding: 10px;
+	background: #ccc;
+}
+#products .ct>ul{
+	margin-left: -10px;
+	overflow: auto;
+}
+#products .ct img:hover{
+	opacity: 0.8;
+}
+#products button:hover{
+	opacity: 0.8;
+	cursor: pointer;
+}
+#products .ct>ul>li img{
+	width: 314px;
+}
+#products .ct>ul>li{
+	margin: 10px 0px 10px 10px;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	width: 314px;
+	text-align: center;
+	float: left;
+}
+#products .ct button{
+	padding: 5px 10px 5px 10px;
+	border-radius: 5px;
+	background: white;
+}
+#products .ct>ul:nth-child(7){
+	margin-left: 300px;
+}
+#footer{
+	margin: 50px 0 50px 0;
+	width: 100%;
+	padding: 60px 0 60px 0;
+	color: white;
+	background: #b84d45;
+}
+#footer .ft{
+	text-align: center;
+}
+.line{
+	padding: 10px 0 50px 0;
+	text-align: center;
+	border-top: 1px solid #ccc;
+}
+.line>p{
+	display: inline-block;
+}
+/**
+ * 
+ * @authors Zheng Nie (niezheng05@foxmail.com)
+ * @date    2016-06-12 20:45:22
+ * @version $Id$
+ */
