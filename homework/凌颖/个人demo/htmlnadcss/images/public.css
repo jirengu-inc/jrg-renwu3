@@ -1,0 +1,232 @@
+/**基本格式开始***************/
+body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,form,input,textarea,p {
+	margin:0px;
+	padding:0px;
+	font-size:13px;
+}
+ul {
+	list-style:none;
+}
+img,a img {
+	border:none;
+}
+a {
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+}
+
+.auto {
+	width:980px;
+	margin:0 auto;
+}
+/**基本格式结束***************/
+
+#main {
+	background:url(main_top_bg.jpg) repeat-x;
+}
+#main1 {
+	background:url(main1_bottom_bg.jpg) 0px bottom repeat-x;
+}
+
+/*查看更多的按钮样式*/
+.btnStyle {
+	background:url(default.png);
+	display:block;
+	width:103px;
+	height:27px;
+	text-align:center;
+	line-height:27px;
+	color:#ffffff;
+	text-decoration:none;
+	font-weight:bold;
+}
+.btnStyle:hover {
+	background:url(d_hover.png);
+}
+/*头部开始*/
+#header {
+	height:452px;
+	background:url(top_bg.jpg) repeat-x;
+	color:#ffffff;
+}
+#top {
+	height:100px;
+	
+}
+#top .logo {
+	width:291px;
+	padding:25px 0 0 25px;
+	float:left;
+}
+#top h1 span {
+	font-size:14px;
+	color:#CCCCCC;
+	float:right;
+}
+#top .serach {
+	width:280px;
+	height:50px;
+	float:right;
+	margin:30px 30px 0px 20px;
+	
+}
+#top .serach .text {
+	width:180px;
+	height:15px;
+	background:#161B1F;
+	color:#BCBCBC;
+	border:1px solid #0B0E10;
+	padding:5px;
+}
+#top .serach .submit {
+	width:80px;
+	height:28px;
+	cursor:pointer;
+}
+#nav {
+	height:50px;
+	
+}
+#nav ul {
+	margin:0 0 0 25px;
+}
+#nav ul li {
+	float:left;
+	margin:0 10px 0 0;
+}
+#nav ul li a {
+	color:black;
+	font-size:13px;
+	font-weight:bold;
+	display:block;
+	width:103px;
+	height:27px;
+	text-align:center;
+	line-height:27px;
+	margin:10px 0 0 0;
+}
+#nav ul li a:hover {
+	background:url(hover.png);
+	color:#ffffff;
+	text-decoration:none;
+}
+#runplay {
+	height:301px;
+	background:url(runplay_bg.jpg);
+}
+#runplay .left {
+	width:300px;
+	float:left;
+	margin:50px 0 0 30px;
+	display:inline;
+}
+#runplay .right {
+	width:300px;
+	float:left;
+	margin:50px 0 0 80px;
+	display:inline;
+}
+#runplay .right dl dt {
+	font-size:24px;
+	margin:0 0 20px 0;
+}
+#runplay .right dl dd.txt {
+	font-size:16px;
+	color:#ffffff;
+	margin:0 0 20px 0;
+}
+/*头部结束*/
+
+/*wrap定义了中间部分居中 开始*/
+#wrap {
+	width:920px;
+	height:850px;
+	margin:0 auto;
+}
+/*wrap定义了中间部分居中 结束*/
+
+/*wrap定义了中间部分的左侧 开始*/
+#wrap #leftBody {
+	width:620px;
+	height:850px;
+	float:left;
+}
+/*wrap定义了中间部分的左侧 结束*/
+/*右侧相同 开始*/
+#wrap #rightBody {
+	width:240px;
+	height:850px;
+	float:right;
+}
+#rightBody .rightDiv1 h2 {
+	color:#000000;
+	font-size:24px;
+	font-weight:normal;
+	margin:25px 0 0 0;
+}
+#rightBody .rightDiv1 ul li {
+	border-bottom:1px dashed #CCCCCC;
+	height:70px;
+	padding:15px 0 0 0;
+}
+#rightBody .rightDiv1 ul li h3 a {
+	color:#0074C5;
+	font-weight:normal;
+	text-decoration:underline;
+}
+#rightBody .rightDiv1 ul li h3 a:hover {
+	color:#009900;
+}
+#rightBody .rightDiv1 ul li p {
+	color:#555555;
+	margin:5px 0 0 0;
+}
+#rightBody .rightDiv2 dl {
+	height:64px;
+	margin:35px 0 0 0;
+}
+#rightBody .rightDiv2 dl dt {
+	padding:8px 0 3px 0;
+}
+#rightBody .rightDiv2 dl dt a {
+	font-size:24px;
+	color:#333333;
+	font-weight:bold;
+}
+#rightBody .rightDiv2 dl dd {
+	font-size:15px;
+	color:#333333;
+	font-weight:bold;
+}
+#rightBody .rightDiv2 dl.dl1 {
+	background:url(twitter.png) 160px center no-repeat;
+}
+#rightBody .rightDiv2 dl.dl2 {
+	background:url(rss.png) 160px center no-repeat;
+}
+/*右侧相同 结束*/
+
+/*底部开始**************/
+#footer {
+	height:100px;
+	background:url(footer_bg.jpg) repeat-x;
+}
+#footer p {
+	text-align:center;
+	color:#ffffff;
+	line-height:200%;
+}
+#footer p.p1 {
+	padding-top:15px;
+}
+#footer p a {
+	color:#ffffff;
+	text-decoration:underline;
+	margin:0 20px 0 0;
+}
+#footer p a.last {
+	margin:0;
+}
+/*底部结束**************/
