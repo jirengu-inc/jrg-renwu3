@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>使用双飞翼布局的思路实现如下两栏布局</title>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+  }
+  #header, #footer{
+    height: 80px;
+    background: #ccc;
+  }
+  .container:after{
+    content: '';
+    display: block;
+    clear: both;
+  }
+  #center{
+    float: left;
+    width: 100%;
+  }
+  .main{
+    margin-right: 200px;
+    background: green;
+  }
+ #right-aside{
+    float: left;
+    width: 200px;
+    height: 200px;
+    margin-left: -200px;
+    background: red;
+  }
+</style>
+</head>
+<body>
+  <div id="header">头部</div>
+  <div id="content" class="container">
+    <div id="center">
+      <div class="main">
+        1. 三个容器设置左浮动，并清除浮动；
+        2. 第一个容器（中间栏）宽度设为100%；
+        3. 第二个容器（左边栏）宽度固定为200px（固定值根据实际需求设定），且`margin-left`为-100%；
+        4. 第三个容器（右边栏）宽度固定为200px（根据实际需求设定），且`margin-left`为-200px（自身宽度）；
+        5. 第一个容器中添加一个子元素用于存放主要内容，并将子元素的左右`margin`分别设为200px，预留出左边栏和右边栏的存放空间；
+        6. 完成。
+      </div>
+    </div>
+    <div id="right-aside">
+      右侧边栏，固定宽度
+    </div>
+  </div>
+  <div id="footer">尾部</div>
+</body>
+</html>
