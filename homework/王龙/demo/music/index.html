@@ -25,36 +25,47 @@
 歌词太长折行
 
 -->
+<style>
+    .layout{
+        position: fixed;
+        left: 10%;
+        top: 10%;
+    }
 
-<audio id="media" src="" autoplay="autoplay">
-    not support the audio tag
-</audio>
+</style>
+<div class="layout">
+    <div class="music"><i class="fa fa-music" aria-hidden="true"></i></div>
 
-<div class="music-ct">
-    <div class="cover">
-        <div class="func-ct">
-            <header class="top justify">
-                <i class="fa fa-music small open" aria-hidden="true"></i>
-                <i class="fa fa-info-circle small" aria-hidden="true"></i>
-            </header>
-            <div class="music-info">
-                <div class="music-title small"></div>
-                <div class="singer"></div>
-            </div>
-            <div class="music-ctrl">
-                <ul>
-                    <!--<li class="small"><a href="javascript:void (0);"><i class="fa fa-backward" aria-hidden="true"></i></a></li>-->
-                    <li class="big"><a href="javascript:void (0);"><i id="switch" class="fa fa-pause-circle pause" aria-hidden="true"></i></a></li>
-                    <li class="small"><a href="javascript:void (0);"><i class="fa fa-forward next" aria-hidden="true"></i></a></li>
-                </ul>
-            </div>
-            <!--歌词-->
-            <div class="music-lyric">
-                <ul class="lyric">
-                </ul>
-            </div>
-            <!--  声音 -->
-            <div class="music-volume justify">
+
+    <audio id="media" src="" autoplay="autoplay">
+        not support the audio tag
+    </audio>
+
+    <div class="music-ct">
+        <div class="cover">
+            <div class="func-ct">
+                <header class="top justify">
+                    <i class="fa fa-music small open" aria-hidden="true"></i>
+                    <i class="fa fa-info-circle small" aria-hidden="true"></i>
+                </header>
+                <div class="music-info">
+                    <div class="music-title small"></div>
+                    <div class="singer"></div>
+                </div>
+                <div class="music-ctrl">
+                    <ul>
+                        <!--<li class="small"><a href="javascript:void (0);"><i class="fa fa-backward" aria-hidden="true"></i></a></li>-->
+                        <li class="big"><a href="javascript:void (0);"><i id="switch" class="fa fa-pause-circle pause" aria-hidden="true"></i></a></li>
+                        <li class="small"><a href="javascript:void (0);"><i class="fa fa-forward next" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+                <!--歌词-->
+                <div class="music-lyric">
+                    <ul class="lyric">
+                    </ul>
+                </div>
+                <!--  声音 -->
+                <div class="music-volume justify">
                 <span class="volume">
                     <i class="fa fa-volume-up small" aria-hidden="true"></i>
                     <div class="slider-volume" >
@@ -70,37 +81,38 @@
                     <!--<i class="fa fa-toggle-on" aria-hidden="true"></i>-->
                     <i class="fa fa-toggle-off small" aria-hidden="true"></i>
                 </span>
-            </div>
+                </div>
 
-            <!--进度-->
-            <div class="music-progress">
-                <div class="progress-wrap">
-                    <ul>
-                        <li class="currentTime"></li>
-                        <li>
-                            <div class="progress">
-                                <div class="progress-range">
+                <!--进度-->
+                <div class="music-progress">
+                    <div class="progress-wrap">
+                        <ul>
+                            <li class="currentTime"></li>
+                            <li>
+                                <div class="progress">
+                                    <div class="progress-range">
+                                    </div>
+                                    <a href="javascript:void(0)" class="progress-handle" draggable="true"></a>
                                 </div>
-                                <a href="javascript:void(0)" class="progress-handle" draggable="true"></a>
-                            </div>
-                        </li>
-                        <li class="duration"></li>
-                    </ul>
+                            </li>
+                            <li class="duration"></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="channel">
+            <i class="fa fa-arrow-circle-left close" aria-hidden="true"></i>
+            <ul>
+
+            </ul>
+        </div>
     </div>
 
-
-    <div class="channel active4channel">
-        <i class="fa fa-arrow-circle-left close" aria-hidden="true"></i>
-        <ul>
-
-        </ul>
-    </div>
 </div>
 
-<div class="music"><i class="fa fa-music" aria-hidden="true"></i></div>
+
+
 
 
 
@@ -120,7 +132,11 @@
             volumeBar:$('.slider-handle')
         }).setURL('http://api.jirengu.com/fm/getSong.php');//.setModel().start();
 
-        $('.music').drag($('.music'))
+        $('.music').drag($('.layout'),function (disX,disY) {
+            //移动后更新滑块的最初坐标
+            player.volume.currentX+=disX;
+            player.progress.currentX+= disX
+        })
     });
 </script>
 

@@ -1,14 +1,13 @@
 .music {
-    position: fixed;
-    left: 10%;
-    top:10%;
-    font-size: 20px;
-    background: pink;
-    padding: 6px;
+    font-size: 18px;
+    background: rgb(16, 0, 3);
+    padding: 4px;
     border-radius: 6px;
     color: #fff;
-    box-shadow: 0 0 10px pink;
+    box-shadow: 0 0 10px #1D0509;
     cursor: move;
+    text-align: center;
+    width: 30px;
 }
 
 body,ul , li,h1,h2,h3,h4,h5,h6 {
@@ -29,9 +28,11 @@ a{
     font-size: 2em;
 }
 .music-ct{
+    position: absolute;
+    bottom: -10px;
+    left: 0;
     overflow: hidden;
-    margin: 0 auto;
-    width: 300px;
+    width: 250px;
     border-radius: 5px;
     background-position: center;
     background-repeat: no-repeat;
@@ -87,7 +88,7 @@ header.top ,.music-volume{
 }
 .lyric > .active {
     font-size: 13px;
-    color: #6F3F3F;
+    color: #ffffff;
 }
 
 /*按钮*/
@@ -227,12 +228,14 @@ a.progress-handle {
     background: rgba(0, 0, 0, 0.3);
     position: absolute;
     top: 0;
-    /*left: 0;*/
+    left: -240px;
     bottom: 0;
     transition: all 0.5s;
 }
-.active4channel{
-    right: 100%;
+.music-ct  div.active4channel{
+    /*right: 100%;*/
+    left: 0 ;
+/*!important;*/
 }
 .channel>ul {
     height: 100%;
@@ -285,4 +288,7 @@ a.progress-handle {
     font-size: 16px;
     right: 12px;
     cursor:pointer;
+}
+.open {
+    cursor: pointer;
 }

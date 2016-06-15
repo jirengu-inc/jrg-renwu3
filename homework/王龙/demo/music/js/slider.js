@@ -2,6 +2,7 @@
     /**
      * 拖拽
      * @param curTarget
+     * @param callback   为鼠标放下时的回掉
      */
     $.fn.drag=function (curTarget,callback) {
         curTarget = $(curTarget)
@@ -38,6 +39,7 @@
                     //移动后边框距至页面的距离,更新位置信息
                     params.left = curTarget.offset().left;
                     params.top = curTarget.offset().top;
+                    callback && typeof callback === "function" && callback.call(null,event.clientX-params.currentX,event.clientY-params.currentY);
                     //console.log('mouseup',params.left,params.top)
                 });
                 //鼠标被移动
@@ -46,15 +48,15 @@
                     if(params.flag){
                         //console.log('mousemove', e.pageX,e.pageY,params.left,params.top)
                         //鼠标一定后的坐标点  -  鼠标按下的坐标点 =位移
-                        var disX = e.pageX - params.currentX,
+                        var disX = e.pageX - params.currentX,//位移
                             disY = e.pageY - params.currentY;
-
                         curTarget.css({
                             left:params.left + disX + "px",
                             top:params.top + disY + "px"
                         });
+                        //移动中事件here
                     }
-                    callback && typeof callback === "function" && callback.call(disX,disY);
+
 
                 });
                 return  this
@@ -118,11 +120,11 @@
                     });
 
                     handleBtn.parent().on('click',function (e) {
-                        //console.log(e.target)
+
                         e.stopPropagation();
                         var curPostion = $(handleBtn).offset().left+ ($(handleBtn).width())*0.5;
                         var posX =e.pageX - curPostion;
-                        //console.log(utils.currentX,e.pageX, curPostion,e.pageX - curPostion)
+                        console.log(utils.currentX,e.pageX, curPostion,e.pageX - curPostion)
                         var stepCunt = (curPostion-utils.currentX+posX)/utils.scalePerStep;
                         utils.setValue(stepCunt);
                     });
