@@ -99,6 +99,7 @@
                 //setVal:null ,//根据实际值计算移动像素时的回调函数，为窗口resize
                 init:function () {
                     this.width=handleBtn.parent().width();
+                    //console.log( this.width)
                     this.stepSize = options.maxValue / options.unit;//最大值中包含步长的总个数
                     this.scalePerStep = utils.width / this.stepSize;
                     this.currentX = $(handleBtn).offset().left+ ($(handleBtn).width())*0.5;//transform: translate(-50%,0);
@@ -117,9 +118,12 @@
                     });
 
                     handleBtn.parent().on('click',function (e) {
+                        //console.log(e.target)
+                        e.stopPropagation();
                         var curPostion = $(handleBtn).offset().left+ ($(handleBtn).width())*0.5;
-                        var posX =e.pageX - curPostion-utils.currentX;
-                        var stepCunt = (curPostion+posX)/utils.scalePerStep;
+                        var posX =e.pageX - curPostion;
+                        //console.log(utils.currentX,e.pageX, curPostion,e.pageX - curPostion)
+                        var stepCunt = (curPostion-utils.currentX+posX)/utils.scalePerStep;
                         utils.setValue(stepCunt);
                     });
 
@@ -144,6 +148,7 @@
                 },
                 handle: function(e) {
                     if (utils.clickedOnCursor) {
+                        console.log(this.currentX)
                         if(e.pageX < this.currentX){
                             return ;
                         }
