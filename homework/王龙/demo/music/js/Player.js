@@ -1,51 +1,114 @@
 var player = (function(){
 
+
     function Player() {}
+
+
+    function  load(url,callBack) {
+        var self =this;
+        $.ajax({
+            url:url,
+            type:'get',
+            success:function(data){
+                callBack &&  callBack.call(self,data );
+            },
+            error:function(e){
+                if(e)console.log('error',e);
+            }
+        });
+    }
 
     /**
      * 
      * @param opts{
      * media  媒体播放元素
+     *  0 = NETWORK_EMPTY - 音频/视频尚未初始化
+        1 = NETWORK_IDLE - 音频/视频是活动的且已选取资源，但并未使用网络
+        2 = NETWORK_LOADING - 浏览器正在下载数据
+        3 = NETWORK_NO_SOURCE - 未找到音频/视频来源
+     *
+     *
      * loop  循环播放
      * }
      */
     Player.prototype.init = function(opts){
+        this.switch=opts.switch//
         this.media = opts.media;
-        this.loop=opts.media;
+        this.loop=opts.loop;
         this.bindEvent(this.media);
         this.lyricURL = opts.lyricURL;
         this.lyricCT = opts.lyricCT;
         this.progressBar=opts.progressBar;
         this.volumeBar=opts.volumeBar;
-        this.initLyric(opts.lyricURL,function (lyc) {
-            this.lyricContent=lyc;
+
+
+        //音量滑块
+        this.volume = this.volumeBar.slider({
+            maxValue:1,//最大值
+            defaultValue:0.8,//默认值
+            direction:'x',//方向   x y all
+            unit:0.1,//单位步长
+            moveCallback:function (pos,utils) {
+                $('.slider-range').width(pos*100+'%')
+                //console.log(pos)
+                player.setVolume(pos);
+            },
+            lastCallBack:function (value,utils) {
+                //$('.slider .rightTip').css('display','none');
+            }
+        });
+
+        //频道
+        load('http://api.jirengu.com/fm/getChannels.php',function (data) {
+            $.each(JSON.parse(data).channels,function (i,e) {
+                $('.channel>ul').append('<li data-id='+ e.channel_id +'>'+ e.name+'<span class="bg"></span></li>')
+            });
         })
         return this;
     }
 
-    Player.prototype.initLyric =  function (url,callBack) {
-        var self =this;
-        $.ajax({
-            url:url,
-            headers:{
-                contentType:"application/x-www-form-urlencoded;charset=UTF-8"//乱码
-            },
-            success:function(lrc){
-                callBack &&  callBack.call(self, parseLyric(lrc));
-            },
-            error:function(e){
-                if(error)error(e);
-            }
-        });
-    }
+
     Player.prototype.bindEvent=function(media) {
+        $('.music-ct').mousedown(function(e) {e.stopPropagation();})
+
         var self = this;
-        $('.play').on('click',function (e) {
-            self.media.play();
+        //开关切换
+        self.switch.on('click',function (e) {
+            self.switch.hasClass('play') ? self.pause() : self.start();
         });
 
-        $('.pause').on('click',function (e) {
-            self.media.pause();
+        //单曲循环 TODO
+        //hide or show
+        $('.music').on('click',function (e) {
+            e.stopPropagation();
+            $('.music-ct').toggleClass('cur');
+        });
+        
+        //FM的显示和隐藏
+        $('.open,.close').on('click',function (e) {
+            $('.channel').toggleClass('active4channel')
+            var info= localStorage.getItem('info');
+            info = info && JSON.parse(info)
+            if( info  && info.channelID){
+               var text=  $('.channel>ul>li[data-id='+info.channelID+']').text()//.css({left:0})
+                console.log(text)
+                //$('.channel>ul>li[data-id='+info.channelID+']').find('.bg').css({left:0});//回显
+            }
+        });
+        //频道点击
+        $('.channel>ul').on('click','li',function (e) {
+            $('.channel').toggleClass('active4channel')
+            var channelID = $(e.target).attr('data-id');
+            localStorage.setItem('info',JSON.stringify({channelID:channelID}));
+            self.pause().setURL('http://api.jirengu.com/fm/getSong.php?channel='+channelID);//.start();
+        });
+
+        /**
+         * 下一曲
+         */
+        $('.next').on('click',function (e) {
+            e.stopImmediatePropagation();
+            self.next();
         });
 
         $(self.media).on('timeupdate',function () {
@@ -53,10 +116,13 @@ var player = (function(){
             var curr = Math.floor(media.currentTime);
             //音乐长度
             var dur = Math.floor(media.duration);
-            $(".duration").text(formatTime(dur));
-            $(".currentTime").text(formatTime(curr));
+            if(self.media.networkState!=3){
+                $(".duration").text(formatTime(dur));
+                $(".currentTime").text(formatTime(curr));
+            }
+            //console.log('timeupdate',self.media.networkState)
             //进度条位置
-            self.utils.setVal(curr,function (pos) {
+            self.progress && self.progress.setVal(curr,function (pos) {
                 $('.progress-range').width(pos)
             });
             
@@ -65,56 +131,84 @@ var player = (function(){
         });
         //成功获取资源长度, init
         $(self.media).on('loadedmetadata',function () {
+            //console.log('loadedmetadata',self.media.networkState)
             //页面滑块初始化--播放进度条
-            self.utils =self.progressBar.slider({
+            self.progress =self.progressBar.slider({
                 maxValue:self.media.duration,//最大值
                 defaultValue:0,//默认值
                 direction:'x',//方向   x y all  TODO
                 unit:1,
                 moveCallback:function (step,utils) {
                     $('.progress-range').width(step*utils.scalePerStep)
-                    $('.progress .rightTip').css('display','block');
-                    $('.progress .rightTip').text(step)
                     self.media.currentTime=step;
                 },
                 lastCallBack:function (value,target) {
-                    $('.progress .rightTip').css('display','none');
+                    //$('.progress .rightTip').css('display','none');
                 }
             });
 
-            //音量滑块
-            self.volumeBar.slider({
-                maxValue:1,//最大值
-                defaultValue:1,//默认值
-                direction:'x',//方向   x y all
-                unit:0.1,//单位步长
-                moveCallback:function (pos,utils) {
-                    $('.slider-range').width(pos*100+'%')
-                    $('.slider .rightTip').css('display','block');
-                    $('.slider .rightTip').text(pos)
-                    player.setVolume(pos);
-                },
-                lastCallBack:function (value,utils) {
-                    $('.slider .rightTip').css('display','none');
-                }
-            });
-            //初始化歌词
-            if(self.lyricURL){
-                renderLRC(self.lyricCT , self.lyricContent);
-            }
         });
 
         //播放结束
         $(self.media).on('ended',function () {
-            console.log('ended',this.loop);
+               console.log('ended',self.loop);
+               if(self.loop){
+                   self.media.loop=self.loop;
+                   self.start()
+               } else{
+                   self.next();
+               }
         });
         //play事件会让暂停后的play方法从头播放
-//            $(self.media).on('play',function () {
-//            });
+        //    $(self.media).on('play',function () {
+        //
+        //    });
     }
     //
     Player.prototype.setURL=function (url) {
-        $(this.media).attr('src',url);
+        var self =this;
+        var info= localStorage.getItem('info');
+        info = info && JSON.parse(info)
+        var  channelID='0'
+        if( info  && info.channelID){
+            channelID=info.channelID
+        }
+        $.ajax({
+            url: 'http://api.jirengu.com/fm/getSong.php',
+            type: 'get',
+            data:{
+                'app_name':'radio_android',
+                'version':100,
+                'channel':channelID,
+                'type':'n'
+            },
+            success: function (data) {
+                data= JSON.parse(data).song[0];
+                $('.music-ct').css('background-image','url('+data.picture+')');
+                $('.music-title').text(data.title)
+                $('.singer').text(data.artist);
+                $(self.media).attr('src',data.url);
+                self.lyricURL='http://api.jirengu.com/fm/getLyric.php?sid='+data.sid+'&ssid='+data.ssid;
+                console.log('setURL',self.media.networkState)
+                //if(self.media.networkState!=3){
+                    $.post('http://api.jirengu.com/fm/getLyric.php',{ssid: data.ssid, sid:data.sid}).done(function(lyc){
+                        if(lyc){
+                            lyc = JSON.parse(lyc)
+                            self.lyricContent=parseLyric(lyc.lyric);
+                            //初始化歌词
+                            //console.log('初始化歌词',self.lyricContent)
+                            if(self.lyricContent){
+                                renderLRC(self.lyricCT , self.lyricContent);
+                            }
+                        }else{
+                            //TODO
+                        }
+                    });
+                //}
+                self.start();
+            }
+        });
+
         return  this;
     }
 
@@ -122,9 +216,35 @@ var player = (function(){
         this.media.volume=  1> volume >0 ?  volume :1;
     }
 
+    Player.prototype.next=function () {
+        var info= localStorage.getItem('info');
+        info = info && JSON.parse(info)
+        var url ='http://api.jirengu.com/fm/getSong.php';
+        if( info  && info.channelID){
+            url+=('?channel='+info.channelID);
+        }
+        $(this.lyricCT).empty();
+        this.lyricContent=null;
+        this.pause().setURL(url);
+    }
+
+
+
 
     Player.prototype.setModel=function (model) {
         this.media.loop=this.loop;
+        return this;
+    }
+
+    Player.prototype.start=function () {
+        this.media.play();
+        $(this.switch).removeClass('pause').removeClass('fa-pause-circle').addClass('play').addClass('fa-play-circle')
+        return this;
+    }
+
+    Player.prototype.pause=function () {
+        this.media.pause();
+        $(this.switch).removeClass('play').removeClass('fa-play-circle').addClass('pause').addClass('fa-pause-circle')
         return this;
     }
 
@@ -133,6 +253,8 @@ var player = (function(){
     }
 
 
+
+    
 
 
     function renderLRC($ele,lrc){
@@ -145,14 +267,16 @@ var player = (function(){
     }
     
     function  rollLyric(self,cur) {
-        var lyric =self.lyricContent;
-        var ct4Lyric =  self.lyricCT;
-        var content = lyric[cur];
-        var liH = ct4Lyric.find('li').eq(1).outerHeight();
-        var top = ct4Lyric.height()/4;
-        if(content){
-            ct4Lyric.find('li').eq(content.lineNum).addClass('active').siblings().removeClass('active');
-            ct4Lyric.css({'top':(top  - content.lineNum*liH)+'px'});
+        var lyric =self.lyricContent;//歌词
+        if(lyric){
+            var ct4Lyric =  self.lyricCT;//容器
+            var content = lyric[cur];//当前播放的行
+            var liH = ct4Lyric.find('li').eq(1).outerHeight();
+            var top = liH;
+            if(content){
+                ct4Lyric.find('li').eq(content.lineNum).addClass('active').siblings().removeClass('active');
+                ct4Lyric.css({'top':( 0-content.lineNum*liH)+'px'});
+            }
         }
     }
     
@@ -170,7 +294,8 @@ var player = (function(){
         var zero=function(v){
             return (v>>0)<10?"0"+v:v;
         };
-        return (zero(h)+":"+zero(i)+":"+zero(s));
+        //return (zero(h)+":"+zero(i)+":"+zero(s));
+        return (zero(i)+":"+zero(s));
     }
 
     /**
@@ -192,9 +317,11 @@ var player = (function(){
                 var min = Number(String(t.match(/\[\d*/i)).slice(1)),
                     sec = Number(String(t.match(/\:\d*/i)).slice(1));
                 var time = min * 60 + sec;
-                clause && (lrcObj[time] = {text:clause,lineNum:x++});
+                !!clause && (lrcObj[time] = {text:clause,lineNum:x++});
+              // console.log(time,lrcObj[time].text,lrcObj[time].lineNum)
             }
         }
+
         return lrcObj;
     }
 

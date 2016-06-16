@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无限轮播</title>
+    <style>
+        ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .carousel {
+            position: relative;
+            width:352px;
+            height:220px;
+            overflow: hidden;
+        }
+        .clearfix:after {
+            content:'';
+            display: block;
+            clear:both;
+        }
+        .img-ct {
+            position: absolute;
+        }
+        .img {
+            float:left;
+        }
+        .img > a {
+            display: block;
+            width:100%;
+            height: 100%;
+        }
+        .arrow {
+            display: block;
+            width:20px;
+            height:20px;
+            border-radius:50%;
+            background-color:#c5c3b4;
+            opacity:0.3;
+            font-size: 16px;
+            text-align: center;
+            line-height: 20px;
+            color:#fff;
+            font-weight:700;
+        }
+        .left{
+            position: absolute;
+            top:50%;
+            left:10px;
+            transform: translateY(-50%);
+        }
+        .right {
+            position: absolute;
+            top:50%;
+            right:10px;
+            transform: translateY(-50%);
+        }
+        .bullet {
+            position: absolute;
+            left:50%;
+            bottom:10px;
+            transform:translateX(-50%);
+        }
+        .bullet li {
+            display: inline-block;
+            width:16px;
+            height:8px;
+            background-color: #c5c3b4;
+            opacity:0.4;
+            margin:0 2px;
+            cursor: pointer;
+        }
+        .carousel .hover {
+            color:#000;
+            background-color: #fff;
+            opacity: 1;
+        }
+    </style>
+    <link rel="stylesheet" href="../font-awesome/Font-Awesome-master4.6.3/css/font-awesome.min.css">
+</head>
+<body>
+<div class='carousel'>
+    <ul class="img-ct clearfix">
+        <li class='img' data-id=0><a href="#"><img src="img/1.jpg" alt="img"></a></li>
+        <li class='img' data-id=1><a href="#" ><img src="img/2.jpg" alt="img"></a></li>
+        <li class='img' data-id=2><a href="#"><img src="img/3.jpg" alt="img"></a></li>
+        <li class='img' data-id=3><a href="#"><img src="img/4.jpg" alt="img"></a></li>
+    </ul>
+    <a href="#" class='arrow left'><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+    <a href="#" class='arrow right'><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    <ul class='bullet'>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="../jquery1.12.4/jquery-1.12.4.min.js"></script>
+<script>
+    var isLocked=false,
+        $arrowLf=$('.arrow.left'),
+        $arrowRt=$('.arrow.right'),
+        imgWidth=$('.img').width(),
+        imgCount=$('.img-ct').children().length,
+        $ct=$('.img-ct'),
+        $bullet=$('.bullet'),
+        curIndex=0;
+    $ct.prepend($('.img-ct>.img:last-child').clone());
+    $ct.append($('.img-ct>.img:nth-child(2)').clone());
+    var realImgCount=$ct.children().length;
+    
+    $ct.css({left:-imgWidth*1,width:imgWidth*realImgCount});
+    setBullet();
+    autoPlay();
+    
+    $('.left,.right').on('mouseenter mouseleave',function(){
+        $(this).toggleClass('hover');
+    })
+    $arrowRt.on('click',function(){
+        playForward();
+    })
+    $arrowLf.on('click',function(){
+        playBack();
+    })
+    $bullet.on('click','li',function(e){
+        var idx=$(e.target).index();
+        if(idx-curIndex>0){
+            playForward(idx-curIndex);    
+        } 
+        if(idx-curIndex<0){
+            playBack(curIndex-idx);    
+        } 
+    })
+    
+    function playForward(num){
+        if(!isLocked){
+            isLocked=true;
+            var widthCount=num||1;
+            $ct.animate({left:'-='+(imgWidth*widthCount)},function(){
+                curIndex+=widthCount;
+                if(curIndex%imgCount===0){
+                    $ct.css({left:-imgWidth*1,width:imgWidth*realImgCount});
+                    curIndex=0;
+                }
+                setBullet();
+                isLocked=false; 
+            });  
+        }
+    }
+    function playBack(num){
+        if(!isLocked){
+            isLocked=true;
+            var widthCount=num||1;
+            $ct.animate({left:'+='+(imgWidth*widthCount)},function(){
+                curIndex-=widthCount;
+                (curIndex<0)?curIndex=(imgCount-1):curIndex=curIndex;
+                if(curIndex===(imgCount-1)){
+                    $ct.css({left:-imgWidth*(imgCount),width:imgWidth*realImgCount});    
+                }
+                setBullet();
+                isLocked=false; 
+            });   
+        }
+    }
+    function autoPlay(){
+        setInterval('playForward()',3000);
+    }
+    function setBullet(){
+        $bullet.find('li').removeClass('hover').eq(curIndex).addClass('hover');
+    }
+</script>    
+</body>
+</html>

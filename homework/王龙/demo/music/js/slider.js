@@ -2,6 +2,7 @@
     /**
      * 拖拽
      * @param curTarget
+     * @param callback   为鼠标放下时的回掉
      */
     $.fn.drag=function (curTarget,callback) {
         curTarget = $(curTarget)
@@ -34,11 +35,14 @@
 
                 //鼠标按键被松开
                 $(document).on('mouseup', function(e){
-                    params.flag = false;
-                    //移动后边框距至页面的距离,更新位置信息
-                    params.left = curTarget.offset().left;
-                    params.top = curTarget.offset().top;
-                    //console.log('mouseup',params.left,params.top)
+                    if(params.flag){
+                        params.flag = false;
+                        //移动后边框距至页面的距离,更新位置信息
+                        params.left = curTarget.offset().left;
+                        params.top = curTarget.offset().top;
+                        callback && typeof callback === "function" && callback.call(null,event.clientX-params.currentX,event.clientY-params.currentY);
+                        //console.log('mouseup',params.left,params.top)
+                    }
                 });
                 //鼠标被移动
                 $(document).on('mousemove', function(e){
@@ -46,15 +50,15 @@
                     if(params.flag){
                         //console.log('mousemove', e.pageX,e.pageY,params.left,params.top)
                         //鼠标一定后的坐标点  -  鼠标按下的坐标点 =位移
-                        var disX = e.pageX - params.currentX,
+                        var disX = e.pageX - params.currentX,//位移
                             disY = e.pageY - params.currentY;
-
                         curTarget.css({
                             left:params.left + disX + "px",
                             top:params.top + disY + "px"
                         });
+                        //移动中事件here
                     }
-                    callback && typeof callback === "function" && callback.call(disX,disY);
+
 
                 });
                 return  this
@@ -89,8 +93,6 @@
         this.each(function() {
             var handleBtn = $(this);
             utils={
-                currentX: 0,//当前坐标
-                currentY: 0,//当前坐标
                 currentValue:null,//移动步长个数
                 scalePerStep: 20,  //单位步长对应像素
                 stepSize:10,//步长的总个数
@@ -99,10 +101,9 @@
                 //setVal:null ,//根据实际值计算移动像素时的回调函数，为窗口resize
                 init:function () {
                     this.width=handleBtn.parent().width();
+                    //console.log( this.width)
                     this.stepSize = options.maxValue / options.unit;//最大值中包含步长的总个数
                     this.scalePerStep = utils.width / this.stepSize;
-                    this.currentX = $(handleBtn).offset().left+ ($(handleBtn).width())*0.5;//transform: translate(-50%,0);
-                    this.currentY = $(handleBtn).offset().top;
                     this.setValue((!!utils.currentValue ? utils.currentValue : options.defaultValue)/options.unit)
                     return this;
                 },
@@ -117,9 +118,11 @@
                     });
 
                     handleBtn.parent().on('click',function (e) {
+                        e.stopPropagation();
                         var curPostion = $(handleBtn).offset().left+ ($(handleBtn).width())*0.5;
-                        var posX =e.pageX - curPostion-utils.currentX;
-                        var stepCunt = (curPostion+posX)/utils.scalePerStep;
+                        var posX =e.pageX - curPostion;
+                        var left = $(handleBtn).position().left+ ($(handleBtn).width())*0.5;
+                        var stepCunt = ( left+posX)/utils.scalePerStep;
                         utils.setValue(stepCunt);
                     });
 
@@ -135,6 +138,7 @@
                     });
                     handleBtn.mousedown(function(e) {// 鼠标按钮被按下
                         e.preventDefault();
+                        e.stopPropagation();
                         utils.clickedOnCursor = true;
                     });
                     handleBtn.click(function (e) {
@@ -144,11 +148,12 @@
                 },
                 handle: function(e) {
                     if (utils.clickedOnCursor) {
-                        if(e.pageX < this.currentX){
+                        var currentX = $(handleBtn).parent().offset().left;
+                        if(e.pageX < currentX){
                             return ;
                         }
                         var pos = [];
-                        pos[0] = e.pageX - this.currentX;
+                        pos[0] = e.pageX - currentX;
                         //在宽度为options.width包含stepSize个步长，移动pos[0]相当于几个步长
                         var curStep = pos[0] * this.stepSize / utils.width //Math.floor();
                         //拖动超出范围，取最大步长数

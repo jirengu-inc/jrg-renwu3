@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<!--<audio id="media" src="" autoplay="autoplay"></audio>-->
+
+
+<script type="text/javascript" src="./js/jquery.min.js"></script>
+<script>
+    /*一个新的 XHR 对象 */
+    var xhr = new XMLHttpRequest();
+    /* 通过 GET 请连接到 .mp3 */
+    xhr.open('GET', './music/123.mp3', true);
+    /* 设置响应类型为字节流 arraybuffer */
+    xhr.responseType = 'arraybuffer';
+
+    /* demo的音频缓冲缓冲源 */
+    var sound;
+    /* 创建一个 AudioContext */
+    var context;
+    /* 尝试初始化一个新的 AudioContext, 如果失败抛出 error */
+    try {
+        /* 创建 AudioContext. */
+        context = new AudioContext();
+        xhr.onload = function() {
+            sound = context.createBufferSource();
+            context.decodeAudioData(xhr.response, function(buffer) {
+                /* 将 buffer 传入解码 AudioBuffer. */
+                sound.buffer = buffer;
+                /*连接 AudioBufferSourceNode 到 AudioContext */
+                sound.connect(context.destination);
+            });
+        };
+    } catch(e) {
+        throw new Error('The Web Audio API is unavailable');
+    }
+    xhr.send();
+
+
+    /* 新建一个 `<audio>` 元素. Chrome 支持通过 `new Audio()` 创建,
+     * Firefox 需要通过 `createElement` 方法创建. */
+    var  audio = new Audio();
+
+    /* 添加 `canplay` 事件侦听当文件可以被播放时. */
+    audio.addEventListener('canplay', function() {
+        /* 现在这个文件可以 `canplay` 了, 从 `<audio>` 元素创建一个
+         * MediaElementAudioSourceNode(媒体元素音频源结点) . */
+        sound = context.createMediaElementSource(audio);
+        /* 将 MediaElementAudioSourceNode 与 AudioContext 关联 */
+        sound.connect(context.destination);
+        /*通过我们可以 `play` `<audio>` 元素了 */
+        audio.play();
+    });
+    audio.src = './music/123.mp3';
+</script>
+</body>
+</html>

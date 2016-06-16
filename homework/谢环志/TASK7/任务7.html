@@ -1,0 +1,76 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>任务7</title>
+<style>
+	p{
+	margin: 0;
+	padding: 0;
+	font-size: 25px;
+	font-family: Microsoft YaHei；
+	}
+	.content{
+		height: 25px;
+		width: 180px;
+	}
+
+	.textarea input{
+		width: 600px;
+		height: 300px;
+		vertical-align: bottom;
+	}
+	::-moz-placeholder {
+		font-size: 20px;
+
+	}
+	:-ms-input-placeholder{
+		font-size: 20px;
+	}
+	::-webkit-input-placeholder{
+		font-size: 20px;
+	}
+	div{
+		width: 700px;
+		margin: 0 auto;
+	}
+	.textarea ::-moz-placeholder{
+		opacity: 0.3;
+	}
+	.textarea ::-webkit-input-placeholder{
+
+		opacity: 0.3;
+	}
+	.textarea :-ms-input-placeholder{
+
+		opacity: 0.3;
+	}
+	input[type="submit"]{
+		background-color: white;
+	}
+
+</style>
+</head>
+ <div>
+  <body>
+     <form name="my form" metod="post" >
+        姓名：<input name="username" type="text" placeholder="用户名" maxlength=10/><br/>
+        密码：<input name="psw" type="password" placeholder="密码"maxlength=20/><br/>
+        性别：<input name="sex" type="radio" value="男"checked/>男
+             <input name="sex" type="radio" value="女"/>女<br/>
+        取向：<input name="target" type="radio" value="男"/>男
+             <input name="target" type="radio" value="女"checked/>女<br/>
+        爱好：<input name="dota" type="checkbox" />dota
+             <input name="traval" type="checkbox" checked/>旅游
+             <input name="pat" type="checkbox" checked/>宠物<br/>
+        评论：<textarea name="comment" maxlengt=300 placeholder="ddd"/></textarea><br/>
+        我的car：
+            <select name="mycar">
+              <option value="saab" selected>萨博<option>
+              <option value="audi" >奥迪<option>
+              <option value="bmw" >宝马<option>
+            </select>
+            <input type="submit" value="提交">
+      </form>
+    </body>
+  </div>
+</html>

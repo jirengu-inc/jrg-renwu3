@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        html,body {
+            margin: 0;
+            padding:0;
+            width:100%;
+            height: 100%;
+        }
+        ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .carousel {
+            position: relative;
+            width:100%;
+            height:100%;
+            overflow: hidden;
+        }
+        .clearfix:after {
+            content:'';
+            display: block;
+            clear:both;
+        }
+        .img-ct {
+            position: absolute;
+            width:100%;
+            height:100%;
+        }
+        .img {
+            float:left;
+            height:100%;
+        }
+        .img > .cover {
+            height: 100%;
+        }
+        .bullet {
+            position: absolute;
+            left:50%;
+            top:20px;
+            transform:translateX(-50%);
+        }
+        .bullet li {
+            display: inline-block;
+            width:30px;
+            height:30px;
+            border-radius: 50%;
+            background-color: #999;
+            opacity:0.6;
+            margin:0 8px;
+            cursor: pointer;
+        }
+        .carousel .active {
+            opacity: 1;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class='carousel'>
+    <ul class="img-ct clearfix">
+        <li class='img' data-id=0>
+            <div class='cover' data-isSetBg='false' data-img='http://7xpvnv.com2.z0.glb.qiniucdn.com/4fa6e3dd-141d-4338-9d9d-886808a681e0.jpg'></div>
+        </li>
+        <li class='img' data-id=1>
+            <div class='cover' data-isSetBg='false' data-img='http://7xpvnv.com2.z0.glb.qiniucdn.com/a090f127-1993-4e95-91af-2994adbc099a.jpg'></div>
+        </li>
+        <li class='img' data-id=2>
+            <div class='cover' data-isSetBg='false' data-img='http://7xpvnv.com2.z0.glb.qiniucdn.com/72726f76-ce7a-4bfc-b8a9-adbcd43d4adc.jpg'></div>
+        </li>
+        <li class='img' data-id=3>
+            <div class='cover' data-isSetBg='false' data-img='http://7xpvnv.com2.z0.glb.qiniucdn.com/7071548e-d550-4a4b-9f72-071a691f9830.jpg'></div>
+        </li>
+    </ul>
+    <ul class='bullet'>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>   
+<script src="../jquery1.12.4/jquery-1.12.4.min.js"></script> 
+<script>
+var isLocked=false,
+    imgWidth=$(window).width(),
+    imgCount=$('.img-ct').children().length,
+    $ct=$('.img-ct'),
+    $bullet=$('.bullet'),
+    curIndex=0;
+
+$('.cover').css('width',imgWidth);
+$ct.append($('.img-ct>.img:first-child').clone(true));
+var $img=$('.img'),
+    realImgCount=$ct.children().length;
+    
+$ct.css({left:0,width:imgWidth*realImgCount});
+setBg(curIndex);
+setBullet();
+autoPlay();
+$bullet.on('click','li',function(e){
+    var idx=$(e.target).index();
+    if(idx-curIndex>0){
+        setBg(idx);
+        playForward(idx-curIndex);    
+    } 
+    if(idx-curIndex<0){
+        setBg(idx);
+        playBack(curIndex-idx);    
+    } 
+})
+$(window).on('resize',function(){
+    imgWidth=$(window).width();
+    realImgCount=$ct.children().length;
+    $ct.css({left:-imgWidth*curIndex,width:imgWidth*realImgCount});
+    $('.cover').css('width',imgWidth);     
+    $img.find('.cover').attr('data-isSetBg','false');
+    setBg(curIndex);
+})
+    
+function playForward(num){
+    if(!isLocked){
+        isLocked=true;
+        var widthCount=num||1;
+        setBg(curIndex+widthCount);
+        $ct.animate({left:'-='+(imgWidth*widthCount)},function(){
+            curIndex+=widthCount;
+            if(curIndex%imgCount===0){
+                $ct.css({left:0,width:imgWidth*realImgCount});
+                curIndex=0;
+            }
+            setBullet();
+            isLocked=false; 
+        });  
+    }
+}
+function playBack(num){
+    if(!isLocked){
+        isLocked=true;
+        var widthCount=num||1;
+        setBg(curIndex-widthCount);
+        $ct.animate({left:'+='+(imgWidth*widthCount)},function(){
+            curIndex-=widthCount;
+            setBullet();
+            isLocked=false; 
+        });   
+    }
+}
+function autoPlay(){
+    setInterval('playForward()',3000);
+}
+function setBullet(){
+    $bullet.find('li').removeClass('active').eq(curIndex).addClass('active');
+}
+function setBg(index){
+    var dataImg=$img.eq(index).find('.cover').attr('data-img');
+    if($img.eq(index).find('.cover').attr('data-isSetBg')!=='true'){
+        $img.eq(index).find('.cover').css({
+                                        backgroundImage: 'url('+dataImg+')',
+                                        backgroundSize:'cover',
+                                        backgroundRepeat:'no-repeat'
+                                });    
+    $img.eq(index).find('.cover').attr('data-isSetBg','true');
+    }
+}
+</script> 
+</body>
+</html>
