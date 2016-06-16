@@ -57,7 +57,7 @@ var startDrag = function(bar, target, callback){
 		if(params.flag){
 			var nowX = e.clientX, nowY = e.clientY;
 			var disX = nowX - params.currentX, disY = nowY - params.currentY;
-			target.style.left = parseInt(params.left) + disX + "px";
+			target.style.left = + disX + "px";
 			target.style.top = parseInt(params.top) + disY + "px";
 		}
 		

@@ -57,12 +57,6 @@ var player = (function(){
                 //$('.slider .rightTip').css('display','none');
             }
         });
-        //歌词
-        if(opts.lyricURL){
-            load(opts.lyricURL,function (lyc) {
-                this.lyricContent=parseLyric(lyc);
-            })
-        }
 
         //频道
         load('http://api.jirengu.com/fm/getChannels.php',function (data) {
@@ -75,11 +69,19 @@ var player = (function(){
 
 
     Player.prototype.bindEvent=function(media) {
+        $('.music-ct').mousedown(function(e) {e.stopPropagation();})
 
         var self = this;
         //开关切换
         self.switch.on('click',function (e) {
             self.switch.hasClass('play') ? self.pause() : self.start();
+        });
+
+        //单曲循环 TODO
+        //hide or show
+        $('.music').on('click',function (e) {
+            e.stopPropagation();
+            $('.music-ct').toggleClass('cur');
         });
         
         //FM的显示和隐藏
@@ -95,7 +97,7 @@ var player = (function(){
         });
         //频道点击
         $('.channel>ul').on('click','li',function (e) {
-            //$('.channel').toggleClass('active4channel')
+            $('.channel').toggleClass('active4channel')
             var channelID = $(e.target).attr('data-id');
             localStorage.setItem('info',JSON.stringify({channelID:channelID}));
             self.pause().setURL('http://api.jirengu.com/fm/getSong.php?channel='+channelID);//.start();
