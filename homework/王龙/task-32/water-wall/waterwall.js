@@ -47,10 +47,11 @@ var waterFall={
     },
     holdIt:function (ele,callBack) {
         var minValue = this.min(this.columnHeight);
-        console.log(minValue)
+        console.log(this.columnHeight)
+        console.log($(ele))
         $(ele).css({
             left:this.itemWidth*(minValue.index),
-            top:minValue.value,
+            top:minValue.value
         })
         callBack && callBack.call(this,$(ele));
         this.columnHeight[minValue.index]+= $(ele).outerHeight(true);//列高
@@ -58,7 +59,7 @@ var waterFall={
     resizeWin:function () {
         var self = this;
         console.log('resizeWin')
-        this.$ct.find('.item').each(function () {
+        this.$ct.find('.item[id!=tmpl]').each(function () {
             self.holdIt(this)
         });
         self.$ct.height( Math.max.apply(null, self.columnHeight) );
