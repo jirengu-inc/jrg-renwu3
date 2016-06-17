@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="referrer" content="no-referrer">
+	<title>音乐播放器</title>
+
+	<link rel="stylesheet" type="text/css" href="music.css">
+</head>
+<body>
+	<div class="music-ct">
+		<i class="music-start iconfont">&#xe612;</i>
+	
+	<div class="music">
+		<audio id="audio" src="./initsource/刘宽忍 - 枉凝眉.mp3">
+		     Your browser does not support the audio tag
+		 </audio>
+	<!-- 	 <audio id="audio-pre">
+	    Your browser does not support the audio tag
+	</audio>
+	<audio id="audio-next">
+	    Your browser does not support the audio tag
+	</audio> -->
+		<div class="music-nav">
+			<button class="nav-bar">
+				<a class="channels" href="#">
+					<i class="iconfont">&#xe68a;</i>
+					
+					<div class="channel-info">
+						<ul class="channel-nav">
+							<li class="music-collection">
+								<span>收藏</span>
+							</li>
+							<li class="music-hot active">
+								<span>热门</span>
+							</li>
+						<!-- 	<li class="music-care">
+							<span>关注</span>
+						</li> -->
+						</ul>
+						<ul class="channel-item collection">
+							收藏
+						</ul>
+						<ul class="channel-item hot active">
+							热门
+						</ul>
+						<ul class="channel-item care">
+							关注
+						</ul>
+					</div><!-- 左侧的频道信息和歌曲列表 -->
+				</a>
+			</button>
+		
+			<div class="music-title">
+				<p class="title">枉凝眉</p>
+				<span class="author">刘宽忍</span>
+			</div>
+			<div class="music-icon">
+				<i class="iconfont">&#xe612;</i>
+			</div>
+		</div>
+
+		<div class="main">
+			<img class="music-bg" src="initsource/4.jpg">
+				
+			<p class="lyric">							
+			</p>
+			<div class="like"><i class="iconfont">&#xe611;</i></div>
+			<div class="show-lyric"><i class="icon-lyric">词</i></div>
+
+		</div>
+
+			<div class="control-panel">
+				<div class="progress-bar">
+					<span class="play-time"></span>
+					<div class="play-prograss"></div>
+					<span class="end-time"></span>
+				</div>			
+			
+				<div class="adjust-panel">
+					<ul class="adjust">
+						<li class="play-pattern random"><i class="iconfont">&#xe871;</i></li>
+						<li class="pre"><i class="iconfont"><<</i></li>
+						<li class="play"><i class="iconfont">&#xe730;</i></li>
+						<li class="next"><i class="iconfont">>></i></li>
+						<li class="sound">
+							<div class="vol-panel">
+								<div class="vol">
+								<div class="vol-prograss"></div>
+								</div>
+							</div>
+							<div class="quiet">\</div>
+							<i class="iconfont">&#xf00bc;</i>
+						</li>
+					</ul>
+				</div>
+			<!-- 			<div class="like"><i class="iconfont">&#xe611;</i></div>
+			<div class="share"><i class="iconfont">&#xe630;</i></div> -->
+		</div>
+			
+	</div>
+
+	</div>
+
+
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+	<script type="text/javascript" src="music.js"></script>
+
+</body>
+</html>
