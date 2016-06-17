@@ -81,7 +81,7 @@
 		.channel-info .channel-item li a{
 			color: #fff;
 			display: inline-block;
-			width: 165px;
+			width: 180px;
 			text-align: center;
 			font-size: 18px;
 			height: 40px;
@@ -97,7 +97,7 @@
 			right: 40px;
 
 		}
-		.music-ct i{
+		.music-ct>i{
 			width: 50px;
 			height: 50px;
 			cursor: pointer;
@@ -108,8 +108,8 @@
 
 		.music{
 			position: absolute;
-			right: 100px;
-			top: 30px;
+			right: 30px;
+			top: 27px;
 			display: none;
 
 			background-color: #e9e9e9;
@@ -185,6 +185,8 @@
 			font-size: 14px;
 			text-align: center;
 			word-wrap: break-word;
+			height: 30px;
+			line-height: 20px;
 
 		}/* 每句歌词的位置 */
 		.main .like{
@@ -273,6 +275,11 @@
 			margin: 20px 18px 10px 22px;
 		}
 
+		.control-panel .adjust-panel .adjust .pre{
+			cursor:auto;
+			color:#999;
+		}
+
 		.control-panel .adjust-panel .adjust li{
 			cursor: pointer;
 			display: inline-block;
@@ -294,9 +301,9 @@
 			font-size: 38px;
 			font-weight: 900;
 			position: absolute;
-			left: 50%;
+			left: 60%;
 			margin-left: -10px;
-			bottom: 0;
+			bottom: 3px;
 			width: 30px;
 			height: 40px;
 		}

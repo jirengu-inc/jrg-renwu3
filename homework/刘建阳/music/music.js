@@ -3,14 +3,21 @@
 		// var playTime = audio.seekable.start;
 	 //    $('.play-time').text(playTime);
 	
-	var requestClock = false;
-	var sound;
 	
+	var requestClock = false;
+	var soundMark,slideW,palyPrograssClock,lyricCt;
+	
+	function init(){
+		 	drag($('.music-ct'));
+			drag($('.music'));
+			//drag($('.music-start'));
+	}
+	init();
 
 
 	 $('.music-start').on('click',function(){
 			if($('.music').css('display').toString()==='none'){
-				sound = 0.6;	
+				$(audio).attr('song-volume',0.6);
 				getRanSong();
 				$('.music-start').attr('start',true);
 			 	$('.music').show()
@@ -18,24 +25,31 @@
 			 			   .animate({'height': '560px'},500);
 				getChannel();
 			 	audio.play();
-			 	autoPrograss($('.play-prograss'));
-
+			 	
+			 	slide($('.progress-bar .play-prograss'));
+				
 			 }else{
 			 	$('.music-start').removeAttr('start');
-			 	$('.music').animate({
-							 	'width': '0px',
-							 	'height': '0px'
-			 					},1000)
+			 	$('.music').animate({'width': '0px'},500)
+						   .animate({'height': '0px'},500)
 			 				.hide();
 			 	audio.pause();
 			 	 if(palyPrograssClock){
 					clearInterval(palyPrograssClock);
 				}
 			 };
+			 setTimeout(function(){
+			 	slideW = $('.progress-bar').width();
+			 	// console.log(slideW);
+
+			 }, 1300)
+		
+			 
 		});
 //移动和拖拽
 function drag($node) {
     $node.on("mousedown",function (e) {
+    	//e.stopPropagation();
         var X = e.clientX - $node.offset().left; //鼠标在距当前元素最左端X的偏移,鼠标在内部x的偏移
         var Y = e.clientY - $node.offset().top; //鼠标在距当前元素最上端Y的偏移，鼠标在内部x的偏移
         $node.data("inner",{innerX:X,innerY:Y});
@@ -52,31 +66,43 @@ function drag($node) {
         }
     });
 }
-drag($('.music-ct'));
-drag($('.music'));
+
 
 //进度条的自动播放.palyPrograssClock
-	var palyPrograssClock;
+	
 	function autoPrograss($node){
 		var percent = audio.currentTime/audio.duration;//进度的百分比；
-		var slideW = $node.parent().width();//滑块的总宽度;
+		// var slideW = $node.parent().width();//滑块的总宽度;
 		var playedTime = displayTime(audio.currentTime);
 		var endTime = displayTime(audio.duration);
-		
+	
 
 		if(palyPrograssClock){
 			clearInterval(palyPrograssClock);
 		}
+		if($('.lyric').css('display').toString()==='block'){
+			if (clockLyric) {
+				clearInterval(clockLyric);//清除，防止闪烁
+			};
+			
+			autoLyric();
+		};
 		palyPrograssClock = setInterval(function(){
 			$node.css({
 				width: slideW*percent
 			});
-			console.log(audio.duration);
+			
 			$('.play-time').text(playedTime);
 			$('.end-time').text(endTime);
-			if ($node.width()>slideW) {
+			if ($node.width()>=slideW) {
 				$node.width(slideW);
-				return ;
+				if ($('.play-pattern').hasClass('random')) {
+					getRanSong($(audio).attr('channel-id'));
+				};
+				// else{
+				// 	clearInterval(palyPrograssClock);
+				// };
+				clearInterval(palyPrograssClock);
 			};
 			autoPrograss($node);
 		}, 300);
@@ -99,7 +125,7 @@ drag($('.music'));
 //播放进度条进度条滑动
 //slide($('.progress-bar .play-prograss'));
 	function slide($node){
-		var slideW = $node.parent().width();//滑块的总宽度
+		// var slideW = $node.parent().width();//滑块的总宽度
 		
 		$node.parent().on('click',function(e){
 			// if (!$(e.target).hasClass('progress-bar')) {
@@ -108,20 +134,22 @@ drag($('.music'));
 			if(palyPrograssClock){
 				clearInterval(palyPrograssClock);
 			}
-			var curPos = $node.offset().left+$node.width();//当前进度条的位置
-			var mouseDis = e.clientX - curPos;//鼠标点击点到进度条距离
-			// var distance = e.clientX - $node.offset().left;
-			
-			$node.css({
-					width: $node.width()+mouseDis
-				});
+			// var curPos = $node.offset().left+$node.width();//当前进度条的位置
+			// var mouseDis = e.clientX - curPos;//鼠标点击点到进度条距离
+			 var distance = e.clientX - $node.offset().left;
+			// console.log(e.clientX);
+			// console.log($node.offset().left);
+			// console.log(slideW);
+			$node.width(distance);
+
 			if ($node.width()>slideW) {
 				$node.width(slideW);
-
+				// getRanSong($(audio).attr('channel-id'));把获取下一首放到自动进度条autoPrograss($node)里面
 			};
+			//slideW = $node.parent().width();
 			var curPlayTime = audio.duration*$node.width()/slideW;//进度条调整后的播放时间
 			audio.currentTime = curPlayTime;
-		
+			
 			autoPrograss($node);
 		});//鼠标点击进度
 		
@@ -158,7 +186,7 @@ drag($('.music'));
 		});//鼠标滑动进度
 
 	}
-	slide($('.play-prograss'));
+	
 
 	//音量条进度条滑动
 	//slide($('.progress-bar .play-prograss'));
@@ -171,16 +199,29 @@ drag($('.music'));
 				// 	return ;
 				// };
 				
-				var curPos = $node.offset().left+$node.width();//当前进度条的位置
-				var mouseDis = e.clientX - curPos;//鼠标点击点到进度条距离
-				$node.css({
-					width: $node.width()+mouseDis
-				});
+				// var curPos = $node.offset().left+$node.width();//当前进度条的位置
+				// var mouseDis = e.clientX - curPos;//鼠标点击点到进度条距离
+				var distance = e.clientX - $node.offset().left;
+				// console.log(e.clientX);
+				// console.log($node.offset().left);
+				$node.width(distance);
 				if ($node.width()>slideVolW) {
 					$node.width(slideVolW);
 				};//防止长度超过最长
 				var curVolPrecent = $node.width()/slideVolW;//进度条调整后的音量比例
-				audio.volume = curVolPrecent;
+				// audio.volume = curVolPrecent;
+				// $(audio).attr('song-volume', audio.volume);
+				if (audio.volume===0) {//判断$(audio).attr('song-volume')取值0不能通过
+					// console.log($(audio).attr('song-volume')==='0');,输出true，属性的取值为字符串类型
+						//audio.volume = 0;
+						// console.log($(audio).attr('song-volume'));
+						soundMark = curVolPrecent;
+						//soundmoark作为一个当静音后audio.volume应当取值的标记
+				}else{
+					audio.volume = curVolPrecent;
+					$(audio).attr('song-volume',audio.volume);
+				};
+				
 				
 			});//鼠标点击进度
 			$node.parent().parent().on('click',function(e){
@@ -208,7 +249,17 @@ drag($('.music'));
 						$node.width(slideVolW);
 					};//防止长度超过最长
 					var curVolPrecent = $node.width()/slideVolW;//进度条调整后的播放时间
-					audio.volume = curVolPrecent;
+					if (audio.volume===0) {//判断$(audio).attr('song-volume')取值0不能通过
+
+						//audio.volume = 0;
+						// console.log($(audio).attr('song-volume'));
+						soundMark = curVolPrecent;
+						//soundmoark作为一个当静音后audio.volume应当取值的标记
+					}else{
+						audio.volume = curVolPrecent;
+						$(audio).attr('song-volume',audio.volume);
+					};
+					
 				};
 			});//声音滑动进度
 		}
@@ -240,7 +291,7 @@ drag($('.music'));
 			songsId = $(audio).attr('songs-id');
 		$.post('http://api.jirengu.com/fm/getLyric.php',{ssid:songsId,sid:songId})
 		   .done(function(ret){
-		   	var lyricCt = JSON.parse(ret);
+		   	lyricCt = JSON.parse(ret);
 		   	var lyricJson = parseLyricCt(lyricCt);
 			
 		  	setLyric(lyricJson);//将歌词设置到.lyric上
@@ -300,10 +351,17 @@ drag($('.music'));
 		 return lyricJson;
 
 	}
-//播放时间与歌词的时间队形
+//播放时间与歌词的时间对应
 //设置总时间与歌词div长度相对应，一秒钟为10px；自动向上移动播放
 	var clockLyric;
 	function  autoLyric(){
+		if(lyricCt.name !== $('.music-title .title').text){
+			getLyric();
+			if (clockLyric) {
+				clearInterval(clockLyric);//清除，防止闪烁
+			};
+			return ;//歌词的名字和当前播放的歌的名字不一样，重新获取一次
+		}
 		var tatolHeight = 10*Math.ceil(audio.duration);
 		$('.lyric').css('height',tatolHeight);
 		var percent = audio.currentTime/audio.duration;
@@ -366,7 +424,7 @@ $('.channel-item.hot').on('click',function(e){
 
 //获取下一首歌曲
 	$('.next').on('click',function(){
-		var channelId = $('#audio').attr('channel-id');
+		var channelId = $(audio).attr('channel-id');
 		getRanSong(channelId);
 	});
 
@@ -403,13 +461,16 @@ $('.channel-item.hot').on('click',function(e){
 			           $('.music-title').find('.author').text(author);
 						
 						
-						if ($('.music-start').data('start')) {
-							console.log(1);
+						if ($('.music-start').attr('start')) {
+							
 							audio.play();
+							//audio.volume = $(audio).attr('song-volume');
+							//console.log($(audio).attr('song-volume'));
+							autoPrograss($('.play-prograss'));
 						};
 						$('.play').html('<i class="iconfont">&#xe730;</i>');
 						if($('.lyric').css('display').toString()==='block'){
-							getLyric();
+							autoLyric();
 						};
 						requestClock = false;
 			      }
@@ -435,12 +496,14 @@ $('.channel-item.hot').on('click',function(e){
 	
 	$('.sound').on('click',function(){
 	
-		if(audio.volume!==0){			
-			sound = audio.volume;
+		if(audio.volume!==0){
+			soundMark = audio.volume;
 			audio.volume = 0;
+			$(audio).attr('song-volume',audio.volume);//设置song-volume属性，时刻保存audio.volume的值		
 			$('.quiet').show();
 		}else{
-			audio.volume = sound;
+			$(audio).attr('song-volume',soundMark);
+			audio.volume = $(audio).attr('song-volume');
 			$('.quiet').hide();
 		};
 	});
@@ -480,11 +543,41 @@ $('.channel-item.hot').on('click',function(e){
 		if (!$(audio).data('song-like')) {
 			$('.like').addClass('liked');
 			$(audio).data('song-like',true);
-		}else {
+			var songIput = '<li channel-id="' + $(audio).attr('channel-id')+ '" song-id="'+ $(audio).attr('song-id')+ '" songs-id="'+ $(audio).attr('songs-id') + '"><a href="#">' + $('.music-title').find('.title').text(); + '</a></li>';
+			$('.channel-item.collection').append(songIput);
+		 }else {
 			$('.like').removeClass('liked');
 			$(audio).data('song-like',false);
-		};
-		
-		
-		// $('.collection').html('<li channel-id="' + channels[i].channel_id + '"><a href="#">' + channels[i].name + '</a></li>'');
+			$('.channel-item.collection li').each(function(){
+				if ($(this).attr('song-id')===$(audio).attr('song-id')) {
+					$(this).empty();
+				};
+			});
+		};	
 	});
+
+
+	//设置单曲循环
+		$('.play-pattern').on('click',function(e){
+			
+			var $node;
+			if (e.target.tagName.toLowerCase()==='li') {
+				$node = $(e.target);
+			};
+			if (e.target.tagName.toLowerCase()==='i') {
+				$node = $(e.target).parent();
+			};
+			// console.log($node.hasClass('single'));
+			if ($node.hasClass('single')) {
+				$node.removeClass('single')
+					 .addClass('random')
+					 .html('<i class="iconfont" placeholder="随机播放">&#xe871;</i>');
+				$(audio).removeAttr('loop');
+			}else {
+				$node.removeClass('random')
+					 .addClass('single')
+					 .html('<i class="iconfont" placeholder="单曲循环">&rarr;</i>');
+				$(audio).attr('loop','');
+			};
+			
+		});
