@@ -80,7 +80,6 @@
             opacity: 1;
         }
     </style>
-    <link rel="stylesheet" href="../font-awesome/Font-Awesome-master4.6.3/css/font-awesome.min.css">
 </head>
 <body>
 <div class='carousel'>
@@ -90,8 +89,8 @@
         <li class='img' data-id=2><a href="#"><img src="img/3.jpg" alt="img"></a></li>
         <li class='img' data-id=3><a href="#"><img src="img/4.jpg" alt="img"></a></li>
     </ul>
-    <a href="#" class='arrow left'><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-    <a href="#" class='arrow right'><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    <a href="#" class='arrow left'>&lt;</a>
+    <a href="#" class='arrow right'>&gt;</a>
     <ul class='bullet'>
         <li></li>
         <li></li>
@@ -109,8 +108,10 @@
         $ct=$('.img-ct'),
         $bullet=$('.bullet'),
         curIndex=0;
+    
     $ct.prepend($('.img-ct>.img:last-child').clone());
     $ct.append($('.img-ct>.img:nth-child(2)').clone());
+    
     var realImgCount=$ct.children().length;
     
     $ct.css({left:-imgWidth*1,width:imgWidth*realImgCount});

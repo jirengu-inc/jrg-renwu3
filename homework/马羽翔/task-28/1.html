@@ -1,261 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>stickup</title>
     <style>
         body {
-            margin:10px;
+            margin: 10px;
         }
-        ul,li {
+        
+        ul,
+        li {
             list-style: none;
             margin: 0;
             padding: 0;
         }
+        
         a {
             text-decoration: none;
-            color:#fff;
+            color: #fff;
         }
+        
         .clearfix:after {
             content: "";
             display: block;
-            clear:both;
+            clear: both;
         }
+        
         .nav-menu {
-            width:100%;
-            padding-left: 20%;
+            width: 85%;
+            padding-left: 15%;
             overflow: auto;
-            margin:0 auto;
         }
-        .nav-item  {
+        
+        .nav-item {
             display: inline-block;
-            width:14%;
+            width: 14%;
             height: 40px;
             text-align: center;
         }
+        
         .nav-item > a {
             display: inline-block;
-            height:100%;
-            color:#fff;
+            height: 100%;
+            color: #fff;
             line-height: 40px;
         }
+        
         #header {
             margin-bottom: 20px;
-            height:60px;
-            width:100%;
+            height: 60px;
+            width: 100%;
             background: url('headbg.png') center center no-repeat;
-            background-size:contain;
+            background-size: contain;
             overflow: hidden;
         }
+        
         #content {
-            min-height:800px;
-            padding:10px;
-            background-color:#fff;
+            min-height: 800px;
+            padding: 10px 0;
+            background-color: #fff;
         }
+        
         nav {
-            margin-bottom:10px;
-            height:40px;
+            margin-bottom: 10px;
+            height: 40px;
             min-width: 900px;
             background-color: #d41111;
         }
+        
         .aside {
-            position:fixed;
-            top:140px;
-            left:10px;
-            border:1px solid #d41111;
+            float: left;
+            width: 200px;
         }
+        
+        .aside-menu {
+            width: 198px;
+            border: 1px solid #d41111;
+            min-height: 400px;
+        }
+        
         .aside .aside-item {
-            padding:10px 14px;
-            width:170px;
+            padding: 10px 14px;
+            width: 170px;
             height: 60px;
             line-height: 60px;
         }
+        
         .aside a {
             display: block;
-            width:100%;
+            width: 100%;
             text-align: center;
-            color:#333;
+            color: #333;
         }
+        
         .aside .aside-item:hover {
             background-color: #d41111;
         }
+        
         .aside .aside-item:hover a {
             color: #fff;
         }
+        
         .main {
-            margin-left: 200px;
-            min-width: 750px;
-            min-height: 800px; 
+            overflow: auto;
+            min-height: 800px;
             background-color: #d41111;
         }
+        
         .main .col-3 {
-            float:left;
-            width:33.33%;
+            float: left;
+            width: 33.33%;
+            min-width: 250px;
         }
+        
         .main .prod-ct {
-            margin:16px 20px;
+            margin: 16px 20px;
             min-height: 100px;
-            padding:10px 10px 30px 10px;
+            padding: 10px 10px 30px 10px;
             background-color: #fff;
         }
+        
         .main img {
-            width:100%;
-            height:100%;
+            width: 100%;
+            height: 100%;
         }
+        
         .main p {
             text-align: center;
         }
+        
         .main .old {
-            color:#333;
+            color: #333;
             font-size: 14px;
         }
+        
         .main .new {
             color: #f30b0b;
             font-size: 18px;
             font-weight: 700;
         }
+        
+        .footer {
+            
+        }
+
     </style>
 </head>
-<body>
-<div id='header'></div>
-<nav>
-    <ul class='nav-menu'>
-        <li class='nav-item'><a href="#">商城</a></li>
-        <li class='nav-item'><a href="#">品牌街</a></li>
-        <li class='nav-item'><a href="#">特惠专场</a></li>
-        <li class='nav-item'><a href="#">会员业务</a></li>
-    </ul>
-</nav>
-<div id='content'>
-    <div class='aside'>
-        <ul class='aside-menu'>
-            <li class='aside-item'><a href="#men">男装/运动</a></li>
-            <li class='aside-item'><a href="#">女装/美妆</a></li>
-            <li class='aside-item'><a href="#">家电/3c</a></li>
-            <li class='aside-item'><a href="#">食品/生鲜</a></li>
-            <li class='aside-item'><a href="#">图书/音像</a></li>
-        </ul>  
-    </div>
-    <div class='main clearfix'>
-       <section id='man'>
-            <div class='col-3'>
-                <div class='prod-ct'>
-                    <a href="#"><img src="prod1.jpg" alt="pro"></a>
-                    <p class='old'><del>原价：￥150</del></p>
-                    <p class='new'>现价：￥75</p>
-                </div>
-            </div>
-            <div class='col-3'>
-                <div class='prod-ct'>
-                    <a href="#"><img src="prod2.jpg" alt="pro"></a>
-                    <p class='old'><del>原价：￥130</del></p>
-                    <p class='new'>现价：￥70</p>
-                </div>
-            </div>
-            <div class='col-3'>
-                <div class='prod-ct'>
-                    <a href="#"><img src="prod3.jpg" alt="pro"></a>
-                    <p class='old'><del>原价：￥90</del></p>
-                    <p class='new'>现价：￥55</p>
-                </div>
-            </div>
-            <div class='col-3'>
-                <div class='prod-ct'>
-                    <a href="#"><img src="prod1.jpg" alt="pro"></a>
-                    <p class='old'><del>原价：￥150</del></p>
-                    <p class='new'>现价：￥75</p>
-                </div>
-            </div>
-            <div class='col-3'>
-                <div class='prod-ct'>
-                    <a href="#"><img src="prod2.jpg" alt="pro"></a>
-                    <p class='old'><del>原价：￥130</del></p>
-                    <p class='new'>现价：￥70</p>
-                </div>
-            </div>
-            <div class='col-3'>
-                <div class='prod-ct'>
-                    <a href="#"><img src="prod3.jpg" alt="pro"></a>
-                    <p class='old'><del>原价：￥90</del></p>
-                    <p class='new'>现价：￥55</p>
-                </div>
-            </div>
-           <div class='col-3'>
-                <div class='prod-ct'>
-                    <a href="#"><img src="prod1.jpg" alt="pro"></a>
-                    <p class='old'><del>原价：￥150</del></p>
-                    <p class='new'>现价：￥75</p>
-                </div>
-            </div>
-            <div class='col-3'>
-                <div class='prod-ct'>
-                    <a href="#"><img src="prod2.jpg" alt="pro"></a>
-                    <p class='old'><del>原价：￥130</del></p>
-                    <p class='new'>现价：￥70</p>
-                </div>
-            </div>
-            <div class='col-3'>
-                <div class='prod-ct'>
-                    <a href="#"><img src="prod3.jpg" alt="pro"></a>
-                    <p class='old'><del>原价：￥90</del></p>
-                    <p class='new'>现价：￥55</p>
-                </div>
-            </div>
-       </section>
-    </div>    
-</div>   
-<script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
-<script>    
-/*(function($){
-    
-    $.fn.stickup=function(){
-*/        var $this=$('nav'),
-            thisW=$this.width(),
-            thisH=$this.height(),
-            thisM=$this.css('margin'),
-            offsetTop=$this.offset().top,
-            offsetLeft=$this.offset().left,
-            $cloneNav=$('nav').clone(true);
-        
-        $cloneNav.css('opacity',0)
-                 .insertBefore($this)
-                 .hide();
-        
-        $(window).on('scroll',function(){
-            var scrollTop=$(window).scrollTop();
-            if(scrollTop >= offsetTop){
-                setFixed();
-            }else{
-                setUnfixed();
-            }
-        });
-        
-        function setFixed(){
-            $this.attr('data-isFixed',true);
-                 $this.css({
-                    'position':'fixed',
-                    'top':0,
-                    'left':offsetLeft,
-                    'width':thisW,
-                    'height':thisH,
-                    'margin-bottom':thisM,
-                    'opacity':1,
-                    'z-index':9
-                });
-            $cloneNav.show();
-        }
-        
-        function setUnfixed(){
-            $this.data('data-isFixed',false);
-                 $this.removeAttr('style');
-            $cloneNav.hide();
-        }
-   /* }
-    
-/*})(jQuery);
 
-$('nav').stickup();*/
-    
-</script>
+<body>
+    <div id='header'></div>
+    <nav>
+        <ul class='nav-menu'>
+            <li class='nav-item'><a href="#">商城</a></li>
+            <li class='nav-item'><a href="#">品牌街</a></li>
+            <li class='nav-item'><a href="#">特惠专场</a></li>
+            <li class='nav-item'><a href="#">会员业务</a></li>
+        </ul>
+    </nav>
+    <div id='content'>
+        <div class='aside'>
+            <ul class='aside-menu'>
+                <li class='aside-item'><a href="#men">男装/运动</a></li>
+                <li class='aside-item'><a href="#">女装/美妆</a></li>
+                <li class='aside-item'><a href="#">家电/3c</a></li>
+                <li class='aside-item'><a href="#">食品/生鲜</a></li>
+                <li class='aside-item'><a href="#">图书/音像</a></li>
+            </ul>
+        </div>
+        <div class='main clearfix'>
+            <section id='man'>
+                <div class='col-3'>
+                    <div class='prod-ct'>
+                        <a href="#"><img src="prod1.jpg" alt="pro"></a>
+                        <p class='old'><del>原价：￥150</del></p>
+                        <p class='new'>现价：￥75</p>
+                    </div>
+                </div>
+                <div class='col-3'>
+                    <div class='prod-ct'>
+                        <a href="#"><img src="prod2.jpg" alt="pro"></a>
+                        <p class='old'><del>原价：￥130</del></p>
+                        <p class='new'>现价：￥70</p>
+                    </div>
+                </div>
+                <div class='col-3'>
+                    <div class='prod-ct'>
+                        <a href="#"><img src="prod3.jpg" alt="pro"></a>
+                        <p class='old'><del>原价：￥90</del></p>
+                        <p class='new'>现价：￥55</p>
+                    </div>
+                </div>
+                <div class='col-3'>
+                    <div class='prod-ct'>
+                        <a href="#"><img src="prod1.jpg" alt="pro"></a>
+                        <p class='old'><del>原价：￥150</del></p>
+                        <p class='new'>现价：￥75</p>
+                    </div>
+                </div>
+                <div class='col-3'>
+                    <div class='prod-ct'>
+                        <a href="#"><img src="prod2.jpg" alt="pro"></a>
+                        <p class='old'><del>原价：￥130</del></p>
+                        <p class='new'>现价：￥70</p>
+                    </div>
+                </div>
+                <div class='col-3'>
+                    <div class='prod-ct'>
+                        <a href="#"><img src="prod3.jpg" alt="pro"></a>
+                        <p class='old'><del>原价：￥90</del></p>
+                        <p class='new'>现价：￥55</p>
+                    </div>
+                </div>
+                <div class='col-3'>
+                    <div class='prod-ct'>
+                        <a href="#"><img src="prod1.jpg" alt="pro"></a>
+                        <p class='old'><del>原价：￥150</del></p>
+                        <p class='new'>现价：￥75</p>
+                    </div>
+                </div>
+                <div class='col-3'>
+                    <div class='prod-ct'>
+                        <a href="#"><img src="prod2.jpg" alt="pro"></a>
+                        <p class='old'><del>原价：￥130</del></p>
+                        <p class='new'>现价：￥70</p>
+                    </div>
+                </div>
+                <div class='col-3'>
+                    <div class='prod-ct'>
+                        <a href="#"><img src="prod3.jpg" alt="pro"></a>
+                        <p class='old'><del>原价：￥90</del></p>
+                        <p class='new'>现价：￥55</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div id='footer'></div>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    <script>
+        (function($) {
+
+            $.fn.stickup = function(needTop, needRt) {
+                var $this = $(this),
+                    thisW = $this.width(),
+                    thisH = $this.height(),
+                    offsetTop = $this.offset().top;
+
+                $cloneNav = $('nav').clone(true);
+
+                $cloneNav.css('opacity', 0)
+                         .insertBefore($this)
+                         .hide();
+
+                $(window).on('scroll', function() {
+                    var scrollTop = $(window).scrollTop();
+                    if (scrollTop >= offsetTop) {
+                        setFixed();
+                    } else {
+                        setUnfixed();
+                    }
+                });
+
+                function setFixed() {
+                    $this.attr('data-isFixed', true);
+                    $this.css({
+                        'position': 'fixed',
+                        'top': 0,
+                        'width': thisW,
+                        'height': thisH,
+                        'opacity': 1,
+                        'z-index': 9
+                    });
+                    $cloneNav.show();
+                }
+
+                function setUnfixed() {
+                    $this.data('data-isFixed', false).removeAttr('style');
+                    $cloneNav.hide();
+                }
+            }
+
+        })(jQuery);
+
+        $('nav').stickup();
+
+    </script>
 </body>
+
 </html>

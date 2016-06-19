@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>多个轮播</title>
+    <style>
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .carousel {
+            position: relative;
+            margin: 20px 0;
+            width: 352px;
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        .img-ct {
+            position: absolute;
+        }
+        
+        .img {
+            float: left;
+        }
+        
+        .img > a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .arrow {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #c5c3b4;
+            opacity: 0.3;
+            font-size: 16px;
+            text-align: center;
+            line-height: 20px;
+            color: #fff;
+            font-weight: 700;
+        }
+        
+        .left {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+        }
+        
+        .right {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+        
+        .bullet {
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+        }
+        
+        .bullet li {
+            display: inline-block;
+            width: 16px;
+            height: 8px;
+            background-color: #c5c3b4;
+            opacity: 0.4;
+            margin: 0 2px;
+            cursor: pointer;
+        }
+        
+        .carousel .hover {
+            color: #000;
+            background-color: #fff;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class='carousel'>
+        <ul class="img-ct clearfix">
+            <li class='img' data-id=0>
+                <a href="#"><img src="img/1.jpg" alt="img"></a>
+            </li>
+            <li class='img' data-id=1>
+                <a href="#"><img src="img/2.jpg" alt="img"></a>
+            </li>
+            <li class='img' data-id=2>
+                <a href="#"><img src="img/3.jpg" alt="img"></a>
+            </li>
+            <li class='img' data-id=3>
+                <a href="#"><img src="img/4.jpg" alt="img"></a>
+            </li>
+        </ul>
+        <a href="#" class='arrow left'>&lt;</a>
+        <a href="#" class='arrow right'>&gt;</a>
+        <ul class='bullet'>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class='carousel'>
+        <ul class="img-ct clearfix">
+            <li class='img' data-id=0>
+                <a href="#"><img src="img/1.jpg" alt="img"></a>
+            </li>
+            <li class='img' data-id=1>
+                <a href="#"><img src="img/2.jpg" alt="img"></a>
+            </li>
+            <li class='img' data-id=2>
+                <a href="#"><img src="img/3.jpg" alt="img"></a>
+            </li>
+            <li class='img' data-id=3>
+                <a href="#"><img src="img/4.jpg" alt="img"></a>
+            </li>
+        </ul>
+        <a href="#" class='arrow left'>&lt;</a>
+        <a href="#" class='arrow right'>&gt;</a>
+        <ul class='bullet'>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div class='carousel'>
+        <ul class="img-ct clearfix">
+            <li class='img' data-id=0>
+                <a href="#"><img src="img/1.jpg" alt="img"></a>
+            </li>
+            <li class='img' data-id=1>
+                <a href="#"><img src="img/2.jpg" alt="img"></a>
+            </li>
+            <li class='img' data-id=2>
+                <a href="#"><img src="img/3.jpg" alt="img"></a>
+            </li>
+            <li class='img' data-id=3>
+                <a href="#"><img src="img/4.jpg" alt="img"></a>
+            </li>
+        </ul>
+        <a href="#" class='arrow left'>&lt;</a>
+        <a href="#" class='arrow right'>&gt;</a>
+        <ul class='bullet'>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script src='http://apps.bdimg.com/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script>
+        function Carousel(node){
+            
+            this.node=$(node);
+            
+            this.ct=this.node.find('.img-ct');
+            
+            this.curIndex=0;
+            
+            this.lock=false;
+            
+            this.imgWidth=this.node.find('.img').width();
+            
+            this.imgNum=this.node.find('img').length;
+            
+            this.realImgNum=this.imgNum+2;
+            
+            this.arrowLf=this.node.find('.arrow.left');
+           
+            this.arrowRt=this.node.find('.arrow.right');
+            
+            this.bullet=this.node.find('.bullet');
+            
+            this.init=function(){
+                
+                var firChd=this.ct.find('li').first().clone(),
+                    lstChd=this.ct.find('li').last().clone();
+                this.ct.prepend(lstChd);
+                this.ct.append(firChd);
+
+                var realImgCount=this.ct.children().length;
+
+                this.ct.css({
+                        left:-this.imgWidth*1,
+                        width:this.imgWidth*this.realImgNum
+                });
+                
+                this.setBullet();
+                this.bind();
+                this.autoPlay();
+                
+            };
+            
+            this.setBullet=function(){
+                this.node.find('.bullet').children('li').removeClass('hover')
+                                         .eq(this.curIndex).addClass('hover');
+            };
+            
+            this.bind = function(){ 
+                
+                var me=this;
+                
+                this.arrowRt.on('click',function(e){
+                    e.preventDefault();
+                    me.playForward();
+                })
+                this.arrowLf.on('click',function(e){
+                    e.preventDefault();
+                    me.playBack();
+                })
+                this.arrowLf.on('mouseenter mouseleave',function(){
+                    $(this).toggleClass('hover');
+                })
+                this.arrowRt.on('mouseenter mouseleave',function(){
+                    $(this).toggleClass('hover');
+                })
+                this.bullet.on('click','li',function(e){
+                    e.preventDefault();
+                    var idx=$(e.target).index();
+                    if(idx-me.curIndex>0){
+                        me.playForward(idx-me.curIndex);    
+                    } 
+                    if(idx-me.curIndex<0){
+                        me.playBack(me.curIndex-idx);    
+                    } 
+                })
+            };
+            
+            this.playForward=function(num){
+                if(!this.lock){
+                    this.lock=true;
+                    var widthCount=num||1,
+                        me=this;
+
+                    this.ct.animate({left:'-='+(this.imgWidth*widthCount)},function(){
+                        me.curIndex+=widthCount;
+                        if(me.curIndex%me.imgNum===0){
+                            me.ct.css({
+                                left:-me.imgWidth*1,
+                                width:me.imgWidth*me.realImgNum
+                            });
+                            me.curIndex=0;
+                        }
+                        me.setBullet();
+                        me.lock=false; 
+                    });  
+                }
+            };
+            
+            this.playBack=function(num){
+                if(!this.lock){
+                    this.lock=true;
+                    var widthCount=num||1,
+                        me=this;
+                    
+                    this.ct.animate({left:'+='+(this.imgWidth*widthCount)},function(){
+                        me.curIndex-=widthCount;
+                        (me.curIndex<0)?me.curIndex=(me.imgNum-1):me.curIndex=me.curIndex;
+                        if(me.curIndex===(me.imgNum-1)){
+                            me.ct.css({
+                                left:-me.imgWidth*me.imgNum,
+                                width:me.imgWidth*me.realImgNum
+                            });    
+                        }
+                        me.setBullet();
+                        me.lock=false; 
+                    })
+                }
+            };
+            
+            this.autoPlay=function(){
+                var me=this;
+                setInterval(function(){
+                    me.playForward();
+                },3000);    
+            };
+            
+            return this.init();
+            
+        }
+        
+        $('.carousel').each(function(){
+            new Carousel($(this));
+        });
+
+    </script>
+</body>
+
+</html>
