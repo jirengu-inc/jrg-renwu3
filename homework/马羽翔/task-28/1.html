@@ -241,7 +241,7 @@
     <script>
         (function($) {
 
-            $.fn.stickup = function(needTop, needRt) {
+            $.fn.stickup = function() {
                 var $this = $(this),
                     thisW = $this.width(),
                     thisH = $this.height(),
@@ -267,7 +267,7 @@
                     $this.css({
                         'position': 'fixed',
                         'top': 0,
-                        'width': thisW,
+                        'width': $this.width(),
                         'height': thisH,
                         'opacity': 1,
                         'z-index': 9
@@ -279,6 +279,7 @@
                     $this.data('data-isFixed', false).removeAttr('style');
                     $cloneNav.hide();
                 }
+                
             }
 
         })(jQuery);
