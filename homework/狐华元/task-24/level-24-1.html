@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>level-24-1</title>
+  </head>
+  <body>
+    <script>
+      function ajax(opts){
+        xhr = new XMLHttpRequest;
+        xhr.onreadystatechange = function(){
+          if(xhr.readyState == 4 && xhr.status == 200){
+            var reqText = JSON.parse(xhr.responseText);
+            opts.success(reqText);
+          }
+          if(xhr.readyState == 4 && xhr.status == 404){
+            opts.error();
+          }
+        }
+
+        var dataStr = '';
+        for(var key in opts.data){
+          dataStr += key + '=' + opts.data[key] + '&';
+        }
+        dataStr = dataStr.substr(0,dataStr.length-1);
+
+        if(opts.type.toLowerCase()==='get'){
+          xhr.open(opts.type,opts.url+'?'+dataStr,true)
+          xhr.send();
+        }
+
+        if(opts.type.toLowerCase()==='post'){
+          xhr.open(opts.type,opts.url,true);
+          xhr.setRequestHeader("Conten-type","application/x-www-form-urlencoded");
+          xhr.send(dataStr);
+        }
+      }
+    </script>
+  </body>
+</html>
