@@ -30,7 +30,7 @@
 		
 		.channel-info{
 			border-radius: 10px;
-			background-color: #215;
+			background-color: #356;
 			width: 300px;
 			height: 550px;
 			position: absolute;
@@ -94,10 +94,15 @@
 		.music-ct{
 			position: fixed;
 			top: 20px;
-			right: 40px;
-
+			right: 60px;
+		/*	width: 400px;
+			height: 560px;*/
+			display: table;/*//使用display table形成BFC解决拖动按钮和主页面产生的位置错乱问题*/
 		}
 		.music-ct>i{
+			position: absolute;
+			right: 5px;
+			top: 5px;
 			width: 50px;
 			height: 50px;
 			cursor: pointer;
@@ -108,8 +113,8 @@
 
 		.music{
 			position: absolute;
-			right: 30px;
-			top: 27px;
+			right: 44px;
+			top: 35px;
 			display: none;
 
 			background-color: #e9e9e9;
@@ -316,7 +321,7 @@
 			width: 100px;
 			background-color: #66f;
 		}
-		.vol{
+		.vol-bar{
 			position: absolute;
 			width: 90px;
 			height: 5px;

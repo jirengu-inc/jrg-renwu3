@@ -4,48 +4,103 @@
 	 //    $('.play-time').text(playTime);
 	
 	
-	var requestClock = false;
-	var soundMark,slideW,palyPrograssClock,lyricCt;
+	var requestClock = false,animateClock = false;
+	var soundMark,slideW,slideVolW,palyPrograssClock,lyricCt,clockLyric;
 	
-	function init(){
+	var init = function(){
+		var dtd = $.Deferred();//在函数内部新建一个Deferred对象
 		 	drag($('.music-ct'));
-			drag($('.music'));
-			//drag($('.music-start'));
+			// drag($('.music'));
+			// drag($('.music-start'));
+			getRanSong();
+
+			return dtd.promise();//返回promise对象，在原来的deferred对象上返回另一个deferred对象，只开放与改变执行状态无关的方法
 	}
-	init();
+
+	$.when(init())
+	 .done(function(){ 
+	 		$('.music-start').attr('start',true);
+
+	 	})
+	 .fail(function(){ alert('初始化失败，可能是网络请求问题')});
 
 
+	 
+
+	 		//'click'功能仅仅是展现页面和歌曲播放这两个功能
 	 $('.music-start').on('click',function(){
-			if($('.music').css('display').toString()==='none'){
-				$(audio).attr('song-volume',0.6);
-				getRanSong();
-				$('.music-start').attr('start',true);
-			 	$('.music').show()
-			 			   .animate({'width': '350px'},500)
-			 			   .animate({'height': '560px'},500);
-				getChannel();
-			 	audio.play();
-			 	
-			 	slide($('.progress-bar .play-prograss'));
-				
-			 }else{
-			 	$('.music-start').removeAttr('start');
-			 	$('.music').animate({'width': '0px'},500)
-						   .animate({'height': '0px'},500)
-			 				.hide();
-			 	audio.pause();
-			 	 if(palyPrograssClock){
-					clearInterval(palyPrograssClock);
-				}
-			 };
-			 setTimeout(function(){
-			 	slideW = $('.progress-bar').width();
-			 	// console.log(slideW);
+		 if(animateClock){
+		 	return ;
+		 }
+		 animateClock = true;
+		 if($('.music').css('display').toString()==='none'){				
+			$('.music').show()
+				 	   .css({'width': '350px'})
+				 	   .animate({'height': '560px'},500,function(){
+				 	   		 $('.music-start').attr('start',true);
+				 			 autoPre();//进度条和歌词自动前进
+				 			 getChannel();//获取频道信息，
+				 			 slide($('.progress-bar .play-prograss'));
+				 			 volSlide($('.vol-bar .vol-prograss'));
+				 			 slideW = $('.progress-bar').width();
+				 			 slideVolW = $('.vol-bar').width();//滑块的总宽度
+				 		});//动画后自行完后在执行function();
 
-			 }, 1300)
-		
+			$(audio).attr('song-volume',0.6);//设置音量初始值,之后作为一个歌曲应当有的音量的标记
+
+			audio.volume = $(audio).attr('song-volume');
+			audio.play();//初始化时已经获取一首歌了，所以一点击展示按钮就播放
+
+			animateClock = false;
+		}else{
+			$('.music-start').removeAttr('start');
+			$('.music').animate({'width': '0px'},500,function(){
+				 $('.music').css({'height': '0px'}).hide();
+			});
+			audio.pause();
+
+			if(palyPrograssClock){
+				clearInterval(palyPrograssClock);//停止进度条前进
+			}
+			if (clockLyric) {
+				clearInterval(clockLyric);//停止播放歌词
+			};
+					
+					// dtd.resolve();//改变deferred的执行状态为已完成，页面收起来后在隐藏
+					// $('.music').hide();
+
+			animateClock = false;
+		};			
+	});
+	
 			 
-		});
+		
+
+			
+
+			
+			 // setTimeout(function(){
+			 // 	slideW = $('.progress-bar').width();
+			 // 	// console.log(slideW);
+
+			 // }, 1300)//采用deferred的对象后可以保证动画执行完也就是music的宽高固定后惊醒各种计算操作
+	
+
+//进度条和歌词的自动
+	function autoPre(){
+		if(palyPrograssClock){
+			clearInterval(palyPrograssClock);
+		};
+		 autoPrograss($('.play-prograss'));
+		 if($('.lyric').css('display')==='block'){
+		 	if (clockLyric) {
+				clearInterval(clockLyric);//清除，防止闪烁
+			};				 		
+			autoLyric();
+		};
+		//这两个自动必须放到动画执行完，长宽固定后在执行
+	}
+
 //移动和拖拽
 function drag($node) {
     $node.on("mousedown",function (e) {
@@ -80,13 +135,14 @@ function drag($node) {
 		if(palyPrograssClock){
 			clearInterval(palyPrograssClock);
 		}
-		if($('.lyric').css('display').toString()==='block'){
-			if (clockLyric) {
-				clearInterval(clockLyric);//清除，防止闪烁
-			};
+		// if($('.lyric').css('display').toString()==='block'){
+		// 	if (clockLyric) {
+		// 		clearInterval(clockLyric);//清除，防止闪烁
+		// 	};
 			
-			autoLyric();
-		};
+		// 	autoLyric();
+		// };
+		// //自动进度条和自动歌词滚动应该是绑一块的，但是由于同是setInterval，所以放里面会出现严重的逻辑叠加（300毫秒间隔内还有一个300）,如果把setInrerval里面代码提取出来，一是有冗余，二是作为全局变量的歌词容器长度的计算优惠产生因问题
 		palyPrograssClock = setInterval(function(){
 			$node.css({
 				width: slideW*percent
@@ -99,6 +155,8 @@ function drag($node) {
 				if ($('.play-pattern').hasClass('random')) {
 					getRanSong($(audio).attr('channel-id'));
 				};
+
+				autoPre();//当播放下一首，重新执行一次进度条和歌词的自动播放，防止歌词在点开的状态下无法加载新歌词
 				// else{
 				// 	clearInterval(palyPrograssClock);
 				// };
@@ -150,7 +208,7 @@ function drag($node) {
 			var curPlayTime = audio.duration*$node.width()/slideW;//进度条调整后的播放时间
 			audio.currentTime = curPlayTime;
 			
-			autoPrograss($node);
+			autoPre();
 		});//鼠标点击进度
 		
 		$node.on('mousedown',function(e){
@@ -181,7 +239,7 @@ function drag($node) {
 				var curPlayTime = audio.duration*$node.width()/slideW;//进度条调整后的播放时间
 				audio.currentTime = curPlayTime;
 
-				autoPrograss($node);
+				autoPre();
 			};
 		});//鼠标滑动进度
 
@@ -191,7 +249,7 @@ function drag($node) {
 	//音量条进度条滑动
 	//slide($('.progress-bar .play-prograss'));
 		function volSlide($node){
-			var slideVolW = $node.parent().width();//滑块的总宽度
+			// var slideVolW = $node.parent().width();//滑块的总宽度
 			
 			$node.parent().on('click',function(e){
 				e.stopPropagation();
@@ -205,7 +263,7 @@ function drag($node) {
 				// console.log(e.clientX);
 				// console.log($node.offset().left);
 				$node.width(distance);
-				if ($node.width()>slideVolW) {
+				if ($node.width()>=slideVolW) {
 					$node.width(slideVolW);
 				};//防止长度超过最长
 				var curVolPrecent = $node.width()/slideVolW;//进度条调整后的音量比例
@@ -245,7 +303,7 @@ function drag($node) {
 					$node.css({
 						width: $node.width()+mouseDis
 					});
-					if ($node.width()>slideVolW) {
+					if ($node.width()>=slideVolW) {
 						$node.width(slideVolW);
 					};//防止长度超过最长
 					var curVolPrecent = $node.width()/slideVolW;//进度条调整后的播放时间
@@ -263,7 +321,7 @@ function drag($node) {
 				};
 			});//声音滑动进度
 		}
-	volSlide($('.vol .vol-prograss'));
+	
 
 /*	function slide($bode,start,end){
 
@@ -279,7 +337,9 @@ function drag($node) {
 			$('.show-lyric').addClass('showed-lyric');
 		}else{
 			$('.lyric').hide();
-			clearInterval(clockLyric);//停止执行播放歌词
+			if (clockLyric) {
+				clearInterval(clockLyric);//停止播放歌词
+			};
 			$('.show-lyric').removeClass('showed-lyric');
 		};		
 	});
@@ -353,9 +413,9 @@ function drag($node) {
 	}
 //播放时间与歌词的时间对应
 //设置总时间与歌词div长度相对应，一秒钟为10px；自动向上移动播放
-	var clockLyric;
+	
 	function  autoLyric(){
-		if(lyricCt.name !== $('.music-title .title').text){
+		if(lyricCt['name'] !== $('.music-title .title').text){
 			getLyric();
 			if (clockLyric) {
 				clearInterval(clockLyric);//清除，防止闪烁
@@ -462,11 +522,12 @@ $('.channel-item.hot').on('click',function(e){
 						
 						
 						if ($('.music-start').attr('start')) {
+							// console.log(1);
+							audio.volume = $(audio).attr('song-volume');
+							audio.play();//应该是对应出现，设置音量设置播放
 							
-							audio.play();
-							//audio.volume = $(audio).attr('song-volume');
 							//console.log($(audio).attr('song-volume'));
-							autoPrograss($('.play-prograss'));
+							autoPre();
 						};
 						$('.play').html('<i class="iconfont">&#xe730;</i>');
 						if($('.lyric').css('display').toString()==='block'){
@@ -525,8 +586,8 @@ $('.channel-item.hot').on('click',function(e){
     $('.play').on('click', function () {
         if (audio.paused) {
             audio.play();          
-             $('.play').html('<i class="iconfont">&#xe730;</i>');
-             autoPrograss($('.play-prograss'));       
+            $('.play').html('<i class="iconfont">&#xe730;</i>');
+            autoPre();       
         } else {
             audio.pause();
             // $('.cover').css('animation-play-state','paused');
