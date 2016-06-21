@@ -3,8 +3,10 @@
      * 拖拽
      * @param curTarget
      * @param callback   为鼠标放下时的回掉
+     * self.data('move',true); mousedown 和click 之间冲突，利用变量和谐此现象
      */
     $.fn.drag=function (curTarget,callback) {
+        var self = this;
         curTarget = $(curTarget)
         var params = {
             target:curTarget,
@@ -30,7 +32,7 @@
                     //初始位置  鼠标按下的店至页面的距离
                     params.currentX  = event.clientX;
                     params.currentY  = event.clientY;
-
+                    self.removeData('move');
                 });
 
                 //鼠标按键被松开
@@ -46,6 +48,7 @@
                 });
                 //鼠标被移动
                 $(document).on('mousemove', function(e){
+                    self.data('move',true);
                     //var e = event ? event: window.event;
                     if(params.flag){
                         //console.log('mousemove', e.pageX,e.pageY,params.left,params.top)
