@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <style>
+body{
+    background-color:#fff;
+    color:#143A41;
+}
+h2,hr{
+    padding:0;
+    margin:0;
+}
+.cover{
+    position:fixed;
+    background:#29505F;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.2;
+}
+.modal-content{
+    min-width:400px;
+    border:1px solid #1E5666;
+    position:absolute;
+    z-index:5000;
+    left: 50%;
+    top: 30%;
+    margin-left: -200px;
+    background:#fff;
+    border-radius:8px;
+    box-shadow: 2px 5px 8px rgba(30,80,100,0.2);
+}
+.modal-body{
+    padding:20px 10px;
+}
+
+.modal-title{
+    padding:10px;
+    background-color:#388598;
+    color:#fff;
+}
+.modal-title .close{
+    position:absolute;
+    right:20px;
+    top:14px;
+    cursor:pointer;
+}
+.btns{
+ text-align: right;
+    padding:10px;
+}
+#modal{
+    display:none;
+}
+.btn{
+    background-color:#EFB4A7;
+    border:1px solid #1E5666;
+    color:#fff;
+    outline:none;
+    border-radius:5px;
+    box-shadow:2px 1px 3px #1E5666;
+    padding:5px 10px;
+    margin-right:10px;
+}
+.btn:hover{
+    background-color:#ED876D;
+}
+.btnCt{
+    width:100%;
+    text-align:center;
+    padding:10px;
+}
+hr{
+width:50%;
+    margin: 0 auto;
+box-shadow:0 5px 8px rgba(30,80,100,0.2);
+}
+.dragAble{
+    opacity: 0.8;
+    cursor:move;
+}
+</style>
+</head>
+<body>
+<div class="btnCt">
+    <button class="btn" id="modal1">modal1</button>
+    <button class="btn" id="modal2">modal2</button>
+    <button class="btn" id="modal3">modal3</button>
+    <button class="btn" id="modal4">modal4</button>
+    <button class="btn" id="modal5">modal5</button>
+</div>
+<hr/>
+<!--<div class="modalCt" id="modal">
+    <div class="cover"></div>
+    <div class="modal-content">
+        <div class="modal-title">
+            <h2></h2>
+            <a class="close">×</a>
+        </div>
+        <div class="modal-body">
+
+        </div>
+        <div class="btns">
+            <button class="cancel btn">取消</button>
+            <button class="confirm btn">确定</button>
+        </div>
+    </div>
+</div>-->
+<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+/*
+ 做一个modal组件，引入这个组件的js和css后，使用它固定的方法和标签，就可以在一个页面多次使用拖拽功能modal框；
+ 1.定义颖函数生成modal的相关html标签，定义好css
+ 2.定义要在modal内传入的参数，可以随主观意愿随意添加删除修改title，内容，关闭确认按钮，点击关闭确认按钮后的回调函数
+ 3.需要的那些功能？（打开modal，关闭modal，modal内如何加入参数，如何处理参数，如何根据参数设置样式和内容，为modal绑定一些关闭.拖拽事件）
+*/
+function Modal(){
+    this.createModal();
+    this.bindEvent();
+}
+    Modal.prototype = {
+        defaultConfig : {
+            title :'',
+          content : '',
+          confirmBtn : false,
+          closeBtn : true,
+          onClose : function(){},
+          onConfirm :function(){}
+        },
+        open : function(obj){
+            this.setObj(obj);
+            console.log(this.obj);
+            this.setModal();
+            this.showModal();
+        },
+        close : function(){
+            this.hideModal();
+        },
+        createModal : function(){
+            var tpl = '<div class="modalCt" id="modal"> <div class="cover"></div>'+
+                    '<div class="modal-content"> <div class="modal-title">'+
+                    '<h2></h2><a class="close">×</a></div> <div class="modal-body">'+
+                    '</div><div class="btns"><button class="cancel btn">取消</button>'+
+                    '<button class="confirm btn">确定</button></div></div></div>';
+            this.$dialog = $(tpl);
+            $("body").append(this.$dialog);
+        },
+        setObj : function(obj){
+            if(typeof obj === "string"){
+                this.obj = $.extend({},this.defaultConfig,{content:obj});
+            }else if(typeof obj === "object"){
+                this.obj = $.extend({},this.defaultConfig,obj);
+            }
+        },
+        setModal : function(){
+            var $dialog = this.$dialog;
+            if(!this.obj.title){
+                $dialog.find(".modal-title").hide();
+            }else{
+                $dialog.find("h2").text(this.obj.title);
+            }
+            if(!this.obj.content){
+                $dialog.find(".modal-body").hide();
+            }else{
+                $dialog.find(".modal-body").html(this.obj.content);
+            }
+            if(!this.obj.confirmBtn){
+                $dialog.find(".confirm.btn").hide();
+            }
+            if(!this.obj.closeBtn){
+                $dialog.find(".cancel.btn").hide();
+            }
+
+        },
+        bindEvent : function(){
+             var me = this;
+            me.$dialog.find(".cancel,.close").on("click",function(e){
+                e.preventDefault();
+                me.obj.onClose();
+                me.hideModal();
+            });
+            me.$dialog.find(".confirm").on("click",function(e){
+                e.preventDefault();
+                me.obj.onConfirm();
+                me.hideModal();
+            });
+            me.$dialog.on("mousedown",function(e){
+                //e.pageX;事件在页面中的绝对位置
+                // $dialog.offset(): dialog的左上角到页面左上边缘的绝对位置
+                var $dialog = $(this),
+                        evtX = e.pageX- $dialog.offset().left,
+                        evtY = e.pageY-$dialog.offset().top;////evtX.evtY 计算事件的触发点在 dialog内部到 dialog 的左和上边缘的距离
+                $dialog.addClass("dragAble").data("evtPos",{posx:evtX,posy:evtY});
+            }).on("mouseup",function(){
+                $(this).removeClass('dragAble').removeData('evtPos');
+            })
+            $('body').on('mousemove', function(e){
+                $('.dragAble').length && $('.dragAble').offset({
+                    top: e.pageY-$('.dragAble').data('evtPos').posy,    // 当用户鼠标移动时，根据鼠标的位置和前面保存的距离，计算 dialog 的绝对位置
+                    left: e.pageX-$('.dragAble').data('evtPos').posx
+                });
+            });
+
+        },
+        showModal : function(){
+            this.$dialog.show();
+        },
+        hideModal : function(){
+            this.$dialog.hide();
+        }
+    };
+    $('#modal1').on("click",function(){
+        var dialog1 = new Modal();
+        dialog1.open({
+            content: 'hello',
+            closeBtn: true
+        })
+    });
+    $('#modal2').on("click",function(){
+    var dialog1 = new Modal();
+    dialog1.open({
+        title:'Title',
+        content: 'My name is Lynn',
+        closeBtn: true,
+        confirmBtn: true
+    })
+});
+$('#modal3').on("click",function(){
+    var dialog1 = new Modal();
+    dialog1.open({
+        title:'Title',
+        content: 'My name is Lynn',
+        closeBtn: true,
+        onClose: function(){
+            alert("亲，你要离开我么")
+        },
+    })
+});
+    var tpl = '<ul><li>列表1</li><li>列表2</li><li>列表1</li><li>列表1</li></ul>';
+    $('#modal4').on('click',function(){
+        var dialog4 = new Modal();
+        dialog4.open({
+            title: '标题',
+            content: tpl,
+            closeBtn: true,
+            confirmBtn: true,
+            onClose: function(){
+                alert("好吧 ByeBye")
+            },
+            onConfirm: function(){
+                alert("么么哒");
+            }
+        });
+    });
+$('#modal5').on("click",function(){
+    var dialog1 = new Modal();
+    dialog1.open({
+        title:'Game of Thrones',
+        content: '<img src="img/4.jpg"/>',
+        closeBtn: true,
+        confirmBtn: true,
+        onClose: function(){
+            alert("Bye就Bye")
+        },
+        onConfirm: function(){
+            alert("真的ByeBye");
+        }
+    })
+});
+</script>
+</body>
+</html>
