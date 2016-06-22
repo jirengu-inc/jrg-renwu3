@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+    
+    .ct {
+        width: 898px;
+        min-height: 600px;
+        margin: 20px auto;
+        background-color: #ddd;
+    }
+    
+    .ct > ul {
+        overflow: hidden;
+        margin-right: -20px;
+    }
+    
+    .pro-ct {
+        float: left;
+        width: 286px;
+        height:445px;
+        min-width: 100px;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        background-color: #fff;
+    }
+    
+    .pro-ct > a {
+        display: block;
+    }
+    
+    img {
+        width: 220px;
+        height: 405px;
+        margin: 20px 33px;
+    }
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>懒加载</title>
+</head>
+
+<body>
+    <div class='ct'>
+        <ul class="clearfix">
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+            <li class="pro-ct">
+                <a href='javascript:void(0)'><img data-img='girl.jpg' src="blank.jpg" alt="商品"></a>
+            </li>
+        </ul>
+    </div>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    <script>
+        var $img = $('img');
+
+        $img.each(function() {
+            var me = $(this),
+                clock = true;
+
+            isVisible(me);
+
+            $(window).on('scroll', function() {
+                if (clock) {
+                    clearTimeout(clock);
+                }
+                clock = setTimeout(function() {
+                    isVisible(me);
+                }, 300)
+            })
+        })
+
+        function isVisible($node) {
+            var scroll = $(window).scrollTop(),
+                offsetTop = $node.offset().top,
+                winH = $(window).height();
+
+            if (offsetTop <= winH + scroll && offsetTop >= scroll) {
+                if ($node.data('isVis') !== true) {
+                    $node.data('isVis', true);
+                    showImg($node);
+                }
+            }
+        }
+
+        function showImg($node) {
+            var imgSrc = $node.data('img');
+            $node.attr('src', imgSrc);
+        }
+
+    </script>
+</body>
+
+</html>

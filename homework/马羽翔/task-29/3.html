@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>加载更多,鼠标滚轮版</title>
+    <style>
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .content-ct {
+            border: 1px solid #ee6aa7;
+            border-radius: 5px;
+            height: 40px;
+            margin: 10px;
+            padding: 4px;
+        }
+        
+        .content {
+            color: #ee6aa7;
+        }
+        
+        .hover {
+            background-color: #ee6aa7;
+            color: #fff;
+        }
+        
+        .btn-ct {
+            text-align: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            margin: 0 auto;
+            border: 1px solid #ee6aa7;
+            border-radius: 4px;
+            color: #ee6aa7;
+            padding: 4px 6px;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #ee6aa7;
+            color: #fff;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class='ct'>
+        <ul class="news">
+            <li class="content-ct"><a href="#" class="content">内容1</a></li>
+            <li class="content-ct"><a href="#" class="content">内容2</a></li>
+        </ul>
+        <div class="btn-ct"><a href="#" class="btn">加载更多</a></div>
+    </div>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.min.js"></script>
+    <script>
+        var $btn = $('.btn'),
+            cur = 3,
+            isLocked = false;
+
+        $('.news').on('mouseenter mouseleave', '.content-ct', function() {
+            $(this).toggleClass('hover');
+            $(this).find('a').toggleClass('hover');
+        })
+
+        loadMore();
+
+        function loadMore() {
+            if (isVisible($btn)) {
+                getAjax();
+            }
+        }
+
+        $(window).on('scroll', function() {
+
+            var clock = true;
+
+            if (clock) {
+                clearTimeout(clock);
+            }
+            clock = setTimeout(function() {
+                if (isVisible($btn)) {
+                    if (isLocked) {
+                        return;
+                    } else {
+                        getAjax();
+                    }
+                };
+            }, 200)
+        })
+
+        function isVisible($node) {
+            var scroll = $(window).scrollTop(),
+                offsetTop = $node.offset().top,
+                winH = $(window).height();
+
+            if (offsetTop <= winH + scroll) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function getAjax() {
+
+            isLocked = true;
+
+            $btn.text('')
+                .css({
+                    backgroundImage: "url(wait.gif)",
+                    backgroundSize: 'contain',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPositionX: '50%'
+                });
+
+            $.ajax({
+                url: '3.php',
+                methods: 'GET',
+                dataType: 'json',
+                cache: 'false',
+                data:{
+                    start: cur,
+                    len: 10
+                },
+                success: function(ret) {
+                    success(ret);
+                },
+                error: function() {
+                    error();;
+                },
+                complete: function() {
+                    compelete();
+                }
+            });
+        }
+
+        function success(ret) {
+            if (ret.status == 1) {
+                for (var j = 0; j < ret.data.length; j++) {
+                    var $li = $("<li class='content-ct'></li>");
+                    $li.append($("<a class='content'>" + ret.data[j] + "</a>"));
+                    $('ul').append($li);
+                }
+                cur += 10;
+            } else {
+                alert("获取数据失败");
+            }
+        }
+
+        function error() {
+            alert('连接数据库出错');
+        }
+
+        function compelete() {
+            isLocked = false;
+            $btn.removeAttr('style')
+                .text('加载更多');
+        }
+
+    </script>
+</body>
+
+</html>
