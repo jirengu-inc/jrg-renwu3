@@ -89,26 +89,33 @@ var musicPlay = (function(){
 
 	musicPlayer.prototype.startInit = function(){
 		var _self = this;
-		var init = function(){
-			 var audio = document.getElementById('audio');//获取audio作为全局变量，方便直接使用.play();
-			_self.audio = audio;
-			var dtd = $.Deferred();//在函数内部新建一个Deferred对象
-			 	_self.drag($('.music-ct'));
-				// drag($('.music'));
-				// drag($('.music-start'));
-				_self.getRanSong();
+		// var init = function(){
+		// 	 var audio = document.getElementById('audio');//获取audio作为全局变量，方便直接使用.play();
+		// 	_self.audio = audio;
+		// 	var dtd = $.Deferred();//在函数内部新建一个Deferred对象
+		// 	 	_self.drag($('.music-ct'));
+		// 		// drag($('.music'));
+		// 		// drag($('.music-start'));
+		// 		_self.getRanSong();
 
-				return dtd.promise();//返回promise对象，在原来的deferred对象上返回另一个deferred对象，只开放与改变执行状态无关的方法
-		}
+		// 		return dtd.promise();//返回promise对象，在原来的deferred对象上返回另一个deferred对象，只开放与改变执行状态无关的方法
+		// }
 		
-		// init();
-		// $('.music-start').attr('start',true);
-		$.when(init())
-		 .done(function(){ 
-		 		$('.music-start').attr('start',true);
+		// // init();
+		// // $('.music-start').attr('start',true);
+		// $.when(init())
+		//  .done(function(){ 
+		//  		$('.music-start').attr('start',true);
 
-		 	})
-		 .fail(function(){ alert('初始化失败，可能是网络请求问题')});
+		//  	})
+		//  .fail(function(){ alert('初始化失败，可能是网络请求问题')});
+
+		 var audio = document.getElementById('audio');//获取audio作为全局变量，方便直接使用.play();
+		_self.audio = audio;
+		_self.drag($('.music-ct'));
+		// drag($('.music'));
+		// drag($('.music-start'));
+		_self.getRanSong();
 	};
 
 	musicPlayer.prototype.showBtn = function(){
