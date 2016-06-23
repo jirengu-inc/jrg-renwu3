@@ -11,6 +11,8 @@
 <div class="btn no-model">no-model</div>
 <div class="btn no-title">no-title</div>
 <div class="btn no-footer">no-footer</div>
+<div class="btn no-all">no-all</div>
+
 
     <!--<div class="main-dialog">-->
         <!--<div class="dialog-header justify">-->
@@ -79,6 +81,20 @@
             width:'350',
             model:false,
             title:'hunger',
+            content:'hello boys~',
+            isClose:false,
+            isSure:false,
+            onClose:function () {console.log('onClose')},
+            onSure:function () {console.log('onSure')}
+        });
+        dialog.open();
+    });
+
+    $('.no-all').on('click',function () {
+        var dialog = new Dialog({
+            width:'350',
+            model:false,
+            title:'',
             content:'hello boys~',
             isClose:false,
             isSure:false,
