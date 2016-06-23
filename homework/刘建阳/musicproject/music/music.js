@@ -57,6 +57,8 @@ var musicPlay = (function(){
 				'<div class="img-cover"></div>'+
 				'<img class="music-bg" src="initsource/4.jpg">'+
 				'<hr><!-- 当前歌词标记 -->'+
+				'<div class="lyric-upcover">'+
+				'</div><div class="lyric-downcover"></div>'+
 				'<p class="lyric"></p>'+
 				'<div class="like"><i class="iconfont">&#xe611;</i></div>'+
 				'<div class="show-lyric"><i class="iconfont">&#xe64c;</i></div></div>'+
