@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dialog</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+<br>
+<div class="btn ALL">ALL</div>
+<div class="btn no-model">no-model</div>
+<div class="btn no-title">no-title</div>
+<div class="btn no-footer">no-footer</div>
+<div class="btn no-all">no-all</div>
+
+
+    <!--<div class="main-dialog">-->
+        <!--<div class="dialog-header justify">-->
+            <!--<span class="head-title"><h2>title</h2></span>-->
+            <!--<span class="head-close">X</span>-->
+        <!--</div>-->
+        <!--<div class="dialog-content"></div>-->
+        <!--<div class="dialog-footer clear">-->
+            <!--<div class="dialog-btns">-->
+                <!--<a href="javascript:void(0);" class="btn cancel">取消</a>-->
+                <!--<a href="javascript:void(0);" class="btn sure">确定</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./dialog.js"></script>
+<script>
+    $('.ALL').on('click',function () {
+        var dialog = new Dialog({
+            width:'350',
+            model:true,
+            title:'hunger',
+            content:'hello boys~',
+            isClose:true,
+            isSure:true,
+            onClose:function () {console.log('onClose')},
+            onSure:function () {console.log('onSure')}
+        });
+        dialog.open();
+    });
+
+
+    $('.no-model').on('click',function () {
+        var dialog = new Dialog({
+            width:'350',
+            model:false,
+            title:'hunger',
+            content:'hello boys~',
+            isClose:true,
+            isSure:true,
+            onClose:function () {console.log('onClose')},
+            onSure:function () {console.log('onSure')}
+        });
+        dialog.open();
+    });
+//no-title
+    $('.no-title').on('click',function () {
+        var dialog = new Dialog({
+            width:'350',
+            model:false,
+            title:'',
+            content:'hello boys~',
+            isClose:true,
+            isSure:true,
+            onClose:function () {console.log('onClose')},
+            onSure:function () {console.log('onSure')}
+        });
+        dialog.open();
+    });
+
+
+    // no-footer
+    $('.no-footer').on('click',function () {
+        var dialog = new Dialog({
+            width:'350',
+            model:false,
+            title:'hunger',
+            content:'hello boys~',
+            isClose:false,
+            isSure:false,
+            onClose:function () {console.log('onClose')},
+            onSure:function () {console.log('onSure')}
+        });
+        dialog.open();
+    });
+
+    $('.no-all').on('click',function () {
+        var dialog = new Dialog({
+            width:'350',
+            model:false,
+            title:'',
+            content:'hello boys~',
+            isClose:false,
+            isSure:false,
+            onClose:function () {console.log('onClose')},
+            onSure:function () {console.log('onSure')}
+        });
+        dialog.open();
+    });
+</script>
+</body>
+</html>
