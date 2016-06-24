@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    a{
+        text-decoration: none;
+        color: #444;
+    }
+    a.page-item {
+        display: inline-block;
+        padding: 7px;
+        border: 1px solid #ccc;
+        margin: 6px;
+        border-radius: 6px;
+        font-size: 13px;
+        height: 10px;
+        line-height: 10px;
+    }
+    a.page-item:hover {
+        background: #9C4A58;
+        color: #fff;
+        border: 1px solid #9C4A58;
+    }
+    span.page-cur{
+        display: inline-block;
+        padding: 7px;
+        margin: 6px;
+        border-radius: 6px;
+        font-size: 13px;
+        height: 10px;
+        line-height: 10px;
+        background: #9C4A58;
+        color: #fff;
+    }
+    span.page-pre,span.page-next{
+        display: inline-block;
+        padding: 7px;
+        margin: 6px;
+        border-radius: 6px;
+        font-size: 13px;
+        height: 10px;
+        line-height: 10px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+    .pagination{
+        /*-webkit-user-select: none;*/
+    }
+    .page-go {
+        padding: 3px;
+        margin-left: -1px;
+        border-radius: 0 4px 4px 0;
+        background: #9C4A58;
+        display: inline-block;
+        height: 19px;
+        line-height: 19px;
+        width: 21px;
+        vertical-align: top;
+        color: #fff;
+        cursor: pointer;
+        font-size: 13px;
+        text-align: center;
+        border: none;
+    }
+    input.page-to {
+        font-size: 13px;
+        border: 1px solid #ccc;
+        border-radius: 4px 0 0 4px;
+        outline: none;
+        padding: 4px;
+        box-sizing: border-box;
+        width: 36px;
+    }
+    .page-goto {
+        font-size: 0;
+        display: inline-block;
+        position: relative;
+        border-radius: 6px;
+    }
+    .page-tip {
+        font-size: 13px;
+        top: -29px;
+        position: absolute;
+        border-radius: 6px;
+        padding: 4px;
+        color: #fff;
+        background: #9C4A58;
+        word-break: keep-all;
+        white-space: nowrap;
+        display: none;
+    }
+    .page-tip:after {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 0;
+        border: 4px solid #9C4A58;
+        bottom: -4px;
+        left: 15px;
+        position: absolute;
+        transform: rotate(45deg);
+    }
+    .active{
+        display: block;
+    }
+    .error{
+        box-shadow: 0 0 4px 2px #9C4A58;
+    }
+</style>
+<body>
+
+<h2>不带边界值 & 带
+<div class="page-goto">
+    <input type="text" name="pageTo" value="" class="page-to"><div class="page-tip">提示：15187565452</div>
+    <div class="page-go">GO</div>
+</div>
+</h2>
+<div class="pagination"></div>
+<h3>列表内容显示</h3>
+<div id="result">
+
+</div>
+
+<h2>含边界值</h2>
+<div class="pagination2"></div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="./page.js"></script>
+<script>
+    $('.pagination').pagination({
+        curPage:0,//当前页
+        edge:0,//边界显示个数
+        totalItem:100,//总记录数
+        displayPageNum:5,//固定显示页码个数
+        pageSize:10,//每页显示记录数
+        ellipsis:'...',
+        preText:'<<',//上一页
+        nextText:'>>',
+        goto:true,
+        pageChange:function (cur) {
+            $("#result").empty();
+            console.log('no-edge',cur)
+            var end = (cur+1)*this.pageSize;
+            for(var i=(cur)*this.pageSize;i<end;i++){
+                $("#result").append(' <div>result-'+i+'</div>');
+            }
+        }
+    });
+
+
+    $('.pagination2').pagination({
+        curPage:0,//当前页
+        edge:4,//边界显示个数
+        totalItem:200,//总记录数
+        displayPageNum:5,//固定显示页码个数
+        pageSize:10,//每页显示记录数
+        ellipsis:'...',
+        preText:'<<',//上一页
+        nextText:'>>',
+        pageChange:function (cur) {
+            console.log('edge',cur)
+        }
+    });
+</script>
+
+</body>
+</html>
