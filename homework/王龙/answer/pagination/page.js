@@ -24,9 +24,11 @@
                 },
                 addTip:function (text) {
                     self.find('.page-tip').text(text).addClass('active').parent().addClass('error');
+                    return false;
                 },
                 delTip:function () {
                     self.find('.page-tip').removeClass('active').parent().removeClass('error');
+                    return true;
                 },
                 bindEvent:function () {
                     /**
@@ -42,42 +44,44 @@
                      */
                      opts.goto && self.find('.page-to').on('input',function (e) {
                          var text = $(this).val();
-                         (text && !/^\d*$/.test(text)) ? utils.addTip('亲，我只接受不超过'+utils.totalPage()+'的数字~，~谢谢~') :utils.delTip();
+                         (!!text && /^\d*$/.test(text)) ? utils.delTip() : utils.addTip('亲，我只接受不超过'+utils.totalPage()+'的数字~，~谢谢~') ;
                      });
-                    /**
-                     * 跳转至页码
-                     */
-                    opts.goto && self.find('.page-go').on('click',function (e) {
-                        var to = self.find('.page-to').val();
-                        to && (to=parseInt(to));
-                        to = to > utils.totalPage() ? utils.totalPage() :to;
-                        opts.curPage=to-1;
-                        utils.render();
-                    });
+
                     /**
                      * pre和next每次都会被重新渲染，要么重复绑定吗 OR 事件冒泡
                      */
-                    if(opts.preText || opts.preText){
+                    if(opts.preText || opts.preText || opts.goto ){
                         self.on('click',function (e) {
                             e.stopPropagation();
                             //e.preventDefault(); 完蛋，阻止了默认行为，goto就下岗啦~~~
-                            if( $(e.target).is('.page-pre') && opts.curPage!==0){
+                            if(opts.preText && $(e.target).is('.page-pre') && opts.curPage!==0){
                                 console.log('pre')
                                 opts.curPage-=1;
                                 opts.curPage =  opts.curPage>0 ? opts.curPage :0;
                                 utils.render();
                             }
                             var total = utils.totalPage()-1;
-                            if( $(e.target).is('.page-next') && opts.curPage!==total){
+                            if(  opts.preText && $(e.target).is('.page-next') && opts.curPage!==total){
                                 console.log('next')
                                 opts.curPage+=1;
                                 opts.curPage =  opts.curPage> total ? total: opts.curPage;
                                 utils.render();
                             }
-                            // if(opts.goto && $(e.target).is('.page-to')){
-                            //     $(e.target).focus();
-                            // }
-
+                            /**
+                             * 跳转至页码
+                             */
+                            if(opts.goto && $(e.target).is('.page-go')){
+                                var to = self.find('.page-to').val();
+                                var result =  (!!to && /^\d*$/.test(to)) ? utils.delTip() : utils.addTip('亲，我只接受不超过'+utils.totalPage()+'的数字~，~谢谢~') ;//偷个懒
+                                console.log('result',result)
+                                if(result){
+                                    to && (to=parseInt(to));
+                                    to = to > utils.totalPage() ? utils.totalPage() :to;
+                                    opts.curPage=to-1;
+                                    utils.render();
+                                    self.find('.page-to').val(to);
+                                }
+                            }
                         });
                     }
                 },
