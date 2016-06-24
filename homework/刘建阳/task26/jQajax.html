@@ -10,6 +10,7 @@
 			height: 30px;
 			line-height: 30px;
 			padding-left: 10px;
+			border: 1px solid #a56;
 		}
 		li:hover{
 			cursor: pointer;
@@ -34,60 +35,94 @@
 
 	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script>
-		/*接口：/getmore
-		  type:get
-		  dataType:json
-		  传参: data{start:2,len:6}
-		  回参: {
-				status:1//成功,0//失败
-				data[内容3,3,5、6、7、8]
-		  }
-		`success:handler//成功后处理
-		 error：  //失败
-		 */
-		var cur=2;
-		var lock=false;
-
-		$('#load-more').on('click',function () {
-			if (lock) {
+		
+		var cur=3;
+			var lock=false;
+		$('#load-more').click(function (event) {
+        event.stopImmediatePropagation();
+        if (lock) {
 				return ;
 			};//设置状态锁，加载完成后才可点击
 			lock = true;
 
-			$.ajax({
-			url: 'http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/29-jquery%20ajax/code/getMoreItemJsonp.php',
-			type: 'get',
-			dataType: 'json',
-			data: {
-				start: cur,
-				len: 6
-			},
-			success: function (json) {
-				onSuccess(json);
-				lock = false;
+        $.ajax({
+            url: "http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/29-jquery%20ajax/code/getMoreItemJsonp.php",
+            dataType: 'jsonp',
+            type:'post',
+            cache: false,
+            data:{start:cur,len:6},
+            success:function(result, textStatus, jqXHR){
+                //console.log(jqXHR);
+                $.each( result.items,function (idx,ele) {
+                    $('#ct').append('<li>'+ele+'</li>');
+                });
+                lock = false;
+                cur += 6;
+            },
+            error:function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('error',textStatus);
+                lock = false;
+            }
+        })
+
+    });
+
+	
+		
+			// // 接口：/getmore
+			// //   type:get
+			// //   dataType:json
+			// //   传参: data{start:2,len:6}
+			// //   回参: {
+			// // 		status:1//成功,0//失败
+			// // 		data[内容3,3,5、6、7、8]
+			// //   }
+			// // `success:handler//成功后处理
+			// //  error：  //失败
+			 
+			// var cur=3;
+			// var lock=false;
+		// $('#load-more').on('click',function () {
+		// 	if (lock) {
+		// 		return ;
+		// 	};//设置状态锁，加载完成后才可点击
+		// 	lock = true;
+
+		// 	$.ajax({
+		// 	url: '/getmore',
+		// 	type: 'get',
+		// 	dataType: 'json',
+		// 	data: {
+		// 		start: cur,
+		// 		len: 6
+		// 	},
+		// 	success: function (json) {
+		// 		//console.log(json);
+		// 		onSuccess(json);
+		// 		lock = false;
 				
-			},
-			error: function () {
-				function onError(){
-					lock = false;
-					alert("服务器出现错误!");
-				}
+		// 	},
+		// 	error: function () {
+		// 		function onError(){
+		// 			lock = false;
+		// 			alert("服务器出现错误!");
+		// 		}
 				
-			}
-		});
-		})
+		// 	}
+		// });
+		// })
 
 		
-		function onSuccess(json){
-			if(json.status === 1){
-			  for (var i = 0; i < json.data.length; i++) {
-			  	$('#ct').append('<li>' + json.data[i] + '</li>');
-			  };
-			  cur += 6;
-			}else{
-			  alert('获取数据失败');
-			}
-		}
+		// function onSuccess(json){
+		// 	if(json.status === 1){
+		// 	  for (var i = 0; i < json.data.length; i++) {
+		// 	  	$('#ct').append('<li>' + json.data[i] + '</li>');
+		// 	  };
+		// 	  cur += 6;
+		// 	}else{
+		// 	  alert('获取数据失败');
+		// 	}
+		// }
 	</script>
 </body>
 </html>
