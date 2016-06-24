@@ -130,7 +130,8 @@ var musicPlay = (function(){
 			 	return ;
 			 };
 			 _self.animateClock = true;
-			 if($('.music').css('display').toString()==='none'){				
+			 if($('.music').css('display').toString()==='none'){
+			 	//$('.music').height(0);				
 				$('.music').show()
 					 	   .css({'width': '340px'})
 					 	   .animate({'height': '530px'},500,function(){
