@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>回到顶部插件</title>
+    <link rel="stylesheet" href="Font-Awesome-master/css/font-awesome.min.css">
+    <style>
+        body{
+            height: 1500px;
+        }
+        h1{
+            text-align: center;
+        }
+        #go-top{
+            position:fixed;
+            z-index: 9000;
+            bottom: 100px;
+            right: 100px;
+            display: none;
+            color: #fff;
+            background-color: lightblue;
+            font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-size: 50px;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #go-top:hover{
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+<h1>请往下拉，回到顶部按钮自会出现</h1>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    function Gotop(distance) {
+        this.distance = distance;
+        this.createNode();
+        this.bind();
+    }
+    Gotop.prototype = {
+        createNode:function () {
+            var me = this;
+            me.$node = $('<div id="go-top"><i class="fa fa-angle-up"></i></div>');
+            $('body').append(me.$node);
+            me.$node.on('click',function () {
+                $(window).scrollTop(0);
+            });
+            me.hide();
+        },
+        bind:function () {
+          var me = this;
+          $(window).on('scroll',function () {
+              if($(window).scrollTop()>=me.distance){
+                  me.show();
+              }
+              else{
+                  me.hide();
+              }
+          });
+        },
+        show:function () {
+            var me =this;
+            me.$node.show();
+        },
+        hide:function () {
+            var me = this;
+            me.$node.hide();
+        }
+    };
+    new Gotop(300);
+
+
+
+//    var goTop = (function () {
+//        function init(distance) {
+//            var $goTop = $('<div id="go-top">回到顶部</div>');
+//            var $megoTop = $goTop;
+//            $("body").append($megoTop);
+//            bind($megoTop,distance);
+//        }
+//        function bind($megoTop,distance) {
+//            $(window).on("scroll",function () {
+//                var scrollTop = $(window).scrollTop();
+//                if(scrollTop>distance){
+//                    $megoTop.show();
+//                }
+//                else {
+//                    $megoTop.hide();
+//                }
+//            });
+//            $megoTop.on("click",function () {
+//                $(window).scrollTop(0);
+//            })
+//        }
+//        return{
+//            init:init
+//        }
+//    })();
+//    goTop.init(300);
+</script>
+</body>
+</html>
