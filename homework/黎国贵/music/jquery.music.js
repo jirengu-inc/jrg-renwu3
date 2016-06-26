@@ -296,8 +296,8 @@ Music.prototype = {
         });
         // 歌曲的开始与暂停
         $('#jquery-music .play a').on('click',function (e) {
+            e.preventDefault();
             if(!$('#jquery-music .play a').data('isShow')){
-                e.preventDefault();
                 //判断有没有歌曲，没有歌曲的话就发送ajax随机点一曲
                 if(!me.audio.src){
                     if (me.isSongClose) {
