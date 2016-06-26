@@ -140,6 +140,7 @@ Music.prototype = {
                 $sth.data('isShow',true);
             }
             else{
+                e.preventDefault();
                 $cpt.hide();
                 $sth.data('isShow',false);
             }
@@ -157,29 +158,35 @@ Music.prototype = {
             me.dialog($('#jquery-music-lyrics'));
         });
         //播放模式
-        $('#jquery-music .random-play').on('click',function () {
+        $('#jquery-music .random-play').on('click',function (e) {
+            e.preventDefault();
             me.playModel = 'random-play';
             $('#jquery-music .play-model>i').attr('class','fa fa-random');
         });
-        $('#jquery-music .single-cycle').on('click',function () {
+        $('#jquery-music .single-cycle').on('click',function (e) {
+            e.preventDefault();
             me.playModel = 'single-cycle';
             $('#jquery-music .play-model>i').attr('class','fa fa-retweet');
         });
-        $('#jquery-music .single-play').on('click',function () {
+        $('#jquery-music .single-play').on('click',function (e) {
+            e.preventDefault();
             me.playModel = '';
             $('#jquery-music .play-model>i').attr('class','fa fa-long-arrow-right');
         });
         //隐藏音乐播放器
-        $('#jquery-music .close-btn').on('click',function () {
+        $('#jquery-music .close-btn').on('click',function (e) {
+            e.preventDefault();
             $('#jquery-music').hide();
             $('#jquery-music-player').data('isShow',false);
         });
         //音量条的出现
-        $('#jquery-music .song-volume').on('mouseenter',function () {
+        $('#jquery-music .song-volume').on('mouseenter',function (e) {
+            e.preventDefault();
             $('#jquery-music .control-volume').show();
         });
 
-        $('#jquery-music .song-volume').on('mouseleave',function () {
+        $('#jquery-music .song-volume').on('mouseleave',function (e) {
+            e.preventDefault();
             $('#jquery-music .control-volume').hide();
         });
         //音量
@@ -232,7 +239,8 @@ Music.prototype = {
             }
         });
         //关闭歌词面板
-        $('#jquery-music-lyrics .music-lyrics-close').on('click',function () {
+        $('#jquery-music-lyrics .music-lyrics-close').on('click',function (e) {
+            e.preventDefault();
             $('#jquery-music-lyrics').hide();
             $('#jquery-music .song-lyrics').data('isShow',false);
 
@@ -280,7 +288,8 @@ Music.prototype = {
                 me.b = a*me.audio.duration/$('#jquery-music .progressbar').width();  //多少秒
             }
         });
-        $('#jquery-music .bar-circle').on('mouseup',function () {
+        $('#jquery-music .bar-circle').on('mouseup',function (e) {
+            e.preventDefault();
             me.audio.currentTime = me.b;
             me.changeStyle();
             $('#jquery-music .bar-circle').data('change',false);
