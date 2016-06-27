@@ -28,7 +28,7 @@
             margin: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            transition: 0.5s;
+            box-shadow: 4px 4px 10px #888;
         }
         .news-img {
             width:260px;
@@ -151,7 +151,8 @@ window.onload=function(){
         node+="</li>";
         
         $node=$(node);
-        $node.appendTo($newsCt);
+        $node.appendTo($newsCt)
+             .css('visiablity','hidden')
         
         var dfd=$.Deferred();
         loadImg(dfd);
@@ -190,9 +191,10 @@ window.onload=function(){
             }
         }
         $this.css({
-            top:minColHeight,
-            left:colIdx*nodeWidth
-        })
+                top:minColHeight,
+                left:colIdx*nodeWidth,
+            })
+             .fadeIn(2000)
         colHeight[colIdx]+=$this.outerHeight(true);
         $newsCt.height(Math.max.apply(null,colHeight));
     }
