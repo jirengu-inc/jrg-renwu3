@@ -159,6 +159,15 @@
     border-radius: 50%;
     background-color: blue;
 }
+#jquery-music .volume-bar-circle{
+    height: 10px;
+    width: 10px;
+    position:absolute;
+    top:0;
+    transform: translate(-25%,-50%);
+    border-radius: 50%;
+    background-color:skyblue;
+}
 #jquery-music .menu{
     display: none;
     position: absolute;
@@ -169,7 +178,7 @@
     position: relative;
 }
 #jquery-music .music-tab{
-    background-color: #aaa;
+    background-color: skyblue;
     width: 180px;
     height: 330px;
     overflow: auto;
@@ -186,7 +195,7 @@
     color:#FFFFFF;
 }
 #jquery-music .music-popular-list .active{
-    background-color: skyblue;
+    background-color: #ff8800;
 }
 
 
