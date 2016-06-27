@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jsonp/懒加载/瀑布流</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul,li {
+            list-style:none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .layout {
+            width:900px;
+            margin:0 auto;
+        }
+        .news-ct {
+            width:100%;
+            position:relative;
+        }
+        .item {
+            position:absolute;
+            width: 278px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: 0.5s;
+        }
+        .news-img {
+            width:260px;
+            height:auto;
+            margin:10px;
+        }
+        .news-head {
+            color:#000;
+            margin:10px;
+        }
+        .news-short {
+            border-top:1px solid #ccc;
+            color:#666;
+            font-size:14px;
+            line-height:1.8;
+            margin:10px;
+        }
+        .createtime,.source {
+            text-align: right;
+            color: #666;
+            font-size: 12px;
+            margin:10px;
+        }
+        #load {
+            width:100%;
+            height:40px;
+            background: url(wait.gif) 50% 0 no-repeat;
+            background-size: contain;
+        }
+        
+    </style>
+</head>
+<body>
+<div class="layout">
+    <ul class="news-ct">
+        <!--<li class="item">
+           <a href="...">
+                <img class="news-img" src="..." alt="img">
+                <div class="news-words">
+                    <h3 class="news-head"></h3>
+                    <p class="news-short"></p>
+                    <p class="createtime"></p>
+                    <p class="source">来源：...</p>
+                </div>
+           </a>
+        </li>-->
+    </ul>
+    <div id="load"></div>
+</div>
+    
+<script src='http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js'></script>
+<script>
+window.onload=function(){
+    var $newsCt=$(".news-ct"),
+        $load=$("#load"),
+        windowH=$(window).height(),
+        ctWidth=$newsCt.width(),
+        colHeight=[],
+        curPage=1,
+        newsPerPage=8,
+        clock=false;
+    
+    loadData();
+    
+    $(window).on('scroll',function(){
+        if(clock){
+            clearTimeout(clock);
+        }
+        clock=setTimeout(function(){
+            if(exposure()){
+                loadData();
+            }    
+        },300)
+    });
+  
+    function loadData(){
+        $.ajax({
+            url:'http://platform.sina.com.cn/slide/album_tech',
+            type:'GET',
+            data:({
+                page:curPage,
+                num:newsPerPage,
+                app_key:'1271687855'
+            }),
+            dataType:'jsonp',
+            jsonp:'jsoncallback',
+            success:function(res){
+                onSuccess(res);
+            },
+            error:function(){
+                onError(4);
+            }
+        })    
+    }
+    function onSuccess(res){
+        if(res.status.code==0){
+            for(var i=0;i<res.data.length;i++){
+                setDom(res.data[i]);    
+            }
+            curPage++;
+        }
+        else{
+            onError(5);
+        }
+    }
+    function setDom(data){
+        var node="",
+            $node;
+        
+        node+="<li class='item'>";
+        node+=" <a href='"+data.url+"'>";
+        node+="      <img class='news-img' src='"+data.img_url+"' alt='img'>";
+        node+="     <div class='new-words'>";
+        node+="         <h3 class='news-head'>"+data.short_name+"</h3>";
+        node+="         <p class='news-short'>"+data.short_intro+"</p>";
+        node+="         <p class='createtime'>"+data.createtime+"</p>";
+        node+="         <p class='source'>来源："+data.source+"</p>";
+        node+="     </div>";
+        node+=" </a>";
+        node+="</li>";
+        
+        $node=$(node);
+        $node.appendTo($newsCt);
+        
+        var dfd=$.Deferred();
+        loadImg(dfd);
+        dfd.done(function(){
+            waterfall($node);
+        })
+        function loadImg(dfd){
+            if($node.find('img').compelete){
+                dfd.resolve();
+                return dfd.promise();
+            }
+            $node.find('.news-img').load(function(){
+                dfd.resolve();
+                return dfd.promise();    
+            });
+        }
+    }
+    
+    function waterfall($node){
+        var nodeWidth=$node.outerWidth(true),
+            colsCount=Math.floor(ctWidth/nodeWidth),
+            $this=$node;
+        
+        if(colHeight.length===0){
+            for(var i=0;i<colsCount;i++){
+                colHeight.push(0);    
+            }
+        }
+        
+        minColHeight=colHeight[0],
+        colIdx=0;
+        for(var j=0;j<colHeight.length;j++){
+            if(colHeight[j]<minColHeight){
+                minColHeight=colHeight[j];
+                colIdx=j;
+            }
+        }
+        $this.css({
+            top:minColHeight,
+            left:colIdx*nodeWidth
+        })
+        colHeight[colIdx]+=$this.outerHeight(true);
+        $newsCt.height(Math.max.apply(null,colHeight));
+    }
+        
+
+    function exposure(){
+        if($load.offset().top<windowH+$(window).scrollTop()){
+            return true;    
+        }else{
+            return false;
+        }
+    }
+    
+    function onError(status){
+        if(status===4){
+            $load.text('网络不好！')
+             .css({
+                background:'url()',
+                textAlign:'center',
+                lineHeight:'40px'
+            })
+            setTimeout(function(){
+                $load.removeAttr('style')
+                     .text('');
+            },3000)
+        }
+        if(status===5){
+            $load.text('获取数据失败！')
+             .css({
+                background:'url()',
+                textAlign:'center',
+                lineHeight:'40px'
+            })
+            setTimeout(function(){
+                $load.removeAttr('style')
+                     .text('');
+            },3000)    
+        }
+    }
+        
+}
+</script>
+</body>
+</html>
