@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>轮播</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <style type="text/css">
+
+
+        html,body,ul,li,p{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .layout{
+            width: 480px;
+            height: 360px;
+            margin: 0 auto;
+            background: deeppink;
+            position: relative;
+            overflow: hidden;
+        }
+        .img-ct{
+            position: absolute;
+        }
+        .img-ct>li{
+            list-style: none;
+            float: left;
+            transition: all 0.5s;
+        }
+        .img-ct img{
+            width: 480px;
+            height: 360px;
+        }
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .arrow{
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+        }
+        .circle{
+            border-radius: 50%;
+            width: 20px;
+            display: inline-block;
+            height: 20px;
+            text-align: center;
+            background: rgba(177, 162, 162, 0.59);
+            opacity: 1;
+            color: #fff;
+            cursor: pointer;
+        }
+        .pre{
+            left: 15px;
+        }
+        .next{
+            right: 15px;
+        }
+        .bullet{
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .active{
+            background: #fff;
+            color: black;
+        }
+        .circle:hover {
+            box-shadow: 0 0 23px pink;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="layout">
+    <ul class="img-ct">
+        <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg"></a></li>
+        <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a></li>
+        <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a></li>
+        <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg"></a></li>
+    </ul>
+    <a class="pre arrow circle" href="#"><</a>
+    <a class="next arrow circle" href="#">></a>
+    <ul class="bullet">
+        <li class="circle"></li>
+        <li class="circle"></li>
+        <li class="circle"></li>
+        <li class="circle"></li>
+    </ul>
+</div>
+
+<hr>
+<div class="layout">
+    <ul class="img-ct">
+        <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg"></a></li>
+        <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a></li>
+        <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a></li>
+        <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg"></a></li>
+    </ul>
+    <a class="pre arrow circle" href="javascript:void(0)"><</a>
+    <a class="next arrow circle" href="javascript:void(0)">></a>
+    <ul class="bullet">
+        <li class="circle"></li>
+        <li class="circle"></li>
+        <li class="circle"></li>
+        <li class="circle"></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    function Carousel($ct) {
+            this.current=0;
+            this.isAnimate = false;
+            this.$bullet=$ct.find('.bullet>li');
+            this.$content=$ct.find('.img-ct');
+            this.width=$ct.find('.img-ct>li').width();
+            this.size = this.$bullet.size();
+            this.$content.css({width: this.size*this.width});
+            this.$ct=$ct;
+            this.setBullet();
+            this.bindEvent();
+            this.autoPlay();
+    }
+    Carousel.prototype={
+
+        bindEvent:function () {
+            var self = this;
+            this.$ct.find('.pre').on('click',function () {
+                self.playPre();
+            });
+
+            this.$ct.find('.next').on('click',function () {
+                self.playNext()
+            });
+            this.$bullet.on('click',function () {
+                var index = $(this).index();
+                if(self.current>index){
+                    self.playPre(self.current-index);
+                }
+                if(index>self.current){
+                    self.playNext(index-self.current);
+                }
+                //play($(this).index())
+            })
+        },
+        setBullet:function (){
+            this.$bullet.removeClass('active').eq(this.current).addClass('active');
+        },
+        autoPlay:function () {
+            var self = this;
+            this.auto=setInterval(function () {
+                self.playNext();
+            },3000);
+        },
+        //注释：使用 "+=" 或 "-=" 来创建相对动画（relative animations）。
+        play:function (step,callback) {
+            var self = this;
+            if(this.isAnimate)  return;
+            this.isAnimate = true;
+            this.$content.animate({left: step},function(){
+                callback && callback();
+                self.isAnimate = false;
+            });
+        },
+
+        playNext:function(step) {
+            var step = step || 1,self = this;
+            this.play( '-='+(this.width*step),function () {
+                for(var i=0 ; i<step;i++){
+                    self.$content.children().first().appendTo(self.$content);
+                }
+                self.current= (self.current+step)%self.size;
+                self.$content.css({ left: 0});
+                self.setBullet();
+            });
+        },
+        playPre:function (step) {
+            var step = step || 1,self = this;
+            for(var i = 0;i < step;i++){
+                this.$content.children().last().prependTo(this.$content);
+            }
+            this.$content.css({ left: 0-(this.width*step)});
+            this.play( '+='+(this.width*step),function () {
+                self.current=(self.size+self.current-step)%self.size;
+                self.setBullet();
+            });
+        }
+    }
+
+    $('.layout').each(function (i,e) {
+        new Carousel($(e))
+    });
+
+
+</script>
+</body>
+</html>
