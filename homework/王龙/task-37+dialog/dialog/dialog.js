@@ -29,19 +29,20 @@ Dialog.prototype={
             _this.opts.onSure();
             _this.close();
         });
-
         this.$dialog.on('mousedown',function (e) {
             e.stopPropagation();
             var $dialog = $(this),
                 evtX = e.pageX - $dialog.offset().left,   //evtX 计算事件的触发点在 dialog内部到 dialog 的左边缘的距离
                 evtY = e.pageY - $dialog.offset().top;
                 $dialog.addClass('draggable').data('evtPos', {x:evtX, y:evtY});
-        }).on('mouseup',function () {
-            //e.stopPropagation();
-            $(this).removeClass('draggable').removeData('pos');
         });
-        $('body').on('mousemove',function (e) {
-            e.stopPropagation();
+      
+        $(document).on('mouseup',function (e) {
+            //e.stopPropagation();
+            console.log('up',e.target,_this);
+            $('.draggable').length && $('.draggable').removeClass('draggable').removeData('pos');
+        }).on('mousemove',function (e) {
+           // e.stopPropagation();
             $('.draggable').length && $('.draggable').offset({
                 top: e.pageY-$('.draggable').data('evtPos').y,    // 当用户鼠标移动时，根据鼠标的位置和前面保存的距离，计算 dialog 的绝对位置
                 left: e.pageX-$('.draggable').data('evtPos').x
@@ -55,7 +56,7 @@ Dialog.prototype={
         return this;
     },
     render:function (opts) {
-        var html =  '<div class="main-dialog undisplay">'+
+        var html =  '<div class="main-dialog">'+
                                 '<div class="dialog-header justify">'+
                                     '<span class="head-title"><h2>title</h2></span>'+
                                     '<span class="head-close small-hand">X</span>'+
