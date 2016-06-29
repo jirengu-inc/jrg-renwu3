@@ -26,7 +26,7 @@ function Music() {
 }
 Music.prototype = {
     appendCss : function () {
-        $('head').append('<link rel="stylesheet"  href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/Font-Awesome-master/css/music.css">');
+        $('head').append('<link rel="stylesheet"  href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/music.css">');
         $('head').append('<link rel="stylesheet"  href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/Font-Awesome-master/css/font-awesome.min.css">');
         $('title').before('<meta name="referrer" content="no-referrer">');
     },
