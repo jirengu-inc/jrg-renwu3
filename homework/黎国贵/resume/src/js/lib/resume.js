@@ -55,5 +55,5 @@ requirejs(['jquery','Tab1','Tab2','Gotop','Expourse','Waterfall','Carousel'],fun
     });
 
     //回到顶部
-    new Gotop(300);
+    new Gotop(300,1500);
 });

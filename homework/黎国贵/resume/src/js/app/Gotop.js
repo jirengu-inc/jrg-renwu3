@@ -1,6 +1,7 @@
 define(['jquery'],function ($) {
-    function Gotop(distance) {
+    function Gotop(distance,time) {
         this.distance = distance;
+        this.time = time;
         this.createNode();
         this.bind();
     }
@@ -10,7 +11,7 @@ define(['jquery'],function ($) {
             me.$node = $('<div id="go-top"><i class="fa fa-angle-up"></i></div>');
             $('body').append(me.$node);
             me.$node.on('click',function () {
-                $(window).scrollTop(0);
+                $('html,body').animate({scrollTop:0},me.time);
             });
             me.hide();
         },
