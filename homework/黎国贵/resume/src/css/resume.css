@@ -71,6 +71,9 @@ a{
     left:0;
     z-index: 100;
 }
+.navbar:hover{
+    background-color: rgba(0,0,0,0.3);
+}
 .navbar-left{
     float: left;
     height: 75px;

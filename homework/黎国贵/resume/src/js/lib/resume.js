@@ -4,10 +4,10 @@ requirejs.config({
         jquery: "../../jq/jquery-2.2.3.min",
         Tab1:"../app/Tab1",
         Tab2:"../app/Tab2",
-        Gotop:"../app/回到顶部",
-        Expourse:"../app/曝光组件",
-        Waterfall:'../app/瀑布流布局',
-        Carousel:"../app/无缝滚动插件"
+        Gotop:"../app/Gotop",
+        Expourse:"../app/Expourse",
+        Waterfall:'../app/Waterfall',
+        Carousel:"../app/Carousel"
     }
 });
 requirejs(['jquery','Tab1','Tab2','Gotop','Expourse','Waterfall','Carousel'],function ($,Tab1,Tab2,Gotop,Expourse,Waterfall,Carousel) {
