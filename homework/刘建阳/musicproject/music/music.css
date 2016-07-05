@@ -15,11 +15,11 @@
 		}
 
 		@font-face {font-family: 'iconfont';
-		    src: url('iconfont.eot'); /* IE9*/
-		    src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-		    url('iconfont.woff') format('woff'), /* chrome、firefox */
-		    url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-		    url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+		    src: url('style/iconfont.eot'); /* IE9*/
+		    src: url('style/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		    url('style/iconfont.woff') format('woff'), /* chrome、firefox */
+		    url('style/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+		    url('style/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
 		}
 		.iconfont{
 		    font-family:"iconfont" !important;
@@ -123,7 +123,6 @@
 			border-radius: 3px;
 			overflow: hidden;
 			height: 0;
-
 		}
 
 		.music-nav{
@@ -256,11 +255,11 @@
 			user-select:none;
 		}
 		@font-face {font-family: "iconfont";
-		  src: url('iconfont1.eot?t=1466480762'); /* IE9*/
-		  src: url('iconfont1.eot?t=1466480762#iefix') format('embedded-opentype'), /* IE6-IE8 */
-		  url('iconfont1.woff?t=1466480762') format('woff'), /* chrome, firefox */
-		  url('iconfont1.ttf?t=1466480762') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-		  url('iconfont1.svg?t=1466480762#iconfont') format('svg'); /* iOS 4.1- */
+		  src: url('style/iconfont1.eot?t=1466480762'); /* IE9*/
+		  src: url('style/iconfont1.eot?t=1466480762#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		  url('style/iconfont1.woff?t=1466480762') format('woff'), /* chrome, firefox */
+		  url('style/iconfont1.ttf?t=1466480762') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+		  url('style/iconfont1.svg?t=1466480762#iconfont') format('svg'); /* iOS 4.1- */
 		}
 		"; }
 
