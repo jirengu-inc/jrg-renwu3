@@ -77,7 +77,7 @@ Music.prototype = {
             '</div>'+
             '</div>'+
             '<div class="control clear">'+
-            '<a href="#" class="song-volume">'+
+            '<a href="#"  class="song-volume">'+
             '<div class="control-volume">'+
             '<div class="volume-progressbar">'+
             '<div class="volume-bar">'+
@@ -225,6 +225,7 @@ Music.prototype = {
         //音量条点击事件
         $('#jquery-music .control-volume').on('click',function (e) {
             //阻止事件进一步冒泡
+            e.preventDefault();
             e.stopPropagation();
             var a = $('#jquery-music .volume-progressbar').height()-(e.pageY - $('#jquery-music').offset().top-288);
             $('#jquery-music .volume-bar').height(a);
@@ -247,6 +248,7 @@ Music.prototype = {
         //音量条拖拽事件
         $('#jquery-music .volume-bar-circle').on('mousedown',function (e) {
             //阻止事件进一步冒泡
+            e.preventDefault();
             e.stopPropagation();
             $('#jquery-music .volume-bar-circle').data('change',true);
         });
@@ -281,6 +283,7 @@ Music.prototype = {
             }
         });
         $('#jquery-music .volume-bar-circle').on('mouseup',function (e) {
+            e.preventDefault();
             e.stopPropagation();
             $('#jquery-music .volume-bar-circle').data('change',false);
         });
