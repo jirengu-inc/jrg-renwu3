@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
+    <title>waterFall</title>
+    <style>
+        html,body,ul,li,p,div{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ul,li{
+            list-style: none;
+        }
+
+        #pic-ct{
+            position: relative;
+            margin: 0 auto;
+        }
+        #pic-ct .item{
+            width: 200px;
+            position: absolute;
+            padding: 0 0 10px 0;
+            box-shadow: 2px 2px 2px #E8E8E8, -2px -2px 2px #E8E8E8;
+            border: 1px solid #DFDFDF;
+            background: #FFF;
+            margin: 10px;
+            transition: all .8s;
+        }
+        #pic-ct .item img{
+            margin: 12px;
+            width: 176px;
+        }
+        #pic-ct .item .header{
+            height: 25px;
+            margin: 0 12px;
+            border-bottom: 1px solid #DBDBDB;
+        }
+
+        #pic-ct .desp{
+            font-size: 12px;
+            line-height: 1.8;
+            margin: 10px 15px 0;
+            color: #777371;
+        }
+
+        #load{
+            visibility: hidden;
+            height: 20px;
+        }
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<body>
+
+    <div class="ct-waterfall">
+        <ul id="pic-ct" class="clearfix">
+            <!-- 用于计算 item 宽度和列数，但不展示出来-->
+            <li id="tmpl" class="item hide"></li>
+        </ul>
+        <div id="load">我是看不见的</div>
+    </div>
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript"  src="./exposure.js"></script>
+<script type="text/javascript"  src="./waterwall.js"></script>
+<script>
+    waterFall.init($('#tmpl'),$('#pic-ct'));
+    $('#load').exposure({callBack:function ($cur) {
+        console.log(this.text())
+        loadAndPlace()
+    }});
+
+    var curPage = 1,  perPageCount =30;
+    function loadAndPlace(){
+        $.ajax({
+            url: 'http://platform.sina.com.cn/slide/album_tech',
+            dataType: 'jsonp',   //这里使用了新浪新闻的 jsonp 接口，大家可以直接看数据， 如： http://platform.sina.com.cn/slide/album_tech?jsoncallback=func&app_key=1271687855&num=3&page=4
+            jsonp:"jsoncallback",
+            data: {
+                app_key: '1271687855',
+                num: perPageCount,
+                page: curPage
+            }
+        }).done(function(ret){
+            if(ret && ret.status && ret.status.code === "0"){
+                waterFall.render(placeHold(ret.data));   //如果数据没问题，那么生成节点并摆放好位置
+            }else{
+                console.log('get error data');
+            }
+        });
+    }
+    function  placeHold($data){//数据渲染成html
+        var html ="";
+        for(var k=0;k<$data.length;k++){
+            html+= '<li class="item"><a href="#" class="link"><img src="'+$data[k].img_url+'" alt="">'+
+                    '</a><h4 class="header">'+$data[k].short_name+'</h4><p class="desp">'+
+                    $data[k].short_intro+'</p></li>';
+        }
+        var $items = $(html);
+        return $items;
+    }
+</script>
+</body>
+</html>

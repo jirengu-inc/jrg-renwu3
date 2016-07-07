@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<style>
+    html,body{
+        height: 150%;
+        width: 150%;
+    }
+    .goto-btn {
+        border-radius: 5px;
+        position: fixed;
+        bottom: 60px;
+        right: 15px;
+        color: rgb(255, 255, 255);
+        padding: 10px;
+        background: pink;
+        display: none;
+        cursor: pointer;
+    }
+</style>
+
+
+<body>
+
+
+<script>
+    function isVisible($node){
+        var offset = $node.offset().top,
+            height = $(window).height(),
+            scroll = $(window).scrollTop();
+        return  (height+scroll)>=offset;
+    }
+    /* var goTop={
+        init:function () {
+            if($('.goto-btn').length===0)
+                this.$btn=$('<div class="goto-btn">Top</div>').appendTo($('body'));
+            this.eventBind()
+        },
+        eventBind:function () {
+            var self = this;
+            $(window).on('scroll.view',function (e) {
+                var scroll = $(window).scrollTop();
+                scroll > 110  ? self.$btn.show() : self.$btn.hide();
+            })
+            this.$btn.on('click',function (e) {
+                $(window).scrollTop(0);
+            })
+        }
+    }
+     goTop.init();
+    */
+
+/*
+    var goTop = (function () {
+        if($('.goto-btn').length===0)
+            var  $btn=$('<div class="goto-btn">Top</div>').appendTo($('body'));
+        function action() {
+            $(window).on('scroll.view',function (e) {
+                var scroll = $(window).scrollTop();
+                scroll > 110  ? $btn.show('slow') : $btn.hide('fast');
+            })
+            $btn.on('click',function (e) {
+                $(window).scrollTop(0);
+            })
+        }
+        return {
+            init :action
+        }
+    }());
+    goTop.init();
+*/
+
+    function GoTop($ct) {
+        this.$ct=$ct;
+        this.$target = $('<div class="goto-btn">Top</div>');
+        this.createNode().bindEvent();
+    }
+    GoTop.prototype.createNode=function () {
+        this.$ct.append(this.$target);
+        return this;
+    }
+    GoTop.prototype.gotop=function () {
+        $(window).scrollTop(0);
+    }
+
+    GoTop.prototype.bindEvent=function () {
+        var self = this;
+        $(window).on('scroll', function(e){
+            var offset = $('body').scrollTop();
+            if(offset>100){
+                self.$target.show();
+            }else{
+                self.$target.hide();
+            }
+        })
+        this.$target.on('click', function(){
+            self.gotop();
+        });
+    }
+   var  goTop = new GoTop($('body'));
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,301 @@
+#jquery-music ul,#jquery-music li{
+    margin: 0;
+    padding: 0;
+}
+#jquery-music a{
+    text-decoration: none;
+}
+#jquery-music li{
+    list-style: none;
+}
+#jquery-music-player{
+    position: fixed;
+    z-index: 1000;
+    top: 120px;
+    right: 50px;
+    height: 70px;
+    width: 70px;
+    line-height: 70px;
+    background-color: #00ffff;
+    border-radius: 10px;
+    text-align: center;
+}
+#jquery-music-player a{
+    color: #FFFFFF;
+    font-size: 50px;
+    cursor: default;
+}
+#jquery-music .cursor{
+    cursor:default;
+}
+#jquery-music .clear:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+#jquery-music{
+    display: none;
+    position: fixed;
+    z-index: 998;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+#jquery-music #header{
+    height: 30px;
+    width: 300px;
+    background-color: deepskyblue;
+    line-height: 30px;
+}
+#jquery-music #header .menu-btn{
+    float: left;
+    margin-left: 10px;
+}
+#jquery-music #header .close-btn{
+    float: right;
+    margin-right: 10px;
+}
+#jquery-music #header a i{
+    color:#fff;
+    font-size: 20px;
+}
+#jquery-music #main .play{
+    width: 300px;
+    height: 300px;
+    background-color: yellow;
+    text-align: center;
+    line-height: 300px;
+    background: url('img/0.jpg');
+    background-size: cover;
+}
+#jquery-music #main .play a{
+    color:skyblue;
+    font-size: 50px;
+}
+#jquery-music #footer{
+    position:relative;
+    width: 300px;
+    height: 100px;
+    background-color: deepskyblue;
+}
+#jquery-music .song-message{
+    position:absolute;
+    top:20px;
+    width: 280px;
+    margin-left: 10px;
+    margin-right:10px;
+    color: #FFFFFF;
+}
+#jquery-music .message{
+    float: left;
+    width: 192px;
+    height: 18px;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#jquery-music .time{
+    float: right;
+}
+#jquery-music .control{
+    position: absolute;
+    bottom: 20px;
+    width: 280px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#jquery-music .control a i{
+    color:#fff;
+    font-size: 20px;
+}
+#jquery-music .control .song-volume{
+    position: relative;
+    float: left;
+}
+#jquery-music .control .song-volume i:hover{
+    color: #eee;
+}
+#jquery-music .control .next-song{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#jquery-music .control .song-lyrics{
+    float: right;
+    color:#fff;
+    font-size: 20px;
+}
+#jquery-music .control .play-model{
+    position:absolute;
+    right: 65px;
+}
+#jquery-music .progressbar{
+    position: absolute;
+    opacity: 0.5;
+    background-color: #fff;
+    height: 5px;
+    width: 280px;
+    margin-left: 10px;
+    margin-right: 10px;
+    top:40px;
+}
+#jquery-music .progressbar:hover{
+    cursor: pointer;
+}
+#jquery-music .bar{
+    position: relative;
+    height: 5px;
+    width: 0;
+    background-color: blue;
+}
+#jquery-music .bar-circle{
+    display: none;
+    position:absolute;
+    right: 0;
+    transform: translate(50%,-25%);
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background-color: blue;
+}
+#jquery-music .volume-bar-circle{
+    height: 10px;
+    width: 10px;
+    position:absolute;
+    top:0;
+    transform: translate(-25%,-50%);
+    border-radius: 50%;
+    background-color:skyblue;
+}
+#jquery-music .menu{
+    display: none;
+    position: absolute;
+    top:0;
+    left: -180px;
+}
+#jquery-music .mucic-ct{
+    position: relative;
+}
+#jquery-music .music-tab{
+    background-color: skyblue;
+    width: 180px;
+    height: 330px;
+    overflow: auto;
+}
+#jquery-music .music-popular-list .music-type{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+#jquery-music .music-popular-list .music-type:hover{
+    background-color: #1a1a1a;
+}
+#jquery-music .music-popular-list .music-type a{
+    color:#FFFFFF;
+}
+#jquery-music .music-popular-list .active{
+    background-color: #ff8800;
+}
+
+
+
+#jquery-music .control-volume{
+    display: none;
+    position: absolute;
+    left: -3px;
+    top: -110px;
+    width: 25px;
+    height: 100px;
+    background-color: rgba(0,0,0,.7);
+    border-radius: 5px;
+}
+#jquery-music .triangle{
+    position:absolute;
+    top:100%;
+    left: 50%;
+    width: 0;
+    border-top: 5px solid rgba(0,0,0,.7);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    transform: translateX(-50%);
+}
+#jquery-music .volume-progressbar{
+    position:absolute;
+    top:10%;
+    left: 50%;
+    width: 5px;
+    height: 80px;
+    background-color: #FFFFFF;
+    transform: translateX(-50%);
+}
+#jquery-music .volume-bar{
+    position:absolute;
+    bottom:0;
+    width: 5px;
+    height: 40px;
+    background-color: deepskyblue;
+}
+#jquery-music-lyrics{
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    width: 800px;
+    height: 130px;
+    text-align: center;
+    line-height: 130px;
+    font-size: xx-large;
+    font-family: "Kaushan Script", cursive;
+    color: blue;
+}
+#jquery-music-lyrics:hover{
+    background-color: rgba(0,0,0,.1);
+}
+#jquery-music-lyrics:hover .music-lyrics-close{
+    display: block;
+}
+#jquery-music-lyrics p{
+    margin: 0;
+}
+#jquery-music-lyrics .music-lyrics-close{
+    display: none;
+    position:absolute;
+    top:10px;
+    right: 10px;
+    font-size: 20px;
+    line-height: 20px;
+    color:#FFFFFF;
+}
+#jquery-music-lyrics .music-lyrics-close:hover{
+    cursor:pointer;
+}
+
+#jquery-music .play-model-show{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 120px;
+    transform: translate(-42%,-100%);
+    background-color: rgba(0,0,0,.7);
+    border-radius: 5px;
+}
+#jquery-music .single-play,.single-cycle,.random-play{
+    height: 30px;
+    color:#fff;
+    text-align: center;
+}
+
+#jquery-music .marquee {
+    width: 192px;
+    overflow: hidden;
+}
+#jquery-music .music-type{
+    color:#fff;
+}
+#jquery-music .music-type:hover{
+    cursor: pointer;
+}

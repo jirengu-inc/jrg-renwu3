@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>懒加载瀑布流置顶向上</title>
+    <style>
+        html,body,ul,li,p,div{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        ul,li{
+            list-style: none;
+        }
+        .wrap{
+
+            height:1000px;
+            width:900px;
+            margin:0 auto;
+        }
+        .clearfix:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        #pic-ct{
+            position: relative;
+        }
+        #pic-ct .item{
+            position: absolute;
+            padding: 0 0 10px 0;
+            width: 280px;
+            margin: 10px;
+            border: 1px solid #DFDFDF;
+            background: #FFF;
+            opacity: 0;
+            transition: all .8s;
+        }
+        #pic-ct .item img{
+            margin: 10px;
+            width: 260px;
+        }
+        #pic-ct .item .header{
+            height: 25px;
+            margin: 0 12px;
+            border-bottom: 1px solid #DBDBDB;
+        }
+        #pic-ct .desp{
+            font-size: 12px;
+            line-height: 1.8;
+            margin: 10px 15px 0;
+            color: #777371;
+        }
+        #load{
+            height: 20px;
+        }
+        .hide{
+            display: none;
+        }
+        #go-top{
+            border:1px solid #1974c9;
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            color: #1974c9;
+            line-height:25px;
+            text-align:center;
+            cursor:pointer;
+            display:none;
+        }
+        #load{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="ct-waterfall">
+        <ul id="pic-ct" class="clearfix">
+
+            <!-- 用于计算 item 宽度和列数，但不展示出来-->
+            <li class="item hide"></li>
+        </ul>
+        <div id="load">我是看不见的</div>
+    </div>
+</div>
+
+<script src="seajs/seajs/2.1.1/sea.js"></script>
+<script>
+seajs.config({
+    alias: {
+        'jquery': 'jquery/jquery.js',
+        'waterFull': 'js/waterFull.js',
+        'lazyLoad' : 'js/lazyLoad.js'
+    }
+});
+seajs.use('./js/goTop');
+seajs.use('./js/lazyLoad');
+</script>
+</body>
+</html>

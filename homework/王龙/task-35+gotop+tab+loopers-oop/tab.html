@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tab</title>
+    <style>
+
+        ul,div{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .tab{
+            display: inline-block;
+            padding: 10px 15px;
+            cursor: pointer;
+            box-sizing: border-box;
+            flex-grow: 1;
+            border-right: 1px solid #ccc;
+        }
+
+        div[class^="tab-content"] {
+            display: none;
+            border: 1px solid gainsboro;
+            height: 130px;
+            padding: 15px
+        }
+
+        .tab-nav>.active{
+            background: #eee;
+        }
+        .ct .show{
+            display: block;
+        }
+        .ct{
+            margin: 0 auto;
+            width: 600px;
+            border: 1px solid #ccc;
+        }
+        .tab-nav{
+            display: flex;
+        }
+    </style>
+
+</head>
+<body>
+  <div class="ct">
+        <ul class="tab-nav">
+            <li class="tab active">tab1</li>
+            <li class="tab ">tab2</li>
+            <li class="tab ">tab3</li>
+        </ul>
+         <div class="tab-content show">
+             tab1
+         </div>
+         <div class="tab-content">
+              tab2
+         </div>
+         <div class="tab-content">
+              tab3
+         </div>
+    </div>
+  <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+      /**
+       *
+       * @param $nav tab
+       * @param $con 显示内容
+       * @constructor
+       */
+      function Tab($nav,$con) {
+          this.$nav=$nav;
+          this.$con=$con;
+          this.bindEvent();
+      }
+      Tab.prototype.bindEvent=function () {
+          var self = this;
+          this.$nav.on('click',function (e) {
+              self.$con.eq($(e.target).index()).addClass('show').siblings().removeClass('show');
+              self.$nav.eq($(e.target).index()).addClass('active').siblings().removeClass('active');
+          });
+      }
+      new Tab($('.tab'),$('.tab-content'));
+  </script>
+</body>
+</html>

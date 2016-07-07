@@ -1,0 +1,638 @@
+html,body,ul{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%;
+    height:100%;
+}
+h1,h2,h3,h4,h5,h6,p{
+    text-align: center;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+@font-face {
+    font-family: 'iconfont';
+    src: url('//at.alicdn.com/t/font_1467209283_4157484.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/font_1467209283_4157484.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_1467209283_4157484.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/font_1467209283_4157484.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/font_1467209283_4157484.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family:'iconfont';
+    font-size:30px;
+    font-style:normal;
+}
+#footer .iconfont{
+    font-family:'iconfont';
+    font-size:50px;
+    font-style:normal;
+}
+.btn{
+    display: inline-block;
+    color: #fff;
+    background-color: #ff8800;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    border-radius: 3px;
+    font-size: 18px;
+    width: 220px;
+    height: 65px;
+    text-align: center;
+    line-height: 65px;
+    cursor: pointer;
+}
+.nav-layout{
+    width: 1170px;
+    margin: 0 auto;
+}
+.layout{
+    width: 1000px;
+    margin: 0 auto;
+}
+.container{
+    padding:150px 0;
+}
+.clear:after{
+    content:'';
+    display:block;
+    clear:both;
+}
+.navbar{
+    width: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 100;
+}
+.navbar:hover{
+    background-color: rgba(0,0,0,0.3);
+}
+.navbar-left{
+    float: left;
+    height: 75px;
+    line-height: 75px;
+}
+.navbar-right{
+    float: right;
+}
+.navbar-nav li{
+    float: left;
+    height: 75px;
+    width:108px;
+    text-align: center;
+    line-height: 75px;
+}
+.navbar-nav li a{
+    color: #000;
+}
+.navbar-nav li:hover{
+    cursor:pointer;
+}
+.navbar-nav li a:hover{
+    color:#ff8800;
+}
+/*header*/
+#header{
+    position:relative;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(231, 150, 84, 0.5), rgba(242, 202, 118, 0.5) 25%, rgba(242, 202, 118, 0.5) 25%, rgba(179, 149, 121, 0.5) 40%, rgba(179, 149, 121, 0.5) 40%, rgba(143, 178, 200, 0.5) 75%, rgba(143, 178, 200, 0.5) 75%, rgba(75, 103, 140, 0.5));
+}
+.inco-cloud-1{
+    position:absolute;
+    width: 100px;
+    height: 100px;
+    top:10%;
+    left:10%;
+    z-index: 1;
+    color: #fff;
+    font-size: 100px;
+}
+.inco-cloud-1:hover{
+    animation: cloud-1 10s;
+}
+.inco-cloud-2{
+    position:absolute;
+    width: 100px;
+    height: 100px;
+    bottom:10%;
+    right: 10%;
+    z-index: 1;
+    color: #fff;
+    font-size: 100px;
+}
+.inco-cloud-2:hover{
+    animation: cloud-2 10s;
+}
+@keyframes cloud-1 {
+    0% {top:10%;left:10%}
+    100% {top:20%;left:20%}
+}
+@keyframes cloud-2 {
+    0%{bottom:10%;right:10%}
+    100%{bottom:20%;right:20%}
+}
+.table{
+    display: table;
+    height: 100%;
+}
+.vertical-center{
+    display:table-cell;
+    width: 1000px;
+    margin:0 auto;
+    vertical-align: middle;
+    text-align: center;
+}
+.me-photo{
+    display: inline-block;
+    width: 155px;
+    height: 155px;
+}
+.img-circle{
+    display:block;
+    height: 100%;
+    width:100%;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border: 10px solid #ccc;
+}
+.vertical-center h3{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 2px solid #000000;
+}
+.vertical-center .introduce li{
+    margin-top: 10px;
+}
+.about{
+    background:  linear-gradient(rgba(61, 129, 166, 0.5), rgba(134, 190, 207, 0.5) 25%, rgba(134, 190, 207, 0.5) 25%, rgba(171, 182, 174, 0.5) 40%, rgba(171, 182, 174, 0.5) 40%, rgba(210, 190, 131, 0.5) 75%, rgba(210, 190, 131, 0.5) 75%, rgba(213, 145, 72, 0.5));
+}
+.about h1{
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 2px solid #ff8800;
+}
+.about-row{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.about-row li{
+    position: relative;
+    float:left;
+    height: 200px;
+    width: 200px;
+    margin: 0 25px;
+    transition:all 0.5s;
+}
+.about-row li i{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:#fff;
+    font-size:50px;
+}
+.about-row .about-info{
+    display: none;
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    border-radius:50%;
+    background-color: rgba(0,0,0,0.6);
+    color:#fff;
+    text-align:center;
+}
+.about-row .about-info h2{
+    margin: 50px 0;
+}
+.about-row .about-info p{
+    font-size: 25px;
+}
+.about-row .about-info p:before{
+    content:'';
+    display:block;
+    width: 100px;
+    margin: 0 auto;
+    border-bottom:1px solid #fff;
+}
+.about-row li:hover{
+    transform:rotate(-360deg);
+}
+.about-row li:hover .about-info{
+    display: block;
+}
+.about-list{
+    width:1000px;
+    margin: 10px auto;
+    border:1px solid #ccc;
+    box-shadow: 5px 5px 5px #aaa;
+}
+.about-list ul{
+    text-align: center;
+}
+.about-list ul li{
+    margin: 18px 0;
+}
+/*skill*/
+.skill{
+    background: linear-gradient(-45deg, rgba(220, 161, 83, 0.5), rgba(217, 157, 97, 0.5) 25%, rgba(217, 157, 97, 0.5) 25%, rgba(155, 139, 100, 0.5) 40%, rgba(155, 139, 100, 0.5) 40%, rgba(91, 147, 170, 0.5) 75%, rgba(91, 147, 170, 0.5) 75%, rgba(51, 79, 106, 0.5));
+}
+.skill-tab{
+    margin: 0 auto;
+    width: 580px;
+}
+.skill-description{
+    float:left;
+}
+.skill-description li{
+    position:relative;
+    width: 80px;
+    height:110px;
+    text-align:center;
+    background-color: #ccc;
+    line-height: 160px;
+}
+.skill-description li i{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    font-size:30px;
+}
+.skill-description .active{
+    color:#ff8800;
+    background-color:rgba(255,255,255,0.5);
+}
+.skill-description .active:before{
+    content:"";
+    display: block;
+    position:absolute;
+    height: 100%;
+    width: 2px;
+    background-color: #ff8800;
+}
+.description-ct{
+    float:left;
+}
+.description-ct>.description{
+    width:500px;
+    height:440px;
+    background-color: rgba(255,255,255,0.5);
+}
+.description-ct>.description li{
+    padding: 10px 5px;
+    height: 40px;
+    line-height: 20px;
+    font-size: 18px;
+}
+.demo{
+    background: linear-gradient(90deg, rgba(231, 150, 84, 0.5), rgba(242, 202, 118, 0.5) 25%, rgba(242, 202, 118, 0.5) 25%, rgba(179, 149, 121, 0.5) 40%, rgba(179, 149, 121, 0.5) 40%, rgba(143, 178, 200, 0.5) 75%, rgba(143, 178, 200, 0.5) 75%, rgba(75, 103, 140, 0.5));
+}
+/*轮播*/
+.carousel-layout{
+    position: relative;
+    overflow: hidden;
+    width: 1000px;
+    height: 500px;
+    background-color: #eeeeee;
+}
+.carousel .ct{
+    position:absolute;
+}
+.carousel .ct li{
+    position:relative;
+    float: left;
+}
+.carousel .ct img{
+    width: 1000px;
+    height: 500px;
+}
+.arrow{
+    position:absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    line-height: 50px;
+    text-align: center;
+    background-color: #4E443C;
+    color:#fff;
+    border-radius: 50%;
+    opacity: 0.8;
+    box-shadow: 0 0 2px #999;
+    font-size:28px;
+}
+.arrow:hover{
+    opacity:1;
+}
+.prev{
+    left: 10px;
+}
+.next{
+    right:10px;
+}
+.bullet{
+    position:absolute;
+    bottom:10px;
+    left: 50%;
+    transform:translateX(-50%);
+}
+.bullet li{
+    display: inline-block;
+    width: 30px;
+    height: 10px;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+}
+.bullet li.active{
+    background-color: #000;
+}
+.carousel-center{
+    position:absolute;
+    width: 500px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    color:#fff;
+    text-align: center;
+}
+/*技能导航栏*/
+.skill-nav{
+    width: 1000px;
+    background-color: #de272e;
+    margin-top:30px;
+}
+.skill-bus{
+    float:left;
+    width:20%;
+    height: 30px;
+    line-height: 30px;
+    color:#fff;
+    text-align: center;
+}
+.skill-nav-ct{
+    float: left;
+    width:80%;
+}
+.skill-demo{
+    float:left;
+    width:25%;
+    height: 30px;
+    line-height: 30px;
+    color:#fff;
+    text-align: center;
+}
+.skill-demo a{
+    color:#fff;
+}
+/*商品分类*/
+.area-nav{
+    float: left;
+}
+.category{
+    position: relative;
+    background-color: #c7171e;
+    width: 200px;
+    height: 49px;
+    border-bottom: 1px dotted #de272e;
+    line-height:49px;
+}
+.cate-title{
+    color: #FFFFFF;
+    font-size: 18px;
+    padding: 10px;
+}
+.icon-goto{
+    color: #FFFFFF;
+    display:block;
+    position:absolute;
+    right: 10px;
+    top:50%;
+    transform: translate(0,-50%);
+}
+.child-panel{
+    display: none;
+    width: 800px;
+    position:absolute;
+    bottom:0;
+    left: 200px;
+    z-index:100;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+.child-panel-1{
+    bottom:-20px;
+}
+.child-panel-2{
+    bottom:-90px;
+}
+.child-panel-3{
+    bottom:-129px;
+}
+.child-panel-5{
+    bottom:-1px;
+}
+.child-panel li{
+    float: left;
+    width: 200px;
+    color:#000000;
+    text-align: center;
+    padding:10px 0;
+}
+.child-panel li:hover{
+    color: yellow;
+    cursor: pointer;
+}
+.nav-active{
+    background-color: #fff;
+}
+.font-active{
+    color:#ff8800;
+}
+/*技能tab*/
+.demo-tab{
+    float:right;
+}
+.demo-module{
+    width:800px;
+    height: 250px;
+    background-color: #fff;
+}
+.preview-ct{
+    transform: translateY(-30px);
+    margin-left: -30px;
+}
+.preview{
+    position:relative;
+    float: left;
+    width: 246.66667px;
+    height: 110px;
+    margin-top: 30px;
+    margin-left: 30px;
+    overflow: hidden;
+}
+.preview img{
+    width: 100%;
+    height: 100%;
+}
+.preview .info{
+    position: absolute;
+    top:80px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    color:#fff;
+}
+.preview .info p{
+    color:#fff;
+}
+.preview:hover .info{
+    top:0;
+}
+.skill-nav-ct .active{
+    background-color: #c7171e;
+}
+/*瀑布流布局*/
+.waterfall{
+    position: relative;
+    width: 100%;
+    margin-top:30px;
+}
+.waterfall li{
+    position: absolute;
+    width: 230px;
+    margin-top:10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.waterfall li img{
+    width: 230px;
+    height: auto;
+}
+.cover{
+    display:block;
+    position:absolute;
+    width: 100%;
+    height:100%;
+    top:0;
+    left:0;
+}
+.cover:hover{
+    background-color: rgba(255,255,255,0.5);
+}
+.itme-info{
+    background-color: #ccc;
+}
+.itme-info h3,.itme-info h4{
+    margin: 0;
+}
+
+/*经历*/
+.my-experience{
+    background: linear-gradient(to left bottom, rgba(220, 161, 83, 0.5), rgba(217, 157, 97, 0.5) 25%, rgba(217, 157, 97, 0.5) 25%, rgba(155, 139, 100, 0.5) 40%, rgba(155, 139, 100, 0.5) 40%, rgba(91, 147, 170, 0.5) 75%, rgba(91, 147, 170, 0.5) 75%, rgba(51, 79, 106, 0.5));
+    min-height: 1854px;
+}
+.timeline{
+    min-height: 1444px;
+}
+.timeline>li{
+    margin-bottom: 100px;
+}
+.timeline>li .timeline-list{
+    margin-left: 50%;
+}
+.timeline>li .timeline-img,.timeline>li .timeline-content{
+    float: left;
+}
+.timeline>li .timeline-img{
+    width: 170px;
+    height: 170px;
+    margin-left: -85px;
+}
+.timeline>li img{
+    border: 7px solid #f1f1f1;
+}
+.timeline>li .timeline-content{
+    width: 350px;
+    transform: translateY(-10%);
+}
+.timeline-list{
+    display: none;
+}
+.timeline-single .timeline-content{
+    margin-left: -540px;
+}
+.timeline-double .timeline-content{
+    padding-left: 20px;
+}
+.timeline-single h4,.timeline-single p{
+    text-align: right;
+}
+.timeline-double h4,.timeline-double p{
+    text-align: left;
+}
+.timeline-content h4{
+    margin-bottom: 10px;
+}
+.timeline-list-line{
+    position: relative;
+}
+.timeline-list-line:before{
+    content: '';
+    display: block;
+    position: absolute;
+    border-left: 2px solid #f1f1f1;
+    height: 185px;
+    top:170px;
+}
+.img-special{
+    background-color: #fed136;
+    border: 7px solid #f1f1f1;
+    color: #fff;
+}
+.img-special h4{
+    margin: 45px 0;
+    text-align: center;
+}
+.contact{
+    text-align: center;
+}
+.contact a{
+    color:#000;
+    font-size:50px;
+    margin: 0 10px;
+}
+/*回到顶部*/
+#go-top{
+    position:fixed;
+    z-index: 9000;
+    bottom: 100px;
+    right: 100px;
+    display: none;
+    color: #fff;
+    background-color: lightblue;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 50px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+#go-top:hover{
+    background-color: blue;
+}

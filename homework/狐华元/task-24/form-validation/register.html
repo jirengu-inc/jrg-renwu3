@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>server-mock使用说明</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .login{
+    width: 300px;
+    margin: 50px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .title {
+    border-bottom: 1px solid #ccc;
+    line-height: 36px;
+    text-align: center;
+  }
+  dl{
+    padding: 20px 10px 20px 90px;
+  }
+  dt {
+    float: left;
+    width: 80px;
+    margin-left: -80px;
+    line-height: 26px;
+  }
+  dd {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  input {
+    width: 100%;
+    height: 26px;
+    border-radius: 3px;
+    border: 1px solid #ddd;
+    padding-left: 6px;
+  }
+  input:focus{
+    outline: none;
+    border-color: #31A1E2;
+  }
+  .desc{
+    color: #aaa;
+    font-size: 12px;
+  }
+  .footer{
+    margin: 0 5% 20px 5%;
+    text-align: center;
+  }
+  .register{
+    width: 100%;
+    height: 36px;
+    background-color: #3BD09B;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+  }
+  .register:hover,.register:active {
+    outline: none;
+    background-color: #35B789;
+  }
+  .message {
+    line-height: 30px;
+  }
+  #user.error,#pwd1.error,#pwd2.error{
+    border-color: red;
+  }
+  #user.success,#pwd1.success,#pwd2.success{
+    border-color: green;
+  }
+  .error {
+    color: red;
+  }
+  .success {
+    color: green;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="login">
+      <form id="register" action="">
+        <h3 class="title">注册</h3>
+        <dl>
+          <dt>用户名：</dt><dd><input type="text" placeholder="输入用户名" id="user"></dd>
+          <dd class="desc">只能是字母、数字、下划线，3-10个字符</dd>
+          <dt>密码：</dt><dd><input type="password" placeholder="输入密码" id="pwd1"></dd>
+          <dd class="desc">大写字母、小写、数字、下划线最少两种，6-15个字符</dd>
+          <dt>确认密码：</dt><dd><input type="password" placeholder="确认密码" id="pwd2"></dd>
+          <dd class="desc">请确认密码</dd>
+        </dl>
+        <div class="footer">
+          <button class="register">注册</button>
+          <span class="message"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    var register = document.getElementById("register"),
+        username = document.getElementById("user"),
+        pwd1 = document.getElementById("pwd1"),
+        pwd2 = document.getElementById("pwd2"),
+        descuser = document.getElementsByClassName("desc")[0],
+        descpwd1 = document.getElementsByClassName("desc")[1],
+        descpwd2 = document.getElementsByClassName("desc")[2],
+        btn = document.querySelector(".register");
+
+    var msg = {
+        'username_null': '请输入用户名',
+        'username_exist': '用户已存在',
+        'username_error': '输入格式不正确',
+        'username_available': '用户名可用',
+        'password_available': '密码可用',
+        'password_null': '请输入密码',
+        'password_again': '请再次输入密码',
+        'password_success': '密码已确认',
+        'password_error': '密码输入格式不正确',
+        'password_differ': '两次输入的密码不一致，请重试'
+    };
+
+    username.addEventListener('change',function(){
+      testUser() && testUserUsable();
+    });
+
+    pwd1.addEventListener('change',function(){
+      testpwd1();
+    });
+
+    pwd2.addEventListener('change',function(){
+      testpwd2();
+    });
+
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      if(testUser() && testpwd1() && testpwd2()){
+        btn.innerText="正在注册..."
+        console.log("正在注册...")
+      }
+    });
+
+    function testUser(){
+      var user = username.value;
+      if(user = ''){
+        addClass(username,'error');
+        addClass(descuser,'error');
+        descuser.innerText = msg.username_null;
+        return false;
+      }
+      else{
+        if(isValidUsername(username.value)){
+          removeClass(username,'error');
+          removeClass(descuser,'error');
+          addClass(username,'success');
+          addClass(descuser,'success');
+          descuser.innerText = msg.username_available;
+          return true;
+        }
+        else{
+          removeClass(username,'success');
+          removeClass(descuser,'success');
+          addClass(username,'error');
+          addClass(descuser,'error');
+          descuser.innerText = msg.username_error;
+          return false;
+        }
+      }
+    }
+
+    function testpwd1(){
+      var password1 = pwd1.value;
+      if(password1 = ''){
+        removeClass(pwd1,'success');
+        removeClass(descpwd1,'success');
+        addClass(pwd1,'error');
+        addClass(descpwd1,'error');
+        descpwd1.innerText = msg.password_null;
+        return false;
+      }
+      else{
+        if(isValidPassword(pwd1.value)){
+          removeClass(pwd1,'error');
+          removeClass(descpwd1,'error');
+          addClass(pwd1,'success');
+          addClass(descpwd1,'success');
+          descpwd1.innerText = msg.password_available;
+          return true;
+        }
+        else{
+          removeClass(pwd1,'success');
+          removeClass(descpwd1,'success');
+          addClass(pwd1,'error');
+          addClass(descpwd1,'error');
+          descpwd1.innerText = msg.password_error;
+          return false;
+        }
+      }
+    }
+
+    function testpwd2(){
+      var password1 = testpwd1(pwd1.value);
+      var password2 = pwd2.value;
+      if(!password1){
+        return false;
+      }
+      else if(password2=''){
+        removeClass(pwd2,'success');
+        removeClass(descpwd2,'success');
+        addClass(pwd2,'error');
+        addClass(descpwd2,'error');
+        descpwd1.innerText = msg.password_again;
+        return false;
+      }
+      else{
+        if(pwd2.value==pwd1.value){
+          removeClass(pwd2,'error');
+          removeClass(descpwd2,'error');
+          addClass(pwd2,'success');
+          addClass(descpwd2,'success');
+          descpwd2.innerText = msg.password_success;
+          return true;
+        }
+        else{
+          removeClass(pwd2,'success');
+          removeClass(descpwd2,'success');
+          addClass(pwd2,'error');
+          addClass(descpwd2,'error');
+          descpwd2.innerText = msg.password_differ;
+          return false;
+        }
+      }
+    }
+
+    function testUserUsable(){
+      ajax({
+        url: '/register',
+        type: 'post',
+        dataType: 'json',
+        data: {
+          username: username.value
+        },
+        success: function(ret){
+          success(ret);
+        },
+        error: function(){
+          error();
+        }
+      })
+    }
+
+    function ajax(opts){
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status==200){
+          var json = JSON.parse(xhr.responseText);
+          opts.success(json);
+        }
+        if(xhr.status==404){
+          opts.error();
+        }
+      }
+      var dataStr = '';
+      for(var key in opts.data){
+        dataStr += key+'='+opts.data[key]+'&';
+      }
+      dataStr = dataStr.substr(0,dataStr.length-1);
+      if(opts.type.toLowerCase()=='post'){
+        xhr.open(opts.type,opts.url,true);
+        xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhr.send(dataStr);
+      }
+      if(opts.type.toLowerCase()=='get'){
+        xhr.open(opts.type,opts.url+'?'+dataStr,true);
+        xhr.send(null);
+      }
+    }
+
+    function success(ret){
+      if(ret.status==1){
+        descuser.innerText = msg.username_available;
+        removeClass(username,'error');
+        removeClass(descuser,'error');
+        addClass(username,'success');
+        addClass(descuser,'success');
+        return true;
+      }
+      else if(ret.status==0){
+        descuser.innerText = msg.username_exist;
+        removeClass(username,'success');
+        removeClass(descuser,'success');
+        addClass(username,'error');
+        addClass(descuser,'error');
+        return false;
+        alert("error")
+      }
+    }
+
+    function error(){
+      console.log("验证失败");
+    }
+
+    function isValidUsername(user){
+      var reg = /^\w{5,10}$/;
+      return reg.test(user);
+    }
+
+    function isValidPassword(pwd) {
+      if(pwd.length<6||pwd.length>15){
+        return false;
+      }
+      if(/(^[a-z]+$)|(^[A-Z]+$)|(^[0-9]+$)|(^_+$)/g.test(pwd)){
+        return false;
+      }
+      if(/\W/.test(pwd)){
+        return false;
+      }
+      return true;
+    }
+
+    function hasClass(el,cls){
+      return !!el.className.match(new RegExp('\\b'+ cls +'\\b'));
+    }
+
+    function addClass(el,cls){
+      if(!this.hasClass(el,cls)){
+        el.className += ' ' + cls;
+      }
+    }
+
+    function removeClass(el,cls){
+      if(this.hasClass(el,cls)){
+        el.className = el.className.replace(new RegExp('\\b'+ cls + '\\b','g'),' ');
+      }
+    }
+
+  </script>
+</body>
+</html>

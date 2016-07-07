@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>轮播</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <style type="text/css">
+
+
+        html,body,ul,li,p{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .layout{
+            width: 480px;
+            height: 360px;
+            margin: 0 auto;
+            background: deeppink;
+            position: relative;
+            overflow: hidden;
+        }
+        .img-ct{
+            position: absolute;
+        }
+        .img-ct>li{
+            list-style: none;
+            float: left;
+            transition: all 0.5s;
+        }
+        .img-ct img{
+            width: 480px;
+            height: 360px;
+        }
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .arrow{
+            position: absolute;
+            top: 50%;
+            margin-top: -10px;
+        }
+        .circle{
+            border-radius: 50%;
+            width: 20px;
+            display: inline-block;
+            height: 20px;
+            text-align: center;
+            background: rgba(177, 162, 162, 0.59);
+            opacity: 1;
+            color: #fff;
+            cursor: pointer;
+        }
+        .pre{
+            left: 15px;
+        }
+        .next{
+            right: 15px;
+        }
+        .bullet{
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .active{
+            background: #fff;
+            color: black;
+        }
+        .circle:hover {
+            box-shadow: 0 0 23px pink;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="layout">
+    <ul class="img-ct">
+        <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg"></a></li>
+        <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a></li>
+        <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a></li>
+        <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg"></a></li>
+    </ul>
+    <a class="pre arrow circle" href="#"><</a>
+    <a class="next arrow circle" href="#">></a>
+    <ul class="bullet">
+        <li class="circle"></li>
+        <li class="circle"></li>
+        <li class="circle"></li>
+        <li class="circle"></li>
+    </ul>
+</div>
+
+<hr>
+<div class="layout">
+    <ul class="img-ct">
+        <li data-id=0><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/26.jpg"></a></li>
+        <li data-id=1><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a></li>
+        <li data-id=2><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a></li>
+        <li data-id=3><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg"></a></li>
+    </ul>
+    <a class="pre arrow circle" href="javascript:void(0)"><</a>
+    <a class="next arrow circle" href="javascript:void(0)">></a>
+    <ul class="bullet">
+        <li class="circle"></li>
+        <li class="circle"></li>
+        <li class="circle"></li>
+        <li class="circle"></li>
+    </ul>
+</div>
+<script type="text/javascript">
+
+    (function ($) {
+        $.fn.carousel=function () {
+            this.each(function (i,e) {
+                var self = $(e);
+                var helper = {
+                    init:function () {
+                        this.current=0;
+                        this.isAnimate = false;
+                        this.$bullet=self.find('.bullet>li');
+                        this.$ct=self.find('.img-ct');
+                        this.width=self.find('.img-ct>li').width();
+                        this.size = this.$bullet.size();
+                        this.$ct.css({width: this.size*this.width});
+                        this.setBullet();
+                        this.autoPlay();
+                        return this;
+                    },
+                    bindEvent:function () {
+                        self.find('.pre').on('click',function () {
+                            helper.playPre();
+                        });
+
+                        self.find('.next').on('click',function () {
+                            helper.playNext()
+                        });
+                        this.$bullet.on('click',function () {
+                            var index = $(this).index();
+                            if(helper.current>index){
+                                helper.playPre(helper.current-index);
+                            }
+                            if(index>helper.current){
+                                helper.playNext(index-helper.current);
+                            }
+                            //play($(this).index())
+                        })
+                    },
+                    setBullet:function (){
+                        this.$bullet.removeClass('active').eq(this.current).addClass('active');
+                    },
+                    autoPlay:function () {
+                        this.auto=setInterval(function () {
+                            helper.playNext();
+                        },3000);
+                    },
+                    //注释：使用 "+=" 或 "-=" 来创建相对动画（relative animations）。
+                    play:function (step,callback) {
+                        if(helper.isAnimate)  return;
+                        helper.isAnimate = true;
+                        this.$ct.animate({left: step},function(){
+                            callback && callback();
+                            helper.isAnimate = false;
+                        });
+                    },
+
+                    playNext:function(step) {
+                        var step = step || 1;
+                        this.play( '-='+(this.width*step),function () {
+                            for(var i=0 ; i<step;i++){
+                                helper.$ct.children().first().appendTo(helper.$ct);
+                            }
+                            helper.current= (helper.current+step)%helper.size;
+                            helper.$ct.css({ left: 0});
+                            helper.setBullet();
+                        });
+                    },
+                    playPre:function (step) {
+                        var step = step || 1;
+                        for(var i = 0;i < step;i++){
+                            this.$ct.children().last().prependTo(this.$ct);
+                        }
+                        this.$ct.css({ left: 0-(this.width*step)});
+                        this.play( '+='+(this.width*step),function () {
+                            helper.current=(helper.size+helper.current-step)%helper.size;
+                            helper.setBullet();
+                        });
+                    }
+
+                };
+                helper.init().bindEvent();
+            })
+
+        }
+    })(jQuery);
+    $('.layout').carousel();
+
+</script>
+</body>
+</html>

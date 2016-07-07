@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>stickup2</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 10px;
+        }
+        
+        .layout {
+            width: 1000px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            height: 40px;
+            padding: 6px 10px;
+            background-color: darksalmon;
+        }
+        
+        #header {
+            padding: 6px 10px;
+            margin-bottom: 20px;
+            height: 60px;
+            background-color: coral;
+        }
+        
+        #content {
+            min-height: 1800px;
+            background-color: burlywood;
+        }
+        
+        .aside {
+            float: left;
+            min-height: 350px;
+            width: 100px;
+            margin-left: 10px;
+            padding: 6px 10px;
+            background-color: coral;
+        }
+        
+        .main {
+            overflow: auto;
+            padding: 0 0 20px 10px;
+            min-height: 400px;
+        }
+        
+        .passage {
+            padding: 6px 10px;
+            border: 1px solid coral;
+            min-height: 400px;
+        }
+        
+        #footer {
+            height: 40px;
+            margin-top: 20px;
+            background-color: coral;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class='layout'>
+        <div id='header'>
+            <h1>header</h1>
+        </div>
+        <div id='content'>
+            <section class='sec'>
+                <nav>nav1</nav>
+                <div>
+                    <div class='aside'>aside</div>
+                    <div class='main'>
+                        <div class='passage'>main</div>
+                    </div>
+                </div>
+            </section>
+            <section class='sec'>
+                <nav>nav2</nav>
+                <div>
+                    <div class='aside'>aside</div>
+                    <div class='main'>
+                        <div class='passage'>main</div>
+                    </div>
+                </div>
+            </section>
+            <section class='sec'>
+                <nav>nav3</nav>
+                <div>
+                    <div class='aside'>aside</div>
+                    <div class='main'>
+                        <div class='passage'>main</div>
+                    </div>
+                </div>
+            </section>
+            <section class='sec'>
+                <nav>nav4</nav>
+                <div>
+                    <div class='aside'>aside</div>
+                    <div class='main'>
+                        <div class='passage'>main</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id='footer'>
+            <h1>footer</h1></div>
+    </div>
+    <script src="../jquery1.12.4/jquery-1.12.4.min.js"></script>
+    <script>
+        /*不按照插件方法写*/
+/*            var idx=1,
+                $nav=$('#content').find('nav'),
+                divW=$nav.width(),
+                divH=$nav.height();
+            
+            $.each($nav,function(){    
+                cloneNew($(this));
+                idx++;
+            })
+            
+            $(window).on('scroll',function(){
+                var scrollTop=$(window).scrollTop(),
+                    j=1;
+                $.each($nav,function(){
+                    var cruId='',
+                        offsetTop=$(this).offset().top;
+                    if(scrollTop>=offsetTop){
+                        curId='#nav'+j;
+                        setFixed();
+                    }else{
+                        curId='#nav'+j;
+                        removeFixed();
+                        return;
+                    }
+                    j++;
+                })    
+            })
+            
+            function cloneNew(dom){
+                 dom.clone(true)
+                    .css({
+                        'opacity':0,
+                    })
+                    .attr('id','nav'+idx)
+                    .insertBefore(dom)
+                    .hide();
+            }
+            
+            function setFixed(){
+                $(curId).attr('data-fixed',true)
+                        .css({
+                            'position':'fixed',
+                            'top':0,
+                            'width':divW,
+                            'height':divH,
+                            'opacity':1,
+                            'z-index':9
+                        })
+                        .show()
+            }
+            
+            function removeFixed(){
+                $(curId).attr('data-fixed',false)
+                        .removeAttr('style')
+                        .hide()
+            }*/
+
+
+        /*按照插件方法写*/
+        (function($) {
+
+            $.fn.stickup = function() {
+                var $this = $(this),
+                    thisW = $this.width(),
+                    thisH = $this.height(),
+                    offsetTop = $this.offset().top;
+
+                $cloneNav = $('nav').clone(true);
+
+                $cloneNav.css('opacity', 0)
+                    .insertBefore($this)
+                    .hide();
+
+                $(window).on('scroll', function() {
+                    var scrollTop = $(window).scrollTop();
+                    if (scrollTop >= offsetTop) {
+                        setFixed();
+                    } else {
+                        setUnfixed();
+                    }
+                });
+
+                function setFixed() {
+                    $this.attr('data-isFixed', true);
+                    $this.css({
+                        'position': 'fixed',
+                        'top': 0,
+                        'width': thisW,
+                        'height': thisH,
+                        'opacity': 1,
+                        'z-index': 9
+                    });
+                    $cloneNav.show();
+                }
+
+                function setUnfixed() {
+                    $this.data('data-isFixed', false).removeAttr('style');
+                    $cloneNav.hide();
+                }
+            }
+
+        })(jQuery);
+
+
+        $('nav').each(function() {
+            $(this).stickup();
+        });
+
+    </script>
+</body>
+
+</html>

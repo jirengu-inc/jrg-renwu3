@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>利用BFC的原理实现两栏布局</title>
+	<style>
+	body{
+		font-family:"Microsoft Yahei";
+		font-size:24px;
+	}
+	#header,#footer{
+		background-color:red;
+		height:70px;
+	}
+	.aside{
+		width:200px;
+		height:30px;
+		color:yellow;
+		background-color:#ccc;
+		float:left;
+	}
+	.main{
+		height:200px;
+		background-color:pink;
+		overflow:hidden;/*形成BFC*/
+		padding-left:10px;
+	}
+	.clearfix:after{
+		content: '';
+		display: block;
+		clear: both;
+	}
+	.clearfix{
+		*zoom: 1;
+	}
+	</style>
+</head>
+<body>
+	<div id="header">header</div>
+	<div id="content clearfix">
+		<div class="aside">aside</div>
+		<div class="main">
+			我是main 
+			我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main 我是main... 
+		</div>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>
