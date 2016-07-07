@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<link href="" rel="stylesheet">
+</head>
+<body>
+	<input id="username" type="text" />
+	<input id="type" type="text"/>
+	<button id="btn">提交</button>
+	<div class="age">20</div>
+    <script>
+	    function ajax(opts){
+	    	var xhr = new XMLHttpRequest();
+	    	xhr.onreadystatechange=function(){
+	    		dealWith(opts);
+	    	}
+	    	var str = "";
+	    		for(var key in opts.data){
+	    			str += key + "=" + opts.data[key]
+	    		}
+	    		str = str.substr(0,str.length-1);
+	    	if(opts.type=="get"){
+	    		xhr.open(opts.type,opts.url + "?" + str,true);
+	    		send();
+	    	}
+	    	if(opts.type="post"){
+	    		xhr.open(opts.type,url,true);
+	    		xhr.setRequestHeader("","");
+	    		send(str);
+	    	}
+	    	if(xhr.status == 200 && xhr.readyState == 4){
+	    		opts.success;
+	    	}
+	    	if(xhr.status = 404){
+	    		opts.error;
+	    	}
+	    	xhr.open(opts.type,opts.url,true);
+		    xhr.setRequestHeader(myHeader,myValue);
+	    	send(str);
+		}
+		document.querySelector('#btn').addEventListener('click', function(){
+		    ajax({
+		        url: 'task24-1.php',   //接口地址
+		        type: document.querSelector('#type');             // 类型， post 或者 get,
+		        data: {
+		            username: 'xiaoming',
+		            password: 'abcd1234'
+		        },
+		        success: function(ret){
+		            console.log(ret); 
+		            document.querySelector(".age").innerText=ret.responseText;     // {status: 0}
+		        },
+		        error: function(){
+		           console.log('出错了....');
+		        }
+		    })
+		});
+		
+    </script>
+<!--     responseText：作为响应主体被返回的文本
+
+	responseXML：如果响应内容的类型是”text/xml”或”application/xml”，这个属性将保存包含着相应数据的XML文档
+
+	status：响应的HTTP状态（200,404,500等）
+
+	statusText：HTTP状态说明 -->
+</body>
+</html>
