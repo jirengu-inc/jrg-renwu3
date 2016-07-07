@@ -1,7 +1,7 @@
 define(['jquery'],function ($) {
     function Gotop(distance,time) {
         this.distance = distance;
-        this.time = time;
+        this.time = time || 1000;
         this.createNode();
         this.bind();
     }
