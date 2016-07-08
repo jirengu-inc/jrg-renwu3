@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<link href="" rel="stylesheet">
+<style>
+	ul{
+		list-style: none;
+	}
+	li{
+		width: 100%;
+		height: 40px;
+		line-height: 40px;
+		border: 1px solid ;
+		margin: 10px 10px 10px 10px; 
+	}
+	.button{
+		margin: 10px auto;
+
+		color: red;
+		width: 100px;
+		text-align: center;
+		border-radius: 10px;
+		border: 1px solid red;
+	}
+	li:hover{
+		cursor: pointer;
+		background: green;
+	}
+	div:hover{
+		cursor: pointer;
+
+	}
+</style>
+</head>
+<body>
+	<ul id='ct'>
+		<li class="content">内容1</li>
+		<li class="content">内容2</li>
+	</ul>
+	<div class="button">加载更多</div>
+    <script>
+    	var	content = document.getElementsByClassName('content');
+		var button = document.querySelector('.button');
+		var body=document.body
+	    
+	    var str = '';
+                for(var key in opts.data){
+                    str += key + '=' + opts.data[key] + '$'
+                }
+        str = str.substr(0,str.length-1);	
+
+    	xhr.open(opts.type,opts.url,true);
+	    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    	button.addEventListener('click',function(){
+            send(str);})
+		}
+
+		function ajax(opts){
+	    	var xhr = new XMLHttpRequest();
+
+	    	xhr.onreadystatechange=function(){
+	    		if(xhr.status == 200 && xhr.readyState == 4){
+		    		var strRT = xhr.responseText;
+		    		opts.success(strRT);
+		    	}
+		    	if(xhr.status = 404){
+		    		opts.error;
+		    	}
+	    	}
+		button.addEventListener('click', function(){
+		    ajax({
+		        url: 'task24-2.php',   
+		        type: 'post',            
+		        data: {
+		        	number:parseInt( content[content.length-1].innerText.match(/\d/)[0] )
+		        },
+
+		        success: function(strRT){
+		            success(strRT); 				// {status: 0}
+		        },
+		        error: function(){
+		           console.log('出错了....');
+		        }
+		    })
+		});
+		function success(strRT){
+			var strRTI = parseInt(strRT);
+			for(var i=strRTI;i<strRTI+5;i++){
+				var newDiv = '<div class="content">内容' + i + '</div>'
+				body.insertBefore(button,newDiv)
+			}
+			
+		}
+    </script>
+
+</body>
+</html>

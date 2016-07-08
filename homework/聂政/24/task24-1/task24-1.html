@@ -5,53 +5,75 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Examples</title>
 <link href="" rel="stylesheet">
+<style>
+	div{
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		border: 1px solid ;
+		margin: 10px auto;
+	}
+	.button{
+		color: red;
+		width: 100px;
+		height: 50px;
+		text-align: center;
+		border-radius: 10px;
+		border: 1px solid red;
+	}
+	div:hover{
+		cursor: pointer;
+		background: green;
+	}
+</style>
 </head>
 <body>
-	<input id="username" type="text" />
-	<input id="type" type="text"/>
-	<button id="btn">提交</button>
-	<div class="age">20</div>
+	<div class="content">内容1</div>
+	<div class="content">内容2</div>
+	<div class="button">加载更多</div> //请忽略此行及以上的部分
     <script>
 	    function ajax(opts){
 	    	var xhr = new XMLHttpRequest();
+	    	var btn = document.querySelector("#btn");
 	    	xhr.onreadystatechange=function(){
-	    		dealWith(opts);
+	    		if(xhr.status == 200 && xhr.readyState == 4){
+	    		var json = JASON.parse(xhr.responseText);
+	    		opts.success(json);
+		    	}
+		    	if(xhr.status = 404){
+		    		opts.error;
+		    	}
 	    	}
 	    	var str = "";
 	    		for(var key in opts.data){
 	    			str += key + "=" + opts.data[key]
 	    		}
 	    		str = str.substr(0,str.length-1);
-	    	if(opts.type=="get"){
+	    	if(opts.type.toLowerCase()=="get"){
 	    		xhr.open(opts.type,opts.url + "?" + str,true);
 	    		send();
 	    	}
-	    	if(opts.type="post"){
+	    	if(opts.type.toLowerCase()="post"){
 	    		xhr.open(opts.type,url,true);
 	    		xhr.setRequestHeader("","");
 	    		send(str);
 	    	}
-	    	if(xhr.status == 200 && xhr.readyState == 4){
-	    		opts.success;
-	    	}
-	    	if(xhr.status = 404){
-	    		opts.error;
-	    	}
 	    	xhr.open(opts.type,opts.url,true);
 		    xhr.setRequestHeader(myHeader,myValue);
-	    	send(str);
+	    	btn.addEventListener("click",function(){
+                send(str);})
+			}
 		}
 		document.querySelector('#btn').addEventListener('click', function(){
 		    ajax({
 		        url: 'task24-1.php',   //接口地址
-		        type: document.querSelector('#type');             // 类型， post 或者 get,
+		        type: 'post';             // 类型， post 或者 get,
 		        data: {
 		            username: 'xiaoming',
 		            password: 'abcd1234'
 		        },
 		        success: function(ret){
-		            console.log(ret); 
-		            document.querySelector(".age").innerText=ret.responseText;     // {status: 0}
+		            console.log(ret); 				// {status: 0}
 		        },
 		        error: function(){
 		           console.log('出错了....');
