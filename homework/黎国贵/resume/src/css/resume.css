@@ -434,6 +434,10 @@ a{
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
+.child-panel a:hover{
+    text-decoration: underline;
+    color:#ff8800;
+}
 .child-panel-1{
     bottom:-20px;
 }
