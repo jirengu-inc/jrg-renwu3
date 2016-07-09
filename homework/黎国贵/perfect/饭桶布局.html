@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>木桶布局</title>
+    <style>
+        html,body{
+            margin: 0;
+            padding: 0;
+        }
+        .img-ct{
+            width: 1000px;
+            margin: 0 auto;
+            border:1px solid #ccc;
+        }
+        .img-line{
+            margin-bottom: 10px;
+        }
+        .img-line:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        .img-box{
+            float:left;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="img-ct">
+<!--<div class="img-line">-->
+    <!--<div class="img-box">-->
+        <!--<img src="" alt="" width="100px" height="100px">-->
+    <!--</div>-->
+    <!--<div class="img-box">-->
+        <!--<img src="" alt="" width="100px" height="100px">-->
+    <!--</div>-->
+    <!--<div class="img-box">-->
+        <!--<img src="" alt="" width="100px" height="100px">-->
+    <!--</div>-->
+<!--</div>-->
+</div>
+<!--<div class='nihao' style="width:100px"></div>-->
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+function Barrels($ct) { //不能出现某张图片比容器宽的情况
+    this.$ct =$ct;
+    this.baseHeight = 100;
+    this.curNum = 0;
+    this.imgNum =100;
+
+    this.$imgLine = $('<div class="img-line"></div>');
+    this.arrLine=0;
+
+    this.rend();
+}
+Barrels.prototype={
+    rend:function () {
+        var me =this;
+        var imgUrl = me.getImgUrls(me.imgNum);
+        $.each(imgUrl,function (idx,url) { //不断循环的函数
+
+
+
+
+            var $img = $('<img src=' + url + '>');
+
+//            console.log(1); 试验异步的特性
+//            var a = 1;
+
+
+            $img.on('load', function () {  //不断循环的函数  异步
+
+//                console.log(2);  试验异步的特性
+//                a = a+1;
+//                console.log(a);
+
+
+                //以baseHeight为基准，img进行第一次的改变宽度
+
+//                console.log(this.width);
+//                console.log($(this).width());
+                var orginWidth = this.width;
+                var orginHeigth = this.height;
+                me.reWidth = orginWidth * me.baseHeight / orginHeigth;
+//                $(this).data('rewidth',reWidth);
+                $(this).height(me.baseHeight);
+                $(this).width(me.reWidth);
+
+
+
+                //用个div装下img
+                var $imgBox = $('<div class="img-box"></div>');
+                $imgBox.append($(this));
+
+
+                me.lastNum = me.arrLine;  //保存数字
+                me.arrLine = me.arrLine + me.reWidth;
+
+                me.curNum = me.curNum +1;
+
+                if (me.arrLine <= me.$ct.width()) {
+                    me.$imgLine.append($imgBox);
+                }
+
+                if (me.arrLine > me.$ct.width()) {
+                    me.append($imgBox);
+                }
+
+                if(me.curNum === me.imgNum){   //处理最后一个没有被加载的imgLine
+                    me.lastAppend();
+                }
+            })
+        })
+    },
+    append:function ($imgBox) {
+        var me = this;
+        var num = me.$ct.width() - me.lastNum;
+
+        var size = me.$imgLine.find('.img-box').size();
+
+        var long = num/size;
+
+
+        me.$imgLine.find('.img-box').each(function () {
+            $(this).find('img').each(function () {
+//                                console.log(1);
+//                            console.log(this.width);
+//                            console.log($(this).width()+long);
+//                            $(this).width(this.width+long);
+//                            this.width = $(this).data('rewidth')+long;
+                $(this).width($(this).width()+long);
+//                            $(this).width($(this).data('rewidth')+long);
+//                            console.log($(this).width());
+//                            console.log($(this).width());
+//                            console.log(this.width);
+            });
+        });
+        me.$ct.append(me.$imgLine);
+
+
+        //初始化
+        me.$imgLine = $('<div class="img-line"></div>');
+        me.arrLine = 0;
+
+
+        me.$imgLine.append($imgBox); //把不接收的接收了
+        me.arrLine = me.arrLine + me.reWidth;
+    },
+    lastAppend:function () {
+        var me =this;
+        var num2 = me.$ct.width() - me.arrLine;
+
+        var size2 = me.$imgLine.find('.img-box').size();
+
+        var long2 = num2/size2;
+
+
+        me.$imgLine.find('.img-box').each(function () {
+            $(this).find('img').each(function () {
+                $(this).width($(this).width()+long2);
+            });
+        });
+        me.$ct.append(me.$imgLine);
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+    getImgUrls: function(num) {
+        var me =this;
+        var color, width, height, urls = [];
+        for (var i = 0; i < num; i++) {
+            color = Math.random().toString(16).substring(2, 8);
+            width = Math.floor(Math.random() * 100 + 50);
+            height = Math.floor(Math.random() * 30 + 50);
+            urls.push("http://placehold.it/" + width + "x" + height + "/" + color + "/fff");
+        }
+        return urls;
+    }
+};
+    new Barrels($('.img-ct'));
+
+
+//    function a() {
+//        setTimeout(function () {
+//           console.log(1);
+//        },0)
+//    }
+//    a();
+//    console.log(2);
+
+
+
+//(function a() {
+//    setTimeout(function () {
+//        console.log(1);
+//    },0)
+//})();
+//console.log(2);
+
+
+//    var el =$('<div width="100"></div>');
+//var el =$('.nihao');
+//el.each(function () {
+//    console.log($(this).width());
+//    console.log(this.class);
+//    console.log(this.width);
+//});
+
+</script>
+</body>
+</html>
