@@ -18,42 +18,62 @@
 </style>
 </head>
 <body>
-	<form>
-	<div><p>注册</p><div>
+	<div>
+		<p>注册</p>
 		<dl class='ct'>
-		<dt>用户名</dt>
-		<dd><input id='ipt name' type='text' name='name' placeholder='hunger已经被注册过了'></dd>
-		<dd><p class='name TS'>只能是字母、数字、下划线，3-10个字符</p></dd>
-		<dt>密码</dt>
-		<dd><input id='ipt pw1' type='password' name='pw1' placeholder='请输入密码'></dd>
-		<dd><p class='pw1 TS'>大写字母、小写、数字、下划线最少两种，6-15个字符</p></dd>
 
-		<dt>再输一次</dt>
-		<dd><input id='ipt pw2' type='password' name='pw2' placeholder='再输一次密码'></dd>
-		<dd><p class='pw2 TS'>shenme</p></dd>
-		<dd><button id='btn'>注册</button></dd>
+			<dt>用户名</dt>
+			<dd><input id='ipt name' type='text' name='name' placeholder='hunger已经被注册过了'></dd>
+			<dd><p class='name TS'>只能是字母、数字、下划线，3-10个字符</p></dd>
+
+			<dt>密码</dt>
+			<dd><input id='ipt pw1' type='password' name='pw1' placeholder='请输入密码'></dd>
+			<dd><p class='pw1 TS'>大写字母、小写、数字、下划线最少两种，6-15个字符</p></dd>
+
+			<dt>再输一次</dt>
+			<dd><input id='ipt pw2' type='password' name='pw2' placeholder='再输一次密码'></dd>
+			<dd><p class='pw2 TS'></p></dd>
+			<dd><button id='btn'>注册</button></dd>
+
 		</dl>
-	</form>
+	</div>
     <script>
+		/*
+		* 接口: /checkform
+		* 入参:{
+				name: hunger
+				pw1: ***** //密码
+			}
+		*回参:{
+			status: 0 // 0表示正常,1表示出错
+			isName: 0 // 0表示可用,1表示用户名已经存在
+			}
+		* */
     	var ct = document.querySelector('.ct'),
     		ipt = document.querySelectorAll('input'),
 	    	TS = document.querySelectorAll('.TS'),
-	    	btn = document.querySelector('#btn');
-	    var name ,
-		    	pw1 ,
-		    	pw2	;
-		    	name = ipt[0].value,
-		    	pw1 = ipt[1].value,
-		    	pw2 = ipt[2].value;
+	    	btn = document.querySelector('#btn'),
+			nm = document.querySelectorAll('input')[0],
+			pw1 = ipt[1],
+			pw2 = ipt[2],
+			nmTS = TS[0];
+			pw1TS = TS[1],
+			pw2TS = TS[2],
+			isLockd = false;
 	    function ajax(opts){
 	    	var xhr = new XMLHttpRequest();
 	    	xhr.onreadystatechange=function(){
+				if(xhr.status == 1){
+					isLocked = true;
+				}
 	    		if(xhr.status == 200 && xhr.readyState == 4){
-	    		var json = JASON.parse(xhr.responseText);
-	    		opts.success(json);
+					var json = JASON.parse(xhr.responseText);
+					opts.success(ret);
+					isLocked = false;
 		    	}
 		    	if(xhr.status = 404){
-		    		opts.error;
+		    		opts.error();
+					isLocked = false;
 		    	}
 	    	}
 	    	var str = '';
@@ -65,38 +85,31 @@
 	    		xhr.open(opts.type,opts.url + "?" + str,true);
 	    		send();
 	    	}
-	    	if(opts.type.toLowerCase()="post"){
-	    		xhr.open(opts.type,url,true);
-	    		xhr.setRequestHeader("","");
-	    		send(str);
+	    	if(opts.type.toLowerCase()=="post"){
+				xhr.open(opts.type,opts.url,true);
+				xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				btn.addEventListener("click",function(){
+					send(str);})
 	    	}
-	    	xhr.open(opts.type,opts.url,true);
-		    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-	    	btn.addEventListener("click",function(){
-                send(str);})
-			}
+		}
 		ct.addEventListener('click',function(){
 			checkName();
 			checkPw();
-			
-			
-			
 		})
-
-		function success(){
-			alert('恭喜您，注册成功')
-		}
-			btn.addEventListener('click', function(e){
+		btn.addEventListener('click', function(e){
 			e.stopPropagation();
+			if(isLocked){
+				return;
+			}
 		    ajax({
-		        url: 'task24-3.php',   //接口地址
-		        type: 'post',             // 类型， post 或者 get,
+		        url: '/checkform',
+		        type: 'post',
 		        data: {
-		            name: ipt[0],
-		            password: ipt[1]
+		            name: nm.value,
+		            password: pw1.value,
 		        },
-		        success: function(ret){
-		            success(ret); 				// {status: 0}
+		        success: function(){
+		            success(ret);
 		        },
 		        error: function(){
 		           console.log('出错了....');
@@ -104,38 +117,48 @@
 		    })
 		});
 		function checkName(){
-			if(ipt[0].value=='hunger'){
-				TS[0].innerText='用户名已被注册';
-			}else if(/\w{3,9}/g.test(ipt[0].value)==false ){
-				TS[0].innerText='用户名非法';
+			if(isLocked){
 				return;
-			}else 
-				TS[0].innerText='用户名可用';
+			}
+			ajax({
+				url: 'checkform',
+				type: 'post',
+				data: {
+					name: m.value,
+				},
+				success: function(){
+					if(ret.nameTset==1) {
+						nmTS.innerText = '用户名已被注册';
+					}
+				},
+				error: function(){
+					console.log('木有检测到用户名....');
+				}
+			})
 
+			if(/\w{3,9}/g.test(nm.value)==false ){
+				nmTS.innerText='用户名非法';
+				return;
+			}else
+				nmTS.innerText='用户名可用';
+				return;
 		}
 		function checkPw(){
-			if( !/\w{6,15}/.test(ipt[1].value) ){
-				TS[1].innerText='密码格式不正确';
+			if( !/^\w{6,15}$/.test(pw1.value)){
+				pw1TS.innerText='密码格式不正确';
 
 			}else{
-				TS[1].innerText='大写字母、小写、数字、下划线最少两种，6-15个字符';
+				pw1TS.innerText='密码格式正确';
 			}
-			if(ipt[1].value!=ipt[2].value){
-				TS[2].innerText='两次输入不一致';
+			if(pw1.value!=pw2.value){
+				pw2TS.innerText='两次输入不一致';
 			}else{
-				TS[2].innerText='密码一致';
+				pw2TS.innerText='密码一致';
 			}
 		}
 		function success(ret){
 			alert('注册成功');
 		}
     </script>
-<!--     responseText：作为响应主体被返回的文本
-
-	responseXML：如果响应内容的类型是”text/xml”或”application/xml”，这个属性将保存包含着相应数据的XML文档
-
-	status：响应的HTTP状态（200,404,500等）
-
-	statusText：HTTP状态说明 -->
 </body>
 </html>

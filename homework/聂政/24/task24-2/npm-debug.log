@@ -1,0 +1,188 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'serve-',
+1 verbose cli   'mock' ]
+2 info using npm@2.15.8
+3 info using node@v4.4.7
+4 verbose install initial load of /usr/local/lib/package.json
+5 verbose readDependencies loading dependencies from /usr/local/lib/package.json
+6 silly cache add args [ 'serve-', null ]
+7 verbose cache add spec serve-
+8 silly cache add args [ 'mock', null ]
+9 verbose cache add spec mock
+10 silly cache add parsed spec Result {
+10 silly cache add   raw: 'serve-',
+10 silly cache add   scope: null,
+10 silly cache add   name: 'serve-',
+10 silly cache add   rawSpec: '',
+10 silly cache add   spec: 'latest',
+10 silly cache add   type: 'tag' }
+11 silly addNamed serve-@latest
+12 verbose addNamed "latest" is being treated as a dist-tag for serve-
+13 info addNameTag [ 'serve-', 'latest' ]
+14 silly mapToRegistry name serve-
+15 silly mapToRegistry using default registry
+16 silly mapToRegistry registry https://registry.npmjs.org/
+17 silly mapToRegistry data Result {
+17 silly mapToRegistry   raw: 'serve-',
+17 silly mapToRegistry   scope: null,
+17 silly mapToRegistry   name: 'serve-',
+17 silly mapToRegistry   rawSpec: '',
+17 silly mapToRegistry   spec: 'latest',
+17 silly mapToRegistry   type: 'tag' }
+18 silly mapToRegistry uri https://registry.npmjs.org/serve-
+19 verbose addNameTag registry:https://registry.npmjs.org/serve- not in flight; fetching
+20 silly cache add parsed spec Result {
+20 silly cache add   raw: 'mock',
+20 silly cache add   scope: null,
+20 silly cache add   name: 'mock',
+20 silly cache add   rawSpec: '',
+20 silly cache add   spec: 'latest',
+20 silly cache add   type: 'tag' }
+21 silly addNamed mock@latest
+22 verbose addNamed "latest" is being treated as a dist-tag for mock
+23 info addNameTag [ 'mock', 'latest' ]
+24 silly mapToRegistry name mock
+25 silly mapToRegistry using default registry
+26 silly mapToRegistry registry https://registry.npmjs.org/
+27 silly mapToRegistry data Result {
+27 silly mapToRegistry   raw: 'mock',
+27 silly mapToRegistry   scope: null,
+27 silly mapToRegistry   name: 'mock',
+27 silly mapToRegistry   rawSpec: '',
+27 silly mapToRegistry   spec: 'latest',
+27 silly mapToRegistry   type: 'tag' }
+28 silly mapToRegistry uri https://registry.npmjs.org/mock
+29 verbose addNameTag registry:https://registry.npmjs.org/mock not in flight; fetching
+30 verbose request uri https://registry.npmjs.org/serve-
+31 verbose request no auth needed
+32 info attempt registry request try #1 at 10:26:41
+33 verbose request id feb3cbf815ad84ce
+34 http request GET https://registry.npmjs.org/serve-
+35 verbose request uri https://registry.npmjs.org/mock
+36 verbose request no auth needed
+37 info attempt registry request try #1 at 10:26:42
+38 http request GET https://registry.npmjs.org/mock
+39 http 200 https://registry.npmjs.org/mock
+40 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+40 verbose headers   etag: '"6CGZ54X4IN5MH7S1E8NOMRUDY"',
+40 verbose headers   'content-type': 'application/json',
+40 verbose headers   'content-encoding': 'gzip',
+40 verbose headers   'cache-control': 'max-age=300',
+40 verbose headers   'content-length': '1614',
+40 verbose headers   'accept-ranges': 'bytes',
+40 verbose headers   date: 'Sun, 10 Jul 2016 02:26:40 GMT',
+40 verbose headers   via: '1.1 varnish',
+40 verbose headers   age: '0',
+40 verbose headers   connection: 'keep-alive',
+40 verbose headers   'x-served-by': 'cache-lcy1135-LCY',
+40 verbose headers   'x-cache': 'MISS',
+40 verbose headers   'x-cache-hits': '0',
+40 verbose headers   'x-timer': 'S1468117600.374379,VS0,VE91',
+40 verbose headers   vary: 'Accept-Encoding' }
+41 silly get cb [ 200,
+41 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+41 silly get     etag: '"6CGZ54X4IN5MH7S1E8NOMRUDY"',
+41 silly get     'content-type': 'application/json',
+41 silly get     'content-encoding': 'gzip',
+41 silly get     'cache-control': 'max-age=300',
+41 silly get     'content-length': '1614',
+41 silly get     'accept-ranges': 'bytes',
+41 silly get     date: 'Sun, 10 Jul 2016 02:26:40 GMT',
+41 silly get     via: '1.1 varnish',
+41 silly get     age: '0',
+41 silly get     connection: 'keep-alive',
+41 silly get     'x-served-by': 'cache-lcy1135-LCY',
+41 silly get     'x-cache': 'MISS',
+41 silly get     'x-cache-hits': '0',
+41 silly get     'x-timer': 'S1468117600.374379,VS0,VE91',
+41 silly get     vary: 'Accept-Encoding' } ]
+42 verbose get saving mock to /Users/air/.npm/registry.npmjs.org/mock/.cache.json
+43 verbose correctMkdir /Users/air/.npm correctMkdir not in flight; initializing
+44 silly addNameTag next cb for mock with tag latest
+45 silly addNamed mock@0.1.1
+46 verbose addNamed "0.1.1" is a plain semver version for mock
+47 silly mapToRegistry name mock
+48 silly mapToRegistry using default registry
+49 silly mapToRegistry registry https://registry.npmjs.org/
+50 silly mapToRegistry data Result {
+50 silly mapToRegistry   raw: 'mock',
+50 silly mapToRegistry   scope: null,
+50 silly mapToRegistry   name: 'mock',
+50 silly mapToRegistry   rawSpec: '',
+50 silly mapToRegistry   spec: 'latest',
+50 silly mapToRegistry   type: 'tag' }
+51 silly mapToRegistry uri https://registry.npmjs.org/mock
+52 verbose addRemoteTarball https://registry.npmjs.org/mock/-/mock-0.1.1.tgz not in flight; adding
+53 verbose addRemoteTarball [ 'https://registry.npmjs.org/mock/-/mock-0.1.1.tgz',
+53 verbose addRemoteTarball   'e7e3589c7e6b3376d69f5a3e470b56604417c633' ]
+54 info retry fetch attempt 1 at 10:26:43
+55 info attempt registry request try #1 at 10:26:43
+56 http fetch GET https://registry.npmjs.org/mock/-/mock-0.1.1.tgz
+57 http fetch 200 https://registry.npmjs.org/mock/-/mock-0.1.1.tgz
+58 silly fetchAndShaCheck shasum e7e3589c7e6b3376d69f5a3e470b56604417c633
+59 verbose addTmpTarball /var/folders/64/3pwdmqg943ld8bgk8njgxnh80000gn/T/npm-63239-b3abc85d/registry.npmjs.org/mock/-/mock-0.1.1.tgz not in flight; adding
+60 verbose addTmpTarball already have metadata; skipping unpack for mock@0.1.1
+61 verbose correctMkdir /Users/air/.npm correctMkdir not in flight; initializing
+62 silly cache afterAdd mock@0.1.1
+63 verbose afterAdd /Users/air/.npm/mock/0.1.1/package/package.json not in flight; writing
+64 verbose correctMkdir /Users/air/.npm correctMkdir not in flight; initializing
+65 verbose afterAdd /Users/air/.npm/mock/0.1.1/package/package.json written
+66 http 404 https://registry.npmjs.org/serve-
+67 verbose headers { 'content-type': 'application/json',
+67 verbose headers   'cache-control': 'max-age=0',
+67 verbose headers   'content-length': '2',
+67 verbose headers   'accept-ranges': 'bytes',
+67 verbose headers   date: 'Sun, 10 Jul 2016 02:26:41 GMT',
+67 verbose headers   via: '1.1 varnish',
+67 verbose headers   age: '0',
+67 verbose headers   connection: 'keep-alive',
+67 verbose headers   'x-served-by': 'cache-lcy1126-LCY',
+67 verbose headers   'x-cache': 'MISS',
+67 verbose headers   'x-cache-hits': '0',
+67 verbose headers   'x-timer': 'S1468117600.390853,VS0,VE732',
+67 verbose headers   vary: 'Accept-Encoding' }
+68 silly get cb [ 404,
+68 silly get   { 'content-type': 'application/json',
+68 silly get     'cache-control': 'max-age=0',
+68 silly get     'content-length': '2',
+68 silly get     'accept-ranges': 'bytes',
+68 silly get     date: 'Sun, 10 Jul 2016 02:26:41 GMT',
+68 silly get     via: '1.1 varnish',
+68 silly get     age: '0',
+68 silly get     connection: 'keep-alive',
+68 silly get     'x-served-by': 'cache-lcy1126-LCY',
+68 silly get     'x-cache': 'MISS',
+68 silly get     'x-cache-hits': '0',
+68 silly get     'x-timer': 'S1468117600.390853,VS0,VE732',
+68 silly get     vary: 'Accept-Encoding' } ]
+69 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/serve-
+69 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+69 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:242:14)
+69 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+69 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:200:22)
+69 verbose stack     at emitTwo (events.js:87:13)
+69 verbose stack     at Request.emit (events.js:172:7)
+69 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1067:10)
+69 verbose stack     at emitOne (events.js:82:20)
+69 verbose stack     at Request.emit (events.js:169:7)
+69 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:988:12)
+70 verbose statusCode 404
+71 verbose pkgid serve-
+72 verbose cwd /Users/air/workspace/jrg-renwu3/homework/聂政/24/task24-2
+73 error Darwin 15.5.0
+74 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "serve-" "mock"
+75 error node v4.4.7
+76 error npm  v2.15.8
+77 error code E404
+78 error 404 Registry returned 404 for GET on https://registry.npmjs.org/serve-
+78 error 404
+78 error 404 'serve-' is not in the npm registry.
+78 error 404 You should bug the author to publish it (or use the name yourself!)
+78 error 404
+78 error 404 Note that you can also install from a
+78 error 404 tarball, folder, http url, or git url.
+79 verbose exit [ 1, true ]

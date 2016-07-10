@@ -18,7 +18,6 @@
 	}
 	.button{
 		margin: 10px auto;
-
 		color: red;
 		width: 100px;
 		text-align: center;
@@ -31,7 +30,6 @@
 	}
 	div:hover{
 		cursor: pointer;
-
 	}
 </style>
 </head>
@@ -42,57 +40,72 @@
 	</ul>
 	<div class="button">加载更多</div>
     <script>
+        /*
+        * url: getmore
+        * 入参: {start:2, len: 4}
+        * 回参:
+        {
+            status: 0 // 0表示正常,1表示出错
+            data: [2,3,4,5]
+        }
+        * */
     	var	content = document.getElementsByClassName('content');
 		var button = document.querySelector('.button');
-		var body=document.body
-	    
-	    var str = '';
-                for(var key in opts.data){
-                    str += key + '=' + opts.data[key] + '$'
+		var body = document.body;
+        var isLocked = false;
+		function ajax(opts) {
+            var xhr = new XMLHttpRequest();
+            var str = '';
+            for (var key in opts.data) {
+                str += key + '=' + opts.data[key] + '$'
+            }
+            str = str.substr(0, str.length - 1);
+
+            xhr.open(opts.type, opts.url, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function () {
+                if(xhr.readyState == 1){
+                    isLocked = true;
                 }
-        str = str.substr(0,str.length-1);	
-
-    	xhr.open(opts.type,opts.url,true);
-	    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    	button.addEventListener('click',function(){
-            send(str);})
-		}
-
-		function ajax(opts){
-	    	var xhr = new XMLHttpRequest();
-
-	    	xhr.onreadystatechange=function(){
-	    		if(xhr.status == 200 && xhr.readyState == 4){
-		    		var strRT = xhr.responseText;
-		    		opts.success(strRT);
-		    	}
-		    	if(xhr.status = 404){
-		    		opts.error;
-		    	}
-	    	}
+                if (xhr.status == 200 && xhr.readyState == 4) {
+                    var strRT = ret.data;
+                    opts.success(strRT);
+                    isLocked = false;
+                }
+                if (xhr.status = 404) {
+                    opts.error();
+                    isLocked = false;
+                }
+            }
+        }
 		button.addEventListener('click', function(){
+            if(isLocked){
+                return;
+            }
 		    ajax({
-		        url: 'task24-2.php',   
+		        url: '/getmore',
 		        type: 'post',            
 		        data: {
-		        	number:parseInt( content[content.length-1].innerText.match(/\d/)[0] )
+		        	number: content.length,
+                    len: 4
 		        },
 
 		        success: function(strRT){
-		            success(strRT); 				// {status: 0}
+		            success(strRT);
 		        },
 		        error: function(){
 		           console.log('出错了....');
 		        }
 		    })
-		});
+            send(str)
+		})
 		function success(strRT){
-			var strRTI = parseInt(strRT);
-			for(var i=strRTI;i<strRTI+5;i++){
-				var newDiv = '<div class="content">内容' + i + '</div>'
+			for(var i=0;i<strRT.length;i++){
+                strRT[i] += 1;
+				var newDiv = '<div class="content">内容' + strRT[i] + '</div>';
 				body.insertBefore(button,newDiv)
 			}
-			
 		}
     </script>
 
