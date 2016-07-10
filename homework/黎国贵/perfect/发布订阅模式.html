@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发布订阅模式</title>
+</head>
+<body>
+<script>
+    function EventCenter() {
+
+    }
+    EventCenter.prototype={
+        obj:{},
+        init:function (ev) {
+            var me=this;
+            for(var i=0;i<me.obj[ev].length;i++){
+                me.obj[ev][i]();
+            }
+        },
+        on:function (ev,cb) {
+            var me =this;
+            me.obj[ev] = me.obj[ev]||[];
+            me.obj[ev].push(cb);
+        },
+        off:function (ev) {
+            var me =this;
+            delete me.obj[ev];
+        }
+    };
+
+    var a = new EventCenter();
+    a.on('change',function () {
+        console.log('gaibian');
+    });
+    a.on('change',function () {
+       console.log('yidingyaogaibian')
+    });
+    a.on('haoka',function () {
+       console.log('kasile');
+    });
+    a.on('haoka',function () {
+        console.log('kachuxiangle');
+    });
+    a.init('change');
+    a.init('haoka');
+    a.off('haoka');
+    a.init('haoka');
+
+
+
+
+//    var EventCenter = (function () {
+//            var obj = {};
+//            function on(ev,cb) {
+//                obj[ev] = obj[ev]||[];
+//                obj[ev].push(cb);
+//            }
+//            function init(ev) {
+//                for(var i=0;i<obj[ev].length;i++){
+//                    obj[ev][i]();
+//                }
+//            }
+//            function off(ev) {
+//                delete obj[ev];
+//            }
+//            return{
+//                on:on,
+//                init:init,
+//                off:off
+//            }
+//        })();
+//        EventCenter.on("change",function () {
+//            console.log("change");
+//        });
+//        EventCenter.on("change",function () {
+//            console.log("hello");
+//        });
+//        EventCenter.on("sleep",function () {
+//            console.log("sleep");
+//        });
+//        EventCenter.on("sleep",function () {
+//            console.log("sleep");
+//        });
+//        console.log(1);
+//        console.log(1);
+//        console.log(1);
+//        console.log(1);
+//        EventCenter.init("change");
+//        EventCenter.init("sleep");
+//        EventCenter.off("sleep");
+//        EventCenter.init("sleep");
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>导航栏的tab</title>
+    <style>
+        html,body,ul,li{
+            padding: 0;
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+        }
+        li{
+            list-style: none;
+        }
+        .clear:after{
+            content:"";
+            display: block;
+            clear: both;
+        }
+        .area-nav{
+            margin: 10px;
+        }
+        .category{
+            position: relative;
+            background-color: #c7171e;
+            width: 200px;
+            border-bottom: 1px dotted #de272e;
+        }
+        .cate-title{
+            color: #FFFFFF;
+            display: block;
+            font-size: 18px;
+            padding: 10px;
+        }
+        .icon-goto{
+            color: #FFFFFF;
+            display:block;
+            position:absolute;
+            right: 10px;
+           top:10px;
+        }
+        .child-panel{
+            display: none;
+            width: 200px;
+            position:absolute;
+            top:0;
+            left: 200px;
+            border:1px solid #CCCCCC;
+        }
+        .child-panel li{
+            float: left;
+            width: 100px;
+            text-align: center;
+            padding:10px 0;
+        }
+        .child-panel li:hover{
+            color: yellow;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="area-nav">
+    <ul class="nav-aside">
+        <li class="category"><a class="cate-title" href="#">珠宝玉器</a><span class="icon-goto">></span>
+            <ul class="child-panel clear">
+                <li><a href="#"></a>翡翠</li>
+                <li><a href="#"></a>玛瑙</li>
+                <li><a href="#"></a>和田</li>
+                <li><a href="#"></a>水晶</li>
+                <li><a href="#"></a>珍珠</li>
+                <li><a href="#"></a>宝石</li>
+                <li><a href="#"></a>钻石</li>
+                <li><a href="#"></a>玉石</li>
+                <li><a href="#"></a>琥珀</li>
+                <li><a href="#"></a>宝石</li>
+            </ul>
+        </li>
+        <li class="category"><a class="cate-title" href="">珠宝玉器</a><span class="icon-goto">></span>
+            <ul class="child-panel clear">
+                <li><a href="#"></a>翡翠</li>
+                <li><a href="#"></a>玛瑙</li>
+                <li><a href="#"></a>和田</li>
+                <li><a href="#"></a>水晶</li>
+                <li><a href="#"></a>珍珠</li>
+                <li><a href="#"></a>宝石</li>
+            </ul>
+        </li>
+        <li class="category"><a class="cate-title" href="">珠宝玉器</a><span class="icon-goto">></span>
+            <ul class="child-panel clear">
+                <li><a href="#"></a>翡翠</li>
+                <li><a href="#"></a>玛瑙</li>
+                <li><a href="#"></a>和田</li>
+                <li><a href="#"></a>水晶</li>
+
+            </ul>
+        </li>
+        <li class="category"><a class="cate-title" href="">珠宝玉器</a><span class="icon-goto">></span>
+            <ul class="child-panel clear">
+                <li><a href="#"></a>翡翠</li>
+                <li><a href="#"></a>玛瑙</li>
+            </ul>
+        </li>
+        <li class="category"><a class="cate-title" href="">珠宝玉器</a><span class="icon-goto">></span>
+            <ul class="child-panel clear">
+                <li><a href="#"></a>翡翠</li>
+                <li><a href="#"></a>玛瑙</li>
+                <li><a href="#"></a>和田</li>
+                <li><a href="#"></a>水晶</li>
+
+            </ul>
+        </li>
+    </ul>
+</div>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+
+    function Tab1($select1,$select2) {
+        this.$el1 = $select1;
+        this.$el2 = $select2;
+        this.bind();
+    }
+    Tab1.prototype={
+        bind:function () {
+            var me = this;
+            me.$el1.on("mouseenter",function () {
+                var index = $(this).index();     //index()，返回的是该元素在同辈中的位置，而不是在选择器集合中的位置；
+                me.$el2.eq(index).show();
+            });
+            me.$el1.on("mouseleave",function () {
+                var index = $(this).index();
+                me.$el2.eq(index).hide();
+            });
+        }
+    };
+    new Tab1($('.category'),$('.child-panel'));
+
+
+//var tab1 = (function () {
+//    function init($select1,$select2) {    //关键在于$select1在同辈中的位置对应$select2在选择器组中的位置
+//        _bind($select1,$select2);
+//    }
+//    function _bind($select1,$select2) {
+//        $select1.on("mouseenter",function () {
+//            var  index = $(this).index();     //index()，返回的是该元素在同辈中的位置，而不是在选择器集合中的位置；
+//            $select2.eq(index).show();
+//        });
+//        $select1.on("mouseleave",function () {
+//            var index = $(this).index();
+//            $select2.eq(index).hide();
+//        });
+//    }
+//    return {
+//        init:init
+//    }
+//})();
+//    tab1.init($('.category'),$('.child-panel'));
+</script>
+</body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全屏轮播插件</title>
+    <style>
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        html, body, .carousel, .ct{
+            height: 100%;
+            width: 100%;
+        }
+        .carousel{
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel .ct{
+            position:absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel .ct li{
+            float: left;
+            width: 100%;
+            height: 100%;
+            background-color: #ccc;
+        }
+        .carousel .ct .bg{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            opacity: 0.8;
+        }
+        ul.bullet{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .bullet li{
+            width: 30px;
+            height: 10px;
+            display: inline-block;
+            background-color: #fff;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .bullet li.active{
+            background-color: #000;
+        }
+        .clear:after{
+            content: "";
+            display: block;
+            clear:both;
+        }
+        .ct .ct-center{
+            text-align: center;
+            display: inline-block;
+            width: 1000px;
+            position:absolute;
+            top:50%;
+            left: 50%;
+            color:#FFFFFF;
+            transform: translate(-50%,-50%);
+        }
+        .btn{
+            display: inline-block;
+            color: #fff;
+            background-color: #fed136;
+            font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 18px;
+            width: 220px;
+            height: 65px;
+            text-align: center;
+            line-height: 65px;
+            cursor: pointer;
+        }
+        .btn:hover{
+            background-color: #fec503;
+        }
+        h1{
+            font-size: 75px;
+        }
+        h2{
+            font-size: 40px;
+        }
+        .ct h2{
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="header" class="carousel">
+    <ul class="ct clear">
+        <li>
+            <div class="bg" data-bg-img="http://d.3987.com/pbby_130822/001.jpg">
+                <div class="ct-center">
+                    <h2>Welcome To Our Studio!</h2>
+                    <h1>IT'S NICE TO MEET YOU</h1>
+                    <a href="#" class="btn">TELL ME MORE</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="bg" data-bg-img="http://imgstore.cdn.sogou.com/app/a/11220002/3246_pc.jpg">
+                <div class="ct-center">
+                    <h2>Welcome To Our Studio!</h2>
+                    <h1>IT'S NICE TO MEET YOU</h1>
+                    <a href="#" class="btn">TELL ME MORE</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="bg" data-bg-img="http://pic.pp3.cn/uploads/pic1/0521/4admulgaz51.jpg">
+                <div class="ct-center">
+                    <h2>Welcome To Our Studio!</h2>
+                    <h1>IT'S NICE TO MEET YOU</h1>
+                    <a href="#" class="btn">TELL ME MORE</a>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="bg" data-bg-img="http://img.mypethome.com/forum/forum/month_1110/20111004_8ae2fe3ebf96e26ef66cHZUGmEbU1R4Q.jpg">
+                <div class="ct-center">
+                    <h2>Welcome To Our Studio!</h2>
+                    <h1>IT'S NICE TO MEET YOU</h1>
+                    <a href="#" class="btn">TELL ME MORE</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    function AllCarousel() {
+        this.$ct = $(".ct") ;
+        this.$children = this.$ct.children("li");
+        this.$bullet = $(".bullet");
+        this.length = this.$children.size();//克隆前图片的数量
+        this.imgWidth = $(window).width();//窗口宽度
+        this.$bg = $(".bg");
+        for(var i=0;i<this.$bg.size();i++){
+            var imgUrl = this.$bg.eq(i).attr('data-bg-img');
+            this.$bg.eq(i).css('background-image', 'url('+imgUrl+')');
+        }
+        this.cur = 0;
+        this.isAnimate =true;//全局变量状态锁，允许执行自动播放的功能
+        this.$ct.append(this.$children.first().clone());
+        this.$ct.prepend(this.$children.last().clone());
+        this.$ct.find("li").css("width",this.imgWidth);//将li标签设为窗口宽
+        this.$ct.find(".bg").css("width",this.imgWidth);//将将背景div设为窗口宽
+        this.imgRealCount = this.$ct.children().size();//克隆后图片的数量
+        this.$ct.css({
+            left:0-this.imgWidth,
+            width:this.imgRealCount*this.imgWidth
+        });
+        this.bind();
+        this.autoPlay();
+    }
+    AllCarousel.prototype={
+        bind:function (){
+            var me =this;
+            me.$bullet.find("li").on("mouseenter",function () {
+                me.stopAuto();
+                var index = $(this).index();
+                if (index>me.cur){
+                    me.playNext(index-me.cur);
+                }
+                else if(index<me.cur){
+                    me.playPrev(me.cur-index);
+                }
+                me.autoPlay();
+            });
+        },
+        playNext:function (idx) {
+            var me =this;
+            var idx = idx || 1; //移动图片的数量
+            if(me.isAnimate){
+            me.isAnimate = false;
+            me.$ct.animate({     //让装载图片的火车，移动
+                left : "-=" +(me.imgWidth*idx)
+            },function () {
+                me.cur = (me.cur + idx)%me.length;//改变编号
+                if(me.cur===0){//如果是第一号 虽然展示的是克隆体，但应该展示第一号，所以
+                    me.$ct.css({left:0-me.imgWidth});//瞬间移动为第一个,因为前面有一个克隆的，所以要减去一个imgWidth
+                }
+                me.isAnimate = true;
+                me.setBullet();
+            })
+            }
+        },
+        playPrev:function (idx) {
+            var me =this;
+            var idx = idx || 1; //移动图片数的数量
+            if(me.isAnimate){
+                me.isAnimate = false;
+                me.$ct.animate({     //让装载图片的火车，移动
+                left : "+=" +(me.imgWidth*idx)
+                },function () {
+                    me.cur = (me.length+me.cur-idx)%me.length;//改变编号
+                    if(me.cur===me.length-1){//如果是最后一号 虽然展示的是克隆体，但应该展示最后一号，所以
+                        me.$ct.css({left:0-me.imgWidth*me.length});//瞬间移动为最后一个,因为前面有一个克隆的，所以要减去imgWidth*length
+                    }
+                    me.isAnimate = true;
+                    me.setBullet();
+                })
+            }
+        },
+        setBullet:function (){//给相应bullet的li元素加上背景色
+            var me =this;
+            me.$bullet.children().removeClass("active").eq(me.cur).addClass("active");
+        },
+        autoPlay:function (){//自动播放
+            var me =this;
+            me.start = setInterval(function () { //编号start为全局变量，不然的话stop函数找不到这个编号了
+                me.playNext();
+            },2000)
+        },
+        stopAuto:function (){//停止自动播放功能
+            var me =this;
+            clearInterval(me.start);
+        }
+    };
+
+    new AllCarousel();
+
+
+
+//    var allCarousel = (function () {
+//        var start;
+//        var $ct = $(".ct") ;
+//        var $children = $ct.children("li");
+//        var $bullet = $(".bullet");
+//        var length = $children.size();//克隆前图片的数量
+//        var imgWidth = $(window).width();//窗口宽度
+//        var $bg = $(".bg");
+//        for(var i=0;i<$bg.size();i++){
+//            var imgUrl = $bg.eq(i).attr('data-bg-img');
+//            $bg.eq(i).css('background-image', 'url('+imgUrl+')');
+//        }
+//        var cur = 0;
+//        var isAnimate =true;//全局变量状态锁，允许执行自动播放的功能
+//        $ct.append($children.first().clone());
+//        $ct.prepend($children.last().clone());
+//        $ct.find("li").css("width",imgWidth);//将li标签设为窗口宽
+//        $ct.find(".bg").css("width",imgWidth);//将将背景div设为窗口宽
+//        var imgRealCount = $ct.children().size();//克隆后图片的数量
+//        $ct.css({left:0-imgWidth,width:imgRealCount*imgWidth});
+//        function init() {
+//            _bind();
+//            autoPlay();
+//        }
+//        function _bind() {
+//            $bullet.find("li").on("mouseenter",function () {
+//                stop();
+//                var index = $(this).index();
+//                if (index>cur){
+//                    playNext(index-cur);
+//                }
+//                else if(index<cur){
+//                    playPrev(cur-index);
+//                }
+//                autoPlay();
+//            });
+//        }
+//        function  playNext (idx) {
+//            var idx = idx || 1; //移动图片的数量
+//            if(isAnimate){
+//                isAnimate = false;
+//                $ct.animate({     //让装载图片的火车，移动
+//                    left : "-=" +(imgWidth*idx)
+//                },function () {
+//                    cur = (cur + idx)%length;//改变编号
+//                    if(cur===0){//如果是第一号 虽然展示的是克隆体，但应该展示第一号，所以
+//                        $ct.css({left:0-imgWidth});//瞬间移动为第一个,因为前面有一个克隆的，所以要减去一个imgWidth
+//                    }
+//                    isAnimate = true;
+//                    setBullet();
+//                })
+//            }
+//        }
+//        function  playPrev (idx) {
+//            var idx = idx || 1; //移动图片数的数量
+//            if(isAnimate){
+//                isAnimate = false;
+//                $ct.animate({     //让装载图片的火车，移动
+//                    left : "+=" +(imgWidth*idx)
+//                },function () {
+//                    cur = (length+cur-idx)%length;//改变编号
+//                    if(cur===length-1){//如果是最后一号 虽然展示的是克隆体，但应该展示最后一号，所以
+//                        $ct.css({left:0-imgWidth*length});//瞬间移动为最后一个,因为前面有一个克隆的，所以要减去imgWidth*length
+//                    }
+//                    isAnimate = true;
+//                    setBullet();
+//                })
+//            }
+//        }
+//        function setBullet() {//给相应bullet的li元素加上背景色
+//            $bullet.children().removeClass("active").eq(cur).addClass("active");
+//        }
+//        function autoPlay (){//自动播放
+//            start = setInterval(function () { //编号start为全局变量，不然的话stop函数找不到这个编号了
+//                playNext();
+//            },2000)
+//        }
+//        function stop() {//停止自动播放功能
+//            clearInterval(start);
+//        }
+//        return{
+//            init:init
+//        }
+//    })();
+//    allCarousel.init();
+
+</script>
+</body>
+</html>

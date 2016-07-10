@@ -16,6 +16,9 @@
             height: 100%;
             position: absolute;
             transform-style: preserve-3d;
+            animation:move 9s;
+            animation-delay: 1s;
+            animation-iteration-count: 1000;
         }
         #carousel figure {
             margin: 0;
@@ -71,9 +74,6 @@
             transform: rotateY( 320deg ) translateZ( 288px );
             background: url(img/11.jpg);
             background-size: cover;
-        }
-        #carousel:hover{
-            animation:move 9s;
         }
         @keyframes move{
             0% {transform: rotateY(0deg);}

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>完美瀑布流</title>
+    <style>
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            position: relative;
+
+        }
+        li{
+            list-style: none;
+            position: absolute;
+            width: 250px;
+            margin-left: 10px;
+            margin-top: 10px;
+            transition: all 1s;
+        }
+        .h1{
+            background-color: yellow;
+            height: 150px;
+        }
+        .h2{
+            background-color: red;
+            height: 250px;
+        }
+        .h3{
+            background-color: green;
+            height: 350px;
+        }
+        .h4{
+            background-color: orange;
+            height: 450px;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li class="h1">1</li>
+    <li class="h2">2</li>
+    <li class="h3">3</li>
+    <li class="h1">4</li>
+    <li class="h4">5</li>
+    <li class="h2">6</li>
+    <li class="h3">7</li>
+    <li class="h1">8</li>
+    <li class="h3">9</li>
+    <li class="h1">10</li>
+    <li class="h2">11</li>
+    <li class="h3">12</li>
+    <li class="h4">13</li>
+    <li class="h3">14</li>
+    <li class="h4">15</li>
+    <li class="h2">16</li>
+    <li class="h2">17</li>
+    <li class="h1">18</li>
+    <li class="h2">19</li>
+    <li class="h4">20</li>
+    <li class="h3">21</li>
+</ul>
+
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    function Waterfall($select1,$select2){//对选择器进行瀑布流布局，共用一个数组
+        this.$el = $select1;             //$select1是li元素
+        this.$ct = $select2;             //$select2是父容器
+        this.rend();
+    }
+    Waterfall.prototype ={
+        _isAdd :false,
+        colSumHeight:[],
+        rend:function () {
+            var me = this;
+            var nodeWidth= me.add().nodeWidth;
+            me.$el.each(function () {
+                var idx = me.idx().idx;
+                var min = me.idx().min;
+                $(this).css({
+                    left:nodeWidth*idx,
+                    top: min
+                });
+                me.colSumHeight[idx] = me.colSumHeight[idx]+$(this).outerHeight(true);
+            });
+            me.max = Math.max.apply(null,me.colSumHeight);
+        },
+        add:function () {
+            var me = this;
+            var nodeWidth = me.$el.outerWidth(true);
+            var ctWidth = me.$ct.width();
+            var colNum = parseInt(ctWidth/nodeWidth);
+            if(!me._isAdd){    //确定列数这件事只做一次
+                for(var i=0;i<colNum;i++){
+                    me.colSumHeight.push(0);
+                }
+                Waterfall.prototype._isAdd = true; //确定列数这件事只做一次
+            }
+            return{
+                nodeWidth:nodeWidth
+            }
+        },
+        idx:function () {
+            var me =this;
+            var idx = 0;
+            var min = me.colSumHeight[0];
+            for(var i=0;i<me.colSumHeight.length;i++){
+                if(me.colSumHeight[i]<min){
+                    min = me.colSumHeight[i];
+                    idx = i;
+                }
+            }
+            return{
+                idx : idx,
+                min : min
+            }
+        }
+    };
+    new Waterfall($('li'),$(window));
+
+
+
+
+
+
+
+
+
+
+
+
+//    function Waterfall($select,$select2){//对选择器进行瀑布流布局，各有一个数组
+//        this.$el = $select;              //没什么用应该算是错的了，不推荐使用
+//        this.$ct = $select2;
+//        this._isAdd=false;
+//        this.colSumHeight=[];
+//        this.rend();
+//    }
+//    Waterfall.prototype ={
+//        rend:function () {
+//            var me = this;
+//            var nodeWidth= me.add().nodeWidth;
+//            me.$el.each(function () {
+//                var idx = me.idx().idx;
+//                var min = me.idx().min;
+//                $(this).css({
+//                    left:nodeWidth*idx,
+//                    top: min
+//                });
+//                me.colSumHeight[idx] = me.colSumHeight[idx]+$(this).outerHeight(true);
+//            });
+//        },
+//        add:function () {
+//            var me = this;
+//            var nodeWidth = me.$el.outerWidth(true);
+//            var ctWidth = me.$ct.width();
+//            var colNum = parseInt(ctWidth/nodeWidth);
+//            if(!me._isAdd){    //确定列数这件事只做一次
+//                for(var i=0;i<colNum;i++){
+//                    me.colSumHeight.push(0);
+//                }
+//                me._isAdd = true; //确定列数这件事只做一次
+//            }
+//            return{
+//                nodeWidth:nodeWidth
+//            }
+//        },
+//        idx:function () {
+//            var me =this;
+//            var idx = 0;
+//            var min = me.colSumHeight[0];
+//            for(var i=0;i<me.colSumHeight.length;i++){
+//                if(me.colSumHeight[i]<min){
+//                    min = me.colSumHeight[i];
+//                    idx = i;
+//                }
+//            }
+//            return{
+//                idx : idx,
+//                min : min
+//            }
+//        }
+//    };
+//    new Waterfall($('li'),$(window));
+
+
+
+
+
+
+
+
+
+
+
+
+
+    var waterfall =(function () {
+        var colSumHeight= [];
+        var _isAdd = false;
+        function init($el) {
+            _rend($el);
+            _bind($el);
+        }
+        function _add($el) {
+            var nodeWidth = $el.outerWidth(true);
+            var winWidth = $(window).width();
+            var colNum = parseInt(winWidth/nodeWidth);
+            if(!_isAdd){ //在窗口尺寸不变的情况下，确定列数这件事只做一次
+                for(var i=0;i<colNum;i++){
+                    colSumHeight.push(0);
+                }
+                _isAdd = true;
+            }
+            return{
+                nodeWidth:nodeWidth
+            }
+        }
+        function _idx() {
+            var idx = 0;
+            var min = colSumHeight[0];
+            for(var i=0;i<colSumHeight.length;i++){
+                if(colSumHeight[i]<min){
+                    min = colSumHeight[i];
+                    idx = i;
+                }
+            }
+            return{
+                idx : idx,
+                min : min
+            }
+        }
+        function _rend ($el) {
+            var nodeWidth= _add($el).nodeWidth;
+            $el.each(function () {
+                var idx = _idx().idx;
+                var min = _idx().min;
+                var $cur = $(this);
+                $cur.css({
+                    left:nodeWidth*idx,
+                    top: min
+                });
+                colSumHeight[idx] = colSumHeight[idx]+$cur.outerHeight(true);
+            });
+//            console.log(colSumHeight);
+        }
+        return {
+            init :init
+        }
+    })();
+    waterfall.init($("li"));
+
+
+</script>
+</body>
+</html>

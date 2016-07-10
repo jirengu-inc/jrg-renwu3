@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>伪类的方式封装轮播</title>
+    <style>
+        html,body{
+            height: 100%;
+            width: 100%;
+        }
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position: relative;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .layout1{
+            position: absolute;
+            overflow: hidden;
+            width: 800px;
+            height: 450px;
+            left: 20%;
+            top: 0;
+            border:1px solid #000000;
+            background-color: #eeeeee;
+        }
+        .layout2{
+            position: absolute;
+            overflow: hidden;
+            width: 800px;
+            height: 450px;
+            left: 20%;
+            top: 470px;
+            border:1px solid #000000;
+            background-color: #eeeeee;
+        }
+        .carousel .ct{
+            position:absolute;
+        }
+        .carousel .ct li{
+            position:relative;
+            float: left;
+        }
+        .carousel .ct img{
+            width: 800px;
+            height: 450px;
+        }
+        .arrow{
+            position:absolute;
+            top: 50%;
+            width: 50px;
+            height: 50px;
+            margin-top: -25px;
+            line-height: 50px;
+            text-align: center;
+            background-color: #4E443C;
+            color:#fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            box-shadow: 0 0 2px #999;
+            font-size:28px;
+        }
+        .arrow:hover{
+            opacity:1;
+        }
+        .prev{
+            left: 10px;
+        }
+        .next{
+            right:10px;
+        }
+        .bullet{
+            position:absolute;
+            bottom:10px;
+            left: 50%;
+            transform:translateX(-50%);
+        }
+        .bullet li{
+            width: 30px;
+            height: 10px;
+            display: inline-block;
+            background-color: #fff;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .bullet li.active{
+            background-color: #000;
+        }
+        .clear:after{
+            content: "";
+            display: block;
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+<div class="carousel layout1">
+    <ul class="ct clear">
+        <li data-id="0"><a href="#"><img src="http://img3.imgtn.bdimg.com/it/u=147654999,1594512744&fm=206&gp=0.jpg" alt=""></a></li>
+        <li data-id="1"><a href="#"><img src="http://img2.imgtn.bdimg.com/it/u=1982575782,2849787114&fm=206&gp=0.jpg" alt=""></a></li>
+        <li data-id="2"><a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=2038227690,1193789315&fm=206&gp=0.jpg" alt=""></a></li>
+        <li data-id="3"><a href="#"><img src="http://img0.imgtn.bdimg.com/it/u=2542542714,2595053638&fm=206&gp=0.jpg" alt=""></a></li>
+    </ul>
+    <a class="prev arrow" href="#"><</a>
+    <a class="next arrow" href="#">></a>
+    <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<div class="carousel layout2">
+    <ul class="ct clear">
+        <li data-id="0"><a href="#"><img src="http://img3.imgtn.bdimg.com/it/u=147654999,1594512744&fm=206&gp=0.jpg" alt=""></a></li>
+        <li data-id="1"><a href="#"><img src="http://img2.imgtn.bdimg.com/it/u=1982575782,2849787114&fm=206&gp=0.jpg" alt=""></a></li>
+        <li data-id="2"><a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=2038227690,1193789315&fm=206&gp=0.jpg" alt=""></a></li>
+        <li data-id="3"><a href="#"><img src="http://img0.imgtn.bdimg.com/it/u=2542542714,2595053638&fm=206&gp=0.jpg" alt=""></a></li>
+    </ul>
+    <a class="prev arrow" href="#"><</a>
+    <a class="next arrow" href="#">></a>
+    <ul class="bullet">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    function Carousel($node){
+        this.ct = $node.find(".ct") ;
+        this.$children = this.ct.children("li");
+        this.prev = this.ct.siblings(".prev");
+        this.next = this.ct.siblings(".next");
+        this.bullet = this.ct.siblings(".bullet");
+        this.length = this.$children.size();//克隆前图片的数量
+        this.imgWidth = this.ct.children("li").width();
+        this.cur = 0;
+        this.isAnimate =true;//全局变量状态锁，允许执行自动播放的功能
+        this.ct.append(this.$children.first().clone());
+        this.ct.prepend(this.$children.last().clone());
+        this.imgRealCount = this.ct.children().size();//克隆后图片的数量
+        this.ct.css({left:0-this.imgWidth,width:this.imgRealCount*this.imgWidth});
+        this.init();
+    }
+    Carousel.prototype = {
+        init:function () {
+            var me = this;
+            me.bind();
+            me.autoPlay();
+        },
+        bind : function () {
+            var me = this;
+            me.next.on("click",function (e) {
+                e.preventDefault();
+                me.stop();
+                me.playNext();
+                me.autoPlay();
+            });
+            me.prev.on("click",function (e) {
+                e.preventDefault();
+                me.stop();
+                me.playPrev();
+                me.autoPlay();
+            });
+            me.bullet.find("li").on("mouseenter",function () {
+                var index = $(this).index();  //找出点击bullet的li元素的编号
+                me.stop();
+                if (index>me.cur){
+                    me.playNext(index-me.cur);
+                }
+                else if(index<me.cur){
+                    me.playPrev(me.cur-index);
+                }
+                me.autoPlay();
+            });
+        },
+        playNext: function (idx) {
+            var me = this;
+            var idx = idx || 1; //移动图片的数量
+            if(me.isAnimate){
+                me.isAnimate = false;
+                me.ct.animate({     //让装载图片的火车，移动
+                    left : "-=" +(me.imgWidth*idx)
+                },function () {
+                    me.cur = (me.cur + idx)%me.length;//改变编号
+                    if(me.cur===0){//如果是第一号 虽然展示的是克隆体，但应该展示第一号，所以
+                        me.ct.css({left:0-me.imgWidth});//瞬间移动为第一个,因为前面有一个克隆的，所以要减去一个imgWidth
+                    }
+                    me.isAnimate = true;
+                    me.setBullet();
+                })
+            }
+        },
+        playPrev: function(idx) {
+            var me = this;
+            var idx = idx || 1; //移动图片数的数量
+            if(me.isAnimate){
+                me.isAnimate = false;
+                me.ct.animate({     //让装载图片的火车，移动
+                    left : "+=" +(me.imgWidth*idx)
+                },function () {
+                    me.cur = (me.length+me.cur-idx)%me.length;//改变编号
+                    if(me.cur===me.length-1){//如果是最后一号 虽然展示的是克隆体，但应该展示最后一号，所以
+                        me.ct.css({left:0-me.imgWidth*me.length});//瞬间移动为最后一个,因为前面有一个克隆的，所以要减去imgWidth*length
+                    }
+                    me.isAnimate = true;
+                    me.setBullet();
+                })
+            }
+        },
+        setBullet:function () {//给相应bullet的li元素加上背景色
+            var me =this;
+            me.bullet.children().removeClass("active").eq(me.cur).addClass("active");
+        },
+        autoPlay:function  (){//自动播放
+            var me = this;
+            me.start = setInterval(function () { //编号start为全局变量，不然的话stop函数找不到这个编号了
+                me.playNext();
+            },2500)
+        },
+        stop:function () {//停止自动播放功能
+            var me =this;
+            clearInterval(me.start);
+        }
+    };
+
+    $('.carousel').each(function(){
+        new Carousel($(this));
+    });
+
+
+</script>
+</body>
+</html>

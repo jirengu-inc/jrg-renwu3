@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可拖动的dialog</title>
+    <style>
+        html body{
+            margin: 0;
+            padding:0;
+            width: 100%;
+            height: 100%;
+        }
+        .dialog{
+            box-sizing: border-box;
+            position:absolute;
+            top: 50%;
+            left: 50%;
+            vertical-align: middle;
+            background-color: #fff;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-top: -90px;
+            margin-left: -150px;
+            text-align: left;
+        }
+        .title{
+            box-sizing: border-box;
+            width: 300px;
+            height: 50px;
+            line-height: 50px;
+            border-bottom:1px solid #ccc;
+            padding-left: 20px;
+            background-color: #ff8800;
+            color: #FFFFFF;
+        }
+        .title a{
+            text-decoration: none;
+            position:absolute;
+            color: #FFFFFF;
+            right: 10px;
+            font-size: 20px;
+        }
+        .content{
+            box-sizing: border-box;
+            width: 300px;
+            height: 100px;
+            line-height: 100px;
+            padding-left: 20px;
+        }
+        .btndiv{
+            box-sizing: border-box;
+            width: 300px;
+            height: 30px;
+            text-align: right;
+            border-top:1px solid #ccc;
+        }
+        .btndiv a{
+            margin-right: 20px;
+            text-decoration: none;
+            color: red;
+        }
+        .cursor{
+            opacity: 0.8;
+            cursor:move;
+        }
+    </style>
+</head>
+<body>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<button>按钮5</button>
+
+
+</body>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    function Dialog() {
+        this.createDialog();
+        this.bindEvent();
+    }
+    Dialog.prototype={
+        style : {
+            title: '',
+            message: '',
+            isShowCloseBtn: true,
+            isShowConfirmBtn: false,
+            onClose: function(){},
+            onConfirm: function(){}
+        },
+        writeStyle : function (obj) {
+            var me =this;
+            me.setStyle(obj);
+            me.bindEvent(obj);
+        },
+        setStyle:function (obj) {
+            var me =this;
+            var cur = me.$node;
+            if(cur){
+                if(obj.title){
+                    cur.find(".title-text").text(obj.title);
+                }
+                else{
+                    cur.find(".title").hide();
+                }
+                if(obj.message){
+                    cur.find(".content").html(obj.message);
+                }
+                else{
+                    cur.find(".content").text('');
+                }
+                if(!obj.isShowCloseBtn){
+                    cur.find(".btndiv").find(".cancle").hide();
+                }
+                if(!obj.isShowConfirmBtn){
+                    cur.find(".confirm").hide();
+                }
+                if(!obj.isShowCloseBtn&&!obj.isShowConfirmBtn){
+                    cur.find(".btndiv").hide();
+                }
+            }
+        },
+        createDialog: function () {
+            var me = this;
+            var node = '<div class="dialog">'
+                    +'<div class="title">'
+                    +'<span class="title-text">我是标题</span>'
+                    +'<a href="#" class="cancle">×</a>'
+                    +'</div>'
+                    +'<div class="content">我是内容1</div>'
+                    +'<div class="btndiv">'
+                    +'<a href="#" class="cancle">取消</a>'
+                    +'<a href="#" class="confirm">确定</a>'
+                    +'</div>'
+                    +'</div>';
+            me.$node = $(node);
+//           $("body").append($(node));//为什么这样写，事件绑定会失效？
+            $("body").append(me.$node);
+
+            //下面这两行代码同样不行
+//           $("body").append($(node));
+//           this.node = $(node);
+        },
+        bindEvent : function (obj) {
+            var me = this;
+            obj && me.$node.find(".btndiv").find(".cancle").on("click",function (e) {
+                e.preventDefault();
+                obj.onClose();
+            });
+            me.$node.find('.cancle').on("click",function (e) {
+                e.preventDefault();
+                me.hideDialog();
+            });
+            me.$node.find('.confirm').on("click",function (e) {
+                e.preventDefault();
+                obj && obj.onConfirm();
+//                me.$node.hide();//奇怪？为什么不等onConfirm()执行完才执行？
+                me.hideDialog();
+            });
+            me.$node.on("mousedown",function (e) {
+                var X = e.pageX - me.$node.offset().left; //鼠标在dialog内的x轴位置
+                var Y = e.pageY - me.$node.offset().top; //鼠标在dialog内的y轴位置
+                me.$node.addClass('cursor').data("inner",{innerX:X,innerY:Y});
+            });
+            me.$node.on("mouseup",function () {
+                me.$node.removeClass('cursor').data("inner",false);
+            });
+            $(document).on("mousemove",function (e) {
+//                console.log(cur.data('inner'));
+                if(me.$node.data("inner")){
+                    me.$node.offset({
+                        left : e.pageX-me.$node.data("inner").innerX,
+                        top : e.pageY-me.$node.data("inner").innerY
+                    });
+                    //下面这样写是不能设置offset()的
+//                    cur.offset().left = e.pageX-cur.data("inner").innerX;
+//                    cur.offset().top = e.pageY-cur.data("inner").innerY;
+                }
+            })
+        },
+        showDialog:function () {
+            var me =this;
+            me.$node.show();
+        },
+        hideDialog:function () {
+            var me =this;
+            me.$node.hide();
+        }
+    };
+
+
+    $("button").eq(0).on("click",function () {
+        var d1 = new Dialog();
+        d1.writeStyle({
+            title:"标题1",
+            message:"这是第一个"
+        })
+    });
+    $("button").eq(1).on("click",function () {
+        var d2 = new Dialog();
+        d2.writeStyle({
+            message:"这是第二个",
+            isShowCloseBtn: true,
+            isShowConfirmBtn: false
+
+        })
+    });
+    $("button").eq(2).on("click",function () {
+        var d3 = new Dialog();
+        d3.writeStyle({
+            title:"标题3",
+            message:"这是第三个",
+            isShowCloseBtn: true,
+            isShowConfirmBtn: true
+        })
+    });
+    $("button").eq(3).on("click",function () {
+        var d4 = new Dialog();
+        d4.writeStyle({
+            title:"标题4",
+            message:"这是第四个",
+            isShowCloseBtn: true,
+            isShowConfirmBtn: true,
+            onClose: function(){alert("第四个标题关闭")},
+            onConfirm: function(){alert("4标题关闭")}
+        })
+    });
+    $("button").eq(4).on("click",function () {
+        var d5 = new Dialog();
+        d5.writeStyle({
+            title:"标题5",
+            isShowConfirmBtn: true,
+            onClose: function(){alert("关闭?")},
+            onConfirm: function(){alert("确定？")}
+        })
+    });
+
+
+
+    //可移动组件 可用
+//    function dialog($node){
+//        this.$node = $node;
+//        this.bind();
+//    }
+//    dialog.prototype = {
+//        bind:function () {
+//            var me = this;
+//            me.$node.on("mousedown",function (e) {
+//                var X = e.pageX - me.$node.offset().left;
+//                var Y = e.pageY - me.$node.offset().top;
+//                me.$node.addClass('cursor').data('inner',{x:X,y:Y});
+//            });
+//            me.$node.on("mouseup",function () {
+//                me.$node.removeClass('cursor').data('inner','');
+//            });
+//            $(document).on("mousemove",function (e) {
+//                if(me.$node.data('inner')){
+//                    me.$node.offset({
+//                        left : e.pageX-me.$node.data('inner').x,
+//                        top : e.pageY-me.$node.data('inner').y
+//                    });
+//                }
+//            });
+//        }
+//    };
+</script>
+</html>
