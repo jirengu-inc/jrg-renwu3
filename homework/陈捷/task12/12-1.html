@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>12-1</title>
+	<style type="text/css">
+	html,body,ul,li{
+		margin:0;
+		padding:0;
+	}
+	li{
+		list-style:none;
+	}
+	.containter{
+		background: #eee;
+		border:1px solid transparent;
+	}
+	.content{/*整体居中*/
+		background:#ccc;
+		width:940px;
+		margin:30px auto 50px auto;
+		border:1px solid transparent;
+	}
+	.content>ul{
+		margin-left:-20px;/*去掉左边的缝隙*/
+		margin-top:30px;
+		margin-bottom:10px;
+	}
+	.content>ul>li{
+		width:300px;
+		height:100px;
+		background:green;
+		float:left;
+		margin-left:20px;
+		margin-top:10px;
+	}
+	.clear-fix:after{
+		display:block;
+		content:'';
+		clear:both;
+	}
+	.clear-fix{
+		*zoom:1;
+	}
+
+	</style>
+</head>
+<body>
+	<div class="containter">
+		<div class="content">
+			<ul class="clear-fix">
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+				<li>6</li>
+			</ul>
+		</div>
+	</div>
+	
+</body>
+</html>
