@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>12-4</title>
+	<style>
+	html,body{
+		margin:0;
+		padding: 0;
+	}
+	#header,#footer{
+		height: 50px;
+		background: #eee;
+	}
+	.main{
+		width:100%;
+		height:150px;
+		float:left;
+	}
+	.warp{
+		height: 150px;
+		background:red;
+		margin: 0 200px;
+	}
+	.aside{
+		width:200px;
+		height:150px;
+		background:green;
+		float:left;
+		margin-left:-100%;
+	}
+	.extra{
+		width:200px;
+		height:150px;
+		background:yellow;
+		float:left;
+		margin-left:-200px;
+	}
+	.clear-fix:after{
+		display:block;
+		content:'';
+		clear:both;
+	}
+	.clear-fix{
+		*zoom:1;
+	}
+	
+	</style>
+</head>
+<body>
+	<div id="header">header</div>
+	<div id="content" class="clear-fix">
+		<div class="main">
+			<div class="warp"></div>
+		</div>
+		<div class="aside">aside</div>
+		<div class="extra">extra</div>
+	</div>
+	<div id="footer">footer</div>
+</body>
+</html>
