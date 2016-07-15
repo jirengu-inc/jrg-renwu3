@@ -1,5 +1,5 @@
 /* Reset Start */
-html,body,ul,li{
+html, body, ul, li {
 	margin: 0;
 	padding: 0;
 }
@@ -15,24 +15,25 @@ a {
 
 
 /* Global Set Start */
-html,body {
+html, body {
 	height: 100%;
 	font-family: "Microsoft YaHei", tahoma, arial, "Hiragino Sans GB", sans-serif;
 	font-size: 14px;
 }
 
-.clearfix:after{
+.clearfix:after {
 	display: block;
-	content: '';
 	clear: both;
+	content: '';
 }
-.clearfix{
-	*zoom:1;
+
+.clearfix {
+	*zoom: 1;
 }
 
 .container {
-	width: 960px;
 	margin: 0 auto;
+	width: 960px;
 	text-align: center;
 }
 
@@ -48,127 +49,168 @@ html,body {
 
 /* Btns Set Start */
 a.btn-bigger {
-	height: 50px;
-	width: 150px;
-	line-height: 50px;
-	font-size:16px;
 	border-radius: 6px;
+	width: 150px;
+	height: 50px;
+
+	font-size: 16px;
+	line-height: 50px;
 }
 
 .btn-gray {
 	display: inline-block;
-	height: 30px;
-	line-height: 30px;
-	background: #888;
-	color: white;
-	width:120px;
+
 	border-radius: 4px;
+	width: 120px;
+	height: 30px;
+
+	line-height: 30px;
+
+	color: white;
+	background: #888;
 }
-.btn-gray:hover{
+
+.btn-gray:hover {
 	background: #555;
 }
 
-.btn-white{
+.btn-white {
 	display: inline-block;
-	height: 30px;
-	line-height: 30px;
-	background: white;
-	color: black;
-	width:120px;
+
 	border-radius: 4px;
+	width: 120px;
+	height: 30px;
+	
+	line-height: 30px;
+
+	color: black;
+	background: white;
 }
+
+.btn-white:hover {
+	background: #ccc;
+}
+
 /* Btns Set End */
 /* Global Set End */
 
 /* Header Set Start */
-#header {
-	width:100%;
+header {
+	width: 100%;
 	height: 100%;
-	background-image: url('../img/background.jpg');
+
+	background: url('../img/background.jpg') no-repeat center fixed;
 	background-size: cover;
 }
-#header .my-index h1{
-	margin-top:0;
+
+header .my-index h1 {
+	margin-top: 0;
 }
 /* Header Set End */
 
 /* Content Set Start */
-#content .about-me{
+.about-me {
 	padding: 50px 0;
 }
-#content .about-me p{
+
+.about-me p {
 	font-size: 18px;
 }
 
-#content .skill{
-	background: #337ab7;
+.skill {
 	padding: 50px 0;
+	
 	color: white;
+	background: #337ab7;
 }
 
-#content .skill ul{
+.skill ul {
 	margin-top: 30px;
 }
-#content .skill li{
+
+.skill li {
 	float: left;
-	width:25%;
+
+	width: 25%;
 }
 
-#content .skill li i{
-	font-size:120px;
+.skill li i {
+	font-size: 120px;
 }
 
-#content .skill hr{
+.skill hr {
 	max-width: 120px;
 }
 
-#content .callout{
-	padding: 200px 0;
+.callout {
+	padding: 220px 0;
+
+	font-size: 30px;
+	
 	color: white;
 	background: url("../img/callout.jpg");
-	font-size:30px;
 }
-#content .portfolio{
-	padding:50px 0;
+
+.portfolio {
+	padding: 50px 0;
 }
-#content .portfolio li{
+
+.portfolio li {
 	float: left;
-	width:460px;
+
 	padding: 10px;
+	width: 460px;
+	
 }
-#content .portfolio ul{
-	margin-top:20px;
+
+.portfolio ul {
+	margin-top: 20px;
 }
-#content .portfolio li img{
+
+.portfolio li a:hover {
+	opacity: 0.8;
+}
+
+.portfolio li img {
 	width: 100%;
 }
-#content .portfolio hr{
-	max-width: 200px;
+
+.portfolio hr {
+	max-width: 220px;
 }
-#content .callme{
-	background: #337ab7;
+
+.callme {
 	padding: 40px 0;
+	
 	color: white;
+	background: #337ab7;
 }
 /* Content Set End */
 
 /* Footer Set Start */
-#footer {
-	padding:100px 0;
+footer {
+	padding: 100px 0;
 }
-#footer .contract{
+
+footer .contract {
 	padding: 20px 0;
 }
-#footer .contract-icon li{
+
+footer .contract-icon li {
 	display: inline-block;
+	
 	padding: 0 10px;
 }
-#footer .contract-icon li a{
+
+footer .contract-icon li a {
+	font-size: 40px;
+
 	color: #337ab7;
-	font-size:40px;
 }
-#footer hr{
-	max-width: 150px;
+
+footer hr {
 	margin: 30px auto
+	
+	max-width: 150px;
 }
 /* Footer Set End */
