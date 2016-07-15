@@ -118,7 +118,7 @@
         var opts = {
             url: "task26-1.php",
             dataType: "json",
-            method: "get",
+            method: "post",
             data: { start: start, len: 6 },
             success: function(){
                 success(ret)
@@ -136,6 +136,7 @@
             $.ajax(opts);
         })
         function success(ret){
+            console.log(ret);
             if(ret.status == 1){
                 for(var i=0;i<ret.data.length;i++){
                     $(this).before("<li>ret.data[i]</li>");
@@ -147,6 +148,7 @@
             lock = false;
             console.log("xxxxx");
         }
+
     </script>
 </body>
 </html>
