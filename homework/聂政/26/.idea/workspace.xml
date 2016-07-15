@@ -20,7 +20,29 @@
     <favorites_list name="26" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="task26-1.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/task26-1.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
+              <folding>
+                <element signature="e#1803#2032#0" expanded="false" />
+                <element signature="e#2091#2231#0" expanded="false" />
+                <element signature="e#2328#2413#0" expanded="false" />
+                <element signature="e#2353#2402#0" expanded="false" />
+                <element signature="e#2461#2548#0" expanded="false" />
+                <element signature="e#2486#2537#0" expanded="false" />
+                <element signature="e#2629#2684#0" expanded="false" />
+                <element signature="e#2720#2784#0" expanded="false" />
+                <element signature="e#2819#2913#0" expanded="false" />
+                <element signature="e#2973#3026#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -169,18 +191,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1468399823125</updated>
-      <workItem from="1468399825361" duration="16527000" />
+      <workItem from="1468399825361" duration="16814000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16527000" />
+    <option name="totallyTimeSpent" value="16814000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="589" y="80" width="1400" height="722" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -248,19 +270,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/task26-1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="143" column="25" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
+        <state relative-caret-position="404">
+          <caret line="66" column="12" selection-start-line="66" selection-start-column="12" selection-end-line="66" selection-end-column="12" />
           <folding>
-            <element signature="e#1695#1924#0" expanded="false" />
-            <element signature="e#1983#2123#0" expanded="false" />
-            <element signature="e#2220#2305#0" expanded="false" />
-            <element signature="e#2245#2294#0" expanded="false" />
-            <element signature="e#2353#2440#0" expanded="false" />
-            <element signature="e#2378#2429#0" expanded="false" />
-            <element signature="e#2521#2576#0" expanded="false" />
-            <element signature="e#2612#2676#0" expanded="false" />
-            <element signature="e#2711#2805#0" expanded="false" />
-            <element signature="e#2865#2918#0" expanded="false" />
+            <element signature="e#1803#2032#0" expanded="false" />
+            <element signature="e#2091#2231#0" expanded="false" />
+            <element signature="e#2328#2413#0" expanded="false" />
+            <element signature="e#2353#2402#0" expanded="false" />
+            <element signature="e#2461#2548#0" expanded="false" />
+            <element signature="e#2486#2537#0" expanded="false" />
+            <element signature="e#2629#2684#0" expanded="false" />
+            <element signature="e#2720#2784#0" expanded="false" />
+            <element signature="e#2819#2913#0" expanded="false" />
+            <element signature="e#2973#3026#0" expanded="false" />
           </folding>
         </state>
       </provider>
