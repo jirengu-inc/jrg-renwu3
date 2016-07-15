@@ -20,39 +20,7 @@
     <favorites_list name="26" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="task26-1.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/task26-1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="130" column="23" selection-start-line="130" selection-start-column="23" selection-end-line="130" selection-end-column="23" />
-              <folding>
-                <element signature="e#1695#1924#0" expanded="false" />
-                <element signature="e#1983#2123#0" expanded="false" />
-                <element signature="e#2220#2305#0" expanded="false" />
-                <element signature="e#2245#2294#0" expanded="false" />
-                <element signature="e#2353#2440#0" expanded="false" />
-                <element signature="e#2378#2429#0" expanded="false" />
-                <element signature="e#2521#2576#0" expanded="false" />
-                <element signature="e#2612#2676#0" expanded="false" />
-                <element signature="e#2711#2805#0" expanded="false" />
-                <element signature="e#2865#2918#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="task26-1.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/task26-1.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="44" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -77,7 +45,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="479" />
+    <option name="x" value="589" />
     <option name="y" value="80" />
     <option name="width" value="1400" />
     <option name="height" value="722" />
@@ -201,18 +169,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1468399823125</updated>
-      <workItem from="1468399825361" duration="15671000" />
+      <workItem from="1468399825361" duration="16527000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15671000" />
+    <option name="totallyTimeSpent" value="16527000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="479" y="80" width="1400" height="722" extended-state="0" />
-    <editor active="true" />
+    <frame x="589" y="80" width="1400" height="722" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -280,8 +248,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/task26-1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="130" column="23" selection-start-line="130" selection-start-column="23" selection-end-line="130" selection-end-column="23" />
+        <state relative-caret-position="344">
+          <caret line="143" column="25" selection-start-line="143" selection-start-column="25" selection-end-line="143" selection-end-column="25" />
           <folding>
             <element signature="e#1695#1924#0" expanded="false" />
             <element signature="e#1983#2123#0" expanded="false" />
