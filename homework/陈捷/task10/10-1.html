@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>task10-1</title>
+	<style>
+	body,h1, p,ul,li{
+		margin:0;
+		padding:0;
+	}
+	li{
+		list-style: none;
+	}
+	body{
+		font-family:"Microsoft YaHei", Helvetica, "Hiragino Sans GB", Arial, sans-serif; 
+		font-size:14px; 
+		line-height:18px;
+		color:#737373; 
+		background-color:#fff;
+	}
+
+	a{
+		color:#fff;
+		text-decoration:none;
+		display:block;
+	}
+	a:hover{
+		color:#333;
+		background-color:#fff;
+	}
+	h1{
+		color:#404040; 
+		line-height:36px;
+		margin-bottom:18px; 
+		font-size:30px;
+	}
+	p{
+		margin-bottom:13px;
+	}
+	#header:after,#content:after,#footer:after{
+		display: block;
+		content: '';
+		clear: both;
+	}
+	.ct{
+		width: 900px;
+		margin:0 auto;
+	}
+	#header,#footer{
+		background-color: #333;
+	}
+	#main,#aside{
+		background-color: #eee;
+	}
+	#content{
+		margin-top: 10px;
+	}
+	#aside{
+		float:left;
+		width:200px;
+		height:500px;
+	}
+	#main{
+		margin-left:210px;
+		width:690px;
+		padding:15px;
+	}
+	#main h1{
+		margin:15px 0;
+	}
+	#header>.ct>img{
+		float: left;
+		height: 35px;
+	}
+	#header>.ct>ul{
+		float: right;
+	}
+	#footer>.ct>ul{
+		float: left;
+	}
+	#header>.ct>ul>li{
+		float: left;
+		margin-right: 10px;
+	}
+	#footer>.ct>ul>li{
+		float: left;
+		margin-right: 10px;
+	}
+	#header>.ct>ul>li>a{
+		height: 50px;
+		line-height: 50px;
+		padding: 0 10px;
+	}
+
+	#footer>.ct>ul>li>a{
+		height: 40px;
+		line-height: 40px;
+	}
+
+	</style>
+</head>
+<body>
+	<div id="header">
+		<div class="ct">
+			<img src="img/logo-tiny.png" alt="">
+			<ul>
+				<li><a href="#">技能</a></li>
+				<li><a href="#">经历</a></li>
+				<li><a href="#">作品</a></li>
+				<li><a href="#">关于</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="content">
+		<div class="ct">
+			<div id="aside"></div>
+			<div id="main">
+				<h1>我的作品</h1>
+				<p>生活很美好</p>
+				<p>心情不错</p>
+				<p>代码写的很漂亮</p>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer">
+		<div class="ct">
+			<ul>
+				<li><a href="#">饥人谷</a></li>
+				<li><a href="#">JSCODE</a></li>
+				<li><a href="#">JSBIN</a></li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

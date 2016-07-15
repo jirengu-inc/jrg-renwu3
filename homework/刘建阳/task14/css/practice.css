@@ -126,7 +126,7 @@ hr{
 
 .centered{
 	padding: 150px 0;
-	background: url('../img/centered.jpg') 0 -95px no-repeat;
+	background: url('../img/centered.jpg') center center no-repeat;
 	background-size: cover;
 }
 .centered h1{

@@ -15,11 +15,37 @@
 		li{
 			list-style: none;
 		}
+		a{
+			text-decoration: none;
+		}
 		.carousel{
 			position: relative;
 			overflow: hidden;
 		}
-	
+		.arrow{
+			position: absolute;
+		    top: 50%;
+		    margin-top: -25px;
+		    width: 50px;
+		    height: 50px;
+		    line-height: 50px;
+		    text-align: center;
+		    background: #4E443C;
+		    color: #fff;
+		    border-radius: 50%;
+		    box-shadow: 0 0 2px #999;
+		    opacity: 0.7;
+		    font-size: 40px;
+		}
+		.arrow:hover {
+		    opacity: 1;
+		}
+		.pre{
+			left: 20px;
+		}
+		.next{
+			right: 20px;
+		}
 		#head .img-ct{
 			position: absolute;
 		}
@@ -100,7 +126,8 @@
 					</div>
 				</li>
 			</ul>
-
+			<a class="pre arrow" href="#"><</a>
+			<a class="next arrow" href="#">></a>
 			<ul class="bullet">
 				<li class="active"></li>
 				<li></li>
@@ -114,6 +141,8 @@
 
 	 <script type="text/javascript">
 		var $ct = $('.img-ct'),
+			$next = $('.next'),
+			$pre = $('.pre'),
 			$items = $ct.children(),
 			$bullet = $('.bullet'),
 			imgCount = $ct.children().size(),
@@ -125,7 +154,23 @@
 			$ct.find('.bg').css('width',imgWidth);
 			imgRealCount = $ct.children().size();
 			$ct.css({'width':imgRealCount*imgWidth,'left':0-imgWidth});
+			
+			$(window).on('resize',function(){
+		
+				imgWidth = $(window).width();
+				$ct.find('.bg').css('width',imgWidth);
+				imgRealCount = $ct.children().size();
+				$ct.css({'width':imgRealCount*imgWidth,'left':0-imgWidth});
 
+			});
+
+			$next.on('click',function(){
+				playNext();
+			});
+
+			$pre.on('click',function(){
+				playPre();
+			});
 			$bullet.find('li').on('click',function(){
 				var idx = $(this).index();
 
@@ -143,7 +188,7 @@
 		    setBg(1);
 		    autoPlay();
 			
-
+		
 			function playNext(idx) {
 				var idx = idx||1;
 				if (isAnimate) {

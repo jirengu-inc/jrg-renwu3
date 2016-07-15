@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task25-1</title>
+    <style>
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        #nav{
+            position: relative;
+            left: 20px;
+            top: 20px;
+        }
+        #nav>ul{
+            float: left;
+        }
+        #nav>ul li{
+            list-style: none;
+        }
+        .clear:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .firstNav{
+            float: left;
+            width: 200px;
+            color: white;
+            background: #de272e;
+            padding: 10px 5px 10px 20px;
+            border-bottom: 1px solid #ccc ;
+        }
+        .firstNav a{
+            font-family: "宋体";
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+            padding-right: 100px;
+        }
+        .firstNav div{
+            display: inline-block;
+        }
+        .secondNav{
+            border: 1px solid #ccc;
+        }
+        .secondNav a{
+            display: inline-block;
+            font-size: 14px;
+            text-decoration: none;
+            color: black;
+            margin: 10px 70px 10px 10px;
+        }
+        .secondNav:nth-of-type(2){
+            position: relative;
+            top: 38px;
+        }
+        .secondNav:nth-of-type(3){
+            position: relative;
+            top: 76px;
+        }
+        .secondNav:nth-of-type(4){
+            position: relative;
+            top: 116px;
+        }.secondNav:nth-of-type(5){
+             position: relative;
+             top: 152px;
+         }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <ul class="firstNavCt">
+            <li class="clear">
+                <div class="firstNav">
+                        <a href="#">珠宝玉器</a>
+                    <div>></div>
+                </div>
+            </li>
+            <li class="clear">
+                <div class="firstNav">
+                    <a href="#">珠宝玉器</a>
+                    <div>></div>
+                </div>
+            </li>
+            <li class="clear">
+                <div class="firstNav">
+                    <a href="#">珠宝玉器</a>
+                    <div>></div>
+                </div>
+            </li>
+            <li class="clear">
+                <div class="firstNav">
+                    <a href="#">珠宝玉器</a>
+                    <div>></div>
+                </div>
+            </li>
+            <li class="clear">
+                <div class="firstNav">
+                    <a href="#">珠宝玉器</a>
+                    <div>></div>
+                </div>
+            </li>
+        </ul>
+        <ul class="secondNavCt">
+            <li class="secondNav">
+                <div>
+                    <ul>
+                        <li>
+                            <a href="#">翡翠</a>
+                            <a href="#">玉石</a>
+                        </li>
+                        <li>
+                            <a href="#">宝石</a>
+                            <a href="#">水晶</a>
+                        </li>
+                        <li>
+                            <a href="#">玛瑙</a>
+                            <a href="#">珍珠</a>
+                        </li>
+                        <li>
+                            <a href="#">钻石</a>
+                            <a href="#">琥珀</a>
+                        </li>
+                        <li>
+                            <a href="#">和田</a>
+                            <a href="#">琥珀</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="secondNav">
+                <div>
+                    <ul>
+                        <li>
+                            <a href="#">翡翠</a>
+                            <a href="#">玉石</a>
+                        </li>
+                        <li>
+                            <a href="#">宝石</a>
+                            <a href="#">水晶</a>
+                        </li>
+                        <li>
+                            <a href="#">玛瑙</a>
+                            <a href="#">珍珠</a>
+                        </li>
+                        <li>
+                            <a href="#">钻石</a>
+                            <a href="#">琥珀</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="secondNav">
+                <div>
+                    <ul>
+                        <li>
+                            <a href="#">翡翠</a>
+                            <a href="#">玉石</a>
+                        </li>
+                        <li>
+                            <a href="#">宝石</a>
+                            <a href="#">水晶</a>
+                        </li>
+                        <li>
+                            <a href="#">玛瑙</a>
+                            <a href="#">珍珠</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="secondNav">
+                <div>
+                    <ul>
+                        <li>
+                            <a href="#">翡翠</a>
+                            <a href="#">玉石</a>
+                        </li>
+                        <li>
+                            <a href="#">宝石</a>
+                            <a href="#">水晶</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="secondNav"></li>
+        </ul>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.0/jquery.js"></script>
+    <script>
+        $(".secondNav").hide();
+        $(".firstNav").on("mouseenter",function(e){
+            var index = $(".firstNav").index(this);
+            $(".secondNav").eq(index).show();
+        })
+        $(".firstNav").on("mouseleave",function(e){
+            var index = $(".firstNav").index(this);
+            console.log(this);
+            $(".secondNav").eq(index).hide();
+        })
+        </script>
+</body>
+</html>

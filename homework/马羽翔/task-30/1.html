@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>waterfall</title>
+    <style>
+        .ct {
+            position:relative;
+            min-height: 400px;
+            width:90%;
+            min-width: 300px;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        .content {
+            position:absolute;
+            margin-top:10px;
+            margin-right:10px;
+            transition: 1s;
+        }
+        .sz1 {
+            width:250px;
+            height:250px;
+            background-color:firebrick;
+        }
+        .sz2 {
+            width:250px;
+            height:300px;
+            background-color:darkgoldenrod;
+        }
+        .sz3 {
+            width:250px;
+            height :450px;
+            background-color: cadetblue;
+        }
+        .sz4 {
+            width:250px;
+            height: 550px;
+            background-color: dimgrey;
+        }
+    </style>
+</head>
+<body>
+    <div class="ct">
+        <div class="content sz3">1</div>
+        <div class="content sz1">2</div>
+        <div class="content sz4">3</div>
+        <div class="content sz2">4</div>
+        <div class="content sz1">5</div>
+        <div class="content sz3">6</div>
+        <div class="content sz1">7</div>
+        <div class="content sz2">8</div>
+        <div class="content sz4">9</div>
+        <div class="content sz2">10</div>
+        <div class="content sz3">11</div>
+        <div class="content sz1">12</div>
+        <div class="content sz2">13</div>
+        <div class="content sz1">14</div>
+        <div class="content sz3">15</div>
+        <div class="content sz1">16</div>
+    </div>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        
+        function waterfall($node){
+            var ctWidth = $node.parent().width(),
+                nodeWidth = $node.outerWidth(true),
+                colNum = Math.floor(ctWidth/nodeWidth),
+                colHeight = [];
+                
+            for(var i = 0; i < colNum; i ++){
+                colHeight.push(0);
+            }
+            
+            $node.each(function(){
+                
+                var $this=$(this),
+                    minHeight=colHeight[0],
+                    idx=0;
+                
+                for (var i=0;i<colHeight.length;i++){
+                    if(colHeight[i]<minHeight){
+                        idx=i;
+                        minHeight=colHeight[i];        
+                    }
+                }
+                
+                $this.css({
+                            top: minHeight,
+                            left: nodeWidth*idx 
+                        })
+                
+                colHeight[idx]+=$this.outerHeight(true);  
+            })
+            
+        }
+        
+        waterfall($('.content'));
+        
+        $(window).on('resize',function(){
+            waterfall($('.content'));    
+        })     
+
+    </script>
+</body>
+</html>

@@ -3,6 +3,7 @@ html,body{
 		padding:0;
 		height: 100%;
 		font-family: "Times New Roman";
+
 	}
 	.layout{
 		width: 960px;
@@ -36,17 +37,18 @@ html,body{
 	/*header*/
 
 	#header{
-        height: 100%;
-        width: 100%;
-        background: url(../image/home-page.jpg) no-repeat center center;
-        background-position: relative;
-        background-size: cover;
+        height:100%;
+        width:100%;
+        background:url(../image/hotairball.jpg) no-repeat;
+        background-size:cover;
         display: table;
+
 	}
     #header .header-content{
         display: table-cell;
         text-align: center;
          vertical-align: middle;
+         color:white;
         
     }
     .header-content>h1{
@@ -132,7 +134,7 @@ html,body{
         height: 400px;
         width: 100%;
         display: table;
-        background: url(../image/des.jpg) no-repeat center center;
+        background: url(../image/bg.jpg) no-repeat center center;
        text-align: center;
        background-position: relative;
        background-size: cover;

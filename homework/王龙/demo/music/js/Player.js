@@ -3,21 +3,6 @@ var player = (function(){
 
     function Player() {}
 
-
-    function  load(url,callBack) {
-        var self =this;
-        $.ajax({
-            url:url,
-            type:'get',
-            success:function(data){
-                callBack &&  callBack.call(self,data );
-            },
-            error:function(e){
-                if(e)console.log('error',e);
-            }
-        });
-    }
-
     /**
      * 
      * @param opts{
@@ -52,18 +37,18 @@ var player = (function(){
                 $('.slider-range').width(pos*100+'%')
                 //console.log(pos)
                 player.setVolume(pos);
-            },
-            lastCallBack:function (value,utils) {
-                //$('.slider .rightTip').css('display','none');
             }
         });
 
         //频道
-        load('http://api.jirengu.com/fm/getChannels.php',function (data) {
-            $.each(JSON.parse(data).channels,function (i,e) {
-                $('.channel>ul').append('<li data-id='+ e.channel_id +'>'+ e.name+'<span class="bg"></span></li>')
-            });
-        })
+        $.ajax({url:'http://api.jirengu.com/fm/getChannels.php', type:'get',
+            success:function(data){
+                $.each(JSON.parse(data).channels,function (i,e) {
+                    $('.channel>ul').append('<li data-id='+ e.channel_id +'>'+ e.name+'<span class="bg"></span></li>')
+                });
+            },
+            error:function(e){if(e)console.log('error',e);}
+        });
         return this;
     }
 
@@ -80,8 +65,16 @@ var player = (function(){
         //单曲循环 TODO
         //hide or show
         $('.music').on('click',function (e) {
-            e.stopPropagation();
-            $('.music-ct').toggleClass('cur');
+            e.stopImmediatePropagation();
+            var isMove = $(this).data('move');
+            //利用move和谐mousedown 和 click之间的冲突
+            if(isMove){
+                $(this).removeData('move');
+                return;
+            }
+            var target = $('.music-ct');
+            target.toggleClass('cur');
+            //target.hasClass('cur') ? target.addClass('display') : target.removeClass('display')
         });
         
         //FM的显示和隐藏
@@ -92,13 +85,14 @@ var player = (function(){
             if( info  && info.channelID){
                var text=  $('.channel>ul>li[data-id='+info.channelID+']').text()//.css({left:0})
                 console.log(text)
-                //$('.channel>ul>li[data-id='+info.channelID+']').find('.bg').css({left:0});//回显
+                $('.channel>ul>li[data-id='+info.channelID+']').addClass('view').siblings().removeClass('view')
             }
         });
         //频道点击
         $('.channel>ul').on('click','li',function (e) {
             $('.channel').toggleClass('active4channel')
             var channelID = $(e.target).attr('data-id');
+            console.log(channelID)
             localStorage.setItem('info',JSON.stringify({channelID:channelID}));
             self.pause().setURL('http://api.jirengu.com/fm/getSong.php?channel='+channelID);//.start();
         });
@@ -111,6 +105,12 @@ var player = (function(){
             self.next();
         });
 
+        $('.display-Lyric').on('click',function (e) {
+            e.stopPropagation();
+            var $target = $(this).find('i'),$musicLyric=$('.music-lyric');
+            $target.toggleClass('fa-toggle-on').toggleClass('fa-toggle-off')
+            $target.hasClass('fa-toggle-off') ? $musicLyric.addClass('transparent').removeClass('opaque') : $musicLyric.addClass('opaque').removeClass('transparent');
+        });
         $(self.media).on('timeupdate',function () {
             //音乐当前位置
             var curr = Math.floor(media.currentTime);
@@ -141,9 +141,6 @@ var player = (function(){
                 moveCallback:function (step,utils) {
                     $('.progress-range').width(step*utils.scalePerStep)
                     self.media.currentTime=step;
-                },
-                lastCallBack:function (value,target) {
-                    //$('.progress .rightTip').css('display','none');
                 }
             });
 
@@ -162,7 +159,7 @@ var player = (function(){
         //play事件会让暂停后的play方法从头播放
         //    $(self.media).on('play',function () {
         //
-        //    });
+        // });
     }
     //
     Player.prototype.setURL=function (url) {
@@ -173,9 +170,7 @@ var player = (function(){
         if( info  && info.channelID){
             channelID=info.channelID
         }
-        $.ajax({
-            url: 'http://api.jirengu.com/fm/getSong.php',
-            type: 'get',
+        $.ajax({url: 'http://api.jirengu.com/fm/getSong.php',type: 'get',
             data:{
                 'app_name':'radio_android',
                 'version':100,
@@ -189,7 +184,7 @@ var player = (function(){
                 $('.singer').text(data.artist);
                 $(self.media).attr('src',data.url);
                 self.lyricURL='http://api.jirengu.com/fm/getLyric.php?sid='+data.sid+'&ssid='+data.ssid;
-                console.log('setURL',self.media.networkState)
+                //console.log('setURL',self.media.networkState)
                 //if(self.media.networkState!=3){
                     $.post('http://api.jirengu.com/fm/getLyric.php',{ssid: data.ssid, sid:data.sid}).done(function(lyc){
                         if(lyc){

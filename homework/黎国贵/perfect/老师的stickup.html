@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>stickup</title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <style type="text/css">
+
+        #nav{
+            height: 40px;
+            margin-top: 20px;
+            background: blue;
+        }
+        #header{
+            background: red;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+        }
+        #content{
+            min-height: 800px;
+            background: #ccc;
+            padding: 10px;
+            overflow: auto;
+        }
+        #content .aside{
+            float: left;
+            width: 100px;
+            min-height: 400px;
+            background: green;
+        }
+        #content .main{
+            overflow: auto;
+            background: #fff;
+            padding-left: 20px;
+            min-height: 800px;
+        }
+        #footer{
+            background: #333;
+        }
+
+
+    </style>
+
+</head>
+<body>
+<div id="header">header</div>
+<div id="nav">nav</div>
+<div id="content">
+    <div class="aside">aside</div>
+    <div class="main">main</div>
+</div>
+<div id="footer">footer</div>
+
+<script>
+
+var stickup = (function () {
+    function init($select) {
+        var $el = $select;
+        //把原先的属性保存下来
+        $el.h = $el.height();
+        $el.w = $el.width();
+        $el.offT = $el.offset().top;
+        $el.offL = $el.offset().left;
+        //把目标元素克隆一个用于占位，否则目标元素 Position 变为 fix后脱离文档流，导致页面跳动
+        var $curClone = $el.clone()
+                .css({
+            visibility:'hidden',
+            display:'none'
+        })
+                .insertBefore($el);
+        bind($el,$curClone);
+    }
+    function bind($el,$curClone) {
+        $(window).on('scroll', function(){
+            var scrollTop = $(this).scrollTop();
+            if(scrollTop >= $el.offT ){
+                    setFixed($el,$curClone);
+            }else{
+                    unsetFixed($el,$curClone);
+            }
+        });
+    }
+    function setFixed($el,$curClone){
+        $el.css({
+                    position: 'fixed',
+                    top: 0,
+                    left: $el.offL,
+                    width: $el.w,
+                    margin: 0,
+                    zIndex: 9999
+                });
+        $curClone.show();
+    }
+    function unsetFixed($el,$curClone){
+        $el.removeAttr('style');
+        $curClone.hide();
+    }
+    return {
+        init:init
+    }
+})();
+stickup.init($('#nav'));
+
+
+
+
+
+
+
+
+</script>
+
+
+</body>
+</html>

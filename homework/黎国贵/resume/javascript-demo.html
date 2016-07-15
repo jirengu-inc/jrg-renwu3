@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>原生Javascript封装</title>
+    <style>
+        html,ul{
+            margin: 0;
+            padding: 0;
+            background-color: #777;
+            font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+        .ct{
+            text-align: center;
+            width: 700px;
+            margin: 0 auto;
+        }
+        .bg{
+            margin: 0 auto;
+            width: 475px;
+            height: 267px;
+            border: 1px solid #eee;
+            background: url(img/太一千早1.jpg);
+        }
+        #head h1{
+            color: #fff;
+        }
+        #head p{
+            color: #fff;
+            opacity: 0.6;
+        }
+        #portflio,
+        #footer{
+            margin: 40px 0;
+        }
+        #footer a{
+            padding: 10px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #eee;
+            background-color: #883b61;
+        }
+        .child{
+            display: none;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            background-color: #444;
+            font-size: 14px;
+        }
+        .child li{
+            padding: 7px 5px;
+            text-align: left;
+            list-style: none;
+        }
+        .child li:hover{
+            background-color: teal;
+        }
+        #footer a:hover{
+            background-color: teal;
+        }
+        #portflio>li{
+            float: left;
+            margin-left: 10px;
+            padding: 10px;
+            list-style: none;
+            background-color: #883b61;
+        }
+        #portflio:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        #portflio>li:hover{
+            background-color: teal;
+        }
+        #portflio>li:hover .child{
+            display: block;
+        }
+        #portflio>li{
+            position: relative;
+            cursor: pointer;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="ct">
+    <div id="head">
+        <h1>Demo展示：原生Javascript部分方法的封装</h1>
+        <p>将部分封装的方法列举出来了，封装在util对象中，请通过源码查看</p>
+    </div>
+
+    <ul id="portflio">
+        <li>
+            <span>class操作</span>
+            <ul class="child">
+                <li>hasClass</li>
+                <li>addClass</li>
+                <li>removeClass</li>
+            </ul>
+        </li>
+        <li>
+            <span>随机数</span>
+            <ul class="child">
+                <li>getRandom</li>
+            </ul>
+        </li>
+        <li>
+            <span>日期操作</span>
+            <ul class="child">
+                <li>countDown</li>
+                <li>getChsDate</li>
+            </ul>
+        </li>
+        <li>
+            <span>对象拷贝</span>
+            <ul class="child">
+                <li>objCopy</li>
+            </ul>
+        </li>
+        <li>
+            <span>正则表达式</span>
+            <ul class="child">
+                <li>isEmail</li>
+                <li>isPhoneNum</li>
+                <li>isValidUsername</li>
+                <li>isValidPassword</li>
+            </ul>
+        </li>
+        <li>
+            <span>事件绑定</span>
+            <ul class="child">
+                <li>bind</li>
+                <li>unbind</li>
+                <li>getEvent</li>
+                <li>getTarget</li>
+                <li>preventDefault</li>
+                <li>stopPropagation</li>
+            </ul>
+        </li>
+        <li>
+            <span>Ajax封装</span>
+            <ul class="child">
+                <li>Ajax方法</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="bg"></div>
+    <div id="footer">
+        <a href="util.js">查看作品源码</a>
+    </div>
+
+</div>
+</body>
+</html>

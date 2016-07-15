@@ -1,0 +1,161 @@
+body,html,ul,li p,h1,h2,h3,h4,h5,h6,div{
+	margin:0;
+	padding:0;
+	font-family:"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	box-sizing: border-box;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color:#666;
+}
+a:hover{
+	color:#333;
+}
+.layout{
+	width:1000px;
+	margin:0 auto;
+}
+.clearfix:after{
+	content: "";
+	clear:both;
+	display: block;
+}
+.btn{
+	display: inline-block;
+	padding: 5px 8px;
+	border:1px solid #ccc;
+	border-radius:3px;
+}
+body{
+	font:14px/1.5normal;
+	font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+	color:#333;
+}
+
+/*header*/
+#header{
+	border:1px solid #ccc;
+}
+#header .logo{
+	font-size: 30px;
+	line-height: 50px;
+	float: left;
+}
+#header .header-item{
+	float: left;
+	margin-left: 20px;
+}
+#header .header-item>li{
+	float: left;
+	position: relative;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 10px;
+}
+#header .header-item .mywork-list{
+	position: absolute;
+	top:100%;
+	left:0;
+	bacground:#fff;
+	display: none;
+	border: 1px solid #cc;
+}
+#header .header-item>li:hover .mywork-list{
+	display: block;
+}
+.mywork-list li{
+	line-height: 1;
+	padding: 10px;
+	border-bottom: 1px dashed #ccc;
+}
+.mywork-list li:last-child{
+	border: none;
+}
+.mywork-list li:hover{
+	bacground:#eee;
+}
+/*description*/
+#description{
+	background-color: #b84d45;
+	padding: 30px 0 ;
+	color: #fff;
+}
+#description h1{
+font-size: 50px;
+margin-bottom: 10px;
+}
+#description p{
+	font-size: 20px;
+	line-height: 25px;
+}
+/*navbar*/
+#navbar{
+margin-top: 40px;
+background:#eee;
+border-radius: 3px;
+}
+#navbar>ul{
+	padding:10px;
+}
+#navbar li{
+	display: inline-block;
+	color: #666;
+}
+#navbar a{
+	color:#b84d45;
+}
+/*mywork*/
+#mywork{
+	margin-top: 10px;
+}
+#mywork>ul{
+	margin-left: -45px;
+}
+#mywork>ul>li{
+	float:left;
+	text-align: center;
+	border: solid 1px #ccc;
+	border-radius: 2px;
+	margin-left: 45px;
+	margin-top: 20px;
+	padding-bottom: 10px;
+}
+#mywork>ul>li img{
+	width: 300px;
+    height:200px;
+}
+#mywork>ul>li h1{
+	font-size: 16px;
+	text-align: center;
+	padding:5px 10px;
+}
+#mywork>ul>li p{
+	text-align: center;
+	padding:5px 10px;
+}
+/*contactme*/
+#contactme{
+	margin-top: 30px;
+	text-align: center;
+	background-color: #b84d45;
+	padding: 20px 0;
+	color: #fff;
+}
+
+#contactme .btn{
+	color: #fff;
+	margin-top: 10px;
+
+}
+
+
+/*footer*/
+#footer p{
+	margin: 30px 0;
+	border-top: solid 1px #eee;
+	text-align: center;
+	padding-top: 30px;
+}
