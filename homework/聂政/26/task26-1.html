@@ -122,24 +122,23 @@
         var lock = false;
         var start = $(".demo6").find("li").index() + 1;
         var opts = {
-            url: "task26-1.php",
-            dataType: "json",
             method: "post",
+            url: "/getMore",
+            dataType: "json",
             data: { start: start, len: 6 },
-            success: function(){
-                success(ret)
-            },
-            error: function(){
-                error(ret);
-            }
         };
         $loadMore.on("click",function() {
-            if (lock) {
+            if(lock){
                 return;
             }
             lock = true;
             $(this).text("loadding...");
-            $.ajax(opts);
+            $.ajax(opts).done(function(ret){
+                success(ret);
+            }).fail(function(ret){
+                error(ret);
+            });
+
         })
         function success(ret){
             console.log(ret);

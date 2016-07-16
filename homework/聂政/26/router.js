@@ -9,16 +9,16 @@
  * GET /hello
  * 返回响应数据
  */
-app.get('/getMore', function(req, res) {
+app.post('/getMore', function(req, res) {
 	var start = req.query.start,
 		len = req.query.len;
-	var ret = [];
+	var data = [];
 	for(var i=start; i<start+len;i++){
-		ret.push(i);
+		data.push(i);
 	}
 	res.send({
 		status: 0,
-		data: ret
+		data: data
 	});
 });
 
@@ -28,40 +28,40 @@ app.get('/getMore', function(req, res) {
  * GET /user/100
  * query = { name: 'ruoyu', age: 28 }
  */
-app.get('/user/:uid', function(req, res) {
-	console.log(req.params.uid); //100
-	console.log(req.query.name); // 'ruoyu'
-	res.send({
-		status: 1,
-		errorMsg: "请先注册"
-	});
-});
-
-
-/**
- * 发送 POST 请求， 有参数
- * POST /comment
- * query = { comment: "这是评论内容" }
- */
-app.post('/getMore', function(req, res) {
-
-	console.log(req.body.comment); // "这是评论内容"
-	res.send({
-		status: 0,
-		data: data
-	});
-});
-
-
-
-/**
- * 页面路由，从模板渲染页面渲染页面, 
- * htttp://localhost:8080/user
- * 支持 ejs, jade 模板
- */
-app.get('/user', function(req, res) {
-	res.render('user.ejs', {
-		username: '饥人谷'
-	});
-});
+// app.get('/user/:uid', function(req, res) {
+// 	console.log(req.params.uid); //100
+// 	console.log(req.query.name); // 'ruoyu'
+// 	res.send({
+// 		status: 1,
+// 		errorMsg: "请先注册"
+// 	});
+// });
+//
+//
+// /**
+//  * 发送 POST 请求， 有参数
+//  * POST /comment
+//  * query = { comment: "这是评论内容" }
+//  */
+// app.post('/getMore', function(req, res) {
+//
+// 	console.log(req.body.comment); // "这是评论内容"
+// 	res.send({
+// 		status: 0,
+// 		data: data
+// 	});
+// });
+//
+//
+//
+// /**
+//  * 页面路由，从模板渲染页面渲染页面,
+//  * htttp://localhost:8080/user
+//  * 支持 ejs, jade 模板
+//  */
+// app.get('/user', function(req, res) {
+// 	res.render('user.ejs', {
+// 		username: '饥人谷'
+// 	});
+// });
 
