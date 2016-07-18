@@ -71,7 +71,7 @@ header .navbar .drop-list {
 	display: none;
 }
 
-header .navbar:hover .drop-list {
+header .navbar>li:hover .drop-list {
 	display: block;
 }
 
