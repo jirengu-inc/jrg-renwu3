@@ -74,7 +74,7 @@ hr{
 	width: 100%;
 	height: 100%;
 	text-align: center;
-	background: rgba(0,0,0,0) url(images/bg.jpg) 0 0 repeat;
+	background: rgba(0,0,0,0) url(../images/bg.jpg) 0 0 repeat;
 	background-size: cover;
 }
 
@@ -141,7 +141,7 @@ hr{
 	padding: 200px 0;
 	color: #fff;
 	text-align: center;
-	background: rgba(0,0,0,0) url(images/callout.jpg) 0 0 repeat;
+	background: rgba(0,0,0,0) url(../images/callout.jpg) 0 0 repeat;
 	background-size: cover;
 }
 

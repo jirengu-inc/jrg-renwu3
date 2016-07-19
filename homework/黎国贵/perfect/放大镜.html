@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        ul,li{
+            padding:0;
+            margin:0;
+        }
+        li{
+            list-style:none;
+        }
+        /*商品框*/
+        .wrap-ct{
+            float:left;
+        }
+        .wrap{
+            width: 300px;
+            height:300px;
+            position:relative;
+            overflow: hidden;
+        }
+        #info{
+            display: none;
+            width: 100px;
+            height: 100px;
+            position:absolute;
+            background-color: rgba(255,255,255,0.5);
+        }
+        .img2{
+            width: 100%;
+            height:100%;
+            background-size:cover;
+        }
+        .wrap-ul{
+            width: 300px;
+        }
+        .wrap-ul>li{
+            float:left;
+            box-sizing: border-box;
+            width:60px;
+            height:60px;
+            border:1px solid #000000;
+        }
+        .wrap-ul>li>img{
+            width: 60px;
+            height: 60px;
+            background-size:60px 60px;
+        }
+        /*展示框*/
+        .show{
+            float:left;
+            display: none;
+            width:300px;
+            height:300px;
+            border:1px solid #ccc;
+            position:relative;
+            overflow:hidden;
+            margin-left:50px;
+        }
+        .img3{
+            width:900px;
+            height:900px;
+            position:absolute;
+        }
+        .clear:after{
+            content:"";
+            display:block;
+            clear:both;
+        }
+    </style>
+</head>
+<body>
+<div class="main clear">
+    <div class="wrap-ct">
+        <div class="wrap">
+            <img class="img2" src="img/太一千早2.jpg" alt="太千">
+            <div id="info"></div>
+        </div>
+        <ul class="wrap-ul clear">
+            <li><img src="img/太一千早2.jpg" alt=""></li>
+            <li><img src="img/太一.jpg" alt=""></li>
+            <li><img src="img/太一1.jpg" alt=""></li>
+            <li><img src="img/千早.jpg" alt=""></li>
+            <li><img src="img/千早1.jpg" alt=""></li>
+        </ul>
+    </div>
+    <div class="show">
+        <img class="img3" src="" alt="">
+    </div>
+</div>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    //放大镜效果
+    //选图
+    $('.wrap-ul img').on('click',function (e) {
+        $('.img2').attr('src',$(this).attr('src'));
+    });
+    //鼠标移动
+    $('.wrap').on('mousemove',function (e) {
+        $('.show').show();
+        $('.img3').attr('src',$('.img2').attr('src'));
+        var innerX = e.pageX-$('.wrap').offset().left;
+        var innerY = e.pageY-$('.wrap').offset().top;
+        $('#info').show();
+        $('#info').css({
+            left:innerX,
+            top:innerY,
+            marginTop:-50,
+            marginLeft:-50
+        });
+        $('.img3').css({
+            left:-innerX*3+150,
+            top:-innerY*3+150
+        });
+    });
+    $('.wrap').on('mouseleave',function (e) {
+        $('#info').hide();
+        $('.show').hide();
+    });
+</script>
+</body>
+</html>
