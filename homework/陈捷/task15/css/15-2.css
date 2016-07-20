@@ -29,7 +29,7 @@ h1, h2, h3, h4 {
 
 p{
 	font-size: 14px;
-	line-height: 1.4;
+	line-height: 1.75;
 }
 
 ::selection {
@@ -79,7 +79,7 @@ a.btn{
 	font-size: 18px;
 	font-weight: bold;
 	letter-spacing: 1px;
-	border-radius: 5px;
+	border-radius: 3px;
 }
 
 
@@ -95,9 +95,7 @@ header{
 header nav .logo{
 	float: left;
 	font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
-	font-size:20px;
-	font-weight: bold;
-	font-style: italic;
+	font-size:21px;
 	color: #fed136;
 }
 
@@ -132,14 +130,14 @@ header .intro{
 header .intro p:first-child{
 	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-style: italic;
-	font-size: 50px;
-	line-height: 50px;
-	margin-bottom: 35px;
+	font-size: 40px;
+	line-height: 40px;
+	margin-bottom: 25px;
 }
 
 header .intro h1{
-	font-size: 70px;
-	line-height: 70px;
+	font-size: 75px;
+	line-height: 75px;
 	margin-bottom:50px;
 }
 
@@ -191,9 +189,11 @@ section#service .fa{
 	margin: 15px 0;
 }
 
+.service-list li p{
+	color:#777;
+}
+
 /* Portfolio */
-
-
 .portfolio-list li{
 	float: left;
 	padding: 0 10px;
@@ -233,3 +233,47 @@ section#service .fa{
 }
 
 /* About */
+
+.timeline>li{
+	position: relative;
+	margin-bottom: 100px;
+}
+
+.timeline>li section h4{
+	margin-bottom:10px;
+	font-size: 18px;
+    line-height: 1.1;
+}
+
+.timeline>li section p{
+	color:#777;
+}
+
+.timeline>li:nth-of-type(odd) section{
+	width: 350px;
+	float: left;
+	padding: 0 20px 20px 100px;
+	text-align: right;
+}
+
+.timeline>li:nth-of-type(even) section{
+	width: 350px;
+	float: right;
+	padding: 0 100px 20px 20px;
+	text-align: left;
+}
+
+.timeline>li div{
+	position: absolute;
+	left: 50%;
+	margin-left:-85px;
+    width: 156px;
+	height: 156px;
+	border: 7px solid #f1f1f1;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.timeline>li div img{
+	width: 100%;
+}
