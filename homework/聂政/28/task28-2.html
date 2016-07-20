@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>task28-1</title>
+<style>
+	#header{
+		height: 100px;
+		line-height: 100px;
+		background: red;
+		margin-bottom: 20px;
+		text-align: center;
+	}
+	.nav{
+		height: 50px;
+		line-height: 50px;
+		background: blue;
+		text-align: center;
+	}
+	.main{
+		height: 1000px;
+		border: 15px solid #ccc;
+	}
+	#footer{
+		height: 30px;
+		background: black;
+	}
+	.aside{
+		width: 80px;
+		height: 900px;
+		text-align: center;
+		background: hotpink;
+		float: left;
+	}
+</style>
+</head>
+<body>
+	<div id="all">
+		<div id="header">header</div>
+		<div class="nav one">1</div>
+		<div class="main">
+			main
+			<div class="aside">aside</div>
+		</div>
+		<div class="nav two">2</div>
+		<div class="main">
+			main
+			<div class="aside">aside</div>
+		</div>
+		<div class="nav three">3</div>
+		<div class="main">
+			main
+			<div class="aside">aside</div>
+		</div>
+		<div id="footer">footer</div>
+	</div>
+
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+		function stick(target){
+    		var $cur = target,
+    			curWidth = target.width(),
+    			curHeight = target.height(),
+    			offsetTop = target.offset().top
+					zIndex = target[0].innerText
+			console.log("..."+zIndex)
+    			offsetLeft = $cur.offset().left,
+				allTop = $("#all").offset().top;
+    		var $curClone = $cur.clone()
+			    			.css({
+			    				width: curWidth,
+			    				height: curHeight,
+			    				opacity: 0  				
+			    			})
+							.insertBefore($cur)
+			    			.hide()
+			$(window).on("scroll",function(){
+				scrollTop = $(window).scrollTop();
+				console.log(scrollTop)
+				if(scrollTop>=offsetTop){
+					if(!isFixed()){
+						setFixed();
+					}
+				}
+				else{
+					if(isFixed()){
+						unSetFixed();
+					}
+				}
+			})
+    		function setFixed(){
+				$cur.attr("fixed",true);
+    			$cur.css({
+    				position: "fixed",
+					'z-index': zIndex,
+					width: curWidth,
+    				top: 0,
+    				left: offsetLeft,
+    			})
+    			$curClone.show();
+    		}
+    		function unSetFixed(){
+				$cur.removeAttr("fixed",false);
+    			$cur.removeAttr("style");
+    			$curClone.hide();
+    		}
+    		function isFixed(){
+				return !!$cur.attr("fixed")
+    		}
+    	}
+	stick($(".one"));
+	stick($(".two"));
+	stick($(".three"));
+
+
+    </script>
+</body>
+</html>
