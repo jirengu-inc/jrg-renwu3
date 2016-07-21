@@ -147,8 +147,8 @@
             setBullet();
             $ct.animate({left: '+=' + windowWidth},function(){
                 curIdx--;
+                isLock = false;
             })
-            isLock = false;
         }
         function next(){
             if(isLock){
@@ -163,8 +163,8 @@
             setBullet();
             $ct.animate({left: '-=' + windowWidth},function(){
                 curIdx++;
+                isLock = false;
             })
-            isLock = false;
         }
         function stopAutoPlay(){
             clearInterval(clock);
