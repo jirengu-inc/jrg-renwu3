@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>html/css的运用</title>
+    <style>
+        html,ul{
+            margin: 0;
+            padding: 0;
+            background-color: #666;
+            font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+        .ct{
+            text-align: center;
+            width: 600px;
+            margin: 0 auto;
+        }
+        .bg{
+            margin: 0 auto;
+            width: 475px;
+            height: 267px;
+            border: 1px solid #eee;
+            background: url(img/太一千早2.jpg);
+            background-size: cover;
+        }
+        #head h1{
+            color: #fff;
+        }
+        #head p{
+            color: #fff;
+            opacity: 0.6;
+        }
+        #portflio, #footer{
+            margin: 40px 0;
+        }
+        #footer a{
+            padding: 10px;
+            margin-right: 30px;
+            text-decoration: none;
+            color: #eee;
+            background-color: #883b61;
+        }
+        .layout{
+            position: relative;
+        }
+        .layout-list{
+            display: none;
+            position: absolute;
+            background-color: #444;
+            top: 100%;
+            left: 0;
+        }
+        .layout-list li{
+            padding: 7px 5px;
+            text-align: left;
+            list-style: none;
+        }
+        .layout-list li:hover{
+            background-color: teal;
+        }
+        #footer a:hover{
+            background-color: teal;
+        }
+        #portflio>li{
+            float: left;
+            margin-left: 55px;
+            margin-top: 10px;
+            padding: 10px;
+            list-style: none;
+            background-color: #883b61;
+        }
+        #portflio:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        #portflio>li:hover{
+            background-color: teal;
+        }
+        #portflio li:hover .layout-list{
+            display: block;
+        }
+        #portflio li>a{
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="ct">
+    <div id="head">
+        <h1>Demo展示：Html CSS的综合运用</h1>
+        <p>分静态个人站、企业站、常见网站布局示例、三角形Tooltip 这4部分</p>
+    </div>
+
+    <ul id="portflio">
+        <li>
+            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">网页一</a>
+        </li>
+        <li>
+            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-15/task15-1/task-15-1.html" target="_blank">网页二</a>
+        </li>
+        <li>
+            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-15/task15-2/task-15-2.html" target="_blank">网页三</a>
+        </li>
+        <li class="layout">
+            <a href="#" >布局范例</a>
+            <ul class="layout-list">
+                <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-12/task-12-2.html" target="_blank">双飞翼两栏布局</a></li>
+                <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-12/task-12-3.html" target="_blank">双飞翼三栏布局</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-9/task-9-3.html" target="_blank">三角形</a>
+        </li>
+        <li>
+            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-11/task-11-1.html" target="_blank">css导航栏</a>
+        </li>
+    </ul>
+
+    <div class="bg"></div>
+    <div id="footer">
+    </div>
+
+</div>
+</body>
+</html>
