@@ -84,6 +84,3 @@ table { border-collapse: collapse; border-spacing: 0; }
   transition: font-size 0.25s ease-out 0s;
 
 }
-.icon_lists .icon:hover{
-  font-size: 100px;
-}

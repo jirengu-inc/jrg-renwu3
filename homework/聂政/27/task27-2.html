@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task27-2</title>
+    <style>
+        html,body,ul,li,a,p{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+        .exhibition{
+            width: 310px;
+            height: 206px;
+            position: absolute;
+            overflow: hidden;
+        }
+        .ct{
+            position: absolute;
+            left: -310px;
+        }
+        .arrow{
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            top: 50%;
+            margin-top: -15px;
+            border-radius: 50%;
+            background: #4E443C;
+            color: #fff;
+            opacity: 0.7;
+        }
+        .arrow:hover{
+            opacity: 1;
+        }
+        .next{
+            left: 100%;
+            margin-left: -30px;
+        }
+        .clear:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .ct>li{
+            float: left;
+        }
+        img{
+            width: 310px;
+            height: 206px;
+        }
+        .bullet{
+            height: 5px;
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .bullet li{
+            width: 20px;
+            height: 5px;
+            margin-left: 2px;
+            border-radius: 5px;
+            display: inline-block;
+            background: #fff;
+            cursor: pointer;
+        }
+        .bullet .active{
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="exhibition">
+        <ul class="ct clear">
+            <li class="0"><a href="#"><img src="http://www.wndhw.com/fengjing/meitu/images/mt004t1.jpg"></a></li>
+            <li class="1"><a href="#"><img src="http://www.wndhw.com/fengjing/meitu/images/mt004t2.jpg"></a></li>
+            <li class="2"><a href="#"><img src="http://www.wndhw.com/fengjing/meitu/images/mt004t3.jpg"></a></li>
+            <li class="3"><a href="#"><img src="http://www.wndhw.com/fengjing/meitu/images/mt004t4.jpg"></a></li>
+        </ul>
+        <a href="#" class="arrow pre"><</a>
+        <a href="#" class="arrow next">></a>
+        <ul class="bullet clear">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <script>
+        var $ct = $(".ct");
+        var $ctLi = $(".ct>li");
+        var imgLen = $(".ct>li").length;
+        var liWidth = $("li").eq(0).width();
+        var $pre = $(".pre");
+        var $next = $(".next");
+        var $bullet = $(".bullet");
+        var $bulletLi = $(".bullet>li");
+        var clock;
+        $ctLi.first().before($ctLi.last().clone());
+        $ctLi.last().after($ctLi.first().clone());
+        $ctLi = $(".ct>li");
+        ctWidth = liWidth * $ctLi.size();
+        $ct.css( {width: ctWidth} );
+        var curIdx = 1;
+        var isLock = false;
+        autoPlay();
+        $next.on("click",function(){
+            stopAutoPlay()
+            next();
+        })
+        $pre.on("click",function(){
+            stopAutoPlay()
+            pre();
+        })
+        $bulletLi.on("click",function(){
+            stopAutoPlay()
+            curIdx = $bulletLi.index($(this)) + 1;
+            $ct.css({left: -liWidth * curIdx});
+            setBullet();
+        })
+        function pre(){
+            if(isLock){
+                return;
+            }
+            isLock = true;
+            if(curIdx == 0){
+                curIdx = imgLen;
+                $ct.css({left: -liWidth * curIdx})
+            }
+            setBullet();
+            $ct.animate({left: '+=' + liWidth},function(){
+                curIdx--;
+                isLock = false;
+            })
+
+        }
+        function next(){
+            if(isLock){
+                return;
+            }
+            isLock = true;
+            if(curIdx == imgLen+1){
+                curIdx -= imgLen;
+                $ct.css({left: -liWidth * curIdx})
+            }
+            setBullet();
+            $ct.animate({left: '-=' + liWidth},function(){
+                curIdx++;
+                isLock = false;
+            })
+        }
+        function stopAutoPlay(){
+            clearInterval(clock);
+        }
+
+        function autoPlay(){
+            clock = setInterval(function(){
+                next();
+            }, 2000);
+        }
+        function setBullet(){
+            $bulletLi.removeClass("active");
+            $bulletLi.eq(curIdx-1).addClass("active");
+        }
+    </script>
+</body>
+</html>

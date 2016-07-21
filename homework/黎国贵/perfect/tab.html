@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品展示tab</title>
+    <style>
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style:none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .clear:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .btn{
+            display: inline-block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border:1px solid #c81623;
+            border-radius: 5px;
+            color:#c81623;
+        }
+        .mod-tab{
+            margin: 10px;
+        }
+        .tabs-ct{
+            border:1px solid #CCCCCC;
+            width: 200px;
+        }
+        .tabs>li{
+            font-size: 14px;
+            box-sizing: border-box;
+            width: 33.3333333%;
+            float: left;
+            text-align: center;
+            padding: 5px 0;
+            border-right:1px solid #ccc ;
+        }
+        .wrap-prod{
+            border:1px solid #ccc;
+            width: 620px;
+        }
+        .prod-ct{
+            margin-top: -10px;
+            margin-left: -10px;
+        }
+        .prod{
+            position:relative;
+            box-sizing: border-box;
+            border:1px solid #ccc;
+            width: 200px;
+            float:left;
+            text-align: center;
+            padding: 0 30px;
+            margin-left:10px;
+            margin-top: 10px;
+        }
+        .prod-name{
+            text-align: left;
+        }
+        .prod-price{
+            color:#c81623;
+            text-align: left;
+        }
+        .cover{
+            width: 100%;
+            height: 100%;
+            position:absolute;
+            top:0;
+            left:0;
+            background-color: #ccc;
+            opacity: 0;
+        }
+        .cover:hover{
+            opacity: 0.7;
+        }
+        .cover>a{
+            position:absolute;
+            background-color: #fff;
+            top:50%;
+            left: 50%;
+            /*margin-left: -50px;*/
+            /*margin-top: -25px;*/
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="mod-tab">
+    <div class="tabs-ct clear">
+        <ul class="tabs">
+            <li><a href="#">热门</a></li>
+            <li><a href="#">珠宝首饰</a></li>
+            <li><a href="#">奢侈品</a></li>
+        </ul>
+    </div>
+
+   <div class="wrap-prod clear">
+       <ul class="prod-ct">
+           <li class="prod">
+               <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+               <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+               <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+               <div class="prod-price">￥1699.00</div>
+           </li>
+           <li class="prod">
+               <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+               <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+               <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+               <div class="prod-price">￥1699.00</div>
+           </li>
+           <li class="prod">
+               <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+               <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+               <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+               <div class="prod-price">￥1699.00</div>
+           </li>
+           <li class="prod">
+               <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+               <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+               <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+               <div class="prod-price">￥1699.00</div>
+           </li>
+           <li class="prod">
+               <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+               <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+               <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+               <div class="prod-price">￥1699.00</div>
+           </li>
+           <li class="prod">
+               <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+               <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+               <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+               <div class="prod-price">￥1699.00</div>
+           </li>
+       </ul>
+   </div>
+
+    <div class="wrap-prod clear">
+        <ul class="prod-ct">
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="wrap-prod clear">
+        <ul class="prod-ct">
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="mod-tab">
+    <div class="tabs-ct clear">
+        <ul class="tabs">
+            <li><a href="#">热门</a></li>
+            <li><a href="#">珠宝首饰</a></li>
+            <li><a href="#">奢侈品</a></li>
+        </ul>
+    </div>
+
+    <div class="wrap-prod clear">
+        <ul class="prod-ct">
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="wrap-prod clear">
+        <ul class="prod-ct">
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img12.360buyimg.com/N3/jfs/t2302/181/1562193880/220016/88a978ef/56cbbc11Nd6d3b04b.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="wrap-prod clear">
+        <ul class="prod-ct">
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img13.360buyimg.com/N3/jfs/t2461/336/2166939566/101221/3af27699/56c426a5N9b6673f4.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+            <li class="prod">
+                <div class="cover"><a class="btn" href="#">立即抢购</a></div>
+                <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                <div class="prod-name">藏美千足金和田玉金镶吊坠</div>
+                <div class="prod-price">￥1699.00</div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<button>an niu</button>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    //开始的配置
+    $('.wrap-prod').hide();
+    $('.mod-tab').each(function () {
+        $(this).find('.wrap-prod').eq(0).show();
+    });
+
+    function Tab2($select1,$select2) {
+        this.$el1 = $select1;
+        this.$el2 = $select2;
+        this.bind();
+    }
+    Tab2.prototype = {
+        bind:function () {
+            var me = this;
+            me.$el1.on("click",function (e) {
+                e.preventDefault();
+                var index = $(this).index();     //index()，返回的是该元素在同辈中的位置，而不是在选择器集合中的位置；
+                me.$el2.hide();             //index()返回的数值是从0开始的，和选择器数组相对应；
+                me.$el2.eq(index).show();
+            });
+
+        }
+    };
+    new Tab2($('.mod-tab').eq(0).find('.tabs-ct').find('li'),$('.mod-tab').eq(0).find('.wrap-prod'));
+    new Tab2($('.mod-tab').eq(1).find('.tabs-ct').find('li'),$('.mod-tab').eq(1).find('.wrap-prod'));
+
+
+//    var tab2 = (function () {
+//        function init($select1,$select2) {    //关键在于$select1在同辈中的位置对应$select2在选择器组中的位置
+//            _bind($select1,$select2);
+//        }
+//        function _bind($select1,$select2) {
+//            $select1.on("click",function (e) {
+//                e.preventDefault();
+//                var index = $(this).index();     //index()，返回的是该元素在同辈中的位置，而不是在选择器集合中的位置；
+//                $select2.hide();             //index()返回的数值是从0开始的，和选择器数组相对应；
+//                $select2.eq(index).show();
+//            });
+//        }
+//        return {
+//            init:init
+//        }
+//    })();
+//    tab2.init($('.mod-tab').eq(0).find('.tabs-ct').find('li'),$('.mod-tab').eq(0).find('.wrap-prod'));
+//    tab2.init($('.mod-tab').eq(1).find('.tabs-ct').find('li'),$('.mod-tab').eq(1).find('.wrap-prod'));
+
+
+</script>
+
+</body>
+</html>

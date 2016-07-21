@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task32</title>
+    <style>
+        html,body,ul,li,p,div{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        li{
+            list-style: none;
+        }
+        .wrap{
+            margin: 0 auto;
+            width: 900px;
+        }
+        .clear:after{
+            content: "";
+            display: none;
+            clear:both;
+        }
+        #pic-ct{
+            position:relative;
+
+        }
+        .item{
+            position:absolute;
+            border: 1px solid #DFDFDF;
+            padding-bottom: 10px;
+            margin: 10px;
+            transition: all 1s;
+            width: 280px;
+        }
+        .item img{
+            margin: 10px;
+            width: 258px;
+        }
+        .item .header{
+            height: 25px;
+            margin: 0 12px;
+            border-bottom: 1px solid #DBDBDB;
+        }
+        .item .desp{
+            font-size: 12px;
+            line-height:1.8;
+            margin: 10px 15px 0;
+            color: #777371;
+        }
+        #load{
+            opacity:0;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <ul id="pic-ct" class="clear">
+
+    </ul>
+    <div id="load">我是看不见的</div>
+</div>
+</body>
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+    function Expourse($selector,callback,boolean) {
+        boolean = boolean || false;
+        this.$el = $selector;
+        this.cb = callback;
+        this.boolean = boolean;
+        this.queue = [];
+        this.isBind = false;
+        this.add();
+        this.init();
+    }
+    Expourse.prototype={
+        add:function () {
+            var me =this;
+            me.$el.each(function () {
+                var o = {
+                    el:$(this),
+                    cb:me.cb
+                };
+                me.queue.push(o);
+            });
+        },
+        init:function () {
+            var me =this;
+            me.isBind || me.bind();
+            me.boolean ? me.moreDo() : me.oneDo();  //为了第一次还没有滚动的时候加载一次
+        },
+        bind:function () {
+            var me =this;
+            var clock = false;
+            $(window).on("scroll",function () {
+                clock && clearTimeout(clock);
+                clock = setTimeout(function () {
+                    if(me.boolean){
+                        me.moreDo()
+                    }
+                    else{
+                        me.oneDo()
+                    }
+                },300)
+            });
+            me.isBind = true;
+        },
+        oneDo:function () { //用于图片加载，性能更好
+            var me =this;
+            var arrTmp = [];
+            for(var i =0;i<me.queue.length;i++){
+                var item = me.queue[i];
+                if(me.isShow(item.el)){
+                    item.cb.call(item.el[0]);
+                }
+                else{
+                    arrTmp.push(item);
+                }
+            }
+            me.queue = arrTmp;
+        },
+        moreDo:function () { //用于无限滚动
+            var me =this;
+            for(var i =0;i<me.queue.length;i++){
+                var item = me.queue[i];
+                if(me.isShow(item.el)){
+                    item.cb.call(item.el[0]);
+                }
+            }
+        },
+        isShow:function ($el) {
+            var me =this;
+            var winHeigth = $(window).height(),
+                    winScrollTop = $(window).scrollTop(),
+                    nodeTop = $el.offset().top;
+            if(nodeTop<winHeigth){ //第一次还没有滚动的时候，加载一次
+                return true;
+            }
+            return (winHeigth+winScrollTop>=nodeTop) ? true : false;
+        }
+    };
+
+
+    function Waterfall($select,$select2){//对选择器进行瀑布流布局，共用一个数组
+        this.$el = $select;
+        this.$ct = $select2;
+        this.rend();
+    }
+    Waterfall.prototype ={
+        _isAdd :false,
+        colSumHeight:[],
+        rend:function () {
+            var me = this;
+            var nodeWidth= me.add().nodeWidth;
+            me.$el.each(function () {
+                var idx = me.idx().idx;
+                var min = me.idx().min;
+                $(this).css({
+                    left:nodeWidth*idx,
+                    top: min
+                });
+                me.colSumHeight[idx] = me.colSumHeight[idx]+$(this).outerHeight(true);
+            });
+            me.max = Math.max.apply(null,me.colSumHeight);
+        },
+        add:function () {
+            var me = this;
+            var nodeWidth = me.$el.outerWidth(true);
+            var ctWidth = me.$ct.width();
+            var colNum = parseInt(ctWidth/nodeWidth);
+            if(!me._isAdd){    //确定列数这件事只做一次
+                for(var i=0;i<colNum;i++){
+                    me.colSumHeight.push(0);
+                }
+                Waterfall.prototype._isAdd = true; //确定列数这件事只做一次
+            }
+            return{
+                nodeWidth:nodeWidth
+            }
+        },
+        idx:function () {
+            var me =this;
+            var idx = 0;
+            var min = me.colSumHeight[0];
+            for(var i=0;i<me.colSumHeight.length;i++){
+                if(me.colSumHeight[i]<min){
+                    min = me.colSumHeight[i];
+                    idx = i;
+                }
+            }
+            return{
+                idx : idx,
+                min : min
+            }
+        }
+    };
+
+
+    function Ajax() {
+        this.isClose=false;
+        this.ajax();
+    }
+    Ajax.prototype={
+      ajax:function () {
+          var me =this;
+          if(me.isClose){
+              return;
+          }
+          me.isClose =true;
+          var curPage = 1,
+                  perPageCount = 9;
+          $.ajax({
+              url: 'http://platform.sina.com.cn/slide/album_tech',
+              type: 'get',
+              dataType: 'jsonp',
+              jsonp:"jsoncallback",
+              data: {
+                  app_key: '1271687855',
+                  num: perPageCount,
+                  page: curPage
+              },
+              success: function(ret){
+                  if(ret && ret.status && ret.status.code === "0") {
+                      me.composition(ret.data);
+                  }
+              },
+              error: function(){
+                  console.log('get error data');
+                  me.isClose =false;
+              }
+          });
+      },
+        composition:function (data) {
+            var me =this;
+            var tpl = '';
+            for(var i=0;i<data.length;i++){ //遍历整个data数组
+                tpl += '<li class="item">';
+                tpl += '<a href="'+data[i].url+'" class="link"><img src="'+data[i].img_url+'" alt=""></a>';
+                tpl += '<h4 class="header">'+data[i].short_name+'</h4>';
+                tpl += '<p class="desp">'+data[i].short_intro+'</p>';
+                tpl += '</li>';
+            }
+            me.$nodes = $(tpl);
+            //me.$node是一个JQ选择器数组，里面有九个li元素
+            $('#pic-ct').append(me.$nodes);
+            me.bind();
+        },
+        bind:function () {
+            var me =this;
+//            console.log(me.$node);
+            me.$nodes.each(function () {
+                var $li =$(this);
+                $li.find("img").on("load",function () {
+                    console.log(this.width);
+                    console.log($(this).width());
+                    new Waterfall($li,$('#pic-ct'));
+                });
+            });
+            me.isClose =true;
+        }
+    };
+
+
+    new Expourse($('#load'),function () {
+        new Ajax();
+    },true);
+
+
+
+
+</script>
+</html>

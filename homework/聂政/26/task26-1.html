@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task26-1</title>
+    <style>
+        li{
+            min-height: 50px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .btn{
+            display: block;
+            margin: 0 auto;
+        }
+        .demo6{
+            padding: 20px;
+        }
+        .demo6 li{
+            list-style: none;
+            line-height: 50px;
+        }
+        .demo6 li:hover{
+            cursor: pointer;
+            background: green;
+        }
+        #load-more{
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #00f;
+            margin: 0 auto;
+        }
+        #load-more:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+    <ol>
+        <li class="demo1">
+            <button class="btn">点我背景先变红再变蓝哦</button>
+        </li>
+        <li>
+            <p class="demo2">垂直滚动的距离是:0</p>
+        </li>
+        <li class="hover"></li>
+        <li>
+            <div>
+                <input type="text" id="ipt"/>
+                <button>submit</button>
+            </div>
+        </li>
+        <li class="select">
+            点我弹窗
+        </li>
+        <li class="demo6">
+            <ul>
+                <li>内容1</li>
+                <li>内容2</li>
+                <div id="load-more">加载更多</div>
+            </ul>
+        </li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.0/jquery.js"></script>
+    <script>
+        // demo1
+        $(".demo1").on("click",$(".btn"),function(){
+            setTimeout(function(){
+                $(".demo1").css({"background":"red"})
+            },0);
+            setTimeout(function(){
+                $(".demo1").css({"background":"blue"})
+            },1000);
+        });
+        //demo2
+        $(window).on("scroll",function(){
+            var $dst = $(window).scrollTop();
+            $(".demo2").text("垂直滚动的距离是:" + $dst);
+            console.log( $dst );
+        })
+        //demo3
+        var $demo3 = $(".hover")
+        $(".hover").on("mouseenter",function(){
+            $demo3.css({
+                background: "red"
+            })
+        })
+        $(".hover").on("mouseleave",function(){
+            $demo3.css({
+                background: "white"
+            })
+        })
+        //demo4
+        var $ipt = $("#ipt")
+        $ipt.on("focus",function(){
+            $ipt.css("borderColor","blue");
+        })
+        $ipt.on("keyup",function(){
+            $ipt.val( $(this).val().toUpperCase() );
+        })
+        $ipt.on('blur',function(){
+            $(this).css('borderColor','');
+            console.log($(this).val());
+        })
+        //demo5
+        $(".select").on("click",function(){
+            alert( $(".select").text() );
+        })
+
+        //demo6
+        var $loadMore = $("#load-more");
+        var lock = false;
+        var start = $(".demo6").find("li").index() + 1;
+        var opts = {
+            method: "post",
+            url: "/getMore",
+            dataType: "json",
+            data: { start: start, len: 6 },
+        };
+        $loadMore.on("click",function() {
+            if(lock){
+                return;
+            }
+            lock = true;
+            $(this).text("loadding...");
+            $.ajax(opts).done(function(ret){
+                success(ret);
+            }).fail(function(ret){
+                error(ret);
+            });
+
+        })
+        function success(ret){
+            console.log(ret);
+            if(ret.status == 1){
+                for(var i=0;i<ret.data.length;i++){
+                    $(this).before("<li>ret.data[i]</li>");
+                }
+                $(this).text("loadding...");
+                lock = false;
+            }
+        }
+        function error(ret){
+            lock = false;
+            console.log("xxxxx");
+        }
+
+    </script>
+</body>
+</html>

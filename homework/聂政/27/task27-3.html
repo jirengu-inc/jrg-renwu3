@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task27-2</title>
+    <style>
+        html,body,ul,div,li{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .exhibition{
+            position: absolute;
+            overflow: hidden;
+        }
+        .ct{
+            position: absolute;
+        }
+        .clear:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .arrow{
+            font-size: 40px;
+            display: block;
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            top: 50%;
+            margin-top: -40px;
+            border-radius: 50%;
+            background: #4E443C;
+            color: #fff;
+            opacity: 0.7;
+        }
+        .arrow:hover{
+            opacity: 1;
+        }
+        .next{
+            left: 100%;
+            margin-left: -80px;
+        }
+
+        .ct>li{
+            background: no-repeat;
+            background-size: cover;
+            float: left;
+        }
+        .bullet{
+            width: 100px;
+            height: 5px;
+            position: absolute;
+            left: 50%;
+            bottom: 25px;
+            transform: translateX(-50%);
+        }
+        .bullet li{
+            width: 20px;
+            height: 5px;
+            margin-left: 2px;
+            border-radius: 5px;
+            display: inline-block;
+            background: #fff;
+            cursor: pointer;
+        }
+        .bullet .active{
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="exhibition">
+        <ul class="ct clear">
+            <li class="0" img-url="http://image9.360doc.com/DownloadImg/2010/05/0911/3143484_1.jpg"><p>0</p></li>
+            <li class="1" img-url="http://image9.360doc.com/DownloadImg/2010/05/0911/3143484_2.jpg"><p>1</p></li>
+            <li class="2" img-url="http://image9.360doc.com/DownloadImg/2010/05/0911/3143484_7.jpg"><p>2</p></li>
+            <li class="3" img-url="http://image9.360doc.com/DownloadImg/2010/05/0911/3143484_5.jpg"><p>3</p></li>
+        </ul>
+        <a href="#" class="arrow pre"><</a>
+        <a href="#" class="arrow next">></a>
+        <ul class="bullet clear">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.js"></script>
+    <script>
+        var $ct = $(".ct");
+        var $ctLi = $(".ct>li");
+        var imgLen = $(".ct>li").length;
+        var $pre = $(".pre");
+        var $next = $(".next");
+        var $bullet = $(".bullet");
+        var $bulletLi = $(".bullet>li");
+        var clock;
+
+        $ctLi.first().before($ctLi.last().clone());
+        $ctLi.last().after($ctLi.first().clone());
+        var $ctLen = $(".ct>li").length;
+        var windowWidth = $(window).width();
+        $ctLi = $(".ct>li");
+        $(".exhibition").css( {width: windowWidth} );
+        $ctLi.css({width: windowWidth});
+        $ct.css( {width: windowWidth*$ctLen,
+                    left: -windowWidth
+        } );
+        var curIdx = 1;
+        $ctLi.eq(0).css('background','url( '+$ctLi.eq(curIdx).attr("img-url")+' )');
+        $ctLi.eq(1).css('background', 'url( '+$ctLi.eq(curIdx).attr("img-url")+' )');
+        var isLock = false;
+        autoPlay();
+        $next.on("click",function(){
+            stopAutoPlay()
+            next();
+        })
+        $pre.on("click",function(){
+            stopAutoPlay()
+            pre();
+        })
+        $bulletLi.on("click",function(){
+            stopAutoPlay()
+            curIdx = $bulletLi.index($(this)) + 1;
+            $ct.css({left: -windowWidth * curIdx});
+            setBullet();
+        })
+        function pre(){
+            if(isLock){
+                return;
+            }
+            isLock = true;
+            if(curIdx == 0){
+                curIdx = imgLen;
+                $ct.css({left: -windowWidth * curIdx})
+            }
+            setUrlPre(curIdx);
+            setBullet();
+            $ct.animate({left: '+=' + windowWidth},function(){
+                curIdx--;
+                isLock = false;
+            })
+        }
+        function next(){
+            if(isLock){
+                return;
+            }
+            isLock = true;
+            if(curIdx == imgLen+1){
+                curIdx -= imgLen;
+                $ct.css({left: -windowWidth * curIdx})
+            }
+            setUrlNext(curIdx);
+            setBullet();
+            $ct.animate({left: '-=' + windowWidth},function(){
+                curIdx++;
+                isLock = false;
+            })
+        }
+        function stopAutoPlay(){
+            clearInterval(clock);
+        }
+
+        function autoPlay(){
+            clock = setInterval(function(){
+                next();
+            }, 1000);
+        }
+        function setUrlNext(curIdx){
+            if($ctLi.eq(curIdx+1)){
+                console.log(curIdx+1);
+                $ctLi.eq(curIdx+1).css('background', 'url( '+$ctLi.eq(curIdx+1).attr("img-url")+' )')
+            }
+        }
+        function setUrlPre(curIdx){
+            if($ctLi.eq(curIdx-1)){
+                $ctLi.eq(curIdx+-1).css('background', 'url( '+$ctLi.eq(curIdx-1).attr("img-url")+' )')
+            }
+        }
+        function setBullet(){
+            $bulletLi.removeClass("active");
+            $bulletLi.eq(curIdx-1).addClass("active");
+        }
+    </script>
+</body>
+</html>

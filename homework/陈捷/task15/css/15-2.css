@@ -1,0 +1,279 @@
+/* Reset */
+html, body, ul, li, p, h1, h2, h3, h4 {
+	margin: 0;
+	padding: 0;
+}
+
+ul, li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: #666;
+}
+
+/* Basic */
+html, body {
+	height: 100%;
+	font-size: 16px;
+	line-height: 1.7;
+	font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+
+h1, h2, h3, h4 {
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-weight: bold;
+}
+
+p{
+	font-size: 14px;
+	line-height: 1.75;
+}
+
+::selection {
+	background: #fed136;
+}
+
+.layout {
+	margin: 0 auto;
+	width: 1140px;
+}
+
+.clearfix:after {
+	display: block;
+	clear: both;
+	content: '';
+}
+
+.clearfix {
+	*zoom: 1;
+}
+
+.page-top{
+	position: fixed;
+	top:0;
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+	background: #222;
+	z-index:2;
+}
+
+.table {
+	display: table;
+	height: 100%;
+}
+
+.vertical-center {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+a.btn{
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	padding: 20px 40px;
+	background: #fed136;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 1px;
+	border-radius: 3px;
+}
+
+
+/* Header */
+header{
+	height: 100%;
+	width: 100%;
+	background: url(../img/header-bg.jpg) center no-repeat fixed;
+	background-size:cover;
+	background-color: #464646;
+}
+
+header nav .logo{
+	float: left;
+	font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive;
+	font-size:21px;
+	color: #fed136;
+}
+
+header nav .nav-bar{
+	float: right;
+}
+
+header nav .nav-bar li {
+	display: inline-block;
+	*display:block;
+	padding: 15px;
+	font:14px/1.2 normal;
+	color: white;
+}
+
+header nav .nav-bar li a {
+	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	letter-spacing: 1px;
+	font-weight: bold;
+	color: white;
+}
+
+header nav .nav-bar li a:hover{
+	color: #fed136;
+}
+
+header .intro{
+	text-align: center;
+	color: white;
+}
+
+header .intro p:first-child{
+	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: italic;
+	font-size: 40px;
+	line-height: 40px;
+	margin-bottom: 25px;
+}
+
+header .intro h1{
+	font-size: 75px;
+	line-height: 75px;
+	margin-bottom:50px;
+}
+
+/* Content Basic*/
+section.block{
+	padding: 150px 0;
+	text-align: center;
+}
+
+section.block > h2{
+	font-size:40px;
+	line-height: 1.1;
+	margin-bottom: 15px;
+}
+
+section.block>h3{
+	font: 16px/1.1 normal;
+	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style:italic;
+	margin-bottom: 75px;
+}
+
+#portfolio, #team {
+	background: #f7f7f7;
+}
+/* Service */
+section#service .fa{
+	width: 100px;
+	height: 100px;
+	font-size: 50px;
+	line-height: 100px;
+	border-radius: 50%;
+
+	background: #fed136;
+	color: white;
+}
+
+.service-list{
+	margin-left: -45px;
+}
+
+.service-list li{
+	float:left;
+	margin-left:45px;
+	width:350px;
+}
+
+.service-list li h4{
+	margin: 15px 0;
+}
+
+.service-list li p{
+	color:#777;
+}
+
+/* Portfolio */
+.portfolio-list li{
+	float: left;
+	padding: 0 10px;
+	margin-bottom: 30px;
+}
+
+.portfolio-list li img{
+	width: 360px;
+	height: 260px;
+}
+
+.portfolio-list li i{
+	display: none;
+	margin-top: -268px;
+	margin-bottom: 8px;
+	width: 360px;
+	height: 260px;
+	line-height: 260px;
+	color: white;
+	font-size: 60px;
+	background: #fed136;
+	opacity: 0.9;
+}
+
+.portfolio-list li a:hover i{
+	display:block;
+}
+
+.portfolio-list li h4 {
+	font-size:18px;
+
+}
+.portfolio-list li p{
+	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-style: italic;
+	font-size: 16px;
+}
+
+/* About */
+
+.timeline>li{
+	position: relative;
+	margin-bottom: 100px;
+}
+
+.timeline>li section h4{
+	margin-bottom:10px;
+	font-size: 18px;
+    line-height: 1.1;
+}
+
+.timeline>li section p{
+	color:#777;
+}
+
+.timeline>li:nth-of-type(odd) section{
+	width: 350px;
+	float: left;
+	padding: 0 20px 20px 100px;
+	text-align: right;
+}
+
+.timeline>li:nth-of-type(even) section{
+	width: 350px;
+	float: right;
+	padding: 0 100px 20px 20px;
+	text-align: left;
+}
+
+.timeline>li div{
+	position: absolute;
+	left: 50%;
+	margin-left:-85px;
+    width: 156px;
+	height: 156px;
+	border: 7px solid #f1f1f1;
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.timeline>li div img{
+	width: 100%;
+}
