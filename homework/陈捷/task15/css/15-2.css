@@ -13,8 +13,8 @@ a {
 	color: #666;
 }
 
-/* img形成一个新的BFC,使a中匿名行级盒子和img不在同一个BFC中 */
-a>img {
+
+a>img {/* img形成一个新的BFC,使a中匿名行级盒子和img不在同一个BFC中 */
 	display: block;
 }
 
