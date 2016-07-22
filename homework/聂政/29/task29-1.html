@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task29-1</title>
+    <style>
+        ul{
+            width: 900px;
+            background: pink;
+            margin: 0 auto;
+        }
+        li{
+            list-style: none;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            margin: 0 auto;
+        }
+        .goTop{
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            background: blue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>内容1</li>
+        <li>内容2</li>
+        <li>内容3</li>
+        <li>内容4</li>
+        <li>内容5</li>
+        <li>内容6</li>
+        <li>内容7</li>
+        <li>内容8</li>
+        <li>内容1</li>
+        <li>内容2</li>
+        <li>内容3</li>
+        <li>内容4</li>
+        <li>内容5</li>
+        <li>内容6</li>
+        <li>内容7</li>
+        <li>内容8</li>
+    </ul>
+    <!--<div class='goTop'>UP</div>-->
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        var showTop=false,
+            appendTop=false,
+            $goTop=$("<div class='goTop'>UP</div>")
+        function appendGoTop(){
+            $("body").append($goTop)
+            appendTop=true;
+        }
+        function showGoTop(){
+            $goTop.show()
+            showTop=true;
+        }
+        function hideGoTop(){
+            $goTop.hide()
+            showTop=false;
+        }
+        $(window).on("scroll",function(){
+            if($(window).scrollTop()>500){
+                if(!appendTop){
+                    appendGoTop()
+                }
+                if(!showTop){
+                    showGoTop()
+                }
+            }
+            else{
+                if(showTop){
+                    hideGoTop()
+                }
+            }
+        })
+//        $goTop.on("click",function(){
+//             $(window).scrollTop(0)
+//        })
+        $("body").on("click",".goTop",function(){
+            $(window).scrollTop(0)
+        })
+    </script>
+</body>
+</html>
