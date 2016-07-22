@@ -13,6 +13,11 @@ a {
 	color: #666;
 }
 
+/* img形成一个新的BFC,使a中匿名行级盒子和img不在同一个BFC中 */
+a>img{
+	display: block;
+}
+
 /* Basic */
 html, body {
 	height: 100%;
@@ -25,6 +30,11 @@ html, body {
 h1, h2, h3, h4 {
 	font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-weight: bold;
+}
+
+h4{
+	font-size: 18px;
+	line-height: 1.1;
 }
 
 p{
@@ -154,10 +164,11 @@ section.block > h2{
 }
 
 section.block>h3{
+	margin-bottom: 75px;
 	font: 16px/1.1 normal;
 	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-style:italic;
-	margin-bottom: 75px;
+	color:#777;
 }
 
 #portfolio, #team {
@@ -194,10 +205,14 @@ section#service .fa{
 }
 
 /* Portfolio */
+.portfolio-list{
+	margin-left: -30px;
+}
+
 .portfolio-list li{
 	float: left;
-	padding: 0 10px;
-	margin-bottom: 30px;
+	margin:0 0 30px 30px;
+	background: white;
 }
 
 .portfolio-list li img{
@@ -207,8 +222,7 @@ section#service .fa{
 
 .portfolio-list li i{
 	display: none;
-	margin-top: -268px;
-	margin-bottom: 8px;
+	margin-top: -260px;
 	width: 360px;
 	height: 260px;
 	line-height: 260px;
@@ -223,26 +237,26 @@ section#service .fa{
 }
 
 .portfolio-list li h4 {
-	font-size:18px;
-
+	margin-top: 25px;
 }
 .portfolio-list li p{
+	margin-bottom: 25px;
 	font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
 	font-style: italic;
 	font-size: 16px;
 }
 
 /* About */
-
-.timeline>li{
+section#about>div{
 	position: relative;
+}
+.timeline>li{
 	margin-bottom: 100px;
+	min-height: 170px;
 }
 
 .timeline>li section h4{
 	margin-bottom:10px;
-	font-size: 18px;
-    line-height: 1.1;
 }
 
 .timeline>li section p{
@@ -267,7 +281,7 @@ section#service .fa{
 	position: absolute;
 	left: 50%;
 	margin-left:-85px;
-    width: 156px;
+	width: 156px;
 	height: 156px;
 	border: 7px solid #f1f1f1;
 	border-radius: 50%;
@@ -276,4 +290,103 @@ section#service .fa{
 
 .timeline>li div img{
 	width: 100%;
+}
+
+.timeline>li:last-of-type div{
+	background: #fed136;
+}
+
+.timeline>li:last-of-type div ul{
+	padding: 39px 0;
+}
+
+.timeline>li:last-of-type div ul li{
+	font-size:18px;
+	line-height: 26px;
+	font-weight: bold;
+	color: white;
+}
+
+section#about>div>div{
+	position: absolute;
+	left:50%;
+	top:0;
+	margin-left: -1px;
+	width: 2px;
+	height: 100%;
+	background-color: #f1f1f1;
+	z-index: -1;
+}
+
+/* Team */
+.member{
+	margin:7px auto 50px auto;
+}
+.member>li{
+	float: left;
+	margin:0 78px;
+}
+
+.member>li div{
+	width: 224px;
+	height: 224px;
+	border-radius:50%;
+	overflow: hidden;
+}
+
+.member>li div img{
+	width: 100%;
+}
+
+.member>li h4{
+	margin-top: 25px;
+}
+
+.member>li p{
+	margin-bottom: 10px;
+	color: #777;
+}
+
+.member + p{
+	padding: 0 185px;
+	font-size: 16px;
+	color: #777;
+}
+
+
+.contract-icon>li{
+	display:inline-block;
+	padding: 0 5px;
+}
+
+.contract-icon>li a{
+	display:block;
+	width: 40px;
+	height: 40px;
+	font-size: 20px;
+	line-height: 40px;
+	border-radius: 50%;
+	color:white;
+	background: #222;
+	transition: all .3s;
+}
+
+.contract-icon>li a:hover{
+	background: #fed136;
+}
+
+/* sponsor */
+.sponsor-list li{
+	float: left;
+	margin: 50px 42.5px;
+}
+
+.sponsor-list li img{
+	width: 200px;
+	height: 50px;
+}
+
+/* contact */
+section#contact{
+	background: #222 url("../img/map-image.png") center no-repeat;
 }
