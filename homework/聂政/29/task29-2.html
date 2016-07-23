@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task29-2</title>
+    <style>
+        html,body,ul{
+            marrin: 0;
+            padding: 0;
+        }
+        .clear:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        li{
+            float: left;
+            margin: 5px;
+            list-style: none;
+            width: 400px;
+            height: 300px;
+            border: 1px solid;
+        }
+        img{
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <ul class="clear">
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b289ad8495.jpg"><a href="#"><img src="http://pic1.win4000.com/wallpaper/c/537b289ad8495.jpg" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b289e0fa02.jpg"><a href="#"><img src="http://pic1.win4000.com/wallpaper/c/537b289e0fa02.jpg" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b28a101323.jpg"><a href="#"><img src="http://pic1.win4000.com/wallpaper/c/537b28a101323.jpg" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b28a401768.jpg"><a href="#"><img src="http://pic1.win4000.com/wallpaper/c/537b28a401768.jpg" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b28a721338.jpg"><a href="#"><img src="http://pic1.win4000.com/wallpaper/c/537b28a721338.jpg" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b28ad4f565.jpg"><a href="#"><img src="http://pic1.win4000.com/wallpaper/c/537b28ad4f565.jpg" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b28b2cf818.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b28b60619b.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b28b95897b.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/B8/FE/rBACFFIdf0uxKPWNAAF1QFcIsj8079_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p4.gexing.com/G1/M00/BC/A5/rBACE1Idf0uRGUGRAAFOJw1_Qag518_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p3.gexing.com/G1/M00/B8/FE/rBACFFIdf0vA0y4gAAFlS1Tk6YI830_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/B8/FE/rBACFFIdf0vhN7pnAAFqDimkkG0506_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p3.gexing.com/G1/M00/BC/A5/rBACE1Idf0vSuhI4AAGcNmJ6fvQ145_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/BC/A5/rBACE1Idf0uCi1GCAAFWOwc3wm8358_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/B8/FE/rBACFFIdf0uztlAuAAGjKiOhk-w959_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/B8/FE/rBACFFIdf0vAmMlnAAE8KHFApz0915_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p3.gexing.com/G1/M00/BC/A5/rBACE1Idf0vBnCI4AAGUtn4mG2E991_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p3.gexing.com/G1/M00/BC/A5/rBACE1Idf0vwKak_AAL3SE-CWHU336_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/B8/FE/rBACFFIdf0uibAyqAAMF33dL0Yc736_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b28b2cf818.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b28b60619b.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://pic1.win4000.com/wallpaper/c/537b28b95897b.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/B8/FE/rBACFFIdf0uxKPWNAAF1QFcIsj8079_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p4.gexing.com/G1/M00/BC/A5/rBACE1Idf0uRGUGRAAFOJw1_Qag518_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p3.gexing.com/G1/M00/B8/FE/rBACFFIdf0vA0y4gAAFlS1Tk6YI830_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/B8/FE/rBACFFIdf0vhN7pnAAFqDimkkG0506_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p3.gexing.com/G1/M00/BC/A5/rBACE1Idf0vSuhI4AAGcNmJ6fvQ145_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/BC/A5/rBACE1Idf0uCi1GCAAFWOwc3wm8358_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/B8/FE/rBACFFIdf0uztlAuAAGjKiOhk-w959_600x.jpg"><a href="#"><img src="" ></a></li>
+        <li data-img="http://p1.gexing.com/G1/M00/B8/FE/rBACFFIdf0vAmMlnAAE8KHFApz0915_600x.jpg"><a href="#"><img src="" ></a></li>
+    </ul>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        var clock;
+        $(window).on("scroll",function(){
+            if(clock){
+                clearTimeout(clock)
+            }
+            clock = setTimeout(function(){
+                easyLoad()
+            },200)
+        })
+        function easyLoad(){
+            var windowScroll = $(window).scrollTop(),
+                windowWidth = $(window).height()
+            $("ul>li").each(function(){
+                if($(this).find("img").attr("isload")){
+                    return;
+                }
+                var offsetTop = $(this).offset().top;
+                if(windowScroll+windowWidth>offsetTop){
+                    $(this).find("img").attr("src",$(this).attr('data-img'))
+                    $(this).find("img").attr("isload","true")
+                }
+            })
+
+        }
+
+    </script>
+
+</body>
+</html>

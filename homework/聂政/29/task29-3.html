@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task29-3</title>
+    <style>
+        ul,li{
+            padding: 0;
+        }
+        ul{
+            width: 900px;
+            background: pink;
+            margin: 0 auto;
+        }
+        li{
+            list-style: none;
+            text-align: center;
+            width: 100%;
+            height: 100px;
+            line-height: 100px;
+            margin: 5px auto;
+            border: 1px solid;
+            cursor: pointer;
+        }
+        li:hover{
+            background: #008000;
+        }
+        .more{
+            margin: 10px auto;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            background: blue;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>内容1</li>
+        <li>内容2</li>
+        <li>内容3</li>
+        <li>内容4</li>
+        <li>内容5</li>
+        <li>内容6</li>
+        <li>内容7</li>
+        <li>内容8</li>
+        <li>内容9</li>
+        <li>内容10</li>
+        <li>内容11</li>
+        <li>内容12</li>
+        <li>内容13</li>
+        <li>内容14</li>
+        <li>内容15</li>
+        <li>内容16</li>
+    </ul>
+    <div class='more'>More</div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        /*
+        url: task29.php
+        入参: { start: 2,len: 6}
+        回参: {
+                status: 0, //0代表正常,1代表出错
+                data: [2,3,4,5,6,7]
+        }
+         */
+        var isShow=false,
+            $more=$(".more"),
+            clock;
+
+        $(window).on("scroll",function(){
+            var topSize = $("li").last().offset().top+100,
+                windowWidth = $(window).height(),
+                windowScroll = $(window).scrollTop();
+            if(clock){
+                clearTimeout(clock)
+            }
+            clock = setTimeout(function(){
+                if(windowScroll+windowWidth>=topSize){
+                    if(!isShow){
+                        showMore();     //显示"More"图标
+                        loadMore();     //加载更多
+                    }
+                }
+                else{
+                    if(isShow){
+                        hideMore();     //隐藏"More"图标
+                    }
+                }
+            },200)
+
+        })
+        function showMore(){
+            $more.show();
+            isShow=true;
+        }
+        function hideMore(){
+            $more.hide()
+            isShow=false;
+        }
+        //加载更多函数
+        function loadMore(){
+            var getNum = $("ul>li").length;
+            //ajax向服务器发送请求
+            ajax({
+                url: "task29.php",
+                method: "get",
+                dataType: "json",
+                data: {
+                    number: getNum,
+                    len: 6
+                }
+            }).done(function(){
+                success(ret);
+            }).fail(function(){
+                error(ret);
+            })
+        }
+        function success(ret){
+            if(ret.status==0){
+                for(var i=0;i<ret.number;i++){
+                    $("ul").append("<li>内容" + i + "</li>")
+                }
+            }
+            else{
+                console.log("wrong data")
+            }
+        }
+        function error(ret){
+            alert(error)
+        }
+        $("body").on("click",".more",function(){
+            $(window).scrollTop(0)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <style>
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .carousel {
+            position: relative;
+            width: 352px;
+            height: 220px;
+            margin: 20px;
+            overflow: hidden;
+        }
+        
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        
+        .ct {
+            position: absolute;
+        }
+        
+        .img-ct {
+            float: left;
+        }
+        
+        .img-ct > a {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .arrow {
+            display: block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #c5c3b4;
+            opacity: 0.3;
+            font-size: 16px;
+            text-align: center;
+            line-height: 20px;
+            color: #fff;
+            font-weight: 700;
+        }
+        
+        .arrow:hover {
+            opacity: 0.8;
+        }
+        
+        .left {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+        }
+        
+        .right {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+        }
+        
+        .bullet {
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+        }
+        
+        .bullet li {
+            display: inline-block;
+            width: 16px;
+            height: 8px;
+            background-color: #c5c3b4;
+            opacity: 0.4;
+            margin: 0 2px;
+            cursor: pointer;
+        }
+        
+        .carousel .hover {
+            color: #000;
+            background-color: #fff;
+            opacity: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="carousel1" class="carousel">
+        <ul class="ct clearfix">
+            <li class="img-ct" data-id=0>
+                <a href="#"><img src="img/1.jpg" alt="img"></a>
+            </li>
+            <li class="img-ct" data-id=1>
+                <a href="#"><img src="img/2.jpg" alt="img"></a>
+            </li>
+            <li class="img-ct" data-id=2>
+                <a href="#"><img src="img/3.jpg" alt="img"></a>
+            </li>
+            <li class="img-ct" data-id=3>
+                <a href="#"><img src="img/4.jpg" alt="img"></a>
+            </li>
+        </ul>
+        <a href="#" class="arrow left"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        <a href="#" class="arrow right"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <ul class='bullet'>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div id="carousel2" class="carousel">
+        <ul class="ct clearfix">
+            <li class="img-ct" data-id=0>
+                <a href="#"><img src="img/1.jpg" alt="img"></a>
+            </li>
+            <li class="img-ct" data-id=1>
+                <a href="#"><img src="img/2.jpg" alt="img"></a>
+            </li>
+            <li class="img-ct" data-id=2>
+                <a href="#"><img src="img/3.jpg" alt="img"></a>
+            </li>
+            <li class="img-ct" data-id=3>
+                <a href="#"><img src="img/4.jpg" alt="img"></a>
+            </li>
+        </ul>
+        <a href="#" class="arrow left"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        <a href="#" class="arrow right"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <ul class='bullet'>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        function Carousel($node, bool) {
+            this.$node = $node;
+            this.ct = $node.find(".ct");
+            this.idx = 0;
+            this.isLocked = false;
+            this.imgCount = $node.find("img").length;
+            this.imgWidth = $node.find("img").width();
+            this.bool = bool;
+            this.bullet = $node.find(".bullet");    
+            this.LfArrow = $node.find(".arrow.left");
+            this.RtArrow = $node.find(".arrow.right");    
+            this.playAuto = function() {
+                if (this.bool) {
+                    var me = this;
+                    setInterval(function() {
+                        me.playForward()
+                    }, 3000);
+                }
+            }
+            this.setImg();
+            this.bind();
+            this.playAuto();
+            this.setBullet();
+        }
+        Carousel.prototype = {
+            setImg: function() {
+                var firstCloneNode = this.$node.find(".img-ct").first().clone(),
+                    lastCloneNode = this.$node.find(".img-ct").last().clone();
+
+                firstCloneNode.appendTo(this.ct);
+                lastCloneNode.prependTo(this.ct);
+                this.ct.css({
+                    left: -this.imgWidth,
+                    width: this.imgWidth * (this.imgCount + 2)
+                })
+            },
+            playForward: function(num) {
+                if (this.isLocked) {
+                    return;
+                }
+                var me = this,
+                    count = num || 1;
+                this.isLocked = true;
+                this.ct.animate({
+                        left: "-=" + this.imgWidth * count
+                    },
+                    function() {
+                        me.idx += count;
+                        if (me.idx % me.imgCount === 0) {
+                            me.ct.css({
+                                left: -me.imgWidth,
+                                width: me.imgWidth * (me.imgCount + 2)
+                            })
+                            me.idx = 0;
+                        }
+                        me.setBullet();
+                    })
+                this.isLocked = false;
+            },
+            playBackward: function(num) {
+                if (this.isLocked) {
+                    return;
+                }
+                var me = this,
+                    count = num || 1;
+                this.isLocked = true;
+                this.ct.animate({
+                        left: "+=" + this.imgWidth * count
+                    },
+                    function() {
+                        me.idx -= count;
+                        if (me.idx < 0) {
+                            me.ct.css({
+                                left: -me.imgWidth * me.imgCount,
+                                width: me.imgWidth * (me.imgCount + 2)
+                            })
+                            me.idx = me.imgCount - 1;
+                        }
+                        me.setBullet();
+                    })
+                this.isLocked = false;
+            },
+            setBullet: function() {
+                this.bullet.find("li").removeClass("hover").eq(this.idx).addClass("hover");
+            },
+            bind: function() {
+                var me = this;
+                if(this.$node.find(".bullet")!==null){
+                    this.bullet.on("click", "li", function(event) {
+                        var num = me.bullet.find("li").index(event.target) - me.idx;
+                        if (num > 0) {
+                            me.playForward(num);
+                            return;
+                        }
+                        if (num < 0) {
+                            me.playBackward(-num);
+                            return;
+                        }
+                    })    
+                }
+                if(this.$node.find(".arrow")!==null){
+                    this.LfArrow.on("click", function() {
+                        me.playBackward();
+                    })
+                    this.RtArrow.on("click", function() {
+                        me.playForward();
+                    })    
+                }
+            }
+        }
+
+        var $node1 = $("#carousel1"),
+            $node2 = $("#carousel2"),
+            carousel1 = new Carousel($node1, true),
+            carousel2 = new Carousel($node2, false);
+
+    </script>
+</body>
+
+</html>

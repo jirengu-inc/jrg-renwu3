@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!-- saved from url=(0124)http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>导航</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<style>
+	ul,li{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	a{
+		color: #333;
+		text-decoration: none;
+	}
+	.nav-aside{
+		background: #c7171e;
+		width: 200px;
+	}
+	.nav-aside .category{
+		position: relative;
+	}
+	.nav-aside .category:last-of-type{
+		border: none;
+	}
+	.nav-aside .cate-title{
+		display: block;
+		color: #fff;
+		font-size: 14px;
+		margin: 0 10px;
+		padding: 10px;
+		border-bottom: 1px dotted #de272e;
+	}
+	.nav-aside .icon-goto{
+		color: #fff;
+		font-size: 14px;
+	}
+	.nav-aside .icon-goto{
+		position: absolute;
+		right: 10px;
+		top: 10px;
+	}
+	.nav-aside .child-panel{
+	    position: absolute;
+	    top: 0;
+	    left: 200px;
+	    background: #fff;
+	    border: 1px solid #ccc;
+	    width: 210px;
+	    font-size: 12px;
+	    display: none;
+	}
+	.nav-aside .category.hover .child-panel{
+		display: block;
+	}
+	.child-panel li {
+	    width: 55px;
+	    float: left;
+	    padding: 10px 20px;
+	}
+</style>
+</head>
+<body>
+
+	<div class="area-nav">
+		<ul class="nav-aside">
+			<li class="category">
+				<a class="cate-title" href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html#">珠宝玉器</a>
+				<span class="icon-goto">&gt;</span>
+				<ul class="child-panel">
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">翡翠</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">玉石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">宝石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">水晶</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">玛瑙</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">珍珠</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">钻石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">琥珀</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">和田</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">琥珀</a></li>
+				</ul>
+			</li>
+			<li class="category">
+				<a class="cate-title" href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html#">珠宝玉器</a>
+				<span class="icon-goto">&gt;</span>
+				<ul class="child-panel">
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">翡翠</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">玉石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">宝石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">水晶</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">玛瑙</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">珍珠</a></li>
+				</ul>
+			</li>
+			<li class="category">
+				<a class="cate-title" href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html#">珠宝玉器</a>
+				<span class="icon-goto">&gt;</span>
+				<ul class="child-panel">
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">翡翠</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">玉石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">宝石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">水晶</a></li>
+				</ul>
+			</li>
+			<li class="category">
+				<a class="cate-title" href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html#">珠宝玉器</a>
+				<span class="icon-goto">&gt;</span>
+				<ul class="child-panel">
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">翡翠</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">玉石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">宝石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">水晶</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">玛瑙</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">珍珠</a></li>
+				</ul>
+			</li>
+			<li class="category">
+				<a class="cate-title" href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html#">珠宝玉器</a>
+				<span class="icon-goto">&gt;</span>
+				<ul class="child-panel">
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">翡翠</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">玉石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">宝石</a></li>
+					<li><a href="http://book.jirengu.com/jirengu-inc/jrg-fe7/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS8-jqery%E8%AF%AD%E6%B3%95/8-1.html">水晶</a></li>
+				</ul>
+			</li>
+		</ul>	
+	</div>
+
+	<div class="area-products">
+		<!-- 其他模块  -->
+	</div>
+
+
+    <script src="./导航_files/jquery.js"></script>
+    <script>
+    $(function(){
+    	$('.nav-aside .category').on('mouseenter', function(){
+    		$(this).addClass('hover');
+    		// 或者
+    		// $(this).find('.child-panel').show();
+    		// 或者
+    		// $(this).find('.child-panel').css('display', 'block');
+    	});
+     	$('.nav-aside .category').on('mouseleave', function(){
+    		$(this).removeClass('hover');
+    		// 或者
+    		// $(this).find('.child-panel').hide();
+    		// 或者
+    		// $(this).find('.child-panel').css('display', 'none');
+    	});   	
+    });
+    </script>
+
+</body></html>
