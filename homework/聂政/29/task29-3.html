@@ -16,8 +16,8 @@
             list-style: none;
             text-align: center;
             width: 100%;
-            height: 100px;
-            line-height: 100px;
+            height: 50px;
+            line-height: 50px;
             margin: 5px auto;
             border: 1px solid;
             cursor: pointer;
@@ -36,6 +36,7 @@
             border-radius: 50%;
             background: blue;
             cursor: pointer;
+            /*display: none;*/
         }
     </style>
 </head>
@@ -62,7 +63,7 @@
     <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
     <script>
         /*
-        url: task29.php
+        url: task29-3.php
         入参: { start: 2,len: 6}
         回参: {
                 status: 0, //0代表正常,1代表出错
@@ -74,17 +75,17 @@
             clock;
 
         $(window).on("scroll",function(){
-            var topSize = $("li").last().offset().top+100,
-                windowWidth = $(window).height(),
+            var topSize = $more.offset().top,
+                windowHeight = $(window).height(),
                 windowScroll = $(window).scrollTop();
             if(clock){
                 clearTimeout(clock)
             }
             clock = setTimeout(function(){
-                if(windowScroll+windowWidth>=topSize){
+                if( (windowScroll+windowHeight>=topSize) && (topSize > windowScroll) ){
                     if(!isShow){
-                        showMore();     //显示"More"图标
-                        loadMore();     //加载更多
+                        showMore();
+                        loadMore();    //加载更多
                     }
                 }
                 else{
@@ -92,46 +93,45 @@
                         hideMore();     //隐藏"More"图标
                     }
                 }
-            },200)
+            },50)
 
         })
         function showMore(){
-            $more.show();
             isShow=true;
         }
         function hideMore(){
-            $more.hide()
             isShow=false;
         }
         //加载更多函数
         function loadMore(){
-            var getNum = $("ul>li").length;
+            var start = $("ul>li").length;
+            console.log(start)
             //ajax向服务器发送请求
-            ajax({
-                url: "task29.php",
+            $.ajax({
+                url: "task29-3.php",
                 method: "get",
                 dataType: "json",
                 data: {
-                    number: getNum,
+                    start: start,
                     len: 6
                 }
-            }).done(function(){
+            }).done(function(ret){
                 success(ret);
             }).fail(function(){
-                error(ret);
+                error();
             })
         }
         function success(ret){
-            if(ret.status==0){
-                for(var i=0;i<ret.number;i++){
-                    $("ul").append("<li>内容" + i + "</li>")
+            if(ret.status==1){
+                for(var i=0;i<ret.data.length;i++){
+                    $("ul").append("<li>"+ ret.data[i] + "</li>")
                 }
             }
             else{
                 console.log("wrong data")
             }
         }
-        function error(ret){
+        function error(){
             alert(error)
         }
         $("body").on("click",".more",function(){
