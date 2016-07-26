@@ -38,6 +38,8 @@ function Music() {
     this.bind();
     this.ajaxChannels();
     this.audioAPIbind($('#jquery-music .play a'));
+    //一开始就随机播放一首歌曲，不然很可能很多人根本就不知道这玩意怎么用
+    this.ajaxSongs();
 }
 Music.prototype = {
     appendCss : function () {
