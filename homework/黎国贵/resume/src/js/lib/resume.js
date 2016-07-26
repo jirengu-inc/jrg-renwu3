@@ -56,4 +56,16 @@ requirejs(['jquery','Tab1','Tab2','Gotop','Expourse','Waterfall','Carousel'],fun
 
     //回到顶部
     new Gotop(300,1500);
+
+    //瀑布流布局鼠标经过字体颜色改变
+    $('.cover').on('mouseenter',function(){
+        $(this).siblings('.itme-info').css({
+            color:"#ff8800"
+        });
+    });
+    $('.cover').on('mouseleave',function(){
+        $(this).siblings('.itme-info').css({
+            color:"#000"
+        });
+    });
 });

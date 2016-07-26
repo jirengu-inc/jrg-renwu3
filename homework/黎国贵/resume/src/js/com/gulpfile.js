@@ -19,7 +19,16 @@ gulp.task('css',function () {
         .pipe(gulp.dest('../../../dist/css/'));
 });
 
-gulp.task('build',['css']); //在此文件的界面使用git bash 输入gulp build 就可以执行这四个任务
+gulp.task('js',function () {
+    gulp.src('../lib/resume.js')
+        .pipe(jshint())                  //检查js文件
+        .pipe(jshint.reporter('default'))
+        .pipe(concat('resume.min.js'))     //合并js文件
+        .pipe(uglify())                   //压缩js文件
+        .pipe(gulp.dest('../../../dist/js/'));
+});
+
+gulp.task('build',['css','js']); //在此文件的界面使用git bash 输入gulp build 就可以执行这四个任务
 
 
 
