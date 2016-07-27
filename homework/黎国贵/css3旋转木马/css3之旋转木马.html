@@ -10,15 +10,16 @@
             height: 140px;
             position: relative;
             perspective: 1000px;
+            /*background-color: blue;*/
         }
         #carousel {
             width: 100%;
             height: 100%;
             position: absolute;
             transform-style: preserve-3d;
+            /*background-color: red;*/
             animation:move 9s;
-            animation-delay: 1s;
-            animation-iteration-count: 1000;
+            animation-iteration-count:1000;
         }
         #carousel figure {
             margin: 0;
@@ -75,6 +76,9 @@
             background: url(img/11.jpg);
             background-size: cover;
         }
+        /*#carousel:hover{*/
+            /**/
+        /*}*/
         @keyframes move{
             0% {transform: rotateY(0deg);}
             11.111% {transform: rotateY(40deg);}
