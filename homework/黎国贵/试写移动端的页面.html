@@ -172,18 +172,21 @@
             position:absolute;
             bottom:10px;
             left: 50%;
-            transform:translateX(-50%);
+            /*transform:translateX(-50%);*/
+            margin-left: -40px;
         }
         .carousel .bullet li{
-            width: 30px;
+            width: 10px;
             height: 10px;
-            display: inline-block;
+            float:left;
             background-color: #fff;
             cursor: pointer;
-            border-radius: 3px;
+            border-radius: 50%;
+            margin-left: 5px;
+            margin-right: 5px;
         }
         .carousel .bullet li.active{
-            background-color: #000;
+            background-color: deeppink;
         }
     </style>
 </head>
@@ -206,7 +209,7 @@
                 <li><a href="#"></a></li>
                 <li><a href="#"></a></li>
             </ul>
-            <ul class="bullet">
+            <ul class="bullet clear">
                 <li class="active"></li>
                 <li></li>
                 <li></li>
@@ -366,7 +369,7 @@
         </ul>
     </section>
 </footer>
-<script src="jquery-2.2.3.min.js"></script>
+<script src="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/jquery-2.2.3.min.js"></script>
 <script>
     function Carousel($node){
         this.aLong();
