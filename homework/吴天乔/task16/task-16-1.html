@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>判断一个变量是否是数字、字符串、布尔、函数</title>
+<body>
+    <h1>判断一个变量是否是数字、字符串、布尔、函数</h1>
+    <script>
+    	function isNumber(el){
+    		if(typeof el === "number"){
+    			return true;
+    		}
+    		else{
+    			return false;
+    		}
+    	}
+
+    	function  isString(el){
+    		if(typeof el === "string"){
+    			return true;
+    		}
+    		else{
+    			return false;
+    		}
+    	}
+
+    	function isBoolean(el){
+    		if(typeof el === "boolean"){
+    			return true;
+    		}
+    		else{
+    			return false;
+    		}
+    	}
+
+    	function isFunction(el){
+    		if(typeof el === "function"){
+    			return true;
+    		}
+    		else{
+    			return false;
+    		}
+    	}
+
+    	var a = 2,
+    		b = "wtq",
+    		c = false;
+    	alert( "isNumber(a)?" + " " + isNumber(a) );
+    	alert( "isString(a)?" + " " + isString(a) );
+    	alert( "isString(b)?" + " " + isString(b) );
+    	alert( "isBoolean(c)?" + " " + isBoolean(c) );
+    	alert( "isFunction(a)?" + " " + isFunction(a) );
+    	alert( "isFunction(isNumber)?" + " " + isFunction(isNumber) );
+    </script>
+</body>
+</html>
