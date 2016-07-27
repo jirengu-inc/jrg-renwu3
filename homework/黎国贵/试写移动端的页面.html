@@ -29,6 +29,7 @@
             display: block;
             clear:both;
         }
+        /*导航栏*/
         nav{
             background-color: #fff;
         }
@@ -42,6 +43,9 @@
             text-align:center;
             border-top:1px solid #ccc;
             border-bottom:1px solid #ccc;
+        }
+        nav ul li a{
+            color:#000;
         }
         /*标题栏*/
         .caption{
@@ -107,10 +111,11 @@
             text-align: center;
             line-height:50px;
             color:#fff;
+            font-size: 15rem;
         }
         .cell-li div{
             text-align: center;
-            font-size: 5rem;
+            font-size: 10rem;
         }
         .orange{
             background-color: #ff8800;
@@ -127,6 +132,21 @@
         .purple{
             background-color: purple;
         }
+        /*footer区*/
+        .end{
+            margin-top: 20px;
+            height: 100px;
+        }
+        .end li{
+            width: 50%;
+            float: left;
+            text-align: center;
+            font-size: 15rem;
+        }
+        .end li a{
+            color:#000;
+        }
+
     </style>
 </head>
 <body>
@@ -284,7 +304,14 @@
         </ul>
     </section>
 </main>
-
+<footer>
+    <section class="end">
+        <ul class="clear">
+            <li><a href="#">电脑版</a></li>
+            <li><a href="#">返回顶部</a></li>
+        </ul>
+    </section>
+</footer>
 <script src="jquery-2.2.3.min.js"></script>
 <script>
 
