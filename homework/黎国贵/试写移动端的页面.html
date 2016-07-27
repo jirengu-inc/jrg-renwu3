@@ -43,6 +43,7 @@
             border-top:1px solid #ccc;
             border-bottom:1px solid #ccc;
         }
+        /*标题栏*/
         .caption{
             margin-top:5px;
             background-color: #fff;
@@ -52,11 +53,18 @@
             padding-left: 5px;
             font-size: 15rem;
         }
+        .caption .title1 a{
+            color:#ff8800;
+        }
         .caption .title2{
             float: right;
             padding-right: 5px;
             font-size: 15rem;
         }
+        .caption .title2 a{
+            color:#ff8800;
+        }
+        /*四叶区*/
         .hot-show{
             background-color: #fff;
         }
@@ -64,19 +72,60 @@
             float: left;
             box-sizing: border-box;
             width: 50%;
-            height: 100px;
             padding-left: 5px;
             padding-right: 5px;
         }
         .hot-show-li img{
             width: 100%;
-            height: 75px;
-            background-color: #ff8800;
+            height: 120px;
+            background-color: #fff;
+            border-radius:3px;
         }
         .hot-show-li div{
             width: 100%;
-            height: 25px;
+            height: 30px;
             text-align: center;
+            font-size: 15rem;
+        }
+        /*文字图标*/
+        .cell{
+            margin-top: 5px;
+            background-color: #fff;
+        }
+        .cell-li{
+            box-sizing: border-box;
+            width: 20%;
+            padding-left: 15px;
+            padding-right: 15px;
+            float:left;
+        }
+        .cell-li .font-logo{
+            display: block;
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            text-align: center;
+            line-height:50px;
+            color:#fff;
+        }
+        .cell-li div{
+            text-align: center;
+            font-size: 5rem;
+        }
+        .orange{
+            background-color: #ff8800;
+        }
+        .blue{
+            background-color: deepskyblue;
+        }
+        .pink{
+            background-color: deeppink;
+        }
+        .green{
+            background-color: green;
+        }
+        .purple{
+            background-color: purple;
         }
     </style>
 </head>
@@ -90,6 +139,37 @@
         <li><a href="#">我的</a></li>
     </ul>
 </nav>
+<header>
+    <section class="cell">
+        <ul class="clear">
+            <li class="cell-li">
+                <a class='font-logo orange' href="#">html</a>
+                <div>积分乐园</div>
+                <a href="#"></a>
+            </li>
+            <li class="cell-li">
+                <a class='font-logo pink' href="#">html</a>
+                <div>积分乐园</div>
+                <a href="#"></a>
+            </li>
+            <li class="cell-li">
+                <a class='font-logo purple' href="#">html</a>
+                <div>积分乐园</div>
+                <a href="#"></a>
+            </li>
+            <li class="cell-li">
+                <a class='font-logo blue' href="#">html</a>
+                <div>积分乐园</div>
+                <a href="#"></a>
+            </li>
+            <li class="cell-li">
+                <a class='font-logo green' href="#">html</a>
+                <div>积分乐园</div>
+                <a href="#"></a>
+            </li>
+        </ul>
+    </section>
+</header>
 <main>
     <section class="hot-resume">
         <div class="caption clear">
@@ -98,22 +178,22 @@
         </div>
         <ul class="hot-show clear">
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
@@ -126,22 +206,22 @@
         </div>
         <ul class="hot-show clear">
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
@@ -154,22 +234,22 @@
         </div>
         <ul class="hot-show clear">
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
@@ -182,22 +262,22 @@
         </div>
         <ul class="hot-show clear">
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
             <li class="hot-show-li">
-                <img src="" alt="" class="pic1">
+                <img src="th.jpg" alt="" class="pic1">
                 <div>丢你雷姆</div>
                 <a href="#"></a>
             </li>
