@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>移动端的测试</title>
+</head>
+<body>
+    <h1></h1>
+</body>
+<script type="text/javascript">
+    function browserRedirect() {
+
+        var sUserAgent= navigator.userAgent.toLowerCase();
+
+        var bIsIpad= sUserAgent.match(/ipad/i) == "ipad";
+
+        var bIsIphoneOs= sUserAgent.match(/iphone os/i) == "iphone os";
+
+        var bIsMidp= sUserAgent.match(/midp/i) == "midp";
+
+        var bIsUc7= sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+
+        var bIsUc= sUserAgent.match(/ucweb/i) == "ucweb";
+
+        var bIsAndroid= sUserAgent.match(/android/i) == "android";
+
+        var bIsCE= sUserAgent.match(/windows ce/i) == "windows ce";
+
+        var bIsWM= sUserAgent.match(/windows mobile/i) == "windows mobile";
+
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+
+//            window.location.href= '手机网站地址';
+            document.getElementsByTagName('h1')[0].innerText = '这是手机打开的页面';
+
+        } else {
+
+//            window.location= '电脑网站地址';
+            document.getElementsByTagName('h1')[0].innerText = '这是电脑打开的页面';
+        }
+
+    }
+
+    browserRedirect();
+</script>
+</html>
