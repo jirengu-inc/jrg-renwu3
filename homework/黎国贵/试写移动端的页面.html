@@ -2,9 +2,212 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content=" initial-scale=1, user-scalable=0, minimal-ui">
+    <title>第一次试写移动端的页面</title>
+    <style>
+        html,body{
+            width: 100%;
+        }
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            font-size:1px;
+        }
+        body{
+            background-color: #eee;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .clear:after{
+            content:"";
+            display: block;
+            clear:both;
+        }
+        nav{
+            background-color: #fff;
+        }
+        nav ul{
+            width:100%
+        }
+        nav ul li{
+            float:left;
+            width:20%;
+            font-size: 30rem;
+            text-align:center;
+            border-top:1px solid #ccc;
+            border-bottom:1px solid #ccc;
+        }
+        .caption{
+            margin-top:5px;
+            background-color: #fff;
+        }
+        .caption .title1{
+            float: left;
+            padding-left: 5px;
+            font-size: 15rem;
+        }
+        .caption .title2{
+            float: right;
+            padding-right: 5px;
+            font-size: 15rem;
+        }
+        .hot-show{
+            background-color: #fff;
+        }
+        .hot-show-li{
+            float: left;
+            box-sizing: border-box;
+            width: 50%;
+            height: 100px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+        .hot-show-li img{
+            width: 100%;
+            height: 75px;
+            background-color: #ff8800;
+        }
+        .hot-show-li div{
+            width: 100%;
+            height: 25px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <h1>这里是移动端的页面</h1>
+<nav>
+    <ul class="clear">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">频道</a></li>
+        <li><a href="#">直播</a></li>
+        <li><a href="#">排行</a></li>
+        <li><a href="#">我的</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="hot-resume">
+        <div class="caption clear">
+            <div class="title1"><a href="#">热门推荐</a></div>
+            <div class="title2"><a href="#">排行榜</a></div>
+        </div>
+        <ul class="hot-show clear">
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+        </ul>
+    </section>
+    <section class="hot-resume">
+        <div class="caption clear">
+            <div class="title1"><a href="#">正在直播</a></div>
+            <div class="title2"><a href="#">查看更多直播</a></div>
+        </div>
+        <ul class="hot-show clear">
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+        </ul>
+    </section>
+    <section class="hot-resume">
+        <div class="caption clear">
+            <div class="title1"><a href="#">动画区</a></div>
+            <div class="title2"><a href="#">查看更多更新</a></div>
+        </div>
+        <ul class="hot-show clear">
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+        </ul>
+    </section>
+    <section class="hot-resume">
+        <div class="caption clear">
+            <div class="title1"><a href="#">音乐区</a></div>
+            <div class="title2"><a href="#">查看更多更新</a></div>
+        </div>
+        <ul class="hot-show clear">
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+            <li class="hot-show-li">
+                <img src="" alt="" class="pic1">
+                <div>丢你雷姆</div>
+                <a href="#"></a>
+            </li>
+        </ul>
+    </section>
+</main>
+
+<script src="jquery-2.2.3.min.js"></script>
+<script>
+
+</script>
 </body>
 </html>
