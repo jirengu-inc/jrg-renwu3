@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>resume</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('//at.alicdn.com/t/font_1469718842_2720194.eot'); /* IE9*/
+            src: url('//at.alicdn.com/t/font_1469718842_2720194.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('//at.alicdn.com/t/font_1469718842_2720194.woff') format('woff'), /* chrome、firefox */
+            url('//at.alicdn.com/t/font_1469718842_2720194.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('//at.alicdn.com/t/font_1469718842_2720194.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont {
+            font-family:'iconfont';
+            font-size:30px;
+            font-style:normal;
+            color:#ff8800;
+        }
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style:none;
+        }
+        a{
+            text-decoration:none;
+        }
+        .clear:after{
+            content:'';
+            display: block;
+            clear: both;
+        }
+        .contain{
+            margin: 0 auto;
+            width: 980px;
+        }
+        /*导航*/
+        .nav{
+            width: 100%;
+            position:absolute;
+            background-color: rgba(255,255,255,0.5);
+        }
+        .nav-left{
+            float:left;
+            height: 40px;
+            line-height: 40px;
+        }
+        .nav-right{
+            float:right;
+        }
+        .nav-right-ul li{
+            float: left;
+            text-align: center;
+            margin-left: 20px;
+            height: 40px;
+            line-height: 40px;
+        }
+        .nav-right-ul li a{
+            color:#000;
+        }
+        /*头部*/
+        /*头部图片区*/
+        .header-layout{
+            height: 170px;
+            background: url('http://i0.hdslb.com/group1/M00/B7/9A/oYYBAFd16ASAFbS4AAcNql6NOb8768.png') no-repeat;
+        }
+        .me-img{
+            float:left;
+            height: 130px;
+            width:130px;
+            margin-top: 40px;
+            background: url("img/我.jpg") no-repeat;
+            background-size:cover;
+            background-position:0,100px;
+            border-radius:50%;
+        }
+        .me-introduce{
+            float:right;
+            height: 130px;
+            margin-top: 40px;
+        }
+        /*头部分类区*/
+        .num{
+
+        }
+        /*分类区左边*/
+        .menu{
+            margin-top: 10px;
+            float:left;
+        }
+        .menu-li{
+            float:left;
+            position:relative;
+            width: 50px;
+            height: 30px;
+            margin-left: 25px;
+            margin-right: 25px;
+            background-color: pink;
+            line-height: 30px;
+            text-align: center;
+            border-radius:10px;
+        }
+        .menu-li a{
+            color:#fff;
+        }
+        /*分类区右边*/
+        .menu-r{
+            float:right;
+        }
+        /*鼠标移动就出现*/
+        .i-num{
+            position:absolute;
+            display:none;
+            top:100%;
+            left:0;
+            z-index: 100;
+        }
+        .menu-li:hover .i-num{
+            display: block;
+        }
+        .i-num li{
+            box-sizing:border-box;
+            padding-left: 10px;
+            min-width:100px;
+            text-align:left;
+            background-color: #fff;
+        }
+        .i-num li a{
+            color:#000;
+        }
+        .i-num li:hover{
+            background-color: #ccc;
+        }
+        /*头部demo展现*/
+        .header-demo{
+            margin-top: 10px;
+        }
+        /*左轮播*/
+        .carousel{
+            float:left;
+            position: relative;
+            overflow: hidden;
+            width: 440px;
+            height: 220px;
+            background-color: #eeeeee;
+        }
+        .carousel .ct{
+            position:absolute;
+        }
+        .carousel .ct li{
+            position:relative;
+            float: left;
+        }
+        .carousel .ct img{
+            width: 440px;
+            height: 220px;
+        }
+        .carousel .arrow{
+            position:absolute;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            margin-top: -15px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #4E443C;
+            color:#fff;
+            border-radius: 50%;
+            opacity: 0.8;
+            font-size:28px;
+        }
+        .carousel .arrow:hover{
+            opacity:1;
+        }
+        .carousel .prev{
+            left: 10px;
+        }
+        .carousel .next{
+            right:10px;
+        }
+        .carousel .bullet{
+            position:absolute;
+            bottom:10px;
+            left: 50%;
+            transform:translateX(-50%);
+        }
+        .carousel .bullet li{
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            background-color: #fff;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .carousel .bullet li.active{
+            background-color: deeppink;
+        }
+        /*右分区*/
+        .header-demo-r{
+            float:right;
+            width:540px;
+        }
+        .preview{
+            float:left;
+            position:relative;
+            width: 160px;
+            height: 100px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            overflow:hidden;
+            border-radius:5px;
+        }
+        .preview>img{
+            width: 100%;
+            height: 100%;
+
+        }
+        .preview>a{
+            position:absolute;
+            display: block;
+            width: 100%;
+            height:100%;
+            top:80%;
+            background-color: rgba(50,50,50,0.7);
+        }
+        .info div{
+            color:#fff;
+        }
+        .info p{
+            color:#fff;
+        }
+        .preview:hover .preview-a{
+            top:0;
+        }
+        /*main*/
+        /*bilibili-show*/
+        .show{
+            margin-top: 30px;
+        }
+        /*bilibili-show左边*/
+        .show-l{
+            float:left;
+            width: 700px;
+        }
+        .show-demo{
+            margin-left: -20px;
+        }
+        .show-demo-li{
+            float:left;
+            position:relative;
+            width:160px;
+            height: 130px;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+        .show-demo-li img{
+            width:160px;
+            height: 100px;
+            border-radius:5px;
+        }
+        .show-demo-li a{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top:0;
+            left:0;
+        }
+        .show-demo-li:hover .html-info{
+            color:skyblue;
+        }
+        /*bilibili-show右边*/
+        .show-r{
+            float:right;
+            width: 260px;
+        }
+        .show-wb-title{
+            height: 33px;
+            line-height:33px;
+        }
+        .show-wb-li{
+            position:relative;
+            padding-left: 25px;
+            height: 18px;
+            line-height: 18px;
+            margin-bottom: 15px;
+        }
+        .show-wb-li a{
+            color:#000;
+        }
+        .show-wb-li a:hover{
+            color:deepskyblue;
+        }
+        .number{
+            position:absolute;
+            display: block;
+            width: 18px;
+            height: 18px;
+            left: 0;
+            background-color: deeppink;
+            text-align: center;
+            line-height: 18px;
+            color:#fff;
+        }
+        /*bilibili-show2*/
+        .show2{
+            margin-top: 30px;
+        }
+        .show2-ct{
+            margin-left:-86.66px;
+        }
+        .show2-li{
+            float: left;
+            width: 180px;
+            margin-left: 86.66px;
+            margin-bottom:36px;
+        }
+        /*小item的左边*/
+        .show2-item-l{
+            float:left;
+            width:72px;
+            height:72px;
+            margin-right: 12px;
+            border-radius:5px;
+            overflow: hidden;
+        }
+        .show2-item-l img{
+            width:100%;
+            height:100%;
+            transition:all 0.3s;
+        }
+        .show2-item-l img:hover{
+            transform: scale(1.2);
+        }
+        /*小item的右边*/
+        .show2-item-r{
+            float:right;
+            width: 96px;
+            text-align: center;
+        }
+        .show2-item-r a{
+            color:#000;
+        }
+        .show2-item-r a:hover{
+            color:deepskyblue;
+        }
+        /*footer*/
+        #footer{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .contact{
+            text-align:center;
+        }
+        .contact a{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .contact .iconfont{
+            font-family:'iconfont';
+            font-size:40px;
+            font-style:normal;
+            color:#000;
+        }
+        .contact .iconfont:hover{
+            color:#ff8800;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <div class="contain clear">
+            <div class="nav-left">黎国贵简历</div>
+            <div class="nav-right">
+                <ul class="nav-right-ul clear">
+                    <li><a href="https://github.com/liguogui" target="_blank">Github</a></li>
+                    <li><a href="http://blog.leanote.com/qq-lgg" target="_blank">个人博客</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="header">
+        <div class="header-layout">
+            <div class="contain clear">
+                <div class="me-img"></div>
+                <div class="me-introduce"></div>
+            </div>
+        </div>
+        <div class="num">
+            <div class="contain clear">
+                <ul class="menu clear">
+                    <li class="menu-li">
+                        <a href="#">html</a>
+                        <ul class="i-num">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-li">
+                        <a href="#">css</a>
+                        <ul class="i-num">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-li">
+                        <a href="#">js</a>
+                        <ul class="i-num">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-li">
+                        <a href="#">jquery</a>
+                        <ul class="i-num">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-li">
+                        <a href="#">其他</a>
+                        <ul class="i-num">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-li">
+                        <a href="#">其他</a>
+                        <ul class="i-num">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-li">
+                        <a href="#">其他</a>
+                        <ul class="i-num">
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="menu-r">
+                    <a href="#"><img src="http://i0.hdslb.com/icon/9068618cb70cdc16b696814323a33033.gif" alt=""></a>
+                    <a href="#"><img src="http://static.hdslb.com/images/base/app-link-hover.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="header-demo">
+            <div class="contain clear">
+                <div class="carousel">
+                    <ul class="ct clear">
+                        <li data-id="0"><a href="#"><img src="http://img3.imgtn.bdimg.com/it/u=147654999,1594512744&fm=206&gp=0.jpg" alt=""></a></li>
+                        <li data-id="1"><a href="#"><img src="http://img2.imgtn.bdimg.com/it/u=1982575782,2849787114&fm=206&gp=0.jpg" alt=""></a></li>
+                        <li data-id="2"><a href="#"><img src="http://img5.imgtn.bdimg.com/it/u=2038227690,1193789315&fm=206&gp=0.jpg" alt=""></a></li>
+                        <li data-id="3"><a href="#"><img src="http://img0.imgtn.bdimg.com/it/u=2542542714,2595053638&fm=206&gp=0.jpg" alt=""></a></li>
+                    </ul>
+                    <a class="prev arrow" href="#"><</a>
+                    <a class="next arrow" href="#">></a>
+                    <ul class="bullet">
+                        <li class="active"></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+                <div class="header-demo-r">
+                    <ul class="header-demo-ul clear">
+                        <li class="preview">
+                            <img src="img/实战一.jpg" alt="">
+                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                                <div class="info">
+                                    <div class="t">实战1</div>
+                                    <p>第一次做出像样的网页</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="preview">
+                            <img src="img/实战一.jpg" alt="">
+                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                                <div class="info">
+                                    <div class="t">实战1</div>
+                                    <p>第一次做出像样的网页</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="preview">
+                            <img src="img/实战一.jpg" alt="">
+                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                                <div class="info">
+                                    <div class="t">实战1</div>
+                                    <p>第一次做出像样的网页</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="preview">
+                            <img src="img/实战一.jpg" alt="">
+                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                                <div class="info">
+                                    <div class="t">实战1</div>
+                                    <p>第一次做出像样的网页</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="preview">
+                            <img src="img/实战一.jpg" alt="">
+                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                                <div class="info">
+                                    <div class="t">实战1</div>
+                                    <p>第一次做出像样的网页</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="preview">
+                            <img src="img/实战一.jpg" alt="">
+                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                                <div class="info">
+                                    <div class="t">实战1</div>
+                                    <p>第一次做出像样的网页</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="contain">
+            <div class="show clear">
+                <div class="show-l">
+                    <div class="show-demo-title"><i class="iconfont">&#xe609</i>&nbspHTML</div>
+                    <ul class="show-demo clear">
+                        <li class="show-demo-li">
+                            <img src="img/实战一.jpg" alt="">
+                            <span class="html-info">实战一</span>
+                            <a href="#"></a>
+                        </li>
+                        <li class="show-demo-li">
+                            <img src="img/实战一.jpg" alt="">
+                            <span class="html-info">实战一</span>
+                            <a href="#"></a>
+                        </li>
+                        <li class="show-demo-li">
+                            <img src="img/实战一.jpg" alt="">
+                            <span class="html-info">实战一</span>
+                            <a href="#"></a>
+                        </li>
+                        <li class="show-demo-li">
+                            <img src="img/实战一.jpg" alt="">
+                            <span class="html-info">实战一</span>
+                            <a href="#"></a>
+                        </li>
+                        <li class="show-demo-li">
+                            <img src="img/实战一.jpg" alt="">
+                            <span class="html-info">实战一</span>
+                            <a href="#"></a>
+                        </li>
+                        <li class="show-demo-li">
+                            <img src="img/实战一.jpg" alt="">
+                            <span class="html-info">实战一</span>
+                            <a href="#"></a>
+                        </li>
+                        <li class="show-demo-li">
+                            <img src="img/实战一.jpg" alt="">
+                            <span class="html-info">实战一</span>
+                            <a href="#"></a>
+                        </li>
+                        <li class="show-demo-li">
+                            <img src="img/实战一.jpg" alt="">
+                            <span class="html-info">实战一</span>
+                            <a href="#"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="show-r">
+                    <div class="show-wb-title">Html知识</div>
+                    <ul class="show-wb-list">
+                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
+                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
+                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
+                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
+                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
+                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
+                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
+                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="show2">
+                <div class="show2-title"><i class="iconfont">&#xe60a</i></div>
+                <ul class="show2-ct clear">
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="show2-li">
+                        <div class="show2-item clear">
+                            <a href="#" class="show2-item-l">
+                                <img src="img/实战一.jpg" alt="">
+                            </a>
+                            <div class="show2-item-r">
+                                <p><a href="#">实战一</a></p>
+                                <p><a href="#">实战一</a></p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="contain contact">
+            <a href="https://github.com/liguogui" target="_blank"><i class="iconfont">&#xe60b</i></a>
+            <a href="mailto:571400428@qq.com"><i class="iconfont">&#xe607</i></a>
+            <a href="http://blog.leanote.com/qq-lgg" target="_blank"><i class="iconfont">&#xe608</i></a>
+            <a href="tel:18122122783"><i class="iconfont">&#xe606</i></a>
+        </div>
+    </div>
+    <script src="jquery-2.2.3.min.js"></script>
+    <script>
+        function Carousel($node){
+            this.ct = $node.find(".ct") ;
+            this.$children = this.ct.children("li");
+            this.prev = this.ct.siblings(".prev");
+            this.next = this.ct.siblings(".next");
+            this.bullet = this.ct.siblings(".bullet");
+            this.length = this.$children.size();//克隆前图片的数量
+            this.imgWidth = this.ct.children("li").width();
+            this.cur = 0;
+            this.isAnimate =true;//全局变量状态锁，允许执行自动播放的功能
+            this.ct.append(this.$children.first().clone());
+            this.ct.prepend(this.$children.last().clone());
+            this.imgRealCount = this.ct.children().size();//克隆后图片的数量
+            this.ct.css({left:0-this.imgWidth,width:this.imgRealCount*this.imgWidth});
+            this.init();
+        }
+        Carousel.prototype = {
+            init:function () {
+                var me = this;
+                me.bind();
+                me.autoPlay();
+            },
+            bind : function () {
+                var me = this;
+                me.next.on("click",function (e) {
+                    e.preventDefault();
+                    me.stopAuto();
+                    me.playNext();
+                    me.autoPlay();
+                });
+                me.prev.on("click",function (e) {
+                    e.preventDefault();
+                    me.stopAuto();
+                    me.playPrev();
+                    me.autoPlay();
+                });
+                me.bullet.find("li").on("click",function () {
+                    var index = $(this).index();  //找出点击bullet的li元素的编号
+                    me.stopAuto();
+                    if (index>me.cur){
+                        me.playNext(index-me.cur);
+                    }
+                    else if(index<me.cur){
+                        me.playPrev(me.cur-index);
+                    }
+                    me.autoPlay();
+                });
+            },
+            playNext: function (idx) {
+                var me = this;
+                var idx = idx || 1; //移动图片的数量
+                if(me.isAnimate){
+                    me.isAnimate = false;
+                    me.ct.animate({     //让装载图片的火车，移动
+                        left : "-=" +(me.imgWidth*idx)
+                    },function () {
+                        me.cur = (me.cur + idx)%me.length;//改变编号 在四张图片的时候，例如：3+1=0
+                        if(me.cur===0){//如果是第一号 虽然展示的是克隆体，但应该展示第一号，所以
+                            me.ct.css({left:0-me.imgWidth});//瞬间移动为第一个,因为前面有一个克隆的，所以要减去一个imgWidth
+                        }
+                        me.isAnimate = true;
+                        me.setBullet();
+                    })
+                }
+            },
+            playPrev: function(idx) {
+                var me = this;
+                var idx = idx || 1; //移动图片数的数量
+                if(me.isAnimate){
+                    me.isAnimate = false;
+                    me.ct.animate({     //让装载图片的火车，移动
+                        left : "+=" +(me.imgWidth*idx)
+                    },function () {
+                        me.cur = (me.length+me.cur-idx)%me.length;//改变编号 在四张图片的时候，例如：0-1=3
+                        if(me.cur===me.length-1){//如果是最后一号 虽然展示的是克隆体，但应该展示最后一号，所以
+                            me.ct.css({left:0-me.imgWidth*me.length});//瞬间移动为最后一个,因为前面有一个克隆的，所以要减去imgWidth*length
+                        }
+                        me.isAnimate = true;
+                        me.setBullet();
+                    })
+                }
+            },
+            setBullet:function () {//给相应bullet的li元素加上背景色
+                var me =this;
+                me.bullet.children().removeClass("active").eq(me.cur).addClass("active");
+            },
+            autoPlay:function  (){//自动播放
+                var me = this;
+                me.start = setInterval(function () {
+                    me.playNext();
+                },2500)
+            },
+            stopAuto:function () {//停止自动播放功能
+                var me =this;
+                clearInterval(me.start);
+            }
+        };
+        $('.carousel').each(function(){
+            new Carousel($(this));
+        });
+    </script>
+</body>
+</html>
