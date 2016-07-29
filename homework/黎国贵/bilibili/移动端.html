@@ -416,7 +416,7 @@
                     },100);
                 }
             });
-            me.bullet.find("li").on("mouseenter",function () {
+            me.bullet.find("li").on("click",function () {
                 var index = $(this).index();  //找出点击bullet的li元素的编号
                 me.stopAuto();
                 if (index>me.cur){
