@@ -223,7 +223,6 @@
         <ul class="clear">
             <li class="cell-li">
                 <a class='font-logo orange' href="http://blog.leanote.com/post/qq-lgg/d319851e7bed" target="_blank">html</a>
-                <!--<a class='font-logo orange' href="#">html</a>-->
                 <div>积分乐园</div>
                 <a href="#"></a>
             </li>
@@ -406,17 +405,33 @@
         },
         bind : function () {
             var me = this;
-            me.next.on("click",function (e) {
-                e.preventDefault();
-                me.stopAuto();
-                me.playNext();
-                me.autoPlay();
+            $('.carousel .ct li').on('touchstart',function(e){
+                var touch = e.originalEvent.targetTouches[0];
+                $(this).data('startPosition',{x:touch.pageX,y:touch.pageY});
             });
-            me.prev.on("click",function (e) {
-                e.preventDefault();
-                me.stopAuto();
-                me.playPrev();
-                me.autoPlay();
+            var clock;
+            $('.carousel .ct li').on('touchmove',function(e){
+                var touch = e.originalEvent.targetTouches[0];
+                $(this).data('endPositon',{x:touch.pageX,y:touch.pageY});
+                var deltaX = $(this).data('endPositon').x-$(this).data('startPosition').x;
+                if(deltaX<0) {
+                    clock && clearTimeout(clock);
+                    clock = setTimeout(function(){
+                        e.preventDefault();
+                        me.stopAuto();
+                        me.playNext();
+                        me.autoPlay();
+                    },100);
+                }
+                else{
+                    clock && clearTimeout(clock);
+                    clock = setTimeout(function(){
+                        e.preventDefault();
+                        me.stopAuto();
+                        me.playPrev();
+                        me.autoPlay();
+                    },100);
+                }
             });
             me.bullet.find("li").on("mouseenter",function () {
                 var index = $(this).index();  //找出点击bullet的li元素的编号
@@ -482,6 +497,44 @@
     $('.carousel').each(function(){
         new Carousel($(this));
     });
+
+
+
+//    //    判断左滑动还是右滑动
+//    function Judgeslide($slecter){
+//        this.$el =$slecter;
+//        this.bind();
+//
+//    }
+//    Judgeslide.prototype={
+//        bind:function(){
+//            var me = this;
+//            me.$el.on('touchstart',function(e){
+//                var touch = e.originalEvent.targetTouches[0];
+//                $(this).data('startPosition',{x:touch.pageX,y:touch.pageY});
+//            });
+//            var clock;
+//            me.$el.on('touchmove',function(e){
+//                var touch = e.originalEvent.targetTouches[0];
+//                $(this).data('endPositon',{x:touch.pageX,y:touch.pageY});
+//                var deltaX = $(this).data('endPositon').x-$(this).data('startPosition').x;
+//
+//                if(deltaX<0) {
+//                    clock && clearTimeout(clock);
+//                    clock = setTimeout(function(){
+//                        console.log('左')
+//                    },100);
+//                }
+//                else{
+//                    clock && clearTimeout(clock);
+//                    clock = setTimeout(function(){
+//                        console.log('右')
+//                    },100);
+//                }
+//            });
+//        }
+//    };
+//    new Judgeslide($('.carousel .ct li'));
 </script>
 </body>
 </html>
