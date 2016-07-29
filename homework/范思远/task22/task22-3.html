@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task22-3</title>
+</head>
+
+<body>
+    <ul class="ct">
+        <li data-img="http://p3.so.qhimg.com/bdr/_240_/t01f7cdbe6fc7b16a88.jpg">鼠标放置查看图片1</li>
+        <li data-img="http://p0.so.qhimg.com/bdr/_240_/t01366fc865840fb02a.jpg">鼠标放置查看图片2</li>
+        <li data-img="http://p3.so.qhimg.com/bdr/_240_/t018f1725cb2fb28668.jpg">鼠标放置查看图片3</li>
+    </ul>
+    <div class="img-preview"></div>
+    <script type="text/javascript">
+    var ct = document.querySelector('.ct'),
+        div = document.querySelector('.img-preview');
+    ct.addEventListener('mousemove', function(e) {
+        var address = e.target.getAttribute('data-img');
+        div.innerHTML = '<img src="' + address + '">';
+    });
+    </script>
+</body>
+
+</html>
