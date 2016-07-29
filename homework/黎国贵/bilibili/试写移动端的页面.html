@@ -35,18 +35,22 @@
             background-color: #fff;
         }
         nav ul{
-            width:100%
+            width:100%;
         }
         nav ul li{
             float:left;
             width:20%;
             font-size: 30rem;
             text-align:center;
-            border-top:1px solid #ccc;
-            border-bottom:1px solid #ccc;
         }
         nav ul li a{
             color:#000;
+        }
+        .l{
+            float:left;
+        }
+        .r{
+            float:right;
         }
         /*标题栏*/
         .caption{
@@ -58,7 +62,7 @@
             padding-left: 5px;
             font-size: 15rem;
         }
-        .caption .title1 a{
+        .caption .title1{
             color:#ff8800;
         }
         .caption .title2{
@@ -66,7 +70,7 @@
             padding-right: 5px;
             font-size: 15rem;
         }
-        .caption .title2 a{
+        .caption .title2{
             color:#ff8800;
         }
         /*四叶区*/
@@ -74,6 +78,7 @@
             background-color: #fff;
         }
         .hot-show-li{
+            position:relative;
             float: left;
             box-sizing: border-box;
             width: 50%;
@@ -91,6 +96,13 @@
             height: 30px;
             text-align: center;
             font-size: 15rem;
+        }
+        .hot-show-li a{
+            display: block;
+            position:absolute;
+            top:0;
+            width: 100%;
+            height: 100%;
         }
         /*文字图标*/
         .cell{
@@ -167,7 +179,21 @@
             display: block;
             /*width: 414px;*/
             height: 300px;
-            background: url("th.jpg") no-repeat;
+        }
+        .carousel .ct .a1{
+            background: url("img/th.jpg") no-repeat;
+            background-size: cover;
+        }
+        .carousel .ct .a2{
+            background: url("img/千早.jpg") no-repeat;
+            background-size: cover;
+        }
+        .carousel .ct .a3{
+            background: url("img/小町.jpeg") no-repeat;
+            background-size: cover;
+        }
+        .carousel .ct .a4{
+            background: url("img/千早1.jpg") no-repeat;
             background-size: cover;
         }
         .carousel .bullet{
@@ -195,21 +221,19 @@
 <body>
 <nav>
     <ul class="clear">
-        <li><a href="#">首页</a></li>
-        <li><a href="#">频道</a></li>
-        <li><a href="#">直播</a></li>
-        <li><a href="#">排行</a></li>
-        <li><a href="#">我的</a></li>
+        <li class="l">简历</li>
+        <li class="r"><a href="https://github.com/liguogui" target="_blank">Github</a></li>
+        <li class="r"><a href="http://blog.leanote.com/qq-lgg" target="_blank">博客</a></li>
     </ul>
 </nav>
 <header>
     <section>
         <div class="carousel">
             <ul class="ct clear">
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
-                <li><a href="#"></a></li>
+                <li><a href="#" class="a1"></a></li>
+                <li><a href="#" class="a2"></a></li>
+                <li><a href="#" class="a3"></a></li>
+                <li><a href="#" class="a4"></a></li>
             </ul>
             <ul class="bullet clear">
                 <li class="active"></li>
@@ -222,29 +246,19 @@
     <section class="cell">
         <ul class="clear">
             <li class="cell-li">
-                <a class='font-logo orange' href="http://blog.leanote.com/post/qq-lgg/d319851e7bed" target="_blank">html</a>
-                <div>积分乐园</div>
-                <a href="#"></a>
+                <a class='font-logo orange' href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/html-css-demo.html" target="_blank">html</a>
             </li>
             <li class="cell-li">
-                <a class='font-logo pink' href="#">html</a>
-                <div>积分乐园</div>
-                <a href="#"></a>
+                <a class='font-logo pink' href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/html-css-demo.html" target="_blank">css</a>
             </li>
             <li class="cell-li">
-                <a class='font-logo purple' href="#">html</a>
-                <div>积分乐园</div>
-                <a href="#"></a>
+                <a class='font-logo purple' href="https://github.com/Liguogui/javascript-api/blob/master/JavaScript-demo.js" target="_blank">js</a>
             </li>
             <li class="cell-li">
-                <a class='font-logo blue' href="#">html</a>
-                <div>积分乐园</div>
-                <a href="#"></a>
+                <a class='font-logo blue' href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/jquery-demo.html" target="_blank">jquery</a>
             </li>
             <li class="cell-li">
-                <a class='font-logo green' href="#">html</a>
-                <div>积分乐园</div>
-                <a href="#"></a>
+                <a class='font-logo green' href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/other-demo.html" target="_blank">其他</a>
             </li>
         </ul>
     </section>
@@ -252,113 +266,82 @@
 <main>
     <section class="hot-resume">
         <div class="caption clear">
-            <div class="title1"><a href="#">热门推荐</a></div>
-            <div class="title2"><a href="#">排行榜</a></div>
+            <div class="title1">企业页面</div>
         </div>
         <ul class="hot-show clear">
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/实战三.png" alt="" class="pic1">
+                <div>企业版页面一</div>
+                <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-15/task15-2/task-15-2.html" target="_blank"></a>
             </li>
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/实战二.png" alt="" class="pic1">
+                <div>企业版页面二</div>
+                <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-15/task15-1/task-15-1.html" target="_blank"></a>
             </li>
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/实战一.jpg" alt="" class="pic1">
+                <div>企业版页面三</div>
+                <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank"></a>
             </li>
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/太一.jpg" alt="" class="pic1">
+                <div>另一份线上简历</div>
+                <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/index.html" target="_blank"></a>
             </li>
         </ul>
     </section>
     <section class="hot-resume">
         <div class="caption clear">
-            <div class="title1"><a href="#">正在直播</a></div>
-            <div class="title2"><a href="#">查看更多直播</a></div>
+            <div class="title1">页面常见效果</div>
         </div>
         <ul class="hot-show clear">
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/lazydown.png" alt="" class="pic1">
+                <div>懒加载</div>
+                <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/曝光器.html" target="_blank"></a>
             </li>
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/stickup.png" alt="" class="pic1">
+                <div>stickup</div>
+                <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/perfect/stickup%E6%8F%92%E4%BB%B6.html" target="_blank"></a>
             </li>
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/回到顶部按钮.png" alt="" class="pic1">
+                <div>回到顶部</div>
+                <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/goTop/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%AF%B9%E8%B1%A1%E5%B0%81%E8%A3%85.html" target="_blank"></a>
             </li>
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/曝光器+瀑布流+JSONP.jpg" alt="" class="pic1">
+                <div>瀑布流布局</div>
+                <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/新曝光器+瀑布流+ajax生成li.html" target="_blank"></a>
             </li>
         </ul>
     </section>
     <section class="hot-resume">
         <div class="caption clear">
-            <div class="title1"><a href="#">动画区</a></div>
-            <div class="title2"><a href="#">查看更多更新</a></div>
+            <div class="title1">demo</div>
         </div>
         <ul class="hot-show clear">
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/淘宝商品放大镜.jpg" alt="" class="pic1">
+                <div>商品放大镜</div>
+                <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/perfect/%E6%94%BE%E5%A4%A7%E9%95%9C.html" target="_blank"></a>
             </li>
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/音乐播放器.png" alt="" class="pic1">
+                <div>音乐播放器</div>
+                <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/index.html" target="_blank"></a>
             </li>
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/模态框.png" alt="" class="pic1">
+                <div>模态框</div>
+                <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-22/task22-5.html" target="_blank"></a>
             </li>
             <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
-            </li>
-        </ul>
-    </section>
-    <section class="hot-resume">
-        <div class="caption clear">
-            <div class="title1"><a href="#">音乐区</a></div>
-            <div class="title2"><a href="#">查看更多更新</a></div>
-        </div>
-        <ul class="hot-show clear">
-            <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
-            </li>
-            <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
-            </li>
-            <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
-            </li>
-            <li class="hot-show-li">
-                <img src="th.jpg" alt="" class="pic1">
-                <div>丢你雷姆</div>
-                <a href="#"></a>
+                <img src="img/功能模块化单一页面.jpg" alt="" class="pic1">
+                <div>require页面</div>
+                <a href="http://jiuzheyangba.applinzi.com/lgghenfan/kendiedezhongwen/task-15-2.html" target="_blank"></a>
             </li>
         </ul>
     </section>
@@ -371,7 +354,7 @@
         </ul>
     </section>
 </footer>
-<script src="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/jquery-2.2.3.min.js"></script>
+<script src="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/bilibili/zepto.min.js"></script>
 <script>
     function Carousel($node){
         this.aLong();
@@ -497,6 +480,7 @@
     $('.carousel').each(function(){
         new Carousel($(this));
     });
+
 
 
 
