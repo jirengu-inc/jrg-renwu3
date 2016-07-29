@@ -3,371 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>resume</title>
-    <style>
-        @font-face {
-            font-family: 'iconfont';
-            src: url('//at.alicdn.com/t/font_1469718842_2720194.eot'); /* IE9*/
-            src: url('//at.alicdn.com/t/font_1469718842_2720194.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-            url('//at.alicdn.com/t/font_1469718842_2720194.woff') format('woff'), /* chrome、firefox */
-            url('//at.alicdn.com/t/font_1469718842_2720194.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-            url('//at.alicdn.com/t/font_1469718842_2720194.svg#iconfont') format('svg'); /* iOS 4.1- */
-        }
-        .iconfont {
-            font-family:'iconfont';
-            font-size:30px;
-            font-style:normal;
-            color:#ff8800;
-        }
-        html,body,ul,li{
-            margin: 0;
-            padding: 0;
-        }
-        li{
-            list-style:none;
-        }
-        a{
-            text-decoration:none;
-        }
-        .clear:after{
-            content:'';
-            display: block;
-            clear: both;
-        }
-        .contain{
-            margin: 0 auto;
-            width: 980px;
-        }
-        /*导航*/
-        .nav{
-            width: 100%;
-            position:absolute;
-            background-color: rgba(255,255,255,0.5);
-        }
-        .nav-left{
-            float:left;
-            height: 40px;
-            line-height: 40px;
-        }
-        .nav-right{
-            float:right;
-        }
-        .nav-right-ul li{
-            float: left;
-            text-align: center;
-            margin-left: 20px;
-            height: 40px;
-            line-height: 40px;
-        }
-        .nav-right-ul li a{
-            color:#000;
-        }
-        /*头部*/
-        /*头部图片区*/
-        .header-layout{
-            height: 170px;
-            background: url('http://i0.hdslb.com/group1/M00/B7/9A/oYYBAFd16ASAFbS4AAcNql6NOb8768.png') no-repeat;
-        }
-        .me-img{
-            float:left;
-            height: 130px;
-            width:130px;
-            margin-top: 40px;
-            background: url("img/我.jpg") no-repeat;
-            background-size:cover;
-            background-position:0,100px;
-            border-radius:50%;
-        }
-        .me-introduce{
-            float:right;
-            height: 130px;
-            margin-top: 40px;
-        }
-        /*头部分类区*/
-        .num{
-
-        }
-        /*分类区左边*/
-        .menu{
-            margin-top: 10px;
-            float:left;
-        }
-        .menu-li{
-            float:left;
-            position:relative;
-            width: 50px;
-            height: 30px;
-            margin-left: 25px;
-            margin-right: 25px;
-            background-color: pink;
-            line-height: 30px;
-            text-align: center;
-            border-radius:10px;
-        }
-        .menu-li a{
-            color:#fff;
-        }
-        /*分类区右边*/
-        .menu-r{
-            float:right;
-        }
-        /*鼠标移动就出现*/
-        .i-num{
-            position:absolute;
-            display:none;
-            top:100%;
-            left:0;
-            z-index: 100;
-        }
-        .menu-li:hover .i-num{
-            display: block;
-        }
-        .i-num li{
-            box-sizing:border-box;
-            padding-left: 10px;
-            min-width:100px;
-            text-align:left;
-            background-color: #fff;
-        }
-        .i-num li a{
-            color:#000;
-        }
-        .i-num li:hover{
-            background-color: #ccc;
-        }
-        /*头部demo展现*/
-        .header-demo{
-            margin-top: 10px;
-        }
-        /*左轮播*/
-        .carousel{
-            float:left;
-            position: relative;
-            overflow: hidden;
-            width: 440px;
-            height: 220px;
-            background-color: #eeeeee;
-        }
-        .carousel .ct{
-            position:absolute;
-        }
-        .carousel .ct li{
-            position:relative;
-            float: left;
-        }
-        .carousel .ct img{
-            width: 440px;
-            height: 220px;
-        }
-        .carousel .arrow{
-            position:absolute;
-            top: 50%;
-            width: 30px;
-            height: 30px;
-            margin-top: -15px;
-            line-height: 30px;
-            text-align: center;
-            background-color: #4E443C;
-            color:#fff;
-            border-radius: 50%;
-            opacity: 0.8;
-            font-size:28px;
-        }
-        .carousel .arrow:hover{
-            opacity:1;
-        }
-        .carousel .prev{
-            left: 10px;
-        }
-        .carousel .next{
-            right:10px;
-        }
-        .carousel .bullet{
-            position:absolute;
-            bottom:10px;
-            left: 50%;
-            transform:translateX(-50%);
-        }
-        .carousel .bullet li{
-            width: 10px;
-            height: 10px;
-            display: inline-block;
-            background-color: #fff;
-            cursor: pointer;
-            border-radius: 50%;
-        }
-        .carousel .bullet li.active{
-            background-color: deeppink;
-        }
-        /*右分区*/
-        .header-demo-r{
-            float:right;
-            width:540px;
-        }
-        .preview{
-            float:left;
-            position:relative;
-            width: 160px;
-            height: 100px;
-            margin-left: 20px;
-            margin-bottom: 20px;
-            overflow:hidden;
-            border-radius:5px;
-        }
-        .preview>img{
-            width: 100%;
-            height: 100%;
-
-        }
-        .preview>a{
-            position:absolute;
-            display: block;
-            width: 100%;
-            height:100%;
-            top:80%;
-            background-color: rgba(50,50,50,0.7);
-        }
-        .info div{
-            color:#fff;
-        }
-        .info p{
-            color:#fff;
-        }
-        .preview:hover .preview-a{
-            top:0;
-        }
-        /*main*/
-        /*bilibili-show*/
-        .show{
-            margin-top: 30px;
-        }
-        /*bilibili-show左边*/
-        .show-l{
-            float:left;
-            width: 700px;
-        }
-        .show-demo{
-            margin-left: -20px;
-        }
-        .show-demo-li{
-            float:left;
-            position:relative;
-            width:160px;
-            height: 130px;
-            margin-left: 20px;
-            margin-bottom: 10px;
-        }
-        .show-demo-li img{
-            width:160px;
-            height: 100px;
-            border-radius:5px;
-        }
-        .show-demo-li a{
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top:0;
-            left:0;
-        }
-        .show-demo-li:hover .html-info{
-            color:skyblue;
-        }
-        /*bilibili-show右边*/
-        .show-r{
-            float:right;
-            width: 260px;
-        }
-        .show-wb-title{
-            height: 33px;
-            line-height:33px;
-        }
-        .show-wb-li{
-            position:relative;
-            padding-left: 25px;
-            height: 18px;
-            line-height: 18px;
-            margin-bottom: 15px;
-        }
-        .show-wb-li a{
-            color:#000;
-        }
-        .show-wb-li a:hover{
-            color:deepskyblue;
-        }
-        .number{
-            position:absolute;
-            display: block;
-            width: 18px;
-            height: 18px;
-            left: 0;
-            background-color: deeppink;
-            text-align: center;
-            line-height: 18px;
-            color:#fff;
-        }
-        /*bilibili-show2*/
-        .show2{
-            margin-top: 30px;
-        }
-        .show2-ct{
-            margin-left:-86.66px;
-        }
-        .show2-li{
-            float: left;
-            width: 180px;
-            margin-left: 86.66px;
-            margin-bottom:36px;
-        }
-        /*小item的左边*/
-        .show2-item-l{
-            float:left;
-            width:72px;
-            height:72px;
-            margin-right: 12px;
-            border-radius:5px;
-            overflow: hidden;
-        }
-        .show2-item-l img{
-            width:100%;
-            height:100%;
-            transition:all 0.3s;
-        }
-        .show2-item-l img:hover{
-            transform: scale(1.2);
-        }
-        /*小item的右边*/
-        .show2-item-r{
-            float:right;
-            width: 96px;
-            text-align: center;
-        }
-        .show2-item-r a{
-            color:#000;
-        }
-        .show2-item-r a:hover{
-            color:deepskyblue;
-        }
-        /*footer*/
-        #footer{
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-        .contact{
-            text-align:center;
-        }
-        .contact a{
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-        .contact .iconfont{
-            font-family:'iconfont';
-            font-size:40px;
-            font-style:normal;
-            color:#000;
-        }
-        .contact .iconfont:hover{
-            color:#ff8800;
-        }
-    </style>
+    <link rel="stylesheet" href="src/css/index.css">
 </head>
 <body>
     <div class="nav">
@@ -392,65 +28,56 @@
             <div class="contain clear">
                 <ul class="menu clear">
                     <li class="menu-li">
-                        <a href="#">html</a>
+                        <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/html-css-demo.html" target="_blank">html</a>
                         <ul class="i-num">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
+                            <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-15/task15-2/task-15-2.html" target="_blank">企业版网页一</a></li>
+                            <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-15/task15-1/task-15-1.html" target="_blank">企业版网页二</a></li>
+                            <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-15/task15-2/task-15-2.html" target="_blank">企业版网页三</a></li>
                         </ul>
                     </li>
                     <li class="menu-li">
-                        <a href="#">css</a>
+                        <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/html-css-demo.html" target="_blank">css</a>
                         <ul class="i-num">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
+                            <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-12/task-12-2.html" target="_blank">双飞翼两栏布局</a></li>
+                            <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-12/task-12-3.html" target="_blank">双飞翼三栏布局</a></li>
+                            <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-9/task-9-3.html" target="_blank">css三角形</a></li>
                         </ul>
                     </li>
                     <li class="menu-li">
-                        <a href="#">js</a>
+                        <a href="https://github.com/Liguogui/javascript-api/blob/master/JavaScript-demo.js" target="_blank">js</a>
                         <ul class="i-num">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
+                            <li><a href="https://github.com/Liguogui/javascript-api/blob/master/JavaScript-demo.js" target="_blank">原生js封装ajax</a></li>
+                            <li><a href="https://github.com/Liguogui/javascript-api/blob/master/JavaScript-demo.js" target="_blank">邮箱、手机号、用户名、密码验证</a></li>
+                            <li><a href="https://github.com/Liguogui/javascript-api/blob/master/JavaScript-demo.js" target="_blank">class操作、日期操作</a></li>
                         </ul>
                     </li>
                     <li class="menu-li">
-                        <a href="#">jquery</a>
+                        <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/jquery-demo.html" target="_blank">jquery</a>
                         <ul class="i-num">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
+                            <li><a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/tab.html" target="_blank">Tab切换效果</a></li>
+                            <li><a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/stickup%E6%8F%92%E4%BB%B6.html" target="_blank">stickup效果</a></li>
+                            <li><a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/%E4%BC%AA%E7%B1%BB%E6%96%B9%E5%BC%8F%E5%B0%81%E8%A3%85%E5%A4%9A%E4%B8%AA%E6%BB%9A%E5%8A%A8%E8%BD%AE%E6%92%AD.html" target="_blank">滚动轮播</a></li>
                         </ul>
                     </li>
                     <li class="menu-li">
-                        <a href="#">其他</a>
+                        <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/jquery-demo.html" target="_blank">jquery</a>
                         <ul class="i-num">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
+                            <li><a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/%E6%9B%9D%E5%85%89%E5%99%A8.html" target="_blank">懒加载</a></li>
+                            <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/goTop/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%AF%B9%E8%B1%A1%E5%B0%81%E8%A3%85.html" target="_blank">回到顶部</a></li>
+                            <li><a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/新曝光器+瀑布流+ajax生成li.html" target="_blank">瀑布流布局</a></li>
                         </ul>
                     </li>
                     <li class="menu-li">
-                        <a href="#">其他</a>
+                        <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/other-demo.html" target="_blank">h5</a>
                         <ul class="i-num">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-li">
-                        <a href="#">其他</a>
-                        <ul class="i-num">
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
+                            <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/css3%E6%97%8B%E8%BD%AC%E6%9C%A8%E9%A9%AC/css3%E4%B9%8B%E6%97%8B%E8%BD%AC%E6%9C%A8%E9%A9%AC.html" target="_blank">旋转木马</a></li>
+                            <li><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/index.html" target="_blank">音乐播放器</a></li>
                         </ul>
                     </li>
                 </ul>
                 <div class="menu-r">
-                    <a href="#"><img src="http://i0.hdslb.com/icon/9068618cb70cdc16b696814323a33033.gif" alt=""></a>
-                    <a href="#"><img src="http://static.hdslb.com/images/base/app-link-hover.png" alt=""></a>
+                    <img src="http://i0.hdslb.com/icon/9068618cb70cdc16b696814323a33033.gif" alt="">
+                    <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/%E8%AF%95%E5%86%99%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E9%A1%B5%E9%9D%A2.html" target="_blank"><img src="http://static.hdslb.com/images/base/app-link-hover.png" alt=""></a>
                 </div>
             </div>
         </div>
@@ -475,56 +102,56 @@
                 <div class="header-demo-r">
                     <ul class="header-demo-ul clear">
                         <li class="preview">
-                            <img src="img/实战一.jpg" alt="">
-                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                            <img src="img/音乐播放器.png" alt="">
+                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/index.html" target="_blank" title="点击查看demo">
                                 <div class="info">
-                                    <div class="t">实战1</div>
-                                    <p>第一次做出像样的网页</p>
+                                    <div>音乐播放器</div>
+                                    <p>利用豆瓣音乐后端的接口,可以在任何页面使用</p>
                                 </div>
                             </a>
                         </li>
                         <li class="preview">
-                            <img src="img/实战一.jpg" alt="">
-                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                            <img src="img/曝光器+瀑布流+JSONP.jpg" alt="">
+                            <a class="preview-a" href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/新曝光器+瀑布流+ajax生成li.html" target="_blank" title="点击查看demo">
                                 <div class="info">
-                                    <div class="t">实战1</div>
-                                    <p>第一次做出像样的网页</p>
+                                    <div>曝光器+瀑布流+JSONP</div>
+                                    <p>下拉后加载数据,使用瀑布流布局</p>
                                 </div>
                             </a>
                         </li>
                         <li class="preview">
-                            <img src="img/实战一.jpg" alt="">
-                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                            <img src="img/功能模块化单一页面.jpg" alt="">
+                            <a class="preview-a" href="http://jiuzheyangba.applinzi.com/lgghenfan/kendiedezhongwen/task-15-2.html" target="_blank" title="点击查看demo">
                                 <div class="info">
-                                    <div class="t">实战1</div>
-                                    <p>第一次做出像样的网页</p>
+                                    <div>模块化页面</div>
+                                    <p>使用requirejs，将多个功能组合在一起的单一页面</p>
                                 </div>
                             </a>
                         </li>
                         <li class="preview">
-                            <img src="img/实战一.jpg" alt="">
-                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                            <img src="img/lazydown.png" alt="">
+                            <a class="preview-a" href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/曝光器.html" target="_blank">
                                 <div class="info">
-                                    <div class="t">实战1</div>
-                                    <p>第一次做出像样的网页</p>
+                                    <div>懒加载</div>
+                                    <p>页面图很多,但又不是每个都要展现,就结合曝光加载进行加载</p>
                                 </div>
                             </a>
                         </li>
                         <li class="preview">
-                            <img src="img/实战一.jpg" alt="">
-                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                            <img src="img/淘宝商品放大镜.jpg" alt="">
+                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/perfect/%E6%94%BE%E5%A4%A7%E9%95%9C.html" target="_blank" title="点击查看demo">
                                 <div class="info">
-                                    <div class="t">实战1</div>
-                                    <p>第一次做出像样的网页</p>
+                                    <div>淘宝商品放大镜效果</div>
+                                    <p>电商展示商品常见的效果，放大倍数为3倍</p>
                                 </div>
                             </a>
                         </li>
                         <li class="preview">
-                            <img src="img/实战一.jpg" alt="">
-                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank">
+                            <img src="img/stickup.png" alt="">
+                            <a class="preview-a" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/perfect/stickup%E6%8F%92%E4%BB%B6.html" target="_blank" title="点击查看demo">
                                 <div class="info">
-                                    <div class="t">实战1</div>
-                                    <p>第一次做出像样的网页</p>
+                                    <div>stickup之导航栏固定</div>
+                                    <p>Clone对象,判断曝光后，用js操作css，设置属性为fixed</p>
                                 </div>
                             </a>
                         </li>
@@ -540,193 +167,181 @@
                     <div class="show-demo-title"><i class="iconfont">&#xe609</i>&nbspHTML</div>
                     <ul class="show-demo clear">
                         <li class="show-demo-li">
-                            <img src="img/实战一.jpg" alt="">
-                            <span class="html-info">实战一</span>
-                            <a href="#"></a>
+                            <img src="img/太一.jpg" alt="">
+                            <span class="html-info">我的另一份线上简历</span>
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/index.html" target="_blank" title="点击查看demo"></a>
+                        </li>
+                        <li class="show-demo-li">
+                            <img src="img/实战三.png" alt="">
+                            <span class="html-info">企业版页面一</span>
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-15/task15-2/task-15-2.html" target="_blank" title="点击查看demo"></a>
+                        </li>
+                        <li class="show-demo-li">
+                            <img src="img/实战二.png" alt="">
+                            <span class="html-info">企业版页面二</span>
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-15/task15-1/task-15-1.html" target="_blank" title="点击查看demo"></a>
                         </li>
                         <li class="show-demo-li">
                             <img src="img/实战一.jpg" alt="">
-                            <span class="html-info">实战一</span>
-                            <a href="#"></a>
+                            <span class="html-info">企业版页面三</span>
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-14/task14.html" target="_blank" title="点击查看demo"></a>
                         </li>
                         <li class="show-demo-li">
-                            <img src="img/实战一.jpg" alt="">
-                            <span class="html-info">实战一</span>
-                            <a href="#"></a>
+                            <img src="img/可拖动的dialog.png" alt="">
+                            <span class="html-info">可拖动组件</span>
+                            <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/可拖动的dialog.html" target="_blank" title="点击查看demo"></a>
                         </li>
                         <li class="show-demo-li">
-                            <img src="img/实战一.jpg" alt="">
-                            <span class="html-info">实战一</span>
-                            <a href="#"></a>
+                            <img src="img/商品tab.png" alt="">
+                            <span class="html-info">商品tab切换</span>
+                            <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/tab.html" target="_blank"></a>
                         </li>
                         <li class="show-demo-li">
-                            <img src="img/实战一.jpg" alt="">
-                            <span class="html-info">实战一</span>
-                            <a href="#"></a>
+                            <img src="img/表单验证.png" alt="">
+                            <span class="html-info">表单验证</span>
+                            <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/task24-3.html" target="_blank"></a>
                         </li>
                         <li class="show-demo-li">
-                            <img src="img/实战一.jpg" alt="">
-                            <span class="html-info">实战一</span>
-                            <a href="#"></a>
-                        </li>
-                        <li class="show-demo-li">
-                            <img src="img/实战一.jpg" alt="">
-                            <span class="html-info">实战一</span>
-                            <a href="#"></a>
-                        </li>
-                        <li class="show-demo-li">
-                            <img src="img/实战一.jpg" alt="">
-                            <span class="html-info">实战一</span>
-                            <a href="#"></a>
+                            <img src="img/商品边栏.png" alt="">
+                            <span class="html-info">商品边栏</span>
+                            <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/%E7%AE%80%E5%8D%95%E7%9A%84tab.html" target="_blank"></a>
                         </li>
                     </ul>
                 </div>
                 <div class="show-r">
-                    <div class="show-wb-title">Html知识</div>
+                    <div class="show-wb-title">我的博客</div>
                     <ul class="show-wb-list">
-                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
-                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
-                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
-                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
-                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
-                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
-                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
-                        <li class="show-wb-li"><span class="number">1</span><a href="#">关于网页和浏览器的知识</a></li>
+                        <li class="show-wb-li"><span class="number">1</span><a href="http://blog.leanote.com/post/qq-lgg/4f1968378775" target="_blank">Jquery整体架构</a></li>
+                        <li class="show-wb-li"><span class="number">2</span><a href="http://blog.leanote.com/post/qq-lgg/cd005fbf5aa6" target="_blank">常见设计模式</a></li>
+                        <li class="show-wb-li"><span class="number">3</span><a href="http://blog.leanote.com/post/qq-lgg/73980cb6bb8e" target="_blank">原型链</a></li>
+                        <li class="show-wb-li"><span class="number">4</span><a href="http://blog.leanote.com/post/qq-lgg/this%E3%80%81%E9%97%AD%E5%8C%85" target="_blank">this、闭包</a></li>
+                        <li class="show-wb-li"><span class="number">5</span><a href="http://blog.leanote.com/post/qq-lgg/%E9%97%AD%E5%8C%85%E3%80%81%E5%AE%9A%E6%97%B6%E5%99%A8" target="_blank">闭包、定时器</a></li>
+                        <li class="show-wb-li"><span class="number">6</span><a href="http://blog.leanote.com/post/qq-lgg/%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5%E3%80%81%E8%B7%A8%E5%9F%9F%E3%80%81jsonp" target="_blank">同源策略、跨域、jsonp</a></li>
+                        <li class="show-wb-li"><span class="number">7</span><a href="http://blog.leanote.com/post/qq-lgg/0e67990b8763" target="_blank">HTTP</a></li>
+                        <li class="show-wb-li more"><a href="http://blog.leanote.com/qq-lgg" target="_blank">查看更多></a></li>
                     </ul>
                 </div>
             </div>
             <div class="show2">
-                <div class="show2-title"><i class="iconfont">&#xe60a</i></div>
+                <div class="show2-title"><i class="iconfont">&#xe600</i></div>
                 <ul class="show2-ct clear">
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/goTop/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%AF%B9%E8%B1%A1%E5%B0%81%E8%A3%85.html" class="show2-item-l" target="_blank" title="点击查看demo">
+                                <img src="img/回到顶部按钮.png" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/goTop/%E5%9B%9E%E5%88%B0%E9%A1%B6%E9%83%A8%E5%AF%B9%E8%B1%A1%E5%B0%81%E8%A3%85.html" target="_blank" title="点击查看demo">回到顶部</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/完美瀑布流.html" target="_blank" title="点击查看demo" class="show2-item-l">
+                                <img src="img/waterfall.png" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/完美瀑布流.html" target="_blank">瀑布流的布局</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/木桶布局.html" target="_blank" class="show2-item-l">
+                                <img src="img/木桶布局.png" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/木桶布局.html" target="_blank">木桶布局</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-22/task22-5.html" target="_blank" class="show2-item-l">
+                                <img src="img/模态框.png" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-22/task22-5.html" target="_blank">模态框</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/伪类方式封装多个滚动轮播.html" target="_blank" class="show2-item-l">
+                                <img src="img/carousel1.jpg" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/伪类方式封装多个滚动轮播.html" target="_blank">滚动轮播插件</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/perfect/%E7%94%A8%E4%BC%AA%E7%B1%BB%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B0%81%E8%A3%85%E5%A4%9A%E4%B8%AA%E6%B7%A1%E5%85%A5%E6%B7%A1%E5%87%BA%E8%BD%AE%E6%92%AD.html" target="_blank" class="show2-item-l">
+                                <img src="img/carousel2.jpg" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/perfect/%E7%94%A8%E4%BC%AA%E7%B1%BB%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B0%81%E8%A3%85%E5%A4%9A%E4%B8%AA%E6%B7%A1%E5%85%A5%E6%B7%A1%E5%87%BA%E8%BD%AE%E6%92%AD.html" target="_blank">渐变轮播插件</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/%E7%94%A8%E4%BC%AA%E7%B1%BB%E6%96%B9%E5%BC%8F%E5%B0%81%E8%A3%85%E5%85%A8%E5%B1%8F%E8%BD%AE%E6%92%AD.html" target="_blank" class="show2-item-l">
+                                <img src="img/全屏无缝轮播.jpg" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/%E7%94%A8%E4%BC%AA%E7%B1%BB%E6%96%B9%E5%BC%8F%E5%B0%81%E8%A3%85%E5%85%A8%E5%B1%8F%E8%BD%AE%E6%92%AD.html" target="_blank">全屏无缝滚动轮播</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/css3%E6%97%8B%E8%BD%AC%E6%9C%A8%E9%A9%AC/css3%E4%B9%8B%E6%97%8B%E8%BD%AC%E6%9C%A8%E9%A9%AC.html" target="_blank" class="show2-item-l">
+                                <img src="img/carousel4.jpg" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/css3%E6%97%8B%E8%BD%AC%E6%9C%A8%E9%A9%AC/css3%E4%B9%8B%E6%97%8B%E8%BD%AC%E6%9C%A8%E9%A9%AC.html" target="_blank">CSS3旋转木马</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-12/task-12-3.html" target="_blank" class="show2-item-l">
+                                <img src="img/双飞翼实现三栏布局.png" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-12/task-12-3.html" target="_blank">双飞翼三栏布局</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-12/task-12-2.html" target="_blank" class="show2-item-l">
+                                <img src="img/双飞翼实现两栏布局.png" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-12/task-12-2.html" target="_blank">双飞翼两栏布局</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-25/task25-3.html" target="_blank" class="show2-item-l">
+                                <img src="img/点击添加.png" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-25/task25-3.html" target="_blank">点击添加商品</a></p>
                             </div>
                         </div>
                     </li>
                     <li class="show2-li">
                         <div class="show2-item clear">
-                            <a href="#" class="show2-item-l">
-                                <img src="img/实战一.jpg" alt="">
+                            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-9/task-9-3.html" target="_blank" class="show2-item-l">
+                                <img src="img/css三角形.png" alt="">
                             </a>
                             <div class="show2-item-r">
-                                <p><a href="#">实战一</a></p>
-                                <p><a href="#">实战一</a></p>
+                                <p><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-9/task-9-3.html" target="_blank">css三角形样式</a></p>
                             </div>
                         </div>
                     </li>
@@ -743,107 +358,8 @@
         </div>
     </div>
     <script src="jquery-2.2.3.min.js"></script>
-    <script>
-        function Carousel($node){
-            this.ct = $node.find(".ct") ;
-            this.$children = this.ct.children("li");
-            this.prev = this.ct.siblings(".prev");
-            this.next = this.ct.siblings(".next");
-            this.bullet = this.ct.siblings(".bullet");
-            this.length = this.$children.size();//克隆前图片的数量
-            this.imgWidth = this.ct.children("li").width();
-            this.cur = 0;
-            this.isAnimate =true;//全局变量状态锁，允许执行自动播放的功能
-            this.ct.append(this.$children.first().clone());
-            this.ct.prepend(this.$children.last().clone());
-            this.imgRealCount = this.ct.children().size();//克隆后图片的数量
-            this.ct.css({left:0-this.imgWidth,width:this.imgRealCount*this.imgWidth});
-            this.init();
-        }
-        Carousel.prototype = {
-            init:function () {
-                var me = this;
-                me.bind();
-                me.autoPlay();
-            },
-            bind : function () {
-                var me = this;
-                me.next.on("click",function (e) {
-                    e.preventDefault();
-                    me.stopAuto();
-                    me.playNext();
-                    me.autoPlay();
-                });
-                me.prev.on("click",function (e) {
-                    e.preventDefault();
-                    me.stopAuto();
-                    me.playPrev();
-                    me.autoPlay();
-                });
-                me.bullet.find("li").on("click",function () {
-                    var index = $(this).index();  //找出点击bullet的li元素的编号
-                    me.stopAuto();
-                    if (index>me.cur){
-                        me.playNext(index-me.cur);
-                    }
-                    else if(index<me.cur){
-                        me.playPrev(me.cur-index);
-                    }
-                    me.autoPlay();
-                });
-            },
-            playNext: function (idx) {
-                var me = this;
-                var idx = idx || 1; //移动图片的数量
-                if(me.isAnimate){
-                    me.isAnimate = false;
-                    me.ct.animate({     //让装载图片的火车，移动
-                        left : "-=" +(me.imgWidth*idx)
-                    },function () {
-                        me.cur = (me.cur + idx)%me.length;//改变编号 在四张图片的时候，例如：3+1=0
-                        if(me.cur===0){//如果是第一号 虽然展示的是克隆体，但应该展示第一号，所以
-                            me.ct.css({left:0-me.imgWidth});//瞬间移动为第一个,因为前面有一个克隆的，所以要减去一个imgWidth
-                        }
-                        me.isAnimate = true;
-                        me.setBullet();
-                    })
-                }
-            },
-            playPrev: function(idx) {
-                var me = this;
-                var idx = idx || 1; //移动图片数的数量
-                if(me.isAnimate){
-                    me.isAnimate = false;
-                    me.ct.animate({     //让装载图片的火车，移动
-                        left : "+=" +(me.imgWidth*idx)
-                    },function () {
-                        me.cur = (me.length+me.cur-idx)%me.length;//改变编号 在四张图片的时候，例如：0-1=3
-                        if(me.cur===me.length-1){//如果是最后一号 虽然展示的是克隆体，但应该展示最后一号，所以
-                            me.ct.css({left:0-me.imgWidth*me.length});//瞬间移动为最后一个,因为前面有一个克隆的，所以要减去imgWidth*length
-                        }
-                        me.isAnimate = true;
-                        me.setBullet();
-                    })
-                }
-            },
-            setBullet:function () {//给相应bullet的li元素加上背景色
-                var me =this;
-                me.bullet.children().removeClass("active").eq(me.cur).addClass("active");
-            },
-            autoPlay:function  (){//自动播放
-                var me = this;
-                me.start = setInterval(function () {
-                    me.playNext();
-                },2500)
-            },
-            stopAuto:function () {//停止自动播放功能
-                var me =this;
-                clearInterval(me.start);
-            }
-        };
-        $('.carousel').each(function(){
-            new Carousel($(this));
-        });
-    </script>
+    <script src="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/jquery.marquee.min.js"></script>
+    <script src="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/jquery.music.js"></script>
+    <script src="src/js/index.js"></script>
 </body>
 </html>
