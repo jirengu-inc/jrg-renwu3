@@ -132,7 +132,7 @@
 */
 		}
 		.music-nav .iconfont{
-			font-size: 26px;
+			font-size: 26px;			
 		}
 
 		.music-nav .nav-bar{
@@ -142,8 +142,25 @@
 		}
 		.music-nav .music-icon{
 			position: absolute;
-			top: 18px;
-			right: 30px;
+			top: 16px;
+			right: 16px;
+			cursor: cell;
+		}
+		#themes{
+			position: absolute;
+		    top: 21px;
+		    right: 50px;
+		    cursor: pointer;
+		}
+		#themes:hover i.active{
+			text-shadow: 2px 2px 2px #f00;
+		}
+		#themes i{
+			display: none;
+			font-size: 17px;
+		}
+		#themes i.active{
+			display: inline-block;
 		}
 
 		.music-nav .music-title{
@@ -228,15 +245,18 @@
 
 		
 		.main .lyric span{
-			position: absolute;
-			left: 50%;
-			transform: translate(-50%,-50%);
+			display: inline-block;
+			/* position: absolute; */
+			/* left: 50%; */
+			/* transform: translate(-50%,-50%); */
 			font-size: 14px;
 			text-align: center;
 			word-wrap: break-word;
-			/*height: 30px;*/
+			/* height: 30px; */
 			line-height: 10px;
-			display: table;
+			display: block;
+			/* margin: -7px auto; */
+			margin-top: 15px;
 		}/* 每句歌词的位置 */
 		.main .like{
 			position: absolute;
@@ -261,7 +281,7 @@
 		  url('style/iconfont1.ttf?t=1466480762') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
 		  url('style/iconfont1.svg?t=1466480762#iconfont') format('svg'); /* iOS 4.1- */
 		}
-		"; }
+
 
 		.music .main .show-lyric i{
 			font-weight: 400;
@@ -370,6 +390,9 @@
 			bottom: 3px;
 			width: 30px;
 			height: 40px;
+		}
+		.sound:hover .vol-panel{
+			display: block;
 		}
 		.vol-panel{
 			display: none;
