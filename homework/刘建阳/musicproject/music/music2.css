@@ -186,7 +186,8 @@
 			z-index: 5;
 		}
 		#themes:hover i.active{
-			text-shadow: 2px 2px 2px #f00;
+			text-shadow: 2px 2px 2px #aaa;
+			color: #f00;
 		}
 		#themes i{
 			display: none;

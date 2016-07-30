@@ -166,7 +166,8 @@
 		    cursor: pointer;
 		}
 		#themes:hover i.active{
-			text-shadow: 2px 2px 2px #f00;
+			text-shadow: 2px 2px 2px #3f3d3d;
+			color: #f00;
 		}
 		#themes i{
 			display: none;
