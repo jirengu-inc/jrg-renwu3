@@ -26,6 +26,14 @@
 		}
 
 		@font-face {font-family: 'iconfont';
+		    src: url('style/iconfont2.eot'); /* IE9*/
+		    src: url('style/iconfont2.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		    url('style/iconfont2.woff') format('woff'), /* chrome、firefox */
+		    url('style/iconfont2.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+		    url('style/iconfont2.svg#iconfont') format('svg'); /* iOS 4.1- */
+		}
+
+		@font-face {font-family: 'iconfont';
 		    src: url('style/iconfont.eot'); /* IE9*/
 		    src: url('style/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
 		    url('style/iconfont.woff') format('woff'), /* chrome、firefox */
@@ -171,8 +179,8 @@
 		#themes{
 			position: absolute;
 			color: #aaa;
-			top: 11%;
-			right: 6%;
+			top: 10%;
+			right: 5%;
 			font-size: 18px;
 			cursor: pointer;
 			z-index: 5;
@@ -182,6 +190,7 @@
 		}
 		#themes i{
 			display: none;
+			font-size: 26px;
 		}
 		#themes i.active{
 			display: inline-block;
@@ -221,8 +230,8 @@
 		    z-index: 1;
 		}
 		.main img.music-bg{
-			width: 42%;
-			height: 27%;
+			width: 37%;
+			height: 29%;
 			opacity: 0.8;
 			border-radius: 50%;
 			border: 15px solid #1a1419;

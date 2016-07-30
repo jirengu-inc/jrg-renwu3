@@ -68,9 +68,9 @@ var musicPlay = (function(){
 		var html = '<div class="music-ct">'+
 				'<i class="music-start iconfont">&#xe612;</i>'+
 				'<div class="music clearfix">'+'<audio id="audio" src="initsource/刘宽忍 - 枉凝眉.mp3">Your browser does not support the audio tag</audio>'+
-				'<!--添加换肤功能--><div id="themes"><i class="active" data-themes="music1">人</i><i data-themes="music2">吗</i></div>'+
+				'<!--添加换肤功能--><div id="themes"><i class="iconfont active" data-themes="music1">&#xe61b;</i><i class="iconfont" data-themes="music2">&#xe61b;</i></div>'+
 				'<div class="music-nav rf clearfix">'+
-				'<button class="nav-bar rf" title="网页音乐播放器 ver3.5. by 刘建阳">'+
+				'<button class="nav-bar rf" title="网页音乐播放器 ver3.7. by 刘建阳">'+
 				'<div class="channels">'+
 				'<i class="iconfont">&#xe68a;</i>'+
 				'<div class="channel-info">'+
@@ -85,7 +85,7 @@ var musicPlay = (function(){
 				'<!--添加换肤功能<div id="themes" class="rf"><i class="active" data-themes="music1">人</i><i data-themes="music2">吗</i></div>-->'+
 				'<div class="music-title"><p class="title">枉凝眉</p>'+
 				'<span class="author">刘宽忍</span></div>'+
-				'<div class="music-icon" title="网页音乐播放器 ver3.5. by 刘建阳">'+
+				'<div class="music-icon" title="网页音乐播放器 ver3.7. by 刘建阳">'+
 				'<i class="iconfont">&#xe612;</i>'+
 				'</div></div>'+
 				'<div class="main">'+
@@ -157,9 +157,12 @@ var musicPlay = (function(){
 			$(this).find('i').eq(curIndex).siblings().removeClass('active')
 			// console.log(currentTheme);
 			cookie.set('currentTheme', currentTheme, {expires: 10});
-			switchTheme(currentTheme);
+			
 			_self.slideUp();
-			_self.slideDown();
+			setTimeout(function(){
+				switchTheme(currentTheme);
+				_self.slideDown();
+			},500);
 		});
 
 		function switchTheme(themeName) {

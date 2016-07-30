@@ -13,6 +13,13 @@
 		li{
 			list-style: none;
 		}
+		@font-face {font-family: 'iconfont';
+		    src: url('style/iconfont2.eot'); /* IE9*/
+		    src: url('style/iconfont2.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		    url('style/iconfont2.woff') format('woff'), /* chrome、firefox */
+		    url('style/iconfont2.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+		    url('style/iconfont2.svg#iconfont') format('svg'); /* iOS 4.1- */
+		}
 
 		@font-face {font-family: 'iconfont';
 		    src: url('style/iconfont.eot'); /* IE9*/
@@ -154,8 +161,8 @@
 		}
 		#themes{
 			position: absolute;
-		    top: 21px;
-		    right: 50px;
+		    top: 14px;
+		    right: 46px;
 		    cursor: pointer;
 		}
 		#themes:hover i.active{
@@ -163,7 +170,7 @@
 		}
 		#themes i{
 			display: none;
-			font-size: 17px;
+			font-size: 26px;
 		}
 		#themes i.active{
 			display: inline-block;
