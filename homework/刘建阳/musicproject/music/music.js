@@ -70,7 +70,7 @@ var musicPlay = (function(){
 				'<div class="music clearfix">'+'<audio id="audio" src="initsource/刘宽忍 - 枉凝眉.mp3">Your browser does not support the audio tag</audio>'+
 				'<!--添加换肤功能--><div id="themes"><i class="iconfont active" data-themes="music1">&#xe61b;</i><i class="iconfont" data-themes="music2">&#xe61b;</i></div>'+
 				'<div class="music-nav rf clearfix">'+
-				'<button class="nav-bar rf" title="网页音乐播放器 ver3.7. by 刘建阳">'+
+				'<button class="nav-bar rf" title="网页音乐播放器 ver3.6. by 刘建阳">'+
 				'<div class="channels">'+
 				'<i class="iconfont">&#xe68a;</i>'+
 				'<div class="channel-info">'+
@@ -85,7 +85,7 @@ var musicPlay = (function(){
 				'<!--添加换肤功能<div id="themes" class="rf"><i class="active" data-themes="music1">人</i><i data-themes="music2">吗</i></div>-->'+
 				'<div class="music-title"><p class="title">枉凝眉</p>'+
 				'<span class="author">刘宽忍</span></div>'+
-				'<div class="music-icon" title="网页音乐播放器 ver3.7. by 刘建阳">'+
+				'<div class="music-icon" title="网页音乐播放器 ver3.6. by 刘建阳">'+
 				'<i class="iconfont">&#xe612;</i>'+
 				'</div></div>'+
 				'<div class="main">'+
@@ -128,7 +128,7 @@ var musicPlay = (function(){
 
 	musicPlayer.prototype.startInit = function(){
 		
-		 var audio = document.getElementById('audio');//获取audio作为全局变量，方便直接使用.play();
+		var audio = document.getElementById('audio');//获取audio作为全局变量，方便直接使用.play();
 		this.audio = audio;
 		this.drag($('.music-ct'));
 		this.showBtn();
@@ -140,6 +140,10 @@ var musicPlay = (function(){
 		var _self = this;
 		var defaultTheme = 'music1';
 		var currentTheme = typeof(cookie.get('currentTheme')) === 'undefined' ? defaultTheme : cookie.get('currentTheme');
+	
+		$('#themes i[data-themes="' + currentTheme +'"]').addClass('active')
+														 .siblings()
+														 .removeClass('active');
 		switchTheme(currentTheme);
 		// console.log(currentTheme);
 
@@ -153,6 +157,7 @@ var musicPlay = (function(){
 			}else{
 				curIndex = index+1;
 			}
+			console.log(curIndex);
 			var currentTheme = $(this).find('i').eq(curIndex).addClass('active').attr('data-themes');
 			$(this).find('i').eq(curIndex).siblings().removeClass('active')
 			// console.log(currentTheme);
@@ -166,7 +171,7 @@ var musicPlay = (function(){
 		});
 
 		function switchTheme(themeName) {
-			// console.log('this:'+this);
+			// console.log(themeName);
 			if (themeName == 'music1') {
 				$('#css').attr('href', 'music1.css');
 				
