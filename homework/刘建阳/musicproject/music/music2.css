@@ -132,7 +132,7 @@
 			font-size: 40px;
 			-webkit-user-select: none;
 			user-select: none;
-			display: none;
+			/*display: none;*/
 		}
 
 		.music{
