@@ -49,7 +49,12 @@
 			height: 41%;
 			z-index: 20;
 			overflow: hidden;
+			border-radius: 8px;
 		}
+		.channel-pannel{
+			height: 85%;
+		}
+		/*滚动条父元素高度*/
 		.channel-nav li{
 			width: 50%;
 			height: 24px;
@@ -64,7 +69,7 @@
 			background-color: #222;
 			display: none;
 			height: 100%;
-			overflow-y: scroll;
+/*			overflow-y: scroll;
 			-webkit-scrollbar-face-color: #fcfcfc;
 			-webkit-scrollbar-highlight-color: #6c6c90;
 			-webkit-scrollbar-shadow-color: #fcfcfc;
@@ -82,7 +87,7 @@
 			scrollbar-track-color: #fcfcfc;
 			scrollbar-darkshadow-color: #48486c;
 			scrollbar-base-color: #fcfcfc;
-
+*/
 		}
 		.channel-info .channel-item li{
 			
@@ -127,6 +132,7 @@
 			font-size: 40px;
 			-webkit-user-select: none;
 			user-select: none;
+			display: none;
 		}
 
 		.music{
@@ -134,8 +140,8 @@
 			right: 44px;
 			top: 35px;
 			display: none;
-		/*	width: 320px;
-			height: 400px;*/
+			width: 320px;
+			height: 400px;
 			background-color: #393839;
 			border-radius: 3px;
 			overflow: hidden;
@@ -145,8 +151,8 @@
 
 		.music-nav{
 			width: 51%;
-			margin-top: 4%;
-			pointer-events: none;
+			/*margin-top: 4%;*/
+			/*pointer-events: none;*/
 		}
 		.music-nav .iconfont{
 			font-size: 24px;
@@ -165,7 +171,7 @@
 		#themes{
 			position: absolute;
 			color: #aaa;
-			top: 10%;
+			top: 11%;
 			right: 6%;
 			font-size: 18px;
 			cursor: pointer;
@@ -222,11 +228,11 @@
 			border: 15px solid #1a1419;
 		}
 		.main img.music-bg.active{
-			animation: songretote 5s infinite;
+			animation: songretote 5s infinite linear;
 		}
 		@keyframes songretote{
-			from {retoteZ(0deg);}
-			to {retoteZ(359deg)}
+			from {transform:rotateZ(0deg);}
+			to {transform:rotateZ(360deg);}
 		}
 		.main .lyric-upcover{
 			display: none;
@@ -237,7 +243,6 @@
 
 		.main .lyric-ct{
 			/* display: none; */
-
 			position: absolute;
 			top: 36%;
 			left: 0;
@@ -254,10 +259,7 @@
 			position: absolute;
 			top: 36%;
 			left: 0;
-			right: 0;
-			height: 20%;
-			background-color: #1a1919;
-			z-index: 10;
+			right: 0;			
 		}
 		.main .lyric span{
 			display: inline-block;
@@ -337,7 +339,7 @@
 			position: absolute;
 			width: 55%;
 			right: 0;
-			bottom: 340%;
+			bottom: 245%;
 		}
 
 		.control-panel .adjust-panel .adjust .pre{
@@ -365,7 +367,7 @@
 			position: relative;
 			width: 100%;
 			cursor: auto;
-			margin-top: 2%;
+			/*margin-top: 2%;*/
 		}
 		.control-panel .adjust-panel .adjust li i{
 			-webkit-user-select: none;
@@ -400,7 +402,7 @@
 		}
 		.vol-bar{
 			position: absolute;
-			width: 84%;
+			width: 83%;
 			height: 10px;
 			margin: auto;
 			left: 14%;

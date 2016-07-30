@@ -33,16 +33,21 @@
 			border-radius: 10px;
 			background-color: #356;
 			width: 300px;
-			height: 550px;
+			height: 510px;
 			position: absolute;
 			margin-left: -330px;
 			left: -100%;
-			top: -20px;
+			top: -15px;
 			z-index: 20;
 			transition:all 1s;
 			opacity: .8;
-			overflow: auto;
+			
 		}
+
+		.channel-pannel{
+			height: 445px;
+		}
+		/*滚动条父元素高度*/
 		.channels:hover .channel-info{
 			margin-left: -5px;
 		}
@@ -93,7 +98,6 @@
 		}
 
 		.music-ct{
-
 			position: fixed;
 			top: 50px;
 			right: 500px;
@@ -123,6 +127,8 @@
 			border-radius: 3px;
 			overflow: hidden;
 			height: 0;
+			width: 340px;
+			height: 530px;
 		}
 
 		.music-nav{
