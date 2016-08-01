@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style type="text/css">
+  html,div,ul,li,body{
+    margin:0px;
+    padding:0px;
+  }
+  ul,li{
+    list-style:none;
+  }
+  #content{
+    margin:0 auto;
+    width:770px;
+    height:200px;
+    background:#D0D0D0;
+  }
+  .aaa{
+    margin-left:-10px;
+  }
+  .aaa:after{
+    display:block;
+    content:'';
+    clear:both;
+  }
+  .aaa>li{
+    float:left;
+    width:250px;
+    height:95px;
+    background:green;
+    margin-left:10px;
+    margin-top:5px;
+  }
+</style>
+ </head>
+<body>
+  <div id="content">
+    <ul class="aaa">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+      <li>6</li>
+    </ul>
+  </div>
+</body>
+</html>
