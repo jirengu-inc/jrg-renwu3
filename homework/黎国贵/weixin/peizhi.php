@@ -1,5 +1,5 @@
 <?php
-    
+
     $timestamp = $_GET['timestamp'];
     $nonce = $_GET['nonce'];
     $token = 'weixin';
@@ -14,3 +14,5 @@
         echo $_GET['echostr'];
         exit;
     }
+
+?>
