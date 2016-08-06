@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>个人简历</title>
+	<meta name="viewport"
+            content="width=device-width,
+                   height=device-height,
+                   initial-scale=1.0,
+                   minimum-scale=1.0,
+                   maximum-scale=1.0,
+                   user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="public/css/jquery.fullPage.css">
+	<link rel="stylesheet" href="jianli.css">
+</head>
+<body>
+<!-- 	<ul id="fullpageMenu">
+	<li data-menuanchor="page1" class="active"><a href="#page1">1 section</a></li>
+	<li data-menuanchor="page2"><a href="#page2">2 section</a></li>
+	<li data-menuanchor="page2"><a href="#page3">3 section</a></li>
+	<li data-menuanchor="page2"><a href="#page4">4 section</a></li>
+</ul> -->
+	<div id="fullpage">
+		<div class="section index">
+			<h1>寻求web前端工程师职位</h1>
+			<div class="poto-ct">
+				<a href="#page2" class="poto-link">
+					<span class="privaty-poto"></span>
+				</a>				
+			</div>
+			<div class="bar">
+				<p class="connect">
+					姓名：刘建阳
+					<br>
+					tel:15210438591
+					<br>
+					所在位置：北京
+					<br>
+					<a href="http://findmoon.github.io/">blog:http://findmoon.github.io/</a>
+					<br>
+					<a href="https://github.com/findmoon/mywork">github:https://github.com/findmoon/mywork</a>
+				</p>
+			</div>			
+		</div>
+		<div class="section work-wrap2">
+			<h1>个人作品</h1>
+			<ul class="works-items">
+				<li class="item music">
+					<p class="ctrl">音乐播放器</p>
+					<div class="detail-wrap showed">
+						<a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/musicproject/music/music.html">
+							<p class="intro">
+								基本功能：
+								<br>
+								1、歌曲、歌词和频道列表的获取和展示，自动播放，单曲循环、随机播放，获取频道歌曲
+								<br>
+								2、页面的展现和拖拽功能
+								<br>
+								3、歌词随着时间的自动播放
+								<br>
+								4、进度条的滑动、跳进
+								<br>
+								5、音量的调节
+								<br>
+							</p>
+							<img src="public/img/music.png"alt="music-img">
+						</a>
+					</div>
+				</li>
+				<li class="item static-pages-one">
+					<p class="ctrl">首页全屏</p>
+					<div class="detail-wrap">
+						<a href="static pages-one/staticpages-one.html">
+							<p class="intro">
+								基本实现：
+								<br>
+								1、html/body宽高100%，页面全屏使用宽高100%实现,内部水平垂直居中
+								<br>
+								2、a标签的hover效果，class区别不同样式
+								<br>
+								3、ul>li标签使用float浮动并清除浮动，调整大小宽度使在一列平均分布
+								<br>
+								4、background-img的引入、位置摆放和显示方式
+								<br>
+								5、字体图标库的引入和使用
+								<br>
+							</p>
+							<img src="public/img/full.png" alt="full-img">
+						</a>
+					</div>
+				</li>
+				<li class="item static-pages-two">
+					<p class="ctrl">综合性网页</p>
+					<div class="detail-wrap">
+						<a href="static pages-two/static pages-3.html">
+							<p class="intro">
+								基本实现：
+								<br>
+								1、导航条的固定定位的实现
+								<br>
+								2、自定义字体和font-awesome字体图标的引入
+								<br>
+								3、绝对定位、相对定位的使用，文本的对齐方式
+								<br>
+								4、ul>li标签使用float浮动并清除浮动，设置大小并调整位置，实现两列三列的平均排列
+								<br>
+								5、表单元素的使用和大小设置
+								<br>
+							</p>
+							<img src="public/img/page2.png" alt="full-img">
+						</a>
+					</div>
+				</li>
+				<li class="item lazy-load-gotop">
+					<p class="ctrl">懒加载图片及回到顶部</p>
+					<div class="detail-wrap">
+						<a href="lazyLoadGotop/lazyLode.html">
+							<p class="intro">
+								基本实现：
+								<br>
+								1、懒加载是在同一个页面加载多张图片时，为了节省网络资源和用户体验将图片地址放置在元素自定义的属性当中，当页面需要图片的呈现时在加载图片的一种方法。
+								<br>
+								2、元素出现在可视区域中需要加载图片时，再执行加载操作
+								<br>
+								3、设置标志位，已经加载的图片无须再次加载。
+								<br>
+								4、goTop功能实现了封装，动态创建回到顶部的按钮，当页面滚动超过一定距离时，按钮出现
+							</p>
+							<img src="public/img/lazyload.png" alt="full-img">
+						</a>
+					</div>
+				</li>
+				<li class="item carousel">
+					<p class="ctrl">全屏轮播及多个轮播</p>
+					<div class="detail-wrap">
+						<a href="carousel/fullscree-carousel.html">
+							<p class="intro">
+								基本实现：
+								<br>
+								1、页面全屏显示,或放置到一个元素容器中，使其值呈现一张图片
+								<br>
+								2、轮播的元素水平排列，采用向前向后移动的方式实现前后轮播，每次移动一个图片宽度，设置移动的过渡时间。
+								<br>
+								3、使用jQuery的animate动画实现效果
+								<br>
+								4、响应和性能考虑，使用懒加载的方式。
+								<br>
+								5、setInterval实现自动轮播。
+								<br>
+							</p>
+							<img src="public/img/coursal.png" alt="full-img">
+						</a>
+					</div>
+				</li>
+				<li class="item ajax-get-more">
+					<p class="ctrl">ajax获取数据</p>
+					<div class="detail-wrap">
+						<a href="ajaxgetmore/jQajax.html">
+							<p class="intro">
+								基本实现：
+								<br>
+								1、定义好接口和路由，需要传递和接受的参数是什么
+								<br>
+								2、ajax请求的实现，设置好数据格式及传递的方式(get/post)
+								<br>
+								3、根据所要实现的功能设置请求成功或失败后的处理函数.
+								<br>
+								4、设置请求的状态锁，防止重复请求.				
+							</p>
+							<img src="public/img/getmore.png" alt="full-img">
+						</a>
+					</div>
+				</li>
+				<li class="item five-in-low">
+					<p class="ctrl">五子棋</p>
+					<div class="detail-wrap">
+						<a href="five-in-low/five in row.html">
+							<p class="intro">
+								基本实现：
+								<br>
+								1、使用canvas画布绘制棋盘，16*16
+								<br>
+								2、使用js实现逻辑功能，穷举并记录全部的赢法
+								<br>
+								3、落子功能的实现，每点击一次绘制一个圆并设置渐变，表示旗子，计算距离在交叉点上绘制
+								<br>
+								4、计算机落子遍历没有赢法，根据连子数量的不同设置权重，防止最接近赢的情况出现。
+								<br>
+								5、当出现五子连在一块时，弹出提示
+								<br>
+							</p>
+							<img src="public/img/fiveinrow.png" alt="full-img">
+						</a>
+					</div>
+				</li>
+				<li class="item blur-poto">
+					<p class="ctrl">照片模糊显示</p>
+					<div class="detail-wrap">
+						<a href="blurpoto/tuxiang.html">
+							<p class="intro">
+								基本实现：
+								<br>
+								1、制作照片模糊的效果，按钮和键盘空格控制重置模糊与显示。
+								<br>
+								2、通过绘制两张相同图片的方式，第一张完全加载设置模糊效果，第二张使用canvas绘制清晰图片
+								<br>
+								3、canvas里面img和原图位置大小不变，通过绘制圆将清晰图片展示在里面，半径扩大逐步绘制半径更大的圆
+								<br>
+								4、重置清空原来的绘制，重新绘制一个随机的小圆。
+								<br>
+								5、不同设备大小做一个简单适配
+							</p>
+							<img src="public/img/blurpoto.png" alt="blurpoto-img">
+						</a>
+					</div>
+				</li>
+				<li class="item stick-up">
+					<p class="ctrl">stickup小插件</p>
+					<div class="detail-wrap">
+						<a href="stickup/stickup2.html">
+							<p class="intro">
+								基本实现：
+								<br>
+								1、使用jQuery制作插件的方法$.fn=function(){…};return this支持链式调用
+								<br>
+								2、stickup的原理是导航条 置顶，使用固定定位或取消固定定位
+								<br>
+								3、防止设置fixed后，元素脱离文档流导致页面错乱。复制一份完全相同的导航条占位，透明度为0
+								<br>
+								4、利用离开和贴合窗口，并设置标志位，判断是否stick
+							</p>
+							<img src="public/img/stickup.png" alt="full-img">
+						</a>
+					</div>
+				</li>
+				<li class="item tab-page">
+					<p class="ctrl">tab切换页面及添加元素</p>
+					<div class="detail-wrap">
+						<a href="tab-page/tab-page.html">
+							<p class="intro">
+								基本实现：
+								<br>
+								1、tab切换卡的实现，及多个切换卡的实现，防止混乱
+								<br>
+								2、获取数据并添加到页面渲染的实现
+								<br>
+								3、jQuery事件代理的使用
+								<br>
+								4、样式居中、浮动、效果的实现
+
+							</p>
+							<img src="public/img/tabpage.png" alt="tabpage-img">
+						</a>
+					</div>
+				</li>
+				<li class="item warter-fall">
+					<p class="ctrl">瀑布流效果</p>
+					<div class="detail-wrap">
+						<a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/dome/warterfall/warterfall.html">
+							<p class="intro">
+								基本实现：
+								<br>
+								1、使用jsonp的方式，访问新浪新闻的数据接口
+								<br>
+								2、设置好容器的大小，里面图片文字的样式
+								<br>
+								3、通过判断图片是否呈现在窗口中，判断是否加载，节省资源
+								<br>
+								4、ajax获取数据，并将数据拼装成dom元素放在图片容器中
+								<br>
+								5、使用jQuery的Deffred的方法，确保图片下载完后摆放图片位置
+								<br>
+								6、通过将dom不断放入最低一列，实现瀑布流的摆放
+							</p>
+							<img src="public/img/warterfall.png" alt="warterfall-img">
+						</a>
+					</div>
+				</li>
+				<li class="item work-more">
+					<p class="ctrl">更多...</p>
+					<div class="detail-wrap">
+						<a href="https://github.com/findmoon/mywork">
+							<p class="intro">
+								查看github链接：
+								<br>
+								https://github.com/findmoon/mywork
+								<br>
+								更多实现整理中···
+							</p>
+							<img src="public/img/more.png" alt="full-img">
+						</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="section skills">
+			<ul>
+				<li>
+					<a class="skilltip active" href="#">HTML&CSS</a>
+					<div class="content active">
+						<p class="miaoshu">
+							精通ML(5)/css(3)
+							<br>
+							深刻理解和掌握浮动、定位、盒模型、BFC等css核心概念
+							<br>
+							熟练使用Git、Sublime、autom、IDEA等前端工具
+							<br>
+							精通常见布局方式，双飞翼、圣杯布局等
+							<br>
+							对代码可读性、规范性、语义化有一定认识，对CSS兼容有一定经验，能熟练开发符合W3C规范的常见页面
+						</p>
+					</div>
+				</li>
+				<li>
+					<a class="skilltip" href="#">javaScript</a>
+					<div class="content">
+						<p class="miaoshu">
+							掌握和精通原生Javascript的使用
+							<br>
+							掌握事件模型、DOM操作、Ajax、Jsonp、跨域、闭包、原型链、继承等相关概念的原理和使用方法
+							<br>
+							能使用原生js封装通用函数库
+							<br>
+							实现诸如轮播、Tab切换卡、懒加载、Dialog、表单验证、Ajax等常见效果
+						</p>
+					</div>
+				</li>
+				<li>
+					<a class="skilltip" href="#">jQuery</a>
+					<div class="content">
+						<p class="miaoshu">
+							精通jQuery的使用，熟练使用jQuery开发常见页面的效果，能将常见效果封装成jQuery插件
+							<br>
+							对同源策略，跨域，jsonp的原理有一定的掌握
+							<br>
+							使用jquery制作轮播/回到顶部/stickup/瀑布流/拖拽等功能模块化
+							<br>
+							熟练各种常见Dom操作，运用jQuery实现各种动画
+						</p>
+					</div>
+				</li>
+				<li>
+					<a class="skilltip" href="#">orthers</a>
+					<div class="content">
+						<p class="miaoshu">
+							对设计模式、编写可复用代码方面有一定经验，可对一般常见效果实现组件化封装
+							<br>
+							对前端工程化、模块化有一定认识，能使用RequirJS实现模块化开发,了解CMD、AMD、CommonJS 规范
+							<br>
+							对前端性能优化有相关经验
+							<br>
+							熟悉互联网产品流程、前端开发流程、前后端协同开发流程
+							<br>
+							对AngularJs、less、sass、node等有一定了解
+							<br>
+							积极热观的精神，对互联网有着浓厚兴趣，超强的自学能力，喜欢和热爱前端
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="section introduce">
+			<div class="slide">
+				<div class="deatil-introduce">
+					<h1>
+						善于发现，勇于探索
+					</h1>
+					<hr>
+					<p>
+						人生应当是充满生机的，如何去探索和面对值得我们一生去追求。
+						<br>
+						正如飞速发展的H5及相关技术给互联网浏览体验赋予了全新涵义，
+						<br>
+						人生，也要不断前进，去发现令你全新的H5！
+					</p>
+				</div>
+			</div>
+			<div class="slide">
+				<div class="deatil-introduce">				
+					<h1>
+						 夯实自我，不断前行
+					</h1>
+					<hr>
+					<p>
+						<span>所在位置：北京,寻求web前端工程师职位</span>
+						<br>				
+						<span>个人总结：</span>						
+						<br>
+						学习能力强，能利用文档和网络资源快速学习并投入实践
+						<br>
+						调试、定位和有效解决问题，注重代码的逻辑实现和差错纠错能力的培养
+						<br>
+						态度严谨、做事踏实，遵从编码规范，体现W3C标准和语义化
+						<br>
+						对前端开发充满热忱和积极态度，乐于接受和钻研新技术
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="public/js/jquery-3.0.0.min.js"></script>
+	<script type="text/javascript" src="public/js/jquery.fullPage.js"></script>
+	<script type="text/javascript" src="public/js/jianli.js"></script>
+
+</body>
+</html>

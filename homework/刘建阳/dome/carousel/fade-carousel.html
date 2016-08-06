@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>carousel</title>
+	<style type="text/css">
+
+		
+		html,body,ul,li,p{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		
+		.carousel{
+			position: relative;
+			left:460px;
+			top: 220px;
+			width: 310px;
+			height: 206px;
+			overflow: hidden;
+		}
+		.carousel .img-ct{
+			position: absolute;
+		}
+		.carousel .img-ct img{
+			width: 310px;
+			height: 206px;
+		}
+		.carousel .img-ct:after{
+			content: '';
+			display: block;
+			clear: both;
+		}
+		.carousel .img-ct li{
+			float: left;
+		}
+
+		.arrow{
+			position: absolute;
+		    top: 50%;
+		    margin-top: -15px;
+		    width: 30px;
+		    height: 30px;
+		    line-height: 30px;
+		    text-align: center;
+		    background: #4E443C;
+		    color: #fff;
+		    border-radius: 30px;
+		    box-shadow: 0 0 2px #999;
+		    opacity: 0.8
+		}
+		.arrow:hover {
+		    opacity: 1;
+		}
+		.pre{
+			left: 10px;
+		}
+		.next{
+			right: 10px;
+		}
+		ul.bullet {
+			position: absolute;
+		    bottom: 10px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		}
+		ul.bullet li {
+		    width: 16px;
+		    height: 4px;
+		    border-radius: 2px;
+		    background: #fff;
+		    display: inline-block;
+		    cursor: pointer;
+		}
+
+		ul.bullet li.active {
+		    background: #666;
+		}
+
+
+		</style>
+</head>
+<body>
+	
+	<div class="carousel">
+		<ul class="img-ct">
+			<li><a href="#"><img src="img/0.jpg"></a></li>
+			<li><a href="#"><img src="img/1.jpg"></a></li>
+			<li><a href="#"><img src="img/2.jpg"></a></li>
+			<li><a href="#"><img src="img/3.jpg"></a></li>
+		</ul>
+		<a class="pre arrow" href="#"><</a>
+		<a class="next arrow" href="#">></a>
+		<ul class="bullet">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+
+
+	
+	<script type="text/javascript" src="../public/js/jquery-3.0.0.min.js"></script>
+
+	<script type="text/javascript">
+			var $ct = $('.img-ct'),
+				$items = $ct.children(),
+				$pre = $('.pre'),
+				$next = $('.next'),
+				$bullet = $('.bullet'),
+				imgCount = $ct.children().size();
+
+
+
+			var curIdx = 0;
+			var isAnimate = false;
+
+			$next.on('click', function(){
+				playNext();
+			});
+			$pre.on('click', function(){
+				playPre();
+			});
+			$bullet.find('li').on('click', function(){
+				var idx = $(this).index();
+				play(idx);
+			});
+
+			play(0);
+			autoPlay();
+
+
+			function playNext(){
+				play((curIdx+1)%imgCount)
+			}
+
+			function playPre(){
+				play((imgCount+curIdx-1)%imgCount)
+			}
+			function play(idx){
+				curIdx = idx;
+				if(isAnimate) return;
+				isAnimate = true;
+				$items.eq(curIdx).siblings().fadeOut(500);
+				$items.eq(curIdx).fadeIn(500, function(){
+					isAnimate = false;
+				});
+						
+				setBullet();
+			}
+
+			function setBullet(){
+				$bullet.children().removeClass('active')
+								  .eq(curIdx).addClass('active');
+			}
+			function stopAuto(){
+				clearInterval(clock);
+			}
+
+			function autoPlay(){
+				clock = setInterval(function(){
+					playNext();
+				}, 2000);	
+			}
+
+/*自己实现的局限性好大，然后直接参考了老师的代码*/
+/*
+		var $ct = $('.img-ct'),
+			$pre = $('.pre'),
+			$next = $('.next'),
+			$bullet = $('.bullet');
+
+		var $items = $ct.children(),
+			imgWidth = $items.width(),
+			imgCount = $ct.children().size();
+
+		$ct.css('width',imgWidth*imgCount);
+			
+		var cur = 0;
+
+
+
+		$pre.on('click',function(){
+			playPre();
+		});
+		$next.on('click',function(){
+			playNext();
+		});
+		$bullet.find('li').on('click',function() {
+			var $this = $(this);
+			var idx = $this.index();
+			$this.siblings().removeClass('active');
+			$this.addClass('active');
+
+			play(idx);
+
+		});
+
+		function playPre(){
+			$items.eq(cur).fadeOut(500);
+			
+			cur = (imgCount+cur-1)%imgCount;
+			$items.eq(cur).fadeIn(500);
+			$bullet.find('li').removeClass('active')
+							  .eq(cur).addClass('active');
+		};
+
+		function playNext(){
+			$items.eq(cur).fadeOut(500);
+
+			cur = (cur+1)%imgCount;
+			$items.eq(cur).fadeIn(500);
+			$bullet.find('li').removeClass('active')
+							  .eq(cur).addClass('active');
+		};
+
+		function play (idx) {
+			$items.eq(cur).fadeOut(500);
+			cur = idx;
+			$items.eq(cur).fadeIn(500);
+		};
+		*/
+	</script>
+</body>
+</html>

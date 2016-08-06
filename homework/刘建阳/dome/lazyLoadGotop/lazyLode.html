@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lazyLode</title>
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+		li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		.lazy-load{
+			border: 1px solid;
+			margin: 0 auto;
+			width: 1000px;
+		}
+		.lazy-load:after{
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		.lazy-load li{
+			float: left;
+			margin: 10px 10px;
+		}
+
+		.lazy-load li img{
+			width: 313px;
+			height: 330px;
+		}
+
+		.go-top{
+			display: none;
+			position: fixed;
+			right: 50px;
+			bottom: 50px;
+			width: 60px;
+			height: 60px;
+			line-height: 60px;
+			text-align: center;
+			cursor: pointer;
+			color: #b44;
+			background-color: #aaa;
+			border-radius: 50% 50%;
+			font-size: 28px;
+			font-weight: 700;
+		}
+		/*返回顶部*/
+	</style>
+</head>
+<body>
+	<ul class="lazy-load">
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		<li><a href="#"><img src="../gif/缓冲加载/load.gif" data-src="8.jpg"></a></li>
+		
+	</ul>
+
+	<script type="text/javascript" src="../public/js/jquery-3.0.0.min.js"></script>
+
+	<script type="text/javascript">
+		var clock;
+
+		$(window).on('scroll',function() {
+			if(clock){
+				clearTimeout(clock);
+			};
+
+			clock = setTimeout(function(){
+				//console.log(1);
+				showImg();
+			}, 500);
+		});
+
+		showImg();
+
+		function showImg(){
+			var $img = $('.lazy-load img');
+			$img.each(function(){
+				var $cur = $(this);
+
+				if ($cur.attr('is-load')) {
+					return ;
+				};
+
+				if(isVisible($cur)){
+					$cur.attr('src',$cur.attr('data-src'));
+					$cur.attr('is-load',true);
+				}else{
+					return ;
+				};
+			});
+		}
+
+		function isVisible($node){
+
+			return ($(window).scrollTop() + $(window).height()) >= $node.offset().top?true:false;
+		}
+
+		/*用立即执行函数表达式，来实现封装*/
+		var goTop = (function(){
+			var $goTop = $('<div class="go-top">Top</div>');
+			$('body').append($goTop);
+
+			function init(){
+				$(window).on('scroll',function(){
+					if($('body').scrollTop() > 100){
+						$goTop.show();
+					}else{
+						$goTop.hide();
+					};
+				});
+
+				$goTop.on('click',function(){
+					$(window).scrollTop(0);
+				});
+			};
+			
+			return {
+				init: init
+			};
+		})();
+
+		goTop.init();
+	</script>
+</body>
+</html>
