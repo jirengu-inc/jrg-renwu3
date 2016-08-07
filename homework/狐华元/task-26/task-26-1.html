@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task-26-1</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul {
+        list-style: none;
+      }
+      .m-md {
+        margin-top: 5px;
+      }
+      .m-lg {
+        margin-top: 10px;
+      }
+      .container {
+        padding: 20px;
+      }
+      .btn {
+        padding: 6px 12px;
+        border-radius: 5px;
+        border: 1px solid transparent;
+      }
+      .btn-danger {
+        background-color: #ff6a00;
+        color: #fff;
+        font-size: 14px;
+      }
+      .btn-danger:hover,.btn-danger:active {
+        background-color: #ec6301;
+      }
+      button:focus,button:active {
+        outline: none;
+      }
+      button.disabled {
+        background-color: #ddd;
+      }
+      #flower,#flower1 {
+        height: 120px;
+        margin-top: 5px;
+      }
+      .message {
+        display: none;
+      }
+      .btn-group {
+        margin-top: 5px;
+      }
+      .btn-group>button {
+        margin-right: 5px;
+        padding: 3px 5px;
+      }
+      .box_el {
+        width: 80px;
+        height: 60px;
+        padding: 10px;
+        border: 2px solid #ccc;
+        margin: 20px;
+      }
+      .active {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h4>1. 给元素 $node 添加 class active，给元素 $noed 删除 class active</h4>
+        <button class="btn btn-danger m-md">加入购物车</button>
+        <button class="add">添加class</button>
+        <button class="remove">移除class</button>
+        <script>
+          var $button = $(".btn");
+          $(".add").on("click",function(){
+            $button.addClass("disabled");
+          });
+          $(".remove").on("click",function(){
+            $button.removeClass("disabled");
+          });
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>2. 展示元素$node, 隐藏元素$node</h4>
+        <button class="btn btn-danger m-md btn-state">这是一个按钮</button>
+        <div>
+          <button class="show">展示元素</button>
+          <button class="hide">隐藏元素</button>
+          <button class="toggle">切换元素显示状态</button>
+        </div>
+        <script>
+          var $button1 = $(".btn-state");
+          $(".show").on("click",function(){
+            $button1.show();
+          });
+          $(".hide").on("click",function(){
+            $button1.hide();
+          });
+          $(".toggle").on("click",function(){
+            $button1.toggle();
+          });
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>3. 获取元素$node 的 属性: id、src、title， 修改以上属性</h4>
+        <img id="flower" src="http://img.netbian.com/file/20110227/bcfab11f3fbbb082a6fb0486355639ab.jpg" title="hua">
+        <ul class="message">
+        </ul>
+        <div>
+          <button class="show_img">显示/隐藏元素属性</button>
+          <button class="change_img">更改元素信息</button>
+        </div>
+        <script>
+        var $flower = $('#flower'),
+            $img_id = $flower.attr("id"),
+            $img_src = $flower.attr("src"),
+            $img_title = $flower.attr("title");
+        var $html = '';
+        $html += "<li>该图片的id名为: " + $img_id + "</li>";
+        $html += "<li>该图片的src路径名为: " + $img_src + "</li>";
+        $html += "<li>该图片的title值为: " + $img_title + "</li>";
+        $(".message").append($html);
+        $(".show_img").on('click',function(){
+          $(".message").toggle();
+        })
+        $(".change_img").on('click',function(){
+          $img_id = $flower.attr("id","flower1");
+          $img_src = $flower.attr("src","http://img1.3lian.com/2015/a2/249/d/133.jpg");
+          img_title = $flower.attr("title","the flower");
+        })
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>4. 给$node 添加自定义属性data-src</h4>
+        <div class="data_src">
+          <span>添加自定义属性data-src</span>
+        </div>
+        <button class="add_src">添加元素属性</button>
+        <script>
+          $(".add_src").on('click',function(){
+            $(".data_src>span").attr("data-src","other");
+            console.log($(".data_src").html());
+          })
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>5. 在$ct 内部最开头添加元素$node,最末尾添加元素$node,删除$node,把$ct里内容清空,在$ct 里设置 html</h4>
+        <div class="inset_el">
+          <p>top</p>
+        </div>
+        <div class="btn-group">
+          <button class="add_el">开头添加元素</button>
+          <button class="add_end_el">末尾添加元素</button>
+          <button class="remove_el">删除元素</button>
+          <button class="empty_el">清空元素</button>
+          <button class="html_el">元素设置html</button>
+        </div>
+        <script>
+        var $add_html = "<p>添加元素</p>"
+        $(".add_el").on('click',function(){
+          $(".inset_el").prepend($add_html);
+        })
+        $(".add_end_el").on('click',function(){
+          $(".inset_el").append($add_html);
+        })
+        $(".remove_el").on('click',function(){
+          $(".inset_el").find('p').last().remove();
+        })
+        $(".empty_el").on('click',function(){
+          $(".inset_el").empty();
+        })
+        $(".html_el").on('click',function(){
+          $(".inset_el").html('<span>设置html元素--设置成功了</span>');
+        })
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>6. 获取、设置$node 的宽度、高度(分别不包括内边距、包括内边距、包括边框、包括外边距)</h4>
+        <div class="box_el">
+        </div>
+        <p class="no-p-width"></p>
+        <p class="p-width"></p>
+        <p class="p-b-width"></p>
+        <p class="p-b-m-width"></p>
+        <div class="btn-group">
+          <button class="get_el">获取元素宽高</button>
+          <button class="set_el">设置元素宽高</button>
+        </div>
+        <script>
+        $(".get_el").on("click",function(){
+          $(".no-p-width").text("不包括内边距: 宽为" + $(".box_el").width() + 'px' + "，高为" + $(".box_el").height() + 'px');
+          $(".p-width").text("包括内边距: " + $(".box_el").innerWidth() + 'px' + "，高为" + $(".box_el").innerHeight() + 'px');
+          $(".p-b-width").text("包括内边距和边框: " + $(".box_el").outerWidth() + 'px' + "，高为" + $(".box_el").outerHeight() + 'px');
+          $(".p-b-m-width").text("包括内边距边框和外边距: " + $(".box_el").outerWidth(true) + 'px' + "，高为" + $(".box_el").outerHeight(true) + 'px');
+        })
+        $(".set_el").on("click",function(){
+          $(".box_el").width($(".box_el").width() + 40);
+        })
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>7. 获取窗口滚动条垂直滚动距离</h4>
+        <div class="scroll_el">
+          滚动距离:
+          <h2></h2>
+        </div>
+        <script>
+        $(window).on("scroll",function(){
+          var topValue = $(window).scrollTop();
+          $(".scroll_el>h2").html(topValue);
+        })
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>8. 获取$node 到根节点水平、垂直偏移距离</h4>
+        <div class="box_el">
+        </div>
+        <p class="offset_text"></p>
+        <div class="btn-group">
+          <button class="get_offset">获取偏移距离</button>
+        </div>
+        <script>
+        $(".get_offset").on("click",function(){
+          var offset = $(".box_el").offset();
+          $(".offset_text").text("元素到根节点的水平偏移距离为：" + offset.left + "px" + "; 元素到根节点的垂直偏移距离为：" + offset.top + "px");
+        })
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>9. 修改$node 的样式，字体颜色设置红色，字体大小设置14px</h4>
+        <p class="change_p">hello world</p>
+        <div class="btn-group">
+          <button class="set_style">修改style</button>
+        </div>
+        <script>
+        $(".set_style").on("click",function(){
+          $(".change_p").css({
+            'color': 'red',
+            'font-size': '14px'
+          });
+        })
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>10. 遍历节点，把每个节点里面的文本内容重复一遍</h4>
+        <p class="change_p">hello world</p>
+        <ul class="each_el">
+          <li>hello</li>
+          <li>world</li>
+        </ul>
+        <div class="btn-group">
+          <button class="each_content">遍历节点，打印内容</button>
+        </div>
+        <script>
+        $(".each_content").on("click",function(){
+          $(".each_el>li").each(function(){
+            $(this).text($(this).text() + '重复  ' + $(this).text())
+          })
+        })
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>11. (1)从$ct 里查找 class 为 .item的子元素，(2)获取$ct 里面的所有孩子，(3)对于$node，向上找到 class 为’.ct’的父亲，在从该父亲找到’.panel’的孩子</h4>
+        <div class="find_el">
+          <span class="item">item子元素1</span>
+          <p class="item child">item子元素2</p>
+          <span class="panel">我是父亲的孩子</span>
+        </div>
+        <div class="btn-group">
+          <button class="find_item">item</button>
+          <button class="find_child">children</button>
+          <button class="find_panel">panel</button>
+        </div>
+        <script>
+        $(".find_item").on("click",function(){
+          $(".find_el").children().removeClass("active");
+          $(".find_el").find(".item").addClass("active");
+        })
+        $(".find_child").on("click",function(){
+          $(".find_el").children().removeClass("active");
+          $(".find_el").children().addClass("active");
+        })
+        $(".find_panel").on("click",function(){
+          $(".find_el").children().removeClass("active");
+          $(".child").parent().find(".panel").addClass("active");
+        })
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>12. 获取选择元素的数量</h4>
+        <ul class="el_size">
+          <li class="one">01</li>
+          <li>02</li>
+          <li>03</li>
+        </ul>
+        <p class="size_num"></p>
+        <div class="btn-group">
+          <button class="el_num">item</button>
+        </div>
+        <script>
+        $(".el_num").on("click",function(){
+          var num = $(".el_size").children().size();
+          $(".size_num").html("获取选择元素的数量为：" + num)
+        })
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>13. 获取当前元素在兄弟中的排行</h4>
+        <ul class="index_el">
+          <li>01</li>
+          <li>02</li>
+          <li>03</li>
+        </ul>
+        <p class="index_text"></p>
+        <script>
+        $(".index_el>li").on("click",function(){
+          var index_num = $(this).index() + 1;
+          $(".index_text").html("当前点击的是第" + index_num + "个元素")
+        })
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
