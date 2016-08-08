@@ -1,0 +1,181 @@
+# 刘建阳
+#### 应聘职位:web前端开发工程师
+#### 性别:男
+#### 年龄:24
+#### 邮箱:1286637198@qq.com
+#### 手机:15210438591
+#### github:https://github.com/findmoon/mywork
+#### 个人博客:http://findmoon.github.io/
+#### 工作地点:北京
+#### 意向薪酬:10k—15k
+
+## 教育背景及兴趣
+
+  - 2013年毕业于河北工业大学，计算机应用技术，专科，后专接本，本科学历，对教育方面也有着浓厚兴趣
+  - 为人开朗，乐观积极，对前端有着浓厚兴趣，善于学习总结，有很强的责任心和自信心。
+
+## 擅长技能：
+- 熟悉HTML(5)/css(3),掌握浮动、定位、盒模型、BFC等css核心概念，掌握常见布局方式，对代码可读性、规范性、语义化有一定认识，对CSS兼容有一定经验，能熟练开发符合W3C规范的常见页面。
+- 熟悉原生Javascript的使用，掌握事件模型、DOM操作、Ajax、Jsonp、跨域、闭包、原型链、继承等相关概念的原理和使用方法，能使用原生js封装通用函数库，实现诸如轮播、Tab切换卡、懒加载、Dialog、表单验证、Ajax等常见效果
+- 熟练jQuery的使用，熟练使用jQuery开发常见页面的效果，能将常见效果封装成jQuery插件
+- 对设计模式、编写可复用代码方面有一定经验，可对一般常见效果实现组件化封装。
+- 熟悉Git、Sublime、vim、IDEA等前端工具的使用
+- 对前端工程化、模块化有一定认识，能使用RequirJS实现模块化开发、能使用npm、Gulp打造基本的自动化流程。
+- 对前端性能优化有相关经验
+- 熟悉互联网产品流程、前端开发流程、前后端协同开发流程
+- 对backbone、less、sass、node等有一定了解
+- 积极热观的精神，对互联网有着浓厚兴趣，超强的自学能力，喜欢和热爱前端。
+
+## 项目作品
+
+### 作品1
+- FM类型音乐播放器
+   - [dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/musicproject/music/music.html)
+   - [代码实现](https://github.com/findmoon/mywork/tree/master/music)
+
+- 利用已经封装好的豆瓣音乐api制作一个功能相对完善的网页版音乐播放器。
+
+- 基本功能：
+	- 歌曲、歌词和频道列表的获取和展示，自动播放，单曲循环、随机播放，获取频道歌曲
+	- 页面的展现和拖拽功能
+	- 歌词随着时间的自动播放
+	- 进度条的滑动、跳进
+	- 音量的调节
+
+- 用到的技术：
+	1. 性能方面考虑，所有图标使用字体图标库(iconfont)
+	2. html元素写入网页内容，H5媒体元素标签audio引入音乐资源，使用div、a、无序列表ul等元素实现网页基本内容
+	3. css实现网页样式和布局，包括float及浮动的清除、position的绝对定位及相对定位、居中，颜色、大小、背景、display的设置，歌曲列表和歌词溢出隐藏，字体图标的引入,鼠标手势，元素选择器及伪元素选择的使用。
+	4. js代码功能的实现，依照jQuery
+	 - 整个播放器页面和按钮的拖放，点图标页面展现，播放页面只在第一次展现发送ajax获取歌曲，
+	 - 页面展现后的自动播放事件，包括进度条、歌词的滚动，收起后停止。
+	 - ajax请求获取频道channel信息、歌曲song和歌词信息
+	 - 将频道信息拼装成dom添加到页面，歌曲信息放入audio标签并播放，歌曲名称和歌手的显示
+	 - 获取歌曲信息后，首先使用正则匹配出时间，并将内容转化为json格式，歌词依照时间次序拼装成dom，歌词滚动时依次向上出现
+	 - 歌词按钮、播放、单曲和随机播放、下一首、音量、频道列表按钮面板功能的实现。
+	 - setInterval实现进度条和歌词的自动功能，播放时间的显示，进度条的点击和滑动控制播放进度，音量功能的实现也是如此。
+	 - 代码的封装，利用js的prototype和闭包实现封装，html的生成也放入js中。
+
+- 遇到的问题：
+   1. 页面第一次加载获取歌曲但是并不播放，点击按钮页面展现并播放。设置一个标志位，当点击按钮页面展开后打开标志位，以后每次获取歌曲后自动播放。
+   2. 高度和宽度的计算必须在动画完成后进行都则出现计算错误，进度条功能受限，将宽高取值和一些功能放在jQuery.animate动画执行完后的function中。
+   3. 页面展现按钮和拖拽功能发生重叠，将click事件分解成up和down，移动时设置一个标志位，如果移动click事件不执行。
+   4. 拖拽的问题，主界面和展现按钮会发生未知错乱，使用display：table形成BFC讲所有元素包含在一个容器内，并使用绝对和相对定位。
+   5. 歌词和进度条、歌曲转化的逻辑实现问题，歌词在第一次点开时发送请求，以后每次点击如果没换歌曲就不用请求。每次进度条变化都要自动播放，自动播放时需要判断当前歌曲和歌词是否对应，不对应重新发送请求(歌词打开)。当前歌曲播放完自动加载下一首
+   6. 歌词内容的解析，以及转化为json格式JSON.parse(string),string要拼装符合符合格式要求。每句歌词内容按时间设置距离歌词顶部距离，样式要在append()之前设置，否则内容错乱。
+   7. 利用好原型链和闭包实现封装。
+  
+### 作品二
+- 静态页面（一）
+  - [dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/task14/task14.html)
+  - [代码实现](https://github.com/findmoon/mywork/tree/master/static%20pages-one)
+  
+图片
+
+  - 实现：
+    - html/body宽高100%，页面全屏使用宽高100%实现，display:table使用水平和垂直居中
+    - a标签的hover效果，class区别不同样式
+    - ul>li标签使用float浮动并清除浮动，调整大小宽度使在一列平均分布
+    - background-img的引入、位置摆放和显示方式
+    - font-awesome字体图标的引入和使用
+    - css不同样式的设置，大小、居中、对齐、颜色
+
+### 作品三
+1、 静态页面（二）
+
+  - [dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/task15/task15-2.html)
+  - [代码实现](https://github.com/findmoon/mywork/blob/master/static%20pages-two/static%20pages-2.html)
+  
+图片
+
+
+ 2、 静态页面（三）
+
+  - [dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/task15/task15-3.html)
+  - [代码实现](https://github.com/findmoon/mywork/blob/master/static%20pages-two/static%20pages-3.html)
+  
+图片
+
+  - 实现：
+    - 导航条的固定定位的实现
+    - 悬停hover效果，出现列表选项，及样式
+    - 自定义字体和font-awesome字体图标的引入
+    - 设置html/body宽高100%，页面全屏使用宽高100%实现
+    - ul>li标签使用float浮动并清除浮动，设置大小并调整位置，实现两列三列的平均排列
+    - 绝对定位、相对定位的使用，文本的对齐方式
+    - 表单元素的使用和大小设置
+
+### 作品四
+  - 轮播效果和组件的实现(jQuery)
+   	- 全屏自动轮播
+   	  - [dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/task27/fullscree-carousel.html)
+      - [代码实现](https://github.com/findmoon/mywork/blob/master/carousel/fullscree-carousel.html)
+ 
+	- 淡入淡出轮播
+   	  - 单个轮播：[dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/task27/fade-carousel.html#)
+      - 单个轮播：[代码实现](https://github.com/findmoon/mywork/blob/master/carousel/fade-carousel.html)
+   	  - 多个轮播：[dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/task27/fade-carousel3.html)
+      - 多个轮播：[代码实现](https://github.com/findmoon/mywork/blob/master/carousel/fade-carousel3.html)
+
+	- 实现：
+	  - 首先页面全屏显示，使用宽高样式100%,图片显示使用背景图片或者img标签均可。
+	  - 将轮播的元素水平排列，采用向前向后移动的方式实现前后轮播，每次移动一个图片的宽度，设置运动时间有个过渡。
+	  - 将最后一个元素复制一份放在最前面，点击向前播放页面向后移动出现复制的最后一个图片，移动完后在赋值将真正的最后一个图片呈现，防止点击向前时突然跳转到最后一个页面。最后一个页面向后使用同样的方法。
+	  - 使用jQuery的animate动画实现效果，添加底部对应的小长条的的class。
+	  - 响应和性能考虑，使用懒加载的方式，将src或url资源存放在一个属性中，需哟啊加载时在将其赋值给src或url。
+	  - setInterval实现自动，pre和next效果在最第一个和最后一个时判断。
+	  - 设置window的"resize"时间，每次窗口变化时都重新计算下宽度。
+	  - 淡入淡出的实现使用fideOut和fadeIn动画实现，每次当前淡入出现，其他图片淡出，不用添加dom元素。
+	  - 设置动画的标志位，防止多次点击动画执行。每次动画执行设置一次下面的对应点的class效果。
+	  - 多个轮播，利用轮播图序数的方式，一个个遍历，每个执行自己的轮播动画，使互不影响
+	  
+### 作品五
+  - ajax加载更多
+ 	 - [dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/task26/jQajax.html)
+     - [代码实现](https://github.com/findmoon/mywork/blob/master/ajaxgetmore/jQajax.html)
+
+  - 实现：
+	- 定义好接口和路由，需要传递和接受的参数是什么
+	- ajax请求的实现，设置好数据格式及传递的方式(get/post)
+	- 根据所要实现的功能设置请求成功后的处理函数，本例接受一个状态参数：是否成功和一个与请求个数一样的数组['内容n'，'内容n+1'，...] 。功能是将他们拼装成li元素的内容添加到页面中。使用jQuery的操作。
+	- 设置请求错误时的处理函数。
+     
+### 作品六
+  - 可视范围懒加载图片及回到顶部
+ 	 - [dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/dome/lazyload/lazyLode.html)
+     - [代码实现](https://github.com/findmoon/mywork/blob/master/lazyLoadGotop/lazyLode.html)
+  - 实现
+	- 懒加载是在同一个页面加载多张图片时，为了节省网络资源和用户体验将图片地址放置在元素自定义的属性当中，当页面需要图片的呈现时在加载图片的一种方法。
+	- 使用jQuery计算滚动距离scrollTop()和页面高度heght()的和是不是大于元素距离页面顶端的距离，当大于时说明该元素需要加载图片，执行加载操作。
+	- 设置标志位，已经加载的图片无须再次加载，将图片资源赋值给img的src并加载图片显示。
+	- 性能考虑，可以设置一个一个延迟判断，防止用户频繁滚动页面而频繁执行图片加载操作。
+	- goTop功能实现了封装，动态创建回到顶部的按钮，样式设置为display;none,当页面滚动超过一定距离时，按钮出现，绑定点击事件，页面滚动距离变为0，回到顶部
+
+### 作品七
+  - stickup插件(jQuery)
+ 	 - [dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/task28/stickup2.html)
+     - [代码实现](https://github.com/findmoon/mywork/blob/master/stickup/stickup.js)
+  - img图片在一个区块中水平垂直居中的小插件
+     - [dome预览](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/dome/imgvercen/index.html)
+     - [代码实现](https://github.com/findmoon/mywork/blob/master/imgvercen/imgCenVer.js)
+  - 实现
+	- 使用jQuery插件的方法$.fn=function(){...};
+	- stickup的原理是当页面滚动时判断导航条顶端是否与页面窗口重合，重合即设置为fixed固定定位，始终位于页面顶端。页面窗口远离导航条顶端时取消fixed
+	- 为防止设置fixed后，元素脱离文档流导致页面错乱。复制一份完全相同的导航条占位，透明度为0，不产生错乱。
+	- 设置data-fixed属性记录导航条是否设置了fixed样式，用于取消和设置fixed的判断。
+	- 图片居中的插件适用于一个div或其他元素中有一个img子元素，设置img元素以原比例的形式宽或高完全铺满，并且居中对齐.
+	- 可自定义设置需要显示的宽高，一般为容器宽高，默认宽高为320x240.
+	- 父容器需设置多出部分隐藏。
+	- return:this;支持jQuery链式调用。
+
+### 作品八
+ - 使用canvas实现五子棋
+   - [dome演示](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/dome/five-in-low/five%20in%20row.html)
+   - [代码实现](https://github.com/findmoon/mywork/tree/master/five-in-low)
+ - 使用canvas实现照片模糊与显示
+   - [dome演示](http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E5%88%98%E5%BB%BA%E9%98%B3/dome/blurpoto/tuxiang.html)
+   - [代码实现](https://github.com/findmoon/mywork/tree/master/blurpoto)
+ - 实现
+  - 模仿慕课网教学实现的五子棋和照片模糊显示
+  - 使用H5的canvas画布绘制
+  - 使用穷举，列举所有可能的赢法，每落一次进行一次判断

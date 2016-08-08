@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>slideH - 站长图库</title>
+
+<style>
+body{
+	margin:0;
+	padding:0;
+	background:url(images/hat2.jpg) #400B4F no-repeat;
+}
+
+.container{
+	width:700px;
+	height:500px;
+	margin:70px auto;
+}
+
+
+.handle{
+	float:left;
+	margin:0 2px;
+	width:50px;
+	height:500px;
+	cursor:pointer;
+	background:#F0F;
+	font:bold 24px Arial, Helvetica, sans-serif;
+	text-align:center;
+	color:#FFF;
+	-webkit-border-radius:25px;
+	-moz-border-radius:25px;
+	-o-border-radius:25px;
+	border-radius:25px;
+	-webkit-transition:0.3s ease-in-out;
+	-moz-transition:0.3s ease-in-out;
+	-o-transition:0.3s ease-in-out;
+	-ms-transition:0.3s ease-in-out;
+}
+
+.handle:hover{
+	background:#FC3;
+	-webkit-transform:scale(1.02);
+	-moz-transform:scale(1.02);
+	-ms-transform:scale(1.02);
+	-o-transform:scale(1.02);
+}
+
+.select{
+	background:#FC3;
+}
+
+.slide{
+	background:url(images/grey.png);
+	float:left;
+	width:380px;
+	height:500px;
+	display:none;
+	margin:0 4px;
+	-webkit-border-radius:25px;
+	-moz-border-radius:25px;
+	-o-border-radius:25px;
+	border-radius:25px;
+}
+
+
+img{
+	background:#FFF;
+	display:block;
+	width:280px;
+	height:450px;
+	margin:20px auto;
+	padding:5px;
+}
+
+.rotate{
+	margin:50px auto;
+	-webkit-transform:rotate(90deg);
+	-moz-transform:rotate(90deg);
+	-ms-transform:rotate(90deg);
+	-o-transform:rotate(90deg);
+}
+
+</style>
+
+<script src="jquery-1.6.1.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+			var j = 1;
+			 $(".handle").each(function(){
+			 if($.browser.msie&&($.browser.version <= "8.0")) 
+			 {
+					$(this).children("p").html(j);
+					j++;
+			 }
+			 else{
+    				var i = $(this).attr("id");
+					$(this).children("p").html(i);
+			 }
+			})
+
+			$(".handle").click(function(){
+				if(!$(this).siblings(".slide").is(":visible")){
+				$(this).addClass("select");
+				$(this).siblings(".slide").animate({width:"show"},300);
+				$(this).parent().siblings().children(".slide").animate({width:"hide"},300);
+				$(this).parent().siblings().children(".handle").removeClass("select");
+				}
+				else{
+				$(this).siblings(".slide").animate({width:"hide"},300);
+				$(this).removeClass("select");
+				}
+			})
+})
+
+</script>
+</head>
+
+<body>
+
+<div class="container">
+
+<div>
+      <div class="handle" id="one"><p class="rotate"></p></div>
+      <div class="slide"><img src="images/1.jpg" /></div>
+</div>
+
+<div>      
+       <div class="handle" id="two"><p class="rotate"></p></div>
+      <div class="slide"><img src="images/2.jpg" /></div>  
+</div>
+
+<div>   
+       <div class="handle" id="three"><p class="rotate"></p></div>
+      <div class="slide"><img src="images/3.jpg" /></div>
+</div>
+
+<div>
+      <div class="handle" id="four"><p class="rotate"></p></div>
+      <div class="slide"><img src="images/4.jpg" /></div>
+</div>
+
+<div>      
+       <div class="handle" id="five"><p class="rotate"></p></div>
+      <div class="slide"><img src="images/5.jpg" /></div>  
+</div>
+
+</div>
+<div style="text-align:center;clear:both"><script src='http://www.zztuku.com/plus/ad_js.php?aid=35' language='javascript'></script>
+<script src='http://www.zztuku.com/plus/ad_js.php?aid=42' language='javascript'></script>
+<br />
+<br />
+代码整理：<a href="http://www.zztuku.com" target="_blank">站长图库</a> <script src="http://s6.cnzz.com/stat.php?id=2551789&web_id=2551789" language="JavaScript"></script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- <div>我是hello.a.com，里面包含一个a.com的frame框架</div>
+	<iframe src='//a.com:8080/crossorigin-2.html'></iframe> -->
+<!-- 	<script type="text/javascript">
+
+/*		window.document.domain = "a.com";
+	//Document.domain = 'a.com';
+
+ //Document.domain降域只对子域名有效，比如hello.a.com:8080和a.com:8080，设置上一级的域名，不能往回设置但不能适用于a.com:8080和b.com:8080。只对iframe有效，ajax依然不行
+	setTimeout(function () {
+		//console.log(1);
+		var iframe = window.frames[0];
+		console.log(iframe);
+		iframe.window.cross();
+	},2000);//iframe打开页面需要时间，所以设置2秒后等待页面加载成功在执行，否则报错cross()不是func。或者采用window.onload,加载完后执行
+
+window.onload=function(){
+	 console.log(1);
+		var iframe = window.frames[0];
+		console.log(iframe);
+		iframe.window.cross();
+	}; */
+
+
+
+
+
+
+//var data = '我是对其他域名下js的引用';
+/*	window.abc = function (data){
+	// alert('我是对其他域名下js的引用');
+	//alert(data);
+	console.log(data);
+}
+var script = document.createElement('script');
+script.src = '//b.com:8080/data?callback=abc';*/
+//服务器操作：var a=req.query.callback+'()';res.send(a);，发回一个abc()的立即执行函数，将前面的abc函数执行,当服务器返回参数时也会执行，当返回是json时{a:'b.com下'}，这个时候就称为jsonp
+////////////////////////////////////////
+//jsonp啊满足两个条件：1、接受一个callback的名字:abc;
+					// 2、返回js内容，调用abc
+			//jsonp就是动态的script
+//document.body.appendChild(script);
+
+// $.ajax({
+// 	url: '//b.com:8080/data?callback=abc',
+// 	success: function(ret){
+// 		ret;
+// 	}
+// });
+
+
+</script> -->
+<!--
+<script src="//b.com:8080/data?callback=abc"></script>
+-->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+/*	var onGetUserData = function(data){
+		alert(data.name);
+	};
+
+	function getUserData(){
+		var script = document.createElement('script');
+		script.src = '//b.com:8080/data?callback=onGetUserData';
+		document.body.appendChild(script);
+	}
+	getUserData();
+	//浏览器的弹出返回的数据，用户名字，a.com 访问了 b.com下的数据
+	// 1.查询字符串
+	// 2.script的执行
+	// 3.动态的创建script标签*/
+
+	$.get('//b.com:8080/data',function(ret){
+		console.log(ret);
+	});
+	//cors在被请求网站b.com：8080设置响应头，Cross-origin resource sharing
+	//res.set('Access-Control-Allow-Origin','http://a.com:8080');//设置响应头
+
+</script>
+
+<!-- 	<script scr=""></script>//静态的引用js
+var script//动态的引用
+缺点：1、安全性，需要身份校验(token)2、只能get，不能使用post方式，只能获取不能写，因为是基于script标签，script标签只能触发get请求 3、可被注入(callback=alert(1);),字符串筛选过滤
+引用的方式，任何一个网站（c.com）都可以引用，复制代码调取数据，安全问题非常大
+因此，传递的参数要加一个双方约定好的token，script.src = '//b.com:8080/data?callback=onGetUserData&token=XXX'，一般使用cookie
+c.com无法拿到a.com下的cookie，a、b共用一套cookie体系
+jsonp一般都有一个token变量，用来验证是不是合法 -->
+
+</body>
+</html>

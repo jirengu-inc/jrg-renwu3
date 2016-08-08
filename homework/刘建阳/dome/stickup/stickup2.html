@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>stickup2</title>
+	<style type="text/css">
+		#head{
+			height: 100px;
+			background-color: #90C5DB;
+			margin-bottom: 5px;
+			width: 800px;
+			margin: 0 auto;
+		}
+		.nav{
+			height: 40px;
+			background-color: #a59;
+			width: 800px;
+			margin: 5px auto;
+			font-size: 24px;
+		}
+		.main{
+			border: 3px solid #aaa;
+			height: 1000px;
+			width: 800px;
+			margin: 15px auto;
+		}
+		.main:after{
+			content: "";
+			display: table;
+			clear: both;
+		}
+		.left{
+			background-color: #a9f;
+			float: left;
+			width: 200px;
+			height: 1000px;
+		}
+		.aside{
+			background-color: #5a8;
+			height: 500px;
+			
+		}
+
+		.right{
+			float: right;
+			width: 600px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="head">head</div>
+	<nav class="nav">nav1</nav>
+	<div class="main">
+		<div class="left">
+			<div class="aside">aside1</div>
+		</div>
+		<div class="right">main1</div>
+	</div>
+	
+	<nav class="nav">nav2</nav>
+	<div class="main">
+		<div class="left">
+			<div class="aside">aside2</div>
+		</div>
+		<div class="right">main2</div>
+	</div>
+
+	<nav class="nav">nav3</nav>
+	<div class="main">
+		<div class="left">
+			<div class="aside">aside3</div>
+		</div>
+		<div class="right">main3</div>
+	</div>
+
+	<nav class="nav">nav4</nav>
+	<div class="main">
+		<div class="left">
+			<div class="aside">aside4</div>
+		</div>
+		<div class="right">main4</div>
+	</div>
+	<script type="text/javascript" src="../public/js/jquery-3.0.0.min.js"></script>
+	<script type="text/javascript" src="stickup.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var $nav = $('.nav');
+			$nav.each(function(){
+				$(this).stick();
+			});
+			/*$nav.each(function(idx,el) {
+				$nav.eq(idx).stick();
+			});
+*/
+
+		})
+	</script>
+</body>
+</html>
