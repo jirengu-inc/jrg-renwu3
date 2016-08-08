@@ -99,11 +99,9 @@
       <file leaf-file-name="task30-1.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../30/task30-1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-              <folding>
-                <element signature="e#118#267#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="225">
+              <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -320,15 +318,15 @@
       <workItem from="1469781274837" duration="18840000" />
       <workItem from="1470020206601" duration="2964000" />
       <workItem from="1470230501442" duration="26066000" />
-      <workItem from="1470618222038" duration="3768000" />
+      <workItem from="1470618222038" duration="3885000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="192266000" />
+    <option name="totallyTimeSpent" value="192383000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="191" y="57" width="1148" height="755" extended-state="0" />
+    <frame x="191" y="57" width="1148" height="755" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13327526" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -710,11 +708,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../30/task30-1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="17" column="12" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="12" />
-          <folding>
-            <element signature="e#118#267#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="225">
+          <caret line="15" column="12" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
