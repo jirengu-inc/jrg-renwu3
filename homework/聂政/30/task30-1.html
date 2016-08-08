@@ -9,6 +9,7 @@
             margin: 5px;
             position: absolute;
             transition: 1s;
+            display: none;
         }
         .h1{
             background: yellow;
@@ -97,35 +98,34 @@
     </style>
 </head>
 <body>
-    <div class="h1">1</div>
-    <div class="h2">2</div>
-    <div class="h3">3</div>
-    <div class="h4">4</div>
-    <div class="h5">5</div>
-    <div class="h6">6</div>
-    <div class="h7">7</div>
-    <div class="h8">8</div>
-    <div class="h9">9</div>
-    <div class="h10">10</div>
-    <div class="h11">11</div>
-    <div class="h12">12</div>
-    <div class="h13">13</div>
-    <div class="h14">14</div>
-    <div class="h15">15</div>
-    <div class="h16">16</div>
-    <div class="h17">17</div>
-    <div class="h18">18</div>
-    <div class="h19">19</div>
-    <div class="h20">20</div>
-    <div class="h21">21</div>
+    <div class="fall h1">1</div>
+    <div class="fall h2">2</div>
+    <div class="fall h3">3</div>
+    <div class="fall h4">4</div>
+    <div class="fall h5">5</div>
+    <div class="fall h6">6</div>
+    <div class="fall h7">7</div>
+    <div class="fall h8">8</div>
+    <div class="fall h9">9</div>
+    <div class="fall h10">10</div>
+    <div class="fall h11">11</div>
+    <div class="fall h12">12</div>
+    <div class="fall h13">13</div>
+    <div class="fall h14">14</div>
+    <div class="fall h15">15</div>
+    <div class="fall h16">16</div>
+    <div class="fall h17">17</div>
+    <div class="fall h18">18</div>
+    <div class="fall h19">19</div>
+    <div class="fall h20">20</div>
+    <div class="fall h21">21</div>
     <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
     <script>
-
 
         var water = (function(){
             function waterfall(){
                 var windowWidth = $(window).width(),
-                        divWidth = $("div").outerWidth(true),
+                        divWidth = $(".fall").outerWidth(true),
                         columnNum = parseInt( windowWidth/divWidth ),
                         array = [],
                         minIdx = 0,
@@ -133,7 +133,7 @@
                 for(var i=0;i<columnNum;i++){
                     array.push(0);
                 }
-                $("div").each(function(){
+                $(".fall").each(function(){
                     for(var j=0;j<array.length;j++){
                         if(array[j]<minHeight){
                             minHeight = array[j];
@@ -150,6 +150,7 @@
                 })
             }
             waterfall();
+            $(".fall").show();
             $(window).on("resize",function(){
                 waterfall();
             })
