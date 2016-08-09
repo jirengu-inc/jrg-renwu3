@@ -1,0 +1,150 @@
+p{font-family: "ºÚÌå";}
+.bg{position: absolute;
+    width: 2300px;
+    height: auto;
+   left:-200px;
+    top:-200px;
+
+}
+body{
+    background: linear-gradient(150deg,#1E6EAB,#291471);
+    overflow: hidden;
+    height: 800px;
+}
+.container{
+    color: white;
+}
+.left{
+    margin-top: 50px;
+
+}
+.right{
+    margin-top: 50px;
+    height: 600px;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px  rgba(0,0,0,0.3);
+}
+.top{
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px  rgba(0,0,0,0.3);
+    height: 310px;
+}
+.bottom{
+    margin-top: 20px;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 10px;
+    height: 270px;
+    box-shadow: 5px 5px 5px  rgba(0,0,0,0.3);
+}
+.intro{
+    color: white;
+    opacity: 0.6;
+}
+.row{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+.leftword{
+    position: relative;
+    left: -50px;
+    top:40px;
+    width: 80px;
+    text-align: right;
+    opacity: 0.6;
+    padding-top: 10px;
+}
+.dongtaiid{
+    padding-top: 10px;
+   opacity: 0.6;
+    float: left;
+    margin-left: 10px;
+    width: 60px;
+    text-align: center
+}
+.dongtaiifo{
+    padding-top: 10px;
+}
+.square{
+    width: 5px;
+    height: 5px;
+    border: solid white;
+    border-radius: 5px;
+    position: relative;
+    top:5px;
+    left: 50px;
+}
+ .line{
+     border-left: solid 1px rgba(255,255,255,0.3) ;
+     height: 70px;
+     width: 1px;
+     position: relative;
+     left: 53px;
+     top:0px;
+     float: left;
+ }
+ .rtbx{
+     background-color: black;
+     margin-top: 10px;
+     border-radius: 10px;
+     width: 320px;
+ }
+ .rtimg{
+     position: relative;
+     width: 60px;
+     height: 60px;
+     top:15px;
+     border-radius: 5px;
+ }
+ .rtifo{
+     position: absolute;
+     top:15px;
+     left:90px;
+ }
+ .id{
+     opacity: 0.6;
+ }
+ .time{
+     opacity: 0.6;
+     width: 100px;
+     position: absolute;
+     top:0;
+     left: 160px;
+ }
+ .ifo{
+     position: relative;
+     top:-10px;
+     left:75px;
+     width: 200px;
+ }
+ .scroll{
+     height: 500px;
+     overflow: auto;
+     width: 400px;
+      left: 20px;
+ }
+ .dtbox{
+     margin-left: 40px;
+     margin-top: -40px;
+ }
+ .dongtaiimg{
+    width: 40px;
+     height: 40px;
+     float: left;
+     border-radius: 5px
+ }
+ .dtbox2{
+     margin-left: 80px;
+ }
+.scroll1{
+    height: 200px;
+    overflow: auto;
+    width: 600px;
+    position: absolute;
+    top:60px;
+    left: 40px;
+}
+::-webkit-scrollbar {width: 6px;}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.5);min-height: 150px;min-width: 150px;border-radius: 10px;}
+::-webkit-scrollbar-thumb:vertical:hover{background:rgba(0,0,0,0.8)}
