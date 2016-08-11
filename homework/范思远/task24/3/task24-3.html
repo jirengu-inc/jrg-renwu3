@@ -100,12 +100,14 @@
                 },
                 success: function(ret) {
                     alert('注册完成');
+                    lock=false;
                 },
                 error: function() {
                     alert('未找到服务器');
+                    lock=false;
                 }
             });
-            lock=false;
+            
         }
     });
 
