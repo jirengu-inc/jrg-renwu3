@@ -1,0 +1,43 @@
+<script type="text/javascript">
+function ajax(opt) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+        	var ret=JSON.parse(xhr.responseText);
+            opt.success(ret);
+        }
+        if (xhr.readyState === 4 && xhr.status === 404) {
+            opt.error();
+        }
+    };
+    var dataStr = '';
+    for (var k in opt.data) {
+        dataStr += k + '=' + opt.data[k] + '&';
+    }
+    dataStr = dataStr.substr(0, dataStr.length - 1);
+    if (opt.type.toLowerCase() === 'get') {
+        xhr.open(opt.type, opt.url + '?' + dataStr, true);
+        xhr.send();
+    }
+    if (opt.type.toLowerCase() === 'post') {
+        xhr.open(opt.type, opt.url, true);
+        xhr.send();
+    }
+}
+document.querySelector('#btn').addEventListener('click', function() {
+    ajax({
+        url: 'getData.php', //接口地址
+        type: 'get', // 类型， post 或者 get,
+        data: {
+            username: 'xiaoming',
+            password: 'abcd1234'
+        },
+        success: function(ret) {
+            console.log(ret); // {status: 0}
+        },
+        error: function() {
+            console.log('出错了');
+        }
+    });
+});
+</script>
