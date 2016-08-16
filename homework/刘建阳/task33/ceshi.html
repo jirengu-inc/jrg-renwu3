@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// var john = { 
+		//   firstName: "John" 
+		// }
+		// function func() { 
+		//   alert(this.firstName + ": hi!")
+		// }
+		// john.sayHi = func
+		// john.sayHi()
+
+		// func() 
+
+		// function func() { 
+		//   alert(this)
+		// }
+		// function fn0(){
+		//     function fn(){
+		//         console.log(this);
+		//     }
+		//     fn();
+		// }
+
+		// fn0();
+
+
+		// document.addEventListener('click', function(e){
+		//     console.log(this);
+		//     setTimeout(function(){
+		//         console.log(this);
+		//     }, 200);
+		// }, false);
+
+		// var john = { 
+		//   firstName: "John" 
+		// }
+
+		// function func() { 
+		//   alert( this.firstName )
+		// }
+		// func.call(john) 
+
+		// var john = { 
+		//   firstName: "John",
+		//   surname: "Smith"
+		// }
+
+		// function func(a, b) { 
+		//   alert( this[a] + ' ' + this[b] )
+		// }
+		// func.call(john, 'firstName', 'surname') 
+		var module= {
+		  bind: function(){
+		  	var _self = this;
+		    document.addEventListener('click', function(){
+		      console.log(this) //this指什么
+		      _self.showMsg();
+		    })
+		  },
+		  
+		  showMsg: function(){
+		    console.log('饥人谷');
+		  }
+		}
+
+		module.bind();
+	</script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task37</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <style>
+
+        #dl{
+            width: 400px;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            margin-left: -200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+        #dl>.header{
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            background: #ccc;
+            border-bottom: 1px;
+        }
+        #dl>.header p{
+            margin: 0 0 0 15px;
+            color: white;
+            float: left;
+        }
+        #dl>.header>a{
+            text-decoration: none;
+            display: block;
+            margin: 0 5px 0 0;
+            float: right;
+            color: white;
+        }
+        .ct ul{
+            color: #ccc;
+            font-size: 14px;
+            margin: 20px auto;
+        }
+        .ct div{
+            text-align: center;
+            padding-bottom: 10px;
+
+        }
+        #dl .ct div a{
+            text-decoration: none;
+            color: white;
+            padding: 5px;
+            background: #006400;
+            border-radius: 5px;
+        }
+        .moving{
+            cursor: move;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div id="btn">
+        <button>打开1</button>
+        <button>打开2</button>
+        <button>打开3</button>
+        <button>打开4</button>
+        <button>打开5</button>
+        <p>鼠标在dialog上左键按下可拖动dialog</p>
+    </div>
+    <div id="dl">
+        <div class="header">
+            <p>欢迎光临</p>
+            <a href="#"> x </a>
+        </div>
+        <div class="ct">
+            <ul>
+                <li>列表1</li>
+                <li>列表2</li>
+                <li>列表3</li>
+                <li>列表4</li>
+            </ul>
+            <div>
+                <a href="#">取消</a>
+                <a href="#">确定</a>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function ShowDialog($button){
+            this.$dl = $("#dl"),
+            this.$btn = $("#btn button"),
+            this.idx = this.$btn.index($button);
+            this.$button = $button;
+            this.bind();    //绑定事件函数
+            this.$dl.hide();
+        }
+        ShowDialog.prototype = {
+//不同HTML的设置
+            setHtml: function(){
+                switch(this.idx) {
+                    case 0:
+                        this.$dl.find(".header").hide();
+                        this.$dl.find(".ct a").eq(0).hide();
+                        break;
+                    case 1:
+                        this.$dl.find(".header").hide();
+                        this.$dl.find(".ct a").eq(0).hide();
+                        this.$dl.find("ul").html("<a href='www.jirengu.com'>饥人谷</a>");
+                        break;
+                }
+            },
+//绑定点击弹窗事件
+            bind: function(){
+                var me = this;
+                this.$button.on("click",function(){
+                    me.ShowDialog()
+                })
+            },
+//弹窗事件实现过程
+            ShowDialog: function(){
+                var me = this;
+                this.$dl.show();
+                this.setHtml();
+//为弹窗绑定点击事件
+                $("body").on("mousedown",this.$dl,function(e){
+                    var eventX = e.pageX - me.$dl.offset().left;
+                    eventY = e.pageY - me.$dl.offset().top;
+                    me.$dl.addClass("moving").data("event",{
+                        x: eventX,
+                        y: eventY
+                    })
+
+                })
+//为弹窗绑定移动事件
+                $("body").on("mousemove",$(".moving"),function(e){
+                    $(".moving").offset({
+                        top: e.pageY - me.$dl.data("event").y,
+                        left: e.pageX - me.$dl.data("event").x
+                    })
+                })
+//为弹窗绑定mouseup事件
+                $("body").on("mouseup",this.$dl,function(e){
+                    me.$dl.removeClass("moving");
+                })
+//为弹窗绑定取消事件
+                $("body").on("click","a",function(e){
+                    console.log(e)
+                    e.stopPropagation();
+                    if(me.idx == 3 || me.idx==4){
+                        alert($(e.target).text());
+                    }
+                    me.hideDialog();
+                })
+            },
+//弹窗隐藏
+            hideDialog: function(){
+                this.$dl.hide();
+            }
+        }
+        var btn0 = new ShowDialog($("#btn button").eq(0));
+        var btn1 = new ShowDialog($("#btn button").eq(1));
+        var btn2 = new ShowDialog($("#btn button").eq(2));
+        var btn3 = new ShowDialog($("#btn button").eq(3));
+        var btn4 = new ShowDialog($("#btn button").eq(4));
+
+
+    </script>
+</body>
+</html>
