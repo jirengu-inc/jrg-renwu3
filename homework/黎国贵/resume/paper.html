@@ -31,65 +31,59 @@
         }
         @font-face {
             font-family: 'iconfont';
-            src: url('//at.alicdn.com/t/font_1467903673_1593575.eot'); /* IE9*/
-            src: url('//at.alicdn.com/t/font_1467903673_1593575.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-            url('//at.alicdn.com/t/font_1467903673_1593575.woff') format('woff'), /* chrome、firefox */
-            url('//at.alicdn.com/t/font_1467903673_1593575.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
-            url('//at.alicdn.com/t/font_1467903673_1593575.svg#iconfont') format('svg'); /* iOS 4.1- */
+            src: url('//at.alicdn.com/t/font_1469945168_9537792.eot'); /* IE9*/
+            src: url('//at.alicdn.com/t/font_1469945168_9537792.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('//at.alicdn.com/t/font_1469945168_9537792.woff') format('woff'), /* chrome、firefox */
+            url('//at.alicdn.com/t/font_1469945168_9537792.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('//at.alicdn.com/t/font_1469945168_9537792.svg#iconfont') format('svg'); /* iOS 4.1- */
         }
+
         .iconfont {
             font-family:'iconfont';
             font-style:normal;
         }
-        #aside{
+        #header{
             float: left;
             color: #000;
             box-sizing: border-box;
-            padding: 6.12px 0 51px 20px;
-            width: 300px;
-            background-color: #00bfa5;
+            padding: 10px 0 10px 20px;
+            width: 980px;
+            background-color: #f0f2f1;
         }
         #main{
             float: right;
             box-sizing: border-box;
-            width: 680px;
+            width: 980px;
             padding: 0 20px;
             background-color: #f0f2f1;
         }
-        #aside .img-box{
-            margin: 0 auto;
-            background:url(img/我.jpg);
-            background-repeat:no-repeat;
-            background-size: cover;
-            background-position:0 -50px;
-            width: 150px;
-            height: 150px;
-            border: 2px solid #fff;
-            border-radius: 50%;
+        #header .head{
+            text-align: left;
         }
-        #aside .head{
-            text-align: center;
-        }
-        #aside span.web{
+        #header span.web{
             font-size: 26px;
         }
-        #aside .info{
+        #header .info{
             margin-top: 30px;
         }
-        #aside .judge{
-            margin: 10px 0;
+        #header .info h3{
+            color:#00796b;
         }
-        #aside .judge li{
-            margin: 10px 0;
+        #header .info a{
+            color:#000;
+            text-decoration:underline;
         }
-        #aside .skill-tag .skill-box{
+        #header .info .zx-jianli{
+            font-style: normal;
+        }
+        #header .skill-tag .skill-box{
             float: right;
             width: 170px;
             height: 15px;
             border-radius: 8px;
             background-color: #00796b;
         }
-        #aside .skill-tag .skill-box1{
+        #header .skill-tag .skill-box1{
             float: right;
             margin-top: 8px;
             width: 170px;
@@ -97,32 +91,17 @@
             border-radius: 8px;
             background-color: #00796b;
         }
-        #aside .skill-tag .line{
-            background-color: #fff;
-            height: 15px;
-            border-radius: 8px 0 0 8px;
-        }
-        #aside .skill-tag .line1{
-            width: 85%;
-        }
-        #aside .skill-tag .line2{
-            width: 75%;
-        }
-        #aside .skill-tag .line3{
-            width: 70%;
-        }
-        #aside .skill-tag .line4{
-            width: 75%;
-        }
-        #aside .skill-tag .line5{
-            width: 50%;
-        }
-        #aside .about-me a{
+        #header .about-me a{
             text-decoration: underline;
             color:#000;
         }
-        #aside .about-me a:hover{
+        #header .about-me a:hover{
             color:#ff8800;
+        }
+        #header hr{
+            width: 940px;
+            margin-left: 0;
+            margin-right:0;
         }
         #main h3{
             line-height: 22px;
@@ -180,10 +159,33 @@
         #main .work p{
             line-height: 1.7;
         }
+        #main .judge{
+            margin: 10px 0;
+        }
+        #main .judge li{
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
 <div class="ct clear-float">
+    <div id="header">
+        <div class="head">
+            <h1>黎国贵</h1>
+            <span>应聘职位</span><span class="web"> Web前端开发</span>
+        </div>
+        <div class="info">
+            <h3 class="iconfont">&#xe608个人信息</h3>
+            <hr>
+            <p class="iconfont">&#xe607住址：杭州</p>
+            <p class="iconfont">&#xe605电话：18122122783</p>
+            <p class="iconfont">&#xe604邮箱：571400428@qq.com</p>
+            <p class="iconfont">&#xe60a教育背景：中国矿业大学（本科 2011级）</p>
+            <p class="iconfont">&#xe60cGithub：<a href="https://github.com/liguogui" target="_blank">https://github.com/liguogui</a></p>
+            <p class="iconfont">&#xe60e博客：<a href="http://blog.leanote.com/qq-lgg" target="_blank">http://blog.leanote.com/qq-lgg</a></p>
+            <p class="zx-jianli">在线简历：<a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/bilibili/pc%E7%AB%AF%E5%92%8C%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E5%88%A4%E6%96%AD.html#" target="_blank">http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/黎国贵/bilibili/index.html</a></p>
+        </div>
+    </div>
     <div id="main">
         <div class="skill">
             <h3>Skill. 职业技能</h3>
@@ -197,6 +199,7 @@
                 <li>熟悉Git、Sublime、WebStorm等前端相关工具的使用。</li>
                 <li>对前端工程化、模块化有一定认识，能使用RequireJs实现模块化开发、能使用NPM、Gulp打造基本的自动化流程。</li>
                 <li>熟悉互联网产品流程、前端开发流程、前后端协同开发流程。</li>
+                <li>超强的自学能力，对前端深厚的兴趣，毅力</li>
             </ul>
         </div>
         <div class="project">
@@ -204,56 +207,65 @@
             <hr>
             <ul>
                 <li>
-                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>Html/CSS的运用
-                        <a href="html-css-demo.html" class="icon-link" target="_blank">Demo示例</a></h4>
-                    <p>综合运用html/css去制作布局，根据语义化选择标签，搭配浮动、定位和css样式。
-                        制作了几个示例页面，对常见的网页的布局方式做了整理，最后是css三角形的几个运用。</p>
+                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>在线简历<a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/bilibili/pc%E7%AB%AF%E5%92%8C%E7%A7%BB%E5%8A%A8%E7%AB%AF%E7%9A%84%E5%88%A4%E6%96%AD.html#" target="_blank" class="icon-link">在线简历</a></h4>
+                    <p>仿造bilibili网站做了一份在线简历，对pc端和移动端配置了不同的页面，将一些作品整理了进去，也更加详细的介绍我自己，希望您能点击右上角链接，移步到我的在线简历。</p>
                 </li>
                 <li>
-                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>原生Javascript的封装<a href="https://github.com/Liguogui/javascript-api/blob/master/JavaScript-demo.js" class="icon-link" target="_blank">源代码</a></h4>
-                    <p>将原生js常用的几个方法，如class操作、日期操作、事件绑定、Ajax等进行了封装，集成到util构造函数中，通过调用对象的方法进行使用。</p>
+                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>我的技术博客<a href="http://blog.leanote.com/qq-lgg" target="_blank" class="icon-link">我的技术博客</a></h4>
+                    <p>博客里有很多前端的基础知识，包括数组、字符串、数学函数；时间对象、引用类型；闭包、定时器；正则表达式；Dom、事件；ajax；this、闭包；原型、原型链、继承；常见设计模式；同源策略、跨域、jsonp；HTTP；CMD、AMD、CommonJS规范；requireJS、r.js；gulp构建、前端工程自动化；jquery DOM&事件；jquery 常用方法&ajax；Jquery整体架构等等技术要点。</p>
                 </li>
                 <li>
-                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>Jquery的常见效果及插件<a href="jquery-demo.html" target="_blank" class="icon-link">Demo示例</a></h4>
-                    <p>使用jQuery实现了tab切换、轮播、stickup、懒加载、回到顶部、瀑布流布局等效果，并将它们封装成插件，方便调用</p>
+                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>项目一：Html5音乐播放器<a target="_blank" class="icon-link" href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/jquery.music.js">源代码</a><a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/index.html" target="_blank" class="icon-link">Demo示例</a></h4>
+                    <p>介绍：针对Html5的新标签&ltaudio&gt，后端接口为豆瓣FM音乐电台。用html和css构建音乐播放器的页面，通过JQuery事件绑定，向后端发送Ajax通过豆瓣FM音乐电台的API接口获取歌曲、歌词、歌曲图片等信息，再将这些数据展现到前端页面中。具有频道选择、循环播放、进度可调、音量可调、歌词同步展现等功能，界面优美简单易用。用面向对象的方式封装成一个构造函数，开发者只需引入一个js文件即可在任何页面生成音乐播放器。</p>
+                    <p>音乐播放器的每一个部分，如图标、播放器页面、歌词栏都是可以拖动的。所以写了一个可拖动组件dialog函数，参数是需要实现可拖动效果的dom对象。利用mousedown、mouseup、mousemove这几个事件，实现拖动效果。</p>
+                    <p>toggleShow函数则实现了切换展示的功能，通过给对象使用data方法，绑定boolean类型数据（true和false），实现展示和隐藏的切换。</p>
+                    <p>bind函数配合Html5的新标签&ltaudio&gt的API，为播放器页面的按钮绑定相应功能，包括滚轮控制音量、点击控制音量、实现拖拽控制音量；点击控制歌曲进度、拖拽控制歌曲进度；点击播放下一首歌、暂停播放歌曲、点击频道获取频道歌曲等等。</p>
+                    <p>changeStyle函数通过设置setInterval，在歌曲播放期间，改变播放进度条的长度。</p>
+                    <p>ajaxChannels函数向后端发送ajax获取音乐频道信息，生成li元素，并将信息储存在li元素的data属性中，将li元素append到频道菜单栏里面，生成音乐频道。</p>
+                    <p>ajaxSongs函数是向后端发送ajax获取随机歌曲， ajaxChannelsSongs函数获取频道歌曲，ajaxLyric函数获取歌词，用正则对歌词信息进行拆分，将每一句歌词作为一个对象，歌词出现的时间和歌词内容作为对象的属性，再把所有的对象放到一个数组中。当歌曲播放时，遍历整个歌词数组，将歌词出现的时间和当前播放时间匹配，如若相等，将对应的歌词展示出来。</p>
+                    <p>audioAPIbind函数是针对Html5的新标签&ltaudio&gt的特有事件，进行事件绑定。如：play音乐开始播放事件展示歌曲名称、歌手名字，timeupdate音乐正在播放事件遍历歌词数组，pause音乐暂停事件停止播放进度条、ended音乐播放完毕事件根据播放模式进行相应操作。</p>
                 </li>
                 <li>
-                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>CSS3变化动画实现、Html5音频电台制作<a href="other-demo.html" target="_blank" class="icon-link">Demo示例</a></h4>
-                    <p>学习了CSS3的一些特性，动手制作了3D旋转照片墙的效果。<br>
-                        针对Html5的新标签&ltaudio&gt，综合运用html/css及icon制作了播放器界面及侧边栏，配合Ajax通过豆瓣的API接口获取歌曲、歌词等信息制作了音频电台，具有频道选择、循环播放、进度可调、歌词同步滚动及歌词调整功能，界面优美简单易用。并最终把代码封装为一个js文件，开发者只需引入一个js文件即可在页面生成音频电台。</p>
+                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>项目二：企业网站首页的制作
+                        <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/html-css-demo.html" class="icon-link" target="_blank">Demo示例</a></h4>
+                    <p>综合运用html/css去制作布局，精准还原设计图，根据语义化选择标签，其中应用了盒模型，浮动，负margin,定位等知识点。用样式修饰a标签作为按钮，fixed定位固定导航栏，用clearfix类清除浮动，避免父元素高度塌陷，绝对定位和负margin实现上下左右居中布置，用layout类实现页面整体居中布局，
+                        制作了几个企业常用首页。用双飞翼布局的方式，实现两栏布局和三栏布局。最后是用css制作三角形样式。</p>
                 </li>
                 <li>
-                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>我的博客<a href="http://blog.leanote.com/qq-lgg" target="_blank" class="icon-link">我的博客</a></h4>
-                    <p>我的博客记载了我的学习前端的过程，每一个知识点都对应一篇简历，见证我的成长</p>
+                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>项目三：封装的Util函数库<a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/JavaScript-demo.js" class="icon-link" target="_blank">源代码</a></h4>
+                    <p>用面向对象的方式，将原生js常用的几个方法，如去掉字符串两边的空白字符；邮箱、手机号、用户名、密码验证；class操作；日期操作；对象深拷贝；事件绑定；Ajax等进行了封装，集成到util构造函数中，通过调用对象的方法进行使用。<br>
+                        综合运用了正则表达式的知识，时间对象Date，数字对象Math，数组和字符串的内置方法。对象深拷贝则应用了递归的思想，由于IE事件和DOM2级事件不同，封装了事件绑定函数；仿jquery封装ajax。
+                    </p>
                 </li>
                 <li>
-                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>我的线上简历<a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/index.html" target="_blank" class="icon-link">线上简历</a></h4>
-                    <p>我自己做了一份在线简历，也更加详细的介绍我自己，希望您能移步到我的线上简历。</p>
+                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>项目四：封装常见的Jquery效果<a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/jquery-demo.html" target="_blank" class="icon-link">Demo示例</a></h4>
+                    <p>像tab切换、stickup、懒加载、回到顶部、瀑布流布局、放大镜等效果在网页制作中很常见，如果将它们用面向对象方式封装成插件，可以避免代码的重写，方便调用。<br>
+                    <p>tab切换的原理：主要利用了一个对象在其选择器数组中的位置对应另一个对象在其同辈元素中的位置。</p>
+                    <p>stickup的原理是克隆该元素，将克隆对象插入该元素的前面，并且将其隐藏起来，通过窗口高度、窗口滚动距离和该元素离文档的距离判断是否触发效果，触发效果后将该元素设置为fixed定位，为防止宽度收缩，将宽度设置为原先的宽度。
+                        为防止文档流的高度塌陷，将克隆元素显示出来。</p>
+                    <p>懒加载原理上就是一个曝光器插件，当img曝光之后就将data-src里的url放到src里面。曝光器的实现原理：选择器数组中每一个jquery对象与回调函数各组成一个对象，再把所有的对象放到一个数组里面。
+                        每次窗口滚动时，遍历数组，判断元素对象里的jquery对象是否曝光，若曝光就执行同一对象里的回调函数。</p>
+                    <p>
+                        瀑布流布局原理：css方面：父容器是相对定位，子元素是绝对定位。通过js控制子元素的left和top完成布局。
+                        js方面：核心就是一个数组，数组的下标乘以子元素的宽度就是子元素的left值，数组里的数字就是子元素的top值。
+                        所有的子元素共用一个数组，每个子元素排放在高度最小的那一组中，之后更新数组的值，排放下一个元素。
+                    </p>
+                </li>
+                <li>
+                    <h4 class="clear-float"><span class="icon-tag-empty iconfont">&#xe603</span>项目五：封装轮播插件<a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/%E8%BD%AE%E6%92%AD-demo.html" target="_blank" class="icon-link">Demo示例</a></h4>
+                    <p>轮播是页面中最常见的一个效果了，用面向对象方式封装了渐变式轮播、无缝滚动式轮播、全屏无缝滚动轮播；同时还将无缝滚动式轮播做成了jquery 插件；还包括css3旋转木马</p>
+                    <p>无缝滚动式轮播的原理：比喻：我们看到的是一个不动的窗口，它的长度等于火车其中的一节车厢，所有的图片连接在一起像一辆火车一样，不断的滚动，每次滚动到最后一节车厢就会瞬间回到第一节车厢。<br>
+                        css方面：窗口是相对定位，并且overflow:hidden; 火车是绝对定位，火车的车厢是浮动排列。<br>
+                        js方面：将第一节车厢克隆并放到最后一节车厢后面，将原火车的最后一节车厢，克隆放到第一节车厢前面；
+                        通过js的animate改变left值，赋予火车滚动画面；滚动结束后改变当前号数，如果是第一节车厢和最后一节车厢就瞬间移动到相应位置。</p>
+                    <p>渐变式轮播的原理：主要是利用了JQuery中的fadeOut、fadeIn函数实现渐变转换。用一个变量表示当前播放图片的编号，让所有的图片淡出，让当前编号的图片淡入。在之后的事件绑定操作中改变该变量的值达到渐变的效果。</p>
                 </li>
             </ul>
         </div>
         <div class="work">
             <h3> Work. 工作经验</h3>
             <hr>
-            <p>中铁一局上海分公司&nbsp&nbsp&nbsp2014.7~2016.4&nbsp&nbsp&nbsp技术员</p>
-            <p>因朋友转行进入互联网，互相交流，从而了解到了互联网行业及前端开发等技术岗位，被前端这种‘所见即所得的’的编程形式所吸引，加之本身对编程的浓厚兴趣及对技术的追求渴望。故而于今年3月份投身前端，开始通过网络和书籍进行学习，4月份开始通过线上视频及练习学习巩固，怀着热情不断学习总结一路走来，希望能实现我的前端梦！</p>
-        </div>
-    </div>
-    <div id="aside">
-        <div class="head">
-            <div class="img-box"></div>
-            <h1>黎国贵</h1>
-            <span>求职意向</span><span class="web"> Web前端开发</span>
-        </div>
-        <div class="info">
-            <h3 class="iconfont">&#xe608个人信息</h3>
-            <hr>
-            <p class="iconfont">&#xe606年龄：23岁</p>
-            <p class="iconfont">&#xe607住址：杭州</p>
-            <p class="iconfont">&#xe605电话：18122122783</p>
-            <p class="iconfont">&#xe604邮箱：571400428@qq.com</p>
-            <p class="iconfont">&#xe609专业：土木工程</p>
-            <p class="iconfont">&#xe60a学校：中国矿业大学（本科 2011级）</p>
+            <p>中铁一局上海分公司</p>
         </div>
         <div class="judge">
             <h3 class="iconfont">&#xe608自我评价</h3>
@@ -263,30 +275,7 @@
                 <li>强大的自学能力与自我总结习惯</li>
                 <li>端正的态度与直面问题的信念</li>
                 <li>有分析、转化、解决问题的能力</li>
-                <li>执着的工匠精神与强迫症</li>
             </ul>
-        </div>
-        <div class="skill-tag clear-float">
-            <h3 class="iconfont">&#xe608相关技能</h3>
-            <hr>
-            <div class="skill-box1"><div class="line line1"></div></div>
-            <p>Html</p>
-            <div class="skill-box"><div class="line line2"></div></div>
-            <p>CSS</p>
-            <div class="skill-box"><div class="line line3"></div></div>
-            <p>JavaScript</p>
-            <div class="skill-box"><div class="line line4"></div></div>
-            <p>Jquery</p>
-            <div class="skill-box"><div class="line line5"></div></div>
-            <p>工程化工具</p>
-        </div>
-        <div class="about-me">
-            <h3 class="iconfont">&#xe608关于我</h3>
-            <hr>
-            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/resume/index.html" target="_blank">我的线上简历</a>
-            <p>我自己做了一份在线简历，也更加详细的介绍我自己，希望您能移步到我的线上简历。</p>
-            <a href="http://blog.leanote.com/qq-lgg" target="_blank">我的博客</a>
-            <p>我的博客记载了我的学习前端的过程，每一个知识点都对应一篇简历，见证我的成长</p>
         </div>
     </div>
 </div>

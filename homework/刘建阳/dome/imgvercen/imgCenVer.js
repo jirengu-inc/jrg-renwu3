@@ -12,7 +12,7 @@ $.fn.imgCenVer = function(width,height){
 		this.width(width);
 		curHeight = this.height();
 		this.css('margin-top',-(curHeight-height)/2);
-		console.log(curHeight);
 	}
+	
 	return this;
 };

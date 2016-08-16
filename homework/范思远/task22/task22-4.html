@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task22-4</title>
+    <style type="text/css">
+    html,
+    body,
+    ul,
+    div {
+        margin: 0px;
+        padding: 0px;
+    }
+    
+    .mod {
+        padding: 50px 100px;
+    }
+    
+    .mod,
+    .mod .tabs {
+        width: 700px;
+    }
+    
+    .mod .tabs:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    .mod .tabs li:nth-child(2) {
+        border-right: none;
+        border-left: none;
+    }
+    
+    .mod li {
+        float: left;
+        width: 232px;
+        padding: 15px 0;
+        list-style: none;
+        border: 1px solid #ccc;
+        cursor: Pointer;
+        text-align: center;
+    }
+    
+    .mod .panel {
+        display: none;
+        width: 678px;
+        height: 250px;
+        border: 1px solid #ccc;
+        padding: 10px 10px;
+    }
+    
+    .mod .tabs .active {
+        background-color: #8B8B8B;
+    }
+    
+    .mod .active {
+        display: block;
+        border-top: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="mod">
+        <ul class="tabs">
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <div class="panel active">内容1</div>
+        <div class="panel">内容2</div>
+        <div class="panel">内容3</div>
+    </div>
+    <script type="text/javascript">
+    var tabs = document.querySelector('.tabs'),
+        panel = document.querySelectorAll('.panel');
+    tabs.addEventListener('click', function(e) {
+        i = indexOf(e.target);
+        if (i > -1) {
+            removeClass(tabs.children, 'active');
+            addClass(e.target, 'active');
+            removeClass(panel, 'active');
+            addClass(panel[i], 'active');
+        }
+    });
+
+    function indexOf(el) {
+        for (var i = 0; i < tabs.children.length; i++) {
+            if (tabs.children[i] === el) {
+                return i;
+            }
+        }
+    }
+
+    function addClass(el, cls) {
+        var pat = new RegExp(cls),
+            patt = /^\s/;
+        if (!pat.test(el.className)) {
+            el.className += " " + cls;
+            if (patt.test(el.className)) {
+                el.className = el.className.replace(patt, '');
+            }
+            return el.className;
+        }
+    }
+
+    function removeClass(el, cls) {
+        var pat = new RegExp(cls);
+        for (var i = 0; i < el.length; i++) {
+            if (pat.test(el[i].className)) {
+                el[i].className = el[i].className.replace(cls, '');
+                el[i].className = el[i].className.replace(/\s+/, '');
+                return el[i].className;
+            }
+        }
+    }
+    </script>
+</body>
+
+</html>

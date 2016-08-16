@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div>我是b.com内容</div>
+
+	<script type="text/javascript">
+		window.document.domain = 'a.com';
+		//Document.domain = 'a.com';
+
+
+		window.cross = function () {
+			console.log('我是a.com');
+		}
+
+		//alert('b.com');
+	</script>
+</body>
+</html>

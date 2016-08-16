@@ -68,7 +68,7 @@ Music.prototype = {
             '</li>'+
             '</ul>'+
             '</div>'+
-            '<div id="header" class="clear">'+
+            '<div id="jquery-header" class="clear">'+
             '<a href="#" class="menu-btn">'+
             '<i class="fa fa-list-ul"></i>'+
             '</a>'+
@@ -76,14 +76,14 @@ Music.prototype = {
             '<i class="fa fa-close"></i>'+
             '</a>'+
             '</div>'+
-            '<div id="main">'+
+            '<div id="jquery-main">'+
             '<div class="play">'+
             '<a href="#">'+
             '<i class="fa fa-play-circle-o"></i>'+
             '</a>'+
             '</div>'+
             '</div>'+
-            '<div id="footer" class="clear">'+
+            '<div id="jquery-footer" class="clear">'+
             '<div class="song-message clear">'+
             '<div class="message"><span class="message-length"><span class="singer"></span><span class="fengefu"></span><span class="song-name"></span></span></div>'+
             '<div class="time"><span class="curtime">00:00</span><span>/</span><span class="song-time">00:00</span></div>'+

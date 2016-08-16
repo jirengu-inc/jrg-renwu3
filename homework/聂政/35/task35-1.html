@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task35-1</title>
+    <style>
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .show{
+            position: relative;
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+        .ct{
+            /*width: 1200px;*/
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        li{
+            width: 300px;
+            height: 200px;
+            display: inline-block;
+            /*float: left;*/
+        }
+        img{
+            width: 300px;
+            height: 200px;
+        }
+        .arrow{
+            position: absolute;
+            /*color: #fff;*/
+            font-size: 20px;
+            background: darkslateblue;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50px;
+            top: 50%;
+            text-align: center;
+        }
+        .arrow:hover{
+            background: #ccc;
+        }
+        .next{
+            left: 100%;
+            margin-top: -15px;
+            margin-left: -30px;
+        }
+        .pre{
+            margin-top: -15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="c1 show">
+        <ul class="ct">
+            <li><a href="#"><img src="http://images.forwallpaper.com/files/thumbs/preview/101/1014664__3d-cg-photography_p.jpg"></a></li>
+            <li><a href="#"><img src="http://images.forwallpaper.com/files/thumbs/preview/108/1082096__3d-computer-wallpaper-free-3d-computer-w_p.jpg"></a></li>
+            <li><a href="#"><img src="http://images.forwallpaper.com/files/thumbs/preview/94/943643__first-snow_p.jpg"></a></li>
+            <li><a href="#"><img src="http://images.forwallpaper.com/files/thumbs/preview/41/412226__the-first-snow_p.jpg"></a></li>
+        </ul>
+        <div class="arrow pre"><a href="#"><</a></div>
+        <div class="arrow next"><a href="#">></a></div>
+    </div>
+    <div class="c2 show">
+        <ul class="ct">
+            <li><a href="#"><img src="http://images.forwallpaper.com/files/thumbs/preview/101/1014664__3d-cg-photography_p.jpg"></a></li>
+            <li><a href="#"><img src="http://images.forwallpaper.com/files/thumbs/preview/108/1082096__3d-computer-wallpaper-free-3d-computer-w_p.jpg"></a></li>
+            <li><a href="#"><img src="http://images.forwallpaper.com/files/thumbs/preview/94/943643__first-snow_p.jpg"></a></li>
+            <li><a href="#"><img src="http://images.forwallpaper.com/files/thumbs/preview/41/412226__the-first-snow_p.jpg"></a></li>
+        </ul>
+        <div class="arrow pre"><a href="#"><</a></div>
+        <div class="arrow next"><a href="#">></a></div>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        function Carousel($node){
+            this.node = $node;
+            this.$ct = $node.find(".ct");
+            this.first = $node.find("li").first();
+            this.last = $node.find("li").last();
+            this.$pre = $node.find(".pre");
+            this.$next = $node.find(".next");
+            this.imgWidth = this.first.width();
+            this.ctLen = $node.find("li").length;
+
+            $node.find(".ct").css({width: this.imgWidth * this.ctLen});
+
+            this.bind();
+        }
+        Carousel.prototype = {
+            bind: function(){
+                var me = this;
+
+                this.$pre.on("click",function(){
+                    me.pre();
+                })
+                this.$next.on("click",function(){
+                    me.next();
+                })
+            },
+            pre: function(){
+                this.$ct.prepend(this.$ct.find("li").last())
+                this.$ct.css({left: -this.imgWidth})
+                this.$ct.animate({left: 0})
+            },
+            next: function(){
+                var $ct = this.$ct;
+                    $ct.animate({left: -this.imgWidth},function(){
+                    $ct.append($ct.find("li").first())
+                    $ct.css({left: 0})
+                })
+            }
+        };
+
+
+        var $node1 = $('.show').eq(0);
+        var $node2 = $('.show').eq(1);
+        var carousel1 = new Carousel($node1);
+        var carousel2 = new Carousel($node2);
+
+//        $('.show').each(function(){
+//            new Carousel($(this));
+//        });
+    </script>
+</body>
+</html>

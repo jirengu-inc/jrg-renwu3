@@ -14,7 +14,7 @@ var image = new Image();
 var radus = 50;
 var clippingReign = {x:200,y:100,r:radus};
 var leftmargin=0,topmargin=0;
-image.src = "http://v1.qzone.cc/pic/201312/03/10/38/529d443eb86ed066.jpg!600x600.jpg";
+image.src = "file/blur.jpg";
 image.onload = function(e){
     $("#blur-div").css("width",canvaswidth+"px");
     $("#blur-div").css("height",canvasheight+"px");
@@ -88,9 +88,12 @@ function show(){
             draw(image,clippingReign);
         },
         30
-    )
+    );
 }
 
 canvas.addEventListener("touchstart",function(e){
     e.preventDefault();
 })
+
+/*document.getElementById("#blur-image").onload=*/
+

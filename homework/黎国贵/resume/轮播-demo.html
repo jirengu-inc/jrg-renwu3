@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>html/css的运用</title>
+    <style>
+        html,ul{
+            margin: 0;
+            padding: 0;
+            background-color: #666;
+            font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+        .ct{
+            text-align: center;
+            width: 600px;
+            margin: 0 auto;
+        }
+        .bg{
+            margin: 0 auto;
+            width: 475px;
+            height: 267px;
+            border: 1px solid #eee;
+            background: url(img/太一千早2.jpg);
+            background-size: cover;
+        }
+        #head h1{
+            color: #fff;
+        }
+        #head p{
+            color: #fff;
+            opacity: 0.6;
+        }
+        #portflio, #footer{
+            margin: 40px 0;
+        }
+        #footer a{
+            padding: 10px;
+            margin-right: 30px;
+            text-decoration: none;
+            color: #eee;
+            background-color: #883b61;
+        }
+        .layout-list li{
+            padding: 7px 5px;
+            text-align: left;
+            list-style: none;
+        }
+        .layout-list li:hover{
+            background-color: teal;
+        }
+        #footer a:hover{
+            background-color: teal;
+        }
+        #portflio>li{
+            float: left;
+            margin-left: 55px;
+            margin-top: 10px;
+            padding: 10px;
+            list-style: none;
+            background-color: #883b61;
+        }
+        #portflio:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        #portflio>li:hover{
+            background-color: teal;
+        }
+        #portflio li>a{
+            text-decoration: none;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+<div class="ct">
+    <div id="head">
+        <h1>Demo展示：轮播插件的封装</h1>
+    </div>
+
+    <ul id="portflio">
+        <li>
+            <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/%E4%BC%AA%E7%B1%BB%E6%96%B9%E5%BC%8F%E5%B0%81%E8%A3%85%E5%A4%9A%E4%B8%AA%E6%BB%9A%E5%8A%A8%E8%BD%AE%E6%92%AD.html" target="_blank">滚动轮播插件</a>
+        </li>
+        <li>
+            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/perfect/%E7%94%A8%E4%BC%AA%E7%B1%BB%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B0%81%E8%A3%85%E5%A4%9A%E4%B8%AA%E6%B7%A1%E5%85%A5%E6%B7%A1%E5%87%BA%E8%BD%AE%E6%92%AD.html" target="_blank">渐变轮播插件</a>
+        </li>
+        <li>
+            <a href="http://1.jiuzheyangba.applinzi.com/lgghenfan/perfect/%E7%94%A8%E4%BC%AA%E7%B1%BB%E6%96%B9%E5%BC%8F%E5%B0%81%E8%A3%85%E5%85%A8%E5%B1%8F%E8%BD%AE%E6%92%AD.html" target="_blank">全屏无缝滚动轮播</a>
+        </li>
+        <li>
+            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/css3%E6%97%8B%E8%BD%AC%E6%9C%A8%E9%A9%AC/css3%E4%B9%8B%E6%97%8B%E8%BD%AC%E6%9C%A8%E9%A9%AC.html" target="_blank">CSS3旋转木马</a>
+        </li>
+        <li>
+            <a href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-40/JQ%E6%8F%92%E4%BB%B6%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B0%81%E8%A3%85%E8%BD%AE%E6%92%AD.html" target="_blank">渐变轮播JQuery插件</a>
+        </li>
+        <li>
+            <a href="https://github.com/jirengu-inc/jrg-renwu3/blob/master/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/task-40/JQ%E6%8F%92%E4%BB%B6%E7%9A%84%E6%96%B9%E5%BC%8F%E5%B0%81%E8%A3%85%E8%BD%AE%E6%92%AD.html" target="_blank">渐变轮播JQuery插件源代码</a>
+        </li>
+    </ul>
+
+    <div class="bg"></div>
+    <div id="footer">
+    </div>
+
+</div>
+</body>
+</html>

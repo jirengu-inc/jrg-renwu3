@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task35-2</title>
+    <style>
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .clear:after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .ct{
+            margin: 50px auto;
+            width: 603px;
+            height: 300px;
+            border: 1px solid;
+        }
+        .tabCt>li{
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            border-left: 1px solid;
+            border-bottom: 1px solid;
+
+            text-align: center;
+            float: left;
+        }
+        .tabCt a{
+            text-decoration: none;
+            color: black;
+        }
+        .textCt li{
+            display: none;
+        }
+        .bg{
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="ct ">
+        <ul class="tabCt clear">
+            <li class="tab1"><a href="#">tab1</a></li>
+            <li class="tab2"><a href="#">tab2</a></li>
+            <li class="tab3"><a href="#">tab3</a></li>
+        </ul>
+        <ul class="textCt">
+            <li class="text1">text1</li>
+            <li class="text2">text2</li>
+            <li class="text3">text3</li>
+        </ul>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+        function Tab(){
+            this.$ct = $(".ct");
+            this.$tabCt = $(".tabCt");
+            this.$tabCtLi = this.$tabCt.find("li");
+            this.$textCt = $(".textCt");
+            this.$textCtLi = this.$textCt.find("li");
+            $(".text1").show();
+            this.bind();
+        }
+
+
+        Tab.prototype = {
+            bind: function(){
+                var me = this;
+                this.$tabCt.on("click","li",function(){
+                    var idx = me.$tabCtLi.index($(this));
+                    $(this).siblings("li").removeClass("bg");
+                    $(this).addClass("bg");
+                    me.$textCtLi.eq(idx).show();
+                    me.$textCtLi.eq(idx).siblings("li").hide();
+                })
+            }
+
+        };
+        var t1 = new Tab();
+    </script>
+</body>
+</html>
