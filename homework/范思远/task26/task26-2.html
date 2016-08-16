@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>task26-2</title>
+    <style type="text/css">
+    div {
+        border: 1px solid #ccc;
+        cursor: pointer;
+        padding: 10px;
+        margin: 10px;
+    }
+    
+    div:hover {
+        background-color: #098C09;
+    }
+    
+    .btn {
+        text-decoration: none;
+        display: block;
+        width: 64px;
+        font-size: 16px;
+        background-color: transparent;
+        border: 1px solid red;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 0 auto;
+        color: red;
+    }
+    </style>
+</head>
+
+<body>
+    <div>内容1</div>
+    <div>内容2</div>
+    <a href="" class="btn">加载更多</a>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript">
+    var num = 3,
+        lock = false;
+    $('.btn').on('click', function(e) {
+        if (lock) return;
+        lock = true;
+        e.preventDefault();
+        $('.btn').text('loading');
+        $.ajax({
+            url: '/task26.php',
+            type: 'get',
+            dataType: 'json',
+            data: {
+                'start': num,
+                len: 6
+            },
+            success: function(ret) {
+                if (ret.status === 1) {
+                    $.each($(ret.data), function(k, val) {
+                        $('.btn').before('<div>' + val + '</div>');
+                        num++;
+                    });
+                }
+                if (ret.status === 0) {
+                    alert('系统异常.....');
+                }
+            },
+            error: function() {
+                alert('网络异常.....');
+            },
+            complete: function() {
+                lock = false;
+                $('.btn').text('加载更多');
+            }
+        });
+    });
+    </script>
+</body>
+
+</html>

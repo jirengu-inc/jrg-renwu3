@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task26-2</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    div {
+        overflow: auto;
+        height: 80px;
+        margin: 0 10px;
+        padding: 10px 0;
+    }
+    
+    p {
+        padding: 10px 0;
+    }
+    
+    .borderColor {
+        border-color: blue;
+    }
+    
+    .ct {
+        padding: 0;
+        margin: 0;
+        height: 130px;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <p>当点击$btn 时，字体颜色变为红色再变为蓝色</p>
+        <button class='btn'>点我</button>
+    </div>
+    <hr>
+    <div class="main">
+        <div class='ct'>
+            <p>当窗口滚动时，获取垂直滚动距离,并显示</p>
+            <p class='ch-n'>当前滚动垂直坐标：0 px</p>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <p class="ch-c">当鼠标放置到$div 上，把$div 字体颜色色改为红色，移出鼠标字体颜色变为蓝色</p>
+    </div>
+    <hr>
+    <div>
+        <p>当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</p>
+        输入：
+        <input name="ct" type="text" />
+    </div>
+    <hr>
+    <div>
+        <p class="display">获取用户选择的内容：红色</p>
+        颜色选择：
+        <select>
+            <option value="红色">红色</option>
+            <option value="白色">白色</option>
+            <option value="黄色">黄色</option>
+            <option value="蓝色">蓝色</option>
+        </select>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+    $('.btn').on('click', function() {
+        var $this = $(this).siblings('p');
+        $this.css('color', 'red');
+        setTimeout(function() {
+            $this.css('color', 'blue');
+        }, 1000);
+
+    });
+    $('.main').on('scroll', function() {
+        $chN = $('.main').scrollTop();
+        $('.ch-n').text('当前滚动垂直坐标: ' + $chN + ' px');
+    });
+    $('.ch-c').on('mouseenter', function() {
+        $(this).css('color', 'red');
+    });
+    $('.ch-c').on('mouseleave', function() {
+        $(this).css('color', 'blue');
+    });
+    $('input').on('focus', function() {
+        $(this).addClass('borderColor');
+    });
+    $('input').on('keyup', function() {
+
+        var $change = $(this).val().toUpperCase();
+        $(this).val($change);
+    });
+    $('input').on('blur', function() {
+        $(this).removeClass('borderColor');
+        console.log($(this).val().toUpperCase());
+    });
+    $('select').on('change', function(e) {
+        $('.display').text('获取用户选择的内容：' + $(this).val());
+    });
+    </script>
+</body>
+
+</html>
