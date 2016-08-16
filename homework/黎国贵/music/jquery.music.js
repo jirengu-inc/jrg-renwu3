@@ -1,33 +1,18 @@
 function Music() {
-    // 设置setInterval改变播放进度条长度
     this.clock;
-    // 设置setTimeout让音量条消失
     this.controlVolumeHide;
-    //歌曲的名字
     this.songName;
-    // 歌手
     this.singer;
-    // 歌曲的图片
     this.songPicture;
-    // 这两个是频道的信息
     this.songSsid;
     this.songSid;
-    //歌词数组，数组里面装的是对象，每一个对象的.lyric属性代表歌词文字部分，每一个对象的.time属性是一个数组，数组里面每一项是歌词出现的时间（真实的秒数），[20,180]代表20秒的时候，该歌词出现，180秒的时候该歌词也出现
     this.lyricArr = [];
-    // 播放模式
     this.playModel;
-    //发送歌曲ajax时的状态锁，避免在歌曲播放之前，用户一直点击按钮，阻止ajax的再次发送
     this.isSongClose = false;
-    //判断是发送没有频道的随机歌曲的ajax，还是发送有频道的随机歌曲的ajax
-    // 还记录了频道的id，从而判断播放哪个频道的歌曲
     this.clickedChannel;
-    //默认音量
     this.volumeValue = 10;
-    // 记录原音量的值，为了单击静音，再单击恢复原来的音量
     this.muteVolumeValue = this.volumeValue;
-    ////发送歌词ajax时的状态锁
     this.isLyricClose = false;
-    
     this.appendCss();
     this.appendHtml();
     this.toggleShow($('#jquery-music .menu-btn'),$('#jquery-music .menu'),'click');
@@ -38,14 +23,12 @@ function Music() {
     this.bind();
     this.ajaxChannels();
     this.audioAPIbind($('#jquery-music .play a'));
-    //一开始就随机播放一首歌曲，不然很可能很多人根本就不知道这玩意怎么用
-    this.ajaxSongs();
 }
 Music.prototype = {
     appendCss : function () {
         $('head').append('<link rel="stylesheet"  href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/music.css">');
         $('head').append('<link rel="stylesheet"  href="http://book.jirengu.com/jirengu-inc/jrg-renwu3/homework/%E9%BB%8E%E5%9B%BD%E8%B4%B5/music/Font-Awesome-master/css/font-awesome.min.css">');
-        $('head').prepend('<meta name="referrer" content="no-referrer">');
+        $('title').before('<meta name="referrer" content="no-referrer">');
     },
     appendHtml:function () {
         var me = this ;
@@ -55,7 +38,7 @@ Music.prototype = {
         me.audio = audio;
         $('body').append(me.audio);
         var tpl = '<div class="music-player" id="jquery-music-player">'+
-            '<a href="#" title="点击打开音乐播放器">'+
+            '<a href="#">'+
             '<i class="fa fa-music"></i>'+
             '</a>'+
             '</div>'+
@@ -68,7 +51,7 @@ Music.prototype = {
             '</li>'+
             '</ul>'+
             '</div>'+
-            '<div id="jquery-header" class="clear">'+
+            '<div id="header" class="clear">'+
             '<a href="#" class="menu-btn">'+
             '<i class="fa fa-list-ul"></i>'+
             '</a>'+
@@ -76,14 +59,14 @@ Music.prototype = {
             '<i class="fa fa-close"></i>'+
             '</a>'+
             '</div>'+
-            '<div id="jquery-main">'+
+            '<div id="main">'+
             '<div class="play">'+
             '<a href="#">'+
             '<i class="fa fa-play-circle-o"></i>'+
             '</a>'+
             '</div>'+
             '</div>'+
-            '<div id="jquery-footer" class="clear">'+
+            '<div id="footer" class="clear">'+
             '<div class="song-message clear">'+
             '<div class="message"><span class="message-length"><span class="singer"></span><span class="fengefu"></span><span class="song-name"></span></span></div>'+
             '<div class="time"><span class="curtime">00:00</span><span>/</span><span class="song-time">00:00</span></div>'+
@@ -94,7 +77,7 @@ Music.prototype = {
             '</div>'+
             '</div>'+
             '<div class="control clear">'+
-            '<a href="#"  class="song-volume">'+
+            '<a href="#" class="song-volume">'+
             '<div class="control-volume">'+
             '<div class="volume-progressbar">'+
             '<div class="volume-bar">'+
@@ -241,10 +224,8 @@ Music.prototype = {
         });
         //音量条点击事件
         $('#jquery-music .control-volume').on('click',function (e) {
-            e.preventDefault();
             //阻止事件进一步冒泡
             e.stopPropagation();
-            // a代表长度
             var a = $('#jquery-music .volume-progressbar').height()-(e.pageY - $('#jquery-music').offset().top-288);
             $('#jquery-music .volume-bar').height(a);
             //audio.volume在0与1之间;
@@ -266,7 +247,6 @@ Music.prototype = {
         //音量条拖拽事件
         $('#jquery-music .volume-bar-circle').on('mousedown',function (e) {
             //阻止事件进一步冒泡
-            e.preventDefault();
             e.stopPropagation();
             $('#jquery-music .volume-bar-circle').data('change',true);
         });
@@ -275,7 +255,6 @@ Music.prototype = {
                 $(this).css({
                     cursor:'pointer'
                 });
-                //拖拽的长度
                 var a = $('#jquery-music .volume-progressbar').height()-(e.pageY - $('#jquery-music').offset().top-288);
                 if(a<0){
                     a = 0;
@@ -302,14 +281,12 @@ Music.prototype = {
             }
         });
         $('#jquery-music .volume-bar-circle').on('mouseup',function (e) {
-            e.preventDefault();
             e.stopPropagation();
             $('#jquery-music .volume-bar-circle').data('change',false);
         });
         //静音
         $('#jquery-music .song-volume').on('click',function (e) {
             e.preventDefault();
-            //单击静音，再单击恢复原来的音量
             if(!$('.song-volume').data('mute')){
                 me.audio.volume = 0;
                 me.volumeValue = 0;
@@ -363,7 +340,6 @@ Music.prototype = {
                 return
             }
             clearInterval(me.clock);
-            // a代表进度条的长度
             var a = (e.pageX - $('#jquery-music').offset().left)-10;
             $('.bar').width(a);
             var b = a*me.audio.duration/$('#jquery-music .progressbar').width();  //多少秒
@@ -387,7 +363,6 @@ Music.prototype = {
                     a = $('#jquery-music .progressbar').width();
                 }
                 $('.bar').width(a);
-                // 设置me.time的目的是放开鼠标（即触发了mouseup事件后）才会改变播放的进度
                 me.time = a*me.audio.duration/$('#jquery-music .progressbar').width();  //多少秒
             }
         });
@@ -413,7 +388,6 @@ Music.prototype = {
                 else{
                     me.audio.play();
                     me.changeStyle();
-                    // 这里起名字起的不好，应该是isPlay才对
                     $('#jquery-music .play a').data('isShow',true);
                 }
             }
@@ -424,7 +398,6 @@ Music.prototype = {
         });
         //点击频道获取频道歌曲
         $('#jquery-music .music-popular-list').on('click','li',function () {
-            // 每一个频道的li元素的data属性都是对应其channel_id（频道的id）
             me.clickedChannel = $(this).attr('data');
             $('#jquery-music .music-popular-list li').removeClass('active');
             $(this).addClass('active');
@@ -436,7 +409,7 @@ Music.prototype = {
             me.ajaxChannelsSongs();
         });
     },
-    //设置setInterval改变播放进度条长度
+    //设置setInterval改变进度条
     changeStyle:function () {
         var me = this;
         me.clock = setInterval(function () {
@@ -445,7 +418,7 @@ Music.prototype = {
             });
         },0.001);
     },
-    //ajax获取音乐频道信息，加载音乐频道
+    //ajax获取音乐频道信息
     ajaxChannels:function () {
         var isClose=false;
         if (isClose) {
@@ -494,7 +467,6 @@ Music.prototype = {
                     me.songSid =data.song[0].sid;
                     me.audio.play();
                     me.changeStyle();
-                    // 这里起名字起的不好，应该是isPlay才对
                     $('#jquery-music .play a').data('isShow',true);
                     me.isSongClose = false;
                 }
@@ -520,14 +492,14 @@ Music.prototype = {
             },
             success: function (data) {
                 console.log(data);
-                var re = /\n/;//换行符
+                var re = /\n/;
                 var songArr = data.lyric.split(re);//"" "[ar:A-Lin黄丽玲]" "[ti:我很忙]" "[04:01.42]心碎只是我自己" "[04:01.42][02:03.42]心碎只是我自己"
                 console.log(songArr);
                 for(var i=0;i<songArr.length;i++){
                     //创建lyricArr数组
                     var re = /[\d{2}:\d{2}.\d{2}]+/g;
                     var re2 = /[\[\]]/g;
-                    if(re.test(songArr[i])){ //songArr[i]就是"[04:01.42][02:03.42]心碎只是我自己"
+                    if(re.test(songArr[i])){
                         var lyricObj = {};
                         lyricObj.time = [];
                         var lyricTimeArr = songArr[i].match(re); //["04:01.42"] ["04:01.42", "02:03.42"]
@@ -538,7 +510,7 @@ Music.prototype = {
                         for(var j=0;j<lyricTimeArr.length;j++){
                             var stringTime = lyricTimeArr[j].replace('[','');//"03:07.35"
                             var timeArr = stringTime.split(':'); //["03", "07.35"]
-                            songTime = parseInt(timeArr[0])*60 + parseFloat(timeArr[1]); //187.35秒
+                            songTime = parseInt(timeArr[0])*60 + parseFloat(timeArr[1]); //187.35
                             lyricObj.time.push(songTime);
                         }
 
@@ -584,7 +556,7 @@ Music.prototype = {
                 $('#jquery-music .message').data('isFirstTooLong',false);
                 $('#jquery-music .message').html('<span class="message-length"><span class="singer">'+me.singer+'</span><span class="fengefu">-</span><span class="song-name">'+me.songName+'</span></span>');
             }
-            //当音乐响起的时候创建歌词数组lyricArr
+            //当音乐响起的时候创建lyricArr
             me.lyricArr = [];
             if (me.isLyricClose) {
                 return;
@@ -593,7 +565,7 @@ Music.prototype = {
             me.ajaxLyric(me.songSsid,me.songSid);
         });
         me.audio.addEventListener('timeupdate',function () {
-            //歌曲播放的当前时间
+            //当前时间
             var  realcurtimeMinutes;
             var  realcurtimeSeconds;
             var curtimeMinutes = parseInt(Math.floor(me.audio.currentTime)/60);
@@ -639,11 +611,11 @@ Music.prototype = {
             $('#jquery-music .curtime').text(realcurtimeMinutes+':'+realcurtimeSeconds);
 
             //改变显示歌词;
-            if(Math.floor(me.audio.currentTime)===0){ //开始播放前歌词显示：歌手和歌曲名
+            if(Math.floor(me.audio.currentTime)===0){
                 $('#jquery-music-lyrics p').text(me.singer+'-'+me.songName);
             }
-            for(var i=0;i<me.lyricArr.length;i++){ //遍历歌词数组中每个对象（即每句歌词）
-                for(var j=0;j<me.lyricArr[i].time.length;j++){ //遍历每句歌词中歌词出现时间数组
+            for(var i=0;i<me.lyricArr.length;i++){
+                for(var j=0;j<me.lyricArr[i].time.length;j++){
                     if(Math.floor(me.audio.currentTime)===Math.round(me.lyricArr[i].time[j])){
                         $('#jquery-music-lyrics p').text(me.lyricArr[i].lyric);
                     }
@@ -677,7 +649,6 @@ Music.prototype = {
             if(me.playModel === 'single-cycle'){
                 me.audio.play();
                 me.changeStyle();
-                // 这里名字起得不好，应该是isPlay才对
                 $sth.data('isShow',true);
             }
         });
