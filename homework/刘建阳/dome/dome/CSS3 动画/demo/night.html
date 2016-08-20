@@ -1,0 +1,157 @@
+
+<!doctype html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="origin.css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/fontawesome/4.4.0/css/font-awesome.min.css
+" media="screen" charset="utf-8">
+</head>
+<body>
+<div id="header">
+    <a href="#" class="setting icon"><span class="fa fa-gear"></span></a>
+    <a class="add-note icon" title="添加笔记" href="#"><span class="fa fa-plus"></span></a>
+</div>
+<div id="content">
+
+</div>
+
+<div class="stars"></div>
+<div class="twinkling"></div>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    function Note(opts){
+        this.initOpts(opts);
+        this.createNote();
+        this.setStyle();
+        this.bindEvent();
+    }
+    Note.prototype = {
+        colors: [
+            ['#ea9b35','#efb04e'], // headColor, containerColor
+            ['#dd598b','#e672a2'],
+            ['#eee34b','#f2eb67'],
+            ['#c24226','#d15a39'],
+            ['#c1c341','#d0d25c'],
+            ['#3f78c3','#5591d2']
+        ],
+
+        defaultOpts: {
+            id: '',   //Note的 id
+            $ct: $('#content').length>0?$('#content'):$('body'),  //默认存放 Note 的容器
+            context: 'hello jirengu',  //Note 的内容
+        },
+
+        initOpts: function (opts) {
+            this.opts = $.extend({}, this.defaultOpts, opts||{});
+            if(this.opts.id){
+                this.id = this.opts.id;
+            }else{
+                this.id = 'Note_' + (Math.random()+'').substr(2,8);  //获取
+            }
+        },
+
+        createNote: function () {
+            var tpl =  '<div class="note">'
+                    + '<div class="note-head"><span class="delete">&times;</span></div>'
+                    + '<div class="note-ct" contenteditable="true">' + this.opts.context + '</div>'
+                    +'</div>';
+            this.$note = $(tpl);
+            this.opts.$ct.append(this.$note);
+        },
+
+        setStyle: function () {
+            var color = this.colors[Math.floor(Math.random()*6)];
+            this.$note.find('.note-head').css('background-color', color[0]);
+            this.$note.find('.note-ct').css('background-color', color[1]);
+        },
+
+        bindEvent: function () {
+            var self = this,
+                    $note = this.$note,
+                    $noteHead = $note.find('.note-head'),
+                    $noteCt = $note.find('.note-ct'),
+                    $delete = $note.find('.delete');
+
+            $delete.on('click', function(){
+                self.delete();
+            })
+
+            //contenteditable没有 change 事件，所有这里做了模拟通过判断元素内容变动，执行 save
+            $noteCt.on('focus', function() {
+                $noteCt.data('before', $noteCt.html());
+            }).on('blur keyup paste', function() {
+                if( $noteCt.data('before') != $noteCt.html() ) {
+                    $noteCt.data('before',$noteCt.html());
+                    self.save($noteCt.html());
+                }
+            });
+
+            //设置笔记的移动
+            $noteHead.on('mousedown', function(e){
+                var evtX = e.pageX - $note.offset().left,   //evtX 计算事件的触发点在 dialog内部到 dialog 的左边缘的距离
+                        evtY = e.pageY - $note.offset().top;
+                $note.addClass('draggable').data('evtPos', {x:evtX, y:evtY}); //把事件到 dialog 边缘的距离保存下来
+            }).on('mouseup', function(){
+                $note.removeClass('draggable').removeData('pos');
+            });
+
+            $('body').on('mousemove', function(e){
+                $('.draggable').length && $('.draggable').offset({
+                    top: e.pageY-$('.draggable').data('evtPos').y,    // 当用户鼠标移动时，根据鼠标的位置和前面保存的距离，计算 dialog 的绝对位置
+                    left: e.pageX-$('.draggable').data('evtPos').x
+                });
+            });
+        },
+
+        save: function (data){
+            localStorage[this.id] = data;
+        },
+
+        delete: function(){
+            delete localStorage[this.id];
+            this.$note.remove();
+        }
+
+    };
+
+
+    var NoteManager = (function(){
+
+        function load() {
+            $.each(localStorage, function(key, value) {
+                if(key.indexOf('Note_') === 0){
+                    new Note({
+                        id: key,
+                        context: value
+                    });
+                }
+            });
+        }
+
+        function add(){
+            new Note();
+        }
+
+        return {
+            load: load,
+            add: add
+        }
+
+    })();
+
+    NoteManager.load();
+
+    $('.add-note').on('click', function() {
+        NoteManager.add();
+    })
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var cookie = "name=music1.css;er";
+		var nameEQ="BAIDUID";
+		var ca = cookie.split(';');
+		  for(var i=0;i < ca.length;i++) {
+		    var c = ca[i];
+		    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		    if (c.indexOf(nameEQ) == 0) console.log(c.substring(nameEQ.length,c.length));
+		  }
+	</script>
+</body>
+</html>

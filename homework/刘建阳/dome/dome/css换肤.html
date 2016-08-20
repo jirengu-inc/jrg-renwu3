@@ -1,0 +1,37 @@
+boo
+<link id="bs-css" href="css/style-Teal.css" rel="stylesheet">
+
+<div id="themes">
+	<i class="active" data-themes="music1">人</i>
+	<i data-themes="music1">吗</i>
+</div>
+
+<script>
+	var currentTheme = cookie.get('currentTheme') === null ? defaultTheme : cookie.get('currentTheme');
+	switchTheme(currentTheme);
+
+
+	$('#themes').click(function (e) {
+		e.preventDefault();
+		
+		var index = $(this).find('i.active').index();//d当前css主题是所有主题中的第几个
+		var curIndex;
+		if (index === $(this).children('i').length-1) {
+			curIndex = 0;
+		}else{
+			curIndex = index+1;
+		}
+		var currentTheme = $(this).find('i').eq(curIndex).addClass('active').attr('data-themes').siblings().removeClass('active');
+
+		cookie.set('currentTheme', currentTheme, {expires: 10});
+		switchTheme(currentTheme);
+	});
+
+	function switchTheme(themeName) {
+		if (themeName === 'music1') {
+			$('#css').attr('href', 'music1.css');
+		} else {
+			$('#css').attr('href', 'music2.css');
+		}
+	}
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="Boom.css" style="text/css">
+	</style>
+	<style>
+		.png2{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="img-ct">
+		<img src="1.png" class="png1" alt="">
+		<img src="2.png" class="png2" alt="">
+	</div>
+	<button title="button">dkjfle</button>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="Boom.js"></script>
+	<script>
+	var change = 1;
+
+		setInterval(function(){
+			if (change === 1) {
+				// document.getElementsByClassName('png1')[0].style.backgroundColor = "red";
+				boom($('.png1'));
+				$('.png1').hide();
+				$('.png2').show();
+				change = 2;
+			}else{
+				boom($('.png2'));
+				$('.png2').hide();
+				$('.png1').show();
+				change = 1;
+			}
+		},1000);
+	</script>
+</body>
+</html>

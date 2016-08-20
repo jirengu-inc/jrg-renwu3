@@ -1,0 +1,160 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+body{
+	background-color: #68C3F0;
+}
+
+.wrap{
+	display: table;
+	width: 700px;
+	height: 360px;
+	background-color: #fff;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 80px;
+}
+.wrap .line-select{
+	width: 600px;
+	margin: 70px auto 0 auto;
+}
+.clearfix:after{
+	content: '';
+	display: table;
+	clear: both;
+}
+.items{
+	float: left;
+}
+.line-select .items{
+	width: 200px;
+	position: relative;
+
+}
+
+.word-select{
+	position: absolute;
+	bottom: 40px;
+	left: 45%;
+	transform: translateX(-50%);
+	height: 30px;
+	line-height: 30px;
+	color: #ccc;
+	font-size: 18px;
+}
+.line{
+	position: absolute;
+	left: 0;
+	height: 5px;
+	width: 200px;
+	background-color: #ccc;
+}
+.number-select{
+	
+	top: 50%;
+	margin: 0 auto;
+	margin-top: 2px;
+	transform: translate(-50%,-50%);
+	height: 20px;
+	width: 20px;
+	border-radius: 50% 50%;
+	background-color: #ccc;
+	color: #fff;
+	text-align: center;
+}
+
+.line.active,.number-select.active{
+	background-color: #2A9FD9;
+}
+.word-select.active{
+	color: #2A9FD9;
+}
+
+
+.section-select{
+	display: table;
+	margin: 70px auto 70px auto;
+}
+.section-select .items:first-of-type{
+	margin-left: 0;
+}
+.section-select .items{
+	margin-left: 20px;
+}
+.section-select .sections{
+	display: inline-block;
+	border: 1px solid #2A9FD9;
+	padding: 12px 42px;
+	text-align: center;
+	font-size: 17px;
+	color: #2A9FD9;
+}
+.section-select .sections:hover{
+	background-color: #2A9FD9;
+	color: #fff;
+}
+
+.notice{
+	margin: 50px auto 20px auto;
+	padding: 15px 5px;
+	width: 600px;
+	background-color: #E1F3FC;
+	color: #2A9FD9;
+	
+}
+.notice span:last-of-type{
+	font-size: 12px;
+	height: 15px;
+	line-height: 15px;
+	margin-left: 10px;
+}
+.notice span:first-of-type{
+	display: inline-block;
+	margin-top: 5px;
+	margin-left: 5px;
+	position: relative;
+	left: 5px;
+	width: 15px;
+	height: 15px;
+	background-color: #75C3EB;
+	border-radius: 50% 50%;
+	line-height: 15px;
+	text-align: center;
+	color: #fff;
+}
+
+.btn{
+	display: table;
+	margin: 20px auto;
+	font-weight: 900;
+    font-size: 18px;
+}
+.btn .items:nth-of-type(2){
+	margin-left: 15px;
+}
+.btn .next{
+	display: inline-block;
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	border-radius: 18px;
+	background-color: #0586C5;
+	text-align: center;
+	color: #fff;
+}
+.btn .pre{
+	display: inline-block;
+	width: 120px;
+	height: 35px;
+	line-height: 35px;
+	border-radius: 18px;
+	background-color: #8CD9FF;
+	text-align: center;
+	color: #4BAFE0;
+}
+

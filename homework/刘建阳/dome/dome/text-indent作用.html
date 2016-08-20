@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>测试span元素</title>
+<style>
+	.img-ver{
+		/*float: left;*/
+		border: 1px solid #d12;
+		width: 300px;
+		height: 300px;
+		/*display: table;*/
+	}
+	.img-ver img{
+		width: 200px;
+		height: 200px;
+		/*vertical-align: middle;*/
+	}
+	.img-ver span{
+		vertical-align: middle;
+	}
+	del{
+
+	}
+</style>
+</head>
+
+<body>
+	<del>
+		只有一个元素属于inline或是inline-block（table-cell也可以理解为inline-block水平）水平，其身上的vertical-align属性才会起作用
+	</del>
+	<div class="img-ver">
+		<!-- <img src="../public/img/lazyload.png" alt=""> -->
+		<span>这是基线</span>
+	</div>
+
+
+	<div>
+		第一种情况：直接使用text-indent <br />
+		<span style="text-indent:2em;">缩进的内容</span>
+		<hr>
+
+		第二种情况：使用display把span定义成block <br />
+		<span style="display:block;text-indent:2em;">缩进的内容</span>
+		<hr>
+
+		<p>第三种情况：直接使用text-indent,但在这个span前是一个block型的元素p </p>
+		<span style="text-indent:2em;">缩进的内容</span>
+	</div>
+</body>
+</html>
