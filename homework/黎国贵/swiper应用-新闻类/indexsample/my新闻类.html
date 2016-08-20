@@ -61,7 +61,6 @@
             height:210px;
             overflow:hidden;
             position:relative;
-            background-color: #ff8800;
         }
         #banner .swiper-slide{
             /*每个.swiper-slide默认就是100%的，可以不写*/
@@ -70,20 +69,19 @@
         }
         #banner img{
             width: 100%;
+            height:100%;
         }
         /*!*文字和分页器用绝对定位布置*!*/
-        /*#banner .swiper-pagination{*/
-            /*position: absolute;*/
-            /*z-index: 20;*/
-            /*bottom: 10px;*/
-            /*!*width: 66px;*!*/
-            /*!*text-align: center;*!*/
-            /*right:20px;*/
-            /*border:1px solid red;*/
-        /*}*/
-        /*.swiper-pagination-bullet-active {*/
-            /*background: red;*/
-        /*}*/
+        #banner .swiper-pagination{
+            position: absolute;
+            width: 50px;
+            z-index: 20;
+            bottom: 20px;
+            left:85%;
+        }
+        #banner .swiper-pagination-bullet-active{
+            background-color: #ff8800;
+        }
         #banner h2{
             position:absolute;
             width:100%;
@@ -156,9 +154,9 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide"><img src="images/0.jpg" alt=""><h2>孙俪芈月造型亮相 清纯似少女</h2></div>
                 <div class="swiper-slide"><img src="images/1.jpg" alt=""><h2>Angelababy弟弟曝光 五官精致颜值爆表</h2></div>
-                <!--如果需要分页器 -->
-                <div class="swiper-pagination"></div>
             </div>
+        <!--如果需要分页器 -->
+        <div class="swiper-pagination"></div>
     </div>
     <div class="tabs clear-fix"><a class="active" href="#">新闻</a><a href="#">社会</a><a href="#">军事</a></div>
     <div class="tabs-container">
@@ -221,7 +219,7 @@
 //            轮播图就没有必要auto了
 //            slidesPerView:'auto',
             loop :'true',
-//            pagination: '.swiper-pagination',
+            pagination: '.swiper-pagination',
             autoplay:4000
         });
 
