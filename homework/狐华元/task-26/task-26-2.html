@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task-26-2</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul {
+        list-style: none;
+      }
+      .m-md {
+        margin-top: 5px;
+      }
+      .m-lg {
+        margin-top: 10px;
+      }
+      .container {
+        padding: 20px;
+      }
+      .btn {
+        color: #fff;
+        padding: 6px 12px;
+        border-radius: 5px;
+        border: 1px solid transparent;
+      }
+      .btn-danger {
+        background-color: #ff6a00;
+        color: #fff;
+        font-size: 14px;
+      }
+      .btn-danger:hover,.btn-danger:active {
+        background-color: #ec6301;
+      }
+      button:focus,button:active {
+        outline: none;
+      }
+      .btn-group {
+        margin-top: 5px;
+      }
+      .btn-group>button {
+        margin-right: 5px;
+        padding: 3px 5px;
+      }
+      .btn-hover {
+        border: 1px solid #ccc;
+      }
+      .text-input {
+        border: 1px solid #ccc;
+        padding: 5px 8px;
+        margin-top: 5px;
+      }
+      input:focus {
+        outline: none;
+      }
+      .y-height {
+        position: fixed;
+        bottom: 0;
+        left: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <h4>1. 当点击$btn 时，让 $btn 的背景色变为红色再变为蓝色</h4>
+        <button class="btn m-md">点击按钮</button>
+        <script>
+          var $button = $(".btn");
+          $button.on("click",function(){
+            $(this).css({'background-color':'#fb4b23'});
+            setTimeout(function(){
+              $(this).css({'background-color':'#0089ff'})
+            },1000)
+          });
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>2. 当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色</h4>
+        <button class="btn btn-danger m-md btn-hover">鼠标经过更改按钮背景色</button>
+        <script>
+          var $btn_hover = $(".btn-hover");
+          $btn_hover.on("mouseenter",function(){
+            $(this).css({'background-color':'#fb4b23'});
+          });
+          $btn_hover.on("mouseleave",function(){
+            $(this).css({'background-color':'#fff','color':'#333'});
+          });
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>3. 当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</h4>
+        <input type="text" placeholder="请输入文字" class="text-input">
+        <script>
+          var $text = $(".text-input");
+          $text.on("focus",function(){
+            $(this).css({'border-color':'#0089ff'});
+          });
+          $text.on("blur",function(){
+            $(this).css({'border-color':'#ccc'});
+            console.log($(this).val())
+          });
+          $text.on("keyup",function(){
+            $(this).val($(this).val().toUpperCase())
+          });
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>4. 当选择 select 后，获取用户选择的内容</h4>
+        <select name="fav" id="fav">
+          <option value="sport">sport</option>
+          <option value="read">read</option>
+          <option value="study">study</option>
+        </select>
+        <p class="fav_text">请选择</p>
+        <script>
+          $("#fav").on("change",function(){
+            $(".fav_text").text("我已选择: "+$("#fav option:selected").text());
+          });
+
+        </script>
+      </div>
+      <div class="m-lg">
+        <h4>5. 当窗口滚动时，获取垂直滚动距离</h4>
+        <ul>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>2</li>
+          <li>2</li>
+          <li>2</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>1</li>
+          <li>2</li>
+          <li>2</li>
+          <li>2</li>
+          <li>2</li>
+          <li>2</li>
+          <li>2</li>
+          <li>2</li>
+          <li>2</li>
+        </ul>
+        <p class="y-height"></p>
+        <script>
+          var $y_h = $(".y-height");
+          $(window).on("scroll",function(){
+            $y_h.html("您已经向下滑动了"+$(window).scrollTop()+"px")
+          });
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

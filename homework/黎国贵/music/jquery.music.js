@@ -10,7 +10,6 @@ function Music() {
     // 歌曲的图片
     this.songPicture;
     // 这两个是频道的信息
-    this.songSsid;
     this.songSid;
     //歌词数组，数组里面装的是对象，每一个对象的.lyric属性代表歌词文字部分，每一个对象的.time属性是一个数组，数组里面每一项是歌词出现的时间（真实的秒数），[20,180]代表20秒的时候，该歌词出现，180秒的时候该歌词也出现
     this.lyricArr = [];
@@ -485,22 +484,46 @@ Music.prototype = {
             data: {
             },
             success: function (data) {
-                if (data.r === 0) {
                     me.audio.src = data.song[0].url;
                     me.songName = data.song[0].title;
                     me.singer = data.song[0].artist;
                     me.songPicture = data.song[0].picture;
-                    me.songSsid = data.song[0].ssid;
                     me.songSid =data.song[0].sid;
                     me.audio.play();
                     me.changeStyle();
                     // 这里起名字起的不好，应该是isPlay才对
                     $('#jquery-music .play a').data('isShow',true);
                     me.isSongClose = false;
-                }
             },
             error: function () {
                 console.log('get error songs data');
+                me.isSongClose = false;
+            }
+        });
+    },
+    //获取频道歌曲
+    ajaxChannelsSongs:function () {
+        var me = this;
+        $.ajax({
+            url: 'http://api.jirengu.com/fm/getSong.php',
+            type: 'get',
+            dataType: 'json',
+            data: {
+                channel: me.clickedChannel
+            },
+            success: function (data) {
+                    me.audio.src = data.song[0].url;
+                    me.songName = data.song[0].title;
+                    me.singer = data.song[0].artist;
+                    me.songPicture = data.song[0].picture;
+                    me.songSid =data.song[0].sid;
+                    me.audio.play();
+                    me.changeStyle();
+                    $('#jquery-music .play a').data('isShow',true);
+                    me.isSongClose = false;
+            },
+            error: function () {
+                console.log('get error data');
                 me.isSongClose = false;
             }
         });
@@ -515,7 +538,6 @@ Music.prototype = {
             type: 'post',
             dataType: 'json',
             data: {
-                ssid: ssid,
                 sid:sid
             },
             success: function (data) {
@@ -679,36 +701,6 @@ Music.prototype = {
                 me.changeStyle();
                 // 这里名字起得不好，应该是isPlay才对
                 $sth.data('isShow',true);
-            }
-        });
-    },
-    //获取频道歌曲
-    ajaxChannelsSongs:function () {
-        var me = this;
-        $.ajax({
-            url: 'http://api.jirengu.com/fm/getSong.php',
-            type: 'get',
-            dataType: 'json',
-            data: {
-                channel: me.clickedChannel
-            },
-            success: function (data) {
-                if (data.r === 0) {
-                    me.audio.src = data.song[0].url;
-                    me.songName = data.song[0].title;
-                    me.singer = data.song[0].artist;
-                    me.songPicture = data.song[0].picture;
-                    me.songSsid = data.song[0].ssid;
-                    me.songSid =data.song[0].sid;
-                    me.audio.play();
-                    me.changeStyle();
-                    $('#jquery-music .play a').data('isShow',true);
-                    me.isSongClose = false;
-                }
-            },
-            error: function () {
-                console.log('get error data');
-                me.isSongClose = false;
             }
         });
     }

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task24-2</title>
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    .ct li {
+        list-style: none;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+    }
+    
+    .ct li:hover {
+        background-color: green;
+    }
+    
+    a {
+        display: block;
+        text-decoration: none;
+        border: 1px solid #C63DFF;
+        border-radius: 10px;
+        width: 80px;
+        height: 40px;
+        text-align: center;
+        line-height: 40px;
+        color: #C63DFF;
+        margin: 10px auto;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="ct">
+        <li>内容1</li>
+        <li>内容2</li>
+    </ul>
+    <a href="" class="btn">加载更多</a>
+    <script type="text/javascript">
+    var btn = document.querySelector('.btn'),
+        ct = document.querySelector('.ct');
+    var sum = 2;
+    var lock=false;
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (lock) return;
+        lock = true;
+        ajax({
+            url: '/getmore',
+            type: 'get',
+            data: {
+                start: sum,
+                len: 5
+            },
+            success: function(ret) {
+                if (ret.status === 0) {
+                    addCt(ret.news);
+                    lock = false;
+                }
+                if (ret.status === 1) {
+                    error();
+                    lock = false;
+                }
+            },
+            error: function() {
+                error();
+                lock = false;
+            }
+        });
+
+    });
+
+    function addCt(data) {
+        for (var i = 0; i < data.length; i++) {
+            sum += 1;
+            var li = document.createElement('li');
+            var content = document.createTextNode('内容' + sum);
+            li.insertBefore(content, li.firstChild);
+            ct.appendChild(li);
+        }
+    }
+
+    function error() {
+        var li = document.createElement('li');
+        var ct = document.createTextNode('出错了.....');
+        li.insertBefore(ct, li.firstChild);
+        ct.appendChild(li);
+    }
+
+    function ajax(opt) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                var ret = JSON.parse(xhr.responseText);
+                opt.success(ret);
+            }
+            if (xhr.readyState === 4 && xhr.status === 404) {
+                opt.error();
+            }
+        };
+        var dataStr = '';
+        for (var k in opt.data) {
+            dataStr += k + '=' + opt.data[k] + '&';
+        }
+        dataStr = dataStr.substr(0, dataStr.length - 1);
+        if (opt.type.toLowerCase() === 'get') {
+            xhr.open(opt.type, opt.url + '?' + dataStr, true);
+            xhr.send();
+        }
+        if (opt.type.toLowerCase() === 'post') {
+            xhr.open(opt.type, opt.url, true);
+            xhr.send();
+        }
+    }
+    </script>
+</body>
+
+</html>
