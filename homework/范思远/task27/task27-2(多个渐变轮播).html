@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>渐变轮播</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .viewpoint {
+        width: 326px;
+        height: 204px;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .pic-ct {
+        width: 326px;
+        height: 204px;
+        font-size: 0;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .arrow,
+    .pic-ct li {
+        position: absolute;
+    }
+    
+    .arrow {
+        top: 50%;
+        margin-top: -15px;
+        display: block;
+        width: 30px;
+        height: 30px;
+        color: #fee7ff;
+        font-weight: bold;
+        text-align: center;
+        line-height: 30px;
+        border: 1px solid #feebff;
+        border-radius: 15px;
+        box-shadow: 1px 1px 10px;
+        opacity: 0;
+    }
+    
+    .pre {
+        left: 20px;
+    }
+    
+    .next {
+        right: 20px;
+    }
+    
+    .viewpoint:hover>a {
+        opacity: 1;
+        transition: opacity 0.5s;
+    }
+    
+    .icon:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+    
+    .icon {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .icon li {
+        float: left;
+        width: 15px;
+        height: 4px;
+        border-radius: 2px;
+        margin-right: 10px;
+        background-color: #e6d7e7;
+        cursor: pointer;
+    }
+    
+    .icon .active {
+        background-color: #666377;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="viewpoint carousel1">
+        <ul class="pic-ct">
+            <li>
+                <a href=""><img src="img/img1.jpg"></a>
+            </li>
+            <li>
+                <a href=""><img src="img/img2.jpg"></a>
+            </li>
+            <li>
+                <a href=""><img src="img/img3.jpg"></a>
+            </li>
+            <li>
+                <a href=""><img src="img/img4.jpg"></a>
+            </li>
+        </ul>
+        <a href="" class="next arrow">></a>
+        <a href="" class="pre arrow">
+            <</a>
+                <ul class="icon">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li class='active'></li>
+                </ul>
+    </div>
+    <div class="viewpoint carousel2">
+        <ul class="pic-ct">
+            <li>
+                <a href=""><img src="img/img1.jpg"></a>
+            </li>
+            <li>
+                <a href=""><img src="img/img2.jpg"></a>
+            </li>
+            <li>
+                <a href=""><img src="img/img3.jpg"></a>
+            </li>
+            <li>
+                <a href=""><img src="img/img4.jpg"></a>
+            </li>
+        </ul>
+        <a href="" class="next arrow">></a>
+        <a href="" class="pre arrow">
+            <</a>
+                <ul class="icon">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li class='active'></li>
+                </ul>
+    </div>
+    <div class="viewpoint carousel3">
+        <ul class="pic-ct">
+            <li>
+                <a href=""><img src="img/img1.jpg"></a>
+            </li>
+            <li>
+                <a href=""><img src="img/img2.jpg"></a>
+            </li>
+            <li>
+                <a href=""><img src="img/img3.jpg"></a>
+            </li>
+            <li>
+                <a href=""><img src="img/img4.jpg"></a>
+            </li>
+        </ul>
+        <a href="" class="next arrow">></a>
+        <a href="" class="pre arrow">
+            <</a>
+                <ul class="icon">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li class='active'></li>
+                </ul>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+    var carousel = {};
+    carousel.init = function(ct) {
+        var $picCt = ct.find('.pic-ct'),
+            $next = ct.find('.next'),
+            $pre = ct.find('.pre'),
+            $icon = ct.find('.icon').children(),
+            $pic = $picCt.children(),
+            $length = $pic.length,
+            time,
+            lock = false,
+            $idx = $length - 1;
+        $pre.on('click', function(e) {
+            goPre(($idx + $length - 1) % $length);
+        });
+        $next.on('click', function(e) {
+            goNext(($idx + 1) % $length);
+        });
+        $icon.on('click', function() {
+            var idx = $(this).index();
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+            go(idx);
+        });
+        ct.on('click', function(e) {
+            e.preventDefault();
+        });
+        ct.on('mouseenter', function() {
+            clearInterval(time);
+        });
+        ct.on('mouseleave', function() {
+            repeat();
+        });
+
+        function goNext(idx) {
+            if (lock) return;
+            lock = true;
+            if ($idx === $length - 1) {
+                $pic.eq(0).siblings().fadeOut(500);
+            }
+            go(idx);
+        }
+
+        function goPre(idx) {
+            if (lock) return;
+            lock = true;
+            if ($idx === 0) {
+                $pic.eq($idx).siblings().fadeIn(500);
+            }
+            go(idx);
+        }
+
+        function go(idx) {
+            $pic.eq($idx).fadeOut(500);
+            $pic.eq(idx).fadeIn(500, function() {
+                lock = false;
+            });
+            $idx = idx;
+            $icon.removeClass('active');
+            $icon.eq($idx).addClass('active');
+        }
+
+        function repeat() {
+            time = setInterval(function() {
+                goNext(($idx + 1) % $length);
+            }, 2000);
+        }
+        repeat();
+    };
+    carousel.init($('.carousel1'));
+    carousel.init($('.carousel2'));
+    carousel.init($('.carousel3'));
+    </script>
+</body>
+
+</html>
