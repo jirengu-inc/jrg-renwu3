@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>task22-1</title>
+		<style type="text/css">
+			
+		</style>
+	</head>
+	<body>
+		<ul class="method1">
+			<li>task22</li>
+			<li>重写了</li>
+			<li>三遍啊!</li>
+		</ul>
+		<ul class="method2">
+			<li>南瓜馅</li>
+			<li>馒头</li>
+			<li>真好吃</li>
+		</ul>
+		<ul class="method3">
+			<li>玄不救非</li>
+			<li>氪不改命</li>
+			<li>来发648</li>
+		</ul>
+	</body>
+	<script type="text/javascript">
+		//方法1 直接绑定
+		var liArr1 = document.querySelectorAll('.method1 li')
+		liArr1[0].addEventListener('click',function(){console.log(liArr1[0].innerText)})
+		liArr1[1].addEventListener('click',function(){console.log(liArr1[1].innerText)})
+		liArr1[2].addEventListener('click',function(){console.log(this.innerText)})//这里可以写成this
+		
+		//方法2 用遍历给元素直接绑定
+		var liArr2 = document.querySelectorAll('.method2 li')
+		for (var i = 0;i<liArr2.length;i++) {
+			liArr2[i].addEventListener('click',function(){console.log(this.innerText)})
+		}
+		
+		//方法3 在父元素上注册事件监听器,使用时间代理
+		var fatherUl = document.querySelector('.method3')
+		fatherUl.addEventListener('click',function(e){console.log(e.target.innerText)})
+	</script>
+</html>

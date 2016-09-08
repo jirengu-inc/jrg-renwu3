@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>task22-4</title>
+		<style type="text/css">
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.tabs ul li {
+				box-sizing: border-box;
+				float: left;
+				width: 33.3333%;
+				height: 30px;
+				line-height: 30px;
+				font-size: 30px;
+				text-align: center;
+				border: 1px solid #ccc;
+				border-right: none;
+				cursor: pointer;
+			}
+
+			.tabs ul>.active {
+				background: #eee;
+			}
+
+			.tabs ul,
+			li:last-child {
+				border-right: 1px solid #ccc;
+			}
+
+			.tabs ul:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+
+			.box div {
+				font-size: 30px;
+				display: none;
+				height: 200px;
+				border: 1px solid #ccc;
+				border-top: none;
+			}
+
+			.box .active {
+				display: block;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="tabs">
+			<ul class='clearfix'>
+				<li class="active">tab1</li>
+				<li class="">tab2</li>
+				<li class="">tab3</li>
+			</ul>
+			<div class="box">
+				<div class="active">内容111111111</div>
+				<div class="">内容222222222</div>
+				<div class="">内容333333333</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			//把对class的操作全部封装进一个对象里
+			var classTool = {
+				//判断class 是否已经存在
+				hasClass: function(ele, cls) {
+					return !!ele.className.match(new RegExp('\\b' + cls + '\\b'))
+				},
+				//添加单个class
+				singleAddClass: function(ele, cls) {
+					if(classTool.hasClass(ele, cls)) return
+					ele.className += ' ' + cls
+				},
+				//删除单个class
+				singleRemoveClass: function(ele, cls) {
+					ele.className = ele.className.replace(new RegExp('\\b' + cls + '\\b', 'g'), '')
+				},
+				//添加 class
+				addClass: function(ele, cls) {
+					if(ele.length && ele.length > 0) {
+						for(var i = 0; i < ele.length; i++) {
+							classTool.singleAddClass(ele[i], cls) //调用之前的添加单个class的方法
+						}
+					} else {
+						classTool.singleAddClass(ele, cls)
+					}
+				},
+				//删除 class
+				removeClass: function(ele, cls) {
+					if(ele.length && ele.length > 0) {
+						for(var i = 0; i < ele.length; i++) {
+							classTool.singleRemoveClass(ele[i], cls) //调用之前的删除单个class的方法
+						}
+					} else {
+						classTool.singleRemoveClass(ele, cls)
+					}
+				},
+
+				//查询传入元素是其所在父元素的第几位
+				indexOf: function(ele) {
+					var siblings = ele.parentElement.children //小明+小明所有的兄弟 = 小明爸爸的所有的儿子
+						//遍历 小明爸爸所有的儿子
+					for(var i = 0; i < siblings.length; i++) {
+						if(ele === siblings[i]) return i //返回小明是 兄弟排行老几
+					}
+					return -1; //小明不是 小明爸爸的儿子  返回-1
+				},
+			}
+
+			var tabs = document.querySelector('.tabs ul');//选中 三个li 的父元素 ul
+
+			tabs.addEventListener('click', function(e) { //在ul上绑定事件监听函数
+
+				var target = e.target,//事件发生处
+					tabLi = tabs.children,//三个tab构成的类数组
+					index = classTool.indexOf(target),//查看当前点击的是第几个数组
+					panels = document.querySelectorAll('.box div');//三个大方框的类数组
+
+				if(index > -1) { //大于-1即 发生的位置是 在三个tab 中的一个
+					classTool.removeClass(tabLi, 'active');
+					classTool.addClass(target, 'active');
+					classTool.removeClass(panels, 'active');
+					classTool.addClass(panels[index], 'active');
+				}
+			});
+		</script>
+	</body>
+
+</html>
