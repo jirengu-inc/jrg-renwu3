@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<ul class="ct">
+    	<li data-img="1.png">鼠标放置查看图片1</li>
+    	<li data-img="2.png">鼠标放置查看图片2</li>
+    	<li data-img="3.jpg">鼠标放置查看图片3</li>
+	</ul>
+	<div class="img-preview"></div>
+	<script>
+	var imgLi = document.querySelectorAll('.ct li'),
+		imgPreview = document.querySelector('.img-preview')
+	for (var i = 0;i<imgLi.length;i++) {
+		imgLi[i].addEventListener('mouseenter',function(){
+			//把li的自定义属性data-img内的值组装成一个img标签插入div中
+			var dataImg = this.getAttribute('data-img')
+			imgPreview.innerHTML = '<img src="' + dataImg + '">' 
+		})
+	}
+	</script>
+	</body>
+</html>

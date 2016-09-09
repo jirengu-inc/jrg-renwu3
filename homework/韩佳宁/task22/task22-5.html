@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>tash22-5</title>
+		<style type="text/css">
+			html,body,h3 {
+				margin: 0;
+				padding: 0;
+			}
+			button{
+				cursor: pointer;
+			}
+			header h3 {
+				float: left;
+				margin: 5px;
+			}
+			
+			.modal-box {
+				display: none;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -90px;
+				margin-left: -160px;
+				width: 320px;
+				height: 180px;
+				border: 1px solid #ccc;
+				border-radius: 8px;
+				background-color: #fff;
+				z-index: 3;
+			}
+			
+			header {
+				line-height: 40px;
+				border-bottom: 1px solid #ccc;
+			}
+			
+			header span {
+				font-size: 40px;
+				display: block;
+				float: right;
+				cursor: pointer;
+			}
+			
+			header:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+			
+			footer {
+				border-top: 1px solid #ccc;
+			}
+			
+			footer:after {
+				content: '';
+				display: block;
+				clear: both;
+			}
+			
+			footer span {
+				font-size: 20px;
+				float: right;
+				margin: 10px;
+				cursor: pointer;
+			}
+			
+			.cover {
+				display: none;
+				position: fixed;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background-color: #bbb;
+				opacity: 0.6;
+				z-index: 2;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="btn">
+			<button>点我</button>
+		</div>
+		<div class="modal-dialog">
+			<div class="cover"></div>
+			<div class="modal-box">
+				<header>
+					<h3>我是标题</h3>
+					<span>×</span>
+				</header>
+
+				<p>我是内容</p>
+				<p>我是内容</p>
+				<footer>
+					<span>取消</span>
+					<span>确定</span>
+				</footer>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function showElement(ele) {
+				ele.style.display = 'block';
+			}
+
+			function hideElement(ele) {
+				ele.style.display = 'none';
+			}
+
+			function hasClass(ele, cls) {
+				return !!ele.className.match(new RegExp('\\b' + cls + '\\b'))
+			}
+			var btn = document.querySelector('.btn button'),
+				modal = document.querySelector('.modal-box'),
+				cover = document.querySelector('.cover'),
+				spanBtn = document.querySelectorAll('header span,footer span')
+
+			//点击  点我  展示 cover 和模态框
+			btn.addEventListener('click', function(e) {
+				e.stopPropagation()
+				showElement(modal)
+				showElement(cover)
+			})
+			cover.addEventListener('click', function(e) {
+				e.stopPropagation()
+				hideElement(modal)
+				hideElement(cover)
+			})
+			for(var j = 0; j < spanBtn.length; j++) {
+				spanBtn[j].addEventListener('click', function(e) {
+					e.stopPropagation()
+					hideElement(modal)
+					hideElement(cover)
+				})
+			}
+		</script>
+	</body>
+
+</html>
