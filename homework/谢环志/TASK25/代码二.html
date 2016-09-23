@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task-25-2</title>
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html,body {
+      font-family: "微软雅黑";
+      font-size: 14px;
+    }
+    ul{
+      list-style: none;
+    }
+    a{
+      text-decoration: none;
+      color: #666;
+    }
+    a:hover{
+      color: #333;
+    }
+    .clearfix:after{
+      content: "";
+      display: block;
+      clear: both;
+    }
+    .content{
+      margin: 20px auto;
+      padding-left: 20px;
+    }
+    .price {
+      color: red;
+    }
+    .tabs li{
+      float: left;
+      line-height: 30px;
+      padding: 0 10px;
+      border: 1px solid #ccc;
+      margin-left: -1px;
+    }
+    .tabs>li:first-child {
+      border-top-left-radius: 3px;
+    }
+    .tabs>li:last-child {
+      border-top-right-radius: 3px;
+    }
+    .tabs li.active {
+      background-color: #ccc;
+    }
+    .tabs li.active a {
+      color: #c00;
+    }
+    .panels {
+      border: 1px solid #ccc;
+      width: 731px;
+      display: block;
+    }
+    .panels li.tab-panel {
+      position: relative;
+      width: 230px;
+      border: 1px solid #ccc;
+      padding: 20px;
+      text-align: center;
+    }
+    .tab-panel .hover{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0,0,0,.3);
+      display: none;
+    }
+    .btn {
+      background-color: #fff;
+      padding: 10px 12px;
+      border: 1px solid #c00;
+      border-radius: 5px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .btn:hover {
+      background-color: #efefef;
+    }
+    .tab-panel:hover .hover {
+      display: block;
+    }
+    .tab-panels {
+      margin-left: -21px;
+      margin-top: -21px;
+    }
+    .tab-panel {
+      margin-left: 20px;
+      margin-top: 20px;
+      float: left;
+    }
+    .tab-panel .desc,.tab-panel .price {
+      text-align: left;
+      font-size: 12px;
+    }
+    .tab-panel .price {
+      color: #c00;
+      line-height: 20px;
+    }
+    .panels .panel{
+      display: none;
+    }
+    .panels .panel.active{
+      display: block;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <ul class="tabs clearfix">
+        <li class="active"><a href="javascript:;">热门</a></li>
+        <li><a href="javascript:;">珠宝首饰</a></li>
+        <li><a href="javascript:;">奢侈品</a></li>
+      </ul>
+      <ul class="panels">
+        <li class="panel active">
+          <ul class="tab-panels clearfix">
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="panel">
+          <ul class="tab-panels clearfix">
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img02.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="panel">
+          <ul class="tab-panels clearfix">
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img03.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+            <li class="tab-panel">
+              <div class="hover">
+                <a href="javascript:;" class="btn">立即抢购</a>
+              </div>
+              <a href="javascript:;">
+                <img src="img/img01.jpg" alt="戒指">
+                <div class="desc">藏美千足金和田玉金镶玉路路通吊坠</div>
+                <div class="price">￥1699.00</div>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $(".tabs>li").on("click",function(){
+          $(this).addClass("active").siblings().removeClass("active");
+          $(this).parents(".content").find(".panel").removeClass("active");
+          $(this).parents(".content").find(".panel").eq($(this).index()).addClass("active");
+        })
+      })
+    </script>
+  </body>
+</html>
