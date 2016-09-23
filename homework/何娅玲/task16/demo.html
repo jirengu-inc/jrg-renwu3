@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+//    function isNumber(el){
+//       return typeof el == 'number';
+//    }
+//    function isString(el){
+//        return typeof el == 'string';
+//    }
+//    function isBoolean(el){
+//        return typeof el == 'boolean';
+//    }
+//    function isFunction(el){
+//        return typeof el == 'function';
+//    }
+//
+//    var a = 2,
+//            b = "jirengu",
+//            c = false;
+//    alert( isNumber(a) );  //true
+//    alert( isString(a) );  //false
+//    alert( isString(b) );  //true
+//    alert( isBoolean(c) ); //true
+//    alert( isFunction(a)); //false
+//    alert( isFunction( isNumber ) ); //true
+
+//var a = 1;
+//alert(a+++a);   //3   a=1,a++ -> a=2, 2+a -> a=3
+//alert(typeof a+2); //number2   typeof a -> "number" +2 = number2
+
+//遍历数组，把数组里的打印数组每一项的平方
+//var arr = [3,4,5]
+//for(var i= 0;i<arr.length;i++){
+////    alert(arr[i]*arr[i]);
+//   var s =  arr[i]*arr[i]
+//    document.write(s+',');
+//}
+// 输出 9, 16, 25
+
+////遍历 JSON, 打印里面的值
+//var obj = {
+//    name: 'hunger',
+//    sex: 'male',
+//    age: 28
+//}
+//console.log('name:'+obj.name+','+'sex:'+obj.sex+','+'age:'+obj.age)
+
+// 输出 name: hunger, sex: male, age:28
+
+console.log(a);  //undefined，因为浏览器在加载js的时候会预加载js，先保存全部变量，在赋值，当走完第一遍，
+// 预加载了var a；然后在来执行每一句代码，第一句打印a，此时在内存里只有var a；所以结果就是undefined。
+var a = 1;
+console.log(a);  //1 ,此行代码前面已经声明变量a，并且赋值为1，所以输出1
+console.log(b);  // Uncaught ReferenceError: b is not defined(…) b未定义，
+                // 在与解析里没有发现有变量b，直接使用一个没有声明的变量就会出错
+
+</script>
+</body>
+</html>

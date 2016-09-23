@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+//    var arr = [1,2,3,4,5];
+////    arr.push(6);
+////    arr.pop(6);
+////    arr.shift(6);
+////    arr.unshift(6);
+//
+//    var str = arr.join('*');
+//    console.log(str);    //1*2*3*4*5
+//
+//    var arr2 = str.split("*");
+//    console.log(arr2);    //1*2*3*4*5
+
+
+//    用 splice 实现 push、pop、shift、unshift方法 （***）
+//var arr = [1,2,3,4,5];
+//function push(a){
+//    arr.splice(arr.length,0,a);
+//}
+////push(6);
+////console.log(arr);
+//function pop(){
+//    arr.splice(arr.length-1,1);
+//}
+////pop();
+////console.log(arr);
+//
+//function shift(){
+//    arr.splice(0,1);
+//}
+////shift();
+////console.log(arr);
+//function unshfit(a){
+//    arr.splice(0,0,a);
+//}
+//unshfit(6);
+//console.log(arr);
+
+//使用数组拼接出如下字符串 （***）
+//     <dl class="product">
+//        <dt>女装</dt>
+//        <dd>短款</dd>
+//        <dd>冬季</dd>
+//        <dd>春装</dd>
+//      </dl>
+
+//var prod = {
+//    name: '女装',
+//    styles: ['短款', '冬季', '春装']
+//};
+//function getTpl(data){
+//var arr=[];
+//    for(var i in  data.styles){
+//    arr.push(data.styles[i]);
+//   }
+//    var str  = arr.join("</dd><dd>");
+//    str = "<dt>"+data.name+"</dt>"+"<dd>"+str+"</dd>";
+//    str = '<dl class="product">'+str+"</dl>"
+//    return str;
+//
+//};
+//var result = getTpl(prod);  //result为下面的字符串
+//console.log(result);
+
+
+//写一个find函数，实现下面的功能 （***）
+//var arr = [ "test", 2, 1.5, false ]
+//find(arr, "test") // 0
+//find(arr, 2) // 1
+//find(arr, 0) // -1
+//function find(arr,a){
+//    alert(arr.indexOf(a));
+//    return arr.indexOf(a);
+//}
+
+//写一个函数filterNumeric，实现如下功能 （****）
+//arr = ["a", 1,3,5, "b", 2];
+//newarr = filterNumeric(arr);  //   [1,3,5,2]
+//console.log(newarr);
+//function filterNumeric(arr){
+//    var arr2 = [];
+//    for(var i in arr){
+////        alert(arr[i])
+//        if(typeof (Number(arr[i]))==='number'&& !isNaN(Number(arr[i])) ){
+//            arr2.push(arr[i]);
+//        }
+//    }
+//    console.log(arr2);
+//    return arr2;
+//}
+
+//对象obj有个className属性，里面的值为的是空格分割的字符串(和html元素的class特性类似)，写addClass、removeClass函数，有如下功能：(****)
+//var obj = {
+//    className: 'open menu'
+//}
+//addClass(obj, 'new') // obj.className='open menu new'
+//addClass(obj, 'open')  // 因为open已经存在，此操作无任何办法
+//addClass(obj, 'me') // obj.className='open menu new me'
+//console.log(obj.className)  // "open menu new me"
+//
+//removeClass(obj, 'open') // obj.className='menu new me'
+////removeClass(obj, 'blabla')  // 不变
+//console.log(obj.className);
+//
+//    function addClass(obj,str){
+////        alert(obj.className);
+//        var arr = obj.className.split(' ');
+////        alert(arr);
+//        if(arr.indexOf(str)== -1){
+//            arr.push(str);
+//        }else{
+//            return;
+//        }
+//        obj.className = arr.join(' ');
+//    }
+//    function removeClass(obj,str){
+//        var arr = obj.className.split(' ');
+//        if(arr.indexOf(str)== -1){
+//            return;
+//        }else{
+//            arr.splice(arr.indexOf(str),1);
+//        }
+//        obj.className = arr.join(' ');
+//    }
+
+
+//写一个camelize函数，把my-short-string形式的字符串转化成myShortString形式的字符串，如 (***)
+//    camelize("background-color") == 'backgroundColor';
+//    camelize("list-style-image") == 'listStyleImage';
+//
+//    function camelize(str){
+//        var arr = str.split('-');
+////        alert(arr);
+//        if(arr.length>1){
+//            for(var i = 0;i<arr.length;i++){
+//                var arr2 = arr[i].split('');
+//                arr2.splice(0,1,arr[i][0].toUpperCase());
+////                alert(arr2);
+//                arr[i] = arr2.join('');
+////                alert(arr[i]);
+//            }
+//        }
+//        var newstr = arr.join('');
+//        alert(newstr.replace(newstr.charAt(0),newstr.charAt(0).toLowerCase()));
+//
+//    }
+
+
+//如下代码输出什么？为什么? (***)
+//arr = ["a", "b"];
+//arr.push( function() { alert(console.log('hello hunger valley')) } );
+//arr[arr.length-1]()  // ?
+//hello hunger valley
+//arr.length-1 是数组的最后的一个元素
+// 在第二行的时候已经在数组的最后添加了一个function元素
+// arr[arr.length-1]加上一个() 相当于调用了这个匿名function
+
+
+
+//写一个函数filterNumericInPlace，过滤数组中的数字，删除非数字 (****)
+//arr = ["a", 1,3,4,5, "b", 2];
+////对原数组进行操作，不需要返回值
+//filterNumericInPlace(arr);
+//console.log(arr)  // [1,3,4,5,2]
+//
+//    function filterNumericInPlace(arr){
+//        for(var i in arr){
+//            if(typeof arr[i] !== "number"){
+//                arr.splice(i,1);
+//            }
+//         }
+//    }
+
+
+//写一个ageSort函数实现如下功能 （***）
+//var john = { name: "John Smith", age: 23 }
+//var mary = { name: "Mary Key", age: 18 }
+//var bob = { name: "Bob-small", age: 6 }
+//var people = [ john, mary, bob ]
+//ageSort(people) // [ bob, mary, john ]
+//function ageSort(people){
+//    people.sort(function(a,b){
+//        return a.age - b.age;
+//    })
+//    console.log(people);
+//}
+
+
+//写一个filter(arr, func) 函数用于过滤数组，接受两个参数，第一个是要处理的数组，第二个参数是回调函数(回调函数遍历接受每一个数组元素，当函数返回true时保留该元素，否则删除该元素)。实现如下功能： （****）
+//function isNumeric (el){
+//    return typeof el === 'number';
+//}
+//arr = ["a",3,4,true, -1, 2, "b"]
+//arr = filter(arr, isNumeric) ; // arr = [3,4,-1, 2],  过滤出数字
+//arr = filter(arr, function(val) { return val > 0 });  // arr = [2] 过滤出大于0的整数
+//console.log(arr)
+//function filter(arr,func){
+//    for(var i in arr){
+//        if(!func(arr[i])){
+//            arr.splice(i,1)
+//        }
+//    }
+//    return arr;
+//}
+
+
+//1.写一个 ucFirst函数，返回第一个字母为大写的字符 （***）
+//ucFirst("hunger") == "Hunger";
+//function ucFirst(str){
+//    var newstr=str.replace(str.charAt(0),str.charAt(0).toUpperCase());
+//    console.log(newstr);
+//    return newstr;
+//}
+
+////写一个函数truncate(str, maxlength), 如果str的长度大于maxlength，会把str截断到maxlength长，并加上...，如 （****）
+//truncate("hello, this is hunger valley,", 10) == "hello, thi...";
+//truncate("hello world", 20) == "hello world";
+//    function truncate(str,num){
+//        if(str.length>num){
+//           var newstr = str.slice(0,num) ;
+//            var arr = newstr.split('');
+//            arr.push('...');
+//            str = arr.join('');
+//            alert(str);
+//            return str;
+//        }else{
+//            alert(str);
+//            return str;
+//        }
+//
+//
+//    }
+
+
+//数学函数
+//写一个函数limit2，保留数字小数点后两位，四舍五入， 如: （**）
+//var num1 = 3.456;
+//limit2( num1 );  //3.46
+//limit2( 2.42 );    //2.42
+//function limit2(num){
+//    if(typeof num==='number'){
+//        var str = num + '';
+//        var n = str.indexOf('.');
+//        if(str.charAt(n+3)>=5){
+//            str =str.replace(str.charAt(n+2),str.charAt(n+2)-0+1);
+//        }
+//        str = str.slice(0,n+3);
+//        alert(str);
+//    }
+//}
+
+//写一个函数，获取从min到max之间的随机数，包括min不包括max （***）
+//function rand(min,max){
+//    console.log(Math.floor(Math.random()*(max-min))+min);
+//    return Math.floor(Math.random()*(max-min))+min;
+//}
+//rand(3,10);
+
+//写一个函数，获取从min都max之间的随机整数，包括min包括max （***）
+//function rand(min,max){
+//    console.log(Math.floor(Math.random()*(max-min+1))+min);
+//    return Math.floor(Math.random()*(max-min+1))+min;
+//}
+//rand(3,10);
+//写一个函数，获取一个随机数组，数组中元素为长度为len，最小值为min，最大值为max(包括)的随机数 （***）
+
+    function rand2(min,max,len){
+        var arr=[];
+        for(var i =0;i<len;i++){
+            arr.push(Math.ceil(Math.random()*(max-min))+min);
+        }
+        console.log(arr);
+        return arr;
+    }
+    rand2(1,10,4);
+
+</script>
+</body>
+</html>

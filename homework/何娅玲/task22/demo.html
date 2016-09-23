@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        span{
+            border: 1px solid red;
+        }
+        p{
+            border: 1px solid green;
+        }
+        div{
+            border: 1px solid pink;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>
+            123
+            <span>456</span>
+        </p>
+    </div>
+
+    <script>
+        document.getElementsByTagName('span')[0].onclick = function(){
+            alert(1);
+        }
+        document.getElementsByTagName('span')[0].addEventListener ('click',function(){
+            alert(1)
+        },true);
+
+//        alert(document.getElementsByTagName('div')[0].innerHTML);
+//        输出： <div> <p> 123 <span>456</span> </p> </div>
+//        alert(document.getElementsByTagName('div')[0].innerText);
+//        输出：123456
+
+//    document.getElementsByTagName('div')[0].innerHTML = "<a href='#'>123</a>";
+//        此时页面上出现内容为123的a标签
+//    document.getElementsByTagName('div')[0].innerText = "<a href='#'>123</a>";
+//        页面中显示为：<a href='#'>123</a>
+
+//        var div = document.getElementsByTagName('div')[0];
+//        console.log(div.childNodes);
+//        console.log(div.children);
+//
+//       var a =  document.createElement('a');
+//        a.href = 'http://www.baidu.com';
+//        a.innerHTML = '我是JavaScript动态创建的a';
+//        document.body.appendChild(a);
+
+
+
+    </script>
+
+</body>
+</html>

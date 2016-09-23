@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul class="ct">
+    <li>这里是</li>
+    <li>饥人谷</li>
+    <li>前端6班</li>
+</ul>
+<input class="ipt-add-content" placeholder="添加内容"/>
+<button id="btn-add-start">开头添加</button>
+<button id="btn-add-end">结尾添加</button>
+<script>
+
+    var ul = document.getElementsByTagName('ul')[0];
+    var input = document.getElementsByTagName('input')[0];
+    var btn1 = document.getElementById('btn-add-start');
+    var btn2 = document.getElementById('btn-add-end');
+
+    btn1.onclick = function(){
+        var val = input.value;
+        var li = document.createElement('li');
+        li.innerHTML = val;
+        ul.insertBefore( li,ul.firstChild );
+    }
+    btn2.onclick = function(){
+        var val = input.value;
+        var li = document.createElement('li');
+        li.innerHTML = val;
+        ul.appendChild( li);
+    }
+
+
+//    var li = document.getElementsByTagName('li');
+//    for(var  i = 0;i<li.length;i++){
+//        li[i].index = i;
+//        li[i].onclick = function(){
+//            console.log(li[this.index].innerHTML);
+//        }
+//    }
+    ul.addEventListener('click', function(e){
+        if(e.target.tagName.toLowerCase() === 'li'){
+            console.log(e.target.innerText);
+        }
+    });
+</script>
+</body>
+</html>
