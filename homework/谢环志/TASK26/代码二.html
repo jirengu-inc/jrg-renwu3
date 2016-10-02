@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+    .main{
+      height:10000px;
+    }
+  .btn{
+    text-align:center;
+    border:2px solid ;
+    width:100px;
+    height:80px;
+  }
+    .red{
+     background:red;
+    }
+     .blue{
+     background:blue;
+    }
+    .height{
+      margin:30px auto;
+    text-align:center;
+    border:2px solid ;
+    width:300px;
+    height:30px;
+       position: fixed;
+    }
+    .change{
+      margin:100px auto;
+    text-align:center;
+    border:2px solid ;
+    width:300px;
+    height:30px;
+    }
+    .put{
+      margin-top:20px;
+    text-align:center;
+    width:300px;
+      height:30px;}
+    .borderchange{
+      border:2px solid blue;
+    }
+    .se{
+      margin-top:20px;
+      text-align:center;
+    width:150px;
+      height:30px;
+    }
+    .result{ margin-top:20px;
+      border:2px solid ;
+      text-align:center;
+    width:150px;
+      height:30px;
+    }
+  </style>
+</head>
+<body>
+  <div class=main>
+<div class=btn>
+  点我变色
+</div>
+  <div class=height>
+    垂直滚动距离为
+  </div>
+  <div class=change>放我这可变红色</div>
+  <input class=put type='text' placeholder="边框颜色改变，小写变大写"></input>
+  <select class="se" name="姓名">
+        <option value="悟空" >悟空</option>
+        <option value="比克">比克</option>
+        <option value="贝吉塔">贝吉塔</option>
+   </select>
+   <div class="result"></div>
+ </div>
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script>
+      var $btn=$(".btn");
+    $btn.on('click',function(){
+      if($btn.hasClass('red')){
+        $btn.removeClass('red');
+        $btn.addClass('blue');
+      }
+            else if($btn.hasClass('blue')){
+             $btn.removeClass('blue');
+             $btn.addClass('red');
+            }
+      else{
+        $btn.addClass('red');
+      }
+    });
+ var $height=$(".height");
+    $(window).scroll(function(){
+      $height.text("垂直滚动距离为"+$(document).scrollTop());
+    });
+    var $change=$(".change");
+    $change.hover(function(){
+       $change.addClass('red');
+    },
+       function(){
+       $change.removeClass('red');
+    } )
+    var $put=$(".put");
+    $put.on("keyup",function(){
+    $(this).val($(this).val().toUpperCase());
+  });
+    $put.on("focus",function(){
+      $put.addClass('borderchange');
+    });
+     $put.blur("focus",function(){
+      $put.removeClass('borderchange');
+    });
+    var $se=$(".se"),
+        $result=$(".result");
+      $se.on("change",function(){
+        $result.text($(this).val());
+      });
+
+  </script>
+</body>
+</html>

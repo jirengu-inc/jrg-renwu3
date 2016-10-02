@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        .ct{
+            border:1px solid gray;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top:10px;
+        }
+        .ct:hover {
+            background: #67DA67;
+        }
+        .btn{
+            color: black;
+            border-radius: 5px;
+            height: 40px;
+            line-height: 40px;
+            width:50px;
+            display: inline-block;
+            padding: 0 15px;
+            margin-top: 15px;
+            position: relative;
+            background: pink;
+            color:#fff;
+        }
+        .btn-group{
+            text-align: center;
+        }
+        .btn:hover{
+            background: #36C3E5;
+            color: #fff;
+        }
+        .loading{
+            /**/display: none;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: gray;
+            background: url(http://img.xker.com/xkerfiles/allimg/1504/2232502a1-12.gif);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<!--http://jrgzuoye.applinzi.com/%E4%BD%9C%E4%B8%9A%E5%AE%89%E6%8E%92/jscode/JS9-jqueryajax/2.php?start=2&len=6-->
+<input type="hidden" name="current" id="current" value="3">
+<div id="list">
+    <div class="ct">内容 1</div>
+    <div class="ct">内容 2</div>
+</div>
+<div class="btn-group">
+    <div  class="btn">load
+        <div class="loading">
+        </div>
+    </div>
+</div>
+<script>
+    $('.btn').click(function (event) {
+        event.stopImmediatePropagation();
+        $.ajax({
+            url: "http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/29-jquery%20ajax/code/getMoreItemJsonp.php",
+            dataType: 'jsonp',
+            type:'post',
+            cache: false,
+            data:{start:$('#current').val(),len:6},
+            success:function(result, textStatus, jqXHR){
+                console.log(result.data)
+                $.each( result.items,function (i,e) {
+                    $('#list').append('<div class="ct">'+e+'</div>');
+                });
+                $('#current').val( Number($('#current').val())+6);
+            },
+            beforeSend:function(){
+                $('.loading').css('display','block');
+            },
+            error:function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log('error',textStatus)
+            },
+            complete:function (XMLHttpRequest, textStatus) {
+                $('.loading').css('display','none');
+            }
+        })
+
+    });
+
+</script>
+</body>
+</html>
