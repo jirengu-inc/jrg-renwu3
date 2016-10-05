@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+<meta name="robots" content="noindex">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>任务一</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+		<style type="text/css">
+		html,body,ul,li,p{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+
+		.carousel{
+			position: absolute;
+            top:25%;
+          margin-bottom:400px;
+            left:35%;
+			width: 500px;
+			height: 350px;
+			overflow: hidden;
+		}
+		.carousel .img-ct{
+			position: relative;
+		}
+		.carousel .img-ct img{
+			width: 500px;
+			height: 350px;
+		}
+		.carousel .img-ct:after{
+			content: ' ';
+			display: block;
+			clear: both;
+		}
+		.carousel .img-ct li{
+			position: absolute;
+			display: none;
+		}
+
+		.arrow{
+			position: absolute;
+		    top: 50%;
+		    margin-top: -15px;
+		    width: 30px;
+		    height: 30px;
+		    line-height: 30px;
+		    text-align: center;
+		    background: #4E443C;
+		    color: #fff;
+		    border-radius: 30px;
+		    box-shadow: 0 0 2px #999;
+		    opacity: 0.8
+		}
+		.arrow:hover {
+		    opacity: 1;
+		}
+		.pre{
+			left: 10px;
+		}
+		.next{
+			right: 10px;
+		}
+		ul.bullet {
+			    position: absolute;
+		    bottom: 10px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		}
+		ul.bullet li {
+		    width: 16px;
+		    height: 4px;
+		    border-radius: 2px;
+		    background: #fff;
+		    display: inline-block;
+		    cursor: pointer;
+		}
+
+		ul.bullet li.active {
+		    background: #666;
+		}
+
+
+		</style>
+
+	</head>
+	<body>
+
+		<div class="carousel">
+			<ul class="img-ct">
+	   <li data-id=0><a href="#"><img  src="http://dmr.nosdn.127.net/PtZ9qHXXOZUFQZvrFc6tGw==/6896093022460629134.jpg"></a></li>
+       <li data-id=1><a href="#"><img  src="http://www.people.com.cn/mediafile/pic/20130703/85/7296503185867431353.jpg"></a></li>
+       <li data-id=2><a href="#"><img  src="http://s2.sinaimg.cn/mw690/d0504263gddc68079e771&690"></a></li>
+       <li data-id=3><a href="#"><img  src="http://img4.imgtn.bdimg.com/it/u=2284602554,394673864&fm=11&gp=0.jpg"></a></li>
+			</ul>
+			<a class="pre arrow" href="#"><</a>
+			<a class="next arrow" href="#">></a>
+			<ul class="bullet">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+
+  <script type="text/javascript">
+       	var $ct = $('.img-ct'),
+				$items = $ct.children(),
+				$pre = $('.pre'),
+				$next = $('.next'),
+				$bullet = $('.bullet'),
+				imgWidth = $items.width(),
+				imgCount = $ct.children().size();
+
+			$next.on('click', function(){
+				playNext();
+			});
+			$pre.on('click', function(){
+				playPre();
+			});
+			$bullet.find('li').on('click', function(){
+				var idx = $(this).index();
+				play(idx);
+			});
+
+			play(0);
+
+
+            var curIdx = 0;
+			var isAnimate = false;
+              function play(idx){
+              if(isAnimate)return;
+              isAnimate=true;
+              $items.eq(curIdx).fadeOut(500);
+              $items.eq(idx).fadeIn(500,function(){
+                isAnimate=false;
+              });
+             curIdx =idx;
+              setBullet(curIdx);
+            }
+
+            	function setBullet(curIdx){
+				$bullet.children().removeClass('active');
+				$bullet.children().eq(curIdx).addClass('active');
+             }
+
+            function playNext(){
+              play((curIdx+1)%imgCount);
+            }
+            function playPre(){
+              play((curIdx+imgCount-1)%imgCount);
+            }
+
+
+          </script>
+</body>
+      </html>
