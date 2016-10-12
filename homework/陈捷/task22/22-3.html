@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>22-3</title>
+</head>
+<body>
+	<ul class="ct">
+		<li data-img="http://7xpvnv.com2.z0.glb.qiniucdn.com/4a0c4703-0e86-40ee-a751-2a659d3ff4e4.jpg">鼠标放置查看图片1</li>
+		<li data-img="http://7xpvnv.com2.z0.glb.qiniucdn.com/7a3993ac-a40e-407a-a2fd-464f9191a331.jpg">鼠标放置查看图片2</li>
+		<li data-img="http://7xpvnv.com2.z0.glb.qiniucdn.com/d6adeb92-4b23-49cd-8fc6-c91710fd6b3c.jpg">鼠标放置查看图片3</li>
+	</ul>
+	<div class="img-preview">
+	</div>
+	<script>
+		var ct = document.getElementsByClassName('ct')[0];
+		var preview = document.getElementsByClassName('img-preview')[0];
+		ct.addEventListener('mouseover', function(e) {
+			if (e.target.tagName === 'LI') {
+				preview.innerHTML = '<img src="' + e.target.getAttribute('data-img') + '">';
+			}
+		}, false);
+	</script>
+</body>
+</html>
