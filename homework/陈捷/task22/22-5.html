@@ -114,10 +114,10 @@
     });
 
     //考虑再三,如果不点button dom中多出的modal节点就浪费了 这里应该设法动态生成一个全局的单例对象
-    //只在第一次点button时生成遮罩对象
+    //只在第一次点button时生成modal对象
 
 
-    //生成全局单例对象
+    //生成全局单例对象,比如modal对象,xhr对象
     var singleton = function(fn) {
         var result;
         return function() {
@@ -125,6 +125,7 @@
         };
     };
 
+    //生成全局单例modal
     var createMask = singleton(function() {
 
         return document.body.appendChild(getFragment());
