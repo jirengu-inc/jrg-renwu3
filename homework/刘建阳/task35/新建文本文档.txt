@@ -1,0 +1,139 @@
+# 问答
+## OOP 指什么？有哪些特性 (难度: ***)
+- Object Oriented Programming，OOP，面向对象程序设计，基本原则是计算机程序是由单个能够起到子程序作用的单元或对象组合而成，注重与程序的重用性、灵活性和扩展性。
+- 特性：
+> 1.封装: 将代码封装为一个整体，拥有自己独立的特性，像外界提供调用的接口，隐藏内部具体的实现细节
+2.继承：提高代码的复用性，继承原型（类）上的方法，不用重新编写
+3.多态：在继承的基础上实现，父类引用指向子类对象，多个子类可以使用同一方法而互不影响。
+
+#  如何通过构造函数的方式创建一个拥有属性和方法的对象? (难度: ***)
+```
+		function people(name,age) {
+			this.name = name;
+			this.age = age;
+			this.consoleAge = function(){
+				console.log(this.name + '的年龄是:' + this.age);
+			}
+		}
+		var xiaoLiu = new people("小刘","24");
+		var xiaoWang = new people("小王","25");
+		xiaoLiu.consoleAge();//小刘的年龄是:24
+		xiaoWang.consoleAge();//小王的年龄是:25
+```
+## prototype 是什么？有什么特性 (难度: ***)
+ - prototype是函数特有的属性，这个属性是一个指针，指向一个对象，这个对象在构造函数中为所有实例所共享。可以保存公有的属性和方法，即通过引用实现继承。（js中除了null和undefined以外都有__proto__属性）
+- 特性： 1.多个对象共享同一个函数的原型；2.通过实例可以访问原型中的值，但不能重写原型的值，当实例拥有相同的值和方法时，会调用实例的值和方法而不是prototype的。
+##  画出如下代码的原型图 (难度: ****)
+```
+function People (name){
+  this.name = name;
+  this.sayName = function(){
+    console.log('my name is:' + this.name);
+  }
+}
+
+People.prototype.walk = function(){
+  console.log(this.name + ' is walking');  
+}
+
+var p1 = new People('饥人谷');
+var p2 = new People('前端');
+```
+![0_1476280026287_upload-863b6b67-c90b-4645-9827-31d39af5ab9b](http://7xpvnv.com2.z0.glb.qiniucdn.com/10cf6807-a2ce-49b8-a469-f2cb3f8a134d) 
+## 以下代码中的变量age有什么区别(难度: ****)
+```
+function People (){
+  var age = 1//People函数的内部变量，不能在函数外部访问
+  this.age = 10;//通过构造函数生成实例对象时，实例对象的一个属性（调用词函数的对象的属性）
+}
+People.age = 20;//People是一个函数，也是一个对象，age代表People的一个属性名，静态属性
+
+People.prototype.age = 30;//函数的原型对象上添加name属性,通过该构造函数声明的实例，都有这个属性。
+``` 
+# 代码
+## 创建一个 Car 对象，拥有属性name、color、status；拥有方法run，stop，getStatus (难度: ****)
+```
+function Car(name,color,status) {
+    this.name=name;
+    this.color=color;
+    this.status=static;
+}
+Car.prototype.run=function () {
+    console.log(this.name + 'is running')
+    this.status='run';
+}
+Car.prototype.stop=function () {
+    console.log(this.name + 'is stop')
+    this.status='stop';
+}
+Car.prototype.getStatus=function () {
+    return this.status;
+}
+//直接用Car={}的方式构造对象可以吗老师？可以的话怎么写呢
+```
+## 创建一个 GoTop 对象，当 new 一个 GotTop 对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法 (难度: ****)
+- ct属性，GoTop 对应的 DOM 元素的容器
+- target属性， GoTop 对应的 DOM 元素
+- bindEvent 方法， 用于绑定事件
+- createNode 方法， 用于在容器内创建节点
+```
+function GoTop($ct) {
+//gotop只有在滚动距离超过100px时才会显示，可扩展为JQuery插件
+   this.$ct=$ct;
+   this.$target = $('<div>Go Top</div>');
+}
+GoTop.prototype.init=function () {
+		this.$target.hide();
+		this.$target.css({
+			cursor: 'pointer',
+			color: '#000',
+			position: 'fixed',
+			right: '80px',
+			bottom: '120px',
+			height: '50px',
+			'line-height': '50px',
+			width: '50px',
+			'border-radius': '50%',
+			background: '#f99'
+		});
+}
+GoTop.prototype.createNode=function () {
+		this.$ct.append(this.$target);
+}
+GoTop.prototype.gotop=function () {
+   $(window).scrollTop(0);
+}
+
+GoTop.prototype.bindEvent=function () {
+   	this.init();
+		var self = this;
+   $(window).on('scroll', function(e){
+       var offset = $('body').scrollTop();
+       if(offset>100){
+           self.$target.show();
+       }else{
+           self.$target.hide();
+       }
+   })
+   this.$target.on('click', function(){
+       self.gotop();
+   });
+}
+var goTop = new GoTop($('body'));
+goTop.createNode();
+goTop.bindEvent();
+```
+## 使用构造函数创建对象的方式完成轮播功能( 查看demo )，使用如下调用方式
+> function Carousel($node){
+> //todo...
+> }
+> Carousel.prototype = {
+> //todo ..
+> };
+> 
+> var $node1 = $('.ct').eq(0);
+> var $node2 = $('.ct').eq(1);
+> var carousel1 = new Carousel($node1);
+> var carousel2 = new Carousel($node2);
+> 使用构造函数创建对象的方式实现 Tab 切换功能
+
