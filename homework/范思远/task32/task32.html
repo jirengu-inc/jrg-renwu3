@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task32</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .pic-ct{
+        position: relative;
+        width:1000px;
+        margin:0 auto;
+    }
+    li {
+        width: 300px;
+        padding: 10px;
+        list-style: none;
+        position: absolute;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+        margin-top: 10px;
+        box-shadow: 5px 3px 3px;
+        color:#9F9F9F;
+    }
+    
+    img {
+        width: 300px;
+    }
+    
+    h3 {
+        padding: 10px 0;
+        text-align: center;
+    }
+    
+    p {
+        font-size: 14px;
+        color: #979797;
+        padding: 10px 0;
+        border-top: 1px solid #EFEFEF;
+    }
+    
+    .load {
+        opacity: 0;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+        <ul class="pic-ct">
+            <!--             <li class="item">
+                <a href=""><img src="http://www.sinaimg.cn/dy/slidenews/5_t160/2016_35/453_80739_803214.jpg"></a>
+                <h3>野生动物摄影:渔船下的虎鲸</h3>
+                <p>精彩的野生动物摄影图片向我们展现了大自然美丽多姿的一面。</p>
+            </li> -->
+        </ul>
+        <div class="load">不可见</div>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript">
+    var page = 1,
+        imgNum = 10,
+        $colHs = []; //创建数组接收每列的高度
+    exposure($('.load'), $dosth);
+
+    function $dosth() {
+        $.ajax({
+            url: 'http://platform.sina.com.cn/slide/album_tech',
+            type: 'get',
+            dataType: 'jsonp',
+            jsonp: 'jsoncallback',
+            data: {
+                app_key: '1271687855',
+                page: page,
+                num: imgNum
+            },
+            success: function(ret) {
+                if (ret.status.code === '0') {
+                    $addElments(ret);
+                    $('.item').waterfall();
+                } else {
+                    alert('系统异常.....');
+                }
+            },
+            error: function() {
+                alert('系统异常.....');
+            }
+        });
+    }
+
+    function $addElments($el) { //添加dom元素
+        $.each($el.data, function(k, val) {
+            var sum = strEl(val);
+            $('.pic-ct').append(sum);
+        });
+    }
+
+    function strEl(val) { //dom元素字符串拼接
+        var sum = '';
+        sum += '<li class="item">';
+        sum += '<a href=' + val.cmnt_url + '><img src=' + val.img_url + '></a>';
+        sum += '<h3>' + val.short_name + '</h3>';
+        sum += '<p>' + val.short_intro + '</p>';
+        sum += '</li>';
+        return sum;
+    }
+    //曝光加载
+    function exposure($el, $dosth) {
+        var lock, //状态锁，避免多次重复加载
+            $this = $el;
+        $(window).on('scroll', function() {
+            if (lock) {
+                clearTimeout(lock);
+            }
+            lock = setTimeout(function() {
+                checkshow();
+            }, 50);
+        });
+        checkshow();
+
+        function checkshow() { //展示图片
+            if ($isShow($this)) {
+                $dosth();
+            }
+        }
+
+        function $isShow($el) { //判断元素是否在可视窗口中
+            var $scrollT = $(window).scrollTop(),
+                $winH = $(window).height(),
+                $top = $el.offset().top;
+            if ($top < $scrollT + $winH && $top >= $scrollT) return true;
+            else return false;
+        }
+    }
+    //瀑布流布局
+    $.fn.waterfall = function() {
+        var $winW = $('.pic-ct').width(), //获取窗口宽度
+            $nodeW = $(this).outerWidth(true), //获取元素的宽度
+            $col = parseInt($winW / $nodeW); //计算可以摆放的列数
+        if ($colHs.length === 0) {
+            for (var i = 0; i < $col; i++) {
+                $colHs.push(0);
+            }
+        }
+        $(this).each(function() {
+            var $cur = $(this);
+            $cur.find('img').on('load', function() { //当图片加载完，在计算高度，不然会发生高度重叠
+                var idx = 0,
+                    $minH = $colHs[0],
+                    $nodeH = $cur.outerHeight(true); //获取元素的高度
+                for (var i = 0; i < $colHs.length; i++) { //获取元素的最小高度与下标
+                    if ($colHs[i] < $minH) {
+                        $minH = $colHs[i];
+                        idx = i;
+                    }
+                }
+                $cur.css({ //计算元素的坐标
+                    left: $nodeW * idx,
+                    top: $minH
+                });
+                $colHs[idx] = $nodeH + $minH; //对当前高度重新计算并赋值
+                $('.pic-ct').height($colHs[idx]);
+            });
+        });
+    };
+    </script>
+</body>
+
+</html>

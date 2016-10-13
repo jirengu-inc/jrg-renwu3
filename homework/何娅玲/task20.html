@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+//    setTimeout
+//    var a=0;
+//    setTimeout(function(){
+//        console.log("befor:", a);
+//        a=1;
+//        console.log("after:",a);
+//    },0)
+//    a=100;
+//    console.log(a);
+
+//闭包，作用域链
+//    var a = 1;
+//    function f(){
+//        function g(){
+//            console.log(a);
+//            a = 100;
+//        }
+//        console.log(a);
+//        a = 4;
+//        return g;
+//    }
+//    var func = f();
+//    func();
+//    console.log(a);
+
+//闭包
+//    function fn(){
+//        var a = 1;
+//        function gn(){
+//            alert(++a);
+//        }
+//        return gn;
+//    }
+//    var fun = fn();
+//    fun();
+
+
+//下面的代码输出多少？修改代码让fnArr[i]() 输出 i。使用两种以上的方法
+var fnArr = [];
+//for (var i = 0; i < 10; i ++) {
+//    fnArr[i] = function (num) {
+//        return function(){
+//            return i;
+//        };
+//    }(i);
+//}
+
+//方法一：
+//for (var i = 0; i < 10; i ++) {
+//
+//    fnArr[i] = function (num) {
+//        var index = i;
+//        return function(){
+//            return index;
+//        };
+//    }();
+//}
+
+//方法二：
+//for (var i = 0; i < 10; i ++) {
+//    (function(i){
+//        fnArr[i]= function () {
+//            return i;
+//        }
+//    })(i);
+//}
+
+
+//console.log( fnArr[5]() );  //上面的代码输出10
+
+
+
+//使用闭包封装一个汽车对象，可以通过如下方式获取汽车状态
+//var Car=(function(){
+//    var speed=0;
+//    function setSpeed(i){
+//        speed=i;
+//    }
+//    function getSpeed(){
+//        return speed;
+//    }
+//    function accelerate(){
+//        speed+=10;
+//    }
+//    function decelerate(){
+//        speed-=10;
+//    }
+//    function getStatus(){
+//        if(speed>0){
+//            return "running";
+//        }else{
+//            return "stop";
+//        }
+//    }
+//    return{
+//        'setSpeed':setSpeed,
+//        'getSpeed':getSpeed,
+//        'accelerate':accelerate,
+//        'decelerate':decelerate,
+//        'getStatus':getStatus,
+//        'speed':'error'
+//    };
+//}());
+//
+//
+//Car.setSpeed(30);
+//alert(Car.getSpeed()) //30
+//Car.accelerate();
+//alert(Car.getSpeed()); //40;
+//Car.decelerate();
+//Car.decelerate();
+//alert(Car.getSpeed()); //20
+//alert(Car.getStatus()); // 'running';
+//Car.decelerate();
+//Car.decelerate();
+//alert(Car.getStatus());  //'stop';
+////Car.speed;  //error
+
+
+
+//### 3.写一个函数使用setTimeout模拟setInterval的功能
+//var i=0;
+//var clock=setTimeout(function(){
+//    setTimeout(arguments.callee,1000);
+//    console.log(i++);
+//},1000);
+
+////### 4.写一个函数，计算setTimeout最小时间粒度
+//function getMini(){
+//    var i=0;
+//    var start=Date.now();
+//    var clock=setTimeout(function(){
+//        i++;
+//        if(i===1000){
+//            clearTimeout(clock);
+//            var end=Date.now();
+//            console.log((end-start)/i);
+//        }
+//        clock=setTimeout(arguments.callee,0)
+//    },0)
+//}
+
+
+
+
+//var a = 1;
+//setTimeout(function(){
+//    a = 2;
+//    console.log(a);    //2
+//}, 0);
+//var a ;
+//console.log(a);   // 1
+//a = 3;
+//console.log(a);     //3
+
+
+
+
+
+//var flag = true;
+//setTimeout(function(){
+//    flag = false;
+//},0)
+//while(flag){}
+//console.log(flag);
+//不会输出
+//原因是：刚开始执行的时候，输出flag为true，然后要等到while循环执行结束之后，再执行setTimeout(),
+//        但是由于flag为true，使得while循环一直进行，形成死循环，没法执行后面的代码，因此不会输出结果
+
+
+//下面这段代码输出？如何输出delayer: 0, delayer:1...（使用闭包来实现）
+for(var i=0;i<5;i++){
+    (function (i) {
+        setTimeout(function(){
+            console.log('delayer:' + i );
+        }, 0);
+    })(i);
+    console.log(i);
+}
+</script>
+
+</body>
+</html>

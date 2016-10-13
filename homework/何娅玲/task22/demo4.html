@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+                width: 600px;
+            margin: 50px auto;
+         }
+        ul{
+            outline: 1px solid red;
+            margin-top: 20px;
+            width: 500px;
+            height: 40px;
+            line-height: 40px;
+        }
+        li{
+            float: left;
+            width: 33%;
+            list-style: none;
+            text-align: center;
+            border-right: 1px solid #dbc59e;
+        }
+        li:last-of-type{
+            border-right: none;
+        }
+        li.active{
+            background: #db731d;
+            color: #fff;
+        }
+        div{
+            width: 500px;
+            height: 300px;
+            border: 1px solid red;
+            display: none;
+        }
+        div.active{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <section class="box">
+        <ul>
+            <li class="active">tab1</li>
+            <li>tab2</li>
+            <li>tab3</li>
+        </ul>
+        <div class="active">内容1</div>
+        <div>内容2</div>
+        <div>内容3</div>
+    </section>
+
+    <script>
+        var li  = document.getElementsByTagName('ul')[0].getElementsByTagName('li');
+        var div = document.getElementsByTagName('div');
+
+        for(var i =0;i<li.length;i++){
+            li[i].index = i;
+            li[i].onclick = function () {
+//                alert(this.index);
+                for(var i= 0;i<li.length;i++){
+                    li[i].className = '';
+                    div[i].style.display = 'none';
+                }
+                this.className = 'active';
+                div[this.index].style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

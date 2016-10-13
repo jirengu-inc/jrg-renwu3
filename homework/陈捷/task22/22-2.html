@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>22-2</title>
+</head>
+<body>
+	<ul class="ct">
+		<li>这里是</li>
+		<li>饥人谷</li>
+		<li>前端6班</li>
+	</ul>
+	<input class="ipt-add-content" placeholder="添加内容"/>
+	<button id="btn-add-start">开头添加</button>
+	<button id="btn-add-end">结尾添加</button>
+	<script>
+		var input = document.getElementsByClassName('ipt-add-content')[0];
+		var btnAddStart = document.getElementById('btn-add-start');
+		var btnAddEnd = document.getElementById('btn-add-end');
+		var ct = document.getElementsByClassName('ct')[0];
+
+		btnAddStart.addEventListener('click', function(e) {
+
+			if (!checkEmpty(input.value)) {
+				var li = document.createElement("li");
+				li.innerText = input.value;
+				ct.insertBefore(li, ct.firstChild);
+
+			} else {
+				alert('输入为空,请重新输入');
+			}
+
+		}, false);
+
+		btnAddEnd.addEventListener('click', function(e) {
+
+			if (!checkEmpty(input.value)) {
+				var li = document.createElement("li");
+				li.innerText = input.value;
+				ct.appendChild(li);
+
+			} else {
+				alert('输入为空,请重新输入');
+			}
+
+		}, false);
+
+		ct.addEventListener('click', function(e) {
+			if (e.target.tagName === 'LI') {
+				console.log(e.target.innerText);
+			}
+		}, false);
+
+		function checkEmpty(value) {
+			var pattern = /^\s+$/;
+			return value === '' || pattern.test(value);
+		}
+	</script>
+</body>
+</html>

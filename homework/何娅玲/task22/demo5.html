@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100%;
+            height: 1000px;
+        }
+        .box{
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        button{
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            margin: 20px;
+        }
+        .pop{
+            width: 400px;
+            height : 200px;
+            background: #fff;
+            border: 1px solid #ccc0b2;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -200px;
+            display: none;
+        }
+        .pop span{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 10px;
+            line-height: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+        .pop h2{
+            height: 40px;
+            line-height: 40px;
+            padding-left: 20px;
+            font-size: 18px;
+            background: linear-gradient(to bottom,#c0c0c0,#f0f9ff);
+        }
+        .pop p{
+            padding: 10px;
+        }
+        .pop a{
+            display: inline-block;
+            padding:10px 20px;
+            text-decoration: none;
+            color: #5B0000;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="btn">clickMe</button>
+    <div id="box" class="box"></div>
+    <section id="pop" class="pop">
+        <h2>标题</h2>
+        <p>内容</p>
+        <p>内容</p>
+        <p>内容</p>
+        <hr/>
+        <a href="#">确定</a>
+        <a href="#" class="close">取消</a>
+        <span class="close1">X</span>
+    </section>
+
+    <script>
+        var btn = document.getElementById('btn');
+        var box = document.getElementById('box');
+        var pop = document.getElementById('pop');
+        var close = document.querySelector('.close');
+        var close1 = document.querySelector('.close1');
+
+        btn.onclick = function(){
+            box.style.display = 'block';
+            pop.style.display = 'block';
+        };
+
+        close.addEventListener('click',function(){
+            box.style.display = '';
+            pop.style.display = '';
+        },false)
+        close1.addEventListener('click',function(){
+            box.style.display = '';
+            pop.style.display = '';
+        },false)
+    </script>
+
+</body>
+</html>

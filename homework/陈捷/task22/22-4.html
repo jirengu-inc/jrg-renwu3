@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>22-4 tab switch</title>
+    <style>
+    .tab-switch {
+        width: 600px;
+        border: 1px solid #ccc;
+    }
+    
+    .tab-switch * {
+        box-sizing: border-box;
+    }
+    
+    .tab-switch ul,
+    .tab-switch ul li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+    }
+    
+    .tab-switch ul:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+    
+    .tab-switch ul li {
+        float: left;
+        width: 33.33%;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    .tab-switch ul li:last-child {
+        border-right: none;
+    }
+    
+    .tab-switch ul .active {
+        background-color: #eee;
+    }
+    
+    .tab-switch div.area {
+        display: none;
+        height: 200px;
+        padding: 20px;
+    }
+    
+    .tab-switch div.active {
+        display: block;
+    }
+    </style>
+</head>
+<body>
+    <div class='tab-switch'>
+        <ul>
+            <li class='tab active'>tab1</li>
+            <li class='tab'>tab2</li>
+            <li class='tab'>tab3</li>
+        </ul>
+        <div class='area active'>内容1</div>
+        <div class='area'>内容2</div>
+        <div class='area'>内容3</div>
+    </div>
+    <script src='utils.js'></script>
+    <script>
+    var ct = document.querySelector('.tab-switch>ul');
+    ct.addEventListener('click', function(e) {
+        var target = e.target;
+        var areas = document.querySelectorAll('.area');
+        var index = Utils.indexOf(target);
+        Utils.removeClass(ct.children, 'active');
+        Utils.singleAddClass(target, 'active');
+        if (index > -1) {
+            Utils.removeClass(areas, 'active');
+            Utils.singleAddClass(areas[index], 'active');
+        }
+
+    }, false);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<script>
+    //    var a=1;
+    //    var b = a;
+    //    alert(b)   //1
+    //    a = 2;
+    //    alert(b);  //1
+    //
+    //    var json = {name:"lucy"};
+    //    var json2 = json;    //复杂对象赋值的时候复制的是对象的指向的地址
+    //    json.name = 'jack';   //josn里面的内容发生变化
+    //    console.log(json2.name);//josn2里面的内容也发生变化
+
+    //    基本类型复制后，相当于完完全全的复制了一份，对原件和副本可以分别操作，而互相之间不影响,
+    //            复杂类型复制后，副本只是复制到了堆内存的位置，即只是一个指针，它与原件指向同一个地方。
+    //    基本类型的复制可以理解为复制一个文本文档，复杂类型的复制可以理解为复制了应用程序的一个快捷方式
+
+    //var obj1 = {a:1, b:2};
+    //var obj2 = {a:1, b:2};
+    //console.log(obj1 == obj2);     //false  因为它们分别保存在不同的内存空间里，指向的地址不同
+    //console.log(obj1 = obj2);      //object  一个等号是赋值，把obj2的内容赋值给obj1
+    //console.log(obj1 == obj2);     //true    赋值后它们指向相同的地址
+
+
+    //代码
+    //写一个函数getIntv，获取从当前时间到指定日期的间隔时间
+    //var str = getIntv("2017-01-08");
+    //console.log(str);
+    //function getIntv(str){
+    //    var starTime = Date.now();
+    //    var nextTime = new Date(str).getTime();
+    //    var t = (nextTime - starTime)/1000;
+    //
+    //    var day = Math.floor(t/86400);
+    //    var hours = Math.floor(t%86400/3600);
+    //    var mins = Math.floor(t%86400%3600/60);
+    //    var sec =Math.floor(t%60) ;
+    //
+    //    var str = "距除夕还有"+ day +"天 "+hours+" 小时"+ mins+" 分"+ sec+" 秒";
+    //    return str;
+    //}
+    //把数字日期改成中文日期
+    //    var str = getChsDate('2016-12-28');
+    //    console.log(str);
+    //    function getChsDate(date){
+    //        var chinWords = ['零','一','二','三','四','五','六','七','八','九','十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','二十一','二十二','二十三','二十四','二十五','二十六','二十七','二十八','二十九','三十','三十一']
+    //        var date2 = date.split('-');
+    //        var year = date2[0].split('');
+    //        var mon = [date2[1]];
+    //        var day1 = [date2[2]];
+    //        for(var i = 0;i<year.length;i++){
+    //            var a = year[i];
+    //            year[i] = chinWords[a];
+    //            var newyear = year.join('');
+    //        }
+    //        mon = [chinWords[mon[0]]];
+    //        day1 = [chinWords[day1[0]]];
+    //        return newdate = newyear+'年'+mon+'月'+day1+'日'
+    //    }
+
+
+    //写一个函数获取n天前的日期
+    //var lastWeek =  getLastNDays(7);
+    //var lastMonth = getLastNDays(30);
+    //console.log(lastWeek)
+    //console.log(lastMonth)
+    //function getLastNDays(n){
+    //    var starTime = Date.now();
+    //    var lastTmie = n* 24*60*60*1000;
+    //    var t = starTime - lastTmie;
+    //    var time = new Date(t);
+    //    var year = time.getFullYear();
+    //    var month = time.getMonth()+1;
+    //    var day  = time.getDate();
+    //    return year+'-'+month+'-'+day;
+    //}
+
+
+    //完善如下代码，用于获取执行时间如：
+    //var Runtime = (function(){
+    //    var starTime;
+    //    var endTime;
+    //    var doTIme;
+    //    return {
+    //        start: function(){
+    //            // 当前时间
+    //            starTime = new Date();
+    //            return starTime;
+    //        },
+    //        end: function(){
+    //            //code here ...  结束时间
+    //            endTime = new Date();
+    //            return endTime;
+    //        },
+    //        get: function(){
+    //            //code here ...  获取执行时间
+    //            doTIme = endTime -starTime;
+    //            return doTIme;
+    //        }
+    //    };
+    //}());
+    //Runtime.start();
+    //for(var i = 0;i<1000;i++){
+    //    console.log(1);
+    //}
+    //Runtime.end();
+    //console.log(  Runtime.get() );
+
+    //楼梯有200级，每次走1级或是2级，从底走到顶一共有多少种走法？用代码（递归）实现
+    function way(n){
+        if(n===1){
+            return 1;
+        }
+        if(n===2){
+            return 2;
+        }
+        n = way(n-1)+way(n-2);
+        return n;
+    }
+    alert(way(20));     //10946       20级台阶楼梯的走法
+
+    //写一个json对象深拷贝的方法，json对象可以多层嵌套，值可以是字符串、数字、布尔、json对象中的任意项
+//    var json = {
+//            name : "lili",
+//            age : 10,
+//            x : {
+//                a:1,
+//                b:2
+//            }
+//            };
+//    function copy (obj){
+//        var obj2 = {};
+//        for(var i in obj){
+//            if(typeof obj[i] === "object"){      //查看对象内部项里是否还有对象
+//                obj2[i] = copy(obj[i]);
+//            }else{
+//                obj2[i] = obj[i];
+//            }
+//        }
+//        console.log(obj2);
+//        return obj2;
+//    }
+//    copy(json);
+
+
+    //写一个数组深拷贝的方法，数组里的值可以是字符串、数字、布尔、数组中的任意项目
+//    var arr = ['lili',1,2,3,true,["a","b","c"]];
+//    function copy (obj){
+//        var newArr = [];
+//        for(var i in obj){
+//            if(typeof obj[i] === "object"){      //查看对象内部项里是否还有对象
+//                newArr[i] = copy(obj[i]);
+//            }else{
+//                newArr[i] = obj[i];
+//            }
+//        }
+//        console.log(newArr);
+//        return newArr;
+//    }
+//    copy(arr);
+
+    //写一个深拷贝的方法，拷贝对象以及内部嵌套的值可以是字符串、数字、布尔、数组、json对象中的任意项
+//    var arr = ['lili',1,2,3,true,["a","b",{name:"hello",age:20,likeCooking:true}]];
+    //    function copy (obj){
+    //        var newArr = [];
+    //        for(var i in obj){
+    //            if(typeof obj[i] === "object"){      //查看对象内部项里是否还有对象
+    //                newArr[i] = copy(obj[i]);
+    //            }else{
+    //                newArr[i] = obj[i];
+    //            }
+    //        }
+    //        console.log(newArr);
+    //        return newArr;
+    //    }
+    //    copy(arr);
+
+</script>
+
+</body>
+</html>

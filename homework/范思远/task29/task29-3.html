@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task29-3</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .ct {
+        width: 740px;
+        margin: 0 auto;
+        list-style: none;
+    }
+    
+    .ct:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    .ct li {
+        float: left;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    
+    .ct li:hover {
+        opacity: 0.5;
+    }
+    
+    .ct li img {
+        width: 220px;
+        height: 400px;
+    }
+    
+    div {
+        color: red;
+        margin: 30px auto;
+        border: 1px solid red;
+        border-radius: 5px;
+        width: 64px;
+        padding: 10px;
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="ct">
+        <li>
+            <a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a>
+        </li>
+        <li>
+            <a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a>
+        </li>
+        <li>
+            <a href=""><img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg"></a>
+        </li>
+    </ul>
+    <div>正在加载</div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript">
+    function imglazyload($el) {
+        var lock,
+            $this = $el,
+            num = 3;
+        $(window).on('scroll', function() {
+            if (lock) {
+                clearTimeout(lock);
+            }
+            lock = setTimeout(function() {
+                checkshow();
+            }, 100);
+        });
+        checkshow();
+
+        function checkshow() {
+            if ($isShow($this)) {
+                $ajax();
+            }
+        }
+
+        function $isShow($el) {
+            var $scrollT = $(window).scrollTop(),
+                $winH = $(window).height(),
+                $top = $el.offset().top;
+            if ($top < $scrollT + $winH) return true;
+            else return false;
+        }
+
+        function $ajax() {
+            $.ajax({
+                url: '/task29.php',
+                type: 'get',
+                dataType: 'json',
+                data: {
+                    start: num,
+                    len: 3
+                },
+                success: function(ret) {
+                    if (ret.status === 1) {
+                        $addElments(ret);
+                    }
+                    if (ret.status === 0) {
+                        alert('系统异常.....');
+                    }
+                },
+                error: function() {
+                    alert('系统异常.....');
+                }
+            });
+        }
+
+        function $addElments($el) {
+            $.each($el.data, function(k, val) {
+                $('.ct').append('<li>' +
+                    '<a href="">' + '<img src="http://kejian.jirengu.com/data/fe/%E8%AF%BE%E4%BB%B6/32-%E6%87%92%E5%8A%A0%E8%BD%BD/code/girl.jpg">' + '</a>' +
+                    '</li>');
+            });
+        }
+    }
+    imglazyload($('div'));
+    </script>
+</body>
+
+</html>

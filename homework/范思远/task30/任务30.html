@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task30</title>
+    <style type="text/css">
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .item {
+        position: absolute;
+        width: 200px;
+        margin-right: 10px;
+        margin-top: 10px;
+        transition: all 1s;
+    }
+    
+    .item1 {
+        height: 200px;
+        background-color: yellow;
+    }
+    
+    .item2 {
+        height: 430px;
+        background-color: red;
+    }
+    
+    .item3 {
+        height: 300px;
+        background-color: pink;
+    }
+    
+    .item4 {
+        height: 360px;
+        background-color: blue;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="item item1">1</div>
+    <div class="item item2">2</div>
+    <div class="item item4">3</div>
+    <div class="item item3">4</div>
+    <div class="item item4">5</div>
+    <div class="item item3">6</div>
+    <div class="item item1">7</div>
+    <div class="item item2">8</div>
+    <div class="item item1">9</div>
+    <div class="item item3">10</div>
+    <div class="item item4">11</div>
+    <div class="item item2">12</div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script type="text/javascript">
+    $.fn.waterfall = function() {
+        var $winW = $(window).width(), //获取窗口宽度
+            $nodeW = $(this).outerWidth(true), //获取元素的宽度
+            $col = parseInt($winW / $nodeW), //计算可以摆放的列数
+            $colHs = []; //创建数组接收每列的高度
+        for (var i = 0; i < $col; i++) {
+            $colHs.push(0);
+        }
+        $(this).each(function() {
+            var idx = 0,
+                $minH = $colHs[0],
+                $nodeH = $(this).outerHeight(true); //获取元素的高度
+            for (var i = 0; i < $colHs.length; i++) { //获取元素的最小高度与下标
+                if ($colHs[i] < $minH) {
+                    $minH = $colHs[i];
+                    idx = i;
+                }
+            }
+            $(this).css({ //计算元素的坐标
+                left: $nodeW * idx,
+                top: $minH
+            });
+            $colHs[idx] = $nodeH + $minH; //对当前高度重新计算并赋值
+        });
+    };
+    $('.item').waterfall();
+    $(window).on('resize', function() {
+        $('.item').waterfall();
+    });
+    </script>
+</body>
+
+</html>

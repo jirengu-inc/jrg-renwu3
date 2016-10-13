@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task28-1</title>
+    <style type="text/css">
+      #header {
+        height: 100px;
+        line-height: 100px;
+        text-align: center;
+        background-color: red;
+      }
+      #nav {
+        margin-top: 20px;
+        height: 50px;
+        background-color: blue;
+      }
+      #contain {
+        padding: 10px;
+        height: 800px;
+        background-color: #eee;
+      }
+      .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      #contain .main {
+        overflow: auto;
+        background-color: #fff;
+        padding-left: 20px;
+        height: 800px;
+      }
+      #contain .aside {
+        background-color: green;
+        width: 100px;
+        height: 400px;
+        float: left;
+      }
+      #footer {
+        background-color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <p class="content">header</p>
+    </div>
+    <div id="nav">
+      <p class="nav">nav</p>
+    </div>
+    <div id="contain" class="clearfix">
+      <div class="aside">
+        <p class="content">aside</p>
+      </div>
+      <div class="main">
+        <p class="content">main</p>
+      </div>
+    </div>
+    <div id="footer">
+      <p>footer</p>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      $.fn.stick = function() {
+        var $cur = this,
+            $curW = $cur.width(),
+            $curH = $cur.height(),
+            $offsetTop = $cur.offset().top,
+            $offsetLeft = $cur.offset().left;
+        var $curClone = $cur.clone()
+                            .css('opacity', 0)
+                            .insertBefore($cur)
+                            .hide();
+        $(window).on('scroll', function() {
+          var $scrollTop = $(this).scrollTop();
+          if($scrollTop >= $offsetTop) {
+            if(!isFixed()) {
+              setFixed();
+            }
+          } else {
+            if(isFixed()) {
+              unSetFixed();
+            }
+          }
+        });
+        function isFixed() {
+          return !!$cur.data('data-fixed');
+        }
+        function setFixed() {
+          $cur.data('data-fixed', true)
+              .css({
+                'position': 'fixed',
+                'top': 0,
+                'left': $offsetLeft,
+                'width': $curW,
+                'margin': 0,
+                'z-index': 10
+          });
+          $curClone.show();
+        }
+        function unSetFixed() {
+          $cur.data('data-fixed', false)
+              .removeAttr('style');
+          $curClone.hide();
+        }
+      }
+      $('#nav').stick();
+    </script>
+  </body>
+</html>
