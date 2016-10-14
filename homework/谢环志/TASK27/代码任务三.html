@@ -1,0 +1,230 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>多轮播</title>
+		<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+		<style type="text/css">
+		html,body,ul,li,p{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+
+		.ct,.ct1,.ct2{
+			position: relative;
+
+            margin-bottom:50px;
+
+			width: 500px;
+			height: 350px;
+			overflow: hidden;
+		}
+		.pic{
+			position: relative;
+		}
+	    .pic img{
+			width: 500px;
+			height: 350px;
+		}
+	   .pic:after{
+			content: ' ';
+			display: block;
+			clear: both;
+		}
+		 .pic li{
+			float: left;
+		}
+
+		.arrow{
+			position: absolute;
+		    top: 50%;
+		    margin-top: -15px;
+		    width: 30px;
+		    height: 30px;
+		    line-height: 30px;
+		    text-align: center;
+		    background: #4E443C;
+		    color: #fff;
+		    border-radius: 30px;
+		    box-shadow: 0 0 2px #999;
+		    opacity: 0.8
+		}
+		.arrow:hover {
+		    opacity: 1;
+		}
+		.up{
+			left: 10px;
+		}
+		.down{
+			right: 10px;
+		}
+		ul.dot {
+			    position: absolute;
+		    bottom: 10px;
+		    left: 50%;
+		    transform: translateX(-50%);
+		}
+		ul.dot li {
+		    width: 16px;
+		    height: 4px;
+		    border-radius: 2px;
+		    background: #fff;
+		    display: inline-block;
+		    cursor: pointer;
+		}
+
+		ul.dot li.active {
+		    background: #666;
+		}
+
+
+		</style>
+
+	</head>
+	<body>
+
+		<div class="ct">
+			<ul class="pic">
+	   <li data-id=0><a href="#"><img  src="http://dmr.nosdn.127.net/PtZ9qHXXOZUFQZvrFc6tGw==/6896093022460629134.jpg"></a></li>
+       <li data-id=1><a href="#"><img  src="http://www.people.com.cn/mediafile/pic/20130703/85/7296503185867431353.jpg"></a></li>
+       <li data-id=2><a href="#"><img  src="http://s2.sinaimg.cn/mw690/d0504263gddc68079e771&690"></a></li>
+       <li data-id=3><a href="#"><img  src="http://pic31.nipic.com/20130630/5892523_003233711151_2.jpg"></a></li>
+			</ul>
+			<a class="up arrow" href="#"><</a>
+			<a class="down arrow" href="#">></a>
+			<ul class="dot">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+          <div class="ct1">
+			<ul class="pic">
+	   <li data-id=0><a href="#"><img  src="http://dmr.nosdn.127.net/PtZ9qHXXOZUFQZvrFc6tGw==/6896093022460629134.jpg"></a></li>
+       <li data-id=1><a href="#"><img  src="http://www.people.com.cn/mediafile/pic/20130703/85/7296503185867431353.jpg"></a></li>
+       <li data-id=2><a href="#"><img  src="http://s2.sinaimg.cn/mw690/d0504263gddc68079e771&690"></a></li>
+       <li data-id=3><a href="#"><img  src="http://pic31.nipic.com/20130630/5892523_003233711151_2.jpg"></a></li>
+			</ul>
+			<a class="up arrow" href="#"><</a>
+			<a class="down arrow" href="#">></a>
+			<ul class="dot">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+            	<div class="ct2">
+			<ul class="pic">
+	   <li data-id=0><a href="#"><img  src="http://dmr.nosdn.127.net/PtZ9qHXXOZUFQZvrFc6tGw==/6896093022460629134.jpg"></a></li>
+       <li data-id=1><a href="#"><img  src="http://www.people.com.cn/mediafile/pic/20130703/85/7296503185867431353.jpg"></a></li>
+       <li data-id=2><a href="#"><img  src="http://s2.sinaimg.cn/mw690/d0504263gddc68079e771&690"></a></li>
+       <li data-id=3><a href="#"><img  src="http://pic31.nipic.com/20130630/5892523_003233711151_2.jpg"></a></li>
+			</ul>
+			<a class="up arrow" href="#"><</a>
+			<a class="down arrow" href="#">></a>
+			<ul class="dot">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+<script>
+    $.fn.carousel = function () {
+        var $this = $(this);
+        var $dot = $this.find(".dot");
+        var $pic = $this.find(".pic");
+        var $item = $pic.children();
+        var $len = $dot.children().size();
+        var imgwidth = $pic.width();
+        var $up = $this.find(".up");
+        var $down = $this.find(".down");
+        $pic.prepend($item.last().clone());
+        $pic.append($item.first().clone());
+        var $reallen = $pic.children().size();
+        var $lock = false;
+        var clock;
+        $pic.css({
+            left:-imgwidth,
+            width:imgwidth * $reallen
+        })
+        function  curIdx() {
+            for(var i = 0;i < $len;i++){
+                if($dot.children().eq(i).hasClass("active")){
+                    var idx = i;
+                }
+            }
+            return idx;
+        }
+        function changePre(idx){
+            if($lock) return;
+            $lock = true;
+            var curidx = curIdx();
+            var idx = idx || 1;
+            active((curidx - idx+$len)%$len);
+            $pic.animate({left:"+="+imgwidth * idx},function(){
+                if(curidx === 0){
+                    $pic.css("left",-imgwidth * $len);
+                }
+                $lock = false;
+            })
+        }
+        function changeNext(idx){
+            if($lock) return;
+            $lock = true;
+            var curidx = curIdx();
+            var idx = idx || 1;
+            active((idx + curidx)%$len);
+            $pic.animate({left:"-="+imgwidth * idx},function(){
+                if(curidx + idx === $len){
+                    $pic.css("left",-imgwidth);
+                }
+                $lock = false;
+            })
+        }
+        function active(idx){
+            $dot.children().removeClass("active");
+            $dot.children().eq(idx).addClass("active");
+        }
+        $up.on("click",function(e){
+            e.preventDefault();
+            changePre();
+        })
+        $down.on("click",function(e){
+            e.preventDefault();
+            changeNext();
+        })
+        $dot.on("click","li",function(){
+            var idx1 = curIdx();
+            var idx2 = $(this).index();
+            if(idx1 > idx2){
+                changePre(idx1 - idx2);
+            }
+            if(idx2 > idx1){
+                changeNext(idx2 - idx1);
+            }
+        })
+        function auto(){
+            clock = setInterval(function(){
+                changeNext();
+            },3000);
+        }
+        function clear() {
+            clearInterval(clock);
+        }
+        auto();
+    }
+    $(".ct").carousel();
+    $(".ct1").carousel();
+    $(".ct2").carousel();
+    </script>
+    </body>
+    </html>

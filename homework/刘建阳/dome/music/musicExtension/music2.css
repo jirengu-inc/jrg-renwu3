@@ -1,0 +1,421 @@
+
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		html,body{
+			width: 325px;
+			height: 405px;
+		}
+		button{
+			border: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		li{
+			list-style: none;
+		}
+		.lf{
+			float: left;
+		}
+		.rf{
+			float: right;
+		}
+		.clearfix:after{
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		@font-face {font-family: 'iconfont';
+		    src: url('style/iconfont2.eot'); /* IE9*/
+		    src: url('style/iconfont2.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		    url('style/iconfont2.woff') format('woff'), /* chrome、firefox */
+		    url('style/iconfont2.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+		    url('style/iconfont2.svg#iconfont') format('svg'); /* iOS 4.1- */
+		}
+
+		@font-face {font-family: 'iconfont';
+		    src: url('style/iconfont.eot'); /* IE9*/
+		    src: url('style/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		    url('style/iconfont.woff') format('woff'), /* chrome、firefox */
+		    url('style/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+		    url('style/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+		}
+		.iconfont{
+		    font-family:"iconfont" !important;
+		    font-size:16px;font-style:normal;
+		    -webkit-font-smoothing: antialiased;
+		    -webkit-text-stroke-width: 0.2px;
+		    -moz-osx-font-smoothing: grayscale;
+		}
+		
+		.channel-info{
+			position: absolute;
+			bottom: 15px;
+			left: 15px;
+			right: 15px;
+			top: 56%;
+			height: 41%;
+			z-index: 20;
+			overflow: hidden;
+			border-radius: 8px;
+		}
+		.channel-pannel{
+			height: 85%;
+		}
+		/*滚动条父元素高度*/
+		.channel-nav li{
+			width: 50%;
+			height: 24px;
+			line-height: 24px;
+			color: #AAA;
+			cursor: pointer;
+			background-color: #505050;
+		}
+		
+
+		.channel-info .channel-item{
+			background-color: #222;
+			display: none;
+			height: 100%;
+/*			overflow-y: scroll;
+			-webkit-scrollbar-face-color: #fcfcfc;
+			-webkit-scrollbar-highlight-color: #6c6c90;
+			-webkit-scrollbar-shadow-color: #fcfcfc;
+			-webkit-scrollbar-3dlight-color: #fcfcfc;
+			-webkit-scrollbar-arrow-color: #240024;
+			-webkit-scrollbar-track-color: #fcfcfc;
+			-webkit-scrollbar-darkshadow-color: #48486c;
+			-webkit-scrollbar-base-color: #fcfcfc;
+
+			scrollbar-face-color: #fcfcfc;
+			scrollbar-highlight-color: #6c6c90;
+			scrollbar-shadow-color: #fcfcfc;
+			scrollbar-3dlight-color: #fcfcfc;
+			scrollbar-arrow-color: #240024;
+			scrollbar-track-color: #fcfcfc;
+			scrollbar-darkshadow-color: #48486c;
+			scrollbar-base-color: #fcfcfc;
+*/
+		}
+		.channel-info .channel-item li{
+			
+			height: 23px;
+			line-height: 23px;
+			text-align: left;
+		}
+		.channel-info .channel-item li a{
+			display: block;
+			color: #aaa;
+		}
+		.channel-info .channel-item li a:hover{
+			background-color: #785c5c;
+		}
+		.channel-info .channel-item li:nth-child(odd){
+			background-color: #333;
+			margin: 0 1px;
+		}
+		.channel-info .channel-item.active{
+			display: block;
+		}
+
+		.channel-nav li.active{
+			background-color: #222;
+		}
+
+		.music-ct{
+			/*display: none;*/
+		/*	position: fixed;
+			top: 20px;
+			right: 60px;*/
+		/*	width: 400px;
+			height: 560px;*/
+			display: table;/*//使用display table形成BFC解决拖动按钮和主页面产生的位置错乱问题*/
+		}
+		.music-ct>i{
+			display: none;
+		}
+
+		.music{
+			position: absolute;
+			width: 320px;
+			height: 400px;
+			background-color: #393839;
+			border-radius: 3px;
+			overflow: hidden;
+			padding: 15px 15px;
+			border-radius: 8px;
+		}
+
+		.music-nav{
+			width: 51%;
+			/*margin-top: 4%;*/
+			/*pointer-events: none;*/
+		}
+		.music-nav .iconfont{
+			font-size: 24px;
+		}
+		.channels{
+			height: 21px;
+		}
+
+		.music-nav .nav-bar{
+
+		
+		}
+		.music-nav .music-icon{
+			display: none;
+		}
+		#themes{
+			position: absolute;
+			color: #aaa;
+			top: 10%;
+			right: 5%;
+			font-size: 18px;
+			cursor: pointer;
+			z-index: 5;
+		}
+		#themes:hover i.active{
+			text-shadow: 2px 2px 2px #aaa;
+			color: #f00;
+		}
+		#themes i{
+			display: none;
+			font-size: 26px;
+		}
+		#themes i.active{
+			display: inline-block;
+		}
+
+
+		.music-nav .music-title{
+			text-align: left;
+			color: #fff;
+		}
+		.title{
+			font-size:18px;
+			font-weight: bold;
+			/*font-family: '微软雅黑';*/
+		}
+		.author{
+			font-size:12px;
+			/*font-family: '微软雅黑';*/
+		}
+
+		.main{
+			position: absolute;
+			width: 90%;
+			height: 90%;
+			overflow: hidden;
+
+		}
+		.main .img-cover{
+			opacity: 0;
+		    position: absolute;
+		    top: 0;
+		    left: 0;
+		    width: 46%;
+		    height: 30%;
+		    /* right: 0; */
+		    /* bottom: 0; */
+		    z-index: 1;
+		}
+		.main img.music-bg{
+			width: 37%;
+			height: 29%;
+			opacity: 0.8;
+			border-radius: 50%;
+			border: 15px solid #1a1419;
+		}
+		.main img.music-bg.active{
+			animation: songretote 5s infinite linear;
+		}
+		@keyframes songretote{
+			from {transform:rotateZ(0deg);}
+			to {transform:rotateZ(360deg);}
+		}
+		.main .lyric-upcover{
+			display: none;
+		}
+		.main .lyric-downcover{
+			display: none;
+		}
+
+		.main .lyric-ct{
+			/* display: none; */
+			position: absolute;
+			top: 36%;
+			left: 0;
+			right: 0;
+			height: 20%;
+			background-color: #1a1919;
+			z-index: 10;
+			overflow: hidden;
+		}
+
+		.main .lyric{
+			/* display: none; */
+			text-align: left;
+			position: absolute;
+			top: 36%;
+			left: 0;
+			right: 0;			
+		}
+		.main .lyric span{
+			display: inline-block;
+			color: #aaa;
+			/* position: absolute; */
+			/* left: 50%; */
+			/* transform: translate(-50%,-50%); */
+			font-size: 14px;
+			text-align: left;
+			word-wrap: break-word;
+			/* height: 30px; */
+			line-height: 10px;
+			display: block;
+			/* margin: -7px auto; */
+			margin-top: 15px;
+
+
+	/* 		color: #aaa;
+	position: absolute;
+			    left: 50%;
+			    width: 100%;
+			    transform: translate(-50%,-50%);
+			    font-size: 14px;
+			    text-align: left;
+			    word-wrap: break-word;
+			    height: 30px;
+			    line-height: 3px; */
+		}/* 每句歌词的位置 */
+		.main .like{
+			display: none;
+		}
+		@font-face {font-family: "iconfont";
+		  src: url('style/iconfont1.eot?t=1466480762'); /* IE9*/
+		  src: url('style/iconfont1.eot?t=1466480762#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		  url('style/iconfont1.woff?t=1466480762') format('woff'), /* chrome, firefox */
+		  url('style/iconfont1.ttf?t=1466480762') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+		  url('style/iconfont1.svg?t=1466480762#iconfont') format('svg'); /* iOS 4.1- */
+		}
+
+		.main .show-lyric{
+			display: none;
+		}
+		.control-panel{
+			position: absolute;
+			top: 30%;
+			left: 5%;
+			right: 5%;
+			border: 1px;
+			z-index: 22;
+		}
+
+		.control-panel .progress-bar{
+			font-size: 12px;
+			position: relative;
+			height: 16px;
+			width: 100%;
+			margin: 0 auto;
+			background-color: #141413;
+			cursor: pointer;
+		}
+		.progress-bar .play-prograss{
+			position: absolute;
+			height: 16px;
+			/*width: 60%;*/
+			left: 0;
+			top: 0;
+			background-color: #999;
+		}
+		.play-time{
+			display: none;
+		}
+		.end-time{
+			display: none;
+		}
+
+		.control-panel .adjust-panel{
+			position: absolute;
+			width: 55%;
+			right: 0;
+			bottom: 245%;
+		}
+
+		.control-panel .adjust-panel .adjust .pre{
+			display: none;
+		}
+
+		.control-panel .adjust-panel .adjust li{
+			cursor: pointer;
+			background-color: #5B5B5B;
+			width: 33%;
+			border: 1px solid #161616;
+			color: #D3D3D3;
+			text-align: center;
+			border-radius: 4px;
+		}
+		.control-panel .adjust-panel .adjust li.play{
+			border-right: none;
+			border-left: none;
+		}
+		.control-panel .adjust-panel .adjust li.sound{
+			height: 16%;
+			background-color: #393839;
+			border: none;
+			display: block;
+			position: relative;
+			width: 100%;
+			cursor: auto;
+			/*margin-top: 2%;*/
+		}
+		.control-panel .adjust-panel .adjust li i{
+			-webkit-user-select: none;
+			user-select: none;
+			cursor: pointer;
+		}
+		
+		.sound{
+			position:relative;
+		}
+		.sound .quiet{
+			color: #f33;
+			position: absolute;
+			left: 3%;
+			display: none;
+			font-weight: bold;
+			z-index: 1;
+			pointer-events: none;
+		}
+		.sound .sound-icon{
+			position: absolute;
+			left: 0;
+		}
+		.vol-panel{
+			background-color: #151615;
+			left: 0;
+			right: 0;
+			position:absolute;
+			margin-top: 3%;
+			display: block;
+			cursor: pointer;
+		}
+		.vol-bar{
+			position: absolute;
+			width: 83%;
+			height: 10px;
+			margin: auto;
+			left: 14%;
+			background-color: #fff;
+
+		}
+		.vol-prograss{
+			height: 100%;
+			width: 60%;
+			background-color: #a33;
+			position: absolute;
+		}
+

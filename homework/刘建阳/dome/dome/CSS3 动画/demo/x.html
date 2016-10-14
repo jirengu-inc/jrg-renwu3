@@ -1,0 +1,354 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选课表</title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        html,body {-ms-box-sizing:border-box;box-sizing:border-box;overflow-scrolling:touch}
+        body{padding:0;margin:0;font-size:12px;-webkit-font-smoothing:antialiased;outline:0 none;width:100%}
+        table{border-collapse:collapse;border-spacing:0;width:100%}
+        *{margin:0;padding:0;list-style-type:none;box-sizing:border-box;-webkit-box-sizing:border-box;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-tap-highlight-color:transparent}
+        a{color:#1a76cc;text-decoration:none;color:inherit;display:block;-ms-touch-action:manipulation;touch-action:manipulation}
+        a:visited{color:inherit}
+        a,img {-webkit-touch-callout:none;-webkit-user-select:none}
+        .clearfix:before,.clearfix:after{clear:both;content:" ";display:block;font-size:0;height:0;visibility:hidden}
+        .main{
+            width: 1000px;
+            margin: 100px auto;
+        }
+        .nav{
+            float: left;
+            width: 170px;
+            margin-right: 5px;
+        }
+        .nav ul li{
+            color:#343434;
+            height: 39px;
+            line-height: 39px;
+            margin-bottom: 1px;
+            background-color: #eff0f2;
+        }
+        .nav a{
+            display: block;
+            padding: 0 15px;
+            font-size: 16px;
+            cursor:pointer;
+        }
+        .nav a:hover,.active{
+            color:#fff!important;
+            background-color: #0071cf!important;
+        }
+        .nav-none{
+            color:#343434!important;
+            background-color: #eff0f2!important;
+        }
+        .box{
+            float: left;
+            width: 825px;
+            height: 400px;
+            background-color: #fff;
+        }
+        .box-top{
+            overflow:hidden;
+            margin-right: -1px;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+        .box-top li{
+            float: left;
+            width: 117px;
+            height: 50px;
+            padding:5px 10px;
+            margin-right: 1px;
+            color:#343434;
+            background-color: #eff0f2;
+            cursor:pointer;
+        }
+        .time-md{
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        .box-top span{
+            float: right;
+            width: 45px;
+            height: 16px;
+            text-align: center;
+            border-radius: 25px;
+            border:1px solid #343434;
+        }
+        .box-top li:hover,.time-active{
+            color:#fff!important;
+            background-color: #0071cf!important;
+        }
+        .box-top li:hover span,.time-active span{
+            border:1px solid #fff;
+        }
+        .box-bottom{
+            height: 350px;
+            border: 1px solid #0071cf;
+        }
+        .time-hs{
+            height: 65px;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        .time-hs p{
+            float: left;
+            height: 22px;
+            width: 50px;
+            border-right: 1px solid #7a7e7f;
+            position: relative;
+            top: 43px;
+        }
+        .time-hs p:first-child{
+            width: 100px;
+        }
+        .time-hs p:after{
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 9999px;
+            background-color: #7a7e7f;
+            position: absolute;
+            bottom: 15px;
+            right: -3.5px;
+        }
+        .time-hs span{
+            position: absolute;
+            top:-20px;
+            right: -15px;
+        }
+        .infor-place{
+            width: 750px;
+            height: 235px;
+            text-align: center;
+        }
+        .infor-place tr td{
+            width: 50px;
+            border-right:1px solid #7a7e7f;
+            border-bottom: 1px solid #d0d0d0;
+        }
+        .infor-place tr td:first-child{
+            width: 100px;
+            border-bottom: none;
+        }
+        .place-active{
+            color:#fff;
+            background-color: #0071cf;
+        }
+        .place-none{
+            background-color: #e5e6e8;
+        }
+    </style>
+</head>
+<body>
+<div class="main clearfix">
+    <div class="nav">
+        <ul>
+            <li class="active"><a href="#">室内羽毛球</a></li>
+            <li><a href="#">室内健身</a></li>
+            <li><a href="#">篮球</a></li>
+            <li><a href="#">室外篮球</a></li>
+            <li><a href="#">乒乓球</a></li>
+            <li><a href="#">器械健身</a></li>
+            <li><a href="#">室外健美操塑身操</a></li>
+            <li class="nav-none"></li>
+            <li class="nav-none"></li>
+            <li class="nav-none"></li>
+        </ul>
+    </div>
+    <div class="box">
+        <ul class="box-top clearfix">
+            <li class="time-active">
+                <dl>
+                    <dt class="time-md"><b>09-09</b></dt>
+                    <dt>星期三 <span>09</span></dt>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt class="time-md"><b>09-10</b></dt>
+                    <dt>星期四 <span>19</span></dt>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt class="time-md"><b>09-11</b></dt>
+                    <dt>星期五 <span>02</span></dt>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt class="time-md"><b>09-14</b></dt>
+                    <dt>星期一 <span>12</span></dt>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt class="time-md"><b>09-15</b></dt>
+                    <dt>星期二 <span>23</span></dt>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt class="time-md"><b>09-16</b></dt>
+                    <dt>星期三 <span>55</span></dt>
+                </dl>
+            </li>
+            <li>
+                <dl>
+                    <dt class="time-md"><b>09-17</b></dt>
+                    <dt>星期四 <span>01</span></dt>
+                </dl>
+            </li>
+        </ul>
+        <ul class="box-bottom">
+            <dl>
+                <dt class="time-hs clearfix">
+                <p><span>09:00</span></p>
+                <p><span>10:00</span></p>
+                <p><span>11:00</span></p>
+                <p><span>12:00</span></p>
+                <p><span>13:00</span></p>
+                <p><span>14:00</span></p>
+                <p><span>15:00</span></p>
+                <p><span>16:00</span></p>
+                <p><span>17:00</span></p>
+                <p><span>18:00</span></p>
+                <p><span>19:00</span></p>
+                <p><span>20:00</span></p>
+                <p><span>21:00</span></p>
+                <p><span>22:00</span></p>
+                </dt>
+                <dt>
+                <table class="infor-place">
+                    <tr>
+                        <td>场地01</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td></td>
+                        <td></td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>场地02</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td class="place-none"></td>
+                        <td class="place-none"></td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td class="place-none"></td>
+                    </tr>
+                    <tr>
+                        <td>场地03</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td class="place-none"></td>
+                        <td class="place-none"></td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td class="place-none"></td>
+                    </tr>
+                    <tr>
+                        <td>场地04</td>
+                        <td class="place-active"></td>
+                        <td class="place-active"></td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td class="place-none"></td>
+                        <td class="place-none"></td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td class="place-none"></td>
+                    </tr>
+                    <tr>
+                        <td>场地05</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td class="place-none"></td>
+                        <td class="place-none"></td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td class="place-none"></td>
+                    </tr>
+                    <tr>
+                        <td>场地06</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td></td>
+                        <td></td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>场地07</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td></td>
+                        <td></td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td>30.0</td>
+                        <td></td>
+                    </tr>
+                </table>
+                </dt>
+            </dl>
+        </ul>
+    </div>
+</div>
+</body>
+<script>
+    $(".nav li").click(function() {
+        $(this).addClass("active").siblings(".active").removeClass("active");
+    });
+    $(".box-top li").click(function() {
+        $(this).addClass("time-active").siblings(".time-active").removeClass("time-active");
+    });
+    $(".infor-place td:not(:first-child)").click(function(){
+        $(this).toggleClass("place-active");
+    })
+</script>
+</html>

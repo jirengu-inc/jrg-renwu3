@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>全屏轮播</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style>
+	html,body,ul,li{
+		padding:0;
+		margin:0;
+	}
+	a{
+		text-decoration:none;
+	}
+	li{
+		list-style:none;
+	}
+	.ct{
+
+		position:relative;
+		overflow:hidden;
+
+	}
+	.img-ct{
+		position:absolute;
+
+	}
+
+	.img-ct:after{
+		clear:both;
+		content:'';
+		display:block;
+	}
+	.img-ct li{
+		float:left;
+		position:relative;
+	}
+	.img-ct img{
+		width:500px;
+		height:300px;
+	}
+	.arrow{
+		position:absolute;
+		top:50%;
+		height:40px;
+		width:40px;
+		text-align:center;
+		border-radius:50px;
+		line-height:40px;
+		font-size:20px;
+		margin-top:-20px;
+		background-color:#4E443C;
+		color:#fff;
+		opacity:0.5;
+	}
+	.arrow:hover{
+		opacity:1;
+	}
+	.pre{
+		left:10px;
+	}
+	.next{
+		right:10px;
+	}
+	.nav li{
+		display:inline-block;
+		width:20px;
+		height:5px;
+		border-radius:2px;
+		background-color:#fff;
+		cursor: pointer;
+	}
+	.nav{
+		position:absolute;
+		bottom:20px;
+		left:50%;
+		transform: translateX(-50%);
+	}
+	.nav .setcolor{
+		background-color:#666;
+	}
+	html,body,.ct,.ct .img-ct,.cover,.item{
+		width:100%;
+		height:100%;
+	}
+	 .cover{
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover;
+		}
+</style>
+</head>
+<body>
+    <div class="ct">
+    	<ul class="img-ct">
+    		<li class="item"><div class="cover" img-data='http://imgsrc.baidu.com/forum/pic/item/972bd40735fae6cde4d2db930fb30f2443a70fd9.jpg'></div></li>
+    		<li class="item"><div class="cover" img-data='http://imgsrc.baidu.com/forum/pic/item/8075b9cc7cd98d108ceb1fd0213fb80e7aec90b8.jpg'></div></li>
+    		<li class="item"><div class="cover" img-data='http://img2.imgtn.bdimg.com/it/u=3637009827,3345948087&fm=21&gp=0.jpg'></div></li>
+    		<li class="item"><div class="cover" img-data='http://img3.imgtn.bdimg.com/it/u=9842032,919309385&fm=21&gp=0.jpg'></div></li>
+    	</ul>
+		<a class = 'pre  arrow' href="#"><</a>
+		<a class = 'next arrow' href="#">></a>
+		<ul class="nav">
+			<li class = 'setcolor'></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+    </div>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+	var $ct = $('.img-ct'),
+		$items = $ct.children(),
+		$pre = $('.pre'),
+		$next = $('.next'),
+		$nav = $('.nav'),
+		imgWidth = $(window).width(),
+		imgCount = $ct.children().size();
+
+		$ct.prepend($items.last().clone()),
+		$ct.append($items.first().clone());
+		$ct.find('.item').css('width',imgWidth);
+		$ct.find('.cover').css('width',imgWidth);
+		imgnewwidth = $ct.children().size();
+		$ct.css({left:0-imgWidth,width:imgnewwidth*imgWidth})
+
+
+
+		var curIdx = 0,
+			lock = false;
+
+		$next.on('click',function(){
+			playnext();
+		})
+		$pre.on('click',function(){
+			playpre();
+		})
+
+		$('.nav').find('li').on('click',function(){
+			var idx = $(this).index();
+			setBg(idx+1);
+			if(idx>curIdx){
+				playnext(idx-curIdx);
+			}else if(idx<curIdx){
+				playpre(curIdx-idx);
+			}
+		})
+
+		function playnext(idx){
+			var mov = idx || 1;
+			console.log(mov)
+			if(!lock){
+			lock = true;
+			console.log(curIdx);
+			setBg(curIdx+2);
+			$ct.animate({left: '-='+(mov*imgWidth)},function(){
+				/*curIdx = (mov+curIdx)%imgCount;
+				if(curIdx === 0){
+					$ct.css({left:0-imgWidth});
+				}*/
+				curIdx+=mov;
+				if(curIdx === imgCount){
+					$ct.css({left:0-imgWidth});
+					curIdx = 0;
+				}
+				lock = false;
+				setnav();
+			})
+
+			}
+		}
+		setBg(1);
+		autoplay();
+		function playpre(idx){
+			var mov = idx || 1;
+			if(!lock){
+			lock = true;
+			setBg(curIdx);
+			$ct.animate({left: '+='+(mov*imgWidth)},function(){
+				/*curIdx = (imgCount + curIdx-mov)%imgCount;
+				if(curIdx === imgCount-1){
+					$ct.css({left:0-imgWidth*imgCount});
+				}*/
+				curIdx-=mov;
+				if(curIdx === (-1)){
+					$ct.css({left:0-imgWidth*imgCount});
+					curIdx = 3;
+				}
+				lock = false;
+				setnav();
+			})
+
+			}
+		}
+
+		function setnav(){
+			$nav.find('li').removeClass('setcolor');
+			$nav.find('li').eq(curIdx).addClass('setcolor');
+		}
+
+		function autoplay(){
+				clock = setInterval(function(){
+					playnext();
+				}, 2000);
+			}
+
+
+			function setBg(idx){
+				var idx = idx || 0;
+				if(idx === 0){
+					$node = $ct.children().eq(idx);
+					$cover = $node.find('.cover');
+					imgUrl = $cover.attr('img-data');
+					$('.cover').eq(imgCount).css('background-image' , 'url('+ imgUrl +')');
+				}
+
+					$node = $ct.children().eq(idx);
+					$cover = $node.find('.cover');
+					imgUrl = $cover.attr('img-data');
+					if($node.data('isBgSet')) return;
+					$cover.css('background-image' , 'url('+ imgUrl +')');
+					$node.data('isBgSet', true);
+				}
+</script>
+</html>

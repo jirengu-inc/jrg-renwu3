@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task22-4</title>
+	<style type="text/css">
+		.mod-tab {
+		  border: 1px solid #ccc;
+		}
+		.mod-tab * {
+		  box-sizing: border-box;
+		}
+		.mod-tab ul,
+		.mod-tab li {
+		  margin: 0;
+		  padding: 0;
+		  list-style: none;
+		}
+		.mod-tab .tabs:after {
+		  content: '';
+		  height: 0;
+		  display: table;
+		  clear: both;
+		}
+		.mod-tab .tabs li {
+		  float: left;
+		  width: 33.3%;
+		  height: 30px;
+		  line-height: 30px;
+		  text-align: center;
+		  border-right: 1px solid #ccc;
+		  border-bottom: 1px solid #ccc;
+		  cursor: pointer;
+		}
+		.mod-tab .tabs li:last-child {
+		  border-right: none;
+		}
+		.mod-tab .tabs .active {
+		  background: #eee;
+		}
+		.mod-tab .panel {
+		  display: none;
+		  height: 180px;
+		  padding: 20px;
+		}
+		.mod-tab>.active {
+		  display: block;
+		}
+	</style>
+</head>
+<body>
+	<div class="mod-tab">
+	   <ul class="tabs">
+	     <li class="active">tab1</li>
+	     <li>tab2</li>
+	     <li>tab3</li>
+	   </ul>
+	   <div class="panel active">内容1</div>
+	   <div class="panel">内容2</div>
+	   <div class="panel">内容3</div>
+	 </div>
+	 <div class="mod-tab">
+	    <ul class="tabs">
+	      <li class="active">tab1</li>
+	      <li>tab2</li>
+	      <li>tab3</li>
+	    </ul>
+	    <div class="panel active">内容1</div>
+	    <div class="panel">内容2</div>
+	    <div class="panel">内容3</div>
+	  </div>
+	  	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	 <script>
+		 function Tabs(node) {
+		 	// console.log(node);
+		 	this.tabs = node.getElementsByClassName("tabs")[0];
+		 	this.panel = node.getElementsByClassName("panel");
+		 	this.bindEvent();
+		 	
+		 }
+		 Tabs.prototype.bindEvent = function () {
+		 	var self = this;
+		 	this.tabs.addEventListener('click', function (e) {
+		 		var i = indexOf(e.target);
+		 		var children = e.target.parentElement.children;
+
+		 		for(var k=0; k<children.length; k++){
+
+		 			if(i!== k){
+		 				//console.log(children[k].className);
+		 				removeClass(children[k],"active");
+		 				// console.log(self.panel);
+		 				removeClass(self.panel[k],"active");
+
+		 			}
+		 		}//去除其他tab的active
+		 		if (hasClass(e.target,"active")) {
+		 			return ;
+		 		}else{
+		 			addClass(e.target,"active");
+		 			addClass(self.panel[i],"active");
+		 		};
+		 	});
+		 }
+		 var tabs = document.querySelectorAll(".mod-tab");
+		 // console.log(tabs);
+		 var tab1 = new Tabs(tabs[0]);
+		 var tab2 = new Tabs(tabs[1]);
+
+
+
+		
+		
+
+	 	// 获取index、添加class、去除class公共函数
+		function indexOf (el) {
+			var children = el.parentNode.children;
+			for(k in children){
+				if (el === children[k]) {
+					return k;
+				};
+			}
+			return -1;
+		}
+		function hasClass(el, cls){
+			// if (el.className) {
+				var patt=new RegExp('\\b'+cls+'\\b','g');
+				// console.log(el.className);
+				return patt.test(el.className);
+			// };		
+			
+		}
+
+		function addClass(el, cls){
+			if(hasClass(el, cls)){
+				return ;
+			}
+			el.className += " "+cls;
+			
+		}
+		function removeClass(el, cls){
+			if(hasClass(el, cls)){
+			
+			el.className = el.className.replace(new RegExp('\\b'+cls+'\\b', 'g'),"");
+				
+			}
+			return ;
+		}
+
+		
+
+/*    	//jquery实现
+		function Tabs($node) {
+			this.tabs = $node.find(".tabs");
+			this.panel = $node.find(".panel");
+			// console.log(this.panel);
+			this.bindEvent();
+			
+		}
+		Tabs.prototype.bindEvent = function () {
+			var self = this;
+			this.tabs.on('click', function (e) {
+				var i = indexOf(e.target);
+				var children = e.target.parentElement.children;
+
+				for(var k=0; k<children.length; k++){
+
+					if(i!== k){
+						//console.log(children[k].className);
+						removeClass(children[k],"active");
+						// console.log(self.panel);
+						removeClass(self.panel[k],"active");
+
+					}
+				}//去除其他tab的active
+				if (hasClass(e.target,"active")) {
+					return ;
+				}else{
+					addClass(e.target,"active");
+					addClass(self.panel[i],"active");
+				};
+			});
+		}
+		var tabs = $(".mod-tab");
+		console.log(tabs);
+		var tab1 = new Tabs(tabs.eq(0));
+		var tab2 = new Tabs(tabs.eq(1));
+*/
+
+
+/*		var Utils = {
+
+		    hasClass: function(ele, cls){
+		        return !!ele.className.match(new RegExp('\\b'+cls+'\\b'));
+		    },
+		    
+		    addClass:function(ele, cls){
+		      if(ele.length && ele.length > 0){
+		          for(var i=0; i<ele.length; i++){
+		              Utils.singleAddClass(ele[i], cls); 
+		          }
+		      }else{
+		          Utils.singleAddClass(ele, cls);
+		      }  
+		    },
+		    
+		    removeClass:function(ele, cls){
+		       if(ele.length && ele.length > 0){
+		          for(var i=0; i<ele.length; i++){
+		              Utils.singleRemoveClass(ele[i], cls); 
+		          }
+		      }else{
+		          Utils.singleRemoveClass(ele, cls);
+		      }   
+		    },
+		    
+		    singleAddClass: function(ele, cls){
+		        if(Utils.hasClass(ele,cls)) return;
+		        ele.className += ' ' + cls;
+		    },
+		    
+		    singleRemoveClass: function(ele, cls){
+		        ele.className = ele.className.replace(new RegExp('\\b'+cls+'\\b', 'g'), '');
+		    },
+		    
+		    indexOf: function(ele){
+		        var parent = ele.parentElement,
+		            siblings = parent.children;
+		        for(var i=0; i<siblings.length; i++){
+		            if(ele === siblings[i]) return i;
+		        }
+		        return -1;
+		    }
+		};
+
+		var tabCt = document.querySelector('.tabs');
+
+		tabCt.addEventListener('click', function(e){
+		   var target = e.target,
+		       tabs = tabCt.children,
+		       index = Utils.indexOf(target),
+		       panels = document.querySelectorAll('.panel');
+
+		   if(index > -1){
+		       Utils.removeClass(tabs, 'active');
+		       Utils.addClass(target, 'active');
+		       Utils.removeClass(panels, 'active');
+		       Utils.addClass(panels[index], 'active');
+		   } 
+		});*/
+	 </script>
+</body>
+</html>

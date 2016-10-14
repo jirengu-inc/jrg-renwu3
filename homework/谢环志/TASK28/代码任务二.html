@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task28-2</title>
+    <style type="text/css">
+      .wrap {
+        width: 900px;
+        margin: 0 auto;
+      }
+      #header .wrap {
+        background-color: red;
+        height: 50px;
+      }
+      #content .ct {
+        position: relative;
+        height: 400px;
+      }
+      #content .ct:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      .nav {
+        background-color: yellow;
+        border: 1px solid;
+        height: 30px;
+        margin-top: 20px;
+      }
+      .aside {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 200px;
+        background-color: pink;
+      }
+      .aside1 {
+        background-color: rgba(180, 255, 0, 0.5);
+      }
+      .main {
+        position: absolute;
+        top: 0;
+        left: 220px;
+        right: 0;
+        bottom: 0;
+        background-color: blue;
+      }
+      #footer .wrap {
+        margin-top: 20px;
+        height: 30px;
+        background-color: #333;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <div class="wrap">header</div>
+    </div>
+    <div id="content">
+      <div class="wrap">
+        <div class="nav">nav1</div>
+        <div class="ct">
+          <div class="aside">aside1</div>
+          <div class="main">main1</div>
+        </div>
+        <div class="nav">nav2</div>
+        <div class="ct">
+          <div class="aside aside1">aside2</div>
+          <div class="main">main2</div>
+        </div>
+        <div class="nav">nav3</div>
+        <div class="ct">
+          <div class="aside aside1">aside3</div>
+          <div class="main">main3</div>
+        </div>
+        <div class="nav">nav4</div>
+        <div class="ct">
+          <div class="aside">aside4</div>
+          <div class="main">main4</div>
+        </div>
+      </div>
+    </div>
+    <div id="footer"><div class="wrap">footer</div></div>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+      $.fn.stick = function() {
+        var $cur = $(this),
+            $curH = $cur.height(),
+            $curW = $cur.width(),
+            offsetTop = $cur.offset().top,
+            offsetLeft = $cur.offset().left;
+        var $curClone = $cur.clone()
+                            .css('opacity', 0)
+                            .insertBefore($cur)
+                            .hide();
+        $(window).on('scroll', function() {
+          var scrollTop = $(this).scrollTop();
+          if(scrollTop >= offsetTop) {
+            if(!isFixed()) {
+              setFixed();
+            }
+          } else {
+            if(isFixed) {
+              unsetFixed();
+            }
+          }
+        });
+        function isFixed() {
+          return !!$cur.data('data-fixed');
+        }
+        function setFixed() {
+          $cur.data('data-fixed', true)
+              .css({
+                'position': 'fixed',
+                'top': 0,
+                'left': offsetLeft,
+                'width': $curW,
+                'height': $curH,
+                'margin': 0,
+                'z-index': 10
+              });
+          $curClone.show();
+        }
+        function unsetFixed() {
+          $cur.data('data-fixed', false)
+              .removeAttr('style');
+          $curClone.hide();
+        }
+      }
+      $('.nav').each(function() {
+        $(this).stick();
+      });
+    </script>
+  </body>
+</html>

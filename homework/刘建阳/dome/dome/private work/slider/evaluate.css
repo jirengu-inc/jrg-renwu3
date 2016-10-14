@@ -1,0 +1,136 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+a{
+	text-decoration: none;
+}
+html,body{
+	background-color: #68C3F0;
+}
+.evaluate{
+	display: table;
+	position: relative;
+	height: 100%;
+	width: 100%;
+	background-color: #68C3F0;
+}
+.evaluate-wrap{
+	width: 700px;
+	height: 760px;
+	padding: 30px;
+	margin: 30px auto;
+	background-color: #fff;
+}
+.title-info{
+	text-align: center;
+	height: 28px;
+	line-height: 28px;
+	padding: 5px 0;
+	margin: 0 auto;
+}
+.notice{
+	margin: 20px auto;
+	padding: 15px 5px;
+	width: 640px;
+	background-color: #E1F3FC;
+	color: #2A9FD9;
+	
+}
+.notice span:last-of-type{
+	font-size: 12px;
+	height: 15px;
+	line-height: 15px;
+	margin-left: 10px;
+}
+.notice span:first-of-type{
+	display: inline-block;
+	margin-top: 5px;
+	margin-left: 5px;
+	position: relative;
+	left: 5px;
+	width: 15px;
+	height: 15px;
+	background-color: #75C3EB;
+	border-radius: 50% 50%;
+	line-height: 15px;
+	text-align: center;
+	color: #fff;
+}
+
+.content{
+	margin: 10px 30px;
+}
+.evaluste-content{
+	height: 120px;
+	margin: 5px auto;
+}
+.btn{
+	display: table;
+	margin: 25px auto 35px auto;
+}
+.btn .next{
+	display: inline-block;
+	background-color: #0586C5;
+	padding: 10px 45px;
+	border-radius: 20px;
+	color: #fff;
+	font-size: 20px;
+}
+
+.cover{
+	/*display: none;*/
+	background-color: rgba(99,99,99, .7);
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+}
+
+.confirm-dialog{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 500px;
+	height: 360px;
+	margin-left: -250px;
+	margin-top: -210px;
+	background-color: #fff;
+	z-index: 20;
+	text-align: center;
+	border-radius: 8px;
+}
+.confirm-dialog h1{
+	text-align: center;
+	margin: 60px auto;
+}
+.confirm-dialog p{
+	font-size: 18px;
+	margin: 60px auto;
+}
+.confirm-dialog .confirm-btn{
+	margin: 60px auto;
+	bottom: 10px;
+}
+
+.confirm-dialog .confirm-btn li{
+	display: inline-block;
+	height: 80px;
+}
+.confirm-dialog .confirm-btn li a{
+	display: inline-block;
+	background-color: #fff;
+	width: 99px;
+	padding: 10px 35px;
+	border-radius: 20px;
+	color: #aaa;
+	font-size: 16px;
+	font-weight: 600;
+	border: 1px solid #0586C5;
+}
+.confirm-dialog .confirm-btn li a:hover{
+	background-color: #0586C5;
+	color: #fff;
+}

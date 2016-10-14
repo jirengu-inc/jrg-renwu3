@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	body{
+		height: 1000px;
+	}
+	</style>
+</head>
+<body>
+	<script src="../js/jquery-2.2.4.js"></script>
+	<script>
+		function people(name,age) {
+			this.name = name;
+			this.age = age;
+			this.consoleAge = function(){
+				console.log(this.name + '的年龄是:' + this.age);
+			}
+		}
+		var xiaoLiu = new people("小刘","24");
+		var xiaoWang = new people("小王","25");
+		xiaoLiu.consoleAge();//小刘的年龄是:24
+		xiaoWang.consoleAge();//小王的年龄是:25
+
+
+		function People (name){
+		  this.name = name;
+		  this.sayName = function(){
+		    console.log('my name is:' + this.name);
+		  }
+		}
+
+		People.prototype.walk = function(){
+		  console.log(this.name + ' is walking');  
+		}
+
+		var p1 = new People('饥人谷');
+		var p2 = new People('前端');
+
+		function People (){
+		  var age = 1//People函数的内部变量，不能在函数外部访问
+		  this.age = 10;//通过构造函数生成实例对象时，实例对象的一个属性（调用词函数的对象的属性）
+		}
+		People.age = 20;//People是一个函数，也是一个对象，age代表People的一个属性名，静态属性
+
+		People.prototype.age = 30;//函数的原型对象上添加name属性,通过该构造函数声明的实例，都有这个属性。
+
+
+		function Car(name,color,status) {
+		    this.name=name;
+		    this.color=color;
+		    this.status=static;
+		}
+		Car.prototype.run=function () {
+		    console.log(this.name + 'is running')
+		    this.status='run';
+		}
+		Car.prototype.stop=function () {
+		    console.log(this.name + 'is stop')
+		    this.status='stop';
+		}
+		Car.prototype.getStatus=function () {
+		    return this.status;
+		}
+
+
+		function GoTop($ct) {
+		       this.$ct=$ct;
+		       this.$target = $('<div>Go Top</div>');
+		   }
+		   GoTop.prototype.init=function () {
+		   		this.$target.hide();
+		   		this.$target.css({
+		   			cursor: 'pointer',
+		   			color: '#000',
+		   			position: 'fixed',
+		   			right: '80px',
+		   			bottom: '120px',
+		   			height: '50px',
+		   			'line-height': '50px',
+		   			width: '50px',
+		   			'border-radius': '50%',
+		   			background: '#f99'
+		   		});
+		   }
+		   GoTop.prototype.createNode=function () {
+		   		this.$ct.append(this.$target);
+		   }
+		   GoTop.prototype.gotop=function () {
+		       $(window).scrollTop(0);
+		   }
+
+		   GoTop.prototype.bindEvent=function () {
+			   	this.init();
+		   		var self = this;
+		       $(window).on('scroll', function(e){
+		           var offset = $('body').scrollTop();
+		           if(offset>100){
+		               self.$target.show();
+		           }else{
+		               self.$target.hide();
+		           }
+		       })
+		       this.$target.on('click', function(){
+		           self.gotop();
+		       });
+		   }
+		   var goTop = new GoTop($('body'));
+		   goTop.createNode();
+		   goTop.bindEvent();
+	</script>
+
+
+
+</body>
+</html>

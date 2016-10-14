@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.main *{
+			padding:0;
+			margin:0;
+			font-family:'Source Code Pro', Menlo, Consolas, Monaco, monospace;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+
+		}
+		.main {
+			position: relative;
+			width: 680px;
+			margin: 0 auto;
+		}
+		.view {
+			width: 300px;
+			margin: 10px;
+			float: left;
+			border: 10px solid #fff;
+			-webkit-box-shadow: 1px 1px 2px #e6e6e6,-1px -1px 2px #e6e6e6;
+			-moz-box-shadow: 1px 1px 2px #e6e6e6,-1px -1px 2px #e6e6e6;
+			box-shadow: 1px 1px 2px #e6e6e6,-1px -1px 2px #e6e6e6;
+			cursor: default;
+		}
+		.view figure {
+			margin: 0;
+			position: relative;
+		}
+		.view figure img {
+			max-width: 100%;
+			display: block;
+			position: relative;
+		}
+		.view .thumb {
+			overflow: hidden;
+		}
+		.view .mask {
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom:0;
+			padding: 10px;
+			background: rgb(233, 194, 236);
+			background-color: rgba(233, 194, 236, 0.9);
+			color: #ed4e6e;
+		}
+
+		.view .mask h2 {
+			margin: 0 0 5px;
+			padding: 0 0 5px;
+			color: #fff;
+			font-size: 18px;
+			text-align: center;
+			border-bottom:1px solid rgba(255,255,255,.2);
+		}
+		.view .mask p{
+			font-size: 14px;
+		}
+		.view .link {
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+			text-align: center;
+			padding: 5px 10px;
+			border-radius: 2px;
+			display: inline-block;
+			background: #ed4e6e;
+			color: #fff;
+			text-decoration:none;
+		}
+
+
+		.view-tenth {
+			-webkit-perspective: 1700px;
+			-moz-perspective: 1700px;
+			perspective: 1700px;
+			-webkit-perspective-origin: 0 50%;
+			-moz-perspective-origin: 0 50%;
+			perspective-origin: 0 50%;
+		}
+		.view-tenth figure {
+			-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			transform-style: preserve-3d;
+		}
+
+		/*
+		.view-tenth figure img {
+			-webkit-transition: -webkit-transform 0.4s;
+			-moz-transition: -moz-transform 0.4s;
+			transition: transform 0.4s;
+		}
+
+		.view-tenth figure:hover img{
+			-webkit-transform: translateX(25%);
+			-moz-transform: translateX(25%);
+			-ms-transform: translateX(25%);
+			transform: translateX(25%);
+		}*/
+
+		.view-tenth .mask {
+			width: 50%;
+			opacity: 0;
+			-webkit-backface-visibility: hidden;
+			-moz-backface-visibility: hidden;
+			backface-visibility: hidden;
+			-webkit-transform-origin: 0 0;
+			-moz-transform-origin: 0 0;
+			transform-origin: 0 0;
+			-webkit-transform: rotateY(-90deg);
+			-moz-transform: rotateY(-90deg);
+			transform: rotateY(-90deg);
+			-webkit-transition: -webkit-transform 0.4s, opacity 0.1s 0.3s;
+			-moz-transition: -moz-transform 0.4s, opacity 0.1s 0.3s;
+			transition: transform 0.4s, opacity 0.1s 0.3s;
+		}
+		.view-tenth figure:hover .mask{
+			opacity: 1;
+			-webkit-transform: rotateY(0deg);
+			-moz-transform: rotateY(0deg);
+			transform: rotateY(0deg);
+			-webkit-transition: -webkit-transform 0.4s, opacity 0.1s;
+			-moz-transition: -moz-transform 0.4s, opacity 0.1s;
+			transition: transform 0.4s, opacity 0.1s;
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<div class="view view-tenth">
+			<figure>
+				<div class="thumb"><img src="http://tupian.enterdesk.com/2014/lxy/2014/04/11/2/5.jpg" /></div>
+				<div class="mask">
+					<h2>Wonder Girls</h2>
+					<p>Wonder Girls一向以青春活力的形象展现在观众面前，先后在韩国和...</p>
+					<a href="#" class="link">查看全文</a>
+				</div>
+			</figure>
+		</div>
+		<div class="view view-tenth">
+			<figure>
+				<div class="thumb"><img src="http://tupian.enterdesk.com/2014/lxy/2014/04/11/2/3.jpg" /></div>
+				<div class="mask">
+					<h2>Wonder Girls</h2>
+					<p>Wonder Girls一向以青春活力的形象展现在观众面前，先后在韩国和...</p>
+					<a href="#" class="link">查看全文</a>
+				</div>
+			</figure>
+		</div>
+		<div class="view view-tenth">
+			<figure>
+				<div class="thumb"><img src="http://tupian.enterdesk.com/2014/lxy/2014/04/11/2/10.jpg" /></div>
+				<div class="mask">
+					<h2>Wonder Girls</h2>
+					<p>Wonder Girls一向以青春活力的形象展现在观众面前，先后在韩国和...</p>
+					<a href="#" class="link">查看全文</a>
+				</div>
+			</figure>
+		</div>
+		<div class="view view-tenth">
+			<figure>
+				<div class="thumb"><img src="http://tupian.enterdesk.com/2014/lxy/2014/04/11/2/11.jpg" /></div>
+				<div class="mask">
+					<h2>Wonder Girls</h2>
+					<p>Wonder Girls一向以青春活力的形象展现在观众面前，先后在韩国和...</p>
+					<a href="#" class="link">查看全文</a>
+				</div>
+			</figure>
+		</div>
+	</div>
+</body>
+</html>

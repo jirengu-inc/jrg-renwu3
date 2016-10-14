@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>22-5</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    a {
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .modal .mask {
+        width: 1000px;
+        height: 600px;
+        background-color: #ccc;
+        opacity: 0.8;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+    }
+    
+    .modal .dialogue {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 400px;
+        height: 180px;
+        background: white;
+        margin-left: -200px;
+        margin-top: -150px;
+    }
+    
+    .modal .dialogue .head {
+        position: relative;
+        height: 36px;
+        line-height: 36px;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    .modal .dialogue .head a {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        line-height: 1;
+    }
+    
+    .modal .dialogue .head h4 {
+        margin: 0;
+        padding-left: 10px;
+    }
+    
+    .modal .dialogue .body {
+        padding: 10px;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .modal .dialogue .foot {
+        padding: 10px;
+    }
+    
+    .modal .dialogue .foot:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+    
+    .modal .dialogue a {
+        float: right;
+        margin-left: 15px;
+    }
+    
+    .hide {
+        display: none;
+    }
+    
+    .show {
+        display: block;
+    }
+    </style>
+</head>
+
+<body>
+    <button>点我</button>
+    <!--  <div class="modal">
+        <div class="mask">
+            <div class="dialogue">
+                <div class="head">
+                    <h4>标题</h4>
+                    <a class="close">X</a>
+                </div>
+                <div class="body">
+                    <p>内容1</p>
+                    <p>内容2</p>
+                </div>
+                <div class="foot">
+                    <a class="cancel">取消</a>
+                    <a>确定</a>
+                </div>
+            </div>
+        </div> -->
+    <script src='utils.js'></script>
+    <script>
+    var btn = document.querySelector('button');
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        createMask();
+        show();
+    });
+
+    //考虑再三,如果不点button dom中多出的modal节点就浪费了 这里应该设法动态生成一个全局的单例对象
+    //只在第一次点button时生成modal对象
+
+
+    //生成全局单例对象,比如modal对象,xhr对象
+    var singleton = function(fn) {
+        var result;
+        return function() {
+            return result || (result = fn.apply(this, arguments));
+        };
+    };
+
+    //生成全局单例modal
+    var createMask = singleton(function() {
+
+        return document.body.appendChild(getFragment());
+    });
+
+    function getFragment() {
+        var fragment = document.createDocumentFragment();
+        modal = document.createElement('div');
+        fragment.appendChild(modal);
+        Utils.singleAddClass(modal, 'modal');
+        var mask = document.createElement('div');
+        modal.appendChild(mask);
+        Utils.singleAddClass(mask, 'mask');
+        var dialogue = document.createElement('div');
+        mask.appendChild(dialogue);
+        Utils.singleAddClass(dialogue, 'dialogue');
+        var head = document.createElement('div');
+        dialogue.appendChild(head);
+        Utils.singleAddClass(head, 'head');
+        var h4 = document.createElement('h4');
+        var close = document.createElement('a');
+        head.appendChild(h4);
+        head.appendChild(close);
+        h4.innerText = "标题";
+        Utils.singleAddClass(close, 'close');
+        close.innerText = 'X';
+        var body = document.createElement('div');
+        dialogue.appendChild(body);
+        Utils.singleAddClass(body, 'body');
+        var p1 = document.createElement('p');
+        var p2 = document.createElement('p');
+        body.appendChild(p1);
+        body.appendChild(p2);
+        p1.innerText = '内容1';
+        p2.innerText = '内容2';
+        var foot = document.createElement('div');
+        dialogue.appendChild(foot);
+        Utils.singleAddClass(foot, 'foot');
+        var cancel = document.createElement('a');
+        var confirm = document.createElement('a');
+        foot.appendChild(cancel);
+        foot.appendChild(confirm);
+        Utils.singleAddClass(cancel, 'cancel');
+        cancel.innerText = '取消';
+        confirm.innerText = '确定';
+
+        function hide() {
+            Utils.singleAddClass(modal, 'hide');
+        }
+
+        document.body.addEventListener('click', hide);
+        dialogue.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (Utils.hasClass(e.target, 'close') ||
+                Utils.hasClass(e.target, 'cancel')) {
+                hide();
+            }
+        });
+        return fragment;
+    }
+
+    function show() {
+        Utils.singleRemoveClass(modal, 'hide');
+    }
+    </script>
+</body>
+
+</html>

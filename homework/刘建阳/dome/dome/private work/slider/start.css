@@ -1,0 +1,41 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{
+	text-decoration: none;
+}
+html,body{
+	background-color: #68C3F0;
+	height: 100%;
+	width: 100%;
+	display: table;
+}
+.wrap{
+	height: 100%;
+	width: 100%;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+.wrap .img-ct{
+	
+	
+}
+.wrap p{
+	margin: 50px auto;
+	line-height: 28px;
+	color: #fff;
+	font-size: 20px;
+	font-weight: 700;
+}
+.wrap .go-in{
+	display: inline-block;
+	color: #fff;
+	background-color: #0686C5;
+	padding: 15px 100px;
+	border-radius: 25px;
+	font-size: 20px;
+	font-weight: 700;
+}

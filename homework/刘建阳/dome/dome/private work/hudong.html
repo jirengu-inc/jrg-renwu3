@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		box-sizing: border-box;
+	}
+		.slider{
+			display: inline-block;
+			position: relative;
+			vertical-align: middle;
+
+		}
+		.slider-hander{
+
+		}
+	</style>
+</head>
+<body>
+
+	<div class="slider slider-horizontal" id="ex1Slider">
+  <div class="slider-track">
+    <div class="slider-track-low" style="left: 0px; width: 0%;"></div>
+    <div class="slider-selection" style="left: 0%; width: 45%;"></div>
+    <div class="slider-track-high" style="right: 0px; width: 55%;"></div>
+    <div class="slider-handle min-slider-handle round" role="slider" aria-valuemin="0" aria-valuemax="20" aria-valuenow="9" tabindex="0" style="left: 45%;"></div>
+    <div class="slider-handle max-slider-handle round hide" role="slider" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" tabindex="0" style="left: 0%;"></div>
+  </div>
+  <div class="tooltip tooltip-main top in" role="presentation" style="left: 45%; margin-left: -11.5px;">
+    <div class="tooltip-arrow"></div>
+    <div class="tooltip-inner">9</div></div>
+  <div class="tooltip tooltip-min top" role="presentation" style="display: none;">
+    <div class="tooltip-arrow"></div>
+    <div class="tooltip-inner"></div>
+  </div>
+  <div class="tooltip tooltip-max top" role="presentation" style="display: none;">
+    <div class="tooltip-arrow"></div>
+    <div class="tooltip-inner"></div>
+  </div>
+</div>
+	
+		<input id="ex6" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="3"/>
+	<span id="ex6CurrentSliderValLabel">Current Slider Value: <span id="ex6SliderVal">3</span></span>
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.js"></script>
+	<script type="text/javascript">
+		$("#ex6").slider({
+			tooltip: 'always'
+		});
+		$("#ex6").on("slide", function(slideEvt) {
+			$("#ex6SliderVal").text(slideEvt.value);
+		});
+	</script>
+
+
+
+<!-- // Without JQuery
+var slider = new Slider("#ex6");
+slider.on("slide", function(slideEvt) {
+	$("#ex6SliderVal").text(slideEvt.value);
+});)
+ -->
+</body>
+</html>
