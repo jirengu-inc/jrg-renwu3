@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>loadmore</title>
+<style>
+    body, ul, li{
+        margin: 0;
+        padding: 0;
+    }
+
+    li{
+        list-style: none;
+    }
+
+    a{
+        text-decoration: none;
+    }
+
+    .wrap{
+        width: 960px;
+        margin: auto;
+        text-align: center;
+    }
+
+    #container{
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    #container li{
+        float: left;
+        box-sizing: border-box;
+        width: 200px;
+        height: 200px;
+        margin: 10px;
+        text-align: center;
+        border: 1px solid #eee;
+    }
+
+    .btn{
+        display: inline-block;
+        padding: 0 10px;
+        font-size: 1em;
+        line-height: 30px;
+        color: #fff;
+        text-decoration: none;
+        background-color: #f26738;
+        border-style: none;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    .btn:hover{
+        background-color: #c14d21;
+    }
+    .btn:active{
+        background-color: #e25f31;
+    }
+
+</style>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul id="container">
+            <li>
+                内容1
+            </li>
+            <li>
+                内容2
+            </li>
+             <li>
+                内容3
+            </li>
+            <li>
+                内容4
+            </li>
+        </ul>
+        <a class="btn" id="more" >加载更多</a>
+    </div>
+    <script src="ajax.js"></script>
+    <script>
+    /*定义接口
+
+    1) url:
+    2) 入参: { start: 2, len: 6 }
+    3) 回参: 
+    {
+      status: 1, //1代表正常，0代表出错
+      data: [2,3,4,5,6,7]
+    }
+    */
+        document.querySelector('#more').addEventListener('click', function(){
+            ajax({
+                url: '/loadmore' ,
+                type: 'get',
+                success: function(ret){
+                    loadMore(ret);
+                },
+                error: function(){
+                    console.log('出错了');
+                }
+            });
+            function loadMore(ret){
+                var con = document.querySelector('#container'),
+                      list = '';
+                for(var i = 0; i < ret.data.length; i++){
+                    list += '<li>内容' + ret.data[i] + '</li>';
+                }
+                con.appendChild(list);
+            }
+        });
+    </script>
+</body>
+</html>
