@@ -91,10 +91,24 @@
       data: [2,3,4,5,6,7]
     }
     */
+        var con = document.querySelector('#container'),
+              curs = 2,
+              islocked = false;  // 设置一个状态锁
+
         document.querySelector('#more').addEventListener('click', function(){
+
+            if(islocked){   // 判断状态是否锁上，一旦锁上终止函数，不与后台交互
+                return;
+            }
+            islocked = true;  // 产生AJAX前立刻上锁，防止用户多次点击
+
             ajax({
-                url: '/loadmore' ,
+                url: 'loadmore.php' ,
                 type: 'get',
+                data: {
+                    present: curs,
+                    len: 3
+                }
                 success: function(ret){
                     loadMore(ret);
                 },
@@ -102,13 +116,16 @@
                     console.log('出错了');
                 }
             });
+
             function loadMore(ret){
-                var con = document.querySelector('#container'),
-                      list = '';
                 for(var i = 0; i < ret.data.length; i++){
-                    list += '<li>内容' + ret.data[i] + '</li>';
+                    var li = document.createElement('li');
+                    li.innerText = ret.data[i];
+                    con.appendChild(li);
                 }
-                con.appendChild(list);
+                
+                curs += 3;
+                islocked = false;  // 开锁
             }
         });
     </script>
