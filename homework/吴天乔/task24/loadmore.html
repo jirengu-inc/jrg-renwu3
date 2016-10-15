@@ -79,23 +79,14 @@
         </ul>
         <a class="btn" id="more" >加载更多</a>
     </div>
-    <script src="ajax.js"></script>
     <script>
-    /*定义接口
-
-    1) url:
-    2) 入参: { start: 2, len: 6 }
-    3) 回参: 
-    {
-      status: 1, //1代表正常，0代表出错
-      data: [2,3,4,5,6,7]
-    }
-    */
+    
         var con = document.querySelector('#container'),
-              curs = 2,
+              btn = document.querySelector('#more'),
+              curs = 4,
               islocked = false;  // 设置一个状态锁
 
-        document.querySelector('#more').addEventListener('click', function(){
+        btn.addEventListener('click', function(){
 
             if(islocked){   // 判断状态是否锁上，一旦锁上终止函数，不与后台交互
                 return;
@@ -107,8 +98,8 @@
                 type: 'get',
                 data: {
                     present: curs,
-                    len: 3
-                }
+                    len: 4
+                },
                 success: function(ret){
                     loadMore(ret);
                 },
@@ -124,10 +115,12 @@
                     con.appendChild(li);
                 }
                 
-                curs += 3;
+                curs += 4;
                 islocked = false;  // 开锁
             }
         });
     </script>
+    <script src="ajax.js"></script>
+
 </body>
 </html>
