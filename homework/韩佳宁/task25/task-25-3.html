@@ -159,22 +159,25 @@ $('#btn').on('click', function(e){
   $.each(products, function(idx, prod){
   var html = getProdHtml(prod)
   $('.jew-list').append(html)
-});
-});
-
-
-
-
-
-$(".jew-list li").on("mouseenter",function () {
-  var $this = $(this)
-  console.log($this);
-  $this.children('.cover').removeClass('hide')
+  hover()//!!!!!注意,jQuery 对象的内容并不随着DOM结构的改变而更新
+          //所以每改变一次DOM,都要再执行一次hover() 
 })
-$(".jew-list li").on("mouseleave",function () {
-  var $this = $(this)
-  $this.children('.cover').addClass('hide')
 })
+
+
+
+function hover() {
+  $(".jew-list li").on("mouseenter",function () {
+    var $this = $(this)
+    $this.children('.cover').removeClass('hide')
+  })
+  $(".jew-list li").on("mouseleave",function () {
+    var $this = $(this)
+    $this.children('.cover').addClass('hide')
+  })
+}
+hover()
+
     </script>
   </body>
 </html>
