@@ -1,6 +1,6 @@
 <?php
 $username= $_POST['username'];
-if ($username == 'lgg'){
+if ($username == 'daming'){
     $arr = array('data'=>false);
     echo json_encode($arr);
 }
