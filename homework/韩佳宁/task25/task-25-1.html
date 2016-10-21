@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>task-25-1</title>
+    <style media="screen">
+        html,body,ul,li,a{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-decoration: none;
+            text-align: center;
+        }
+        a{
+            color: inherit;
+        }
+        .box>ul{
+            width: 160px;
+        }
+        .item .item-title{
+            display: block;
+            padding: 5px 0 5px 30px;
+            margin: 0% auto;
+            background-color: crimson;
+            text-align: left;
+            color: white;
+        }
+        .item .item-title a::after{
+            content: ">";
+            float: right;
+            margin-right: 20px;
+        }
+        .item-list{
+            display: none;
+            float: left;
+            margin-right: -210px;
+            width: 210px;
+            position: relative;
+            left:160px;
+            top:-28px;
+            background-color: #b9c0be;
+        }
+        .item-list li{
+            padding: 10px 0;
+            width: 100px;
+            float: left;
+        }
+        .show{
+            display: block;
+        }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li class="item">
+            <span class="item-title"><a href="#">珠宝玉器</a></span>
+            <ul class="item-list">
+                <li><a href="#">玛瑙</a></li>
+                <li><a href="#">翡翠</a></li>
+                <li><a href="#">琥珀</a></li>
+                <li><a href="#">钻石</a></li>
+                <li><a href="#">银器</a></li>
+                <li><a href="#">玛瑙</a></li>
+            </ul>
+        </li>
+        <li class="item">
+            <span class="item-title"><a href="#">汽车配件</a></span>
+        <ul class="item-list">
+            <li><a href="#">机油</a></li>
+            <li><a href="#">轮胎</a></li>
+            <li><a href="#">火炮</a></li>
+            <li><a href="#">履带</a></li>
+            <li><a href="#">银器</a></li>
+            <li><a href="#">玛瑙</a></li>
+        </ul>
+        </li>
+        <li class="item">
+            <span class="item-title"><a href="#">农业资源</a></span>
+        <ul class="item-list">
+            <li><a href="#">农业</a></li>
+            <li><a href="#">话费</a></li>
+            <li><a href="#">种子</a></li>
+            <li><a href="#">金克拉</a></li>
+            <li><a href="#">拖拉机</a></li>
+            <li><a href="#">饲料</a></li>
+        </ul>
+        </li>
+        <li class="item">
+            <span class="item-title"><a href="#">医疗服务</a></span>
+        <ul class="item-list">
+            <li><a href="#">利多卡因</a></li>
+            <li><a href="#">肾上腺素</a></li>
+            <li><a href="#">动脉瘤</a></li>
+            <li><a href="#">外科</a></li>
+            <li><a href="#">解刨</a></li>
+            <li><a href="#">移植</a></li>
+        </ul>
+        </li>
+        <li class="item">
+            <span class="item-title"><a href="#">珠宝玉器</a></span>
+        <ul class="item-list">
+            <li><a href="#">玛瑙</a></li>
+            <li><a href="#">翡翠</a></li>
+            <li><a href="#">琥珀</a></li>
+            <li><a href="#">钻石</a></li>
+            <li><a href="#">银器</a></li>
+            <li><a href="#">玛瑙</a></li>
+        </ul>
+        </li>
+    </ul>
+    <script type="text/javascript">
+
+        $('.item').on("mouseenter",function () {
+            $(this).children(".item-list").addClass("show")
+        })
+        $('.item').on("mouseleave",function () {
+            $(this).children(".item-list").removeClass("show")
+        })
+    </script>
+</div>
+</body>
+</html>
