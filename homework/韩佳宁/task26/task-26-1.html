@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task-26-1</title>
+    <style media="screen">
+    .box1{
+      position: fixed;
+      top:0;
+      left: 0;
+      width: 200px;
+      height: 40px;
+      background-color: #ccc;
+      font-size: 20px;
+      line-height: 2;
+      overflow: hidden;
+    }
+    .box2{
+      float: left;
+      margin-top: 50px;
+
+    }
+    .box3{
+      float: right;
+    }
+    .box4{
+      position: fixed;
+      right: 0;
+      bottom: 0;
+    }
+    .show-box{
+      width: 300px;
+      height: 50px;
+      background-color: pink
+    }
+    .box5 input{
+      position: fixed;
+      width: 150px;
+      height: 40px;
+      right: 400px;
+      bottom: 40px;
+    }
+    .red{
+      background-color: red;
+    }
+    .yellow{
+      background-color: yellow;
+    }
+    .green{
+      background-color: green;
+    }
+    .focus{
+      border: 10px solid blue;
+    }
+    </style>
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div class="box1">
+      滚动距离为 <span></span>
+    </div>
+    <div class="box2">
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+      <h1>点击变色</h1>
+    </div>
+    <div class="box3">
+      <h1>鼠标放入后变色</h1>
+      <h1>鼠标放入后变色</h1>
+      <h1>鼠标放入后变色</h1>
+      <h1>鼠标放入后变色</h1>
+      <h1>鼠标放入后变色</h1>
+    </div>
+    <div class="box4">
+      <select class="food" name="food">
+        <option value="饼干">饼干</option>
+        <option value="水果">水果</option>
+        <option value="可乐">可乐</option>
+        <option value="巧克力">巧克力</option>
+      </select>
+      <div class="show-box"><h3></h3></div>
+    </div>
+    <div class="box5">
+      <input class="" type="text" name="name" value="">
+    </div>
+    <script type="text/javascript">
+      var $box1 = $(".box1"),
+          $box2 = $(".box2"),
+          $box3 = $(".box3"),
+          $box4 = $(".box4"),
+          $box5 = $(".box5")
+
+      $(window).on('scroll', function(){
+        $('.box1 span').text(scrollY + 'px')
+      })
+      $box2.on('click', function() {
+        if ($box2.hasClass('yellow')) {
+          $box2.removeClass("yellow").addClass('red')
+          return
+        }else if ($box2.hasClass('red')) {
+          $box2.removeClass('red').addClass('yellow')
+          return
+        }else {
+          $box2.addClass('red')
+        }
+      });
+    $box3.on('mouseenter', function() {
+      $box3.removeClass('green').addClass('red')
+    })
+    $box3.on('mouseleave', function() {
+      $box3.removeClass('red').addClass('green')
+    })
+
+    $box4.on('change','select' ,function(){
+      $('.show-box').text($(this).val());
+    });
+
+    $box5.on('focus', 'input', function(event) {
+      $(this).addClass('focus')
+    })
+    $box5.on('blur', 'input', function(event) {
+      $(this).removeClass('focus')
+    })
+    $box5.on('keyup','input', function(){
+      $(this).val($(this).val().toUpperCase())
+    })
+
+    </script>
+  </body>
+</html>
