@@ -23,27 +23,25 @@
       margin: 0 auto;
     }
     .jew-list{
-      width: 690px;
-      margin-top: -10px;
+      width: 700px;
+      margin: 10px;
     }
     .jew-list li{
-      box-sizing: border-box;
       width: 220px;
       height: 220px;
       margin: 10px 10px 0 0;
       font-size: 16px;
       float: left;
-      overflow: hidden;
     }
     .jew-list li img{
       display: block;
       margin: 0 auto;
     }
     .cover{
-
+      border: 1px solid #ccc;
       height: 220px;
       position: relative;
-      top: -100%;
+      bottom:220px;
       background-color:rgba(0, 0, 0, 0.3);;
       z-index: 3;
       animation: 1.5s;
@@ -51,7 +49,7 @@
 
     .buy-now{
       display: flex;
-      height: 240px;
+      height: 220px;
     }
     .buy-now span{
       display: flex;
@@ -118,66 +116,28 @@
             </div>
           </div>
         </li>
-        <li>
-          <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="银的" />
-          <p>
-            银的银的银的银的银的银的银的
-          </p>
-          <span>￥699.00</span>
-          <div class="cover hide">
-            <div class="buy-now">
-              <span>现在购买</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="银的" />
-          <p>
-            银的银的银的银的银的银的银的
-          </p>
-          <span>￥699.00</span>
-          <div class="cover hide">
-            <div class="buy-now">
-              <span>现在购买</span>
-            </div>
-          </div>
-        </li>
-        <li>
-          <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="银的" />
-          <p>
-            银的银的银的银的银的银的银的
-          </p>
-          <span>￥699.00</span>
-          <div class="cover hide">
-            <div class="buy-now">
-              <span>现在购买</span>
-            </div>
-          </div>
-        </li>
       </ul>
       <button id="btn" type="button" name="button">点我</button>
     </div>
 
 
 
-<script type="text/javascript">
-
-var products = [
+    <script type="text/javascript">
+    var products = [
   {
       img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
-      name: '珂兰 黄金手 猴哥款',
+      name: '金的金的金的金的金的金的金的',
       price: '￥405.00'
   },{
       img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
-      name: '珂兰 黄金转运珠 猴哥款',
+      name: '金的金的金的金的金的金的金的',
       price: '￥100.00'
   },{
       img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
-      name: '珂兰 黄金手链 3D猴哥款',
+      name: '金的金的金的金的金的金的金的',
       price: '￥45.00'
   }
 ];
-
 //用对象 products 内容拼装 dom对象
 function getProdHtml(prod){
 	var html = '';//建立空字符串
@@ -191,29 +151,33 @@ function getProdHtml(prod){
   html +=       '</div>'
   html +=     '</div>'
 	html += '</li>'
-  console.log(html)
 	return html //拼接完毕
 }
-
 $('#btn').on('click', function(e){
   e.preventDefault();
   $.each(products, function(idx, prod){
   var html = getProdHtml(prod)
   $('.jew-list').append(html)
+  hover()
 })
 })
 
-function hover() {//dom结构是变化的,所以做事件代理
-  $(".jew-list").on("mouseenter","li",function () {
+
+
+
+function hover() {
+  $(".jew-list li").on("mouseenter",function () {
     var $this = $(this)
+    console.log($this);
     $this.children('.cover').removeClass('hide')
   })
-  $(".jew-list").on("mouseleave","li",function () {
+  $(".jew-list li").on("mouseleave",function () {
     var $this = $(this)
     $this.children('.cover').addClass('hide')
   })
 }
- hover()
+hover()
+
     </script>
   </body>
-</html><!--
+</html>
