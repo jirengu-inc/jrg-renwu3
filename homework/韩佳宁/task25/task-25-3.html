@@ -33,13 +33,14 @@
       margin: 10px 10px 0 0;
       font-size: 16px;
       float: left;
+      overflow: hidden;
     }
     .jew-list li img{
       display: block;
       margin: 0 auto;
     }
     .cover{
-      border: 1px solid #ccc;
+
       height: 220px;
       position: relative;
       top: -100%;
@@ -50,7 +51,7 @@
 
     .buy-now{
       display: flex;
-      height: 220px;
+      height: 240px;
     }
     .buy-now span{
       display: flex;
@@ -117,14 +118,51 @@
             </div>
           </div>
         </li>
+        <li>
+          <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="银的" />
+          <p>
+            银的银的银的银的银的银的银的
+          </p>
+          <span>￥699.00</span>
+          <div class="cover hide">
+            <div class="buy-now">
+              <span>现在购买</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="银的" />
+          <p>
+            银的银的银的银的银的银的银的
+          </p>
+          <span>￥699.00</span>
+          <div class="cover hide">
+            <div class="buy-now">
+              <span>现在购买</span>
+            </div>
+          </div>
+        </li>
+        <li>
+          <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="银的" />
+          <p>
+            银的银的银的银的银的银的银的
+          </p>
+          <span>￥699.00</span>
+          <div class="cover hide">
+            <div class="buy-now">
+              <span>现在购买</span>
+            </div>
+          </div>
+        </li>
       </ul>
       <button id="btn" type="button" name="button">点我</button>
     </div>
 
 
 
-    <script type="text/javascript">
-    var products = [
+<script type="text/javascript">
+
+var products = [
   {
       img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
       name: '珂兰 黄金手 猴哥款',
@@ -139,6 +177,7 @@
       price: '￥45.00'
   }
 ];
+
 //用对象 products 内容拼装 dom对象
 function getProdHtml(prod){
 	var html = '';//建立空字符串
@@ -152,32 +191,29 @@ function getProdHtml(prod){
   html +=       '</div>'
   html +=     '</div>'
 	html += '</li>'
+  console.log(html)
 	return html //拼接完毕
 }
+
 $('#btn').on('click', function(e){
   e.preventDefault();
   $.each(products, function(idx, prod){
   var html = getProdHtml(prod)
   $('.jew-list').append(html)
-  hover()//!!!!!注意,jQuery 对象的内容并不随着DOM结构的改变而更新
-          //所以每改变一次DOM,都要再执行一次hover() 
 })
 })
 
-
-
-function hover() {
-  $(".jew-list li").on("mouseenter",function () {
+function hover() {//dom结构是变化的,所以做事件代理
+  $(".jew-list").on("mouseenter","li",function () {
     var $this = $(this)
     $this.children('.cover').removeClass('hide')
   })
-  $(".jew-list li").on("mouseleave",function () {
+  $(".jew-list").on("mouseleave","li",function () {
     var $this = $(this)
     $this.children('.cover').addClass('hide')
   })
 }
-hover()
-
+ hover()
     </script>
   </body>
-</html>
+</html><!--
