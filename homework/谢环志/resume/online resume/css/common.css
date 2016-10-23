@@ -1,0 +1,76 @@
+@charset "UTF-8";
+html{
+	font-size: 100%;
+}
+.wrapper{
+	max-width: 1300px;
+	padding: 60px;
+	margin: 0 auto;	
+}
+html .btn{
+	border: 3px solid #E0CB77;
+	font-size: inherit;
+	padding: 1.2rem 4rem;
+	text-align: center;
+	font-weight: 100;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border-radius: 2px;
+	display: inline-block;
+	position: relative;
+	transition: all .1s ease-in-out;
+}
+html .btn:hover{
+	background: #e5d38c;
+    color: #86711f;
+}
+.ribbon{
+	width: 70%;
+	max-width: 400px;
+	min-height: 66px;
+	position: relative;
+	text-align: center;
+	line-height: 4rem;
+	margin: -3em auto 2em;
+	color: #fff;
+	background-color: #E0CB77;
+	font-size: 1em;
+	z-index: 100;
+}
+.ribbon:before{
+	position: absolute;
+	content: '';
+	top: 0;
+	left: -60px;
+	border-bottom: 0;
+	width: 95px;
+	height: 78px;
+	background: url(../images/ribbonTail.png) no-repeat;
+}
+.ribbon:after{
+	position: absolute;
+	content: '';
+	top: 0;
+	right: -60px;
+	border-bottom: 0;
+	width: 95px;
+	height: 78px;
+	background: url(../images/ribbonTail.png) no-repeat;
+	transform: scaleX(-1);
+}
+p{
+	margin: 1.2rem 0;
+	line-height: 2.3rem;
+	font-family: "Open Sans",sans-serif;
+}
+h2{
+	font-size: 2.6rem;
+}
+h3{
+	font-size: 1.7rem;
+}
+::selection{
+	color: #fff;
+	background-color: #e9daa0;
+}

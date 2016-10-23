@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>slides</title>
+<style>
+  *{margin: 0; padding: 0;}
+</style>
+</head>
+<body>
+   <div class="arts">
+          <img class="pic" src="images/slide1.jpg">
+          <img class="pic" src="images/slide2.jpg">
+          <img class="pic" src="images/slide3.jpg">
+          <img class="pic" src="images/slide4.jpg">
+          <img class="pic" src="images/slide5.jpg">
+  </div>
+  <script src="slides/jquery-1.11.2.js"></script>
+  <script src="slides/pack.js"></script>
+  <script>
+  	$('.arts').slides({
+	  width: 300,
+	  height: 200,
+	  auto: true,
+	  nav: true
+	})
+  </script> 
+</body>
+</html>
