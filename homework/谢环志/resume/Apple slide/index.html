@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>slides-bigger</title>
+<link rel="stylesheet" type="text/css" href="main.css">
+    <script src="http://o7m41tvmg.bkt.clouddn.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="slides.js"></script>
+</head>
+<body>
+    <div class="site-header wrapper">
+    	<h1>Apple-like Gallery <br>
+    		<b>Slideshow</b>
+    	</h1>
+    	<p>View the <a href="#">original tutorial >></a></p>
+    </div>
+    <div class="slides wrapper"><!-- 播放窗口 -->
+    	<div class="art"><!-- 屏步 -->
+	    	<div class="slide"><img src="imgs/sample_slides/macbook.jpg" width="920" height="400" alt="slide" /></div>
+    		<div class="slide"><img src="imgs/sample_slides/iphone.jpg" width="920" height="400" alt="slide" /></div>
+    		<div class="slide"><img src="imgs/sample_slides/imac.jpg" width="920" height="400" alt="slide" /></div>
+   			<div class="slide"><img src="imgs/sample_slides/info.jpg" width="920" height="400" alt="slide" /></a></div>
+    	</div>
+    	<div class="slides-menu">
+	    	<ul>
+	    		<li class="fbar"><a href="javascript:;"></a></li>
+	    		<li class="menu-items active" data-index="0"><a href="javascript:;"><img src="imgs/sample_slides/thumb_macbook.png"></a></li>
+	    		<li class="menu-items inact" data-index="1"><a href="javascript:;"><img src="imgs/sample_slides/thumb_iphone.png"></a></li>
+	    		<li class="menu-items inact" data-index="2"><a href="javascript:;"><img src="imgs/sample_slides/thumb_imac.png"></a></li>
+	    		<li class="menu-items inact" data-index="3"><a href="javascript:;"><img src="imgs/sample_slides/thumb_about.png"></a></li>
+	    	</ul>
+    	</div>
+    </div>
+    <div class="footer">
+    	<p>This is a tutorialzine demo. View the <a href="#">original tutorial</a> to read and download the source files.</p>
+    	<p>The gallery features artwork from <a href="#">rambocre</a>, <a href="">pickupjojo</a> and <a href="">codenamebender</a></p>
+    </div>
+    <script type="text/javascript">
+
+        $('li.menu-items').slides()
+
+    </script>
+</body>
+</html>

@@ -23,11 +23,10 @@
       margin: 0 auto;
     }
     .jew-list{
-      width: 690px;
-      margin-top: -10px;
+      width: 700px;
+      margin: 10px;
     }
     .jew-list li{
-      box-sizing: border-box;
       width: 220px;
       height: 220px;
       margin: 10px 10px 0 0;
@@ -42,7 +41,7 @@
       border: 1px solid #ccc;
       height: 220px;
       position: relative;
-      top: -100%;
+      bottom:220px;
       background-color:rgba(0, 0, 0, 0.3);;
       z-index: 3;
       animation: 1.5s;
@@ -127,15 +126,15 @@
     var products = [
   {
       img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
-      name: '珂兰 黄金手 猴哥款',
+      name: '金的金的金的金的金的金的金的',
       price: '￥405.00'
   },{
       img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
-      name: '珂兰 黄金转运珠 猴哥款',
+      name: '金的金的金的金的金的金的金的',
       price: '￥100.00'
   },{
       img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
-      name: '珂兰 黄金手链 3D猴哥款',
+      name: '金的金的金的金的金的金的金的',
       price: '￥45.00'
   }
 ];
@@ -159,16 +158,17 @@ $('#btn').on('click', function(e){
   $.each(products, function(idx, prod){
   var html = getProdHtml(prod)
   $('.jew-list').append(html)
-  hover()//!!!!!注意,jQuery 对象的内容并不随着DOM结构的改变而更新
-          //所以每改变一次DOM,都要再执行一次hover() 
+  hover()
 })
 })
+
 
 
 
 function hover() {
   $(".jew-list li").on("mouseenter",function () {
     var $this = $(this)
+    console.log($this);
     $this.children('.cover').removeClass('hide')
   })
   $(".jew-list li").on("mouseleave",function () {
