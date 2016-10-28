@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>轮播,渐变，淡入淡出</title>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	a{
+		text-decoration: none;
+	}
+	.carousel{
+		position: relative;
+		width: 310px;
+		height: 206px;
+		margin: auto;
+		overflow: hidden;
+	}
+	.carousel .img-ct{
+		position: absolute;
+	}
+	.carousel .img-ct:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	.carousel .img-ct img{
+		float: left;
+		width: 310px;
+		height: 206px;
+	}
+	.arrow{
+		position: absolute;
+		top: 50%;
+		margin-top: -15px;
+		display: block;
+		width: 30px;
+		height: 30px;
+		text-align: center;
+		line-height: 30px;
+		color: #fff;
+		border-radius: 15px;
+		background: #4e443c;
+		opacity: 0.8;
+		filter: alpha(opacity=80);
+	}
+	.arrow:hover{
+		opacity: 1;
+	}
+	.pre{
+		left: 20px;
+	}
+	.next{
+		right: 20px;
+	}
+	.carousel .bullet{
+		position: absolute;
+		bottom: 10px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	.carousel .bullet  li{
+		display: inline-block;
+		width: 16px;
+		height: 4px;
+		border-radius: 2px;
+		background: #fff;
+		cursor: pointer;
+	}
+	.carousel .bullet  li.active{
+		background: #666;
+	}
+</style>
+</head>
+<body>
+     <div class="carousel">
+		<ul class="img-ct">
+			<li data-id="0"><a href=""><img src="images/images0.jpg" alt=""></a></li>
+			<li data-id="1"><a href=""><img src="images/images1.jpg" alt=""></a></li>
+			<li data-id="2"><a href=""><img src="images/images2.jpg" alt=""></a></li>
+			<li data-id="3"><a href=""><img src="images/images3.jpg" alt=""></a></li>
+		</ul>   
+		<a class="pre arrow" href="javascript:void(0)"><</a> 	
+		<a class="next arrow" href="javascript:void(0)">></a> 	
+		<ul class="bullet">
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+     </div>
+
+    	<script src="jquery-3.1.1.js"></script>
+    	<script>
+    		var $ct = $('.img-ct'),
+    			$items = $ct.children(),
+    			$pre = $('.pre'),
+    			$next = $('.next'),
+    			$bullet = $('.bullet'),
+    			imgWidth = $items.width();  //获取图片宽度
+    			imgCount = $ct.children().length; //获取图片数量
+
+    		var curIdx = 0; // 当前显示序号
+    		var isAnimate = false;
+
+    		$next.on('click', function() {
+    			playNext();
+    		});
+
+    		$pre.on('click', function(){
+    			playPre();
+    		});
+
+    		$bullet.find('li').on('click', function(){
+    			var idx = $(this).index();
+    			play(idx);
+    		});
+
+    		autoPlay();
+
+    		function playNext(){
+    			play( (curIdx+1)%imgCount );
+    		}
+
+    		function playPre(){
+    			play( (imgCount+curIdx-1)%imgCount );
+    		}
+
+    		function play(idx){
+    			if(isAnimate){
+    				return;
+    			}
+    			isAnimate = true;
+    			$items.eq(curIdx).fadeOut(500);
+    			$items.eq(idx).fadeIn(500, function(){
+    				isAnimate = false;
+    			});
+    			curIdx = idx;
+    			setBullet();
+    		}
+
+    		function setBullet(){
+    			$bullet.find('li').removeClass('active').eq(curIdx).addClass('active');
+    		}
+
+    		function stopAuto(){
+    			clearInterval(clock);
+    		}
+
+    		function autoPlay(){
+    			clock = setInterval(function(){
+    				playNext();
+    			}, 2000);
+    		}
+    	</script>
+</body>
+</html>
