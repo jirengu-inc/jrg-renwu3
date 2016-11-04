@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Task22-代码1</title>
+</head>
+<body>
+<ul class="ct">
+	<li>这里是</li>
+	<li>饥人谷</li>
+	<li>前端6班</li>
+</ul>
+	<script>
+		var liArr = document.getElementsByClassName("ct")[0].getElementsByTagName("li");
+		for(var i=0;i<liArr.length;i++){
+			liArr[i].addEventListener("click",function(){
+				console.log(this.innerText);
+			})
+		}
+	</script>
+</body>
+</html>

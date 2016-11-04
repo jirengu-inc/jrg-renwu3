@@ -1,0 +1,35 @@
+*{
+		margin:0px;
+		padding: 0px;
+		font-family: 'microsoft yahei';
+	}
+	div{
+		margin: 10px 0 0 20px;
+		border: 1px solid #ccc;
+		width:602px;
+		height: 220px;
+	}
+	ul{
+		margin-left: -1px;
+	}
+	li{
+		text-align: center;
+		border: 1px solid #ccc;
+		border-collapse:collapse;
+		width: 200px;
+		margin:-1px -1px 0 0; 
+		list-style: none;
+		float:left;
+		padding: 5px 0;
+	}
+	ul:after{
+		content: "";
+		display: block;
+		clear: both;
+	}
+	p{
+		margin: 10px 0 0 20px;
+	}
+	.active{
+		background: #ededed;
+	}
