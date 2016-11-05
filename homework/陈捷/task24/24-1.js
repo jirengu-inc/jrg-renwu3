@@ -53,7 +53,7 @@ function ajax(opts) {
     }
 
     if (opts.type.toLowerCase() === 'post') {
-        xmlhttp.open('get', opts.url);
+        xmlhttp.open('post', opts.url);
         xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
         xmlhttp.send(data);
     }
