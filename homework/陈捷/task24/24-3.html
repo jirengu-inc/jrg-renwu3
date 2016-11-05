@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>24-3</title>
+    <style>
+    #register-form:after {
+        display: block;
+        content: '';
+        clear: both;
+    }
+    
+    .register-ct dt {
+        float: left;
+    }
+    
+    .register-ct dd {
+        margin-left: 90px;
+    }
+    
+    .register-ct dd input {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 20px;
+        line-height: 20px;
+        padding-left: 10px;
+    }
+    
+    .register-ct dd:nth-of-type(even) {
+        margin-top: 3px;
+        margin-bottom: 12px;
+         font-size: 20px;
+        line-height: 20px;
+        height: 20px;
+        color:#999;
+    }
+    
+    .register-ct dd input.error {
+        border-color: red;
+        background-color: transparent;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="register">
+        <h3>注册</h3>
+        <form id="register-form" action="">
+            <dl class="register-ct">
+                <dt>用户名:</dt>
+                <dd>
+                    <input id="username" type="text" placeholder="用户名(jaychen被注册过)">
+                </dd>
+                <dd class="msg msg-un">只能是字母、数字、下划线，3-10个字符</dd>
+                <dt>密码:</dt>
+                <dd>
+                    <input type="password" id="password1" placehoder="密码">
+                </dd>
+                <dd class="msg msg-pwd1">大写字母、小写、数字、下划线最少两种，6-15个字符</dd>
+                <dt> 再输一次:</dt>
+                <dd>
+                    <input type="password" id="password2" placeholder="再输入一次密码">
+                </dd>
+                <dd class="msg msg-pwd2"></dd>
+                <dd>
+                    <button id="btn-register">注册</button>
+                </dd>
+            </dl>
+        </form>
+    </div>
+    <script>
+    var MSG = {
+        USERNAME_EXIST: '用户名已经存在',
+        USERNAME_TYPE_ERROR: '用户名格式不正确',
+        USERNAME_USEABLE: '用户名可用',
+        PASSWORD_TYPE_ERROR: '密码格式不正确',
+        PASSWORD_NOT_MATCH: '两次密码输入不一致',
+        EMPTY: ' '
+    };
+
+
+
+    function ajax(opts) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var result = JSON.parse(xmlhttp.responseText);
+                opts.success(result);
+            }
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 404) {
+                opts.error();
+            }
+
+        };
+
+        var tmpArr = [];
+        for (var key in opts.data) {
+            tmpArr.push(key + "=" + opts.data[key]);
+        }
+        var data = tmpArr.join('&');
+
+        if (opts.type.toLowerCase() === 'get') {
+            xmlhttp.open('get', opts.url + '?' + data);
+            xmlhttp.send(null);
+
+        }
+
+        if (opts.type.toLowerCase() === 'post') {
+            xmlhttp.open('get', opts.url);
+            xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xmlhttp.send(data);
+        }
+    }
+
+    function isValidUsername(str) {
+        var reg = /^\w{3,10}$/;
+        return reg.test(str);
+    }
+
+    function isValidPassword(str) {
+        //判断长度
+        if (str.length < 6 || str.length > 15) {
+            return false;
+        }
+        //含有其他字符
+        if (/[^\w]/.test(str)) {
+            return false;
+        }
+        //只有一种情况时
+        if (/(^[a-z]+$)|(^[A-Z]+$)|(^_+$)|(^\d+$)/g.test(str)) {
+            return false;
+        }
+        return true;
+    }
+
+    function $(name) {
+        if (name[0] === '#') {
+            return document.querySelector(name);
+        } else {
+            return document.querySelectorAll(name);
+        }
+    }
+
+    var msg_un = $('.msg-un')[0];
+    var uName = $('#username');
+    var pwd1 = $('#password1');
+    var pwd2 = $('#password2');
+    var msg_pwd1 = $('.msg-pwd1')[0];
+    var msg_pwd2 = $('.msg-pwd2')[0];
+    var btn = $('#btn-register');
+
+    var lock = false;
+    var checkName = false;
+
+    function addClass(obj, name) {
+        var classArr = obj.className.split(' ');
+        if (arguments.length > 1) {
+            for (var i = 1; i < arguments.length; i++) {
+                //判断类名为字符串且不在原class中时添加
+                if (typeof arguments[i] === 'string' &&
+                    classArr.indexOf(arguments[i]) === -1) {
+                    classArr.push(arguments[i]);
+                }
+            }
+        }
+        obj.className = classArr.join(' ');
+    }
+
+    function removeClass(obj, item) {
+        var classArr = obj.className.split(' ');
+        if (arguments.length > 1) {
+            //删除元素时从后往前循环
+            for (var i = arguments.length - 1; i >= 0; i--) {
+                //取得类名在原数组中的index
+                var itemIndex = classArr.indexOf(arguments[i]);
+                //判断类名为字符串且在原class中时删除
+                if (typeof arguments[i] === 'string' && itemIndex !== -1) {
+                    classArr.splice(itemIndex, 1);
+                }
+            }
+        }
+        obj.className = classArr.join(' ');
+    }
+
+    uName.addEventListener('change', function(e) {
+        checkName = true;
+        checkUserName(e.target.value);
+    });
+
+    pwd1.addEventListener('change', function(e) {
+        checkPwd1(e.target.value);
+    });
+
+    pwd2.addEventListener('change', function(e) {
+        checkPwd2(e.target.value);
+    });
+
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        checkName = false;
+        if (checkUserName(uName.value) &&
+            msg_un.innerText !== MSG.USERNAME_EXIST &&
+            checkPwd1(pwd1.value) &&
+            checkPwd2(pwd2.value)) {
+
+            submit();
+        }
+
+    });
+
+    function checkUserName(name) {
+        var rtn = isValidUsername(name);
+
+        if (!rtn) {
+            addClass(uName, 'error');
+            msg_un.innerText = MSG.USERNAME_TYPE_ERROR;
+        } else if (checkName) {
+            removeClass(uName, 'error');
+            msg_un.innerText = MSG.USERNAME_USEABLE;
+            submit();
+        }
+        return rtn;
+    }
+
+    function checkPwd1(pwd) {
+        var rtn = isValidPassword(pwd);
+
+        if (!rtn) {
+            addClass(pwd1, 'error');
+            msg_pwd1.innerText = MSG.PASSWORD_TYPE_ERROR;
+
+        } else {
+            removeClass(pwd1, 'error');
+            msg_pwd1.innerText = MSG.EMPTY;
+            if (pwd === pwd2.value) {
+                removeClass(pwd2, 'error');
+                msg_pwd2.innerText = MSG.EMPTY;
+            }
+        }
+        return rtn;
+    }
+
+    function checkPwd2(pwd) {
+        var rtn = isValidPassword(pwd);
+
+        if (!rtn) {
+            addClass(pwd2, 'error');
+            msg_pwd2.innerText = MSG.PASSWORD_TYPE_ERROR;
+        } else if (pwd1.value !== pwd2.value) {
+            addClass(pwd2, 'error');
+            msg_pwd2.innerText = MSG.PASSWORD_NOT_MATCH;
+            rtn = false;
+
+        } else {
+            removeClass(pwd2, 'error');
+            msg_pwd2.innerText = MSG.EMPTY;
+        }
+        return rtn;
+    }
+
+    function submit() {
+        if (!lock) {
+            lock = true;
+            ajax({
+                url: '/submit',
+                type: 'get',
+                data: {
+                    username: uName.value,
+                    pwd: pwd1.value
+                },
+                success: function(rtn) {
+                    lock = false;
+                    if (rtn.status === 0) {
+                        if (!checkName) {
+                            alert('注册成功');
+                        }
+                    } else if (rtn.status === -1 && rtn.msg === 'USERNAME_EXIST') {
+                        addClass(uName, 'error');
+                        msg_un.innerText = MSG.USERNAME_EXIST;
+
+                    } else {
+                        alert('数据错误');
+                    }
+
+                },
+                error: function() {
+                    alert('ajax请求出错');
+                }
+            });
+        } else {
+            alert('请求已经提交,请等待');
+        }
+
+    }
+    </script>
+</body>
+
+</html>

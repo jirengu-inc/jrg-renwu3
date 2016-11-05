@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>24-2</title>
+    <style>
+    ul,
+    li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+    
+    li:hover {
+        background: green;
+        color: #fff;
+    }
+    
+    .btn {
+        margin: 10px auto;
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        width: 80px;
+        border: 1px solid #E27272;
+        border-radius: 3px;
+        text-align: center;
+        text-decoration: none;
+        color: #E27272;
+    }
+    </style>
+</head>
+
+<body>
+    <ul id="ct">
+        <li>内容1</li>
+        <li>内容2</li>
+    </ul>
+    <a href="#" id="loadMore" class='btn'>加载更多</a>
+    <script>
+    function $(name) {
+        if (name[0] === '#') {
+            return document.querySelector(name);
+        } else {
+            return document.querySelectorAll(name);
+        }
+    }
+
+    function ajax(opts) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var result = JSON.parse(xmlhttp.responseText);
+                opts.success(result);
+            }
+
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 404) {
+                opts.error();
+            }
+
+        };
+
+        var tmpArr = [];
+        for (var key in opts.data) {
+            tmpArr.push(key + "=" + opts.data[key]);
+        }
+        var data = tmpArr.join('&');
+
+        if (opts.type.toLowerCase() === 'get') {
+            xmlhttp.open('get', opts.url + '?' + data);
+            xmlhttp.send(null);
+
+        }
+
+        if (opts.type.toLowerCase() === 'post') {
+            xmlhttp.open('get', opts.url);
+            xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xmlhttp.send(data);
+        }
+    }
+
+    var ct = $('#ct');
+    var lock = false;
+
+    function insertElement(data) {
+        for (var i = 0; i < data.length; i++) {
+            var li = document.createElement('li');
+            li.innerText = data[i];
+            ct.appendChild(li);
+        }
+    }
+    var start = 3,
+        len = 4;
+
+    $('#loadMore').addEventListener('click', function(e) {
+        e.preventDefault();
+        $('#loadMore').innerText = '加载中...';
+        if (!lock) {
+            lock = true;
+            ajax({
+                url: '/getMore',
+                type: 'get',
+                data: {
+                    start: start,
+                    len: len
+                },
+                success: function(rtn) {
+                    lock = false;
+                    if (rtn.status === 0) {
+                        insertElement(rtn.data);
+                        start += len;
+                    } else {
+                        alert('数据错误');
+                    }
+                    $('#loadMore').innerText = '加载更多';
+                },
+                error: function() {
+                    alert('ajax请求出错');
+                }
+            });
+        }
+
+    });
+    </script>
+</body>
+
+</html>
