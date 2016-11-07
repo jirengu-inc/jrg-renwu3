@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+  <style>
+  .ct{
+    width:200px;
+    height:200px;
+    position:relative;
+    margin:50 auto;
+    border:1px solid #ccc;
+    perspective:1200px;
+  }
+    #cube{
+      width: 100%;
+      height: 100%;
+      position:absolute;
+      transform-style:preserve-3d;
+      animation:spining 4s infinite;
+    }
+    @keyframes spining{
+      0%{
+        transform:translateZ(-100px) rotateX（0deg）
+          rotateY（0deg） rotateZ（0deg）;
+      }
+   100% {
+        transform: translateZ( -100px) rotateX( 360deg) rotateY( 360deg) rotateZ(360deg);
+      }
+    }
+
+    #cube .front{
+      background-color:red;
+      transform:translateZ(100px);
+    }
+    #cube .back{
+      background-color: yellow;
+      transform:rotateX( -180deg) translateZ(100px) ;
+    }
+    #cube .right{
+     background-color:blue;
+      transform:rotateX(90deg) translateZ(100px);
+   }
+     #cube .left{
+     background-color:green;
+      transform:rotateX(-90deg) translateZ(100px);
+    }
+      #cube .top{
+     background-color:black;
+      transform:rotateY(90deg) translateZ(100px);
+    }
+      #cube .bottom{
+     background-color:pink;
+      transform:rotateY(-90deg) translateZ(100px);
+    }
+
+    #cube figure{
+      width: 200px;
+      height: 200px;
+      display:black;
+      position:absolute;
+      border:2px solid black;
+      font-size:120px;
+      color:white;
+      text-align:center;
+      margin:0;
+
+    }
+
+  </style>
+</head>
+<body>
+<body>
+  <section class="ct">
+    <div id="cube">
+      <figure class="front">1</figure>
+      <figure class="back">2</figure>
+      <figure class="right">3</figure>
+      <figure class="left">4</figure>
+      <figure class="top">5</figure>
+      <figure class="bottom">6</figure>
+    </div>
+  </section>
+
+
+</div>
+</body>
+</html>
