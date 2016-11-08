@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>七巧板</title>
+    <script src="jquery.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <canvas id="canvas" width="1024" height="768"></canvas>
+    <script type="text/javascript">
+        //将要绘制的七巧板笔记存入一个对象中
+        var drawList = [{
+            p: [{
+                x: 0,
+                y: 0
+            }, {
+                x: 400,
+                y: 0
+            }, {
+                x: 200,
+                y: 200
+            }],
+            color: "yellow"
+        }, {
+            p: [{
+                x: 0,
+                y: 0
+            }, {
+                x: 200,
+                y: 200
+            }, {
+                x: 0,
+                y: 400
+            }],
+            color: "blue"
+        }, {
+            p: [{
+                x: 400,
+                y: 0
+            }, {
+                x: 400,
+                y: 200
+            }, {
+                x: 300,
+                y: 300
+            }, {
+                x: 300,
+                y: 100
+            }],
+            color: "pink"
+        }, {
+            p: [{
+                x: 300,
+                y: 100
+            }, {
+                x: 300,
+                y: 300
+            }, {
+                x: 200,
+                y: 200
+            }],
+            color: "black"
+        }, {
+            p: [{
+                x: 200,
+                y: 200
+            }, {
+                x: 300,
+                y: 300
+            }, {
+                x: 200,
+                y: 400
+            }, {
+                x: 100,
+                y: 300
+            }],
+            color: "red"
+        }, {
+            p: [{
+                x: 100,
+                y: 300
+            }, {
+                x: 200,
+                y: 400
+            }, {
+                x: 0,
+                y: 400
+            }],
+            color: "green"
+        }, {
+            p: [{
+                x: 400,
+                y: 200
+            }, {
+                x: 400,
+                y: 400
+            }, {
+                x: 200,
+                y: 400
+            }],
+            color: "#ccc"
+        }]
+
+        var can1 = $("canvas")[0]
+        var context = can1.getContext("2d")
+        function draw(block, ctxt) {
+            ctxt.beginPath()
+            ctxt.moveTo(block.p[0].x, block.p[0].y)
+            //第一个图形的第一个点是起点
+            for (var j = 1; j < block.p.length; j++) {
+                ctxt.lineTo(block.p[j].x, block.p[j].y)
+            }
+            ctxt.closePath()
+            ctxt.strokeStyle = "#333"
+            ctxt.stroke()
+            ctxt.fillStyle = block.color
+            ctxt.fill()
+        }
+        for (var i = 0; i < drawList.length; i++) {
+            draw(drawList[i], context)
+        }
+    </script>
+</body>
+
+</html><!--

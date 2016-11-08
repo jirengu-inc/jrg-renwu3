@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="jquery.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <canvas id="canvas" width="1024" height="768"></canvas>
+  <script type="text/javascript">
+
+    var can1 = $("canvas")[0]
+    var context1 = can1.getContext("2d")
+    context1.moveTo(200,100)
+    context1.lineTo(300,200)
+    context1.lineTo(400,200)
+    context1.lineTo(500,100)
+    context1.lineTo(600,100)
+    //从坐标(100,100)到(700,700)到(300,300),最后回到(100,100) 这是画了一个闭合的多边形
+
+    context1.lineWidth=1//线的宽度为5
+    context1.strokeStyle = "#005588"//指定线条颜色,以字符串的形式
+
+
+    //以上都是canvas的状态描述.canvas是基于状态进行绘制的
+    context1.stroke()//绘制
+
+
+
+
+
+
+
+    //////////////////////////////////////
+
+
+
+
+
+    var tangram=[
+{p:[{x:0,y:0},{x:400,y:0},{x:200,y:200}],color:"#caff67"},
+{p:[{x:0,y:0},{x:200,y:200},{x:0,y:400}],color:"#67becf"},
+{p:[{x:400,y:0},{x:400,y:200},{x:300,y:300},{x:300,y:100}],color:"#ef3d61"},
+{p:[{x:300,y:100},{x:300,y:300},{x:200,y:200}],color:"#f9f51a"},
+{p:[{x:200,y:200},{x:300,y:300},{x:100,y:400},{x:100,y:300}],color:"#a54c09"},
+{p:[{x:100,y:300},{x:200,y:400},{x:0,y:400}],color:"#fa8ccc"},
+{p:[{x:400,y:200},{x:400,y:400},{x:200,y:400}],color:"#f6ca29"}
+]
+  </script>
+</body>
+</html>
