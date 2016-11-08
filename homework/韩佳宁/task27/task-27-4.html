@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>全屏轮播</title>
+    <style>
+        html,
+        body ,
+        ul,
+        ol{
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body,
+        .carousel,
+        .img-ct {
+            height: 100%;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-ct {
+            font-size: 0;
+            position: relative;
+        }
+
+        .img-ct li {
+            float: left;
+            height: 100%;
+        }
+
+        .btn {
+            position: absolute;
+        }
+
+        .btn {
+            top: 50%;
+            margin-top: -20px;
+            display: bisAnimate;
+            width: 40px;
+            height: 40px;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 10px;
+        }
+
+        .pre {
+            left: 40px;
+        }
+
+        .next {
+            right: 40px;
+        }
+        .img-ct,
+        .bullet:after {
+            content: '';
+            display: bisAnimate;
+            clear: both;
+        }
+
+        .bullet {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bullet li {
+            float: left;
+            width: 60px;
+            height: 16px;
+            border-radius: 8px;
+            margin-right: 20px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .bullet .active {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul class="img-ct">
+            <li data-img="http://cdn.jirengu.com/book.jirengu.com/img/21.jpg"></li>
+            <li data-img="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg"></li>
+            <li data-img="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg"></li>
+            <li data-img="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></li>
+        </ul>
+        <a href="" class="next btn">></a>
+        <a href="" class="pre btn">
+            <</a>
+                <ul class="bullet">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li class='active'></li>
+                </ul>
+    </div>
+    <script src="jquery.min.js" charset="utf-8"></script>
+    <script>
+        var $imgCt = $('.img-ct'),
+            $nextBtn = $('.next'),
+            $preBtn = $('.pre'),
+            $bullet = $('.bullet').children(),
+            $imgs = $imgCt.children(),
+            imgCount = $imgs.length,//size()是一个不被推荐的方法,新版本jQuery已经删除这个API
+            isAnimate = false,
+            $width = $(window).width(),
+            $idx = 0
+
+
+        $imgs.css('width', $width)
+        $imgCt.css('width', $width * (imgCount + 2))//头尾都额外克隆了一个元素,所以要+2
+        $imgs.eq(imgCount - 1).after($imgs.first().clone())
+        $imgs.eq(0).before($imgs.eq(imgCount - 1).clone())
+        imgCount = $imgCt.children().length
+
+        $imgCt.children().eq(0).css({
+            'background-image': 'url(' + $imgs.eq(imgCount - 3).attr('data-img') + ')',
+            'background-size': 'cover'
+        })
+        $imgCt.children().eq(imgCount - 1).css({
+            'background-image': 'url(' + $imgs.eq(0).attr('data-img') + ')',
+            'background-size': 'cover'
+        })
+
+
+        $preBtn.on('click', function(e) {
+            playPre(($idx + imgCount - 1) % imgCount)
+        })
+        $nextBtn.on('click', function(e) {
+            playNext(($idx + 1) % imgCount)
+        })
+        $bullet.on('click', function() {
+            var idx = $(this).index()
+            $(this).siblings().removeClass('active')
+            $(this).addClass('active')
+            play(idx + 1)
+        })
+        $('.carousel').on('click', function(e) {
+            e.preventDefault()
+        })
+        $('.carousel').on('mouseleave', function() {
+            repeat()
+        })
+
+        function playNext(idx) {
+            if (isAnimate) return
+            isAnimate = true
+            if ($idx === 4) {
+                $imgCt.css('left', 0)
+                idx = 1
+            }
+            play(idx)
+        }
+
+        function playPre(idx) {
+            if (isAnimate) return
+            isAnimate = true
+            if ($idx === 0) {
+                $imgCt.css('left', -$width * (idx - 1))
+                idx = 3
+            }
+            play(idx)
+        }
+
+        function play(idx) {
+            var $img = $imgs.eq(idx - 1).attr('data-img')
+            $imgs.eq(idx - 1).css({
+                'background-image': 'url(' + $img + ')',
+                'background-size': 'cover'
+            })
+            $imgCt.animate({
+                'left': -$width * (idx)
+            }, 500, function() {
+                isAnimate = false
+            })
+            $idx = idx
+            $bullet.removeClass('active')
+            $bullet.eq(idx - 1).addClass('active')
+        }
+
+    </script>
+</body>
+
+</html>
