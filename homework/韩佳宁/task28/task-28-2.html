@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="jquery.min.js" charset="utf-8"></script>
+    <title>Document</title>
+    <style media="screen">
+        body {
+            margin: 0;
+            background: #ccc;
+        }
+
+        header,
+        footer {
+            background: black;
+            height: 40px;
+            line-height: 40px;
+            font-size: 30px;
+            color: white;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        div.block {
+            margin: 0 auto;
+            width: 768px;
+            height: 400px;
+        }
+
+        div.block:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        div.block nav {
+            background: yellow;
+            height: 24px;
+            margin-bottom: 10px;
+        }
+
+        div.aside {
+            float: left;
+            width: 120px;
+            height: 200px;
+            background: red;
+            text-align: center;
+        }
+
+        div.main {
+            float: right;
+            width: 600px;
+            height: 340px;
+            background: blue;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .panel {
+            position: fixed;
+            left: 0;
+            bottom: 300px;
+        }
+
+        .panel button {
+          width: 80px;
+          line-height: 2;
+          margin: 10px;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header>header</header>
+    <div class="block">
+        <nav>nav</nav>
+        <div class="aside">.aside</div>
+        <div class="main">.main</div>
+    </div>
+    <div class="block">
+        <nav>nav</nav>
+        <div class="aside">.aside</div>
+        <div class="main">.main</div>
+    </div>
+    <div class="block">
+        <nav>nav</nav>
+        <div class="aside">.aside</div>
+        <div class="main">.main</div>
+    </div>
+    <div class="block">
+        <nav>nav</nav>
+        <div class="aside">.aside</div>
+        <div class="main">.main</div>
+    </div>
+    <div class="panel">
+        <button id="nav" type="button" name="button">点我stickup所有nav</button>
+        <button id="aside" type="button" name="button">点我stickup所有.aside</button>
+        <button id="main" type="button" name="button">点我stickup所有.main</button>
+    </div>
+    <footer>footer</footer>
+    <script src="stickup.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $("#nav").on('click', function(event) {
+            $("nav").each(function() {
+                $(this).stickup()
+            })
+        })
+
+        $("#aside").on('click', function(event) {
+            $(".aside").each(function() {
+                $(this).stickup()
+            })
+        })
+        $("#main").on('click', function(event) {
+            $(".main").each(function() {
+                $(this).stickup()
+            })
+        })
+    </script>
+</body>
+
+</html>

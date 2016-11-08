@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>可复用的淡入淡出式轮播</title>
+		<style type="text/css">
+			html,
+			body,
+			ul,
+			li,
+			a {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				text-decoration: none;
+			}
+
+			.clearfix {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			.carousel {
+				position: relative;
+				width: 480px;
+				height: 360px;
+				overflow: hidden;
+			}
+
+			.imgs-ct {
+				position: relative;
+			}
+
+			.carousel .imgs-ct img {
+				width: 480px;
+				height: 360px;
+			}
+
+			.carousel .imgs-ct li {
+				position: absolute;
+				display: none;
+			}
+
+			.btn {
+				position: absolute;
+				top: 50%;
+				margin-top: -20px;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				background: #bbb;
+				color: #fff;
+				border-radius: 100%;
+				opacity: 0.6
+			}
+
+			.btn:hover {
+				opacity: 1;
+			}
+
+			.pre {
+				left: 20px;
+			}
+
+			.next {
+				right: 20px;
+			}
+
+			.panel {
+				position: absolute;
+				bottom: 15px;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+
+			.panel li {
+				width: 20px;
+				height: 8px;
+				border-radius: 4px;
+				background: #aaa;
+				display: inline-block;
+				cursor: pointer;
+			}
+
+			.carousel .panel .active {
+				background: black;
+			}
+		</style>
+		<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div class="carousel">
+			<ul class="imgs-ct clearfix">
+				<li data-id=0>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/21.jpg"></a>
+				</li>
+				<li data-id=1>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a>
+				</li>
+				<li data-id=2>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a>
+				</li>
+				<li data-id=3>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg"></a>
+				</li>
+				<li data-id=3>>
+					<a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" /></a>
+				</li>
+			</ul>
+			<a class="pre btn" href="#"><</a>
+			<a class="next btn" href="#">></a>
+			<ul class="panel">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="carousel">
+			<ul class="imgs-ct clearfix">
+
+				<li data-id=3>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg"></a>
+				</li>
+				<li data-id=3>>
+					<a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" /></a>
+				</li>
+			</ul>
+			<a class="pre btn" href="#"><</a>
+			<a class="next btn" href="#">></a>
+			<ul class="panel">
+					<li class="active"></li>
+					<li></li>
+
+				</ul>
+		</div>
+		<div class="carousel">
+			<ul class="imgs-ct clearfix">
+				<li data-id=0>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/21.jpg"></a>
+				</li>
+				<li data-id=1>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a>
+				</li>
+				<li data-id=2>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a>
+				</li>
+				<li data-id=3>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg"></a>
+				</li>
+				<li data-id=3>>
+					<a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" /></a>
+				</li>
+			</ul>
+			<a class="pre btn" href="#"><</a>
+			<a class="next btn" href="#">></a>
+			<ul class="panel">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="carousel">
+			<ul class="imgs-ct clearfix">
+				<li data-id=0>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/21.jpg"></a>
+				</li>
+				<li data-id=1>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a>
+				</li>
+				<li data-id=2>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a>
+				</li>
+				<li data-id=3>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg"></a>
+				</li>
+				<li data-id=3>>
+					<a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" /></a>
+				</li>
+			</ul>
+			<a class="pre btn" href="#"><</a>
+			<a class="next btn" href="#">></a>
+			<ul class="panel">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="carousel">
+			<ul class="imgs-ct clearfix">
+				<li data-id=0>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/21.jpg"></a>
+				</li>
+				<li data-id=1>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a>
+				</li>
+				<li data-id=2>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a>
+				</li>
+				<li data-id=3>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg"></a>
+				</li>
+				<li data-id=3>>
+					<a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" /></a>
+				</li>
+			</ul>
+			<a class="pre btn" href="#"><</a>
+			<a class="next btn" href="#">></a>
+			<ul class="panel">
+					<li class="active"></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+		</div>
+		<div class="carousel">
+			<ul class="imgs-ct clearfix">
+				<li data-id=0>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/21.jpg"></a>
+				</li>
+				<li data-id=1>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a>
+				</li>
+				<li data-id=2>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a>
+				</li>
+				<li data-id=3>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg"></a>
+				</li>
+				<li data-id=3>>
+					<a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" /></a>
+				</li>
+			</ul>
+			<a class="pre btn" href="#"><</a>
+			<a class="next btn" href="#">></a>
+			<ul class="panel">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(
+				(function() {
+					//原来的代码在获取元素的时候只考虑了一组轮播的情况
+					var $imgsCt = $('.imgs-ct'), // 原来只有一组,这次有多组
+						$curIdx = [], //当前图片序号自然也需要有多个,这里用数组来管理
+						$isAnimate = [], //状态锁也是多个
+						clock = [] //多个clock
+						//对$imgsCt进行遍历,在遍历的过程中,将每个轮播组件的相关属性push()进上述这些数组里
+						//在遍历的过程中对所有的轮播逐个绑定事件
+
+					var $panels = $imgsCt.siblings(".panel"), //多组控制条
+						$pre = $imgsCt.siblings(".pre"), //多组下一个
+						$next = $imgsCt.siblings(".next") //多组上一个
+
+					for(var i = 0; i < $imgsCt.length; i++) { //有几组轮播就遍历几次
+						$curIdx.push(0) //所有组的初始图片都是各自的0
+						$isAnimate.push(false) //各组的锁初始为false
+						var $ct = $imgsCt.eq(i) //$ct 代表 $imgsCt集合在遍历过程中被跳出来的实例
+
+						play($ct, 0) //第一个参数为 具体哪一个轮播,第二个参数是展示哪张图
+						autoPlay($ct) //自动播放
+
+						$pre.on("click", function(e) {
+							e.preventDefault()
+							var $ct = $(this).siblings(".imgs-ct")
+							playPrev($ct)
+						})
+						$next.on("click", function(e) {
+							e.preventDefault()
+							var $ct = $(this).siblings(".imgs-ct")
+							playNext($ct)
+						})
+						$panels.on("click", "li", function() {
+							var idx = $(this).index() //注意! index()返回的是所在DOM节点的次序,而非jquery集合中的次序
+							var $ct = $(this).parent().siblings(".imgs-ct")
+							play($ct, idx)
+						})
+					} //遍历结束
+
+					function autoPlay($ct) {
+						var ctIdx = $ct.parent().index()
+						clock[ctIdx] = setInterval(function() {
+							playNext($ct)
+						}, 5000)
+					}
+
+					function playNext($ct) {
+						var ctIdx = $ct.parent().index()
+						var imgCount = $ct.children().size()
+						play($ct, ($curIdx[ctIdx] + 1) % imgCount)
+					}
+
+					function playPrev($ct) {
+						var ctIdx = $ct.parent().index()
+						var imgCount = $ct.children().size()
+						play($ct, (imgCount + $curIdx[ctIdx] - 1) % imgCount)
+					}
+
+					function play($ct, idx) {
+						var $img = $ct.children('li')
+						var ctIdx = $ct.parent().index()
+						if($isAnimate[ctIdx]) return
+						$isAnimate[ctIdx] = true
+						$img.eq($curIdx[ctIdx]).fadeOut(1000)
+						$img.eq(idx).fadeIn(1000, function() {
+							$isAnimate[ctIdx] = false
+						})
+						$curIdx[ctIdx] = idx
+						setPanel($ct, idx)
+					}
+
+					function setPanel($ct, idx) {
+						var ctIdx = $ct.parent().index()
+						$panels.eq(ctIdx).children().eq(idx).addClass('active')
+						$panels.eq(ctIdx).children().eq(idx).siblings().removeClass('active')
+					}
+
+					function stopAutoPlay($ct) {
+						var ctIdx = $ct.parent().index()
+						clearInterval(clock[ctIdx])
+					}
+				})()
+			)
+		</script>
+	</body>
+
+</html>

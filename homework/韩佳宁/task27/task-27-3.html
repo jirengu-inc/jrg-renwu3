@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>task27-3</title>
+    <style>
+        html,body,ul {
+            margin:0;
+            padding:0;
+        }
+        ul,li {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        a>img {
+            vertical-align: bottom;
+        }
+        .wrap {
+            position: relative;
+            width:300px;
+            height: 200px;
+            overflow: hidden;
+        }
+        .img-ct {
+            position: absolute;
+        }
+        .clearfix:after {
+            content:"";
+            display: block;
+            clear: both;
+        }
+        .img-ct>li {
+            float: left;
+        }
+        .img-ct img {
+            width: 300px;
+            height: 200px;
+        }
+        .arrow {
+            position: absolute;
+            top:50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            border-radius:20px;
+            color:white;
+            background-color: #ccc;
+            opacity:.5;
+        }
+        .pre {
+            left:10px;
+        }
+        .next {
+            right:10px;
+        }
+        .arrow:hover {
+            opacity: 1;
+        }
+        .pointer {
+            position: absolute;
+            left:50%;
+            bottom:5px;
+            transform: translateX(-50%);
+        }
+        .pointer>li {
+            display: inline-block;
+            width: 30px;
+            height: 8px;
+            border-radius:4px;
+            background-color: #ccc;
+            cursor:pointer;
+        }
+        .pointer>li.active {
+            background-color: black;
+        }
+
+    </style>
+    <script src="jquery.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+    <div class="wrap">
+        <ul class="img-ct clearfix">
+            <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/21.jpg" alt="0"></a></li>
+            <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg" alt="1"></a></li>
+            <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg" alt="2"></a></li>
+            <li><a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg" alt="3"></a></li>
+        </ul>
+        <a href="javascript:void(0)" class="pre arrow"><</a>
+        <a href="javascript:void(0)" class="next arrow">></a>
+        <ul class="pointer">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    下面的一排控制条到底叫做panel ,bullet还是pointer好呢?
+    <script>
+        var $imgCt = $(".img-ct")
+        var $items = $imgCt.children()
+        var width = $items.width()
+        var $pre = $(".pre")
+        var $next = $(".next")
+        var $pointer = $(".pointer")
+        var curIndex = 0
+        var isLoad = false
+
+        $items.last().clone().prependTo($imgCt)
+        $items.first().clone().appendTo($imgCt)
+
+        var imgCount = $imgCt.children().length
+        //低版本的jQuery用size() 高版本的用length属性
+        $imgCt.css({
+            width:imgCount*width,
+            left:0-width
+        })
+
+        function play(index) {
+            if (isLoad) return
+            isLoad = true
+
+            $imgCt.animate({left:index*(-width)},1000,function () {
+                if (index == (imgCount-1)) {
+                    $imgCt.css('left',-width)
+                    curIndex = 1
+                }else if (index == 0) {
+                    $imgCt.css('left',-width*(imgCount-2))
+                    curIndex = (imgCount-2)
+                }else {
+                    curIndex = index
+                }
+                $pointer.children().removeClass("active").eq(curIndex-1).addClass("active")
+                isLoad =  false
+            })
+
+        }
+        function playNext() {
+            play((curIndex+1)%imgCount)
+        }
+        function playPrev() {
+            play((curIndex-1+imgCount)%imgCount)
+        }
+        $pointer.on("click","li",function (e) {
+            var idx = $(this).index()+1
+            play(idx)
+        })
+        $pre.on("click",function (e) {
+            playPrev()
+        })
+        $next.on("click",function (e) {
+            playNext()
+        })
+
+    </script>
+</body>
+</html>

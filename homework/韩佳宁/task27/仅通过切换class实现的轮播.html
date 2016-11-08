@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>通过切换class实现轮播</title>
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<style type="text/css">
+		html,
+		body,
+		ol {
+			margin: 0;
+			padding: 0;
+		}
+
+		ol {
+			list-style: none
+		}
+		/*插件样式*/
+
+		x-slides {
+			display: block;
+		}
+
+		x-slides>.view>ol {
+			position: relative;
+		}
+
+		x-slides>.view>ol>li {
+			display: none;
+			position: absolute;
+			/*这里控制切换时间*/
+			transition: all 2s;
+		}
+
+		x-slides>.view>ol>li.right {
+			position: absolute;
+			left: 100%;
+			top: 0;
+			display: block;
+			opacity: 0;
+			transform: translateX(100%);
+		}
+
+		x-slides>.view>ol>li.left {
+			position: absolute;
+			right: -100%;
+			top: 0;
+			display: block;
+			opacity: 0;
+			transform: translateX(-100%);
+		}
+
+		x-slides>.view>ol>li.active {
+			display: block;
+			left: 0;
+			opacity: 1;
+			transform: translateX(0);
+		}
+		/**/
+
+		.view {
+			width: 200px;
+			height: 200px;
+			overflow: hidden;
+		}
+
+		.item {
+			width: 200px;
+			height: 200px;
+			background: red;
+		}
+	</style>
+</head>
+
+<body>
+
+	<x-slides>
+		<div class="view">
+			<ol>
+				<li>
+					<div class="item">
+						<h2>111111111</h2>
+						<h2>111111111</h2>
+						<h2>111111111</h2>
+					</div>
+				</li>
+				<li>
+					<div class="item" style="background:blue;"><h2>22222222</h2>
+					<h2>22222222</h2>
+				<h2>22222222</h2></div>
+				</li>
+				<li>
+					<div class="item" style="background: yellow"><h2>33333333</h2>
+					<h2>33333333</h2>
+				<h2>33333333</h2></div>
+				</li>
+				<li>
+					<div class="item"><h2>44444444</h2>
+					<h2>44444444</h2>
+				<h2>44444444</h2></div>
+				</li>
+				<li>
+					<div class="item" style="background:blue;"><h2>55555555</h2>
+					<h2>55555555</h2>
+				<h2>55555555</h2></div>
+				</li>
+				<li>
+					<div class="item" style="background: yellow"><h2>66666666</h2>
+					<h2>66666666</h2>
+				<h2>66666666</h2></div>
+				</li>
+
+			</ol>
+		</div>
+
+	</x-slides>
+	<button id=btn1>back</button>
+	<button id=btn2>next</button>
+	<script type="text/javascript">
+
+
+		$slides = $('x-slides')//选中整个轮播组件
+		var current = 0//默认current为0
+		$slides.find('>.view>ol>li').eq(current).addClass('active')//为current指定张数添加active
+		var size = $slides.find(' .view>ol>li').length//检查张数
+
+		var next = function() {
+			if (current >= (size - 1)) {
+				var $next = $slides.find('>.view>ol>li').eq(0)
+				current = 0
+				$next.addClass('right')
+				$next.offset()
+				$next.removeClass('right').addClass('active')
+				$next.offset()
+				return
+			} else {
+				var $now = $slides.find('>.view>ol>li').eq(current) //当前正在展示的
+				var $next = $slides.find('>.view>ol>li').eq(current + 1)
+				current += 1
+			}
+			$next.addClass('right')
+			$next.offset()
+			$next.removeClass('right').addClass('active')
+			$next.siblings().offset()
+			$next.siblings().not($now).removeClass('active')
+		}
+
+
+		var back = function() {
+			var $now = $slides.find('>.view>ol>li').eq(current) //当前正在展示的
+			if (current <= 0) {
+				var $back = $slides.find('>.view>ol>li').eq((size - 1))
+				current = (size - 1)
+				console.log(current)
+			} else {
+				var $back = $slides.find('>.view>ol>li').eq(current - 1)
+				current -= 1
+			}
+			$back.addClass('left')
+			$back.offset()
+			$back.removeClass('left').addClass('active')
+			$back.offset()
+			$back.siblings().not($now).removeClass('active')
+		}
+		btn1.onclick = function() {
+			back()
+		}
+		btn2.onclick = function() {
+			next()
+		}
+	</script>
+</body>
+
+</html>

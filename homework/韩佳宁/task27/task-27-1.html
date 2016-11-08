@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>淡入淡出式轮播</title>
+		<style type="text/css">
+			html,
+			body,
+			ul,
+			li,
+			a {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				text-decoration: none;
+			}
+
+			.clearfix {
+				content: "";
+				display: block;
+				clear: both;
+			}
+
+			.carousel {
+				position: relative;
+				width: 480px;
+				height: 360px;
+				overflow: hidden;
+			}
+
+			.imgs-ct {
+				position: relative;
+			}
+
+			.carousel .imgs-ct img {
+				width: 480px;
+				height: 360px;
+			}
+
+			.carousel .imgs-ct li {
+				position: absolute;
+				display: none;
+			}
+
+			.btn {
+				position: absolute;
+				top: 50%;
+				margin-top: -20px;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				background: #bbb;
+				color: #fff;
+				border-radius: 100%;
+				opacity: 0.6
+			}
+
+			.btn:hover {
+				opacity: 1;
+			}
+
+			.pre {
+				left: 20px;
+			}
+
+			.next {
+				right: 20px;
+			}
+
+			.panel {
+				position: absolute;
+				bottom: 15px;
+				left: 50%;
+				transform: translateX(-50%);
+			}
+
+			.panel li {
+				width: 20px;
+				height: 8px;
+				border-radius: 4px;
+				background: #aaa;
+				display: inline-block;
+				cursor: pointer;
+			}
+
+			.carousel	.panel .active {
+				background: black;
+			}
+		</style>
+		<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<p>
+			淡入淡出式的轮播原理较为简单,只需要让当前正在展示的图片淡出,然后让即将展示的图片淡入即可.
+		</p>
+		<div class="carousel">
+			<ul class="imgs-ct clearfix">
+				<li data-id=0>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/21.jpg"></a>
+				</li>
+				<li data-id=1>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/25.jpg"></a>
+				</li>
+				<li data-id=2>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg"></a>
+				</li>
+				<li data-id=3>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg"></a>
+				</li>
+				<li data-id=3>>
+					<a href=""><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/></a></li>
+			</ul>
+			<a class="pre btn" href="#"><</a>
+			<a class="next btn" href="#">></a>
+			<ul class="panel">
+					<li class="active"></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(
+				(function() {
+					var $imgCt = $('.imgs-ct'), //展示窗口
+						$items = $imgCt.children(), //所有装载图片的li
+						$pre = $('.pre'), //上一个按钮
+						$next = $('.next'), //下一个按钮
+						$panel = $('.panel'), //控制条
+						imgWidth = $items.width(), //获取图片宽度
+						imgCount = $imgCt.children().size(), //统计一共有几张图
+						curIdx = 0,//当前被选中的图片 从0开始
+						isAnimate = false //给切换行为上锁,当动画正在进行时禁止换图
+
+					$next.on('click', function() {
+						playNext() //点击下一个按钮时执行playNext()
+					})
+					$pre.on('click', function() {
+						playPre() //点击上一个按钮时执行playPre()
+					})
+					$panel.find('li').on('click', function() {
+						var idx = $(this).index() //当控制条中某个li被点击时
+						play(idx) //以被点击的元素的序号为参数执行play(idx)
+					})
+
+					play(0) //初始状态为0
+					autoPlay() //启用自动播放
+
+					function playNext() {
+						play((curIdx + 1) % imgCount)//使用%运算 保证能从 最后一个数跳会开始
+					}
+
+					function playPre() {
+						play((imgCount + curIdx - 1) % imgCount)
+					}
+
+					// fadeOut() 方法使用淡出效果来隐藏被选元素，假如该元素是隐藏的。
+					// $(selector).fadeOut(speed,callback)
+					// fadeIn() 方法使用淡入效果来显示被选元素，假如该元素是隐藏的。
+					// $(selector).fadeIn(speed,callback)
+
+
+					function play(idx) {//展示 第idx 张图片
+						if(isAnimate) return//如果动画正在进行,停止切换
+						isAnimate = true    //把状态锁锁上
+ 						$items.eq(curIdx).fadeOut(500)//让上一张也就是 第curIdx张淡出
+						$items.eq(idx).fadeIn(500, function() {//让下一张也就是 idx张出现
+							isAnimate = false //动画完成后改变状态锁,允许切换
+						})
+						curIdx = idx//跟新curIdx
+						setpanel()//处理控制条颜色
+					}
+
+					function setpanel() {//此函数用于处理控制条的变色
+						$panel.children().removeClass('active')
+							.eq(curIdx).addClass('active')
+					}
+
+					function stopAuto() {//此函数用于阻止自动播放,方便以后扩展
+						clearInterval(clock)
+					}
+
+					function autoPlay() {
+						clock = setInterval(function() {
+							playNext()
+						}, 5000)//每5秒 执行一次playNext()
+					}
+
+				})()
+			)
+		</script>
+	</body>
+
+</html>
