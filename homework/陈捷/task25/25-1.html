@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>25-1 导航</title>
+    <style>
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    .nav {
+        width: 200px;
+        background-color: MediumVioletRed;
+    }
+    
+    .item {
+        position: relative;
+    }
+    
+    .item.hover .panel {
+        display: block;
+    }
+    
+    .title {
+        color: white;
+        font-size: 14px;
+        display: block;
+        padding: 10px 10px;
+        border-bottom: 1px solid orangered;
+    }
+    
+    .goto {
+        color: white;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+    
+    .panel {
+        border: 1px solid #ccc;
+        width: 200px;
+        font-size: 12px;
+        position: absolute;
+        top: 0;
+        left: 200px;
+        display: none;
+    }
+    
+    .panel li {
+        float: left;
+        width: 60px;
+        padding: 10px 20px;
+        text-align: center;
+    }
+    
+    .panel a {
+        color: #333;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li class="item">
+            <a class="title" href="Javascript:void(0)">珠宝玉器</a>
+            <span class="goto">></span>
+            <ul class="panel clearfix">
+                <li><a href="Javascript:void(0)">翡翠</a></li>
+                <li><a href="Javascript:void(0)">玉石</a></li>
+                <li><a href="Javascript:void(0)">玛瑙</a></li>
+                <li><a href="Javascript:void(0)">水晶</a></li>
+                <li><a href="Javascript:void(0)">钻石</a></li>
+                <li><a href="Javascript:void(0)">和田</a></li>
+                <li><a href="Javascript:void(0)">琥珀</a></li>
+                <li><a href="Javascript:void(0)">珍珠</a></li>
+            </ul>
+        </li>
+        <li class="item">
+            <a class="title" href="Javascript:void(0)">珠宝玉器</a>
+            <span class="goto">></span>
+            <ul class="panel clearfix">
+                <li><a href="Javascript:void(0)">翡翠</a></li>
+                <li><a href="Javascript:void(0)">钻石</a></li>
+                <li><a href="Javascript:void(0)">和田</a></li>
+                <li><a href="Javascript:void(0)">琥珀</a></li>
+                <li><a href="Javascript:void(0)">珍珠</a></li>
+            </ul>
+        </li>
+        <li class="item">
+            <a class="title" href="Javascript:void(0)">珠宝玉器</a>
+            <span class="goto">></span>
+            <ul class="panel clearfix">
+                <li><a href="Javascript:void(0)">和田</a></li>
+                <li><a href="Javascript:void(0)">琥珀</a></li>
+                <li><a href="Javascript:void(0)">翡翠</a></li>
+                <li><a href="Javascript:void(0)">钻石</a></li>
+                <li><a href="Javascript:void(0)">珍珠</a></li>
+            </ul>
+        </li>
+        <li class="item">
+            <a class="title" href="Javascript:void(0)">珠宝玉器</a>
+            <span class="goto">></span>
+            <ul class="panel clearfix">
+                <li><a href="Javascript:void(0)">和田</a></li>
+                <li><a href="Javascript:void(0)">琥珀</a></li>
+                <li><a href="Javascript:void(0)">珍珠</a></li>
+            </ul>
+        </li>
+        <li class="item">
+            <a class="title" href="Javascript:void(0)">珠宝玉器</a>
+            <span class="goto">></span>
+            <ul class="panel clearfix">
+                <li><a href="Javascript:void(0)">翡翠</a></li>
+                <li><a href="Javascript:void(0)">玉石</a></li>
+                <li><a href="Javascript:void(0)">玛瑙</a></li>
+                <li><a href="Javascript:void(0)">水晶</a></li>
+                <li><a href="Javascript:void(0)">琥珀</a></li>
+                <li><a href="Javascript:void(0)">珍珠</a></li>
+            </ul>
+        </li>
+    </ul>
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+<script>
+$('.item').on('mouseenter', function() {
+    $(this).addClass('hover');
+});
+
+$('.item').on('mouseleave', function() {
+    $(this).removeClass('hover');
+});
+</script>
+</body>
+
+</html>
