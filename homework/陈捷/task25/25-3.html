@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>25-3 代理</title>
+    <style>
+    body,
+    ul,
+    li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    
+    body {
+        font: 12px/150% Arial, Verdana, "\5b8b\4f53";
+        color: #666;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    a>img {
+        /* img形成一个新的BFC,使a中匿名行级盒子和img不在同一个BFC中 */
+        display: block;
+    }
+    
+    .clearfix {
+        *zoom: 1;
+    }
+    
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+    
+    .layout {
+        margin: 10px auto;
+        width: 706px;
+    }
+    
+    li.prod {
+        position: relative;
+        float: left;
+        border: 1px solid #eee;
+        margin-left: 20px;
+        margin-top: 20px;
+        width: 170px;
+        padding: 10px 25px;
+    }
+    
+    li.prod:nth-child(1),
+    li.prod:nth-child(2),
+    li.prod:nth-child(3) {
+        margin-top: 0;
+    }
+    
+    li.prod:nth-child(3n+1) {
+        margin-left: 0;
+    }
+    
+    .prod a img {
+        margin: 0 auto;
+    }
+    
+    .prod a .prod-name,
+    .prod a .prod-price {
+        color: #444;
+    }
+    
+    .prod-name {
+        height: 36px;
+    }
+    
+    .prod .cover.show {
+        display: block;
+    }
+    
+    .cover {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: none;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn {
+        display: inline-block;
+        border: 1px solid red;
+        color: red;
+        padding: 10px 15px;
+        border-radius: 3px;
+        text-align: center;
+        background: #fff;
+        cursor: pointer;
+    }
+    
+    .cover .btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 1px solid red;
+    }
+    
+    .btn-add {
+        margin-top: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+        <h1>珠宝首饰</h1>
+        <ul class="prod-ct clearfix">
+            <li class="prod">
+                <a href="javascript:void(0)">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <div class="prod-name">藏美千足金和田玉金镶玉路路通吊坠</div>
+                    <div class="prod-price">￥1699.00</div>
+                </a>
+                <div class="cover"><a class="btn" href="">立即抢购</a></div>
+            </li>
+            <li class="prod">
+                <a href="javascript:void(0)">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <div class="prod-name">藏美千足金和田玉金镶玉路路通吊坠</div>
+                    <div class="prod-price">￥1699.00</div>
+                </a>
+                <div class="cover"><a class="btn" href="">立即抢购</a></div>
+            </li>
+            <li class="prod">
+                <a href="javascript:void(0)">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <div class="prod-name">藏美千足金和田玉金镶玉路路通吊坠</div>
+                    <div class="prod-price">￥1699.00</div>
+                </a>
+                <div class="cover"><a class="btn" href="">立即抢购</a></div>
+            </li>
+            <li class="prod">
+                <a href="javascript:void(0)">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <div class="prod-name">藏美千足金和田玉金镶玉路路通吊坠</div>
+                    <div class="prod-price">￥1699.00</div>
+                </a>
+                <div class="cover"><a class="btn" href="">立即抢购</a></div>
+            </li>
+            <li class="prod">
+                <a href="javascript:void(0)">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <div class="prod-name">藏美千足金和田玉金镶玉路路通吊坠</div>
+                    <div class="prod-price">￥1699.00</div>
+                </a>
+                <div class="cover"><a class="btn" href="">立即抢购</a></div>
+            </li>
+            <li class="prod">
+                <a href="javascript:void(0)">
+                    <img src="http://img10.360buyimg.com/N3/jfs/t1360/330/897475737/123557/23624706/55b05e25N13d4ec5e.jpg" alt="">
+                    <div class="prod-name">藏美千足金和田玉金镶玉路路通吊坠</div>
+                    <div class="prod-price">￥1699.00</div>
+                </a>
+                <div class="cover"><a class="btn" href="">立即抢购</a></div>
+            </li>
+        </ul>
+        <a class="btn btn-add">添加</a>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+    var products = [{
+        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+        name: '珂兰 黄金手 猴哥款',
+        price: '￥405.00'
+    }, {
+        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+        name: '珂兰 黄金转运珠 猴哥款',
+        price: '￥100.00'
+    }, {
+        img: 'http://img10.360buyimg.com/N3/jfs/t2242/92/1446546284/374195/9196ac66/56af0958N1a723458.jpg',
+        name: '珂兰 黄金手链 3D猴哥款',
+        price: '￥45.00'
+    }];
+
+
+    //代理将事件绑定到父容器
+    $('.prod-ct').on('mouseenter', '.prod', function() {
+        $(this).find('.cover').addClass('show');
+    });
+
+    $('.prod-ct').on('mouseleave', '.prod', function() {
+        $(this).find('.cover').removeClass('show');
+    });
+
+    $('.btn-add').on('click', function() {
+        for (var i = 0; i < products.length; i++) {
+            var product = products[i];
+            //复制一个li对象
+            $newli = $('.prod').eq(0).clone();
+            //改变复制对象的img,name,price
+            $newli.find('img').attr('src', product.img);
+            $newli.find('.prod-name').text(product.name);
+            $newli.find('.prod-price').text(product.price);
+
+            $('.prod-ct').append($newli);
+        }
+
+    });
+    </script>
+</body>
+
+</html>
