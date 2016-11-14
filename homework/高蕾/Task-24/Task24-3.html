@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    ul,
+    li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+    }
+    
+    .left {
+        float: left;
+        width: 100px;
+        overflow: hidden;
+    }
+    
+    .left li,
+    .right li {
+        display: block;
+        height: 60px;
+        line-height: 30px;
+    }
+    
+    input {
+        border-radius: 2px;
+        border: 1px solid #ccc;
+        outline: none;
+        height: 20px;
+        padding-left: 5px;
+    }
+    
+    .right {
+        float: left;
+        width: 300px;
+        overflow: hidden;
+    }
+    
+    .clear {
+        overflow: hidden;
+    }
+    
+    span {
+        display: block;
+        height: 30px;
+        color: #ccc;
+    }
+    
+    a {
+        width: 50px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        color: #000;
+        display: block;
+        border: 1px solid #ccc;
+        background: #ccc;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-left: 100px;
+        font-size: 14px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="clear">
+        <h4>注册</h4>
+        <div class="left">
+            <ul>
+                <li>用户名:</li>
+                <li>密码:</li>
+                <li>再输一次:</li>
+            </ul>
+        </div>
+        <div class="right">
+            <ul>
+                <li>
+                    <input id="username" type="text" placeholder="用户名hsy已被注册"><span id="name-tip">只能是字母、数字、下划线，3-10个字符</span></li>
+                <li>
+                    <input id="psd" type="password"><span id="psd-tip">大写字母、小写、数字、下划线最少两种，6-15个字符</span></li>
+                <li>
+                    <input id="again" type="password" placeholder="再输一次密码"><span id="again-tip"></span></li>
+            </ul>
+        </div>
+    </div><a id="btn" href="javascript:void(0)">注册</a>
+</body>
+<script>
+var username = document.getElementById('username');
+var nametip = document.getElementById('name-tip');
+var psd = document.getElementById('psd');
+var psdtip = document.getElementById('psd-tip');
+var again = document.getElementById('again');
+var againtip = document.getElementById('again-tip');
+function isValidUsername(str) {
+    var a = /^\w{3,10}$/;
+    return a.test(str);
+}
+function isValidPassword(str) {
+    var a = /^\w{6,15}$/;
+    var kind = 0;
+    if (a.test(str)) {
+        var newexp = /\d/g;
+        if (newexp.test(str)) {
+            kind++;
+        }
+        newexp = /_/g;
+        if (newexp.test(str)) {
+            kind++;
+        }
+        newexp = /[A-Z]/g;
+        if (newexp.test(str)) {
+            kind++;
+        }
+        newexp = /[a-z]/g;
+        if (newexp.test(str)) {
+            kind++;
+        }
+        if (kind >= 2) {
+            return true;
+        }
+    }
+    return false;
+}
+function isValidName() {
+    if (!isValidUsername(username.value)) {
+        username.style.borderColor = "red";
+        nametip.innerText = "用户名格式不正确";
+        return false;
+    } else {
+        username.style.borderColor = "#ccc";
+        nametip.innerText = "只能是字母、数字、下划线，3-10个字符";
+        return true;
+    }
+}
+function isValidPsd() {
+    if (!isValidPassword(psd.value)) {
+        psd.style.borderColor = "red";
+        psdtip.innerText = "密码格式不正确";
+        return false;
+    } else {
+        psd.style.borderColor = "#ccc";
+        psdtip.innerText = "大写字母、小写、数字、下划线最少两种，6-15个字符";
+        return true;
+    }
+}
+function isValidAgain() {
+    if (again.value == "") {
+        again.style.borderColor = "red";
+        return false;
+    }
+    if (again.value != psd.value) {
+        again.style.borderColor = "red";
+        againtip.innerText = "两次输入密码不一致";
+        return false;
+    } else {
+        again.style.borderColor = "#ccc";
+        againtip.innerText = "";
+        return true;
+    }
+}
+function ajax(opts) {
+    var type = opts.type;
+    var url = opts.url;
+    var h1 = new XMLHttpRequest();
+    h1.onreadystatechange = function() {
+        if (h1.readyState == '4' && h1.status == '200') {
+            opts.success(JSON.parse(h1.responseText));
+        }
+        if (h1.status == '404') {
+            opts.error();
+        }
+    }
+    var str_data = "";
+    for (var item in opts.data) {
+        str_data += item + '=' + opts.data[item] + '&';
+    }
+    str_data = str_data.substr(0, str_data.length - 1);
+    if (type == "get") {
+        url += '?' + str_data;
+        h1.open(type, url, true);
+        h1.send();
+    } else {
+        h1.open(type, url, true);
+        h1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        h1.send(str_data);
+    }
+}
+function addcontent(con) {
+    if (con == 1) {
+        alert("正在注册中，请稍后……");
+    } else {
+        username.style.borderColor = "red";
+        nametip.innerText = "该用户名已经存在";
+    }
+}
+document.querySelector('#btn').addEventListener('click', function() {
+    if (!isValidName())
+        return;
+    if (!isValidPsd())
+        return;
+    if (!isValidAgain())
+        return;
+    ajax({
+        url: '3.php', //接口地址
+        type: 'get', // 类型， post 或者 get,
+        data: {
+            username: username.value,
+            psd: psd.value
+        },
+        success: function(data) {
+            addcontent(data);
+        },
+        error: function() {
+            console.log('出错了')
+        }
+    });
+});
+username.addEventListener('blur', function() {
+    if (username.value != "") {
+        if (!isValidUsername(username.value)) {
+             username.style.borderColor = "red";
+            nametip.innerText = "用户名格式不正确";
+            return;
+        }else{
+              username.style.borderColor = "#ccc";
+        nametip.innerText = "只能是字母、数字、下划线，3-10个字符";
+        }
+    }
+});
+psd.addEventListener('blur', function() {
+    if (psd.value != "") {
+        if (!isValidPassword(psd.value)) {
+             psd.style.borderColor = "red";
+            psdtip.innerText = "密码格式不正确";
+            return;
+        }else{
+              psd.style.borderColor = "#ccc";
+        psdtip.innerText = "大写字母、小写、数字、下划线最少两种，6-15";
+        }
+    }
+});
+again.addEventListener('blur', function() {
+    if (again.value != "") {
+        if (again.value != psd.value) {
+             again.style.borderColor = "red";
+            againtip.innerText = "两次输入密码不一致";
+            return;
+        }else
+        {
+             again.style.borderColor = "#ccc";
+            againtip.innerText = "";
+        }
+    }
+});
+</script>
+
+</html>

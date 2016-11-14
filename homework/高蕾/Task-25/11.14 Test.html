@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+  <style>
+    p{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="help">  
+<h3>提问1？</h3>  
+<p> A: 回答1。</p>  
+<h3>提问2？</h3>  
+<p > A:回答2</p>
+<h3>提问3？</h3>  
+<p > A:回答3</p>
+</div>
+<script  src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js">
+</script>
+
+<script>
+
+  $(document).ready(function(){
+      $(".help h3").click(function(){ 
+        $(this).next("p").slideToggle("fast").siblings("p:visible").slideUp("fast");  
+});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    ul,
+    li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    div li {
+        border: 1px solid #ccc;
+        display: block;
+        height: 40px;
+        margin-top: 10px;
+        line-height: 40px;
+        padding-left: 10px;
+        border-radius: 5px;
+    }
+    
+    li:hover {
+        background: green;
+        color: #fff;
+    }
+    
+    a {
+        text-decoration: none;
+        display: block;
+        margin: 10px auto;
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border: 1px solid #e27272;
+        border-radius: 5px;
+        color: #e27272;
+    }
+    </style>
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li>内容1</li>
+            <li>内容2</li>
+        </ul>
+    </div><a href="javascript:void(0)">加载更多</a>
+</body>
+<script>
+function ajax(opts) {
+    var type = opts.type;
+    var url = opts.url;
+    var h1 = new XMLHttpRequest();
+    h1.onreadystatechange = function() {
+        if (h1.readyState == '4' && h1.status == '200') {
+            opts.success(JSON.parse(h1.responseText));
+        }
+        if (h1.status == '404') {
+            opts.error();
+        }
+    }
+    var str_data = "";
+    for (var item in opts.data) {
+        str_data += item + '=' + opts.data[item] + '&';
+    }
+    str_data = str_data.substr(0, str_data.length - 1);
+    if (type == "get") {
+        url += '?' + str_data;
+        h1.open(type, url, true);
+        h1.send();
+    } else {
+        h1.open(type, url, true);
+        h1.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        h1.send(str_data);
+    }
+}
+function addcontent(con) {
+    var div = document.getElementsByTagName('div')[0];
+    for (var item in con) {
+        var new_li = document.createElement('li');
+        new_li.innerText = con[item];
+        div.appendChild(new_li);
+    }
+}
+document.querySelector('a').addEventListener('click', function() {
+    var con_li = document.getElementsByTagName('li');
+    ajax({
+        url: '2.php', //接口地址
+        type: 'get', // 类型， post 或者 get,
+        data: {
+            start: con_li.length,
+            len: 6
+        },
+        success: function(data) {
+            addcontent(data);
+        },
+        error: function() {
+            console.log('出错了')
+        }
+    });
+});
+</script>
+
+</html>
