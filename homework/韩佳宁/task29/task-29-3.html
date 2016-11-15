@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>加载更多</title>
+    <style>
+        html,
+        body,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #ct li {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        #load-more {
+            display: block;
+            margin: 10px auto;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #load-more img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .btn {
+            display: inline-block;
+            height: 32px;
+            line-height: 32px;
+            width: 80px;
+            border: 1px solid pink;
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            color: pink;
+        }
+
+        .hover {
+            background: red;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="ct">
+        <li>内容1</li>
+        <li>内容2</li>
+        <li>内容3</li>
+        <li>内容4</li>
+    </ul>
+    <a id="load-more" class="btn" href="#">加载更多</a>
+    <script type="text/javascript"></script>
+    <script>
+        /*
+        1) url: getData
+        2) 入参: { start: 4, len: 4 }
+        3) 回参:
+        {
+          status: 1,  1代表正常，0代表出错
+          data: [5,6,7,8] 传回来5个
+        }
+        */
+
+        var $loadMoreBtn = $('#load-more'),
+            $ct = $('#ct')
+
+        var cur = 2,
+            clock //异步执行
+
+        load() //初始状态先加载一次,否则打开后看到的是空白
+
+        $ct.on('mouseenter', 'li', function() {//li动态添加的,注意要事件代理
+            $(this).addClass('hover')
+        }).on('mouseleave', 'li', function() {
+            $(this).removeClass('hover')
+        })
+
+
+        $(window).on('scroll', function(e) {
+
+            //这种方法有的博客称之为 函数节流.
+            //原理就是把原本实时执行的操作改为隔一段时间执行
+            if (clock) {
+              clearTimeout(clock)//如果存在,清除
+            }
+            clock = setTimeout(function() {
+                if (!isVisible($loadMoreBtn)) return
+                load()
+            }, 300)
+        })
+
+        function load() {
+          //ajax请求
+            $.ajax({
+                url: 'getData.php',
+                dataType: 'json',
+                type: 'get',
+                data: {
+                    start: cur,
+                    len: 20
+                },
+                success: function(json) {
+                    onSuccess(json)
+                },
+                error: function() {
+                    onError()
+                }
+            })
+        }
+
+        function onSuccess(json) {//成功了做这个
+            console.log(json)
+            if (json.status == 1) {
+                append(json.data)
+                cur += 6
+            } else {
+                alert('通信失败')
+            }
+        }
+
+        function onError() {
+            alert('系统异常')
+        }
+
+        function append(arr) {// 添加新的元素
+            for (var i = 0; i < arr.length; i++) {
+                $ct.append('<li>' + arr[i] + '</li>')//参数的内容装填进正在组装的元素
+            }
+        }
+
+
+        //判断是否在可视区域
+        function isVisible($e) {
+            var winH = $(window).height(), //窗口高度
+                offsetH = $e.offset().top, //此元素垂直方向偏移
+                scrollH = $(window).scrollTop() //垂直滚动距离
+            if ((offsetH > scrollH) && (offsetH < scrollH + winH)) {//根据这三个参数的值进行判定
+                return true
+            }
+            return false
+        }
+    </script>
+</body>
+
+</html>

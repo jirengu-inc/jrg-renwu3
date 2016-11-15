@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>回到顶部</title>
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link href="" rel="stylesheet">
+	<style>
+		p {
+			line-height: 3;
+		}
+
+		#go-top {
+			position: fixed;
+			bottom: 15px;
+			right: 15px;
+			border: 2px solid black;
+			border-radius: 4px;
+			padding: 15px;
+			cursor: pointer;
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<p>内容1</p>
+	<p>内容2</p>
+	<p>内容3</p>
+	<p>内容4</p>
+	<p>内容5</p>
+	<p>内容6</p>
+	<p>内容7</p>
+	<p>内容8</p>
+	<p>内容9</p>
+	<p>内容10</p>
+	<p>内容11</p>
+	<p>内容12</p>
+	<p>内容13</p>
+	<p>内容14</p>
+	<p>内容15</p>
+	<p>内容16</p>
+	<p>内容17</p>
+	<p>内容18</p>
+	<p>内容19</p>
+	<p>内容20</p>
+	<p>内容21</p>
+	<p>内容22</p>
+	<p>内容23</p>
+	<p>内容24</p>
+	<p>内容25</p>
+	<p>内容26</p>
+	<p>内容27</p>
+	<p>内容28</p>
+	<p>内容29</p>
+	<p>内容30</p>
+	<p>内容31</p>
+	<p>内容32</p>
+	<p>内容33</p>
+	<p>内容34</p>
+	<p>内容35</p>
+	<p>内容36</p>
+	<p>内容37</p>
+	<p>内容38</p>
+	<p>内容39</p>
+	<p>内容40</p>
+	<p>内容41</p>
+	<p>内容42</p>
+	<p>内容43</p>
+	<p>内容44</p>
+	<p>内容45</p>
+	<p>内容46</p>
+	<p>内容47</p>
+	<p>内容48</p>
+	<p>内容49</p>
+	<p>内容50</p>
+	<p>内容51</p>
+	<p>内容52</p>
+	<p>内容53</p>
+	<p>内容54</p>
+	<p>内容55</p>
+	<script src="jquery.min.js"></script>
+	<script>
+		//方法1
+
+		(function() {
+			var $goTop = $("<div id='go-top'>回到顶部</div>")
+			$("body").append($goTop)
+
+
+			$(window).on('scroll', function(event) {
+				var offsetTop = $('body').scrollTop()
+					// scrollTop([val])
+					// 获取匹配元素相对滚动条顶部的偏移。
+					// 即
+					// 此方法对可见和隐藏元素均有效。
+				if (offsetTop > 100) { //如果offsetTop值大于100px 则展示  回到顶部按钮
+					$goTop.show()
+				} else {
+					$goTop.hide() //否则 隐藏
+				}
+			})
+
+
+			$goTop.on('click', function() { //点击则跳转到顶部
+				$(window).scrollTop(0)
+			})
+		})()
+
+
+		//
+		//
+		// 方法2,包装进对象里
+		// var goTop = {
+		// 		init: function() {
+		// 			if ($("#go-top").length > 0) { //如果这个集合选中了东西,那么长度就会大于零,说明存在
+		// 				return //既然存在就不需要初始化了
+		// 			}
+		// 			//不存在就初始化,创建回到头部这个元素
+		// 			var $goTop = $("<div id='#go-top'>回到顶部</div>")
+		// 			$("body").append($goTop) //添加到body的尾部
+		// 			this.$goTop = $goTop //this指的是 goTop 这个对象
+		// 			this.bind()
+		// 		},
+		// 		bind: {
+		//      var $this = this;
+		// 			$(window).on("scroll",function() {
+		// 				var offsetTop = $('body').scrollTop()
+		// 				if (offsetTop > 100) {
+		// 					$this.$goTop.show()
+		// 				} else {
+		// 					$this.$goTop.hide()
+		// 				}
+		// 			})
+		// 			this.$goTop.on('click',function() { //点击 回到头部按钮
+		// 					$(window).scrollTop(0)
+		// 				}
+		// 			}
+		// 		}
+		//   goTop.init()
+	</script>
+
+</body>
+
+</html>

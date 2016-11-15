@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>图片懒加载-简单</title>
+    <style>
+        ul,
+        li {
+            list-style: none;
+            margin: 0;
+        }
+        ul.container {
+            width: 960px;
+            margin: 0 auto;
+        }
+
+        ul.container li {
+            float: left;
+            margin: 5px 5px;
+        }
+
+        ul.container li img {
+            width: 300px;
+            height: 240px;
+        }
+        #go-top {
+    			position: fixed;
+    			bottom: 15px;
+    			right: 15px;
+    			border: 2px solid black;
+    			border-radius: 4px;
+    			padding: 15px;
+    			cursor: pointer;
+    			display: none;
+    		}
+    </style>
+</head>
+
+<body>
+    <ul class="container">
+      <!-- emmet li*5>img[ src="0.gif" alt="0.gif" data-src="$.jpg"] -->
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="1.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="2.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="3.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="4.jpg"></li>
+      <li><img src="0.gif" alt="0.gif" data-src="5.jpg"></li>
+    </ul>
+    <script src="jquery.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+          var clock
+          $(window).on('scroll', function() {
+              //把事件的执行写在for循环中,如果不做处理,每一次遍历就会执行一次.很消耗资源
+              //为了省去不必要的操作,注册一对setTimeout和clearTimeout,当事件触发一定事件和再执行
+              if (clock) { //如果clock存在  则清楚掉
+                  clearTimeout(clock)
+              }
+              clock = setTimeout(function() {
+                      checkShow()
+                  }, 400) //每0.4喵执行一次
+          })
+
+
+          //当刚打开此页面时,进行checkShow()检查
+          checkShow()
+
+
+          function checkShow() {
+              $('ul.container>li img').each(function() {
+                  var $this = $(this) //把this包装成一个jQuery对象
+                  if ($this.attr('isLoaded')) {//通过检查传入函数的元素的isLoaded值判断是否被加载了
+                      return
+                  }
+                  if (isShow($this)) {
+                      showImg($this)
+                  }
+              })
+          }
+
+          function isShow($e) {
+              var scrollH = $(window).scrollTop(),//获取窗口的scrollTop
+                  winH = $(window).height(),//获取窗口高度
+                  top = $e.offset().top//获取元素高度的偏移值
+
+              if (top < winH + scrollH) {//有上述三个值判定是否要加载图片
+                  return true
+              } else {
+                  return false
+              }
+          }
+
+          function showImg($e) {
+              $e.attr('src', $e.attr('data-src'))//把$e的data-src的值写入$e的src属性中,为每个元素装填图片的URL
+              $e.attr('isLoaded', true)//装填完URL后把$e的isLoaded改为true
+          }
+        //原本想把这些东西都封装进一个对象里,不过写出来的东西报错
+        //计划学习面向对象后重构
+        })()
+
+
+
+
+      //索性把代码1里的回到顶部放进来了
+      (function() {
+  			var $goTop = $("<div id='go-top'>回到顶部</div>")
+  			$("body").append($goTop)
+
+
+  			$(window).on('scroll', function(event) {
+  				var offsetTop = $('body').scrollTop()
+  					// scrollTop([val])
+  					// 获取匹配元素相对滚动条顶部的偏移。
+  					// 即
+  					// 此方法对可见和隐藏元素均有效。
+  				if (offsetTop > 100) { //如果offsetTop值大于100px 则展示  回到顶部按钮
+  					$goTop.show()
+  				} else {
+  					$goTop.hide() //否则 隐藏
+  				}
+  			})
+
+
+  			$goTop.on('click', function() { //点击则跳转到顶部
+  				$(window).scrollTop(0)
+  			})
+  		})()
+    </script>
+</body>
+</html>
