@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style media="screen">
+        .content {
+            position: relative;
+        }
+
+        .item {
+            position: absolute;
+            width: 170px;
+            margin-right: 10px;
+            margin-top: 10px;
+            transition: all 2s;
+        }
+
+        .h1 {
+            height: 250px;
+            background-color: #f4b300;
+        }
+
+        .h2 {
+            height: 750px;
+            background-color: #691BB8;
+        }
+
+        .h3 {
+            height: 320px;
+            background-color: #006ac1;
+        }
+
+        .h4 {
+            height: 40px;
+            background-color: yellow;
+        }
+
+        .h5 {
+            height: 120px;
+            background-color: red;
+        }
+
+        .h6 {
+            height: 90px;
+            background-color: #ccc;
+        }
+        #btn{
+          width: 25%;
+          height:80px;
+          font-size: 30px;
+        }
+    </style>
+    <script src="jquery.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <button id="btn" type="button" name="button">点我随机修改class</button>
+    <div class="content">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+        <div class="item">11</div>
+        <div class="item">12</div>
+        <div class="item">13</div>
+        <div class="item">14</div>
+        <div class="item">15</div>
+        <div class="item">16</div>
+        <div class="item">17</div>
+        <div class="item">18</div>
+        <div class="item">19</div>
+        <div class="item">20</div>
+        <div class="item">21</div>
+        <div class="item">22</div>
+        <div class="item">23</div>
+        <div class="item">24</div>
+        <div class="item">25</div>
+        <div class="item">26</div>
+        <div class="item">27</div>
+        <div class="item">28</div>
+        <div class="item">29</div>
+        <div class="item">30</div>
+        <div class="item">31</div>
+        <div class="item">32</div>
+        <div class="item">33</div>
+        <div class="item">34</div>
+        <div class="item">35</div>
+        <div class="item">36</div>
+        <div class="item">37</div>
+        <div class="item">38</div>
+        <div class="item">39</div>
+        <div class="item">40</div>
+        <div class="item">41</div>
+        <div class="item">42</div>
+        <div class="item">43</div>
+        <div class="item">44</div>
+        <div class="item">45</div>
+        <div class="item">46</div>
+        <div class="item">47</div>
+        <div class="item">48</div>
+        <div class="item">49</div>
+        <div class="item">50</div>
+        <div class="item">51</div>
+        <div class="item">52</div>
+        <div class="item">53</div>
+        <div class="item">54</div>
+        <div class="item">55</div>
+        <div class="item">56</div>
+        <div class="item">57</div>
+        <div class="item">58</div>
+        <div class="item">59</div>
+        <div class="item">60</div>
+        <div class="item">61</div>
+        <div class="item">62</div>
+        <div class="item">63</div>
+        <div class="item">64</div>
+        <div class="item">65</div>
+        <div class="item">66</div>
+        <div class="item">67</div>
+        <div class="item">68</div>
+        <div class="item">69</div>
+        <div class="item">70</div>
+        <div class="item">71</div>
+        <div class="item">72</div>
+        <div class="item">73</div>
+        <div class="item">74</div>
+        <div class="item">75</div>
+        <div class="item">76</div>
+        <div class="item">77</div>
+        <div class="item">78</div>
+        <div class="item">79</div>
+        <div class="item">80</div>
+        <div class="item">81</div>
+        <div class="item">82</div>
+        <div class="item">83</div>
+        <div class="item">84</div>
+        <div class="item">85</div>
+        <div class="item">86</div>
+        <div class="item">87</div>
+        <div class="item">88</div>
+        <div class="item">89</div>
+        <div class="item">90</div>
+        <div class="item">91</div>
+        <div class="item">92</div>
+        <div class="item">93</div>
+        <div class="item">94</div>
+        <div class="item">95</div>
+        <div class="item">96</div>
+        <div class="item">97</div>
+        <div class="item">98</div>
+        <div class="item">99</div>
+        <div class="item">100</div>
+        <div class="item">101</div>
+        <div class="item">102</div>
+        <div class="item">103</div>
+        <div class="item">104</div>
+        <div class="item">105</div>
+        <div class="item">106</div>
+        <div class="item">107</div>
+        <div class="item">108</div>
+        <div class="item">109</div>
+        <div class="item">110</div>
+        <div class="item">111</div>
+        <div class="item">112</div>
+        <div class="item">113</div>
+        <div class="item">114</div>
+        <div class="item">115</div>
+        <div class="item">116</div>
+        <div class="item">117</div>
+        <div class="item">118</div>
+        <div class="item">119</div>
+        <div class="item">120</div>
+      </div>
+
+    <script type="text/javascript">
+          //给元素随机分配class
+            function randomClass() {
+              var classArr = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+                  itemNum = $(".item").length
+
+              for (var i = 0; i < itemNum; i++) {
+                  var classIndex = Math.floor((Math.random() * classArr.length))
+                  console.log(classArr[classIndex])
+                  $(".item").eq(i).addClass(classArr[classIndex])
+              }
+            }
+            randomClass()
+            $("#btn").on('click',function() {
+                window.location.reload()
+            })
+
+           //瀑布流
+            function waterFall() {
+
+                var elementWidth = $('.item').outerWidth(true),//检测元素盒模型宽度
+                    colNum = parseInt($(window).width()/elementWidth),//算一下窗口能放下几列
+                    colSumHeight = []//用来储存每列的高度之和
+
+                for (var i = 0; i < colNum; i++) {//有几列就遍历几次
+                    colSumHeight.push(0)//每列高度初始都为 0
+                }
+
+                $('.item').each(function() {
+                    var $this = $(this),
+                        minSumHeight = colSumHeight[0],//初始最小高度所在位置
+                        idx = 0
+                    //需要知道当前最短的那列的高度 minSumHeight
+                    //以及这一列的下标 idx
+
+                    for (var i = 0; i < colSumHeight.length; i++) {
+                        if (colSumHeight[i] < minSumHeight) {//查看宽度最小的那列的下标是多少
+                            idx = i
+                            minSumHeight = colSumHeight[i]
+                        }
+                    }
+                    //虽然也可使用Math.min.apply(null,colSumHeight)的方法得到数组里的最小值,
+                    //但是没法知道到底是哪一列.所以还是用遍历的方法
+
+                    $this.css({//设置元素的定位参数
+                        left: elementWidth * idx,
+                        top: minSumHeight
+                    })
+                    colSumHeight[idx] += $this.outerHeight(true)//更新每列高度之和
+                })
+            }
+
+            waterFall()
+
+            $(window).on('resize', function(){//窗口宽度若是有变化就重新瀑布流
+            waterFall()
+            })
+        </script>
+ </body>
+
+</html>
