@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// String.prototype.getMostOften = function () {
+		// 	var 
+		// }
+
+		// var str = 'ahbbccdeddddfg';
+		// var ch = str.getMostOften();
+		// console.log(ch); //d , 因为d 出现了5次
+
+		String.prototype.getMostOften = function(){
+		      var json = {},
+		          max = 0,
+		          result;
+		    //for 循环string内的每一个字母 如果出现过这字字母就在后面的次数上+1，没出现过就 =1
+		    for(var i = 0;i<this.length;i++){
+		     if(json[this[i]] !== undefined){//if(json[this[i]]){
+		        json[this[i]] +=1;
+		     }else{
+		         json[this[i]] = 1;
+		     }
+		    }
+		   // console.log(json);
+		    //for循环json键值对，和max比大小
+		    for(var key in json){
+		       if(json[key]>max){
+		           max = json[key];
+		           result = key;
+		       }
+		    }
+		    return result + "出现了" + json[result] + "次";
+		};
+		var str = 'ahbbccdedddddfg';
+		var ch = str.getMostOften();
+		console.log(ch); //d , 因为d 出现了5次
+
+function isObjInstanceOffunc(obj,func) {
+	 var __proto__=obj.__proto__;
+	 do{
+	    if(__proto__===func.prototype) return true;
+		if(!__proto__) return false;
+	 }while(__proto__=__proto__.proto__)
+	 return false;
+}
+
+	</script>
+</body>
+</html>

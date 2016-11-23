@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>practice</title>
+</head>
+<body>
+	<script>
+
+	/* Object.create(proto [, propertiesObject ]),是ES5中提出的一种新的对象创建方式, 
+ 兼容性：只兼容IE9+，Chrome5+，Firefox 4.0+，Opear 11.60+,Safari 5+ 
+ 第一个参数是要继承的原型或null,第二个参数可选,是对象的属性描述符，里面可以添加一些自定义的属性和方法。 
+   propertiesObject:默认都为false 
+   数据属性： 
+      writable:是否可任意写 
+      configurable：是否能够删除，是否能够被修改 
+      enumerable：是否能用 for in 枚举 
+      value：值 
+  访问属性： 
+      get(): 访问 
+      set(): 设置 */
+		var obj = {
+		    a:function(){
+		        console.log(100)
+		    },
+		    b:function(){
+		        console.log(200)
+		    },
+		    c:function(){
+		        console.log(300)
+		    }
+		};
+		 newObj = {};
+		var newObj = Object.create(obj,{
+		    t1:{
+		        value:'yupeng',
+		        writable:true
+		    },
+		    bar: {
+		        configurable: false,
+		        get: function() { return bar; },
+		        set: function(value) { bar=value }
+		    }
+		})
+		console.log(newObj.a());//100
+		console.log(newObj.t1);//yupeng
+		newObj.t1='yupeng1'
+		console.log(newObj.t1);//yupeng1  如果writable:false则为yupeng
+		newObj.bar=201;
+		console.log(newObj.bar)//通过set设值201
+
+
+		// 初始定义
+		function Person(name, sex){
+		  this.name = name;
+		  this.sex = sex;
+		}
+		Person.prototype.printName=function(){
+		  console.log("name is " + this.name + ";Gender is " + this.sex);
+		}
+		function Student(name, sex, grade){
+		  Person.call(this, name, sex);
+		  this.grade=grade;
+		}
+		//  Object.creat创建法,实现创建原型对象，使Student继承Person的方法
+		function inherit(superType, subType){
+		    var _prototype  = Object.create(superType.prototype);
+		    _prototype.constructor = subType;//保证新原型函数的constructor指向函数本身
+		    subType.prototype = _prototype;
+		}
+
+		inherit(Person, Student);
+
+		//写完原型继承后再写自己的方法
+		Student.prototype.study=function () {
+			console.log(this.name + " study at " + this.grade);
+		}
+
+		var s = new Student("findmoon","male","senior");
+		s.printName();
+		s.study();
+
+		var hasOwn = new Student("Gloria","female","three")
+		console.log(hasOwn.hasOwnProperty("name"));
+		console.log(hasOwn.hasOwnProperty("sex"));
+		console.log(hasOwn.hasOwnProperty("grade"));
+		console.log(hasOwn.hasOwnProperty("study"));
+		console.log(hasOwn.hasOwnProperty("printName"));
+
+
+/*//polyfill的实现基于Object.prototype.hasOwnProperty。
+		if (typeof Object.create != 'function') {
+		  // Production steps of ECMA-262, Edition 5, 15.2.3.5
+		  // Reference: http://es5.github.io/#x15.2.3.5
+		  Object.create = (function() {
+		    //为了节省内存，使用一个共享的构造器
+		    function Temp() {}
+
+		    // 使用 Object.prototype.hasOwnProperty 更安全的引用 
+		    var hasOwn = Object.prototype.hasOwnProperty;
+
+		    return function (O) {
+		      // 1. 如果 O 不是 Object 或 null，抛出一个 TypeError 异常。
+		      if (typeof O != 'object') {
+		        throw TypeError('Object prototype may only be an Object or null');
+		      }
+
+		      // 2. 使创建的一个新的对象为 obj ，就和通过
+		      //    new Object() 表达式创建一个新对象一样，
+		      //    Object是标准内置的构造器名
+		      // 3. 设置 obj 的内部属性 [[Prototype]] 为 O。
+		      Temp.prototype = O;
+		      var obj = new Temp();
+		      Temp.prototype = null; // 不要保持一个 O 的杂散引用（a stray reference）...
+
+		      // 4. 如果存在参数 Properties ，而不是 undefined ，
+		      //    那么就把参数的自身属性添加到 obj 上，就像调用
+		      //    携带obj ，Properties两个参数的标准内置函数
+		      //    Object.defineProperties() 一样。
+		      if (arguments.length > 1) {
+		        // Object.defineProperties does ToObject on its first argument.
+		        var Properties = Object(arguments[1]);
+		        for (var prop in Properties) {
+		          if (hasOwn.call(Properties, prop)) {
+		            obj[prop] = Properties[prop];
+		          }
+		        }
+		      }
+
+		      // 5. 返回 obj
+		      return obj;
+		    };
+		  })();
+		}
+*/
+
+		
+
+		function create(obj){
+			    //为了节省内存，使用一个共享的构造器
+			function Temp() {}
+			var newobj = (function (obj) {
+			      // 1. 如果 O 不是 Object 或 null，抛出一个 TypeError 异常。
+			      if (typeof obj != 'object') {
+			        throw TypeError('Object prototype may only be an Object or null');
+			      }
+
+			      Temp.prototype = obj;
+			      var prot = new Temp();
+			      Temp.prototype = null;
+			      return prot;
+			  })(obj);
+			  return newobj;
+			}
+
+			var obj = {a: 1, b:2};
+			var obj2 = create(obj);
+			console.log(obj2.a); //1
+
+			function Person(name, sex){
+			    this.name = name;
+			    this.sex = sex;
+			}
+			function Male(name, sex, age){
+			    Person.call(this, name, sex);    //这里的 call 有什么作用
+			    this.age = age;
+			}
+
+
+
+
+			function Person(name, sex){
+			    this.name = name;
+			    this.sex = sex;
+			}
+
+			Person.prototype.getName = function(){
+			    return this.name;
+			};    
+
+			function Male(name, sex, age){
+			   Person.call(this,name,sex);
+			   this.age = age;
+			}
+
+			var _prototype  = Object.create(Person.prototype);
+		    _prototype.constructor = Male;
+		    Male.prototype = _prototype;
+
+		    Male.prototype.printName = function(){
+		        console.log("name is " + this.name);
+		    };
+			Male.prototype.getAge = function(){
+			    return this.age;
+			};
+
+			var ruoyu = new Male('若愚', '男', 27);
+			ruoyu.printName();
+
+
+	</script>
+</body>
+</html>

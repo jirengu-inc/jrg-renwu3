@@ -66,50 +66,50 @@
 		}
 
 
-		function GoTop($ct) {
-		       this.$ct=$ct;
-		       this.$target = $('<div>Go Top</div>');
-		   }
-		   GoTop.prototype.init=function () {
-		   		this.$target.hide();
-		   		this.$target.css({
-		   			cursor: 'pointer',
-		   			color: '#000',
-		   			position: 'fixed',
-		   			right: '80px',
-		   			bottom: '120px',
-		   			height: '50px',
-		   			'line-height': '50px',
-		   			width: '50px',
-		   			'border-radius': '50%',
-		   			background: '#f99'
-		   		});
-		   }
-		   GoTop.prototype.createNode=function () {
-		   		this.$ct.append(this.$target);
-		   }
-		   GoTop.prototype.gotop=function () {
-		       $(window).scrollTop(0);
-		   }
+			function GoTop($ct) {
+			   this.$ct=$ct;
+			   this.$target = $('<div>Go Top</div>');
+			}
+			GoTop.prototype.init=function () {
+					this.$target.hide();
+					this.$target.css({
+						cursor: 'pointer',
+						color: '#000',
+						position: 'fixed',
+						right: '80px',
+						bottom: '120px',
+						height: '50px',
+						'line-height': '50px',
+						width: '50px',
+						'border-radius': '50%',
+						background: '#f99'
+					});
+			}
+			GoTop.prototype.createNode=function () {
+					this.$ct.append(this.$target);
+			}
+			GoTop.prototype.gotop=function () {
+			   $(window).scrollTop(0);
+			}
 
-		   GoTop.prototype.bindEvent=function () {
+			GoTop.prototype.bindEvent=function () {
 			   	this.init();
-		   		var self = this;
-		       $(window).on('scroll', function(e){
-		           var offset = $('body').scrollTop();
-		           if(offset>100){
-		               self.$target.show();
-		           }else{
-		               self.$target.hide();
-		           }
-		       })
-		       this.$target.on('click', function(){
-		           self.gotop();
-		       });
-		   }
-		   var goTop = new GoTop($('body'));
-		   goTop.createNode();
-		   goTop.bindEvent();
+					var self = this;
+			   $(window).on('scroll', function(e){
+			       var offset = $('body').scrollTop();
+			       if(offset>100){
+			           self.$target.show();
+			       }else{
+			           self.$target.hide();
+			       }
+			   })
+			   this.$target.on('click', function(){
+			       self.gotop();
+			   });
+			}
+			var goTop = new GoTop($('body'));
+			goTop.createNode();
+			goTop.bindEvent();
 	</script>
 
 
