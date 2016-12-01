@@ -129,7 +129,7 @@
 				page: curPage
 			}
 		}).done(function(ret){
-			//console.log(ret.status);
+			console.log(ret);
 			if(ret && ret.status && ret.status.code === "0"){
 				place(ret.data);   //如果数据没问题，那么生成节点并摆放好位置
 				curPage++;
@@ -186,11 +186,45 @@ function waterFallPlace($nodes){
 		});
 
 		colSumHeight[idx] = $cur.outerHeight(true) + colSumHeight[idx];
-		$('#pic-ct').height(Math.max.apply(null,colSumHeight));
+		// $('#pic-ct').height(Math.max.apply(null,colSumHeight));
 	});
 
 }
 
+// function warterFall($nodes,colNum) {
+// 	this.$nodes = $nodes;
+// 	this.colNum = colNum;
+// 	this.colSumHeight = [];
+// 	for(var i=0; i<this.colNum; i++){
+// 		this.colSumHeight.push(0)
+// 	}
+// }
+
+// 	warterFall.prototype.waterFallPlace = function (){
+// 		this.$nodes.each(function(){
+// 			var $cur = $(this);//获取当前的node
+// 			var idx = 0,
+// 				minSumHeight = colSumHeight[0];
+
+// 			for(var i=0;i<colSumHeight.length; i++){
+// 				if(colSumHeight[i] < minSumHeight){
+// 					idx = i;
+// 					minSumHeight = colSumHeight[i];
+// 				}
+// 			}
+
+// 			$cur.css({
+// 				left: nodeWidth*idx,
+// 				top: minSumHeight,
+// 				opacity: 1
+// 			});
+
+// 			colSumHeight[idx] = $cur.outerHeight(true) + colSumHeight[idx];
+// 			// $('#pic-ct').height(Math.max.apply(null,colSumHeight));
+// 		});
+
+// 	}
+// }
 
 
 function renderData(items){

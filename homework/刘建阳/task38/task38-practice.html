@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<script src="http://apps.bdimg.com/libs/require.js/2.1.9/require.min.js"></script>
+	<script>
+		// requirejs.config({
+		// 			baseUrl: "task38"
+		// 		})
+		// var print = require('./task38-practice.js');
+		// print();
+
+
+		require(['task38-practice'], function (dependency){
+		　 dependency.printName();
+		});
+	</script>
+</body>
+</html>
