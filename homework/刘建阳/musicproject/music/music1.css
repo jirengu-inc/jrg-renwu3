@@ -107,7 +107,7 @@
 		.music-ct{
 			position: fixed;
 			top: 50px;
-			right: 500px;
+			right: 50px;
 		/*	width: 400px;
 			height: 560px;*/
 			display: table;/*//使用display table形成BFC解决拖动按钮和主页面产生的位置错乱问题*/
