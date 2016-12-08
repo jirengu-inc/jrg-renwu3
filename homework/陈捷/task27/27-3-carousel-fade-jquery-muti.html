@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>carousel-slide-jquery-muti</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="css/iconfont.css" rel="stylesheet">
+    <!-- 外部字体 -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <style>
+    html,
+    body,
+    ul,
+    li,
+    p {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body>div {
+        margin-top: 20px;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .clearfix {
+        *zoom: 1;
+    }
+    
+    .clearfix:after {
+        display: block;
+        content: '';
+        clear: both;
+    }
+    
+    .carousel {
+        position: relative;
+        left: 100px;
+        top: 100px;
+        width: 830px;
+        height: 360px;
+        overflow: hidden;
+        text-shadow: none;
+    }
+    
+    .carousel .img-ct,
+    .carousel .img-preview-ct,
+    .carousel .title {
+        position: absolute;
+    }
+    
+    .carousel .img-ct img,
+    .carousel .img-preview-ct img {
+        width: 830px;
+        height: 360px;
+    }
+    
+    .carousel .img-ct li {
+        float: left;
+    }
+    
+    .carousel .img-ct li a {
+        cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAABwSURBVEjH7ZJBEsAgCAMT/v/n9NCOSqe2oD2yNx1JggB4BCEFWyFASP2KMQE7ywWhe/tTRGCGogLk02tFctiW/SUgaMyQG4PdPzDn31rQbMb8FiAXgvsEJNax1yVlVGAjA93apP3HFhZTGIqiKH7iADB6HxPlHdNVAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE0LTA3LTA3VDEzOjQ5OjEwKzAyOjAwm7WiFAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNC0wNy0wN1QxMzo0OToxMCswMjowMOroGqgAAAAASUVORK5CYII="), move;
+    }
+    
+    .arrow {
+        position: absolute;
+        top: 50%;
+        margin: -15px 0 0 35px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background: #4E443C;
+        color: #fff;
+        box-shadow: 0 0 2px #999;
+        opacity: 0.8;
+        padding: 15px 0;
+        font-weight: bold;
+    }
+    
+    .arrow:hover {
+        opacity: 1;
+    }
+    
+    ul.bullet {
+        position: absolute;
+        z-index: 1;
+        font-size: 0;
+        bottom: 10px;
+        left: 512px;
+        border-radius: 12px;
+        padding: 4px 8px;
+        background-color: hsla(0, 0%, 100%, .3);
+    }
+    
+    ul.bullet li {
+        width: 12px;
+        height: 12px;
+        margin-right: 10px;
+        border-radius: 100%;
+        background: #fff;
+        display: inline-block;
+        cursor: pointer;
+    }
+    
+    ul.bullet li:last-child {
+        margin-right: 0;
+    }
+    
+    ul.bullet li.active {
+        background: #db192a;
+    }
+    
+    ul.bullet-img {
+        position: absolute;
+        z-index: 1;
+        font-size: 0;
+        bottom: 30px;
+        left: 512px;
+        transform: translate(-44px);
+    }
+    
+    ul.play-btn {
+        position: absolute;
+        z-index: 1;
+        bottom: 6px;
+        right: 185px;
+    }
+    
+    ul.play-btn li:hover {
+        cursor: pointer;
+        color: white;
+    }
+    
+    ul.play-btn li {
+        color: hsla(0, 0%, 100%, .3);
+        font-size: 24px;
+    }
+    
+    div.pre,
+    div.next {
+        position: absolute;
+        width: 100px;
+        height: 100%;
+        z-index: 2;
+        top: 0;
+        overflow: hidden;
+    }
+    
+    div.next {
+        width: 100px;
+        right: 0;
+    }
+    
+    div.next a {
+        z-index: 3;
+    }
+    
+    .img-next-ct li img {
+        position: absolute;
+        z-index: 2;
+        right: 0;
+    }
+    
+    .img-pre-ct li,
+    .img-next-ct li,
+    .bullet-img li,
+    .play-btn li,
+    .title li {
+        display: none;
+    }
+    
+    .img-pre-ct li.active,
+    .img-next-ct li.active,
+    .bullet-img li.active,
+    .play-btn li.active,
+    .title li.active {
+        display: block;
+    }
+    
+    .carousel .title {
+        width: 830px;
+        height: 121px;
+        z-index: 1;
+        overflow: hidden;
+        left: 100px;
+        bottom: 0;
+        top: auto;
+        font-size: 14px;
+        font-family: Montserrat, sans-serif;
+        cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAABwSURBVEjH7ZJBEsAgCAMT/v/n9NCOSqe2oD2yNx1JggB4BCEFWyFASP2KMQE7ywWhe/tTRGCGogLk02tFctiW/SUgaMyQG4PdPzDn31rQbMb8FiAXgvsEJNax1yVlVGAjA93apP3HFhZTGIqiKH7iADB6HxPlHdNVAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE0LTA3LTA3VDEzOjQ5OjEwKzAyOjAwm7WiFAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNC0wNy0wN1QxMzo0OToxMCswMjowMOroGqgAAAAASUVORK5CYII="), move;
+    }
+    
+    .carousel .title li {
+        float: left;
+        color: #fff;
+        width: 830px;
+        height: 121px;
+    }
+    
+    .carousel .title li span {
+        display: inline-block;
+        padding: 10px 12px;
+        font-size: 1.5em;
+        line-height: 1;
+        background-color: rgba(255, 255, 255, .3);
+    }
+    
+    .carousel .title li div {
+        max-width: 30%;
+        padding: 10px 12px;
+        margin-top: 6px;
+        background-color: rgba(255, 255, 255, .3);
+        text-align: left;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul class="img-ct clearfix">
+            <li>
+                <a href="#"><img src="img/hongkong.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/london.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/new_york.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/shanghai.jpg"></a>
+            </li>
+        </ul>
+        <div class="pre" href="#">
+            <a class="arrow">
+                <<</a>
+                    <ul class="img-pre-ct">
+                        <li>
+                            <a href="#"><img src="img/shanghai.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/hongkong.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/london.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/new_york.jpg"></a>
+                        </li>
+                    </ul>
+        </div>
+        <div class="next" href="#">
+            <a class="arrow">>></a>
+            <ul class="img-next-ct">
+                <li>
+                    <a href="#"><img src="img/london.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/new_york.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/shanghai.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/hongkong.jpg"></a>
+                </li>
+            </ul>
+        </div>
+        <ul class="title clearfix">
+            <li class='active'>
+                <span>Hong Kong</span>
+                <div>Hong Kong has the largest number of high-rises than any other urban agglomeration in the world</div>
+            </li>
+            <li>
+                <span>London</span>
+                <div>London has the fifth-or sixth-largest metropolitan area GDP in the world</div>
+            </li>
+            <li>
+                <span>New York</span>
+                <div>New York is home to the Statue of Liberty, a symbol of the United States</div>
+            </li>
+            <li>
+                <span>Shanghai</span>
+                <div>Shanghai has a rich collection of buildings and structures of various architectural styles</div>
+            </li>
+        </ul>
+        <ul class="bullet">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="bullet-img">
+            <li>
+                <a href="#"><img src="img/hongkong_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/london_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/new_york_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/shanghai_mini.jpg"></a>
+            </li>
+        </ul>
+        <ul class="play-btn">
+            <li class="play">
+                <i class="iconfont">&#xe643;</i>
+            </li>
+            <li class="stop active">
+                <i class="iconfont">&#xe60c;</i>
+            </li>
+        </ul>
+    </div>
+    <div class="carousel">
+        <ul class="img-ct clearfix">
+            <li>
+                <a href="#"><img src="img/hongkong.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/london.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/new_york.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/shanghai.jpg"></a>
+            </li>
+        </ul>
+        <div class="pre" href="#">
+            <a class="arrow">
+                <<</a>
+                    <ul class="img-pre-ct">
+                        <li>
+                            <a href="#"><img src="img/shanghai.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/hongkong.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/london.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/new_york.jpg"></a>
+                        </li>
+                    </ul>
+        </div>
+        <div class="next" href="#">
+            <a class="arrow">>></a>
+            <ul class="img-next-ct">
+                <li>
+                    <a href="#"><img src="img/london.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/new_york.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/shanghai.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/hongkong.jpg"></a>
+                </li>
+            </ul>
+        </div>
+        <ul class="title clearfix">
+            <li class='active'>
+                <span>Hong Kong</span>
+                <div>Hong Kong has the largest number of high-rises than any other urban agglomeration in the world</div>
+            </li>
+            <li>
+                <span>London</span>
+                <div>London has the fifth-or sixth-largest metropolitan area GDP in the world</div>
+            </li>
+            <li>
+                <span>New York</span>
+                <div>New York is home to the Statue of Liberty, a symbol of the United States</div>
+            </li>
+            <li>
+                <span>Shanghai</span>
+                <div>Shanghai has a rich collection of buildings and structures of various architectural styles</div>
+            </li>
+        </ul>
+        <ul class="bullet">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="bullet-img">
+            <li>
+                <a href="#"><img src="img/hongkong_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/london_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/new_york_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/shanghai_mini.jpg"></a>
+            </li>
+        </ul>
+        <ul class="play-btn">
+            <li class="play">
+                <i class="iconfont">&#xe643;</i>
+            </li>
+            <li class="stop active">
+                <i class="iconfont">&#xe60c;</i>
+            </li>
+        </ul>
+    </div>
+    <div class="carousel">
+        <ul class="img-ct clearfix">
+            <li>
+                <a href="#"><img src="img/hongkong.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/london.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/new_york.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/shanghai.jpg"></a>
+            </li>
+        </ul>
+        <div class="pre" href="#">
+            <a class="arrow">
+                <<</a>
+                    <ul class="img-pre-ct">
+                        <li>
+                            <a href="#"><img src="img/shanghai.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/hongkong.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/london.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/new_york.jpg"></a>
+                        </li>
+                    </ul>
+        </div>
+        <div class="next" href="#">
+            <a class="arrow">>></a>
+            <ul class="img-next-ct">
+                <li>
+                    <a href="#"><img src="img/london.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/new_york.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/shanghai.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/hongkong.jpg"></a>
+                </li>
+            </ul>
+        </div>
+        <ul class="title clearfix">
+            <li class='active'>
+                <span>Hong Kong</span>
+                <div>Hong Kong has the largest number of high-rises than any other urban agglomeration in the world</div>
+            </li>
+            <li>
+                <span>London</span>
+                <div>London has the fifth-or sixth-largest metropolitan area GDP in the world</div>
+            </li>
+            <li>
+                <span>New York</span>
+                <div>New York is home to the Statue of Liberty, a symbol of the United States</div>
+            </li>
+            <li>
+                <span>Shanghai</span>
+                <div>Shanghai has a rich collection of buildings and structures of various architectural styles</div>
+            </li>
+        </ul>
+        <ul class="bullet">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="bullet-img">
+            <li>
+                <a href="#"><img src="img/hongkong_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/london_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/new_york_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/shanghai_mini.jpg"></a>
+            </li>
+        </ul>
+        <ul class="play-btn">
+            <li class="play">
+                <i class="iconfont">&#xe643;</i>
+            </li>
+            <li class="stop active">
+                <i class="iconfont">&#xe60c;</i>
+            </li>
+        </ul>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="js/mouse_direction.js"></script>
+    <script>
+    var $carousels = $('body>div');
+
+    for (var i = 0; i < $carousels.length; i++) {
+
+        playCarousel($carousels.eq(i));
+
+    }
+
+    function playCarousel($carouselElement) {
+        var $ct = $carouselElement.find('.img-ct'),
+            $items = $ct.children(),
+            $titleItems = $carouselElement.find('.title').children(),
+            $pre = $carouselElement.find('.pre'),
+            $next = $carouselElement.find('.next'),
+            $preImgs = $carouselElement.find('.img-pre-ct').children(),
+            $nextImgs = $carouselElement.find('.img-next-ct').children(),
+            $bulletItems = $carouselElement.find('.bullet').children(),
+            $bulletImg = $carouselElement.find('.bullet-img'),
+            $miniItems = $bulletImg.children(),
+            $playBtn = $carouselElement.find('.play-btn'),
+            $palyBtnItems = $playBtn.children(),
+            miniLeft = $bulletImg.css('left'),
+            miniLeftVal = parseInt(miniLeft.substr(0, miniLeft.length - 2)), //缩略图起始位置的left值
+            imgWidth = $items.width(),
+            imgCount = $items.length;
+
+        var bulletGap = $bulletItems.outerWidth(true), //bullet子元素的中心间距
+            curIdx = 0,
+            isAuto = false,
+            showPre = false,
+            showNext = false,
+            isAnimate = false,
+            clock = 0;
+
+        //设置右侧预览图
+        $next.on('mouseenter', function() {
+            showNext = true;
+            setElementActive($nextImgs, true);
+        });
+
+        $next.on('mouseleave', function() {
+            showNext = false;
+            setElementActive($nextImgs);
+        });
+
+        $next.on('click', function() {
+            playNext();
+        });
+
+        //设置左侧预览图
+        $pre.on('mouseenter', function() {
+            showPre = true;
+            setElementActive($preImgs, true);
+        });
+
+        $pre.on('mouseleave', function() {
+            showPre = false;
+            setElementActive($preImgs);
+        });
+
+        $pre.on('click', function() {
+            playPre();
+        });
+
+        $bulletItems.on('click', function() {
+            play($(this).index());
+        });
+
+        //设置从bullet移入移出时的事件
+        $bulletItems.each(function() {
+            var that = this;
+            new MouseDirection(that, {
+
+                enter: function($element, dir) {
+                    var index = $(that).index();
+                    //设置缩略图的实际位置
+                    $bulletImg.css('left', miniLeftVal + bulletGap * index);
+                    //显示缩略图
+                    setElementActive($miniItems, true, index);
+                },
+                leave: function($element, dir) {
+                    //从上方以外的方向移出鼠标时.隐藏缩略图
+                    if (dir !== 'top') {
+                        setElementActive($miniItems);
+                    }
+                }
+            });
+        });
+
+        //设置移出缩略图时的事件
+        $bulletImg.on('mouseleave', function() {
+            setElementActive($miniItems);
+        });
+
+        $miniItems.on('click', function() {
+            var miniIndex = $(this).index();
+            if (miniIndex !== curIdx) {
+                play(miniIndex);
+            }
+        });
+
+        //设置开关自动播放事件
+        $playBtn.on('click', function() {
+            if (isAuto) {
+                stopAuto();
+            } else {
+                autoPlay();
+            }
+        });
+
+        autoPlay();
+
+        function playNext() {
+            play((curIdx + 1) % imgCount);
+
+        }
+
+        function playPre() {
+            play((imgCount + curIdx - 1) % imgCount);
+
+        }
+
+        function play(idx) {
+
+            if (!isAnimate) {
+                isAnimate = true;
+                $titleItems.eq(curIdx).fadeOut(1000);
+                $titleItems.eq(idx).fadeIn(1000);
+                $items.eq(curIdx).fadeOut(1000);
+                $items.eq(idx).fadeIn(1000, function() {
+
+                    if (showNext) {
+                        setElementActive($nextImgs, true);
+                    }
+
+                    if (showPre) {
+                        setElementActive($preImgs, true);
+                    }
+
+                    isAnimate = false;
+
+                });
+                curIdx = idx;
+                setElementActive($bulletItems, true);
+            }
+        }
+
+        function setElementActive($elements, isActive, index) {
+            var ele = $elements.removeClass('active');
+            if (isActive) {
+                var index = typeof index === 'undefined' ? curIdx : index;
+                ele.eq(index).addClass('active');
+            }
+        }
+
+        function stopAuto() {
+            isAuto = false;
+            clearInterval(clock);
+            setElementActive($palyBtnItems, true, 0);
+        }
+
+        function autoPlay() {
+            isAuto = true;
+            clock = setInterval(function() {
+                playNext();
+            }, 2000);
+            setElementActive($palyBtnItems, true, 1);
+        }
+    }
+    </script>
+</body>
+
+</html>
