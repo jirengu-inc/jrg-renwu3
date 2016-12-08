@@ -85,7 +85,7 @@ var musicPlay = (function(){
 				'<!--添加换肤功能<div id="themes" class="rf"><i class="active" data-themes="music1">人</i><i data-themes="music2">吗</i></div>-->'+
 				'<div class="music-title"><p class="title">枉凝眉</p>'+
 				'<span class="author">刘宽忍</span></div>'+
-				'<div class="music-icon" title="网页音乐播放器 ver3.6. by 刘建阳">'+
+				'<div class="music-icon" title="网页音乐播放器 ver4.2. by 刘建阳">'+
 				'<i class="iconfont">&#xe612;</i>'+
 				'</div></div>'+
 				'<div class="main">'+
@@ -127,14 +127,51 @@ var musicPlay = (function(){
 	};
 
 	musicPlayer.prototype.startInit = function(){
-		
-		var audio = document.getElementById('audio');//获取audio作为全局变量，方便直接使用.play();
-		this.audio = audio;
+		this.audio = document.getElementById('audio');//获取audio作为全局变量，方便直接使用.play();
 		this.drag($('.music-ct'));
 		this.showBtn();
 		// this.changeCss($('.music-ct'));
 		this.getRanSong();
+
+		if (this.isMobile()) {
+			$('.music-ct>i').hide();
+			$('.music').css({
+				right: 0,
+				top: 0,
+				display: 'block'
+			});
+
+			$(this.audio).attr('song-volume',0.6);//设置音量初始值,之后作为一个歌曲应当有的音量的标记
+
+			this.audio.volume = $(this.audio).attr('song-volume');
+			this.audio.play();
+			$('.play').html('<i class="iconfont">&#xe730;</i>');
+			$('.music-bg').addClass('active');
+			// console.log(this.audio)
+		}
+
 	};
+
+	musicPlayer.prototype.isMobile = function(){
+		var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+		var browser = navigator.userAgent.toLowerCase();
+		// var isMobile = false;
+		   
+		for (var i=0; i<mobileAgent.length; i++){ 
+			//console.log(mobileAgent.length);
+			if (browser.indexOf(mobileAgent[i])!=-1){
+
+				return true;
+				// isMobile = true;
+		   
+				//alert(mobileAgent[i]);
+				   
+				// location.href = "/wap/bjsjszygz/index.shtml?1474268515477";
+
+				// break; 
+			} 
+		}
+	}
 
 	musicPlayer.prototype.changeCss = function(){
 		var _self = this;
@@ -750,7 +787,7 @@ var musicPlay = (function(){
 					           $('.music-title').find('.author').text(author);
 								
 								
-								if ($('.music-start').attr('start')) {
+								if ($('.music-start').attr('start') || _self.isMobile()) {
 									// console.log(1);
 									_self.audio.volume = $(_self.audio).attr('song-volume');
 									_self.audio.play();//应该是对应出现，设置音量设置播放
