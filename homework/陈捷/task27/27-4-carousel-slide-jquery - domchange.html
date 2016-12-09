@@ -445,7 +445,8 @@
         if (!isAnimate) {
             isAnimate = true;
             var range = range || 1;
-            var range1 = range2 = range;
+            var range1 = range,
+                range2 = range;
             curIdx = (curIdx + range) % imgCount;
 
             $title.animate({
@@ -490,23 +491,27 @@
             var range = range || 1;
             curIdx = (imgCount + curIdx - range) % imgCount;
 
+            var range1 = range,
+                range2 = range;
+            while (range1-- > 0) {
+                $title.prepend($title.children().last());
+            }
+
             $title.animate({
                 left: '+=' + imgWidth * range
             }, function() {
-
-                if (curIdx === imgCount - 1) {
-                    $title.css('left', preWidth - imgWidth * imgCount);
-
-                }
+                $title.css('left', preWidth);
             });
 
+            while (range2-- > 0) {
+                $ct.prepend($ct.children().last());
+            }
             $ct.animate({
                 left: '+=' + imgWidth * range
             }, function() {
+                
                 isAnimate = false;
-                if (curIdx === imgCount - 1) {
-                    $ct.css('left', 0 - imgWidth * imgCount);
-                }
+                $ct.css('left', 0);
 
                 if (showPre) {
                     setElementActive($preImgs, true);
