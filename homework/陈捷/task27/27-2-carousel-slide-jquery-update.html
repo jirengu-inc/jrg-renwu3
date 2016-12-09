@@ -152,6 +152,7 @@
         z-index: 2;
         top: 0;
         overflow: hidden;
+        opacity: 0;
     }
     
     div.next {
@@ -159,29 +160,45 @@
         right: 0;
     }
     
+    div.pre a,
     div.next a {
         z-index: 3;
     }
     
-    .img-next-ct li
-    {
-        float: left;
+    .img-pre-ct,
+    .img-next-ct {
+        position: absolute;
+        left: 0;
+        height: 100%;
+        white-space: nowrap;
     }
+    
+    .img-pre-ct li img,
     .img-next-ct li img {
         /*position: absolute;*/
         z-index: 2;
-        /*right: 0;*/
+        right: 0;
+        width: 100px;
+        height: 100%;
     }
     
     .img-pre-ct li,
-    /*.img-next-ct li,*/
+    .img-next-ct li {
+        display: inline-block;
+        height: 100%;
+    }
+    
+    .img-pre-ct li:not(:first-child),
+    .img-next-ct li:not(:first-child) {
+        margin-left: -8px;
+    }
+    
     .bullet-img li,
     .play-btn li {
         display: none;
+        height: 100%;
     }
     
-    .img-pre-ct li.active,
-    .img-next-ct li.active,
     .bullet-img li.active,
     .play-btn li.active {
         display: block;
@@ -257,6 +274,9 @@
                         <li>
                             <a href="#"><img src="img/new_york.jpg"></a>
                         </li>
+                        <li>
+                            <a href="#"><img src="img/shanghai.jpg"></a>
+                        </li>
                     </ul>
         </div>
         <div class="next" href="#">
@@ -273,6 +293,9 @@
                 </li>
                 <li>
                     <a href="#"><img src="img/hongkong.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/london.jpg"></a>
                 </li>
             </ul>
         </div>
@@ -327,6 +350,8 @@
     <script src="js/mouse_direction.js"></script>
     <script>
     var $ct = $('.img-ct'),
+        $imgNextCt = $('.img-next-ct'),
+        $imgPreCt = $('.img-pre-ct'),
         $items = $ct.children(),
         $title = $('.title'),
         $titleItems = $title.children(),
@@ -348,8 +373,8 @@
     var bulletGap = $bulletItems.outerWidth(true), //bullet子元素的中心间距
         curIdx = 0,
         isAuto = false,
-        showPre = false,
-        showNext = false,
+        // showPre = false,
+        // showNext = false,
         isAnimate = false;
 
     $ct.prepend($items.last().clone());
@@ -370,13 +395,15 @@
 
     //设置右侧预览图
     $next.on('mouseenter', function() {
-        showNext = true;
-        setElementActive($nextImgs, true);
+        // showNext = true;
+        //setElementActive($nextImgs, true);
+        $next.css('opacity', 1);
     });
 
     $next.on('mouseleave', function() {
-        showNext = false;
-        setElementActive($nextImgs);
+        // showNext = false;
+        //setElementActive($nextImgs);
+        $next.css('opacity', 0);
     });
 
     $next.on('click', function() {
@@ -386,12 +413,14 @@
     //设置左侧预览图
     $pre.on('mouseenter', function() {
         showPre = true;
-        setElementActive($preImgs, true);
+        //setElementActive($preImgs, true);
+        $pre.css('opacity', 1);
     });
 
     $pre.on('mouseleave', function() {
         showPre = false;
-        setElementActive($preImgs);
+        //setElementActive($preImgs);
+        $pre.css('opacity', 0);
     });
 
     $pre.on('click', function() {
@@ -460,6 +489,31 @@
 
                 }
             });
+
+            $imgNextCt.animate({
+
+                left: '-=' + preWidth * range
+
+            }, function() {
+
+                if (curIdx === 0) {
+                    $imgNextCt.css('left', 0);
+                }
+
+            });
+
+            $imgPreCt.animate({
+
+                left: '-=' + preWidth * range
+
+            }, function() {
+
+                if (curIdx === 0) {
+                    $imgPreCt.css('left', 0);
+                }
+
+            });
+
             $ct.animate({
                 left: '-=' + imgWidth * range
             }, function() {
@@ -469,13 +523,13 @@
 
                 }
 
-                if (showNext) {
-                    //setElementActive($nextImgs, true);
-                }
+                // if (showNext) {
+                //     setElementActive($nextImgs, true);
+                // }
 
-                if (showPre) {
-                    setElementActive($preImgs, true);
-                }
+                // if (showPre) {
+                //     setElementActive($preImgs, true);
+                // }
 
                 setElementActive($bulletItems, true);
 
@@ -491,7 +545,7 @@
             isAnimate = true;
             var range = range || 1;
             curIdx = (imgCount + curIdx - range) % imgCount;
-            
+
             $title.animate({
                 left: '+=' + imgWidth * range
             }, function() {
@@ -501,7 +555,28 @@
 
                 }
             });
+            $imgNextCt.animate({
 
+                left: '+=' + preWidth * range
+
+            }, function() {
+
+                if (curIdx === 0) {
+                    $imgNextCt.css('left', 0 - preWidth * imgCount);
+                }
+
+            });
+            $imgPreCt.animate({
+
+                left: '+=' + preWidth * range
+
+            }, function() {
+
+                if (curIdx === 0) {
+                    $imgPreCt.css('left', 0 - preWidth * imgCount);
+                }
+
+            });
             $ct.animate({
                 left: '+=' + imgWidth * range
             }, function() {
@@ -511,7 +586,7 @@
                 }
 
                 if (showPre) {
-                    setElementActive($preImgs, true);
+                    //setElementActive($preImgs, true);
                 }
                 setElementActive($bulletItems, true);
             });
