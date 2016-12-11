@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>28-1</title>
+    <style>
+    #header {
+        background-color: red;
+        height: 80px;
+        margin-bottom: 20px;
+    }
+    
+    #nav {
+        background-color: blue;
+        height: 40px;
+    }
+    
+    #content {
+        min-height: 600px;
+        background-color: #ccc;
+        padding: 10px;
+    }
+    
+    #aside {
+        float: left;
+        width: 100px;
+        height: 400px;
+        background-color: green;
+    }
+    
+    #main {
+        padding-left: 10px;
+        background-color: #fff;
+        overflow: hidden;
+        height: 600px;
+    }
+    
+    #footer {
+        background-color: #000;
+        height: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="header">header</div>
+    <div id="nav">nav</div>
+    <div id="content">
+        <div id="aside">aside</div>
+        <div id="main">main</div>
+    </div>
+    <div id="footer"></div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="stick.js"></script>
+    <script>
+    $('#nav').stick();
+    </script>
+</body>
+
+</html>
