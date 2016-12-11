@@ -152,7 +152,6 @@
         z-index: 2;
         top: 0;
         overflow: hidden;
-        opacity: 0;
     }
     
     div.next {
@@ -171,6 +170,7 @@
         left: 0;
         height: 100%;
         white-space: nowrap;
+        opacity: 0;
     }
     
     .img-pre-ct li img,
@@ -274,7 +274,7 @@
                         <li>
                             <a href="#"><img src="img/new_york_left.jpg"></a>
                         </li>
-                        <li>
+                         <li>
                             <a href="#"><img src="img/shanghai_left.jpg"></a>
                         </li>
                     </ul>
@@ -373,8 +373,6 @@
     var bulletGap = $bulletItems.outerWidth(true), //bullet子元素的中心间距
         curIdx = 0,
         isAuto = false,
-        // showPre = false,
-        // showNext = false,
         isAnimate = false;
 
     $ct.prepend($items.last().clone());
@@ -395,15 +393,11 @@
 
     //设置右侧预览图
     $next.on('mouseenter', function() {
-        // showNext = true;
-        //setElementActive($nextImgs, true);
-        $next.css('opacity', 1);
+        $imgNextCt.css('opacity', 1);
     });
 
     $next.on('mouseleave', function() {
-        // showNext = false;
-        //setElementActive($nextImgs);
-        $next.css('opacity', 0);
+        $imgNextCt.css('opacity', 0);
     });
 
     $next.on('click', function() {
@@ -412,15 +406,12 @@
 
     //设置左侧预览图
     $pre.on('mouseenter', function() {
-        showPre = true;
-        //setElementActive($preImgs, true);
-        $pre.css('opacity', 1);
+        $imgPreCt.css('opacity', 1);
     });
 
     $pre.on('mouseleave', function() {
-        showPre = false;
-        //setElementActive($preImgs);
-        $pre.css('opacity', 0);
+        $imgPreCt
+            .css('opacity', 0);
     });
 
     $pre.on('click', function() {
@@ -523,14 +514,6 @@
 
                 }
 
-                // if (showNext) {
-                //     setElementActive($nextImgs, true);
-                // }
-
-                // if (showPre) {
-                //     setElementActive($preImgs, true);
-                // }
-
                 setElementActive($bulletItems, true);
 
                 isAnimate = false;
@@ -555,28 +538,32 @@
 
                 }
             });
+            
+
             $imgNextCt.animate({
 
                 left: '+=' + preWidth * range
 
             }, function() {
 
-                if (curIdx === 0) {
-                    $imgNextCt.css('left', 0 - preWidth * imgCount);
+                if (curIdx === imgCount - 1) {
+                    $imgNextCt.css('left', preWidth - preWidth * imgCount);
                 }
 
             });
+
             $imgPreCt.animate({
 
                 left: '+=' + preWidth * range
 
             }, function() {
 
-                if (curIdx === 0) {
-                    $imgPreCt.css('left', 0 - preWidth * imgCount);
+                if (curIdx === imgCount - 1) {
+                    $imgPreCt.css('left', preWidth - preWidth * imgCount);
                 }
 
             });
+
             $ct.animate({
                 left: '+=' + imgWidth * range
             }, function() {
@@ -585,9 +572,6 @@
                     $ct.css('left', 0 - imgWidth * imgCount);
                 }
 
-                if (showPre) {
-                    //setElementActive($preImgs, true);
-                }
                 setElementActive($bulletItems, true);
             });
         }

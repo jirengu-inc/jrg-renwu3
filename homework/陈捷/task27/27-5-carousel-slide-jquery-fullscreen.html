@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>carousel-slide-jquery-fullscreen</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="css/iconfont.css" rel="stylesheet">
+    <!-- 外部字体 -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <style>
+    html,
+    body,
+    ul,
+    li,
+    p {
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .clearfix {
+        *zoom: 1;
+    }
+    
+    .clearfix:after {
+        display: block;
+        content: '';
+        clear: both;
+    }
+    
+    html,
+    body,
+    .carousel,
+    .img-ct {
+        height: 100%;
+        width: 100%;
+    }
+    
+    .img-ct li div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: cover;
+        opacity: 0.8;
+    }
+    
+    .carousel {
+        position: relative;
+    }
+    
+    .carousel .img-ct,
+    .carousel .img-preview-ct,
+    .carousel .title {
+        position: absolute;
+    }
+    
+    .carousel .img-ct li {
+        float: left;
+        position: relative;
+        height: 100%;
+    }
+    
+    .carousel .img-ct li a {
+        cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAABwSURBVEjH7ZJBEsAgCAMT/v/n9NCOSqe2oD2yNx1JggB4BCEFWyFASP2KMQE7ywWhe/tTRGCGogLk02tFctiW/SUgaMyQG4PdPzDn31rQbMb8FiAXgvsEJNax1yVlVGAjA93apP3HFhZTGIqiKH7iADB6HxPlHdNVAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE0LTA3LTA3VDEzOjQ5OjEwKzAyOjAwm7WiFAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNC0wNy0wN1QxMzo0OToxMCswMjowMOroGqgAAAAASUVORK5CYII="), move;
+    }
+    
+    .arrow {
+        position: absolute;
+        top: 50%;
+        margin: -15px 0 0 35px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background: #4E443C;
+        color: #fff;
+        box-shadow: 0 0 2px #999;
+        opacity: 0.8;
+        padding: 15px 0;
+        font-weight: bold;
+    }
+    
+    .arrow:hover {
+        opacity: 1;
+    }
+    
+    ul.bullet {
+        position: absolute;
+        z-index: 1;
+        font-size: 0;
+        bottom: 10px;
+        left: 60%;
+        border-radius: 20px;
+        padding: 8px 16px;
+        background-color: hsla(0, 0%, 100%, .3);
+    }
+    
+    ul.bullet li {
+        width: 24px;
+        height: 24px;
+        margin-right: 20px;
+        border-radius: 100%;
+        background: #fff;
+        display: inline-block;
+        cursor: pointer;
+    }
+    
+    ul.bullet li:last-child {
+        margin-right: 0;
+    }
+    
+    ul.bullet li.active {
+        background: #db192a;
+    }
+    
+    ul.bullet-img {
+        position: absolute;
+        z-index: 1;
+        font-size: 0;
+        bottom: 51px;
+        left: 60%;
+        transform: translate(-30px);
+    }
+    
+    ul.play-btn {
+        position: absolute;
+        z-index: 1;
+        bottom: 4px;
+        left: 75%;
+    }
+    
+    ul.play-btn li:hover {
+        cursor: pointer;
+        color: white;
+    }
+    
+    ul.play-btn li {
+        color: hsla(0, 0%, 100%, .3);
+        font-size: 45px;
+    }
+    
+    div.pre,
+    div.next {
+        position: absolute;
+        width: 100px;
+        height: 100%;
+        z-index: 2;
+        top: 0;
+        overflow: hidden;
+    }
+    
+    div.next {
+        width: 100px;
+        right: 0;
+    }
+    
+    div.pre a,
+    div.next a {
+        z-index: 3;
+    }
+    
+    .img-pre-ct,
+    .img-next-ct {
+        position: absolute;
+        left: 0;
+        height: 100%;
+        opacity: 0;
+        white-space: nowrap;
+    }
+    
+    .img-pre-ct li img,
+    .img-next-ct li img {
+        z-index: 2;
+        right: 0;
+        width: 100px;
+        height: 100%;
+    }
+    
+    .img-pre-ct li,
+    .img-next-ct li {
+        display: inline-block;
+        height: 100%;
+    }
+    
+    .img-pre-ct li:not(:first-child),
+    .img-next-ct li:not(:first-child) {
+        margin-left: -8px;
+    }
+    
+    .bullet-img li,
+    .play-btn li {
+        display: none;
+        height: 100%;
+    }
+    
+    .bullet-img li.active,
+    .play-btn li.active {
+        display: block;
+    }
+    
+    .carousel .title {
+        z-index: 1;
+        left: 100px;
+        bottom: 0;
+        top: auto;
+        font-size: 35px;
+        font-family: Montserrat, sans-serif;
+        cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAABwSURBVEjH7ZJBEsAgCAMT/v/n9NCOSqe2oD2yNx1JggB4BCEFWyFASP2KMQE7ywWhe/tTRGCGogLk02tFctiW/SUgaMyQG4PdPzDn31rQbMb8FiAXgvsEJNax1yVlVGAjA93apP3HFhZTGIqiKH7iADB6HxPlHdNVAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDE0LTA3LTA3VDEzOjQ5OjEwKzAyOjAwm7WiFAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAxNC0wNy0wN1QxMzo0OToxMCswMjowMOroGqgAAAAASUVORK5CYII="), move;
+    }
+    
+    .carousel .title li {
+        float: left;
+        color: #fff;
+    }
+    
+    .carousel .title li span {
+        display: inline-block;
+        padding: 10px 12px;
+        font-size: 1.5em;
+        line-height: 1;
+        background-color: rgba(255, 255, 255, .3);
+    }
+    
+    .carousel .title li div {
+        max-width: 30%;
+        padding: 10px 12px;
+        margin-top: 6px;
+        background-color: rgba(255, 255, 255, .3);
+        text-align: left;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="carousel">
+        <ul class="img-ct clearfix">
+            <li class="cover">
+                <div bg-url="img/hongkong_big.jpg"></div>
+            </li>
+            <li class="cover">
+                <div bg-url="img/london_big.jpg"></div>
+            </li>
+            <li class="cover">
+                <div bg-url="img/new_york_big.jpg"></div>
+            </li>
+            <li class="cover">
+                <div bg-url="img/shanghai_big.jpg"></div>
+            </li>
+        </ul>
+        <div class="pre" href="#">
+            <a class="arrow">
+                <<</a>
+                    <ul class="img-pre-ct">
+                        <li>
+                            <a href="#"><img src="img/shanghai_big_left.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/hongkong_big_left.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/london_big_left.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/new_york_big_left.jpg"></a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/shanghai_big_left.jpg"></a>
+                        </li>
+                    </ul>
+        </div>
+        <div class="next" href="#">
+            <a class="arrow">>></a>
+            <ul class="img-next-ct">
+                <li>
+                    <a href="#"><img src="img/london_big_right.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/new_york_big_right.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/shanghai_big_right.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/hongkong_big_right.jpg"></a>
+                </li>
+                <li>
+                    <a href="#"><img src="img/london_big_right.jpg"></a>
+                </li>
+            </ul>
+        </div>
+        <ul class="title clearfix">
+            <li class='active'>
+                <span>Hong Kong</span>
+                <div>Hong Kong has the largest number of high-rises than any other urban agglomeration in the world</div>
+            </li>
+            <li>
+                <span>London</span>
+                <div>London has the fifth-or sixth-largest metropolitan area GDP in the world</div>
+            </li>
+            <li>
+                <span>New York</span>
+                <div>New York is home to the Statue of Liberty, a symbol of the United States</div>
+            </li>
+            <li>
+                <span>Shanghai</span>
+                <div>Shanghai has a rich collection of buildings and structures of various architectural styles</div>
+            </li>
+        </ul>
+        <ul class="bullet">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul class="bullet-img">
+            <li>
+                <a href="#"><img src="img/hongkong_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/london_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/new_york_mini.jpg"></a>
+            </li>
+            <li>
+                <a href="#"><img src="img/shanghai_mini.jpg"></a>
+            </li>
+        </ul>
+        <ul class="play-btn">
+            <li class="play">
+                <i class="iconfont">&#xe643;</i>
+            </li>
+            <li class="stop active">
+                <i class="iconfont">&#xe60c;</i>
+            </li>
+        </ul>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="js/mouse_direction.js"></script>
+    <script>
+    var $ct = $('.img-ct'),
+        $imgNextCt = $('.img-next-ct'),
+        $imgPreCt = $('.img-pre-ct'),
+        $items = $ct.children(),
+        $title = $('.title'),
+        $titleItems = $title.children(),
+        $pre = $('.pre'),
+        $next = $('.next'),
+        $preImgs = $('.img-pre-ct').children(),
+        $nextImgs = $('.img-next-ct').children(),
+        $bulletItems = $('.bullet').children(),
+        $bulletImg = $('.bullet-img'),
+        $miniItems = $bulletImg.children(),
+        $playBtn = $('.play-btn'),
+        $palyBtnItems = $playBtn.children(),
+        miniLeft = $bulletImg.css('left'),
+        miniLeftVal = parseInt(miniLeft.substr(0, miniLeft.length - 2)), //缩略图起始位置的left值
+        preWidth = $pre.width(),
+        imgWidth = $(window).width(),
+        imgCount = $items.length;
+
+    var bulletGap = $bulletItems.outerWidth(true), //bullet子元素的中心间距
+        curIdx = 0,
+        isAuto = false,
+        isAnimate = false;
+
+    $ct.prepend($items.last().clone());
+    $ct.append($items.first().clone());
+    var realCount = $ct.children().length;
+    $ct.css({
+        left: 0 - imgWidth,
+        width: imgWidth * realCount
+    });
+    $ct.children().width(imgWidth);
+    $ct.children().find('div').width(imgWidth);
+    $title.children().width(imgWidth);
+
+    //文字div的宽度&数量和图片div是一样的
+    $title.prepend($titleItems.last().clone());
+    $title.append($titleItems.first().clone());
+    $title.css({
+        left: preWidth - imgWidth,
+        width: imgWidth * realCount
+    });
+
+    //设置右侧预览图
+    $next.on('mouseenter', function() {
+        $imgNextCt.css('opacity', 1);
+    });
+
+    $next.on('mouseleave', function() {
+
+        $imgNextCt.css('opacity', 0);
+    });
+
+    $next.on('click', function() {
+        playNext();
+    });
+
+    //设置左侧预览图
+    $pre.on('mouseenter', function() {
+        $imgPreCt.css('opacity', 1);
+    });
+
+    $pre.on('mouseleave', function() {
+        $imgPreCt.css('opacity', 0);
+    });
+
+    $pre.on('click', function() {
+        playPre();
+    });
+
+    $bulletItems.on('click', function() {
+        playByIndex($(this).index());
+    });
+
+    //设置从bullet移入移出时的事件
+    $bulletItems.each(function() {
+        var that = this;
+        new MouseDirection(that, {
+
+            enter: function($element, dir) {
+                var index = $(that).index();
+                //设置缩略图的实际位置
+                $bulletImg.css('left', miniLeftVal + bulletGap * index);
+                //显示缩略图
+                setElementActive($miniItems, true, index);
+            },
+            leave: function($element, dir) {
+                //从上方以外的方向移出鼠标时.隐藏缩略图
+                if (dir !== 'top') {
+                    setElementActive($miniItems);
+                }
+            }
+        });
+    });
+
+    //设置移出缩略图时的事件
+    $bulletImg.on('mouseleave', function() {
+        setElementActive($miniItems);
+    });
+
+    $miniItems.on('click', function() {
+
+        playByIndex($(this).index());
+    });
+
+    //设置开关自动播放事件
+    $playBtn.on('click', function() {
+        if (isAuto) {
+            stopAuto();
+        } else {
+            autoPlay();
+        }
+    });
+
+    setBg(1);
+    autoPlay();
+
+    function playNext(range) {
+
+        if (!isAnimate) {
+            isAnimate = true;
+            var range = range || 1;
+
+            curIdx = (curIdx + range) % imgCount;
+            setBg(curIdx + 1);
+            $title.animate({
+                left: '-=' + imgWidth * range
+            }, function() {
+                if (curIdx === 0) {
+                    $title.css('left', preWidth - imgWidth);
+                }
+            });
+
+            $imgNextCt.animate({
+
+                left: '-=' + preWidth * range
+
+            }, function() {
+
+                if (curIdx === 0) {
+                    $imgNextCt.css('left', 0);
+                }
+
+            });
+
+            $imgPreCt.animate({
+
+                left: '-=' + preWidth * range
+
+            }, function() {
+
+                if (curIdx === 0) {
+                    $imgPreCt.css('left', 0);
+                }
+
+            });
+
+            $ct.animate({
+                left: '-=' + imgWidth * range
+            }, function() {
+
+                if (curIdx === 0) {
+                    $ct.css('left', 0 - imgWidth);
+                }
+
+                setElementActive($bulletItems, true);
+
+                isAnimate = false;
+            });
+        }
+
+    }
+
+    function playPre(range) {
+
+        if (!isAnimate) {
+            isAnimate = true;
+            var range = range || 1;
+            curIdx = (imgCount + curIdx - range) % imgCount;
+
+            setBg(curIdx + 1);
+
+            $title.animate({
+                left: '+=' + imgWidth * range
+            }, function() {
+
+                if (curIdx === imgCount - 1) {
+                    $title.css('left', preWidth - imgWidth * imgCount);
+
+                }
+            });
+
+            $imgNextCt.animate({
+
+                left: '+=' + preWidth * range
+
+            }, function() {
+
+                if (curIdx === imgCount - 1) {
+                    $imgNextCt.css('left', preWidth - preWidth * imgCount);
+                }
+
+            });
+
+            $imgPreCt.animate({
+
+                left: '+=' + preWidth * range
+
+            }, function() {
+
+                if (curIdx === imgCount - 1) {
+                    $imgPreCt.css('left', preWidth - preWidth * imgCount);
+                }
+
+            });
+
+            $ct.animate({
+                left: '+=' + imgWidth * range
+            }, function() {
+                isAnimate = false;
+                if (curIdx === imgCount - 1) {
+                    $ct.css('left', 0 - imgWidth * imgCount);
+                }
+
+                setElementActive($bulletItems, true);
+            });
+        }
+    }
+
+
+    function playByIndex(index) {
+        if (index > curIdx) {
+            playNext(index - curIdx);
+        }
+        if (curIdx > index) {
+            playPre(curIdx - index);
+        }
+    }
+
+
+    function setElementActive($elements, isActive, index) {
+        var ele = $elements.removeClass('active');
+        if (isActive) {
+            var index = typeof index === 'undefined' ? curIdx : index;
+            ele.eq(index).addClass('active');
+        }
+    }
+
+    function stopAuto() {
+        isAuto = false;
+        clearInterval(clock);
+        setElementActive($palyBtnItems, true, 0);
+    }
+
+    function autoPlay() {
+        isAuto = true;
+        clock = setInterval(function() {
+            playNext();
+        }, 2000);
+        setElementActive($palyBtnItems, true, 1);
+    }
+
+    function setBg(index) {
+        //var index=index||0;
+        $node = $ct.children().eq(index).find('div');
+        if ($node.data('setBg')) {
+            return;
+        }
+        url = $node.attr("bg-url");
+        $node.css('background-image', 'url(' + $node.attr("bg-url") + ')');
+        $node.data('setBg', true);
+    }
+    </script>
+</body>
+
+</html>
