@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>task30-waterfall</title>
+    <style>
+    .content {
+        position: relative;
+    }
+    
+    .item {
+        position: absolute;
+        width: 200px;
+        margin: 10px 10px 0 0;
+        transition: all 2s;
+    }
+    
+    .h1 {
+        height: 250px;
+        background-color: #f4b300;
+    }
+    
+    .h2 {
+        height: 750px;
+        background-color: #691BB8;
+    }
+    
+    .h3 {
+        height: 320px;
+        background-color: #006ac1;
+    }
+    
+    .h4 {
+        height: 40px;
+        background-color: yellow;
+    }
+    
+    .h5 {
+        height: 120px;
+        background-color: red;
+    }
+    
+    .h6 {
+        height: 90px;
+        background-color: #ccc;
+    }
+    
+    #btn {
+        width: 25%;
+        height: 80px;
+        font-size: 30px;
+    }
+    </style>
+</head>
+
+<body>
+    <button id="btn" type="button" name="button">点我换一换</button>
+    <div class="content">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+        <div class="item">11</div>
+        <div class="item">12</div>
+        <div class="item">13</div>
+        <div class="item">14</div>
+        <div class="item">15</div>
+        <div class="item">16</div>
+        <div class="item">17</div>
+        <div class="item">18</div>
+        <div class="item">19</div>
+        <div class="item">20</div>
+        <div class="item">21</div>
+        <div class="item">22</div>
+        <div class="item">23</div>
+        <div class="item">24</div>
+        <div class="item">25</div>
+        <div class="item">26</div>
+        <div class="item">27</div>
+        <div class="item">28</div>
+        <div class="item">29</div>
+        <div class="item">30</div>
+        <div class="item">31</div>
+        <div class="item">32</div>
+        <div class="item">33</div>
+        <div class="item">34</div>
+        <div class="item">35</div>
+        <div class="item">36</div>
+        <div class="item">37</div>
+        <div class="item">38</div>
+        <div class="item">39</div>
+        <div class="item">40</div>
+        <div class="item">41</div>
+        <div class="item">42</div>
+        <div class="item">43</div>
+        <div class="item">44</div>
+        <div class="item">45</div>
+        <div class="item">46</div>
+        <div class="item">47</div>
+        <div class="item">48</div>
+        <div class="item">49</div>
+        <div class="item">50</div>
+        <div class="item">51</div>
+        <div class="item">52</div>
+        <div class="item">53</div>
+        <div class="item">54</div>
+        <div class="item">55</div>
+        <div class="item">56</div>
+        <div class="item">57</div>
+        <div class="item">58</div>
+        <div class="item">59</div>
+        <div class="item">60</div>
+        <div class="item">61</div>
+        <div class="item">62</div>
+        <div class="item">63</div>
+        <div class="item">64</div>
+        <div class="item">65</div>
+        <div class="item">66</div>
+        <div class="item">67</div>
+        <div class="item">68</div>
+        <div class="item">69</div>
+        <div class="item">70</div>
+        <div class="item">71</div>
+        <div class="item">72</div>
+        <div class="item">73</div>
+        <div class="item">74</div>
+        <div class="item">75</div>
+        <div class="item">76</div>
+        <div class="item">77</div>
+        <div class="item">78</div>
+        <div class="item">79</div>
+        <div class="item">80</div>
+        <div class="item">81</div>
+        <div class="item">82</div>
+        <div class="item">83</div>
+        <div class="item">84</div>
+        <div class="item">85</div>
+        <div class="item">86</div>
+        <div class="item">87</div>
+        <div class="item">88</div>
+        <div class="item">89</div>
+        <div class="item">90</div>
+        <div class="item">91</div>
+        <div class="item">92</div>
+        <div class="item">93</div>
+        <div class="item">94</div>
+        <div class="item">95</div>
+        <div class="item">96</div>
+        <div class="item">97</div>
+        <div class="item">98</div>
+        <div class="item">99</div>
+        <div class="item">100</div>
+        <div class="item">101</div>
+        <div class="item">102</div>
+        <div class="item">103</div>
+        <div class="item">104</div>
+        <div class="item">105</div>
+        <div class="item">106</div>
+        <div class="item">107</div>
+        <div class="item">108</div>
+        <div class="item">109</div>
+        <div class="item">110</div>
+        <div class="item">111</div>
+        <div class="item">112</div>
+        <div class="item">113</div>
+        <div class="item">114</div>
+        <div class="item">115</div>
+        <div class="item">116</div>
+        <div class="item">117</div>
+        <div class="item">118</div>
+        <div class="item">119</div>
+        <div class="item">120</div>
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+    var classArr = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+    $items = $('.item');
+
+    function arrangeClass() {
+
+        $items.each(function() {
+            $(this).addClass(classArr[Math.floor(Math.random() * classArr.length)]);
+        });
+
+    }
+
+
+    //方法1:IIFE封装
+    var waterFall = (function() {
+
+        function render() {
+
+            var itemWidth = $items.outerWidth(true),
+                colNum = parseInt($(window).width() / itemWidth),
+                colHeightArr = [];
+
+            for (var i = 0; i < colNum; i++) {
+                colHeightArr.push(0);
+            }
+
+            $items.each(function() {
+                var me = $(this),
+                    minHeight = Math.min.apply(null, colHeightArr),
+                    idx = colHeightArr.indexOf(minHeight);
+
+                me.css({
+                    left: itemWidth * idx,
+                    top: minHeight
+                });
+
+                colHeightArr[idx] += me.outerHeight(true);
+
+            });
+        }
+
+        return {
+            init: render
+        };
+
+    })();
+
+    arrangeClass();
+
+    waterFall.init();
+
+    $(window).on('resize', function() {
+
+        waterFall.init();
+    });
+
+    $('#btn').on('click', function() {
+        window.location.reload();
+    });
+
+    /*
+        //方法2:封装一个对象
+        var waterFall = {
+            colHeightArr: [],
+
+            init: function($ct) {
+                this.$ct = $ct;
+                this.$items = $ct.find('.item');
+                this.itemWidth = this.$items.outerWidth(true);
+                this.colNum = parseInt(this.$ct.width() / this.itemWidth);
+                this.bind();
+                this.start();
+            },
+
+            bind: function() {
+                var me = this;
+                $(window).on('resize', function() {
+                    me.start();
+                });
+            },
+            start: function() {
+                var me = this;
+
+                for (var i = 0; i < this.colNum; i++) {
+                    this.colHeightArr.push(0);
+                }
+
+                me.$items.each(function() {
+                    var self = $(this),
+                        minHeight = Math.min.apply(null, me.colHeightArr),
+                        idx =me.colHeightArr.indexOf(minHeight);
+
+                    self.css({
+                        left: me.itemWidth * idx,
+                        top: minHeight
+                    });
+
+                    me.colHeightArr[idx]+=self.outerHeight(true);
+                });
+            }
+        };
+
+        arrangeClass();
+        waterFall.init($('.content'));
+
+          $('#btn').on('click', function() {
+            window.location.reload();
+        });
+    */
+    </script>
+</body>
+
+</html>
