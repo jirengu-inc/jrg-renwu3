@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+		<style type="text/css">
+			html,
+			body,
+			ul {
+				margin: 0;
+				padding: 0;
+			}
+			
+			ul,
+			li {
+				list-style: none;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			a>img {
+				vertical-align: bottom;
+			}
+			
+			.wrap {
+				position: relative;
+				width: 480px;
+				height: 320px;
+				overflow: hidden;
+			}
+			
+			.img-ct {
+				position: absolute;
+			}
+			
+			.clearfix:after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			
+			.img-ct>li {
+				float: left;
+			}
+			
+			.img-ct img {
+				width: 480px;
+				height: 320px;
+			}
+			
+			.pointer {
+				position: absolute;
+				left: 50%;
+				bottom: 5px;
+				transform: translateX(-50%);
+			}
+			
+			.pointer>li {
+				display: inline-block;
+				width: 30px;
+				height: 8px;
+				border-radius: 4px;
+				background-color: white;
+				cursor: pointer;
+			}
+			
+			.pointer>li.active {
+				background-color: black;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<ul class="img-ct clearfix">
+				<li>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/30.jpg" alt="0"></a>
+				</li>
+				<li>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg" alt="1"></a>
+				</li>
+				<li>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg" alt="2"></a>
+				</li>
+				<li>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg" alt="3"></a>
+				</li>
+			</ul>
+
+			<ul class="pointer">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="wrap">
+			<ul class="img-ct clearfix">
+				<li>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/30.jpg" alt="0"></a>
+				</li>
+				<li>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/22.jpg" alt="1"></a>
+				</li>
+				<li>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/23.jpg" alt="2"></a>
+				</li>
+				<li>
+					<a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/24.jpg" alt="3"></a>
+				</li>
+			</ul>
+			<ul class="pointer">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<h1>感觉<em>this</em>写的次数太多了,有什么办法吗?</h1>
+		<script type="text/javascript">
+			function Carousel($ca) { //把轮播组件以jQ元素的形式传进来
+				//选择元素的时候以$ca 开头,这样就保持组件独立性了
+				this.$imgCt = $ca.find(".img-ct") //
+				this.$items = this.$imgCt.children() //选中带
+				console.dir(this.$items)
+				this.ctWidth = $ca.width() //获取组件宽度
+				this.$pointer = $ca.find(".pointer")
+				this.curIndex = 0
+				this.isLoad = false
+				this.bind($ca)
+			}
+			Carousel.prototype = {
+				bind: function($ca) {
+					var _this = this
+					this.$items.last().clone().prependTo(this.$imgCt) //$items的最后一个复制到最前面
+					this.$items.first().clone().appendTo(this.$imgCt) //$items的第一个复制到最后面
+					this.$items = this.$imgCt.children() //更新$items
+					var imgCount = this.$items.length //检查$items长度
+					this.$imgCt.css({
+						width: imgCount * this.ctWidth,
+						left: 0 - this.ctWidth
+					})
+
+					this.$pointer.on("click", "li", function(e) {
+						var idx = $(this).index() + 1
+						_this.play(idx)
+					})
+
+				},
+				play: function(index) {
+					if(this.isLoad) return
+					isLoad = true
+					var _this = this
+					this.$imgCt.animate({
+						left: index * (-this.ctWidth)
+					}, 400, function() {
+						if(index == (_this.imgCount - 1)) {
+							_this.$imgCt.css('left', -width)
+							curIndex = 1
+						} else if(index == 0) {
+							_this.$imgCt.css('left', -width * (imgCount - 2))
+							_this.curIndex = (imgCount - 2)
+						} else {
+							_this.curIndex = index
+						}
+						_this.$pointer.children().removeClass("active").eq(_this.curIndex - 1).addClass("active")
+						isLoad = false
+					})
+
+				},
+			}
+			$(".wrap").each(function() {
+				new Carousel($(this))
+
+			})
+		</script>
+	</body>
+
+</html>

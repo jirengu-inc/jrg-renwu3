@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>mod-tabs</title>
+		<script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>		
+		<style type="text/css">
+			body{
+				background: lightskyblue;
+			}
+			ul,li{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			h1{
+				margin: 0;
+			}
+			.clearfix:after{
+				content: "";
+				display: block;
+				clear: both;
+			}
+			div.mod-tab{
+				width:320px;
+				margin:10px;
+				float: left;
+				text-align: center;
+			}
+			
+			div.mod-tab>ul>.item{			
+				box-sizing:border-box;
+				float: left;
+				width:25%;
+				padding: 10px;
+			}
+			div.mod-tab>ul>.selected{
+				border: 5px solid #ccc;
+				border-top-left-radius: 10px;	
+				border-top-right-radius: 10px;			
+				background: #ccc;
+			}
+			div.mod-tab>.boxs div{
+				height: 300px;
+				background: #ccc;
+				display: none;
+				color: white;
+			}
+			.active{
+				display: block;
+				
+			}
+		</style>	
+	</head>
+	<body>
+	<div class="mod-tab">
+	 	<ul class="clearfix">
+	 		<li class="item selected">选项1</li>
+	 		<li class="item">选项2</li>
+	 		<li class="item">选项3</li>
+	 		<li class="item">选项4</li>
+	 	</ul>
+	 	<div class="boxs">
+	 		<div class="active">
+	 			<h1>面向对象的写法有些难啊</h1>
+	 			<h1>this new 原型 继承等理论理解起来还算轻松</h1>
+	 			<h1>写起来就思路就卡了</h1>
+	 			<h1>尤其是那个日历</h1>
+	 		</div>
+	 		<div></div>
+	 		<div></div>
+	 		<div></div>
+	 	</div>
+	 </div>
+	<div class="mod-tab">
+	 	<ul class="clearfix">
+	 		<li class="item selected">选项1</li>
+	 		<li class="item">选项2</li>
+	 		<li class="item">选项3</li>
+	 		<li class="item">选项4</li>
+	 	</ul>
+	 	<div class="boxs">
+	 		<div class="active">
+	 			<h1>今天天气不错</h1>
+	 			<h1>过年好</h1>
+	 			<h1>12213</h1>
+	 			<h1>15114151</h1>
+	 		</div>
+	 		<div></div>
+	 		<div></div>
+	 		<div></div>
+	 	</div>
+	 </div>
+
+	<div class="mod-tab">
+	 	<ul class="clearfix">
+	 		<li class="item selected">选项1</li>
+	 		<li class="item">选项2</li>
+	 		<li class="item">选项3</li>
+	 		<li class="item">选项4</li>
+	 	</ul>
+	 	<div class="boxs">
+	 		<div class="active">
+	 			<h1>今天天气不错</h1>
+	 			<h1>过年好</h1>
+	 			<h1>12213</h1>
+	 			<h1>15114151</h1>
+	 		</div>
+	 		<div></div>
+	 		<div></div>
+	 		<div></div>
+	 	</div>
+	 </div>
+	 	<div class="mod-tab">
+	 	<ul class="clearfix">
+	 		<li class="item selected">选项1</li>
+	 		<li class="item">选项2</li>
+	 		<li class="item">选项3</li>
+	 		<li class="item">选项4</li>
+	 	</ul>
+	 	<div class="boxs">
+	 		<div class="active">
+	 			<h1>今天天气不错</h1>
+	 			<h1>过年好</h1>
+	 			<h1>12213</h1>
+	 			<h1>15114151</h1>
+	 		</div>
+	 		<div></div>
+	 		<div></div>
+	 		<div></div>
+	 	</div>
+	 </div>
+	 	<div class="mod-tab">
+	 	<ul class="clearfix">
+	 		<li class="item selected">选项1</li>
+	 		<li class="item">选项2</li>
+	 		<li class="item">选项3</li>
+	 		<li class="item">选项4</li>
+	 	</ul>
+	 	<div class="boxs">
+	 		<div class="active">
+	 			<h1>今天天气不错</h1>
+	 			<h1>过年好</h1>
+	 			<h1>12213</h1>
+	 			<h1>15114151</h1>
+	 		</div>
+	 		<div></div>
+	 		<div></div>
+	 		<div></div>
+	 	</div>
+	 </div>
+
+	 <script type="text/javascript">
+	    //构造函数
+	    //oop 写法就是 把之前面条流一样的代码封装下
+	    //原来需要声明的变量都在构造函数里 用 this.xxx 的方式来写
+	    //需要写的函数都写在
+	    // Obj.prototype = {}这个对象里
+	    // 在构造函数里用this.functionName()的方式执行函数
+	    // 常用名  init:初始化   render:渲染   bind:绑定 ...
+	    
+	 	function ModTabs($tabs){//预期: 整个组件以jQuery对象的形式传进来\
+	 		this.$items =$tabs.find("ul>.item")
+	 		this.$boxs = $tabs.find(".boxs div")
+	 		this.bind()
+	 	}
+	 	ModTabs.prototype = {
+	 		bind:function(){
+	 			var tabs = this//为啥要额外写这句这句话呢?
+	 			//那是因为
+	 			this.$items.on("click",function(){
+	 				//观众朋友们注意了,绑定事件回调函数里的this 指向事件发生的dom元素
+	 				//是就算是使用了jquery,this 也是dom元素 而非jquery元素!
+	 				//所以在绑定事件的回调函数里,没有东西能指向ModTabs,
+	 				//这会让原型里的其他函数无法调用
+	 				//所以需要事件绑定外面那句  做个钩子
+	 				$this = $(this)
+	 				console.log($this)
+	 			    var idx = $this.index()
+	 				console.log(idx)
+	 				tabs.change(idx)
+	 			})
+	 		},
+	 		change:function(idx){
+	 			console.log(this)
+	 			this.$items.eq(idx).addClass("selected").siblings().removeClass("selected")
+	 			this.$boxs.eq(idx).addClass("active").siblings().removeClass("active")
+	 		}
+	 	}
+	 	$(".mod-tab").each(function(){
+	 		new ModTabs($(this))
+	 	})
+	 	</script>
+	</body>
+</html>
