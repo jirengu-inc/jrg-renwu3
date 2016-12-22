@@ -1,0 +1,91 @@
+
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <title>dialog demo</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            background: #ccc;
+        }
+        
+        .dialog {
+            position: absolute;
+            z-index: 500;
+            left: 50%;
+            top: 30%;
+            margin-left: -164px;
+            font-size: 14px;
+            padding-bottom: 10px;
+            border-radius: 5px;
+            background: #eee;
+            width: 480px;
+        }
+        
+        .dialog .dialog-header {
+            padding: 10px 19px;
+            color: #fff;
+            background: deepskyblue;
+        }
+        
+        .dialog .dialog-header h3 {
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        .dialog .dialog-header .btn-close {
+            position: absolute;
+            right: 10px;
+            top: 8px;
+            font-family: fantasy;
+            cursor: pointer;
+        }
+        
+        .dialog .dialog-content {
+            padding: 10px;
+            margin: 13px;
+            color: #666;
+            font-size: 11px;
+        }
+        
+        .dialog .dialog-footer {
+            text-align: center;
+        }
+        
+        a.btn {
+            position: relative;
+            text-align: center;
+            background-color: #e33100;
+            display: inline-block;
+            width: 50px;
+            padding: 5px 0 6px;
+            margin: 2px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        
+        a.btn:hover {
+            background-color: #c33100;
+        }
+        
+        .draggable {
+            opacity: 0.7;
+            cursor: move;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <button id="btn1"> 窗口1</button>
+    <button id="btn2"> 窗口2</button>
+    <button id="btn3"> 窗口3</button>
+    <button id="btn4"> 窗口4</button>
+    <button id="btn5"> 窗口5</button>
+    <script src="Dialog.js" type="text/javascript" charset="utf-8"></script>
+</body>
