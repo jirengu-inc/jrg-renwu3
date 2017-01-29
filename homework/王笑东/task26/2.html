@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>task26-2</title>
+    <style>
+        .box2{
+            position:fixed;
+            top:0;
+            right:30%;
+            width:200px;
+            height:200px;
+            background:green;
+        }
+        .box3{
+            width:100px;
+            height:100px;
+            background:green;
+            border:1px solid green;
+        }
+    </style>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+    <fieldset>
+        <legend>1.当点击$btn 时，让 $btn 的背景色变为红色再变为蓝色</legend>
+        <button class="btn1">点击我</button>
+        <script>
+            $('.btn1').on('click',function(e){
+                $(e.currentTarget).css('background','red');
+                setTimeout(function(){
+                    $('.btn1').css('background','blue')
+                },300)
+            })
+        </script>
+    </fieldset>
+    <fieldset>
+        <legend>2.当窗口滚动时，获取垂直滚动距离</legend>
+        <div class="box2">滚动条距离窗口顶部的距离为：<span class="scrollTop">0px</span></div>
+        <script>
+            $(window).on('scroll',function(){
+                $('.scrollTop').text($(window).scrollTop()+'px');
+            });
+        </script>
+    </fieldset>
+    <fieldset>
+        <legend>3.当鼠标放置到$div 上，把$div 背景色改为红色，移出鼠标背景色变为白色</legend>
+        <div class="box3">一个盒子</div>
+        <script>
+            $('.box3').on('mouseenter',function(e){
+                $(e.currentTarget).css('background-color','red');
+            });
+            $('.box3').on('mouseleave',function(e){
+                $(e.currentTarget).css('background-color','white');
+            })
+        </script>
+    </fieldset>
+    <fieldset>
+        <legend>4.当鼠标激活 input 输入框时让输入框边框变为蓝色，当输入框内容改变时把输入框里的文字小写变为大写，当输入框失去焦点时去掉边框蓝色，控制台展示输入框里的文字</legend>
+        <input class="input4" type="text" placeholder="请输入文字"/>
+        <script>
+            $('.input4').on('focus',function(e){
+                e.stopPropagation()
+                $('.input4').css('outlineColor','blue');
+            })
+            $('.input4').on('keyup',function(e){
+               $(e.currentTarget).val(function(i,val){
+                   return val.toUpperCase();
+               });
+            });
+            $('.input4').on('blur',function(e){
+                console.log($(e.currentTarget).val());
+            });
+        </script>
+    </fieldset>
+    <fieldset>
+        <legend>5.当选择 select 后，获取用户选择的内容</legend>
+        <select class="fruit" multiple="multiple">
+            <option>apple</option>
+            <option>banana</option>
+            <option>orange</option>
+            <option>pear</option>
+        </select>
+        当前选择的是：<span class="selectVal"></span>
+        <script>
+            $('.fruit').on('change',function(){
+                $('.selectVal').text($('.fruit option:selected').val());
+            });
+        </script>
+    </fieldset>
+<div style="height:1000px"></div>
+</body>
+</html>
