@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	.btn-wrap{
+		text-align: center;
+	}
+	.content{
+		border: 1px solid #ccc;
+		padding: 8px;
+		margin: 10px;
+		cursor: pointer;
+	}
+	.content:hover{
+		background: #5E8EE3;
+	}
+	.btn{
+		display: inline-block;
+		padding: 10px 15px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		text-decoration: none;
+	}
+</style>
+<body>
+	<div id="wrap">
+		<div class="content">内容1</div>  
+		<div class="content">内容2</div>
+	</div>
+	<div class="btn-wrap">
+		<a href="javascript:;" class="btn">加载更多</a>
+	</div>
+<script>
+	function ajax(opts) {
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange=function(){
+			if (xhr.readyState == 4 && xhr.status == 200) {
+					var json = JSON.parse(xhr.responseText);
+					opts.success(json);
+			}
+			 if(xhr.readyState===4&&xhr.status == 404){
+		         opts.error();
+		     }
+		}
+
+		var dataString = '';
+		for(var key in opts.data){
+			dataString += key+'='+opts.data[key]+'&';
+		}
+		dataString = dataString.substring(0, dataString.length-1);
+
+		if(opts.type.toLowerCase() === 'get'){
+			xhr.open('get', opts.url+'?'+dataString, true);
+			xhr.send();
+		}
+		if(opts.type.toLowerCase() === 'post'){
+			xhr.open('post', opts.url, true);
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.send(dataString);
+		}
+	}
+	var count = 4,lock = false;
+	var wrap = document.getElementById('wrap');
+	document.getElementsByClassName('btn')[0].addEventListener('click',function(e){
+		e.target.innerText = '加载中...';
+		if(lock){
+			return;
+		}
+			lock = true;
+			ajax({
+				url: '/loadmore.php',
+				type: 'get',
+				data:{
+					start: count,
+					length: 4	
+				},
+				success: function(res){
+					lock = false;
+					for (var i = 0; i < res.data.length; i++) {
+						var newDiv = document.createElement("div");
+						newDiv.innerText = '内容' + res.data[i];
+						newDiv.setAttribute("class","content");
+						wrap.appendChild(newDiv);
+					}
+					count+=4;
+				},
+				error: function(){
+					alert('ajax请求出错');
+				}
+			});
+	});
+</script>
+</body>
+</html>

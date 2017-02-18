@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>lazy img</title>
+	<style>
+		body,ul,li{
+			margin: 0;
+			padding:0;
+		}
+		ul,li{
+			list-style: none;
+		}
+		ul:after{
+			content:"";
+			display: block;
+			clear:both;
+		}
+		.content{
+			margin:0 auto;
+			width:861px;
+			border:1px solid red;
+		}
+		.content li{
+			float:left;
+			margin:10px;
+		}
+		.content li img{
+			height:400px;
+		}
+	</style>
+</head>
+<body>
+	<div class="content">
+		<ul class="ct">
+			<li><img src="loading.jpg" data-src="1.jpg"></li>
+			<li><img src="loading.jpg" data-src="2.jpg"></li>
+			<li><img src="loading.jpg" data-src="3.jpg"></li>
+			
+			<li><img src="loading.jpg" data-src="4.jpg"></li>
+			<li><img src="loading.jpg" data-src="5.jpg"></li>
+			<li><img src="loading.jpg" data-src="6.jpg"></li>
+			
+			<li><img src="loading.jpg" data-src="7.jpg"></li>
+			<li><img src="loading.jpg" data-src="8.jpg"></li>
+			<li><img src="loading.jpg" data-src="9.jpg"></li>
+
+			<li><img src="loading.jpg" data-src="10.jpg"></li>
+			<li><img src="loading.jpg" data-src="11.jpg"></li>
+			<li><img src="loading.jpg" data-src="12.jpg"></li>
+			
+		</ul>
+	</div>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+		$(window).on("scroll",function(){
+			var clock;
+			if(clock){
+				clearTimeout(clock);	
+			}
+			clock = setTimeout(function(){	
+				console.log(1);
+				checkShow();
+			},3000);
+		});
+			checkShow();
+			function checkShow(){
+				$(".ct img").each(function(){
+					var $cur = $(this);
+					if($cur.attr('isLoaded')){
+						return;
+					}
+					if(isShow($cur)){
+						showImg($cur);
+					}
+				});
+			};
+			function isShow($ele){
+				var scrollY = $(window).scrollTop(),
+					winH = $(window).height(),
+					offsetY = $ele.offset().top;
+				if( scrollY + winH > offsetY){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			function showImg($ele){
+				$ele.attr('src',$ele.attr('data-src'));
+				$ele.attr('isLoaded',true);
+			}
+		
+	</script>
+			
+</body>
+</html>

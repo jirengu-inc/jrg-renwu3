@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>35-goTop</title>
+    <link href="" rel="stylesheet">
+    <style>
+    .content {
+        height: 2000px;
+        background-color: #ccc;
+        width: 900px;
+    }
+    
+    #go_top {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        padding: 10px;
+        border: 1px solid red;
+        cursor: pointer;
+        display: none;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        我是很高的测试内容,请往下拖
+    </div>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+    /*
+                                        //方法1:用Jquery实现
+
+                                        var $goTop = $('<div id="go_top">回到顶部</div>');
+                                        $('body').append($goTop);
+
+                                        $(window).on('scroll', function() {
+                                            if ($(window).scrollTop() > 100) {
+                                                $goTop.show();
+                                            } else {
+                                                $goTop.hide();
+                                            }
+                                        });
+
+                                        //点击时回到顶部
+                                        $goTop.on('click', function() {
+                                            $(window).scrollTop(0);
+                                        });
+                                    */
+
+
+    //方法2:IIFE封装
+
+    // var goTop = (function() {
+
+    //     var $goTop = $('<div id="go_top">回到顶部</div>');
+    //     $('body').append($goTop);
+
+    //     function init() {
+    //         $(window).on('scroll', function() {
+    //             if ($(window).scrollTop() > 100) {
+    //                 $goTop.show();
+    //             } else {
+    //                 $goTop.hide();
+    //             }
+    //         });
+
+    //         //点击时回到顶部
+    //         $goTop.on('click', function() {
+    //             $(window).scrollTop(0);
+    //         });
+    //     }
+    //     return {
+    //         init: init
+    //     };
+
+    // })();
+
+    // goTop.init();
+
+    //方法3 原型对象
+    function GoTop($ele) {
+        this.ct = $ele;
+        this.target = $('<div id="go_top">回到顶部</div>');
+        this.target.hide();
+        this.ct.append(this.target);
+    }
+
+    GoTop.prototype = {
+
+        constructor: GoTop,
+
+        createNode: function() {
+
+            $(window).on('scroll', () => {
+
+                if ($(window).scrollTop() > 100) {
+                    this.target.show();
+                } else {
+                    this.target.hide();
+                }
+            });
+        },
+
+
+        bindEvent: function() {
+            this.target.on('click', () => {
+                $(window).scrollTop(0);
+            });
+        }
+    };
+
+    var go = new GoTop($('body'));
+    go.bindEvent();
+    go.createNode();
+    </script>
+</body>
+
+</html>
