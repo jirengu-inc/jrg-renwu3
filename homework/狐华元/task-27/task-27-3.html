@@ -2,8 +2,15 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>task-27-1，轮播</title>
+    <title>task-27-3，轮播</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+    .images li {
+      display: block;
+      position: static;
+      float: left;
+    }
+    </style>
   </head>
   <body>
     <div class="carousel">
@@ -32,55 +39,72 @@
 			imgWidth = $images.width(),
 			imgCount = $ct.children().size();
 
-		  var current = 0,
-			    isAnimate = false;
+      $ct.prepend($images.last().clone()),
+      $ct.append($images.first().clone()),
+      imgNewSize = $ct.children().size(),
+      $ct.css({left: 0 - imgWidth, width: imgNewSize * imgWidth});
+
+    	var current = 0,
+  			  lock = false;
+
 
 			$pre.on('click',function(){
-				playPre();
+				playPre(current);
 			})
 
 			$next.on('click',function(){
-				playNext();
+				playNext(current);
 			})
 
 			$circle.find('li').on('click',function(){
 				var idx = $(this).index();
-				play(idx);
+				play((idx+1) % imgNewSize);
 			})
 
-			play(0);
-			autoPlay();
 
-			function playPre(){
-				play((imgCount+current-1)%imgCount)
+			function playPre(current){
+        if(lock){
+          return;
+        }
+        lock = true;
+        if (current === imgCount){
+          $ct.css('left',-imgWidth*(current-1));
+          current = 4;
+        }
+				play((imgCount+current+1)%imgNewSize)
 			}
 
-			function playNext(){
-				play((current+1)%imgCount)
+			function playNext(current){
+        if(lock){
+					return;
+				}
+        lock = true;
+        if (current === imgCount){
+          $ct.css('left',0);
+          current = 0;
+        }
+				play((current+1)%imgNewSize)
 			}
 
 			function play(idx){
-				if(isAnimate){
-					return;
-				}
-				isAnimate = true;
-				$images.eq(current).fadeOut(1000);
-				$images.eq(idx).fadeIn(1000,function(){
-					isAnimate = false;
-				});
+        $ct.animate({'left': -imgWidth * idx},function(){
+          lock = false;
+        })
 				current = idx;
-				setCircle();
+				setCircle(current);
 			}
 
 			function setCircle(){
-				$circle.children().removeClass('active').eq(current).addClass('active');
+				$circle.children().removeClass('active').eq(current-1).addClass('active');
 			}
 
 			function autoPlay(){
 				var timer = setInterval(function(){
-					playNext();
+					playNext(current%imgNewSize);
 				},2000)
 			}
+
+      autoPlay();
 
     </script>
   </body>

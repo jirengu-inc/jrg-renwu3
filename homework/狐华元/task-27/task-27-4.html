@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>task-27-4，全屏轮播</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ul, li {
+        list-style: none;
+      }
+      html, body, .full-carousel, .full-carousel .images {
+        width: 100%;
+        height: 100%;
+      }
+      .full-carousel {
+        position: relative;
+        overflow: hidden;
+      }
+      .full-carousel .images {
+        position: absolute;
+      }
+      .images:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      .images .item {
+        position: relative;
+        float: left;
+        height: 100%;
+      }
+      .images .main {
+        position: absolute;
+        width: 400px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: #fff;
+        text-align: center;
+        font-size: 26px;
+      }
+      .images .cover {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-size: cover;
+      }
+      .circle {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .circle li{
+      	display: inline-block;
+      	width: 30px;
+      	height: 10px;
+      	border-radius: 5px;
+      	background-color: #fff;
+      }
+      .circle li.active {
+      	background-color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="full-carousel">
+  		<ul class="images clearfix">
+  			<li class="item">
+          <div class="cover" data-img="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></div>
+          <div class="main">
+            <h3>第一页</h3>
+          </div>
+        </li>
+  			<li class="item">
+          <div class="cover" data-img="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></div>
+          <div class="main">
+            <h3>第二页</h3>
+          </div>
+        </li>
+  			<li class="item">
+          <div class="cover" data-img="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></div>
+          <div class="main">
+            <h3>第三页</h3>
+          </div>
+        </li>
+  			<li class="item">
+          <div class="cover" data-img="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg"></div>
+          <div class="main">
+            <h3>第四页</h3>
+          </div>
+        </li>
+  		</ul>
+  		<ol class="circle">
+  			<li class="active"></li>
+  			<li></li>
+  			<li></li>
+  			<li></li>
+  		</ol>
+    </div>
+	  <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+    	var $ct = $(".images"),
+			$images = $ct.children(),
+			$circle = $(".circle"),
+			imgWidth = $(window).width(),
+			imgCount = $ct.children().size();
+
+      $ct.prepend($images.last().clone());
+      $ct.append($images.first().clone());
+      $ct.find(".item").css("width",imgWidth);
+      var imgNewCount = $ct.children().size();
+      $ct.css({left:0-imgWidth,width: imgWidth * imgNewCount});
+
+		  var currentIdx = 0,
+			    isAnimate = false;
+
+			$circle.find('li').on('click',function(){
+				var idx = $(this).index();
+        if(idx > currentIdx) {
+          playNext(idx - currentIdx)
+        }else if(idx < currentIdx) {
+          playPre(currentIdx- idx)
+        }
+			})
+
+			autoPlay();
+
+			function playPre(idx){
+        var idx = idx || 1;
+        if(!isAnimate) {
+          isAnimate = true;
+          setBg(idx);
+          $ct.animate({left: '+=' +(imgWidth * idx)},function(){
+            currentIdx = (imgCount + currentIdx - idx) % imgCount;
+            if(currentIdx === (imgCount - 1)){
+              $ct.css({left: 0-imgWidth*imgCount})
+            }
+            isAnimate = false;
+						setCircle();
+          })
+        }
+			}
+
+			function playNext(idx){
+        var idx = idx || 1;
+        if(!isAnimate) {
+          isAnimate = true;
+          setBg(currentIdx + 2);
+          $ct.animate({left: '-=' + (imgWidth*idx)},function(){
+            currentIdx = (currentIdx + idx) % imgCount;
+            if(currentIdx === 0) {
+              $ct.css({left: 0 - imgWidth});
+            }
+            isAnimate = false;
+						setCircle();
+          })
+        }
+			}
+
+			function setCircle(){
+				$circle.children().removeClass('active').eq(currentIdx).addClass('active');
+			}
+
+			function autoPlay(){
+				var timer = setInterval(function(){
+					playNext();
+				},2000)
+			}
+
+      function setBg(idx){
+        var idx = idx || 0,
+            $node = $ct.children().eq(idx),
+            $cover = $node.find(".cover"),
+            imgUrl = $cover.attr("data-img");
+        if($node.data("isBgSet")) return;
+        $cover.css("background-image",'url(' + imgUrl + ')');
+        $node.data("isBgSet",true);
+      }
+      setBg(1);
+    </script>
+  </body>
+</html>
