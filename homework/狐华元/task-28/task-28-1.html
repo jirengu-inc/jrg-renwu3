@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>stick</title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+      div,body {
+        margin: 0;
+        padding: 0;
+      }
+      #header {
+        height: 50px;
+        background-color: red;
+        text-align: center;
+        line-height: 40px;
+        color: #fff;
+      }
+      #nav {
+        height: 30px;
+        background-color: yellow;
+        text-align: center;
+        line-height: 30px;
+        color: #333;
+      }
+      #content {
+        min-height: 800px;
+        background-color: pink;
+        color: #fff;
+        line-height: 40px;
+      }
+      .aside {
+        float: left;
+        width: 200px;
+        height: 400px;
+        background-color: #10ca9f;
+        text-align: center;
+      }
+      .main {
+        overflow: auto;
+        padding-left: 10px;
+        height: 800px;
+        background-color: #33b5dc;
+      }
+      #footer {
+        height: 30px;
+        background-color: #00d0ff;
+        text-align: center;
+        line-height: 30px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">header</div>
+    <div id="nav">nav</div>
+    <div id="content">
+      <div class="aside">aside</div>
+      <div class="main">main</div>
+    </div>
+    <div id="footer">footer</div>
+
+    <script>
+      $(function(){
+        $.fn.stick = function(handler) {
+          var $cur = this,
+              curH = $cur.height(),
+              curW = $cur.width(),
+              offsetTop = $cur.offset().top,
+              offsetLeft = $cur.offset().left;
+
+          var $curClone = $cur.clone()
+                              .css({opacity: 0,display: 'none'})
+                              .insertBefore($cur);
+
+          $(window).on("scroll",function(){
+            var scrollTop = $(this).scrollTop();
+
+            if(scrollTop >= offsetTop){
+              if(!isFixed()){
+                setFixed();
+              }
+            } else{
+              if(isFixed()) {
+                unsetFixed();
+              }
+            }
+          })
+
+          function isFixed() {
+            return !!$cur.attr('data-fixed');
+          }
+
+          function setFixed() {
+            $cur.attr('data-fixed',true)
+                .css({
+                  position: 'fixed',
+                  top: 0,
+                  left: offsetLeft,
+                  'z-index': 999,
+                  width: curW
+                });
+            $curClone.show();
+          }
+
+          function unsetFixed() {
+            $cur.removeAttr('data-fixed')
+                .removeAttr('style');
+            $curClone.hide();
+          }
+        };
+
+        $("#nav").stick()
+      })
+    </script>
+  </body>
+</html>
