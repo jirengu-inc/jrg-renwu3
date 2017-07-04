@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>瀑布流布局</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+      .view {
+        position: relative;
+      }
+      .item {
+        position:absolute;
+        width: 200px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        transition: all 1s;
+        color: #fff;
+      }
+      .h1 {
+        background-color: #60badc;
+        height: 200px;
+      }
+      .h2 {
+        background-color: #ff7b3b;
+        height: 300px;
+      }
+      .h3 {
+        background-color: #72b529;
+        height: 400px;
+      }
+      .h4 {
+        background-color: #d857d4;
+        height: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="view">
+      <div class="item h1">1</div>
+      <div class="item h2">2</div>
+      <div class="item h3">3</div>
+      <div class="item h1">4</div>
+      <div class="item h4">5</div>
+      <div class="item h2">6</div>
+      <div class="item h3">7</div>
+      <div class="item h1">8</div>
+      <div class="item h4">9</div>
+      <div class="item h1">10</div>
+      <div class="item h3">11</div>
+      <div class="item h4">12</div>
+      <div class="item h2">13</div>
+      <div class="item h1">14</div>
+      <div class="item h3">15</div>
+      <div class="item h4">16</div>
+      <div class="item h2">17</div>
+      <div class="item h1">18</div>
+    </div>
+    <script>
+      var waterfall = (function(){
+        function layout(){
+          var itemW = $('.item').outerWidth(true),
+              columnN = parseInt($(window).width() / itemW);
+          var sumColumnH = [];
+          for(var i = 0; i < columnN; i++){
+            sumColumnH.push(0);
+          }
+          $('.item').each(function(){
+            var self = $(this),
+                idx = 0,
+                minH = sumColumnH[0];
+            for(var i = 0; i < columnN; i++) {
+              if(sumColumnH[i] < minH) {
+                idx = i;
+                minH = sumColumnH[i];
+              }
+            }
+            self.css({
+              left: itemW * idx,
+              top: minH
+            })
+            sumColumnH[idx] = sumColumnH[idx] + self.outerHeight(true);
+          })
+        }
+        layout();
+        $(window).on('resize',function(){
+          layout();
+        })
+
+        return {
+          init: layout
+        }
+      })();
+
+      waterfall.init();
+    </script>
+  </body>
+</html>
