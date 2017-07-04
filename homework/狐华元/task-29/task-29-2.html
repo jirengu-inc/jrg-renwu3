@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>懒加载</title>
+    <style>
+      ul,li {
+        list-style: none;
+      }
+      .view {
+        width: 800px;
+        margin: 10px auto;
+      }
+      .view li {
+        float: left;
+        margin: 10px;
+      }
+      .view li img {
+        width: 380px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="view">
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/4.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/5.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/6.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/7.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/8.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/9.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/10.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/12.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/13.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/14.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/15.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/16.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/17.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img data-src="http://cdn.jirengu.com/book.jirengu.com/img/18.jpg" src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"/>
+        </a>
+      </li>
+    </ul>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+      var timer;
+      checkShow();
+      $(window).on('scroll',function(){
+        if(timer){
+          clearTimeout(timer);
+        }
+        timer = setTimeout(function(){
+          checkShow();
+        },300)
+      })
+      function checkShow(){
+        $(".view img").each(function(){
+          var $curImg = $(this);
+          if($curImg.attr('isLoad')){
+            return ;
+          }
+          if(isShow($curImg)){
+            showImg($curImg)
+          }
+        })
+      }
+      function isShow(el){
+        var $winH = $(window).height(),
+            $scrollH = $(window).scrollTop(),
+            $offsetTop = el.offset().top;
+        if($offsetTop < $winH + $scrollH){
+          return true;
+        } else {
+          return false;
+        }
+      }
+      function showImg(el){
+        el.attr('src',el.attr('data-src'));
+        el.attr('isLoad',true);
+      }
+    </script>
+  </body>
+</html>

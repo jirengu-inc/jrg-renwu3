@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>懒加载-load</title>
+    <style>
+      ul,li {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .view li {
+        padding: 5px;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        border-radius: 5px;
+      }
+      .view li:hover {
+        background-color: #03d298;
+        color: #fff;
+      }
+      .load_more {
+        display: block;
+        background-color: #ff9510;
+        color: #fff;
+        width: 100px;
+        line-height: 40px;
+        text-align: center;
+        margin: 20px auto;
+        border-radius: 10px;
+        text-decoration: none;
+      }
+      .load_more:hover {
+        background-color: #e28613;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="view">
+      <li>数据1</li>
+      <li>数据2</li>
+    </ul>
+    <a class="load_more" href="#">加载更多</a>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <script>
+      var $view = $('.view');
+      var $loadMore = $(".load_more");
+      var timer;
+      var cur = 2;
+      loadMore();
+      $(window).on('scroll',function(){
+        if(timer){
+          clearTimeout(timer)
+        }
+        timer = setTimeout(function(){
+          if(isShow($loadMore)){
+            loadMore();
+          }
+        },300)
+      })
+      function isShow(el){
+        var $windowH = $(window).height(),
+            $scrollT = $(window).scrollTop(),
+            $offsetT = el.offset().top;
+        if( ($offsetT > $scrollT) && ($offsetT < $windowH + $scrollT) ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      function loadMore(){
+        $.ajax({
+          url: 'loadmore.php',
+          dataType: 'json',
+          type: 'get',
+          data: {
+            start: cur,
+            len: 20
+          },
+          success: function(result){
+            onSuccess(result)
+          },
+          error: function(){
+            onError()
+          }
+        })
+      }
+      function onSuccess(result){
+        if(result.status == 1) {
+          for(var i = 0;i < result.data.length; i++) {
+            $view.append('<li>'+result.data[i]+'</li>')
+          }
+          cur += 10;
+        } else {
+          alert('数据未加载成功')
+        }
+      }
+      function onError(){
+        alert('数据加载出错了')
+      }
+    </script>
+  </body>
+</html>
