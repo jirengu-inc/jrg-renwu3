@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>waterfull-lazyload-ajax</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+      html,body,ul,li {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      ul,li {
+        list-style: none;
+      }
+      .hide {
+        display: none;
+      }
+      #wrap {
+        width: 900px;
+        margin: 10px auto;
+      }
+      .pic-ct {
+        position: relative;
+      }
+      .pic-ct .item {
+        position: absolute;
+        width: 280px;
+        margin: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        opacity: 0;
+        background-color: #fff;
+        transition: all .6s;
+      }
+      .pic-ct .item img{
+        width: 260px;
+        margin: 10px;
+      }
+      .item .item-title {
+        margin: 0 12px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+        color: #333;
+      }
+      .item .item-desc {
+        margin: 10px 12px 10px;
+        font-size: 12px;
+        line-height: 1.6;
+        color: #888;
+      }
+      #load {
+        visibility: hidden;
+        height: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <ul class="pic-ct">
+        <!-- <li class="item">
+          <a href="#">
+            <img src="http://s.img.mix.sina.com.cn/auto/resize?img=http%3A%2F%2Fwww.sinaimg.cn%2Fdy%2Fslidenews%2F5_img%2F2016_09%2F453_75615_657883.jpg&size=250_0" />
+          </a>
+          <h4 class="item-title">标题</h4>
+          <p class="item-desc">国宇航局“朱诺号”探测器首次接近木星“大红斑”，这个巨大的木星风暴直径达到1.6万公里。</p>
+        </li> -->
+        <li class="item hide"></li>
+      </ul>
+      <div id="load"></div>
+    </div>
+
+    <script>
+      var currentPage = 1,
+          pageCount = 10,
+          nodeW = $(".item").outerWidth(true),
+          colNum = parseInt($(".pic-ct").width() / nodeW),
+          colSumHeight = [];
+
+      var isActive = true;
+      //页面打开时加载一次
+      checkShow();
+      //窗口滚动到底部时加载数据
+      $(window).on('scroll',function(){
+        if(!isActive){
+          return;
+        }
+        checkShow();
+      })
+
+      function checkShow(){
+        if(isShow($("#load"))){
+          loadData();
+        }
+      }
+
+      function isShow(el){
+        var winH = $(window).height(),
+            scrollT = $(window).scrollTop(),
+            offsetT = el.offset().top;
+        if(offsetT < winH + scrollT) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      // 通过ajax加载数据
+      function loadData(){
+        $.ajax({
+          url: 'http://platform.sina.com.cn/slide/album_tech',
+          dataType: 'jsonp',
+          jsonp: 'jsoncallback',
+          data: {
+            app_key: 1271687855,
+            page: currentPage,
+            num: pageCount,
+          }
+        }).done(function(result){
+          if(result && result.status && result.status.code === "0"){
+            place(result.data); //生成节点
+            currentPage++;
+          } else {
+            console.log("数据未加载成功")
+          }
+        })
+      }
+
+      function place(nodeList){
+        var $nodes = getNode(nodeList);
+        var defereds = [];
+
+        $nodes.find('img').each(function(){
+          var defer = $.Deferred();
+          $(this).load(function(){
+            defer.resolve();
+          })
+          defereds.push(defer);
+        })
+        $.when.apply(null,defereds).done(function(){
+          //所有图片加载完成后，执行瀑布流布局函数
+          waterFallPlace($nodes);
+        })
+      }
+
+      function getNode(nodes){
+        var tpl = '';
+        for(var i = 0; i < nodes.length; i++) {
+          tpl += '<li class="item">';
+          tpl += '<a href="'+ nodes[i].url + '"><img src="' + nodes[i].img_url + '" /></a>',
+          tpl += '<h4 class="item-title">' + nodes[i].short_name + '</h4>';
+          tpl += '<p class="item-desc">' + nodes[i].short_intro + '</p>';
+        }
+        var $nodes = $(tpl);
+        $('.pic-ct').append($nodes);
+        return $nodes;
+      }
+
+      function waterFallPlace($nodes){
+        for(var i = 0; i < colNum; i++) {
+          colSumHeight.push(0);
+        }
+
+        $nodes.each(function(){
+          var self = $(this);
+          var idx = 0,
+              minHeight = colSumHeight[0];
+          for(var i = 0; i < colNum; i++) {
+            if(colSumHeight[i] < minHeight ){
+              idx = i;
+              minHeight = colSumHeight[i];
+            }
+          }
+          self.css({
+            left: nodeW * idx,
+            top: minHeight,
+            opacity: 1,
+          })
+          colSumHeight[idx] += self.outerHeight(true);
+          $(".pic-ct").height(colSumHeight[i]);
+        })
+      }
+    </script>
+  </body>
+</html>
+
+<!-- <li class="item">
+  <a href="#">
+    <img src="http://s.img.mix.sina.com.cn/auto/resize?img=http%3A%2F%2Fwww.sinaimg.cn%2Fdy%2Fslidenews%2F5_img%2F2016_09%2F453_75615_657883.jpg&size=250_0" />
+  </a>
+  <h4 class="item-title">标题</h4>
+  <p class="item-desc">国宇航局“朱诺号”探测器首次接近木星“大红斑”，这个巨大的木星风暴直径达到1.6万公里。</p>
+</li> -->
