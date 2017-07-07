@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>tab栏切换</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <style>
+      html,body,div,ul,li {
+        margin: 0;
+        padding: 0;
+      }
+      ul,li {
+        list-style: none;
+      }
+      .clearfix:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+      .tab-view {
+        width: 900px;
+        border: 1px solid #ccc;
+        margin: 30px;
+      }
+      .tabs li{
+        box-sizing: border-box;
+        float: left;
+        width: 300px;
+        height: 40px;
+        line-height: 40px;
+        padding-left: 10px;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+      }
+      .tabs li:last-child {
+        border-right: 0;
+      }
+      .tabs li.active {
+        background-color: #ddd;
+      }
+      .tab-view .panel {
+        display: none;
+        padding: 10px;
+        height: 200px;
+      }
+      .tab-view .panel.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tab-view">
+      <ul class="tabs clearfix">
+        <li class="tab active">tab1</li>
+        <li class="tab">tab2</li>
+        <li class="tab">tab3</li>
+      </ul>
+      <div class="panel active">内容1</div>
+      <div class="panel">内容2</div>
+      <div class="panel">内容3</div>
+    </div>
+    <div class="tab-view">
+      <ul class="tabs clearfix">
+        <li class="tab active">tab1</li>
+        <li class="tab">tab2</li>
+        <li class="tab">tab3</li>
+      </ul>
+      <div class="panel active">内容1</div>
+      <div class="panel">内容2</div>
+      <div class="panel">内容3</div>
+    </div>
+
+    <script>
+      function Tabs($node){
+        this.$node = $node;
+        this.$tabs = $node.find('.tab');
+        this.$panels = $node.find('.panel');
+        this.bind();
+      }
+      Tabs.prototype.bind = function(){
+        var self = this;
+        this.$tabs.on('click',function(){
+          var idx = $(this).index();
+          self.$tabs.eq(idx).addClass('active').siblings().removeClass('active');
+          self.$panels.eq(idx).addClass('active').siblings().removeClass('active');
+        })
+      }
+      $(".tab-view").each(function(){
+        new Tabs($(this));
+      })
+    </script>
+  </body>
+</html>

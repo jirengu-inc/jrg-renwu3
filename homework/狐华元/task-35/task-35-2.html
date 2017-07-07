@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>轮播</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"></script>
+    <style>
+      html,body,div,ul,li,a,ol {
+        margin: 0;
+        padding: 0;
+      }
+      ul,li {
+        list-style: none;
+      }
+      a {
+        text-decoration: none;
+      }
+      .carousel {
+        margin: 30px;
+        position: relative;
+        width: 300px;
+        height: 225px;
+        overflow: hidden;
+      }
+      .carousel ul li {
+        display: none;
+        position: absolute;
+      }
+      .carousel img {
+        width: 300px;
+      }
+      .arrow {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        color: #fff;
+        background-color: #ccc;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 30px;
+        position: absolute;
+        top: 50%;
+        margin-top: -15px;
+      }
+      .arrow:hover {
+        background-color: #aaa;
+      }
+      .pre {
+        left: 10px;
+      }
+      .next {
+        right: 10px;
+      }
+      .carousel ol {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%);
+      }
+      .carousel ol li {
+        list-style: none;
+        display: inline-block;
+        width: 20px;
+        height: 6px;
+        border-radius: 5px;
+        background-color: #ccc;
+      }
+      .carousel ol li.active {
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="carousel carousel1">
+      <ul>
+        <li>
+          <a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a>
+        </li>
+      </ul>
+      <a class="arrow pre" href="#"><</a>
+      <a class="arrow next" href="#">></a>
+      <ol>
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+    <div class="carousel carousel1">
+      <ul>
+        <li>
+          <a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/2.jpg"></a>
+        </li>
+        <li>
+          <a href="#"><img src="http://cdn.jirengu.com/book.jirengu.com/img/3.jpg"></a>
+        </li>
+      </ul>
+      <a class="arrow pre" href="#"><</a>
+      <a class="arrow next" href="#">></a>
+      <ol>
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+      </ol>
+    </div>
+    <script>
+      function Carousel($node){
+        this.carousel = $node;
+        this.items = $node.find('ul').children();
+        this.pre = $node.find('.pre');
+        this.next = $node.find('.next');
+        this.choose = $node.find('ol');
+        this.count = $node.find('ul').children().size();
+        this.cur = 0;
+        this.isAnimate = false;
+        this.bind();
+      }
+      Carousel.prototype = {
+        bind: function(){
+          var self = this;
+          this.play(this.cur);
+          this.autoPlay();
+          this.next.on('click',function(){
+            self.playNext();
+          });
+          this.pre.on('click',function(){
+            self.playPre();
+          });
+          this.choose.find('li').on('click',function(){
+            var idx = $(this).index();
+            self.play(idx);
+          })
+        },
+        play: function(idx){
+          if(!this.isAnimate){
+            this.isAnimate = true;
+            this.items.eq(this.cur).fadeOut(1000);
+            this.items.eq(idx).fadeIn(1000);
+            this.cur = idx;
+            this.choose.children().removeClass('active').eq(idx).addClass('active');
+            this.isAnimate = false;
+          }
+        },
+        autoPlay: function(){
+          var self = this;
+          clock = setInterval(function(){
+            self.playNext();
+          },3000)
+        },
+        playNext: function(){
+          this.play((this.cur + 1)%this.count);
+        },
+        playPre: function(){
+          this.play((this.count + this.cur - 1)%this.count);
+        }
+      };
+      $('.carousel').each(function(){
+        new Carousel($(this));
+      })
+    </script>
+  </body>
+</html>
