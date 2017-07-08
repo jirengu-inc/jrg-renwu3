@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>弹窗</title>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style>
+      html,body,div,p,span,button {
+        margin: 0;
+        padding: 0;
+      }
+      .view {
+        text-align: center;
+        padding-top: 20px;
+      }
+      button {
+        background-color: #45c7c7;
+        border-radius: 10px;
+        padding: 6px 12px;
+        border: 0;
+        color: #fff;
+      }
+      button:hover {
+        background-color: #3cafaf;
+      }
+      button:focus {
+        outline: none;
+      }
+      .panel {
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        width: 400px;
+        margin-left: -200px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background-color: #fff;
+      }
+      .panel .panel-title {
+        padding: 10px;
+        color: #fff;
+        background-color: #21a2d4;
+        border-bottom: 1px solid #ccc;
+        position: relative;
+      }
+      .panel-title p {
+        padding-right: 20px;
+      }
+      .panel-title span {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+      }
+      .panel-title span:hover {
+        color: rgba(255,255,255,.6);
+      }
+      .panel .panel-head {
+        padding: 10px;
+        background-color: blue;
+        border-bottom: 1px solid #ccc;
+      }
+      .panel .panel-content {
+        padding: 20px 10px;
+        min-height: 80px;
+        border-bottom: 1px solid #ccc;
+      }
+      .panel .panel-footer{
+        padding: 10px;
+        text-align: right;
+      }
+      .cancel {
+        background-color: #ffa500;
+        margin-right: 10px;
+      }
+      .cancel:hover {
+        background-color: #f19c00;
+      }
+      .confirm {
+        background-color: #21a2d4;
+      }
+      .confirm:hover {
+        background-color: #1d8fbb;
+      }
+      .panel {
+        display: none;
+      }
+      .move {
+        cursor: move;
+        opacity: .8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="view">
+      <button id="open1">弹窗1</button>
+      <button id="open2">弹窗2</button>
+      <button id="open3">弹窗3</button>
+      <button id="open4">弹窗4</button>
+      <button id="open5">弹窗5</button>
+    </div>
+    <div class="panel">
+      <div class="panel-title">
+        <p>欢迎</p>
+        <span>×</span>
+      </div>
+      <div class="panel-content">44444444</div>
+      <div class="panel-footer">
+        <button class="cancel">确定</button>
+        <button class="confirm">确定</button>
+      </div>
+    </div>
+    <script>
+    //功能描述：
+    // 1. 可使用 dialog.open() 去打开弹窗
+    // 2. 当点击确定、取消时可使用用户自定义事件
+    // 3. dialog 可拖动
+    // 4. 允许页面展示多个 dialog
+
+    function Dialog(){}
+    Dialog.prototype = {
+      defaultOpts: {
+        title: '',
+        message: '',
+        isShowCloseBtn: true,
+        isShowConfirmBtn: false,
+        onClose: function(){},
+        onConfirm: function(){}
+      },
+      open: function(opts){
+        this.setOpts(opts);
+        this.createPanel();
+        this.setModal();
+        this.showModal();
+        this.bindEvent();
+      },
+      setOpts: function(opts){
+        if(typeof opts === 'string'){
+          this.opts = $.extend({},this.defaultOpts,{message: opts});
+        } else if(typeof opts === 'object') {
+          this.opts = $.extend({},this.defaultOpts, opts);
+        }
+      },
+      createPanel: function(){
+        var panel = '<div class="panel">'
+                  + '<div class="panel-title">'
+                  + '<p>' + this.opts.title + '</p>'
+                  + '<span class="close">×</span>'
+                  + '</div>'
+                  + '<div class="panel-content">' + this.opts.message + '</div>'
+                  + '<div class="panel-footer">'
+                  + '<button class="cancel close">取消</button>'
+                  + '<button class="confirm">确定</button>'
+                  + '</div>'
+                  + '</div>';
+        this.dialog = $(panel);
+        $('body').append(this.dialog);
+      },
+      setModal: function(){
+        var dialog = this.dialog;
+        if(this.opts.isShowCloseBtn){
+          dialog.find('.close').show();
+        } else {
+          dialog.find('.close').hide();
+        }
+        if(this.opts.isShowConfirmBtn){
+          dialog.find('.confirm').show();
+        } else {
+          dialog.find('.confirm').hide();
+        }
+        if(this.opts.title){
+          dialog.find('.panel-title').show();
+        } else {
+          dialog.find('.panel-title').hide();
+        }
+      },
+      showModal: function(){
+        this.dialog.show();
+      },
+      hideModal: function(){
+        this.dialog.hide();
+      },
+      bindEvent: function(){
+        var dialog = this.dialog;
+        var self = this;
+        this.isDrag = false;
+        dialog.find('.close').on('click',function(){
+          self.opts.onClose();
+          self.hideModal();
+        });
+        dialog.find('.confirm').on('click',function(){
+          self.opts.onConfirm();
+          self.hideModal();
+        });
+        dialog.on('mousedown',function(e){
+          dialog.addClass('move');
+          self.left = e.pageX - self.dialog.offset().left;
+          self.top = e.pageY - self.dialog.offset().top;
+          self.isDrag = true;
+        });
+        dialog.on('mouseup',function(){
+          self.isDrag = false;
+          dialog.removeClass('move');
+        });
+        $('body').on('mousemove',function(e){
+          if(self.isDrag){
+            dialog.css({
+              left: e.pageX - self.left,
+              top: e.pageY - self.top
+            })
+          }
+        })
+      }
+    }
+
+    //五个按钮不同效果
+    $('#open1').on('click',function(){
+      var dialog1 = new Dialog();
+      dialog1.open('这个弹出窗口');
+    });
+
+    $('#open2').on('click',function(){
+      var dialog2 = new Dialog();
+      dialog2.open({
+        title: '标题',
+        message: '这是内容区域',
+        isShowCloseBtn: true
+      });
+    });
+
+    $('#open3').on('click',function(){
+      var dialog2 = new Dialog();
+      dialog2.open({
+        title: '标题',
+        message: '这是内容区域',
+        isShowCloseBtn: true,
+        isShowConfirmBtn: true,
+        onClose: function(){
+          alert('close')
+        }
+      });
+    });
+
+    $('#open4').on('click',function(){
+      var dialog2 = new Dialog();
+      dialog2.open({
+        title: '标题',
+        message: '这是内容区域',
+        isShowCloseBtn: false,
+        isShowConfirmBtn: true,
+      });
+    });
+
+    var tpl = '<ul><li>列表1</li><li>列表2</li><li>列表3</li><li>列表4</li></ul>';
+    $('#open5').on('click',function(){
+      var dialog5 = new Dialog();
+      dialog5.open({
+        title: '标题',
+        message: tpl,
+        isShowCloseBtn: true,
+        isShowConfirmBtn: true,
+        onClose: function(){
+          alert('close')
+        },
+        onConfirm: function(){
+          alert('确定');
+        }
+      });
+    });
+
+    </script>
+  </body>
+</html>
