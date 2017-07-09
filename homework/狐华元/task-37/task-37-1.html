@@ -9,6 +9,14 @@
         margin: 0;
         padding: 0;
       }
+      .cover {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,.3);
+      }
       .view {
         text-align: center;
         padding-top: 20px;
@@ -42,6 +50,8 @@
         background-color: #21a2d4;
         border-bottom: 1px solid #ccc;
         position: relative;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
       }
       .panel-title p {
         padding-right: 20px;
@@ -82,9 +92,6 @@
       .confirm:hover {
         background-color: #1d8fbb;
       }
-      .panel {
-        display: none;
-      }
       .move {
         cursor: move;
         opacity: .8;
@@ -98,17 +105,6 @@
       <button id="open3">弹窗3</button>
       <button id="open4">弹窗4</button>
       <button id="open5">弹窗5</button>
-    </div>
-    <div class="panel">
-      <div class="panel-title">
-        <p>欢迎</p>
-        <span>×</span>
-      </div>
-      <div class="panel-content">44444444</div>
-      <div class="panel-footer">
-        <button class="cancel">确定</button>
-        <button class="confirm">确定</button>
-      </div>
     </div>
     <script>
     //功能描述：
@@ -142,7 +138,8 @@
         }
       },
       createPanel: function(){
-        var panel = '<div class="panel">'
+        var panel = '<div><div class="cover"></div>'
+                  + '<div class="panel">'
                   + '<div class="panel-title">'
                   + '<p>' + this.opts.title + '</p>'
                   + '<span class="close">×</span>'
@@ -152,6 +149,8 @@
                   + '<button class="cancel close">取消</button>'
                   + '<button class="confirm">确定</button>'
                   + '</div>'
+                  + '</div>';
+                  + '</div>';
                   + '</div>';
         this.dialog = $(panel);
         $('body').append(this.dialog);
