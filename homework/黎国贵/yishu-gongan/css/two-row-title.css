@@ -1,0 +1,24 @@
+/*这里*/
+.item-title-w{
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 12px;
+}
+.item-title{
+    width: 80px;
+    position:relative;
+    float: left;
+    text-align: center;
+    border:1px solid #35485d;
+    /*唯一不同之处*/
+    margin-left: 40%;
+}
+.item-logo{
+    width: 30px;
+    float: left;
+    margin-left: 5%;
+    border-radius: 3px;
+    box-shadow: -1px -1px 5px #29394b;
+}
+/*这里*/

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>检测器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{
+            padding: 0;
+        }
+        .ct-l{
+            box-sizing: border-box;
+            padding-right:10px;
+            background-color: red;
+        }
+        .ct-l-wrap{
+            background-color: pink;
+        }
+        /*左边*/
+        .switch-information{
+            height: 260px;
+            border-radius: 5px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+        .server-process{
+            height: 470px;
+            border-radius: 5px;
+            background-color: greenyellow;
+            margin-bottom: 10px;
+        }
+        .alarm-information{
+            height: 210px;
+            border-radius: 5px;
+            background-color: #ff8800;
+        }
+
+        /*右边*/
+        .cpu{
+            height: 270px;
+            border-radius: 5px;
+            background-color: blue;
+            margin-bottom: 10px;
+        }
+        .memory{
+            height: 250px;
+            border-radius: 5px;
+            background-color: skyblue;
+            margin-bottom: 10px;
+        }
+        .net{
+            height: 250px;
+            border-radius: 5px;
+            background-color: green;
+            margin-bottom: 10px;
+        }
+        .store{
+            height: 170px;
+            border-radius: 5px;
+            background-color: #5bc0de;
+        }
+
+    </style>
+</head>
+<body>
+<div class="content clearfix">
+    <div class="main">
+        <!--右边内容区域是wrap-->
+        <div class="wrap">
+            <div class="wrap-header clearfix">
+                <div class="w-title">温岭市公安局天网工程运维平台</div>
+                <div class="w-ui">欢迎您，<span style="color:#265f89">张三</span>  丨  <span>退出</span></div>
+            </div>
+            <div class="wrap-content">
+                <div class="ct">
+                    <div class="container">
+                        <div class="ct-l col-lg-7">
+                            <div class="ct-l-wrap">
+                                <!--交换机基本信息-->
+                                <div class="switch-information">
+
+                                </div>
+                                <!--服务进程-->
+                                <div class="server-process">
+
+                                </div>
+                                <!--告警信息-->
+                                <div class="alarm-information">
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="ct-r col-lg-5">
+                            <!--cpu-->
+                            <div class="cpu">
+
+                            </div>
+                            <!--内存-->
+                            <div class="memory">
+
+                            </div>
+                            <!--网络-->
+                            <div class="net">
+
+                            </div>
+                            <!--储存-->
+                            <div class="store">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--左边栏  左边栏必须要放在main的下面-->
+    <div class="aside">
+        <!--用户信息-->
+        <div class="u-i-f clearfix">
+            <div class="ui-l">
+                <!--头像-->
+                <div class="head-portrait"></div>
+            </div>
+            <div class="ui-r">
+                <ul class="introduce">
+                    <li>姓名 ： <sapn>张三</sapn></li>
+                    <li>职务 ： <sapn>设备运维</sapn></li>
+                    <li>温岭市公安局</li>
+                </ul>
+            </div>
+        </div>
+        <!--导航-->
+        <ul class="navigation">
+            <li><a href="#" class="active">驾驶舱管理</a></li>
+            <li><a href="#">网络拓扑</a></li>
+            <li><a href="#">系统状态</a></li>
+            <li><a href="#">检索分析</a></li>
+            <li><a href="#">运维管理</a></li>
+            <li><a href="#" class="last-a">系统管理</a></li>
+        </ul>
+    </div>
+</div>
+<div id="footer">Copyright © 2016 杭州以数科技有限公司</div>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/public.js"></script>
+</body>
+</html>

@@ -1,0 +1,2257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>监控-实时状态4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/public.css">
+    <link rel="stylesheet" href="../../../css/public-nav.css">
+    <link rel="stylesheet" href="../../../css/third-row-title.css">
+    <style>
+        .ct{
+            padding-top: 10px;
+            font-size: 12px;
+        }
+        .title{
+            margin-bottom: 40px;
+            padding-left: 40px;
+            font-size: 12px;
+        }
+
+        .map{
+            height: 325px;
+        }
+        .select{
+            margin-left:10px;
+            margin-bottom: 20px;
+        }
+        .select li{
+            width:80px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            float: left;
+            border-radius: 3px;
+        }
+        .select .all{
+            border:1px solid #2b4058;
+        }
+        .select .fault{
+            background-color: #2b4058;
+        }
+        .s-wrap{
+            margin-bottom: 20px;
+        }
+        .select-sub{
+            float: left;
+        }
+        /*样式只改了这里*/
+        .select-sub li{
+            display: none;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            margin-left: 10px;
+            float: left;
+            border:1px solid #2b4058;
+            border-radius: 3px;
+            padding:0 10px;
+        }
+        .total-num{
+            display: none;
+            height: 25px;
+            line-height: 25px;
+            float: right;
+            margin-right: 10px;
+        }
+        .num{
+            margin-left: 35px;
+            margin-right:35px;
+            color:#27587f;
+        }
+        /*表单*/
+        .table-wrap{
+            width:100%;
+            padding-left:10px;
+            padding-right:10px;
+            margin-bottom: 20px;
+        }
+        table{
+            width:100%;
+            border:1px solid #35485d;
+        }
+        td{
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            border:1px solid #35485d;
+            border-collapse: collapse;
+        }
+        td a{
+            color:#fff;
+            text-decoration: underline;
+        }
+        .active-tr{
+            background-color: #2b4058;
+        }
+        .td-l{
+            float: left;
+            margin-left:20%;
+        }
+        .td-r{
+            float: right;
+            margin-right:20%;
+        }
+
+        .cancel{
+            font-size:16px;
+            line-height: 16px;
+            margin-left: 5px;
+        }
+        .cancel:hover{
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div class="content clearfix">
+    <div class="main">
+        <!--右边内容区域是wrap-->
+        <div class="wrap">
+            <div class="wrap-header clearfix">
+                <div class="w-title">温岭市公安局天网工程运维平台</div>
+                <div class="w-ui">欢迎您，<span style="color:#265f89">张三</span>  丨  <span>退出</span></div>
+            </div>
+            <!--一级导航-->
+            <ul class="wrap-nav clearfix">
+                <li><a href="#" class="active">监控</a></li>
+                <li><a href="../检测器/实时状态.html">检测器</a></li>
+                <li><a href="../服务器/实时状态.html">服务器</a></li>
+                <li><a href="../应用服务器/实时状态.html">应用服务器</a></li>
+                <li><a href="../网络设备/实时状态.html">网络设备</a></li>
+            </ul>
+            <!--二级导航-->
+            <ul class="sub-nav clearfix">
+                <li><a href="#" class="active">实时状态</a></li>
+                <li><a href="./故障告警.html">故障告警</a></li>
+                <li><a href="./故障预测.html">故障预测</a></li>
+            </ul>
+            <div class="ct-wrap">
+                <div class="ct">
+                    <div class="title">故障总览</div>
+                    <!--三个图-->
+                    <div class="container">
+                        <div class="row">
+                            <!--按项目分类-->
+                            <div class="project col-lg-4 col-md-4">
+                                <div class="item-title-w clearfix">
+                                    <div class="item-title">按项目分类</div>
+                                    <div class="item-logo"><img src="../../../img/折线图.png" alt=""></div>
+                                </div>
+
+                                <div id="project-map" class="map">
+
+                                </div>
+                            </div>
+                            <!--按品牌分类-->
+                            <div class="brand col-lg-4 col-md-4">
+                                <div class="item-title-w clearfix">
+                                    <div class="item-title">按品牌分类</div>
+                                    <div class="item-logo"><img src="../../../img/折线图.png" alt=""></div>
+                                </div>
+                                <div id="brand-map" class="map">
+
+                                </div>
+                            </div>
+                            <!--按区域分类-->
+                            <div class="area col-lg-4 col-md-4">
+                                <div class="item-title-w clearfix">
+                                    <div class="item-title">按区域分类</div>
+                                    <div class="item-logo"><img src="../../../img/折线图.png" alt=""></div>
+                                </div>
+                                <div id="area-map" class="map">
+
+                                </div>
+                            </div>
+                        </div><!--row-->
+                    </div> <!--container-->
+
+                    <!--选项栏-->
+                    <ul class="select clearfix">
+                        <li class="all">全部设备</li>
+                        <li class="fault">故障设备</li>
+                    </ul>
+                    <div class="s-wrap clearfix">
+                        <ul class="select-sub clearfix">
+                            <li class="showY"><span class="showYtext"></span><span class="cancel">×</span></li>
+                            <li class="showP"><span class="showPtext"></span><span class="cancel">×</span></li>
+                            <li class="showA"><span class="showAtext"></span><span class="cancel">×</span></li>
+                        </ul>
+                        <div class="total-num">
+                            共<span class="num">10</span>条
+                        </div>
+                    </div>
+
+                    <!--表单-->
+                    <div class="table-wrap">
+                        <table>
+                            <tr>
+                                <td>设备名称</td>
+                                <td>项目</td>
+                                <td>品牌</td>
+                                <td>区域</td>
+                                <td>故障时间</td>
+                                <td>线路情况</td>
+                                <td>告警信息</td>
+                                <td>日志信息</td>
+                            </tr>
+                            <tr v-for="item in items" v-bind:class="{'active-tr': item.style}">
+                                <td>{{item.name}}</td>
+                                <td>{{item.projection}}</td>
+                                <td>{{item.brand}}</td>
+                                <td>{{item.area}}</td>
+                                <td>{{item.day}} {{item.date}}</td>
+                                <td>{{item.status}}</td>
+                                <td>{{item.alarm}}</td>
+                                <td><a href="#">{{item.details}}</a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--左边栏  左边栏必须要放在main的下面-->
+    <div class="aside">
+        <!--用户信息-->
+        <div class="u-i-f clearfix">
+            <div class="ui-l">
+                <!--头像-->
+                <div class="head-portrait"></div>
+            </div>
+            <div class="ui-r">
+                <ul class="introduce">
+                    <li>姓名 ： <span>张三</span></li>
+                    <li>职务 ： <span>设备运维</span></li>
+                    <li>温岭市公安局</li>
+                </ul>
+            </div>
+        </div>
+        <!--导航-->
+        <ul class="navigation">
+            <li><a href="#">驾驶舱管理</a></li>
+            <li><a href="#">网络拓扑</a></li>
+            <li><a href="#" class="active">系统状态</a></li>
+            <li><a href="#">检索分析</a></li>
+            <li><a href="#">运维管理</a></li>
+            <li><a href="#" class="last-a">系统管理</a></li>
+        </ul>
+    </div>
+</div>
+<div id="footer">Copyright © 2016 杭州以数科技有限公司</div>
+<script src="../../../js/jquery-1.8.3.min.js"></script>
+<script src="../../../js/public-system.js"></script>
+<script src="../../../js/echarts.js"></script>
+<script src="../../../js/vue.js"></script>
+<script>
+    //    按项目分类
+    var projectMap = echarts.init(document.getElementById('project-map'));
+    var projectMapOption =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:20,
+                        name:'2016期',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:50,
+                        name:'2014期',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:30,
+                        name:'2015期',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    projectMap.setOption(projectMapOption);
+
+    //    按品牌分类
+    var brandMap = echarts.init(document.getElementById('brand-map'));
+    //按品牌分类全部图
+    var brandMapOption0 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:70,
+                        name:'海康威视',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:30,
+                        name:'大华',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //按品牌分类2016图
+    var brandMapOption1 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:50,
+                        name:'海康威视',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:50,
+                        name:'大华',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //按品牌分类2015图
+    var brandMapOption2 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:75,
+                        name:'海康威视',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:25,
+                        name:'大华',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //按品牌分类第2014图
+    var brandMapOption3 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:65,
+                        name:'海康威视',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:35,
+                        name:'大华',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    brandMap.setOption(brandMapOption0);
+
+
+    //按区域分类
+    var areaMap = echarts.init(document.getElementById('area-map'));
+    //按区域分类 3年全部图
+    var areaMapOption0 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:20,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:15,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:10,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:35,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:20,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2016 全年
+    var areaMapOption12 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:5,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:25,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:40,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:10,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2016 海康
+    var areaMapOption1 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:25,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:10,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:15,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:30,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:20,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2016 大华
+    var areaMapOption2 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:30,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:25,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:10,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:15,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:20,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2015 全年
+    var areaMapOption34 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:20,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:10,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:35,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:25,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2015 海康
+    var areaMapOption3 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:10,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:25,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:5,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:35,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:25,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2015 大华
+    var areaMapOption4 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:5,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:25,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:10,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:35,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:25,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2014 全年
+    var areaMapOption56 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:15,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:25,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:20,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2014 海康
+    var areaMapOption5 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:10,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:15,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:25,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:30,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2014 大华
+    var areaMapOption6 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:5,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:30,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:10,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:45,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:10,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //海康3年
+    var areaMapOption100 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:15,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:30,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:15,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //大华3年
+    var areaMapOption200 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:20,
+                        name:'城西',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'市区',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'城东',
+                        itemStyle: {
+                            normal: {
+                                color:'#f47d52',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'城南',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+
+                    {
+                        value:20,
+                        name:'城北',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+
+    areaMap.setOption(areaMapOption0);
+</script>
+<script>
+    //    初始化vue
+    var  vm = new Vue({
+        el:'.main',
+        data:{
+//        当前选择年份
+            selectY:'全部',
+//        当前选择品牌
+            selectP:'全部',
+//        当前选择的区域
+            selectA:'全部',
+
+            items : [{
+                style:true,
+                name:'横湖路1',
+                projection:'全部',
+                brand:'全部',
+                area:'全部',
+                day:'2016年8月30日',
+                date:'18:00',
+                status:'正常',
+                alarm:'无',
+                details:'查看详情'
+            },
+                {
+                    style:false,
+                    name:'三星桥路1',
+                    projection:'全部',
+                    brand:'全部',
+                    area:'全部',
+                    day:'2016年8月30日',
+                    date:'19:00',
+                    status:'不通',
+                    alarm:'CPU 99%',
+                    details:'查看详情'
+                },
+                {
+                    style:true,
+                    name:'横湖路2',
+                    projection:'全部',
+                    brand:'全部',
+                    area:'全部',
+                    day:'2016年8月30日',
+                    date:'18:00',
+                    status:'正常',
+                    alarm:'无',
+                    details:'查看详情'
+                },
+                {
+                    style:false,
+                    name:'三星桥路2',
+                    projection:'全部',
+                    brand:'全部',
+                    area:'全部',
+                    day:'2016年8月30日',
+                    date:'18:00',
+                    status:'不通',
+                    alarm:'CPU 99%',
+                    details:'查看详情'
+                },
+                {
+                    style:true,
+                    name:'横湖路3',
+                    projection:'全部',
+                    brand:'全部',
+                    area:'全部',
+                    day:'2016年8月30日',
+                    date:'18:00',
+                    status:'正常',
+                    alarm:'无',
+                    details:'查看详情'
+                },
+                {
+                    style:false,
+                    name:'三星桥路3',
+                    projection:'全部',
+                    brand:'全部',
+                    area:'全部',
+                    day:'2016年8月30日',
+                    date:'19:00',
+                    status:'不通',
+                    alarm:'CPU 99%',
+                    details:'查看详情'
+                }]
+        }
+    });
+</script>
+<script>
+//    补地图之品牌
+//vm.selectP的地图突出来
+    function pbu(map,mapoption){
+            for(var j=0;j<mapoption.series[0].data.length;j++){
+                mapoption.series[0].data[j].selected = null;
+            }
+            for(var i=0;i<mapoption.series[0].data.length;i++){
+                if(mapoption.series[0].data[i].name === vm.selectP){
+                    mapoption.series[0].data[i].selected = true;
+                    map.setOption(mapoption);
+                }
+
+            }
+
+    }
+//    补地图之区域
+//vm.selectA的地图突出来
+    function abu(map,mapoption){
+        for(var j=0;j<mapoption.series[0].data.length;j++){
+                mapoption.series[0].data[j].selected = null;
+        }
+        for(var i=0;i<mapoption.series[0].data.length;i++){
+                if(mapoption.series[0].data[i].name === vm.selectA){
+                    mapoption.series[0].data[i].selected = true;
+                    map.setOption(mapoption);
+                }
+
+            }
+    }
+
+
+//改变列表项目
+function changeY(str){
+    for(var i =0; i<vm.items.length;i++){
+        vm.items[i].projection = str;
+    }
+}
+//改变列表品牌
+function changeP(str){
+    for(var i =0; i<vm.items.length;i++){
+        vm.items[i].brand = str;
+    }
+}
+//改变列表区域
+function changeA(str){
+    for(var i =0; i<vm.items.length;i++){
+        vm.items[i].area = str;
+    }
+}
+
+
+
+//    点击项目逻辑
+    function clickY(str,bmo,amo){
+//      之前点击过2015期的逻辑
+        if(vm.selectY === str){
+            vm.selectY = '全部';
+            $('.showY').hide();
+            changeY('全项目');
+            brandMap.setOption(brandMapOption0);
+            areaMap.setOption(areaMapOption0);
+
+            pbu(brandMap,brandMapOption0);
+            abu(areaMap,areaMapOption0);
+
+        }
+        else{
+//      之前没有点击2015期的逻辑
+            vm.selectY = str;
+            $('.showY').show();
+            $('.showYtext').text(str);
+            changeY(str);
+
+            brandMap.setOption(bmo);
+            areaMap.setOption(amo);
+
+            pbu(brandMap,bmo);
+            abu(areaMap,amo);
+
+        }
+    }
+
+//    点击品牌逻辑
+    function clickP(param,amda,amhai,amquan){
+//      之前点击过品牌的逻辑
+        if(vm.selectP !== '全部'){
+//            之前点击的是海康威视
+            if(vm.selectP === '海康威视'){
+                if(param.name === '海康威视'){
+                    vm.selectP = '全部';
+                    $('.showP').hide();
+                    changeP('全品牌');
+                    areaMap.setOption(amquan);
+
+                    abu(areaMap,amquan);
+                }
+                if(param.name === '大华'){
+                    vm.selectP = '大华';
+                    $('.showP').show();
+                    $('.showPtext').text('大华');
+                    changeP('大华');
+                    areaMap.setOption(amda);
+
+                    abu(areaMap,amda);
+                }
+            }
+
+//            之前点击的是大华
+            else if(vm.selectP === '大华'){
+                if(param.name === '海康威视'){
+                    vm.selectP = '海康威视';
+                    $('.showP').show();
+                    $('.showPtext').text('海康威视');
+                    changeP('海康威视');
+
+                    areaMap.setOption(amhai);
+
+                    abu(areaMap,amhai);
+                }
+                if(param.name === '大华'){
+                    vm.selectP = '全部';
+                    $('.showP').hide();
+                    changeP('全品牌');
+                    areaMap.setOption(amquan);
+
+                    abu(areaMap,amquan);
+
+                }
+            }
+        }
+        else {
+
+            if(param.name === '海康威视'){
+                vm.selectP = '海康威视';
+                $('.showP').show();
+                $('.showPtext').text('海康威视');
+                changeP('海康威视');
+                areaMap.setOption(amhai);
+
+                abu(areaMap,amhai);
+            }
+            if(param.name === '大华'){
+                vm.selectP = '大华';
+                $('.showP').show();
+                $('.showPtext').text('大华');
+                changeP('大华');
+
+                areaMap.setOption(amda);
+
+                abu(areaMap,amda);
+            }
+        }
+    }
+
+//    点击区域逻辑
+    function clickA(str){
+//      之前点击过
+        if(vm.selectA === str){
+            vm.selectA = '全部';
+            $('.showA').hide();
+            changeA('全区域');
+        }
+//      之前没有点击过
+        else{
+            vm.selectA = str;
+            $('.showA').show();
+            $('.showAtext').text(str);
+            changeA(str);
+        }
+    }
+</script>
+<script>
+
+//        项目
+    projectMap.on('click',function(param){
+//        显示多少条
+        $('.total-num').show();
+
+//        点击2016期的逻辑
+        if(param.name === '2016期'){
+            clickY('2016期',brandMapOption1,areaMapOption12)
+        }
+
+        if(param.name === '2015期'){
+            clickY('2015期',brandMapOption2,areaMapOption34)
+        }
+
+        if(param.name === '2014期'){
+            clickY('2014期',brandMapOption3,areaMapOption56)
+        }
+
+
+    });
+
+
+//        品牌
+    brandMap.on('click',function(param){
+        var param = param;
+//        显示多少条
+        $('.total-num').show();
+
+//        年份为全部时
+        if(vm.selectY === '全部'){
+            clickP(param,areaMapOption200,areaMapOption100,areaMapOption0);
+        }
+//        年份为2016期
+        if(vm.selectY === '2016期'){
+            clickP(param,areaMapOption2,areaMapOption1,areaMapOption12);
+        }
+//        年份为2015期
+        if(vm.selectY === '2015期'){
+            clickP(param,areaMapOption4,areaMapOption3,areaMapOption34);
+        }
+//        年份为2014期
+        if(vm.selectY === '2014期'){
+            clickP(param,areaMapOption6,areaMapOption5,areaMapOption56);
+        }
+    });
+
+
+//        区域
+    areaMap.on('click',function(param){
+//        显示多少条
+        $('.total-num').show();
+        if(param.name === '城西'){
+            clickA('城西')
+        }
+        if(param.name === '城北'){
+            clickA('城北')
+        }
+        if(param.name === '城南'){
+            clickA('城南')
+        }
+        if(param.name === '城东'){
+            clickA('城东')
+        }
+        if(param.name === '市区'){
+            clickA('市区')
+        }
+
+    });
+
+</script>
+</body>
+</html>

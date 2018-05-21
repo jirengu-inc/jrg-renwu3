@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>驾驶舱</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/public.css">
+    <style>
+        /*第一行*/
+        .first{
+            margin-bottom:10px;
+        }
+        /*当前时间*/
+        .cur-time{
+            box-sizing: border-box;
+            padding-right:10px;
+        }
+        .cur-time-wrap{
+            height: 185px;
+            border-radius: 5px;
+        }
+        /*故障指数*/
+        .fault-num{
+            box-sizing: border-box;
+            padding-right:10px;
+        }
+        .fault-num-wrap{
+            height: 185px;
+            border-radius: 5px;
+        }
+        /*机房环境*/
+        .machine-room{
+            box-sizing: border-box;
+        }
+        .machine-room-wrap{
+            height: 185px;
+            border-radius: 5px;
+        }
+        /*第二行*/
+        .second{
+            margin-bottom:10px;
+        }
+        .store-status{
+            height: 160px;
+            background-color: yellow;
+        }
+        /*第三行*/
+        .third{
+            margin-bottom:10px;
+        }
+        .third .common-l{
+            height: 290px;
+            background-color: #66afe9;
+        }
+        .third .common-r{
+            height: 290px;
+            background-color: #4cae4c;
+        }
+        /*第四行*/
+        .fourth{
+
+        }
+        .fourth .common-l{
+            height: 280px;
+            background-color: #66afe9;
+        }
+        .fourth .common-r{
+            height: 280px;
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+<div class="content clearfix">
+    <div class="main">
+        <!--右边内容区域是wrap-->
+        <div class="wrap">
+            <div class="wrap-header clearfix">
+                <div class="w-title">温岭市公安局天网工程运维平台</div>
+                <div class="w-ui">欢迎您，<span style="color:#265f89">张三</span>  丨  <span>退出</span></div>
+            </div>
+            <div class="wrap-content">
+                <div class="ct">
+                    <!--第一行-->
+                    <div class="first container">
+                        <div class="row">
+                            <!--当前时间-->
+                            <div class="cur-time col-lg-4 col-md-4" style="background-color:red;">
+                                <div class="cur-time-wrap" style="background-color:pink;">
+                                    1
+                                </div>
+                            </div>
+                            <!--故障指数-->
+                            <div class="fault-num col-lg-3 col-md-3" style="background-color:blue;">
+                                <div class="fault-num-wrap" style="background-color:skyblue;">
+                                    2
+                                </div>
+                            </div>
+                            <!--机房环境-->
+                            <div class="machine-room col-lg-5 col-md-5" style="background-color:yellow;">
+                                <div class="machine-room-wrap" style="background-color: yellowgreen;">
+                                    3
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--第二行-->
+                    <div class="second container">
+                        <div class="row">
+                            <!--存储状态-->
+                            <div class="store-status col-lg-12 col-md-12">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--第三行-->
+                    <div class="third container">
+                        <div class="row">
+                            <!--设备故障总览-->
+                            <!--左边-->
+                            <div class="common-l col-lg-6 col-md-6">
+
+                            </div>
+                            <!--右边-->
+                            <div class="common-r col-lg-6 col-md-6">
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--第四行-->
+                    <div class="fourth container">
+                        <div class="row">
+                            <!--告警预警-->
+                            <!--左边-->
+                            <div class="common-l col-lg-6 col-md-6">
+
+                            </div>
+                            <!--右边-->
+                            <div class="common-r col-lg-6 col-md-6">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--左边栏  左边栏必须要放在main的下面-->
+    <div class="aside">
+        <!--用户信息-->
+        <div class="u-i-f clearfix">
+            <div class="ui-l">
+                <!--头像-->
+                <div class="head-portrait"></div>
+            </div>
+            <div class="ui-r">
+                <ul class="introduce">
+                    <li>姓名 ： <sapn>张三</sapn></li>
+                    <li>职务 ： <sapn>设备运维</sapn></li>
+                    <li>温岭市公安局</li>
+                </ul>
+            </div>
+        </div>
+        <!--导航-->
+        <ul class="navigation">
+            <li><a href="#" class="active">驾驶舱管理</a></li>
+            <li><a href="#">网络拓扑</a></li>
+            <li><a href="#">系统状态</a></li>
+            <li><a href="#">检索分析</a></li>
+            <li><a href="#">运维管理</a></li>
+            <li><a href="#" class="last-a">系统管理</a></li>
+        </ul>
+    </div>
+</div>
+<div id="footer">Copyright © 2016 杭州以数科技有限公司</div>
+<script src="js/jquery-1.8.3.min.js"></script>
+<script src="js/public.js"></script>
+</body>
+</html>

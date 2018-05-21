@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>应用服务器-实时状态</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/public.css">
+    <link rel="stylesheet" href="../../../css/public-nav.css">
+    <link rel="stylesheet" href="../../../css/third-row-title.css">
+    <style>
+        .ct{
+            padding-top: 10px;
+            font-size: 12px;
+        }
+        .title{
+            margin-bottom: 40px;
+            padding-left: 40px;
+            font-size: 12px;
+        }
+        .map{
+            height: 325px;
+        }
+        .select{
+            margin-left:10px;
+            margin-bottom: 20px;
+        }
+        .select li{
+            width:80px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            float: left;
+            border-radius: 3px;
+        }
+        .select .all{
+            border:1px solid #2b4058;
+        }
+        .select .fault{
+            background-color: #2b4058;
+        }
+        .s-wrap{
+            margin-bottom: 20px;
+        }
+        .select-sub{
+            float: left;
+        }
+        .select-sub li{
+            width:65px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            margin-left: 10px;
+            float: left;
+            border:1px solid #2b4058;
+            border-radius: 3px;
+        }
+        .select-sub li:first-child{
+            width: 80px;
+        }
+        .select-sub li:last-child{
+            width: 100px;
+        }
+
+
+        .total-num{
+            height: 25px;
+            line-height: 25px;
+            float: right;
+            margin-right: 10px;
+        }
+        .num{
+            margin-left: 35px;
+            margin-right:35px;
+            color:#27587f;
+        }
+        /*表单*/
+        .table-wrap{
+            width:100%;
+            padding-left:10px;
+            padding-right:10px;
+            margin-bottom: 20px;
+        }
+        table{
+            width:100%;
+            border:1px solid #35485d;
+        }
+        td{
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            border:1px solid #35485d;
+            border-collapse: collapse;
+        }
+        td a{
+            color:#fff;
+            text-decoration: underline;
+        }
+        .active-tr{
+            background-color: #2b4058;
+        }
+        .td-l{
+            float: left;
+            margin-left:20%;
+        }
+        .td-r{
+            float: right;
+            margin-right:20%;
+        }
+
+        .cancel{
+            font-size:16px;
+            line-height: 16px;
+            margin-left: 5px;
+        }
+        .cancel:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="content clearfix">
+    <div class="main">
+        <!--右边内容区域是wrap-->
+        <div class="wrap">
+            <div class="wrap-header clearfix">
+                <div class="w-title">温岭市公安局天网工程运维平台</div>
+                <div class="w-ui">欢迎您，<span style="color:#265f89">张三</span>  丨  <span>退出</span></div>
+            </div>
+            <!--一级导航-->
+            <ul class="wrap-nav clearfix">
+                <li><a href="../监控/实时状态.html">监控</a></li>
+                <li><a href="../检测器/实时状态.html">检测器</a></li>
+                <li><a href="../服务器/实时状态.html">服务器</a></li>
+                <li><a href="#" class="active">应用服务器</a></li>
+                <li><a href="../网络设备/实时状态.html">网络设备</a></li>
+            </ul>
+            <!--二级导航-->
+            <ul class="sub-nav clearfix">
+                <li><a href="#" class="active">实时状态</a></li>
+                <li><a href="./故障告警.html">故障告警</a></li>
+                <li><a href="./故障预测.html">故障预测</a></li>
+            </ul>
+            <div class="ct-wrap">
+                <div class="ct">
+                    <div class="title">故障总览</div>
+                    <!--三个图-->
+                    <div class="container">
+                        <div class="row">
+                            <!--按项目分类-->
+                            <div class="project col-lg-4 col-md-4">
+                                <div class="item-title-w clearfix">
+                                    <div class="item-title">按项目分类</div>
+                                    <div class="item-logo"><img src="../../../img/折线图.png" alt=""></div>
+                                </div>
+                                <div id="project-map" class="map">
+
+                                </div>
+                            </div>
+                            <!--按品牌分类-->
+                            <div class="brand col-lg-4 col-md-4">
+                                <div class="item-title-w clearfix">
+                                    <div class="item-title">按品牌分类</div>
+                                    <div class="item-logo"><img src="../../../img/折线图.png" alt=""></div>
+                                </div>
+                                <div id="brand-map" class="map">
+
+                                </div>
+                            </div>
+                            <!--按区域分类-->
+                            <div class="type col-lg-4 col-md-4">
+                                <div class="item-title-w clearfix">
+                                    <div class="item-title">按类型分类</div>
+                                    <div class="item-logo"><img src="../../../img/折线图.png" alt=""></div>
+                                </div>
+                                <div id="type-map" class="map">
+
+                                </div>
+                            </div>
+                        </div><!--row-->
+                    </div> <!--container-->
+
+                    <!--选项栏-->
+                    <ul class="select clearfix">
+                        <li class="all">全部设备</li>
+                        <li class="fault">故障设备</li>
+                    </ul>
+                    <div class="s-wrap clearfix">
+                        <ul class="select-sub clearfix">
+                            <li class="q-year">2016期 <span class="cancel">×</span></li>
+                            <li class="b-area">大华 <span class="cancel">×</span></li>
+                            <li class="l-area">卡口服务器 <span class="cancel">×</span></li>
+                        </ul>
+
+                        <div class="total-num">
+                            共<span class="num">10</span>条
+                        </div>
+                    </div>
+
+                    <!--表单-->
+                    <div class="table-wrap">
+                        <table>
+                            <tr>
+                                <td>设备名称</td>
+                                <td>项目</td>
+                                <td>品牌</td>
+                                <td>故障时间</td>
+                                <td>进程情况</td>
+                                <td>告警信息</td>
+                                <td>日志信息</td>
+                            </tr>
+                            <tr class="active-tr">
+                                <td>卡口服务器1</td>
+                                <td>2016期</td>
+                                <td>大华</td>
+                                <td>2016年8月30日 18:00</td>
+                                <td>故障</td>
+                                <td>无</td>
+                                <td><a href="#">查看详情</a></td>
+                            </tr>
+                            <tr>
+                                <td>卡口服务器2</td>
+                                <td>2016期</td>
+                                <td>大华</td>
+                                <td>2016年8月30日 19:00</td>
+                                <td>故障</td>
+                                <td class="clearfix">
+                                    <div class="td-l">CPU</div>
+                                    <div class="td-r">99%</div>
+                                </td>
+                                <td><a href="#">查看详情</a></td>
+                            </tr>
+                            <tr class="active-tr">
+                                <td>卡口服务器3</td>
+                                <td>2016期</td>
+                                <td>大华</td>
+                                <td>2016年8月30日 18:00</td>
+                                <td>故障</td>
+                                <td>无</td>
+                                <td><a href="#">查看详情</a></td>
+                            </tr>
+                            <tr>
+                                <td>卡口服务器4</td>
+                                <td>2016期</td>
+                                <td>大华</td>
+                                <td>2016年8月30日 19:00</td>
+                                <td>故障</td>
+                                <td class="clearfix">
+                                    <div class="td-l">CPU</div>
+                                    <div class="td-r">99%</div>
+                                </td>
+                                <td><a href="#">查看详情</a></td>
+                            </tr>
+                            <tr class="active-tr">
+                                <td>卡口服务器5</td>
+                                <td>2016期</td>
+                                <td>大华</td>
+                                <td>2016年8月30日 18:00</td>
+                                <td>故障</td>
+                                <td>无</td>
+                                <td><a href="#">查看详情</a></td>
+                            </tr>
+                            <tr>
+                                <td>卡口服务器6</td>
+                                <td>2016期</td>
+                                <td>大华</td>
+                                <td>2016年8月30日 19:00</td>
+                                <td>故障</td>
+                                <td class="clearfix">
+                                    <div class="td-l">CPU</div>
+                                    <div class="td-r">99%</div>
+                                </td>
+                                <td><a href="#">查看详情</a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--左边栏  左边栏必须要放在main的下面-->
+    <div class="aside">
+        <!--用户信息-->
+        <div class="u-i-f clearfix">
+            <div class="ui-l">
+                <!--头像-->
+                <div class="head-portrait"></div>
+            </div>
+            <div class="ui-r">
+                <ul class="introduce">
+                    <li>姓名 ： <sapn>张三</sapn></li>
+                    <li>职务 ： <sapn>设备运维</sapn></li>
+                    <li>温岭市公安局</li>
+                </ul>
+            </div>
+        </div>
+        <!--导航-->
+        <ul class="navigation">
+            <li><a href="#">驾驶舱管理</a></li>
+            <li><a href="#">网络拓扑</a></li>
+            <li><a href="#" class="active">系统状态</a></li>
+            <li><a href="#">检索分析</a></li>
+            <li><a href="#">运维管理</a></li>
+            <li><a href="#" class="last-a">系统管理</a></li>
+        </ul>
+    </div>
+</div>
+<div id="footer">Copyright © 2016 杭州以数科技有限公司</div>
+<script src="../../../js/jquery-1.8.3.min.js"></script>
+<script src="../../../js/public-system.js"></script>
+<script src="../../../js/echarts.js"></script>
+<script>
+    //    按项目分类
+    var projectMap = echarts.init(document.getElementById('project-map'));
+    var projectMapOption =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:20,
+                        name:'2016期',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:50,
+                        name:'2014期',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:30,
+                        name:'2015期',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    projectMap.setOption(projectMapOption);
+
+    //    按品牌分类
+    var brandMap = echarts.init(document.getElementById('brand-map'));
+    //按品牌分类全部图
+    var brandMapOption0 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:70,
+                        name:'海康威视',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:30,
+                        name:'大华',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //按品牌分类2016图
+    var brandMapOption1 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:50,
+                        name:'海康威视',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:50,
+                        name:'大华',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //按品牌分类2015图
+    var brandMapOption2 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:75,
+                        name:'海康威视',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:25,
+                        name:'大华',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //按品牌分类第2014图
+    var brandMapOption3 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:65,
+                        name:'海康威视',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:35,
+                        name:'大华',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    brandMap.setOption(brandMapOption0);
+
+
+    //按类型分类
+    var areaMap = echarts.init(document.getElementById('type-map'));
+    //按类型分类 3年全部图
+    var areaMapOption0 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:30,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:70,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2016 全年
+    var areaMapOption12 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:40,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:60,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2016 海康
+    var areaMapOption1 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:35,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:65,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2016 大华
+    var areaMapOption2 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:20,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:80,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2015 全年
+    var areaMapOption34 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:45,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:55,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2015 海康
+    var areaMapOption3 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:33,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:67,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2015 大华
+    var areaMapOption4 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:48,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:52,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2014 全年
+    var areaMapOption56 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:50,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:50,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2014 海康
+    var areaMapOption5 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:40,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:60,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //2014 大华
+    var areaMapOption6 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:10,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:90,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //海康3年
+    var areaMapOption100 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:45,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:55,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //大华3年
+    var areaMapOption200 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'故障总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:25,
+                        name:'存储服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:75,
+                        name:'卡口服务器',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+
+
+    areaMap.setOption(areaMapOption0);
+</script>
+<script>
+    var whichProject = '三年';
+    projectMap.on('click',function(param){
+        if(param.name === '2016期'){
+            brandMap.setOption(brandMapOption1);
+            areaMap.setOption(areaMapOption12);
+            whichProject = '2016期';
+        }
+        if(param.name === '2015期'){
+            brandMap.setOption(brandMapOption2);
+            areaMap.setOption(areaMapOption34);
+            whichProject = '2015期';
+        }
+        if(param.name === '2014期'){
+            brandMap.setOption(brandMapOption3);
+            areaMap.setOption(areaMapOption56);
+            whichProject = '2014期';
+        }
+    });
+
+    var whichBrand = '3year';
+    brandMap.on('click',function(param){
+        if(whichProject === '三年'){
+            if(param.name === '海康威视'){
+                areaMap.setOption(areaMapOption100);
+            }
+            if(param.name === '大华'){
+                areaMap.setOption(areaMapOption200);
+            }
+        }
+        if(whichProject === '2016期'){
+            if(param.name === '海康威视'){
+                areaMap.setOption(areaMapOption1);
+            }
+            if(param.name === '大华'){
+                areaMap.setOption(areaMapOption2);
+            }
+        }
+        if(whichProject === '2015期'){
+            if(param.name === '海康威视'){
+                areaMap.setOption(areaMapOption3);
+            }
+            if(param.name === '大华'){
+                areaMap.setOption(areaMapOption4);
+            }
+
+        }
+        if(whichProject === '2014期'){
+            if(param.name === '海康威视'){
+                areaMap.setOption(areaMapOption5);
+            }
+            if(param.name === '大华'){
+                areaMap.setOption(areaMapOption6);
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

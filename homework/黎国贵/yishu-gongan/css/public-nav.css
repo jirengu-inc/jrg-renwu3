@@ -1,0 +1,71 @@
+/*内容导航*/
+.wrap-nav{
+    height: 60px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    border-bottom:1px solid #35485d;
+    background-color: #132334;
+}
+.wrap-nav li{
+    width: 85px;
+    height: 60px;
+    float:left;
+    text-align: center;
+    line-height: 60px;
+    margin-right:10px;
+}
+.wrap-nav li a{
+    width: 100%;
+    height: 100%;
+    display:block;
+    color:#fff;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+.wrap-nav li a:hover{
+    border-bottom: 2px solid #3d9fe4;
+}
+.wrap-nav li .active{
+    border-bottom: 2px solid #3d9fe4;
+}
+/*内容导航二级*/
+.sub-nav{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+.sub-nav li{
+    width: 90px;
+    height:12px;
+    float: left;
+    font-size: 12px;
+    text-align: center;
+    border-right:1px solid #fff;
+}
+.sub-nav li:last-child{
+    border-right: 0;
+}
+.sub-nav li a{
+    color:#fff;
+}
+.sub-nav li .active{
+    color:#3d9fe4;
+}
+.ct-wrap{
+    width: 100%;
+    box-sizing: border-box;
+    padding-top:0;
+    padding-left:20px;
+    padding-right:20px;
+    padding-bottom: 10px;
+}
+.ct{
+    width:100%;
+    background-color: #18293c;
+}
+.wrap{
+    background-color: #132233;
+}
+.container{
+    margin-right:0;
+    margin-left:0;
+}

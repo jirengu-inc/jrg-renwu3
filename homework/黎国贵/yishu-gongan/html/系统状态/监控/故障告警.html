@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>监控-故障告警</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/public.css">
+    <link rel="stylesheet" href="../../../css/public-nav.css">
+    <link rel="stylesheet" href="../../../css/two-row-title.css">
+    <link rel="stylesheet" href="../../../css/drop-down.css">
+    <style>
+        .ct{
+            padding-top: 10px;
+            font-size: 12px;
+        }
+        .title{
+            margin-bottom: 40px;
+            padding-left: 40px;
+            font-size: 12px;
+        }
+        .map{
+            height: 325px;
+        }
+        .select li{
+            width:80px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            float: left;
+            border-radius: 3px;
+        }
+        .s-wrap{
+            margin-bottom: 20px;
+        }
+        .select-sub{
+            float: left;
+        }
+        .select-sub li{
+            width:110px;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            margin-left: 10px;
+            float: left;
+            border:1px solid #2b4058;
+            border-radius: 3px;
+        }
+        .select-sub li:first-child{
+            width: 80px;
+        }
+        .total-num{
+            height: 25px;
+            line-height: 25px;
+            float: right;
+            margin-right: 10px;
+        }
+        .num{
+            margin-left: 35px;
+            margin-right:35px;
+            color:#27587f;
+        }
+        /*表单*/
+        .table-wrap{
+            width:100%;
+            padding-left:10px;
+            padding-right:10px;
+            margin-bottom: 20px;
+        }
+        table{
+            width:100%;
+            border:1px solid #35485d;
+        }
+        td{
+            height: 25px;
+            position:relative;
+            line-height: 25px;
+            text-align: center;
+            border:1px solid #35485d;
+            border-collapse: collapse;
+        }
+        td a{
+            color:#fff;
+            text-decoration: underline;
+        }
+        .active-tr{
+            background-color: #2b4058;
+        }
+        .td-l{
+            float: left;
+            margin-left:12.5%;
+        }
+        .td-r{
+            float: right;
+            margin-right:12.5%;
+        }
+
+        .cancel{
+            font-size:16px;
+            line-height: 16px;
+            margin-left: 5px;
+        }
+        .cancel:hover{
+            cursor: pointer;
+        }
+        /*三角形样式*/
+        .triangle {
+            position:absolute;
+            right: 0;
+            bottom:0;
+            border-bottom: 6px solid #fff;
+            border-left: 6px solid transparent;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="content clearfix">
+    <div class="main">
+        <!--右边内容区域是wrap-->
+        <div class="wrap">
+            <div class="wrap-header clearfix">
+                <div class="w-title">温岭市公安局天网工程运维平台</div>
+                <div class="w-ui">欢迎您，<span style="color:#265f89">张三</span>  丨  <span>退出</span></div>
+            </div>
+            <!--一级导航-->
+            <ul class="wrap-nav clearfix">
+                <li><a href="#" class="active">监控</a></li>
+                <li><a href="../检测器/实时状态.html">检测器</a></li>
+                <li><a href="../服务器/实时状态.html">服务器</a></li>
+                <li><a href="../应用服务器/实时状态.html">应用服务器</a></li>
+                <li><a href="../网络设备/实时状态.html">网络设备</a></li>
+            </ul>
+            <!--二级导航-->
+            <ul class="sub-nav clearfix">
+                <li><a href="./实时状态.html">实时状态</a></li>
+                <li><a href="#" class="active">故障告警</a></li>
+                <li><a href="./故障预测.html">故障预测</a></li>
+            </ul>
+            <div class="ct-wrap">
+                <div class="ct">
+                    <div class="title">告警总览</div>
+                    <!--三个图-->
+                    <div class="container">
+                        <div class="row">
+                            <!--按项目分类-->
+                            <div class="project col-lg-6 col-md-6">
+                                <div class="item-title-w clearfix">
+                                    <div class="item-title">
+                                        按项目分类
+                                        <div class="triangle"></div>
+                                    </div>
+                                    <div class="item-logo"><img src="../../../img/折线图.png" alt=""></div>
+                                </div>
+                                <div id="project-map" class="map">
+
+                                </div>
+                            </div>
+                            <!--按告警类型-->
+                            <div class="alarm col-lg-6 col-md-6">
+                                <div class="item-title-w clearfix">
+                                    <div class="item-title">
+                                        按告警分类
+                                        <div class="triangle"></div>
+                                    </div>
+                                    <div class="item-logo"><img src="../../../img/折线图.png" alt=""></div>
+                                </div>
+                                <div id="alarm-map" class="map">
+
+                                </div>
+                            </div>
+                        </div><!--row-->
+                    </div> <!--container-->
+
+                    <!--选项栏-->
+                    <div class="s-wrap clearfix">
+                        <ul class="select-sub clearfix">
+                            <li class="q-year">2016期 <span class="cancel">×</span></li>
+                            <li class="b-area">磁盘空间不足 <span class="cancel">×</span></li>
+                        </ul>
+
+                        <div class="total-num">
+                            共<span class="num">10</span>条
+                        </div>
+                    </div>
+
+                    <!--表单-->
+                    <div class="table-wrap">
+                        <table>
+                            <tr>
+                                <td>设备名称</td>
+                                <td class="drop-down-wrap">
+                                    告警类型 - <span class="bh">存储</span><div class="triangle"></div>
+                                    <ul class="drop-down">
+                                        <li>温度</li>
+                                        <li>存储</li>
+                                        <li>CPU</li>
+                                        <li>内存</li>
+                                    </ul>
+                                </td>
+                                <td class="drop-down-wrap">
+                                    告警时间 - <span class="bh">顺序</span><div class="triangle"></div>
+                                    <ul class="drop-down">
+                                        <li>顺序</li>
+                                        <li>倒序</li>
+                                    </ul>
+                                </td>
+                                <td class="drop-down-wrap">
+                                    告警次数 - <span class="bh">从多到少</span><div class="triangle"></div>
+                                    <ul class="drop-down">
+                                        <li>从多到少</li>
+                                        <li>从少到多</li>
+                                    </ul>
+                                </td>
+                                <td>告警日志</td>
+                            </tr>
+                            <tr class="active-tr">
+                                <td>横湖桥1</td>
+                                <td>磁盘空间不足</td>
+                                <td>2016年8月30日 18:00</td>
+                                <td>105</td>
+                                <td class="clearfix">
+                                    <div class="td-l">磁盘空间不足8% </div>
+                                    <div class="td-r">查看更多</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>三星桥1</td>
+                                <td>磁盘空间不足</td>
+                                <td>2016年8月30日 19:00</td>
+                                <td>125</td>
+                                <td class="clearfix">
+                                    <div class="td-l">磁盘空间不足5% </div>
+                                    <div class="td-r">查看更多</div>
+                                </td>
+                            </tr>
+                            <tr class="active-tr">
+                                <td>曙光路1</td>
+                                <td>多类告警</td>
+                                <td>2016年8月30日 20:00</td>
+                                <td>521</td>
+                                <td class="clearfix">
+                                    <div class="td-l">磁盘空间不足1%；内存使用率... </div>
+                                    <div class="td-r">查看更多</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>横湖桥2</td>
+                                <td>磁盘空间不足</td>
+                                <td>2016年8月30日 18:00</td>
+                                <td>105</td>
+                                <td class="clearfix">
+                                    <div class="td-l">磁盘空间不足8% </div>
+                                    <div class="td-r">查看更多</div>
+                                </td>
+                            </tr>
+                            <tr class="active-tr">
+                                <td>三星桥2</td>
+                                <td>磁盘空间不足</td>
+                                <td>2016年8月30日 19:00</td>
+                                <td>125</td>
+                                <td class="clearfix">
+                                    <div class="td-l">磁盘空间不足5% </div>
+                                    <div class="td-r">查看更多</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>曙光路2</td>
+                                <td>多类告警</td>
+                                <td>2016年8月30日 20:00</td>
+                                <td>521</td>
+                                <td class="clearfix">
+                                    <div class="td-l">磁盘空间不足1%；内存使用率... </div>
+                                    <div class="td-r">查看更多</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--左边栏  左边栏必须要放在main的下面-->
+    <div class="aside">
+        <!--用户信息-->
+        <div class="u-i-f clearfix">
+            <div class="ui-l">
+                <!--头像-->
+                <div class="head-portrait"></div>
+            </div>
+            <div class="ui-r">
+                <ul class="introduce">
+                    <li>姓名 ： <sapn>张三</sapn></li>
+                    <li>职务 ： <sapn>设备运维</sapn></li>
+                    <li>温岭市公安局</li>
+                </ul>
+            </div>
+        </div>
+        <!--导航-->
+        <ul class="navigation">
+            <li><a href="#">驾驶舱管理</a></li>
+            <li><a href="#">网络拓扑</a></li>
+            <li><a href="#" class="active">系统状态</a></li>
+            <li><a href="#">检索分析</a></li>
+            <li><a href="#">运维管理</a></li>
+            <li><a href="#" class="last-a">系统管理</a></li>
+        </ul>
+    </div>
+</div>
+<div id="footer">Copyright © 2016 杭州以数科技有限公司</div>
+<script src="../../../js/jquery-1.8.3.min.js"></script>
+<script src="../../../js/public-system.js"></script>
+<script src="../../../js/echarts.js"></script>
+<script src="../../../js/drop-down.js"></script>
+<script>
+    //    按项目分类
+    var projectMap = echarts.init(document.getElementById('project-map'));
+    var projectMapOption =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'告警总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:40,
+                        name:'2015期',
+                        itemStyle: {
+                            normal: {
+                                color:'#e784fc',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'2016期',
+                        itemStyle: {
+                            normal: {
+                                color:'#fba17a',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:40,
+                        name:'2014期',
+                        itemStyle: {
+                            normal: {
+                                color:'#82c6f6',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    projectMap.setOption(projectMapOption);
+    //按告警类型
+    var alarmMap = echarts.init(document.getElementById('alarm-map'));
+//    默认3年
+    var alarmMapOption0 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'告警总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:40,
+                        name:'内存',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:30,
+                        name:'CPU',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'存储',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:10,
+                        name:'温度',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+//    2016期
+    var alarmMapOption1 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'告警总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:30,
+                        name:'内存',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:35,
+                        name:'CPU',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:25,
+                        name:'存储',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:10,
+                        name:'温度',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //    2015期
+    var alarmMapOption2 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'告警总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:20,
+                        name:'内存',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:40,
+                        name:'CPU',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:25,
+                        name:'存储',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:15,
+                        name:'温度',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    //    2014期
+    var alarmMapOption3 =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        selectedMode: 'single',
+        calculable : true,
+        series: [
+            {
+                name:'告警总览',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:30,
+                        name:'内存',
+                        itemStyle: {
+                            normal: {
+                                color:'#f1cf63',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'CPU',
+                        itemStyle: {
+                            normal: {
+                                color:'#66dac2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:30,
+                        name:'存储',
+                        itemStyle: {
+                            normal: {
+                                color:'#66ee87',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:20,
+                        name:'温度',
+                        itemStyle: {
+                            normal: {
+                                color:'#9bf26f',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+
+    alarmMap.setOption(alarmMapOption0);
+</script>
+<script>
+    projectMap.on('click',function(param){
+        if(param.name === '2016期'){
+            alarmMap.setOption(alarmMapOption1);
+        }
+        if(param.name === '2015期'){
+            alarmMap.setOption(alarmMapOption2);
+        }
+        if(param.name === '2014期'){
+            alarmMap.setOption(alarmMapOption3);
+        }
+    });
+</script>
+
+</body>
+</html>
