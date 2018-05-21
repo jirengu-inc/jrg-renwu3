@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>舆情中心-舆情分析</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <style>
+        /*通用样式*/
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family:'Microsoft Yahei';
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .container{
+            width:1200px;
+            margin:0 auto;
+        }
+        /*头部*/
+        #header{
+            background-color: #191919;
+        }
+        #header .container{
+            height:50px;
+            line-height: 50px;
+            color:#fff;
+        }
+        #header .aside-left{
+            width: 215px;
+            font-size:14px;
+            float: left;
+            text-align: left;
+        }
+        #header .header-center{
+            float:left;
+        }
+        #header .header-center li{
+            float:left;
+            width:140px;
+            text-align: left;
+        }
+        #header .header-center li a{
+            height: 47px;
+            width:72px;
+            display: block;
+            position:relative;
+            text-align: center;
+            font-size: 14px;
+            color:#fff;
+        }
+        #header .header-center li a:hover{
+            color:#05a07f;
+            border-bottom: 2px solid #05a07f;
+        }
+        #header .aside-right{
+            float: right;
+            text-align: right;
+            font-size:12px;
+        }
+        #header .h-active{
+            color:#05a07f !important;
+            border-bottom: 2px solid #05a07f;
+        }
+        /*主体*/
+        /*中心标题*/
+        #main .active{
+            color:#00c199;
+        }
+        #main .center-title{
+            margin-top: 30px;
+        }
+        #main .center-nav{
+            float:left;
+        }
+        #main .center-nav li{
+            width: 136px;
+            height: 17px;
+            line-height: 17px;
+            text-align: center;
+            float:left;
+            border-right: 2px solid #dedede;
+        }
+        #main .center-nav .last-li{
+            border-right:0;
+        }
+        #main .center-nav li:hover{
+            cursor: pointer;
+            color:#00c199;
+        }
+        #main .current-location{
+            float:right;
+            margin-right: 20px;
+            font-size:12px;
+            color:#999;
+        }
+        /*舆情分析wrap*/
+        #main .public-sentiment-wrap{
+            margin-top: 50px;
+            margin-left: -40px;
+        }
+        #main .public-sentiment-wrap li{
+            width:580px;
+            height: 310px;
+            float: left;
+            margin-left: 40px;
+            margin-bottom: 60px;
+            box-sizing: border-box;
+            border-top:1px solid #e3e3e3;
+            /*background-color: red;*/
+        }
+        #main .public-sentiment-wrap li hr{
+            margin: 0;
+            width: 80px;
+            border-bottom: 1px solid #00c199;
+        }
+        /*各个li的标题*/
+        #main .public-sentiment-wrap li .title-l{
+            float:left;
+            margin-top:15px;
+            font-size:16px;
+        }
+        #main .public-sentiment-wrap li .top10{
+            margin-left: 10px;
+            font-size:16px;
+            color:#fb7e77;
+            margin-right: 5px;
+        }
+        #main .public-sentiment-wrap li .title-r{
+            float:right;
+            margin-top:15px;
+            font-size:12px;
+        }
+
+        #main .public-sentiment-wrap li .title-r2{
+            height: 24px;
+            width:164px;
+            float:right;
+            margin-top:10px;
+            font-size:12px;
+            /*border:1px solid #e3e3e3;*/
+        }
+        #main .public-sentiment-wrap li .title-r2-date{
+            width:54px;
+            float:left;
+            line-height: 24px;
+            text-align: center;
+            box-sizing: border-box;
+            border: 1px solid #e3e3e3;
+        }
+        #main .public-sentiment-wrap li .title-r2-date:hover{
+            cursor:pointer;
+        }
+        /*点亮边框样式*/
+        #main .public-sentiment-wrap li .light{
+            border:1px solid #3298dc;
+        }
+        /*主体map*/
+        #main .public-sentiment-main-map{
+            width: 560px;
+            height:289px;
+        }
+        #main .ei-num{
+            height: 20px;
+            text-align: center;
+        }
+
+        /*底部*/
+        #footer{
+            margin-top:50px;
+            background-color: #191919;
+        }
+        #footer .container{
+            height:66px;
+            line-height: 66px;
+            text-align: center;
+            color:#999;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="container clearfix">
+        <div class="aside-left">椒江旅游大数据平台</div>
+        <div class="header-center">
+            <ul class="clearfix">
+                <li><a href="../control/control.html" >管控中心</a></li>
+                <li><a href="../operation/operation.html">运维中心</a></li>
+                <li><a href="../态势中心/come-go-situation.html">态势中心</a></li>
+                <li><a href="../marketing/revenue-analyze.html">营销中心</a></li>
+                <li><a href="../舆情中心/public-sentiment-analyze.html" class="h-active">舆情中心</a></li>
+                <li><a href="../bigScreen/bigScreen.html">可视化大屏</a></li>
+            </ul>
+        </div>
+        <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span> | <span class="user-action">注销</span></div>
+    </div>
+</div>
+<div id="main">
+    <div class="container">
+        <div class="center-title clearfix">
+            <div class="center-nav">
+                <ul class="clearfix">
+                    <li class="active"><a href="public-sentiment-analyze.html" class="active">舆情分析</a></li>
+                    <li><a href="public-sentiment-list.html">舆情列表</a></li>
+                    <li><a href="propagation-path.html">传播路径</a></li>
+                    <li class="last-li"><a href="competitive-products-analyze.html" >竞品分析</a></li>
+                </ul>
+            </div>
+            <div class="current-location">
+                <span>当前位置</span>:<span class='location'>舆情中心</span>><span class="z-location">舆情分析</span>
+            </div>
+        </div>
+        <ul class="public-sentiment-wrap clearfix">
+            <li>
+                <hr>
+                <div class="title clearfix">
+                    <div class="title-l">热门事件 <span class="top10">TOP10</span><img src="../../img/分值.png" alt=""></div>
+                    <div class="title-r">
+                        来源：舆情
+                    </div>
+                </div>
+                <div id="heatEvent-map" class="public-sentiment-main-map"></div>
+            </li>
+            <li>
+                <hr>
+                <div class="title clearfix">
+                    <div class="title-l">热词搜索 <span class="top10">TOP10</span><img src="../../img/分值.png" alt=""></div>
+                </div>
+                <div id="heatWord-seach-map" class="public-sentiment-main-map"></div>
+            </li>
+            <li class="yz">
+                <hr>
+                <div class="title clearfix">
+                    <div class="title-l">
+                        源站类型
+                    </div>
+                    <div class="title-r2 clearfix">
+                        <div class="title-r2-date">1日</div>
+                        <div class="title-r2-date light">3日</div>
+                        <div class="title-r2-date">7日</div>
+                    </div>
+                </div>
+                <div id="website-type-map" class="public-sentiment-main-map"></div>
+            </li>
+            <li>
+                <hr>
+                <div class="title clearfix">
+                    <div class="title-l">
+                        情感分析
+                    </div>
+                </div>
+                <div id="emotion-analyze-map" class="public-sentiment-main-map"></div>
+                <div class="ei-num">正面舆情:<span style="color:#58ceb0">80</span>条 &nbsp负面舆情:<span style="color:#fe836b">1</span>条</div>
+            </li>
+            <li class="yq">
+                <hr>
+                <div class="title clearfix">
+                    <div class="title-l">
+                        舆情走势
+                    </div>
+                    <div class="title-r2 clearfix">
+                        <div class="title-r2-date light">七日</div>
+                        <div class="title-r2-date">一个月</div>
+                        <div class="title-r2-date">三个月</div>
+                    </div>
+                </div>
+                <div id="public-sentiment-trend-map" class="public-sentiment-main-map"></div>
+            </li>
+            <li class="qg">
+                <hr>
+                <div class="title clearfix">
+                    <div class="title-l">
+                        情感走势
+                    </div>
+                    <div class="title-r2 clearfix">
+                        <div class="title-r2-date light">七日</div>
+                        <div class="title-r2-date">一个月</div>
+                        <div class="title-r2-date">三个月</div>
+                    </div>
+                </div>
+                <div id="emotion-trend-map" class="public-sentiment-main-map"></div>
+
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        Copyright © 2016 杭州以数科技有限公司
+    </div>
+</div>
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../js/echarts.js"></script>
+<script>
+//    热门事件
+    var heatEvent = echarts.init(document.getElementById('heatEvent-map'));
+    var heatEventOption = {
+        color:['#ff6155'],
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+
+        //        去掉坐标线
+        xAxis : [
+            {
+                type : 'value',
+                boundaryGap: [0, 0.01],
+                nameStyle:{
+
+                },
+                nameTextStyle : {
+                    fontSize : 14
+                },
+                axisLabel:{
+                    textStyle:{
+                        fontSize:14,  //刻度大小
+                        color:"#666"
+                    }
+                },
+                axisLine : {
+                    show:false
+                },
+                axisTick:{
+                    show:false
+                }
+            }
+        ],
+        yAxis: {
+            type: 'category',
+            data: ['浙江十大春意小镇揭晓，椒江大陈镇雄居榜首','椒江海岛游，今后更方便省时了','椒江上半年完成四块‘空闲土地...','全国百家红色旅游景点景区一江山岛','威继光纪念馆位于椒江区东山...','海门老街历史悠长，是集人文景观...','椒江区大陈岛位于浙江中部台州湾...']
+        },
+        series: [
+            {
+                name: '热门事件',
+                type: 'bar',
+                barWidth: 10,
+                data: [32,54,72,92,108,133,162]
+            }
+        ]
+    };
+    heatEvent.setOption(heatEventOption);
+//    热词搜索
+//heatWord-seach-map
+    var heatWSeach = echarts.init(document.getElementById('heatWord-seach-map'));
+    var heatWSeachOption =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+//        legend: {
+//            orient: 'vertical',
+//            x: 500,
+//            y:10,
+//            data:['椒江','大陈岛','台州','一江山岛','海门老街','凤凰山']
+//        },
+        calculable : true,
+        series: [
+            {
+                name:'热词搜索',
+                type:'pie',
+                radius: ['60', '100'],
+                clockWise:false,
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+//                        这个决定有没有线
+                        show: true,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        formatter: '{b} {d}%',
+                        position : 'center',
+//                        调中间文字大小
+                        textStyle: {
+                            fontSize: '20',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                data:[
+                    {
+                        value:124,
+                        name:'台州',
+                        itemStyle: {
+                            normal: {
+                                color:'#50d1cc',
+//                                显示标签
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:88,
+                        name:'凤凰山',
+                        itemStyle: {
+                            normal: {
+                                color:'#78e7e6',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:42,
+                        name:'一江山岛',
+                        itemStyle: {
+                            normal: {
+                                color:'#00c199',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:28,
+                        name:'海门老街',
+                        itemStyle: {
+                            normal: {
+                                color:'#0fa2f2',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:168,
+                        name:'大陈岛',
+                        itemStyle: {
+                            normal: {
+                                color:'#fb7a53',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    },
+                    {
+                        value:233,
+                        name:'椒江',
+                        itemStyle: {
+                            normal: {
+                                color:'#f6b61c',
+                                label : {
+                                    show : true,
+                                    formatter: '{b} {d}%',
+                                    position : 'left'
+                                }
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    heatWSeach.setOption(heatWSeachOption);
+//    源站类型
+//website-type-map
+    var websiteType = echarts.init(document.getElementById('website-type-map'));
+    var websiteTypeOneOption ={
+        color: ['#b7e2ff'],
+        tooltip : {
+            trigger: 'axis',
+//           在这里设置移动时的样式
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+                shadowStyle: {
+                    color: 'rgba(183,226,255,0.3)',
+                    width: 'auto',
+                    type: 'default'
+                }
+            }
+        },
+//        示例
+//        小图标位置
+//        legend: {
+//            data:['游客数量'],
+//            x : 100,
+//            y : 20,
+//            textStyle :{
+//                fontSize : 14,
+//                color : '#666'
+//            }
+//        },
+//      移动方位
+//        grid: {
+//            x:60,
+//            y:76,
+//            x2:40,
+//            y2:80,
+//            // borderColor : '#e5e5e5'
+//        },
+        legend: {
+            data:['1日新闻来源']
+//            x:50,
+//            y:100
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                data : ['新闻', '微博', '论坛', '微信', '贴吧'],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            }
+        ],
+        //        去掉坐标线
+        yAxis : [
+            {
+                type : 'value',
+                name : '舆情数量',
+                nameStyle:{
+                    x:0
+                },
+                nameTextStyle : {
+                    fontSize : 14
+                },
+                axisLabel:{
+                    textStyle:{
+                        fontSize:14,  //刻度大小
+                        color:"#666"
+                    }
+                },
+                axisLine : {
+                    show:false
+                },
+                axisTick:{
+                    show:false
+                }
+            }
+        ],
+        series : [
+            {
+                name:'1日新闻来源',
+                type:'bar',
+                barWidth: 40,
+                data:[550,423,320,160,50]
+            }
+        ]
+    };
+
+    var websiteTypeTwoOption =  {
+        color: ['#b7e2ff'],
+        tooltip : {
+            trigger: 'axis',
+//           在这里设置移动时的样式
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+                shadowStyle: {
+                    color: 'rgba(183,226,255,0.3)',
+                    width: 'auto',
+                    type: 'default'
+                }
+            }
+        },
+//        示例
+//        小图标位置
+//        legend: {
+//            data:['游客数量'],
+//            x : 100,
+//            y : 20,
+//            textStyle :{
+//                fontSize : 14,
+//                color : '#666'
+//            }
+//        },
+//      移动方位
+//        grid: {
+//            x:60,
+//            y:76,
+//            x2:40,
+//            y2:80,
+//            // borderColor : '#e5e5e5'
+//        },
+        legend: {
+            data:['3日新闻来源']
+//            x:50,
+//            y:100
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                data : ['新闻', '微博', '论坛', '微信', '贴吧'],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            }
+        ],
+        //        去掉坐标线
+        yAxis : [
+            {
+                type : 'value',
+                name : '舆情数量',
+                nameStyle:{
+                    x:0
+                },
+                nameTextStyle : {
+                    fontSize : 14
+                },
+                axisLabel:{
+                    textStyle:{
+                        fontSize:14,  //刻度大小
+                        color:"#666"
+                    }
+                },
+                axisLine : {
+                    show:false
+                },
+                axisTick:{
+                    show:false
+                }
+            }
+        ],
+        series : [
+            {
+                name:'3日新闻来源',
+                type:'bar',
+                barWidth: 40,
+                data:[1030,600,400,200,80]
+            }
+        ]
+    };
+
+var websiteTypeThirdOption ={
+    color: ['#b7e2ff'],
+    tooltip : {
+        trigger: 'axis',
+//           在这里设置移动时的样式
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+            shadowStyle: {
+                color: 'rgba(183,226,255,0.3)',
+                width: 'auto',
+                type: 'default'
+            }
+        }
+    },
+    legend: {
+        data:['7日新闻来源']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['新闻', '微博', '论坛', '微信', '贴吧'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            name : '舆情数量',
+            nameStyle:{
+                x:0
+            },
+            nameTextStyle : {
+                fontSize : 14
+            },
+            axisLabel:{
+                textStyle:{
+                    fontSize:14,  //刻度大小
+                    color:"#666"
+                }
+            },
+            axisLine : {
+                show:false
+            },
+            axisTick:{
+                show:false
+            }
+        }
+    ],
+    series : [
+        {
+            name:'7日新闻来源',
+            type:'bar',
+            barWidth: 40,
+            data:[1608,1050,530,165,100]
+        }
+    ]
+};
+    websiteType.setOption(websiteTypeTwoOption);
+
+
+$('.yz .title-r2-date').on('click',function(){
+    var index = $(this).index();
+    switch (index){
+        case 0: websiteType.setOption(websiteTypeOneOption); break;
+        case 1: websiteType.setOption(websiteTypeTwoOption); break;
+        case 2: websiteType.setOption(websiteTypeThirdOption); break;
+    }
+});
+
+
+//    情感分析
+    var emotionAnalyze = echarts.init(document.getElementById('emotion-analyze-map'));
+    var emotionAOption = {
+        tooltip : {
+            formatter: "{a} <br/>{b} : {c}%"
+        },
+        series: [
+            {
+                name: '情感分析',
+                type: 'gauge',
+                min: -100,
+                max: 100,
+                axisLine: {            // 坐标轴线
+                    lineStyle: {       // 属性lineStyle控制线条样式
+                        width: 10
+                    }
+                },
+                axisTick: {            // 坐标轴小标记
+                    length:12,        // 属性length控制线长
+                    lineStyle: {       // 属性lineStyle控制线条样式
+                        color: 'auto'
+                    }
+                },
+                splitLine: {           // 分隔线
+                    length:20,         // 属性length控制线长
+                    lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                        color: 'auto'
+                    }
+                },
+//                指针宽度
+                pointer: {
+                    width:5
+                },
+                detail: {
+                    textStyle: {
+                        fontWeight: 'normal'
+                    },
+                    //加上百分比
+                    formatter:'{value}%'
+                },
+                data: [{value: 78, name: '正能量'}]
+            }
+        ]
+    };
+    emotionAnalyze.setOption(emotionAOption);
+
+
+//    舆情走势
+//public-sentiment-trend-map
+    var psTrend = echarts.init(document.getElementById('public-sentiment-trend-map'));
+    var psTrendOneOption =  {
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['7日舆情数量']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis:  {
+            type: 'category',
+            boundaryGap: false,
+            data: ['08-02','08-03','08-04','08-05','08-06','08-07','08-08']
+        },
+        //        去掉坐标线
+        yAxis : [
+            {
+                type : 'value',
+                name : '数量',
+                nameStyle:{
+                    x:0
+                },
+                nameTextStyle : {
+                    fontSize : 14
+                },
+                axisLabel:{
+                    textStyle:{
+                        fontSize:14,  //刻度大小
+                        color:"#666"
+                    }
+                },
+                axisLine : {
+                    show:false
+                },
+                axisTick:{
+                    show:false
+                }
+            }
+        ],
+        series: [
+            {
+                name:'7日舆情数量',
+                type:'line',
+                data:[920, 980, 920, 860, 1000, 1050,900],
+//                调折线图的点的形状
+                symbol:'circle',
+//                调折线图点的大小
+                symbolSize:12,
+                itemStyle: {
+                    normal: {
+                        color:'#3298dc'
+                    }
+                }
+            }
+        ]
+    };
+var psTrendTwoOption = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['一个月舆情数量']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['08-01','08-05','08-10','08-15','08-20','08-25','08-31']
+    },
+    //        去掉坐标线
+    yAxis : [
+        {
+            type : 'value',
+            name : '数量',
+            nameStyle:{
+                x:0
+            },
+            nameTextStyle : {
+                fontSize : 14
+            },
+            axisLabel:{
+                textStyle:{
+                    fontSize:14,  //刻度大小
+                    color:"#666"
+                }
+            },
+            axisLine : {
+                show:false
+            },
+            axisTick:{
+                show:false
+            }
+        }
+    ],
+    series: [
+        {
+            name:'一个月舆情数量',
+            type:'line',
+            data:[1020, 856, 986, 1532, 1654, 1720,1523],
+//                调折线图的点的形状
+            symbol:'circle',
+//                调折线图点的大小
+            symbolSize:12,
+            itemStyle: {
+                normal: {
+                    color:'#3298dc'
+                }
+            }
+        }
+    ]
+};
+var psTrendThirdOption = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['3个月舆情数量']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['06-01','06-16','06-30','07-15','07-31','08-15','08-31']
+    },
+    //        去掉坐标线
+    yAxis : [
+        {
+            type : 'value',
+            name : '数量',
+            nameStyle:{
+                x:0
+            },
+            nameTextStyle : {
+                fontSize : 14
+            },
+            axisLabel:{
+                textStyle:{
+                    fontSize:14,  //刻度大小
+                    color:"#666"
+                }
+            },
+            axisLine : {
+                show:false
+            },
+            axisTick:{
+                show:false
+            }
+        }
+    ],
+    series: [
+        {
+            name:'3个月舆情数量',
+            type:'line',
+            data:[1940, 2100, 3200, 2880, 2630, 2450,2960],
+//                调折线图的点的形状
+            symbol:'circle',
+//                调折线图点的大小
+            symbolSize:12,
+            itemStyle: {
+                normal: {
+                    color:'#3298dc'
+                }
+            }
+        }
+    ]
+};
+    psTrend.setOption(psTrendOneOption);
+
+$('.yq .title-r2-date').on('click',function(){
+    var index = $(this).index();
+    switch (index){
+        case 0: psTrend.setOption(psTrendOneOption); break;
+        case 1: psTrend.setOption(psTrendTwoOption); break;
+        case 2: psTrend.setOption(psTrendThirdOption); break;
+    }
+});
+
+
+//    情感走势
+//emotion-trend-map
+    var emotionTrend = echarts.init(document.getElementById('emotion-trend-map'));
+    var eTrendOneOption =  {
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['正面','中性','负面']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis:  {
+            type: 'category',
+            boundaryGap: false,
+            data: ['08-02','08-03','08-04','08-05','08-06','08-07','08-08']
+        },
+        //        去掉坐标线
+        yAxis : [
+            {
+                type : 'value',
+                name : '转载量',
+                nameStyle:{
+                    x:0
+                },
+                nameTextStyle : {
+                    fontSize : 14
+                },
+                axisLabel:{
+                    textStyle:{
+                        fontSize:14,  //刻度大小
+                        color:"#666"
+                    }
+                },
+                axisLine : {
+                    show:false
+                },
+                axisTick:{
+                    show:false
+                }
+            }
+        ],
+        series: [
+            {
+                name:'正面',
+                type:'line',
+                data:[1350, 700, 1540, 1980, 1600, 2400,100],
+                symbol:'circle',
+                symbolSize:12,
+                itemStyle: {
+                    normal: {
+                        color:'#c0e37e'
+                    }
+                }
+
+            },
+            {
+                name:'中性',
+                type:'line',
+                symbol:'diamond',
+                symbolSize:12,
+                data:[500, 200, 820, 520, 480, 1300,500],
+                itemStyle: {
+                    normal: {
+                        color:'#5879c2'
+                    }
+                }
+
+            },
+            {
+                name:'负面',
+                type:'line',
+                data:[780, 470, 480, 720, 750, 1050,380],
+                symbol:'rectangle',
+                symbolSize:12,
+                itemStyle: {
+                    normal: {
+                        color:'#fe836b'
+                    }
+                }
+            }
+        ]
+    };
+    var eTrendTwoOption =  {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['正面','中性','负面']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['08-01','08-05','08-10','08-15','08-20','08-25','08-31']
+    },
+    //        去掉坐标线
+    yAxis : [
+        {
+            type : 'value',
+            name : '转载量',
+            nameStyle:{
+                x:0
+            },
+            nameTextStyle : {
+                fontSize : 14
+            },
+            axisLabel:{
+                textStyle:{
+                    fontSize:14,  //刻度大小
+                    color:"#666"
+                }
+            },
+            axisLine : {
+                show:false
+            },
+            axisTick:{
+                show:false
+            }
+        }
+    ],
+    series: [
+        {
+            name:'正面',
+            type:'line',
+            data:[2560, 2450, 2310, 1980, 2563, 1800,1765],
+            symbol:'circle',
+            symbolSize:12,
+            itemStyle: {
+                normal: {
+                    color:'#c0e37e'
+                }
+            }
+
+        },
+        {
+            name:'中性',
+            type:'line',
+            symbol:'diamond',
+            symbolSize:12,
+            data:[2140, 1860, 1985, 2520, 2463, 2351,2050],
+            itemStyle: {
+                normal: {
+                    color:'#5879c2'
+                }
+            }
+
+        },
+        {
+            name:'负面',
+            type:'line',
+            data:[1346, 845, 765, 456, 360, 750,480],
+            symbol:'rectangle',
+            symbolSize:12,
+            itemStyle: {
+                normal: {
+                    color:'#fe836b'
+                }
+            }
+        }
+    ]
+};
+    var eTrendThirdOption =  {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['正面','中性','负面']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis:  {
+        type: 'category',
+        boundaryGap: false,
+        data: ['06-01','06-16','06-30','07-15','07-31','08-15','08-31']
+    },
+    //        去掉坐标线
+    yAxis : [
+        {
+            type : 'value',
+            name : '转载量',
+            nameStyle:{
+                x:0
+            },
+            nameTextStyle : {
+                fontSize : 14
+            },
+            axisLabel:{
+                textStyle:{
+                    fontSize:14,  //刻度大小
+                    color:"#666"
+                }
+            },
+            axisLine : {
+                show:false
+            },
+            axisTick:{
+                show:false
+            }
+        }
+    ],
+    series: [
+        {
+            name:'正面',
+            type:'line',
+            data:[2150, 3200, 3540, 3680, 2400, 2280,2780],
+            symbol:'circle',
+            symbolSize:12,
+            itemStyle: {
+                normal: {
+                    color:'#c0e37e'
+                }
+            }
+
+        },
+        {
+            name:'中性',
+            type:'line',
+            symbol:'diamond',
+            symbolSize:12,
+            data:[4500, 3600, 4100, 3520, 3940, 4380,3875],
+            itemStyle: {
+                normal: {
+                    color:'#5879c2'
+                }
+            }
+
+        },
+        {
+            name:'负面',
+            type:'line',
+            data:[2580, 1770, 1480, 1869, 1700, 1550,2380],
+            symbol:'rectangle',
+            symbolSize:12,
+            itemStyle: {
+                normal: {
+                    color:'#fe836b'
+                }
+            }
+        }
+    ]
+};
+    emotionTrend.setOption(eTrendOneOption);
+
+$('.qg .title-r2-date').on('click',function(){
+    var index = $(this).index();
+    switch (index){
+        case 0: emotionTrend.setOption(eTrendOneOption); break;
+        case 1: emotionTrend.setOption(eTrendTwoOption); break;
+        case 2: emotionTrend.setOption(eTrendThirdOption); break;
+    }
+});
+
+</script>
+<script>
+    $('.title-r2-date').on('click',function(){
+        $(this).addClass('light');
+        $(this).siblings().removeClass('light');
+    });
+</script>
+</body>
+</html>

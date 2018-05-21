@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>态势中心-出入态势</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <style>
+        /*通用样式*/
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family:'Microsoft Yahei';
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .container{
+            width:1200px;
+            margin:0 auto;
+        }
+        /*头部*/
+        #header{
+            background-color: #191919;
+        }
+        #header .container{
+            height:50px;
+            line-height: 50px;
+            color:#fff;
+        }
+        #header .aside-left{
+            width: 215px;
+            font-size:14px;
+            float: left;
+            text-align: left;
+        }
+        #header .header-center{
+            float:left;
+        }
+        #header .header-center li{
+            float:left;
+            width:140px;
+            text-align: left;
+        }
+        #header .header-center li a{
+            height: 47px;
+            width:72px;
+            display: block;
+            position:relative;
+            text-align: center;
+            font-size: 14px;
+            color:#fff;
+        }
+        #header .header-center li a:hover{
+            color:#05a07f;
+            border-bottom: 2px solid #05a07f;
+        }
+        #header .aside-right{
+            float: right;
+            text-align: right;
+            font-size:12px;
+        }
+        #header .h-active{
+            color:#05a07f !important;
+            border-bottom: 2px solid #05a07f;
+        }
+        @font-face {
+            font-family: 'iconfont';
+            src: url('http://at.alicdn.com/t/font_1473750915_0475364.eot'); /* IE9*/
+            src: url('http://at.alicdn.com/t/font_1473750915_0475364.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('http://at.alicdn.com/t/font_1473750915_0475364.woff') format('woff'), /* chrome、firefox */
+            url('http://at.alicdn.com/t/font_1473750915_0475364.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('http://at.alicdn.com/t/font_1473750915_0475364.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont {
+            font-family:'iconfont';
+            font-style:normal;
+            color:#666;
+        }
+        /*主体*/
+        /*中心标题*/
+        #main .active{
+            color:#00c199;
+        }
+        #main .center-title{
+            margin-top: 30px;
+        }
+        #main .center-nav{
+            float:left;
+        }
+        #main .center-nav li{
+            width: 136px;
+            height: 17px;
+            line-height: 17px;
+            text-align: center;
+            float:left;
+            border-right: 2px solid #dedede;
+        }
+        #main .center-nav li a{
+            color:#666;
+            text-decoration: none;
+        }
+        #main .center-nav li a:visited{
+            color:#666;
+            text-decoration: none;
+        }
+        #main .center-nav li a.active{
+            text-decoration: none;
+            color:#00c199;
+        }
+        #main .center-nav .last-li{
+            border-right:0;
+        }
+        #main .center-nav li:hover{
+            cursor: pointer;
+            color:#00c199;
+        }
+        #main .current-location{
+            float:right;
+            margin-right: 20px;
+            font-size:12px;
+            color:#999;
+        }
+        /*游客出入态势标题*/
+        #main .tourist-come-go-title{
+            width:1200px;
+            height: 80px;
+            margin-top:50px;
+            box-sizing: border-box;
+            border-left: 3px solid #00c199;
+            background-color: #f7f7f7;
+        }
+        /*标题左边*/
+        #main .tourist-come-go-title-left{
+            margin-left: 20px;
+            float:left;
+        }
+        #main .tourist-little-title-top{
+            margin-top:10px;
+            font-size:20px;
+        }
+        #main .tourist-little-title-bottom{
+            margin-top:10px;
+            margin-bottom:15px;
+            color:#c2c2c2;
+        }
+        /*标题右边*/
+        #main .tourist-come-go-title-right{
+            float:right;
+            height: 80px;
+            line-height: 80px;
+            margin-right:25px;
+            font-size:16px;
+            color:#c2c2c2;
+        }
+        #main i{
+            font-size: 16px;
+            color:#c2c2c2;
+            margin-right: 5px;
+        }
+        #main .tourist-come-go-title-right .specific-date{
+            font-size:12px;
+        }
+        /*游客出入态势主体*/
+        /*游客出入情况*/
+        /*游客出入情况标题*/
+        #main .tourist-come-go-status-title-wrap{
+            margin-top:20px;
+            height: 25px;
+            border-bottom: 1px solid #00c199;
+        }
+        #main .tourist-come-go-status-title{
+            width: 120px;
+            height: 25px;
+            line-height: 25px;
+            float: left;
+            text-align: center;
+            color:#fff;
+            background-color: #00c199;
+        }
+        /*游客出入情况主体*/
+        #main .tourist-come-go-status-main{
+            height: 130px;
+            margin-top:25px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        /*游客出入情况li*/
+        #main .tourist-come-go-status-main li{
+            float:left;
+            box-shadow: 1px 5px 5px #f7f7f7;
+        }
+        #main .come-go-scenic-people{
+            width:200px;
+            height: 130px;
+        }
+        /*进入景区人数title*/
+        #main .come-go-scenic-people-title{
+            height: 32px;
+            line-height: 32px;
+            background-color: #00c199;
+            color:#fff;
+        }
+        #main .come-go-scenic-people-title-l{
+            float:left;
+            margin-left: 10px;
+            font-size:14px;
+        }
+        #main .come-go-scenic-people-title-r{
+            width:40px;
+            height: 20px;
+            line-height: 20px;
+            float: right;
+            margin-right:10px;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            font-size:12px;
+            text-align:center;
+            background-color: #fff;
+            color:#00c199;
+            border-radius: 3px;
+        }
+        /*进入景区人数今日*/
+        #main .come-go-scenic-people-today{
+            height:60px;
+            position:relative;
+            border-bottom:1px solid #d8d8d8;
+            color:#ff9217;
+        }
+        #main .come-go-scenic-people-today-l{
+            font-size:14px;
+            position:absolute;
+            bottom:15px;
+            left:10px;
+        }
+        #main .come-go-scenic-people-today-r{
+            position:absolute;
+            bottom:15px;
+            right:10px;
+        }
+        #main .come-go-scenic-people-today-r .people-today-data{
+            font-size: 25px;
+        }
+        #main .come-go-scenic-people-today-r .people-unit{
+            font-size: 14px;
+        }
+        /*进入景区人数昨日*/
+        #main .come-go-scenic-people-yesterday{
+            height:40px;
+            position:relative;
+        }
+        #main .come-go-scenic-people-yesterday-l{
+            font-size:12px;
+            position:absolute;
+            bottom:15px;
+            left:10px;
+        }
+        #main .come-go-scenic-people-yesterday-r{
+            position:absolute;
+            bottom:15px;
+            right:10px;
+        }
+        #main .come-go-scenic-people-yesterday-r .people-yesterday-data{
+            font-size: 12px;
+        }
+        /*景区内游客总量*/
+        #main .visitors-totals{
+            width:330px;
+            height: 130px;
+        }
+        /*游客总量title*/
+        #main .visitors-totals-title{
+            height: 32px;
+            line-height: 32px;
+            background-color: #00c199;
+            color:#fff;
+        }
+        #main .visitors-totals-title-l{
+            float:left;
+            margin-left: 10px;
+            font-size:14px;
+        }
+        #main .visitors-totals-title-r{
+            width:40px;
+            height: 20px;
+            line-height: 20px;
+            float: right;
+            margin-right:10px;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            font-size:12px;
+            text-align:center;
+            background-color: #fff;
+            color:#00c199;
+            border-radius: 3px;
+        }
+        /*游客总量今日*/
+        #main .visitors-totals-today{
+            height:60px;
+            position:relative;
+            border-bottom:1px solid #d8d8d8;
+            color:#ff9217;
+        }
+        #main .visitors-totals-today-l{
+            font-size:14px;
+            position:absolute;
+            bottom:15px;
+            left:10px;
+        }
+        #main .visitors-totals-today-r{
+            position:absolute;
+            bottom:15px;
+            right:10px;
+        }
+        #main .visitors-totals-today-r .people-today-data{
+            font-size: 25px;
+        }
+        #main .visitors-totals-today-r .people-unit{
+            font-size: 14px;
+        }
+        /*游客总量昨日*/
+        #main .visitors-totals-yesterday{
+            height:40px;
+            position:relative;
+        }
+        #main .visitors-totals-yesterday-l{
+            font-size:12px;
+            position:absolute;
+            bottom:15px;
+            left:10px;
+        }
+        #main .visitors-totals-yesterday-r{
+            position:absolute;
+            bottom:15px;
+            right:10px;
+        }
+        #main .visitors-totals-yesterday-r .people-yesterday-data{
+            font-size: 12px;
+        }
+        /*全天游客人数*/
+        /*全天游客人数标题*/
+        #main .whole-day-tourist-title-wrap{
+            margin-top:60px;
+            height: 25px;
+            border-bottom: 1px solid #00c199;
+        }
+        #main .whole-day-tourist-title{
+            width: 120px;
+            height: 25px;
+            line-height: 25px;
+            float: left;
+            text-align: center;
+            color:#fff;
+            background-color: #00c199;
+        }
+        /*全天游客人数统计图*/
+        #main #whole-day-tourist-map{
+            width:1170px;
+            height:370px;
+            margin-top:25px;
+            margin-left:15px;
+            margin-right:15px;
+        }
+        /*游客来源分析标题*/
+        #main .tourist-source-analyze-title{
+            width:1200px;
+            height: 80px;
+            margin-top:50px;
+            box-sizing: border-box;
+            border-left: 3px solid #00c199;
+            background-color: #f7f7f7;
+        }
+        /*标题左边*/
+        #main .tourist-source-analyze-title-left{
+            margin-left: 20px;
+            float:left;
+        }
+        #main .tourist-source-analyze-title-left-top{
+            margin-top:10px;
+            font-size:20px;
+        }
+        #main .tourist-source-analyze-title-left-bottom{
+            margin-top:10px;
+            margin-bottom:15px;
+            color:#c2c2c2;
+        }
+        /*标题右边*/
+        #main .tourist-source-analyze-title-right{
+            float:right;
+            height: 80px;
+            line-height: 80px;
+            margin-right:25px;
+            font-size:16px;
+            color:#c2c2c2;
+        }
+        #main .tourist-source-analyze-title-right .source-specific-date{
+            font-size:12px;
+        }
+
+        /*游客来源地图标题*/
+        #main .tourist-source-map-title{
+            margin-top:40px;
+        }
+        #main .tourist-source-map-title li{
+            height:30px;
+            width:135px;
+            float:left;
+            text-align: center;
+            line-height: 30px;
+        }
+        #main .tourist-source-map-title li:hover{
+            cursor:pointer;
+        }
+        /*活动样式*/
+        #main .tourist-source-map-title .active{
+            color:#00c199;
+            border-bottom: 2px solid #00c199;
+        }
+        #main #tourist-source-map{
+            height:700px;
+            width: 780px;
+            float:left;
+        }
+
+        /*游客来源图解释*/
+        #main .tourist-source-explain{
+            height:700px;
+            width: 380px;
+            float:left;
+            /*background-color: #ff8800;*/
+        }
+        /*游客类型*/
+        #main .tourist-type-wrap{
+            margin-top: 20px;
+        }
+        #main .tourist-type-wrap li{
+            width: 80px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            float: left;
+            font-size: 12px;
+            border:1px solid #999;
+            color:#666;
+            border-radius: 3px;
+            margin-right: 10px;
+        }
+        #main .tourist-type-wrap li:hover{
+            cursor: pointer;
+        }
+        #main .tourist-type-wrap .active{
+            border:1px solid #00c199;
+            color:#00c199;
+        }
+        /*省份top5*/
+        #main .province-top5-wrap{
+            margin-top: 300px;
+            width: 320px;
+        }
+        #main .province-top5-title{
+            height: 30px;
+            line-height: 30px;
+            border-bottom: 1px solid #c4ceea;
+            color:#3e69a5;
+        }
+        /*省份列表*/
+        #main .province-top5-list{
+            margin-top: 5px;
+        }
+        #main .province-top5-list li{
+            margin-top:15px;
+            margin-bottom: 5px;
+        }
+        #main .province-top5-list li>div{
+            float: left;
+        }
+        #main .province-top5-list li .province-ch-name{
+            color:#003085;
+            font-size: 16px;
+        }
+        #main .province-top5-list li .province-eg-name{
+            color:#d16e66;
+            font-size: 12px;
+            margin-left: 10px;
+            /*vertical-align: bottom;*/
+        }
+        #main .province-top5-list li .people-radio{
+            width: 40px;
+            height: 18px;
+            background-color: #8599aa;
+            color:#fff;
+            float: right;
+            font-size:14px;
+            text-align: center;
+            border-radius: 1px;
+        }
+        #main .province-top5-list li .people-num{
+            float: right;
+            color:#666;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        /*进度条*/
+        #main .province-people-bar{
+            width: 320px;
+            height: 5px;
+            background-color: #d7d8da;
+            border-radius: 1px;
+        }
+        #main .province-people-bar .real-bar{
+            height: 5px;
+            background-color: #c75657;
+        }
+        /*底部*/
+        #footer{
+            margin-top:50px;
+            background-color: #191919;
+        }
+        #footer .container{
+            height:66px;
+            line-height: 66px;
+            text-align: center;
+            color:#999;
+        }
+    </style>
+</head>
+<body ng-controller="myController">
+<div id="header">
+    <div class="container clearfix">
+        <div class="aside-left">椒江旅游大数据平台</div>
+        <div class="header-center">
+            <ul class="clearfix">
+                <li><a href="../control/control.html">管控中心</a></li>
+                <li><a href="../operation/operation.html">运维中心</a></li>
+                <li><a href="../态势中心/come-go-situation.html" class="h-active">态势中心</a></li>
+                <li><a href="../marketing/revenue-analyze.html">营销中心</a></li>
+                <li><a href="../舆情中心/public-sentiment-analyze.html">舆情中心</a></li>
+                <li><a href="../bigScreen/bigScreen.html">可视化大屏</a></li>
+            </ul>
+        </div>
+        <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span> | <span class="user-action">注销</span></div>
+    </div>
+</div>
+<div id="main">
+    <div class="container">
+        <div class="center-title clearfix">
+            <div class="center-nav">
+                <ul class="clearfix">
+                    <li class="active"><a href="come-go-situation.html" class="active">游客出入态势</a></li>
+                    <li><a href="track.html">游客轨迹态势</a></li>
+                    <li><a href="vehicles-and-vessels.html">景区车船态势</a></li>
+                    <li class="last-li"><a href="WIFI.html">WIFI流量感知</a></li>
+                </ul>
+            </div>
+            <div class="current-location">
+                <span>当前位置</span>:<span class='location'>态势中心</span>><span class="z-location">游客出入态势</span>
+            </div>
+        </div>
+        <!--游客出入态势标题-->
+        <div class="tourist-come-go-title clearfix">
+            <div class="tourist-come-go-title-left">
+                <div class="tourist-little-title-top">
+                    游客出入态势
+                </div>
+                <div class="tourist-little-title-bottom">
+                    <span class="first-location">椒江</span> / <span class="second-location">大陈岛</span> / <span class="third-location">一江山岛</span>
+                </div>
+            </div>
+            <div class="tourist-come-go-title-right">
+                <i class="iconfont">&#xe602</i>更新时间 ：<span class="renewal-day">2016.08.28</span> <span class="specific-date">17:30</span>
+            </div>
+        </div>
+        <!--游客出入态势主体-->
+        <!--游客出入情况标题-->
+        <div class="tourist-come-go-status-title-wrap clearfix">
+            <div class="tourist-come-go-status-title">游客出入情况</div>
+        </div>
+        <!--游客出入情况主体-->
+        <div class="tourist-come-go-status-main clearfix">
+            <ul>
+                <!--进出景区人数-->
+                <li class="come-go-scenic-people" style="margin-right:30px;">
+                    <div class="come-go-scenic-people-title clearfix">
+                        <div class="come-go-scenic-people-title-l">进入景区人数</div>
+                        <div class="come-go-scenic-people-title-r">实时</div>
+                    </div>
+                    <div class="come-go-scenic-people-today clearfix">
+                        <div class="come-go-scenic-people-today-l">今日</div>
+                        <div class="come-go-scenic-people-today-r"><span class="people-today-data">3862</span><span class="people-unit">(人)</span></div>
+                    </div>
+                    <div class="come-go-scenic-people-yesterday">
+                        <div class="come-go-scenic-people-yesterday-l">昨日</div>
+                        <div class="come-go-scenic-people-yesterday-r"><span class="people-yesterday-data">3342</span></div>
+                    </div>
+                </li>
+                <li class="come-go-scenic-people" style="margin-right:40px;">
+                    <div class="come-go-scenic-people-title clearfix">
+                        <div class="come-go-scenic-people-title-l">离开景区人数</div>
+                        <div class="come-go-scenic-people-title-r">实时</div>
+                    </div>
+                    <div class="come-go-scenic-people-today clearfix">
+                        <div class="come-go-scenic-people-today-l">今日</div>
+                        <div class="come-go-scenic-people-today-r"><span class="people-today-data">3862</span><span class="people-unit">(人)</span></div>
+                    </div>
+                    <div class="come-go-scenic-people-yesterday">
+                        <div class="come-go-scenic-people-yesterday-l">昨日</div>
+                        <div class="come-go-scenic-people-yesterday-r"><span class="people-yesterday-data">1000</span></div>
+                    </div>
+                </li>
+                <!--景区内游客总量-->
+                <li class="visitors-totals" style="margin-right:30px;">
+                    <div class="visitors-totals-title clearfix">
+                        <div class="visitors-totals-title-l">进入景区人数</div>
+                        <div class="visitors-totals-title-r" style="width:70px">与昨日对比</div>
+                    </div>
+                    <div class="visitors-totals-today clearfix">
+                        <div class="visitors-totals-today-l">今日</div>
+                        <div class="visitors-totals-today-r"><span class="people-today-data">3000</span><span class="people-unit">(人)</span></div>
+                    </div>
+                    <div class="visitors-totals-yesterday">
+                        <div class="visitors-totals-yesterday-l">昨日</div>
+                        <div class="visitors-totals-yesterday-r"><span class="people-yesterday-data">2342</span></div>
+                    </div>
+                </li>
+                <li class="visitors-totals" >
+                    <div class="visitors-totals-title clearfix">
+                        <div class="visitors-totals-title-l">进入景区人数</div>
+                        <div class="visitors-totals-title-r" style="width:70px">与上周对比</div>
+                    </div>
+                    <div class="visitors-totals-today clearfix">
+                        <div class="visitors-totals-today-l">今日</div>
+                        <div class="visitors-totals-today-r"><span class="people-today-data">3000</span><span class="people-unit">(人)</span></div>
+                    </div>
+                    <div class="visitors-totals-yesterday">
+                        <div class="visitors-totals-yesterday-l">昨日</div>
+                        <div class="visitors-totals-yesterday-r"><span class="people-yesterday-data">2342</span></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--全天游客人数 标题-->
+        <div class="whole-day-tourist-title-wrap clearfix">
+            <div class="whole-day-tourist-title">全天游客人数</div>
+        </div>
+        <!--全天游客人数 统计图-->
+        <div id="whole-day-tourist-map">
+
+        </div>
+        <!--游客来源分析标题-->
+        <div class="tourist-source-analyze-title clearfix">
+            <div class="tourist-source-analyze-title-left">
+                <div class="tourist-source-analyze-title-left-top">
+                    游客来源分析
+                </div>
+                <div class="tourist-source-analyze-title-left-bottom">
+                    <span class="province-tourist">省内游客</span> / <span class="country-tourist">全国游客</span> / <span class="world-tourist">世界游客</span>
+                </div>
+            </div>
+            <div class="tourist-source-analyze-title-right">
+                <i class="iconfont">&#xe602</i>更新时间 ：<span class="source-renewal-day">2016.08.28</span> <span class="source-specific-date">17:30</span>
+            </div>
+        </div>
+        <!--游客来源地图-->
+        <!--游客来源地图标题-->
+        <div class="tourist-source-map-title">
+            <ul class="clearfix">
+                <li ng-click="pchange()">省内游客</li>
+                <li ng-click='cchange()' class="active">全国游客</li>
+                <li ng-click="wchange()">世界游客</li>
+            </ul>
+        </div>
+
+        <div class="tourist-source-wrap clearfix">
+            <!--游客来源地图 echart-->
+            <div id="tourist-source-map">
+
+            </div>
+            <!--游客来源说明-->
+            <div class="tourist-source-explain">
+                <!--游客类型-->
+                <ul class="tourist-type-wrap clearfix">
+                    <li ng-click="jr()">今日游客</li>
+                    <li ng-click="bz()">本周游客</li>
+                    <li ng-click="by()">本月游客</li>
+                    <li class="active" ng-click="qn()">全年游客</li>
+                </ul>
+                <div class="province-top5-wrap">
+                    <div class="province-top5-title">全国受众省份排名前5</div>
+                    <ul class="province-top5-list">
+                        <li class="clearfix">
+                            <div class="province-ch-name">{{one}}</div>
+                            <div class="province-eg-name">{{oneCity}}</div>
+                            <div class="people-radio">{{shRatio}}</div>
+                            <div class="people-num"><span>{{shNum}}</span>万人</div>
+                            <!--进度条-->
+                            <div class="province-people-bar">
+                                <div class="real-bar" style="width: 128px;"></div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="province-ch-name">{{two}}</div>
+                            <div class="province-eg-name">{{twoCity}}</div>
+                            <div class="people-radio">{{gdRatio}}</div>
+                            <div class="people-num"><span>{{gdNum}}</span>万人</div>
+                            <!--进度条-->
+                            <div class="province-people-bar">
+                                <div class="real-bar" style="width: 89.6px;"></div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="province-ch-name">{{third}}</div>
+                            <div class="province-eg-name">{{thirdCity}}</div>
+                            <div class="people-radio">{{bjRatio}}</div>
+                            <div class="people-num"><span>{{bjNum}}</span>万人</div>
+                            <!--进度条-->
+                            <div class="province-people-bar">
+                                <div class="real-bar" style="width: 57.6px;"></div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="province-ch-name">{{fourth}}</div>
+                            <div class="province-eg-name">{{fourthCity}}</div>
+                            <div class="people-radio">{{jsRatio}}</div>
+                            <div class="people-num"><span>{{jsNum}}</span>万人</div>
+                            <!--进度条-->
+                            <div class="province-people-bar">
+                                <div class="real-bar" style="width: 38.4px;"></div>
+                            </div>
+                        </li>
+                        <li class="clearfix">
+                            <div class="province-ch-name">{{fifth}}</div>
+                            <div class="province-eg-name">{{fifthCity}}</div>
+                            <div class="people-radio">{{zjRatio}}</div>
+                            <div class="people-num"><span>{{zjNum}}</span>万人</div>
+                            <!--进度条-->
+                            <div class="province-people-bar">
+                                <div class="real-bar" style="width: 32px;"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        Copyright © 2016 杭州以数科技有限公司
+    </div>
+</div>
+<script src="../../js/angular.1.4.6.js"></script>
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YUtGoIIRxcYiH4ybGsuaQKktdH2cF187"></script>
+<script src="../../js/echarts.js"></script>
+<script src="../../js/china.js"></script>
+<script src="../../js/zhejiang.js"></script>
+<script src="../../js/world.js"></script>
+<script>
+//    全天游客人数对比图
+//    whole-day-tourist-map
+var touristNum = echarts.init(document.getElementById('whole-day-tourist-map'));
+var touristNumOption = {
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['今日游客人数','昨日游客人数']
+    },
+    xAxis:  {
+        type: 'category',
+        name : '（时间）',
+        boundaryGap: false,
+        data: ['6:00','7:00','8:00','9:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00']
+    },
+    yAxis: {
+        type: 'value',
+        name : '（人数）'
+    },
+    series: [
+        {
+            name:'今日游客人数',
+            type:'line',
+            symbolSize:10,
+            data:[10, 50, 40, 60, 48, 40, 25, 26, 50, 53, 48, 61, 36],
+            itemStyle: {
+                normal: {
+                    color:'#ff9d00'
+                }
+            }
+        },
+        {
+            name:'昨日游客人数',
+            type:'line',
+            symbolSize:10,
+            data:[17, 43, 80, 77, 97, 71, 38, 32, 46, 33, 56, 50, 45],
+            itemStyle: {
+                normal: {
+                    color:'#fb7a53'
+                }
+            }
+        }
+    ]
+};
+touristNum.setOption(touristNumOption);
+
+
+
+//    地图
+//    function randomData() {
+//        return Math.round(Math.random()*10000);
+//    }
+    var chinaChart = echarts.init(document.getElementById('tourist-source-map'));
+    var provinceChartOption = {
+        tooltip: {
+            trigger: 'item'
+        },
+//        左下角的小指示
+        visualMap: {
+            min: 0,
+            max: 2000,
+            left: 'left',
+            top: 'bottom',
+            text: ['高','低']          // 文本，默认为数值文本
+        },
+        series: [
+            {
+                name: '游客人数（万）',
+                type: 'map',
+                mapType: '浙江',
+                roam: false,
+//                城市名是否显示
+                label: {
+                    normal: {
+                        show: true,
+                        color:'red'
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                animation: false,
+                data:[
+                    {name: '湖州市',value: 546.6 },
+                    {name: '嘉兴市',value: 485.2},
+                    {name: '杭州市',value: 1145.2 },
+                    {name: '绍兴市',value: 335.6 },
+                    {name: '宁波市',value: 896.3 },
+                    {name: '舟山市',value: 421.3 },
+                    {name: '台州市',value: 249.6 },
+                    {name: '温州市',value: 100.9 },
+                    {name: '丽水市',value: 159.3 },
+                    {name: '金华市',value: 294.5 },
+                    {name: '衢州市',value: 398.5 }
+                ]
+            }
+        ]
+    };
+
+    var chinaChartOption =  {
+        tooltip: {
+            trigger: 'item'
+        },
+//        左下角的小指示
+        visualMap: {
+            min: 0,
+            max: 10000,
+            left: 'left',
+            top: 'bottom',
+            text: ['高','低']          // 文本，默认为数值文本
+        },
+        series: [
+            {
+                name: '游客人数（万）',
+                type: 'map',
+                mapType: 'china',
+                roam: false,
+//                省份名是否显示
+                label: {
+                    normal: {
+                        show: true,
+                        color:'red'
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                animation: false,
+                data:[
+                    {name: '北京',value: 4227.6 },
+                    {name: '天津',value: 1500.3 },
+                    {name: '上海',value: 7380.4 },
+                    {name: '重庆',value: 1600.3 },
+                    {name: '河北',value: 800.5 },
+                    {name: '河南',value: 653.2},
+                    {name: '云南',value: 892.6 },
+                    {name: '辽宁',value: 854.6 },
+                    {name: '黑龙江',value: 523.4 },
+                    {name: '湖南',value: 759.6},
+                    {name: '安徽',value: 596.3 },
+                    {name: '山东',value: 676.2},
+                    {name: '新疆',value: 900.6 },
+                    {name: '江苏',value: 2758.2 },
+                    {name: '浙江',value: 1889.6 },
+                    {name: '江西',value: 685.5 },
+                    {name: '湖北',value: 1145.2 },
+                    {name: '广西',value: 763.3},
+                    {name: '甘肃',value: 569.8 },
+                    {name: '山西',value: 698.5 },
+                    {name: '内蒙古',value: 1000.8 },
+                    {name: '陕西',value: 1250.5 },
+                    {name: '吉林',value: 849.6 },
+                    {name: '福建',value: 800.9 },
+                    {name: '贵州',value: 759.3 },
+                    {name: '广东',value: 6634.8 },
+                    {name: '青海',value: 798.5 },
+                    {name: '西藏',value: 796.5 },
+                    {name: '四川',value: 1356.9 },
+                    {name: '宁夏',value: 959.0 },
+                    {name: '海南',value: 1006.4 },
+                    {name: '台湾',value: 1162.5 },
+                    {name: '香港',value: 1400.5 },
+                    {name: '澳门',value: 1350.6 }
+                ]
+            }
+        ]
+    };
+
+var worldChartOption =  {
+    tooltip: {
+        trigger: 'item'
+    },
+//        左下角的小指示
+    visualMap: {
+        min: 0,
+        max: 15000,
+        left: 'left',
+        top: 'bottom',
+        text: ['高','低']          // 文本，默认为数值文本
+    },
+    series: [
+        {
+            name: '游客人数（万）',
+            type: 'map',
+            mapType: 'world',
+            roam: false,
+//                国家名是否显示
+            label: {
+                normal: {
+                    show:false,
+                    color:'red'
+                },
+                emphasis: {
+                    show: true
+                }
+            },
+            animation: false,
+            data:[
+                {name: 'China',value: 14227.6 },
+                {name: 'Canada',value: 1827.3 },
+                {name: 'United States of America',value: 12227.8 },
+                {name: 'Australia',value: 1927.2 },
+                {name: 'Russia',value: 11134.5 },
+                {name: 'Brazil',value: 1657.1 },
+                {name: 'India',value: 1136.9 },
+                {name: 'Japan',value: 11866.3 },
+                {name: 'United Kingdom',value: 1987.6 },
+                {name: 'France',value: 1527.6 }
+
+            ]
+        }
+    ]
+};
+    chinaChart.setOption(chinaChartOption);
+
+$('.tourist-source-map-title li').on('click',function(){
+    var index = $(this).index();
+    switch (index){
+        case 0: chinaChart.setOption(provinceChartOption); break;
+        case 1: chinaChart.setOption(chinaChartOption); break;
+        case 2: chinaChart.setOption(worldChartOption); break;
+    }
+});
+</script>
+<script>
+    $('.tourist-type-wrap li').on('click',function(){
+        $('.tourist-type-wrap li').removeClass('active');
+        $(this).addClass('active');
+    });
+    $('.tourist-source-map-title li').on('click',function(){
+        $('.tourist-source-map-title li').removeClass('active');
+        $(this).addClass('active');
+    });
+
+</script>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myController',['$scope',function($scope){
+        $scope.type = 3;
+
+        $scope.pchange = function(){
+            $scope.one = '浙江市';
+            $scope.two = '宁波市';
+            $scope.third = '湖州市';
+            $scope.fourth = '嘉兴市';
+            $scope.fifth = '衢州市';
+
+            $scope.oneCity = 'zhejiang city';
+            $scope.twoCity = 'ningbo city';
+            $scope.thirdCity = 'huzhou city';
+            $scope.fourthCity = 'jiaxing city';
+            $scope.fifthCity = 'quzhou city';
+//            一开始展示的数据
+            if($scope.type === 3){
+                $scope.shRatio = '40%';
+                $scope.shNum = 1145.2;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 896.3;
+                $scope.bjRatio = '18%';
+                $scope.bjNum = 546.6;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 485.2;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 398.5;
+            }
+            if($scope.type === 2){
+                $scope.shRatio = '38%';
+                $scope.shNum = 95.4;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 74.7;
+                $scope.bjRatio = '17%';
+                $scope.bjNum = 45.6;
+                $scope.jsRatio = '15%';
+                $scope.jsNum = 40.4;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 33.2;
+            }
+            if($scope.type ===1){
+                $scope.shRatio = '43%';
+                $scope.shNum = 23.9;
+                $scope.gdRatio = '19%';
+                $scope.gdNum = 18.7;
+                $scope.bjRatio = '16%';
+                $scope.bjNum = 11.4;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 10.1;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 8.3;
+            }
+            if($scope.type === 0){
+                $scope.shRatio = '41%';
+                $scope.shNum = 3.4;
+                $scope.gdRatio = '18%';
+                $scope.gdNum = 2.7;
+                $scope.bjRatio = '15%';
+                $scope.bjNum = 1.6;
+                $scope.jsRatio = '13%';
+                $scope.jsNum = 1.4;
+                $scope.zjRatio = '13%';
+                $scope.zjNum = 1.2;
+            }
+
+            //        全年
+            $scope.qn = function(){
+                $scope.type = 3;
+                $scope.shRatio = '40%';
+                $scope.shNum = 1145.2;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 896.3;
+                $scope.bjRatio = '18%';
+                $scope.bjNum = 546.6;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 485.2;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 398.5;
+            };
+            //        本月
+            $scope.by = function(){
+                $scope.type = 2;
+                $scope.shRatio = '38%';
+                $scope.shNum = 95.4;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 74.7;
+                $scope.bjRatio = '17%';
+                $scope.bjNum = 45.6;
+                $scope.jsRatio = '15%';
+                $scope.jsNum = 40.4;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 33.2;
+            };
+            //        本周
+            $scope.bz = function(){
+                $scope.type = 1;
+                $scope.shRatio = '43%';
+                $scope.shNum = 23.9;
+                $scope.gdRatio = '19%';
+                $scope.gdNum = 18.7;
+                $scope.bjRatio = '16%';
+                $scope.bjNum = 11.4;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 10.1;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 8.3;
+            };
+            //        今日
+            $scope.jr = function(){
+                $scope.type = 0;
+                $scope.shRatio = '41%';
+                $scope.shNum = 3.4;
+                $scope.gdRatio = '18%';
+                $scope.gdNum = 2.7;
+                $scope.bjRatio = '15%';
+                $scope.bjNum = 1.6;
+                $scope.jsRatio = '13%';
+                $scope.jsNum = 1.4;
+                $scope.zjRatio = '13%';
+                $scope.zjNum = 1.2;
+            };
+        };
+        $scope.cchange = function(){
+            $scope.one = '上海';
+            $scope.two = '广东';
+            $scope.third = '北京';
+            $scope.fourth = '江苏';
+            $scope.fifth = '浙江';
+
+            $scope.oneCity = 'shanghai city';
+            $scope.twoCity = 'guandong province';
+            $scope.thirdCity = 'beijing city';
+            $scope.fourthCity = 'jiangsu province';
+            $scope.fifthCity = 'zhejiang province';
+            if($scope.type === 3){
+                $scope.shRatio = '40%';
+                $scope.shNum = 7380.4;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 6634.8;
+                $scope.bjRatio = '18%';
+                $scope.bjNum = 4227.6;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 2758.2;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 1889.6;
+            }
+            if($scope.type === 2){
+                $scope.shRatio = '38%';
+                $scope.shNum = 615.1;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 552.9;
+                $scope.bjRatio = '17%';
+                $scope.bjNum = 352.3;
+                $scope.jsRatio = '15%';
+                $scope.jsNum = 229.9;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 157.5;
+            }
+            if($scope.type === 1){
+                $scope.shRatio = '43%';
+                $scope.shNum = 153.7;
+                $scope.gdRatio = '19%';
+                $scope.gdNum = 138.2;
+                $scope.bjRatio = '16%';
+                $scope.bjNum = 88.1;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 57.5;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 39.4;
+            }
+            if($scope.type === 0){
+                $scope.shRatio = '41%';
+                $scope.shNum = 22.1;
+                $scope.gdRatio = '18%';
+                $scope.gdNum = 19.7;
+                $scope.bjRatio = '15%';
+                $scope.bjNum = 12.6;
+                $scope.jsRatio = '13%';
+                $scope.jsNum = 8.2;
+                $scope.zjRatio = '13%';
+                $scope.zjNum = 5.6;
+            }
+
+            //        全年
+            $scope.qn = function(){
+                $scope.type = 3;
+                $scope.shRatio = '40%';
+                $scope.shNum = 7380.4;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 6634.8;
+                $scope.bjRatio = '18%';
+                $scope.bjNum = 4227.6;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 2758.2;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 1889.6;
+            };
+            //        本月
+            $scope.by = function(){
+                $scope.type = 2;
+                $scope.shRatio = '38%';
+                $scope.shNum = 615.1;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 552.9;
+                $scope.bjRatio = '17%';
+                $scope.bjNum = 352.3;
+                $scope.jsRatio = '15%';
+                $scope.jsNum = 229.9;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 157.5;
+            };
+            //        本周
+            $scope.bz = function(){
+                $scope.type = 1;
+                $scope.shRatio = '43%';
+                $scope.shNum = 153.7;
+                $scope.gdRatio = '19%';
+                $scope.gdNum = 138.2;
+                $scope.bjRatio = '16%';
+                $scope.bjNum = 88.1;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 57.5;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 39.4;
+            };
+            //        今日
+            $scope.jr = function(){
+                $scope.type = 0;
+                $scope.shRatio = '41%';
+                $scope.shNum = 22.1;
+                $scope.gdRatio = '18%';
+                $scope.gdNum = 19.7;
+                $scope.bjRatio = '15%';
+                $scope.bjNum = 12.6;
+                $scope.jsRatio = '13%';
+                $scope.jsNum = 8.2;
+                $scope.zjRatio = '13%';
+                $scope.zjNum = 5.6;
+            };
+        };
+        $scope.wchange = function(){
+            $scope.one = '中国';
+            $scope.two = '美国';
+            $scope.third = '日本';
+            $scope.fourth = '俄罗斯';
+            $scope.fifth = '澳大利亚';
+
+            $scope.oneCity = 'China';
+            $scope.twoCity = 'America';
+            $scope.thirdCity = 'Japan';
+            $scope.fourthCity = 'Russia';
+            $scope.fifthCity = 'Australia';
+
+            if($scope.type === 3){
+                $scope.shRatio = '40%';
+                $scope.shNum = 14227.6;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 12227.8;
+                $scope.bjRatio = '18%';
+                $scope.bjNum = 11866.3;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 11134.5;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 11927.2;
+            }
+            if($scope.type === 2){
+                $scope.shRatio = '38%';
+                $scope.shNum = 1185.6;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 1005.9;
+                $scope.bjRatio = '17%';
+                $scope.bjNum = 956.4;
+                $scope.jsRatio = '15%';
+                $scope.jsNum = 912.3;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 900.5;
+            }
+            if($scope.type === 1){
+                $scope.shRatio = '43%';
+                $scope.shNum = 296.4;
+                $scope.gdRatio = '19%';
+                $scope.gdNum = 276.9;
+                $scope.bjRatio = '16%';
+                $scope.bjNum = 268.1;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 187.5;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 155.4;
+            }
+            if($scope.type === 0){
+                $scope.shRatio = '41%';
+                $scope.shNum = 42.3;
+                $scope.gdRatio = '18%';
+                $scope.gdNum = 35.6;
+                $scope.bjRatio = '15%';
+                $scope.bjNum = 28.8;
+                $scope.jsRatio = '13%';
+                $scope.jsNum = 19.9;
+                $scope.zjRatio = '13%';
+                $scope.zjNum = 16.5;
+            }
+
+            //        全年
+            $scope.qn = function(){
+                $scope.type = 3;
+                $scope.shRatio = '40%';
+                $scope.shNum = 14227.6;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 12227.8;
+                $scope.bjRatio = '18%';
+                $scope.bjNum = 11866.3;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 11134.5;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 11927.2;
+            };
+            //        本月
+            $scope.by = function(){
+                $scope.type = 2;
+                $scope.shRatio = '38%';
+                $scope.shNum = 1185.6;
+                $scope.gdRatio = '20%';
+                $scope.gdNum = 1005.9;
+                $scope.bjRatio = '17%';
+                $scope.bjNum = 956.4;
+                $scope.jsRatio = '15%';
+                $scope.jsNum = 912.3;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 900.5;
+            };
+            //        本周
+            $scope.bz = function(){
+                $scope.type = 1;
+                $scope.shRatio = '43%';
+                $scope.shNum = 296.4;
+                $scope.gdRatio = '19%';
+                $scope.gdNum = 276.9;
+                $scope.bjRatio = '16%';
+                $scope.bjNum = 268.1;
+                $scope.jsRatio = '12%';
+                $scope.jsNum = 187.5;
+                $scope.zjRatio = '10%';
+                $scope.zjNum = 155.4;
+            };
+            //        今日
+            $scope.jr = function(){
+                $scope.type = 0;
+                $scope.shRatio = '41%';
+                $scope.shNum = 42.3;
+                $scope.gdRatio = '18%';
+                $scope.gdNum = 35.6;
+                $scope.bjRatio = '15%';
+                $scope.bjNum = 28.8;
+                $scope.jsRatio = '13%';
+                $scope.jsNum = 19.9;
+                $scope.zjRatio = '13%';
+                $scope.zjNum = 16.5;
+            };
+        };
+
+
+//        一开始启动中国地图
+        $scope.cchange();
+
+    }]);
+</script>
+</body>
+</html>

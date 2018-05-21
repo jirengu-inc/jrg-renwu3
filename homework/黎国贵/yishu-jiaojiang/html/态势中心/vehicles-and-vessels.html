@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>景区车船态势</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <style>
+        /*字体*/
+        @font-face {
+            font-family: 'iconfont';
+            src: url('http://at.alicdn.com/t/font_1473315623_4866445.eot'); /* IE9*/
+            src: url('http://at.alicdn.com/t/font_1473315623_4866445.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('http://at.alicdn.com/t/font_1473315623_4866445.woff') format('woff'), /* chrome、firefox */
+            url('http://at.alicdn.com/t/font_1473315623_4866445.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('http://at.alicdn.com/t/font_1473315623_4866445.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont {
+            font-family:'iconfont';
+            font-style:normal;
+            color:#666;
+        }
+        #main .car-chart,#main .paking,#main .history{
+            box-sizing: border-box;
+            border:1px solid #c4c4c4;
+        }
+        /*景区车辆总数*/
+        #main .car-chart{
+            box-sizing: border-box;
+            margin-top: 50px;
+            height: 360px;
+            position: relative;
+        }
+        #main .car-chart-info{
+            position: absolute;
+            left:20px;
+            top:60px;
+            font-size: 16px;
+            color:#00c199;
+        }
+        #main .car-chart-info a{
+            font-size: 16px;
+            color:#00c199;
+        }
+        #main .car-chart-info span{
+            margin-right: 40px;
+        }
+        #main .car-chart-info span:nth-child(3) a{
+            font-size: 20px;
+            color:#ff6155;
+        }
+        #carChart {
+            height: 320px;
+            background: #9acfea;
+        }
+        /*历史*/
+        #main .history{
+            margin-top: 20px;
+            box-sizing: border-box;
+            height: 360px;
+            width: 100%;
+        }
+        #main #historyChart{
+            width: 100%;
+            height: 320px;
+        }
+        /*停车场*/
+        #main .paking-info{
+            margin-top: 40px;
+        }
+        #main .paking{
+            height: 340px;
+            width:430px;
+            float: left;
+        }
+        #main .paking-chart{
+            margin-top: 30px;
+            margin-left: 20px;
+        }
+        /*车位使用图*/
+        #main .paking-space{
+            box-sizing: border-box;
+            height: 340px;
+            width: 738px;
+            float: right;
+        }
+        /*停车场车辆管理*/
+        #main .parking-management{
+            margin-top: 30px;
+            padding:0 20px;
+        }
+        #main .pm-title{
+            box-sizing: border-box;
+            font-size: 18px;
+            height: 42px;
+            line-height: 40px;
+            color: #333;
+            border-bottom: 1px solid #eaeaea;
+            margin-bottom: 20px;
+        }
+        #main .pm-title span:nth-child(1){
+            font-size: 18px;
+            height: 42px;
+            line-height: 40px;
+            float: left;
+            border-bottom: 2px solid #00c199;
+        }
+        #main .pm-title span:nth-child(2){
+            font-size: 18px;
+            height: 42px;
+            line-height: 40px;
+            color: #999;
+            float: right;
+        }
+        /*停车场车辆管理表格*/
+        .parking-management-table table{
+            border-collapse: collapse;
+            margin-bottom: 60px;
+        }
+        .parking-management-table thead{
+            font-size: 16px;
+            color: #00c199;
+            background: #f1f1f1;
+        }
+        .parking-management-table tbody{
+            font-size: 14px;
+            color: #666;
+        }
+        .parking-management-table tbody tr:nth-child(2n){
+            background: #f1f1f1;
+        }
+        .parking-management-table tr{
+            height: 40px;
+            text-align: center;
+        }
+        .parking-management-table td{
+            width: 280px;
+        }
+        /*分页器样式*/
+        #main .page-wrap{
+            margin-top: -35px;
+            margin-right: 0;
+        }
+        #main .page-wrap ul{
+
+        }
+        #main .page-wrap li{
+            height: 30px;
+            width: 30px;
+            text-align: center;
+            line-height:30px;
+            float: right;
+            color:#00c199;
+            border: 1px solid #e4e4e4;
+            margin-left: 5px;
+        }
+        #main .page-wrap li:hover{
+            cursor: pointer;
+        }
+        #main .page-wrap .big-li{
+            height: 30px;
+            width: 65px;
+        }
+        #main .page-wrap .page-active{
+            background-color: #00c199;
+            color:#fff;
+        }
+        /*分页器样式*/
+    </style>
+<body>
+    <div id="header">
+        <div class="container clearfix">
+            <div class="aside-left">椒江旅游大数据平台</div>
+            <div class="header-center">
+                <ul class="clearfix">
+                    <li><a href="../control/control.html">管控中心</a></li>
+                    <li><a href="../operation/operation.html">运维中心</a></li>
+                    <li><a href="../态势中心/come-go-situation.html" class="h-active">态势中心</a></li>
+                    <li><a href="../marketing/revenue-analyze.html">营销中心</a></li>
+                    <li><a href="../舆情中心/public-sentiment-analyze.html">舆情中心</a></li>
+                    <li><a href="../bigScreen/bigScreen.html">可视化大屏</a></li>
+                </ul>
+            </div>
+            <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span>|<span class="user-action">注销</span></div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="container">
+            <div class="center-title clearfix">
+                <div class="center-nav">
+                    <ul class="clearfix">
+                        <li class="active"><a href="come-go-situation.html">游客出入态势</a></li>
+                        <li><a href="track.html">游客轨迹态势</a></li>
+                        <li><a href="vehicles-and-vessels.html" class="active">景区车船态势</a></li>
+                        <li class="last-li"><a href="WIFI.html">WIFI流量感知</a></li>
+                    </ul>
+                </div>
+                <div class="current-location">
+                    <span>当前位置</span>:<span class='location'>态势中心</span>><span class="z-location">景区车船态势</span>
+                </div>
+            </div>
+            <div class="car-chart">
+                <div class="main-title">
+                    景区车辆数量
+                    <i class="iconfont">&#xe600</i>
+                </div>
+                <div class="car-chart-info">
+                    <span>出入情况 ：本时段进入车辆 ：<a>15</a>辆</span>
+                    <span>本时段离开车辆 ：<a>24</a>辆（滚动信息）</span>
+                    <span>当前景区车辆总数 <a>500 </a>辆</span>
+                </div>
+                <div id="carChart"></div>
+            </div>
+            <div class="history">
+                <div class="main-title">
+                    景区车辆数量
+                    <i class="iconfont">&#xe600</i>
+                </div>
+                <div id="historyChart"></div>
+            </div>
+            <div class="paking-info clearfix">
+                <div class="paking">
+                    <div class="main-title">
+                        停车场车位使用情况
+                        <i class="iconfont">&#xe600</i>
+                    </div>
+                    <img src="../../img/pakinginfo.png" alt="" class="paking-chart">
+                    <!--<div class="paking-chart" id="paking-info-chart"></div>-->
+                </div>
+                <div class="paking-space">
+                    <img src="../../img/pakingSpace.png" alt="paking-space">
+                </div>
+            </div>
+            <div class="parking-management">
+                <div class="pm-title clearfix"><span>停车场车辆管理</span></div>
+                <div class="parking-management-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>年/月/日</td>
+                                <td>进场时间</td>
+                                <td>车牌号</td>
+                                <td>车型</td>
+                                <td>颜色</td>
+                                <td>车况情况</td>
+                                <td>出场时间</td>
+                                <td>备注</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>06/8/28</td>
+                                <td>6：50</td>
+                                <td>浙A9LK16</td>
+                                <td>轿车</td>
+                                <td>白色</td>
+                                <td>3人</td>
+                                <td>16：30</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>06/8/28</td>
+                                <td>6：50</td>
+                                <td>浙A9LK16</td>
+                                <td>轿车</td>
+                                <td>白色</td>
+                                <td>3人</td>
+                                <td>16：30</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>06/8/28</td>
+                                <td>6：50</td>
+                                <td>浙A9LK16</td>
+                                <td>轿车</td>
+                                <td>白色</td>
+                                <td>3人</td>
+                                <td>16：30</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>06/8/28</td>
+                                <td>6：50</td>
+                                <td>浙A9LK16</td>
+                                <td>轿车</td>
+                                <td>白色</td>
+                                <td>3人</td>
+                                <td>16：30</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>06/8/28</td>
+                                <td>6：50</td>
+                                <td>浙A9LK16</td>
+                                <td>轿车</td>
+                                <td>白色</td>
+                                <td>3人</td>
+                                <td>16：30</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>06/8/28</td>
+                                <td>6：50</td>
+                                <td>浙A9LK16</td>
+                                <td>轿车</td>
+                                <td>白色</td>
+                                <td>3人</td>
+                                <td>16：30</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>06/8/28</td>
+                                <td>6：50</td>
+                                <td>浙A9LK16</td>
+                                <td>轿车</td>
+                                <td>白色</td>
+                                <td>3人</td>
+                                <td>16：30</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>06/8/28</td>
+                                <td>6：50</td>
+                                <td>浙A9LK16</td>
+                                <td>轿车</td>
+                                <td>白色</td>
+                                <td>3人</td>
+                                <td>16：30</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!--分页器-->
+                <ul class="page-wrap clearfix">
+                    <li class="big-li">下一页</li>
+                    <li>42</li>
+                    <li>...</li>
+                    <li>5</li>
+                    <li>4</li>
+                    <li>3</li>
+                    <li>2</li>
+                    <li class="page-active">1</li>
+                    <li class="big-li">上一页</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            Copyright © 2016 杭州以数科技有限公司
+        </div>
+    </div>
+
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/echarts.min.js"></script>
+    <script src="../../js/situation/carChart.js"></script>
+    <script src="../../js/situation/historyChart.js"></script>
+    <script>
+        $('.page-wrap li').on('click',function(){
+            $('.page-wrap li').removeClass('page-active');
+            $(this).addClass('page-active');
+        });
+    </script>
+</body>
+</html>

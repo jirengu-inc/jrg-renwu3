@@ -1,0 +1,164 @@
+/*通用样式*/
+html,body,ul,li{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family:'Microsoft Yahei';
+}
+.clearfix:after{
+    content:'';
+    display:block;
+    clear:both;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: none;
+}
+.container{
+    width:1200px;
+    margin:0 auto;
+}
+input,button,select,textarea {
+    border: none;
+    outline:none;
+    resize:none;
+}
+/*头部*/
+#header{
+    background-color: #191919;
+}
+#header .container{
+    height:50px;
+    line-height: 50px;
+    color:#fff;
+}
+#header .aside-left{
+    width: 215px;
+    font-size:14px;
+    float: left;
+    text-align: left;
+}
+#header .header-center{
+    float:left;
+}
+#header .header-center li{
+    float:left;
+    width:140px;
+    text-align: left;
+}
+#header .header-center li a{
+    height: 47px;
+    width:72px;
+    display: block;
+    position:relative;
+    text-align: center;
+    font-size: 14px;
+    color:#fff;
+}
+#header .header-center li a:hover{
+    color:#05a07f;
+    border-bottom: 2px solid #05a07f;
+}
+#header .header-center li a.active{
+    color:#05a07f;
+    border-bottom: 2px solid #05a07f;
+}
+#header .aside-right{
+    float: right;
+    text-align: right;
+    font-size:12px;
+}
+/*主体*/
+/*中心标题*/
+#main .center-title{
+    margin-top: 30px;
+    font-size: 16px;
+}
+#main .center-nav{
+    float:left;
+}
+#main .center-nav li{
+    width: 136px;
+    height: 17px;
+    line-height: 17px;
+    text-align: center;
+    float:left;
+    border-right: 2px solid #dedede;
+}
+#main .center-nav li a{
+     color:#666;
+    text-decoration: none;
+}
+#main .center-nav li a.active{
+    text-decoration: none;
+    color:#00c199;
+}
+#main .center-nav .last-li{
+    border-right:0;
+}
+#main .current-location{
+    float:right;
+    margin-right: 20px;
+    font-size:12px;
+    color:#999;
+}
+#main .current-location span{
+    padding: 0 5px;
+    display: inline-block;
+}
+/*营销中心通用标题*/
+#main .public-title .chinese-title{
+    height: 48px;
+    line-height: 48px;
+    font-size: 16px;
+    text-align: center;
+}
+#main .public-title .line{
+    border: 1px solid #f77e7e;
+    width:50px;
+    margin: auto;
+}
+#main .public-title .en-title{
+    height: 46px;
+    line-height: 46px;
+    font-size: 14px;
+    text-align: center;
+}
+/*主体内容标题栏通用*/
+.main-title{
+    box-sizing: border-box;
+    border-bottom:1px solid #e1e1e1;
+    height:40px;
+    background: #fafafb;
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 38px;
+    color: #333;
+}
+.main-title i{
+    float: right;
+    font-weight: bold;
+    font-size: 18px;
+}
+.modular-title i{
+    float: right;
+    font-size: 22px;
+    color:#DDD;
+}
+/*底部*/
+#footer{
+    margin-top:50px;
+    background-color: #191919;
+}
+#footer .container{
+    height:66px;
+    line-height: 66px;
+    text-align: center;
+    color:#999;
+}

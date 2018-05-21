@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>营销中心-景区营收分析</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <link rel="stylesheet" href="../../css/basic-properties-public.css">
+    <style>
+        /*图标样式*/
+        @font-face {
+            font-family: 'iconfont';
+            src: url('http://at.alicdn.com/t/font_1473400777_9506023.eot'); /* IE9*/
+            src: url('http://at.alicdn.com/t/font_1473400777_9506023.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('http://at.alicdn.com/t/font_1473400777_9506023.woff') format('woff'), /* chrome、firefox */
+            url('http://at.alicdn.com/t/font_1473400777_9506023.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('http://at.alicdn.com/t/font_1473400777_9506023.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont {
+            font-family:'iconfont';
+            font-style:normal;
+            color:#666;
+        }
+        /*调试用，要删除的边框*/
+        /*.content{
+            border: 1px solid #000;
+        }
+        /*.modular{
+            border: 1px solid #000;
+        }*/
+        /*主体*/
+        /*revenue*/
+        #main .revenue {
+            margin-top: 32px;
+        }
+        #main .revenue .content{
+            box-sizing: border-box;
+            padding-top: 22px;
+        }
+        .revenue-situation,.proportion-of,.concurrent-comparison,.various-scenic {
+            box-sizing: border-box;
+            border:1px solid #c4c4c4;
+        }
+        #main .travel-chart{
+            width: 100%;
+            height:100%;
+        }
+        /*revenue-situation*/
+        #main .revenue .revenue-situation{
+            width: 400px;
+            height: 330px;
+            float: left;
+            margin-bottom: 40px;
+        }
+        /*proportion-of*/
+        #main .revenue .proportion-of{
+            width: 780px;
+            height: 330px;
+            margin-bottom: 40px;
+            float: right;
+        }
+        #main .revenue .proportion-of button{
+            width: 120px;
+            height: 30px;
+            border: 1px solid #999999;
+            border-radius: 3px;
+        }
+        #main .revenue .proportion-of button.active{
+            border: 1px solid #00c199;
+            color: #00c199;
+        }
+        /*concurrent-comparison*/
+        #main .revenue .concurrent-comparison{
+            width: 580px;
+            height: 240px;
+            float: left;
+        }
+        /*various-scenic*/
+        #main .revenue .various-scenic{
+            width: 580px;
+            height: 240px;
+            float: right;
+        }
+
+        /*order-source*/
+        #main .order-source {
+            margin-top: 46px;
+        }
+        #main .order-source .content{
+            box-sizing: border-box;
+            padding-top: 22px;
+        }
+        .trip-order,.ticket-order,.food-order,.hotel-order {
+            box-sizing: border-box;
+            border:1px solid #c4c4c4;
+        }
+        #main .order-chart{
+            width: 100%;
+            height:100%;
+        }
+        /*trip-order*/
+        #main .order-source .trip-order{
+            width: 580px;
+            height: 400px;
+            float: left;
+            margin-bottom: 40px;
+        }
+        /*proportion-of*/
+        #main .order-source .ticket-order{
+            width: 580px;
+            height: 400px;
+            margin-bottom: 40px;
+            float: right;
+        }
+        #main .proportion-of .main-title span{
+            float: left;
+            font-size: 16px;
+            width: 50px;
+            border-right: 1px solid #9f9f9f;
+            height: 20px;
+            line-height: 20px;
+            display: inline-block;
+            margin-top: 10px;
+            margin-right: 20px;
+        }
+        #main .proportion-of .main-title span.last{
+            border-right: none;
+        }
+        #main .proportion-of .main-title span.active{
+            color: #00c199;
+        }
+        #main .proportion-of .main-title i{
+            display: inline-block;
+        }
+        #main .buttons{
+            box-sizing: border-box;
+            width: 100%;
+            height: 60px;
+            padding: 15px 60px;
+        }
+        #main .buttons .btn{
+            padding: 0;
+            width: 120px;
+            height: 30px;
+            margin-right: 42px;
+            color: #333;
+            border-color: #999;
+            background: #fff;
+            line-height: 30px;
+            border-radius: 3px;
+        }
+        #main .revenue .proportion-of button.active{
+            border: 1px solid #00c199;
+            color: #00c199;
+        }
+        #main .buttons .btn:last-child{
+            margin-right: 0;
+        }
+        /*food-order*/
+        #main .order-source .food-order{
+            width: 580px;
+            height: 385px;
+            margin-bottom: 40px;
+            float: left;
+        }
+        /*hotel-order*/
+        #main .order-source .hotel-order{
+            width: 580px;
+            height: 385px;
+            float: right;
+        }
+        #main .follow-chart{
+            width: 100%;
+            height:100%;
+            padding-top:18px;
+        }
+        #main .hotel-ul{
+            font-size: 14px;
+            color: #666;
+            margin-left: 100px;
+        }
+        #main .hotel-ul .hotel-li{
+            margin-bottom: 12px;
+        }
+        .hotel-title,.hotel-strip,.hotel-num,.hotel-sequence{
+            float: left;
+        }
+        #main .hotel-li .hotel-sequence{
+            width: 14px;
+            height: 14px;
+            line-height: 14px;
+            text-align:center;
+            margin-right: 20px;
+            background: #ffa29b;
+            color: #fff;
+            font-size: 12px;
+            margin-top: 3px;
+        }
+        #main .hotel-li .hotel-title{
+            margin-right: 20px;
+        }
+        #main .hotel-li .hotel-strip{
+            height: 14px;
+            width: 80px;
+            border-radius: 0 10px 10px 0;
+            background: #ffa29b;
+            margin-right: 20px;
+            margin-top: 3px;
+        }
+        #main .hotel-li .hotel-strip.point{
+            background: #ff6155;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="container clearfix">
+            <div class="aside-left">椒江旅游大数据平台</div>
+            <div class="header-center">
+                <ul class="clearfix">
+                    <li><a href="../control/control.html">管控中心</a></li>
+                    <li><a href="../operation/operation.html" class="hick">运维中心</a></li>
+                    <li><a href="../态势中心/come-go-situation.html" class="hick">态势中心</a></li>
+                    <li><a href="../marketing/revenue-analyze.html" class="hick active">营销中心</a></li>
+                    <li><a href="../舆情中心/public-sentiment-analyze.html" class="hick">舆情中心</a></li>
+                    <li><a href="../bigScreen/bigScreen.html" class="hick">可视化大屏</a></li>
+                </ul>
+            </div>
+            <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span> | <span class="user-action">注销</span></div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="container">
+            <div class="center-title clearfix">
+                <div class="center-nav">
+                    <ul class="clearfix">
+                        <li><a href="#"  class="active">景区营收分析</a></li>
+                        <li><a href="portrait.html">景区游客画像</a></li>
+                        <li class="last-li"><a href="customers-analysis.html">潜在客源分析</a></li>
+                    </ul>
+                </div>
+                <div class="current-location">
+                    <span>当前位置</span>:<span class='location'>营销中心</span>><span class="z-location">景区营收分析</span>
+                </div>
+            </div>
+            <div class="revenue">
+                <div class="public-title">
+                    <div class="chinese-title">景区营收</div>
+                    <div class="line"></div>
+                    <div class="en-title">ATTRACTIONS REVENUE</div>
+                </div>
+                <div class="content clearfix">
+                    <div class="revenue-situation">
+                        <div class="main-title">
+                            景区营收情况
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="travel-chart" id="revenue-situation-chart"></div>
+                    </div>
+                    <div class="proportion-of">
+                        <div class="main-title">
+                            <span class="active">全部</span><span>餐饮</span><span>酒店</span><span>交通</span><span class="last">其他</span>
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="buttons">
+                            <button class="btn active">今日营收占比</button>
+                            <button class="btn">本周营收占比</button>
+                            <button class="btn">本月营收占比</button>
+                            <button class="btn">全年营收占比</button>
+                        </div>
+                        <div class="travel-chart" id="proportion-of-chart"></div>
+                    </div>
+                    <div class="concurrent-comparison">
+                        <div class="main-title">
+                            营收同比环比
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="travel-chart" id="concurrent-comparison-chart"></div>
+                    </div>
+                    <div class="various-scenic">
+                        <div class="main-title">
+                            各景点经营情况
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="travel-chart" id="various-scenic-chart"></div>
+                    </div>
+                </div>
+            </div>
+            <!--订单来源-->
+            <div class="order-source">
+                <div class="public-title">
+                    <div class="chinese-title">订单来源</div>
+                    <div class="line"></div>
+                    <div class="en-title">SOURCE OF THE ORDER</div>
+                </div>
+                <div class="content clearfix">
+                    <div class="trip-order">
+                        <div class="main-title">
+                            行程订单分析
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="order-chart" id="trip-order-chart"></div>
+                    </div>
+                    <div class="ticket-order">
+                        <div class="main-title">
+                            票务订单分析
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="order-chart" id="ticket-order-chart"></div>
+                    </div>
+                    <div class="food-order">
+                        <div class="main-title">
+                            餐饮订单分析
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="order-chart" id="food-order-chart"></div>
+                    </div>
+                    <div class="hotel-order">
+                        <div class="main-title">
+                            酒店订单分析
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="order-chart" id="hotel-order-chart">
+                            <div class="follow-chart">
+                                <ul class="hotel-ul">
+                                    <li class="hotel-li clearfix">
+                                        <div class="hotel-sequence point">1</div>
+                                        <div class="hotel-title">上海</div>
+                                        <div class="hotel-strip point"></div>
+                                        <div class="hotel-num"></div>
+                                    </li>
+                                    <li class="hotel-li clearfix">
+                                        <div class="hotel-sequence point">2</div>
+                                        <div class="hotel-title">上海</div>
+                                        <div class="hotel-strip point"></div>
+                                        <div class="hotel-num"></div>
+                                    </li>
+                                    <li class="hotel-li clearfix">
+                                        <div class="hotel-sequence point">3</div>
+                                        <div class="hotel-title">上海</div>
+                                        <div class="hotel-strip point"></div>
+                                        <div class="hotel-num"></div>
+                                    </li>
+                                    <li class="hotel-li clearfix">
+                                        <div class="hotel-sequence point">4</div>
+                                        <div class="hotel-title">上海</div>
+                                        <div class="hotel-strip"></div>
+                                        <div class="hotel-num"></div>
+                                    </li>
+                                    <li class="hotel-li clearfix">
+                                        <div class="hotel-sequence point">5</div>
+                                        <div class="hotel-title">上海</div>
+                                        <div class="hotel-strip"></div>
+                                        <div class="hotel-num"></div>
+                                    </li>
+                                    <li class="hotel-li clearfix">
+                                        <div class="hotel-sequence point">6</div>
+                                        <div class="hotel-title">上海</div>
+                                        <div class="hotel-strip"></div>
+                                        <div class="hotel-num"></div>
+                                    </li>
+                                    <li class="hotel-li clearfix">
+                                        <div class="hotel-sequence point">7</div>
+                                        <div class="hotel-title">上海</div>
+                                        <div class="hotel-strip"></div>
+                                        <div class="hotel-num"></div>
+                                    </li>
+                                    <li class="hotel-li clearfix">
+                                        <div class="hotel-sequence point">8</div>
+                                        <div class="hotel-title">上海</div>
+                                        <div class="hotel-strip"></div>
+                                        <div class="hotel-num"></div>
+                                    </li>
+                                    <li class="hotel-li clearfix">
+                                        <div class="hotel-sequence point">9</div>
+                                        <div class="hotel-title">上海</div>
+                                        <div class="hotel-strip"></div>
+                                        <div class="hotel-num"></div>
+                                    </li>
+                                    <li class="hotel-li clearfix">
+                                        <div class="hotel-sequence point">10</div>
+                                        <div class="hotel-title">上海</div>
+                                        <div class="hotel-strip"></div>
+                                        <div class="hotel-num"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            Copyright @ 2016 杭州以数科技有限公司
+        </div>
+    </div>
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/echarts.js"></script>
+    <script src="../../js/marketing/marketingMain.js"></script>
+    <script src="../../js/marketing/revenueSituationChart.js"></script>
+    <script src="../../js/marketing/proportionOfChart.js"></script>
+    <script src="../../js/marketing/concurrentComparisonChart.js"></script>
+    <script src="../../js/marketing/variousScenicChart.js"></script>
+    <script src="../../js/marketing/foodOrderChart.js"></script>
+    <script src="../../js/marketing/tripOrderChart.js"></script>
+    <script src="../../js/marketing/ticketOrderChart.js"></script>
+</body>
+</html>

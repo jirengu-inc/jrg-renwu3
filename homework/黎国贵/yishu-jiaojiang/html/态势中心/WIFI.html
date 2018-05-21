@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>态势中心-WIFI流量感知</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <style>
+        /*通用样式*/
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family:'Microsoft Yahei';
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .container{
+            width:1200px;
+            margin:0 auto;
+        }
+        /*图标样式*/
+        @font-face {
+            font-family: 'iconfont';
+            src: url('http://at.alicdn.com/t/font_1473750915_0475364.eot'); /* IE9*/
+            src: url('http://at.alicdn.com/t/font_1473750915_0475364.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('http://at.alicdn.com/t/font_1473750915_0475364.woff') format('woff'), /* chrome、firefox */
+            url('http://at.alicdn.com/t/font_1473750915_0475364.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('http://at.alicdn.com/t/font_1473750915_0475364.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont {
+            font-family:'iconfont';
+            font-style:normal;
+            color:#666;
+        }
+        /*头部*/
+        #header{
+            background-color: #191919;
+        }
+        #header .container{
+            height:50px;
+            line-height: 50px;
+            color:#fff;
+        }
+        #header .aside-left{
+            width: 215px;
+            font-size:14px;
+            float: left;
+            text-align: left;
+        }
+        #header .header-center{
+            float:left;
+        }
+        #header .header-center li{
+            float:left;
+            width:140px;
+            text-align: left;
+        }
+        #header .header-center li a{
+            height: 47px;
+            width:72px;
+            display: block;
+            position:relative;
+            text-align: center;
+            font-size: 14px;
+            color:#fff;
+        }
+        #header .header-center li a:hover{
+            color:#05a07f;
+            border-bottom: 2px solid #05a07f;
+        }
+        #header .aside-right{
+            float: right;
+            text-align: right;
+            font-size:12px;
+        }
+        #header .h-active{
+            color:#05a07f !important;
+            border-bottom: 2px solid #05a07f;
+        }
+        /*主体*/
+        /*中心标题*/
+        #main .active{
+            color:#00c199;
+        }
+        #main .center-title{
+            margin-top: 30px;
+        }
+        #main .center-nav{
+            float:left;
+        }
+        #main .center-nav li{
+            width: 136px;
+            height: 17px;
+            line-height: 17px;
+            text-align: center;
+            float:left;
+            border-right: 2px solid #dedede;
+        }
+        #main .center-nav li:hover{
+            cursor: pointer;
+            color:#00c199;
+        }
+        #main .center-nav .last-li{
+            border-right:0;
+        }
+        #main .current-location{
+            float:right;
+            margin-right: 20px;
+            font-size:12px;
+            color:#999;
+        }
+        /*中心信息*/
+        #main .center-information{
+            margin-top:55px;
+        }
+        /*统计信息*/
+        #main .statistical-area{
+            width: 220px;
+            height: 30px;
+            border:1px solid #666;
+            border-radius: 5px;
+            float: left;
+        }
+        #main .statistical-title{
+            float:left;
+            border-right: 1px solid #666;
+            font-size:14px;
+            color:#333;
+            line-height: 30px;
+            text-align: center;
+            width:80px;
+        }
+        #main .area{
+            width:138px;
+            float:left;
+            line-height: 30px;
+            position:relative;
+        }
+        #main .area-t-ul{
+            display: none;
+            width: 138px;
+            position: absolute;
+            top:100%;
+            border:1px solid #666;
+        }
+        #main .area-t-ul li{
+            padding-left: 20px;
+            border-bottom: 1px solid #666666;
+        }
+        #main .area-t-ul li:hover{
+            background-color: #00c199;
+            color:#fff;
+            cursor: pointer;
+        }
+        #main .area-t-ul .last-li{
+            border-bottom: 0;
+        }
+        #main .area-title{
+            float:left;
+            margin-left: 20px;
+        }
+        #main .are-icon{
+            float: right;
+            margin-right:10px;
+            margin-top:-2px;
+        }
+        #main .are-icon:hover{
+            cursor: default;
+        }
+        #main .area:hover .area-t-ul{
+            display: block;
+            background-color: #fff;
+        }
+        #main .are-icon i{
+            color:#00c199;
+        }
+        /*日期*/
+        #main .date{
+            width: 315px;
+            height: 30px;
+            line-height: 30px;
+            float: right;
+            border:1px solid #aeaeae;
+        }
+        #main .date li{
+            float:left;
+            border-right: 1px solid #aeaeae;
+        }
+        #main .date li:hover{
+            cursor:pointer;
+        }
+        #main .date .date-active{
+            background-color: #00c199;
+            color:#fff;
+        }
+
+        #main .day{
+            width: 62px;
+            text-align: center;
+        }
+        #main .week{
+            width: 62px;
+            text-align: center;
+        }
+        #main .month{
+            width: 62px;
+            text-align: center;
+        }
+        #main .date .calendar{
+            font-size:12px;
+            border-right:0;
+            margin-left: 5px;
+        }
+        #main .date .calendar i{
+            font-size:18px;
+        }
+        /*统计表*/
+        #main .statistical-table{
+            margin-top: 60px;
+        }
+        /*第一行*/
+        /*客流统计*/
+        #main .passenger-flow-statistics{
+            float:left;
+            border: 1px solid #efefef;
+        }
+        /*客流统计头部*/
+        #main .passenger-flow-header{
+            width: 580px;
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            border-bottom:1px solid #efefef;
+            background-color: #fafafb;
+        }
+        #main .passenger-flow-title{
+            float:left;
+            margin-left:20px;
+            color:#333;
+        }
+        #main .drop-down{
+            float:right;
+            margin-right: 20px;
+            margin-top:-2px;
+        }
+        #main .drop-down i{
+            color:#666;
+        }
+        /*客流统计主体*/
+        #main .passenger-flow-main{
+            width: 580px;
+            box-sizing: border-box;
+        }
+        #main .passenger-flow-main-ul{
+            margin-top: 23px;
+            margin-bottom: 23px;
+        }
+        #main .passenger-flow-main-ul li{
+            width:192px;
+            height: 80px;
+            float:left;
+            box-sizing: border-box;
+            text-align: center;
+            border-right: 1px solid #efefef;
+        }
+        #main .passenger-flow-main-ul .last-li{
+            border-right:0;
+        }
+        #main .passenger-flow-main-ul .passenger-flow-li-tilte{
+            margin-top:15px;
+            margin-bottom:15px;
+        }
+        #main .current-WIFI-passenger-flow-data{
+            color:#00c199;
+        }
+        #main .current-WIFI-passenger-flow-data .time{
+            float: left;
+            margin-left: 30px;
+            font-size: 12px;
+            line-height: 30px;
+        }
+        #main .current-WIFI-passenger-flow-data .num{
+            float: right;
+            margin-right: 30px;
+        }
+        #main .p-num{
+            font-size: 20px;
+        }
+        /*流量统计*/
+        #main .traffic-analysis{
+            float: right;
+        }
+        /*第二行*/
+        #main .statistical-table-second-row{
+            margin-top: 60px;
+        }
+        /*景区流量*/
+        #main .scenic-flow-statistics{
+            margin-right:25px;
+            float:left;
+            border: 1px solid #efefef;
+        }
+        /*景区流量头部*/
+        #main .scenic-flow-header{
+            width: 386px;
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            border-bottom:1px solid #efefef;
+            background-color: #fafafb;
+        }
+        /*景区流量主体*/
+        #main .scenic-flow-main{
+            width: 386px;
+            box-sizing: border-box;
+        }
+        #main .scenic-flow-main-ul{
+
+        }
+        #main .scenic-flow-main-ul li{
+            width:193px;
+            height: 120px;
+            float:left;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        #main .scenic-flow-main-ul .last-li{
+            border-right:0;
+        }
+        #main .scenic-flow-main-ul .passenger-flow-li-tilte{
+            margin-top:35px;
+            margin-bottom:20px;
+        }
+        #main .current-WIFI-passenger-flow-data{
+            color:#00c199;
+        }
+        /*景区各时段下载速度*/
+        #main .scenic-down-speed{
+            width: 787px;
+            height: 282px;
+            float: left;
+        }
+        #main .scenic-down-speed-header{
+            width: 787px;
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            border-bottom:1px solid #efefef;
+            background-color: #fafafb;
+        }
+        /*echart景区折线图*/
+        #main #up-down-speed-map{
+            width: 787px;
+            height: 242px;
+        }
+        /*底部*/
+        #footer{
+            margin-top:154px;
+            background-color: #191919;
+        }
+        #footer .container{
+            height:66px;
+            line-height: 66px;
+            text-align: center;
+            color:#999;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="container clearfix">
+        <div class="aside-left">椒江旅游大数据平台</div>
+        <div class="header-center">
+            <ul class="clearfix">
+                <li><a href="../control/control.html">管控中心</a></li>
+                <li><a href="../operation/operation.html">运维中心</a></li>
+                <li><a href="../态势中心/come-go-situation.html" class="h-active">态势中心</a></li>
+                <li><a href="../marketing/revenue-analyze.html">营销中心</a></li>
+                <li><a href="../舆情中心/public-sentiment-analyze.html">舆情中心</a></li>
+                <li><a href="../bigScreen/bigScreen.html">可视化大屏</a></li>
+            </ul>
+        </div>
+        <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span> | <span class="user-action">注销</span></div>
+    </div>
+</div>
+<div id="main">
+    <div class="container">
+        <div class="center-title clearfix">
+            <div class="center-nav">
+                <ul class="clearfix">
+                    <li class="active"><a href="come-go-situation.html">游客出入态势</a></li>
+                    <li><a href="track.html">游客轨迹态势</a></li>
+                    <li><a href="vehicles-and-vessels.html">景区车船态势</a></li>
+                    <li class="last-li"><a href="WIFI.html" class="active">WIFI流量感知</a></li>
+                </ul>
+            </div>
+            <div class="current-location">
+                <span>当前位置</span>:<span class='location'>态势中心</span>><span class="z-location">WIFI流量感知</span>
+            </div>
+        </div>
+        <div class="center-information clearfix">
+            <div class="statistical-area">
+                <div class="statistical-title">统计区域</div>
+                <div class="area clearfix">
+                    <div class="area-title">全部</div>
+                    <!--图标未加-->
+                    <div class="are-icon"><i class="iconfont">&#xe601</i></div>
+                    <ul class="area-t-ul">
+                        <li>甲午岩</li>
+                        <li>少年宫</li>
+                        <li>鱼师庙</li>
+                        <li>天后宫</li>
+                        <li class="last-li">全部</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="date">
+                <ul class="clearfix">
+                    <li class="day date-active">日</li>
+                    <li class="week">周</li>
+                    <li class="month">月</li>
+                    <li class="calendar">2016年8月28日 <i class="iconfont">&#xe602</i></li>
+                </ul>
+            </div>
+        </div>
+        <div class="statistical-table">
+            <div class="statistical-table-first-row clearfix">
+                <!--客流统计-->
+                <div class="passenger-flow-statistics">
+                    <!--客流统计头部-->
+                    <div class="passenger-flow-header clearfix">
+                        <div class="passenger-flow-title">客流统计</div>
+                        <div class="drop-down"><i class="iconfont">&#xe600</i></div>
+                    </div>
+                    <!--客流统计主体-->
+                    <div class="passenger-flow-main">
+                        <ul class="passenger-flow-main-ul clearfix">
+                            <li>
+                                <div class="passenger-flow-li-tilte current-WIFI-passenger-flow">当前WIFI客流量</div>
+                                <div class="current-WIFI-passenger-flow-data"><span class="p-num">317</span>人</div>
+                            </li>
+                            <li>
+                                <div class="passenger-flow-li-tilte current-WIFI-passenger-flow">今天WIFI客流峰值</div>
+                                <div class="current-WIFI-passenger-flow-data clearfix"><span class="time">13:00</span><span class="num"><span class="p-num">953</span>人</span></div>
+                            </li>
+                            <li class="last-li">
+                                <div class="passenger-flow-li-tilte current-WIFI-passenger-flow">今日累计使用WIFI流量</div>
+                                <div class="current-WIFI-passenger-flow-data"><span class="p-num">4426</span>人</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--流量统计-->
+                <div class="traffic-analysis">
+                    <div class="passenger-flow-statistics">
+                        <!--流量统计头部-->
+                        <div class="passenger-flow-header clearfix">
+                            <div class="passenger-flow-title">流量统计</div>
+                            <div class="drop-down"><i class="iconfont">&#xe600</i></div>
+                        </div>
+                        <!--流量统计主体-->
+                        <div class="passenger-flow-main">
+                            <ul class="passenger-flow-main-ul clearfix">
+                                <li>
+                                    <div class="passenger-flow-li-tilte current-WIFI-passenger-flow">当前下载速度</div>
+                                    <div class="current-WIFI-passenger-flow-data"><span class="p-num">1200</span>Mbps</div>
+                                </li>
+                                <li>
+                                    <div class="passenger-flow-li-tilte current-WIFI-passenger-flow">当前上传速度</div>
+                                    <div class="current-WIFI-passenger-flow-data"><span class="p-num">900</span>Mbps</div>
+                                </li>
+                                <li class="last-li">
+                                    <div class="passenger-flow-li-tilte current-WIFI-passenger-flow">总宽带</div>
+                                    <div class="current-WIFI-passenger-flow-data"><span class="p-num">1500</span>Mbps</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="statistical-table-second-row clearfix">
+                <!--景区流量-->
+                <div class="scenic-flow-statistics">
+                    <!--景区流量头部-->
+                    <div class="scenic-flow-header clearfix">
+                        <div class="passenger-flow-title">景区流量</div>
+                        <div class="drop-down"><i class="iconfont">&#xe600</i></div>
+                    </div>
+                    <!--景区流量主体-->
+                    <div class="scenic-flow-main">
+                        <ul class="scenic-flow-main-ul clearfix">
+                            <li style="border-right: 1px solid #efefef;border-bottom: 1px solid #efefef;">
+                                <div class="passenger-flow-li-tilte current-WIFI-passenger-flow">当前WIFI客流量</div>
+                                <div class="current-WIFI-passenger-flow-data"><span class="p-num">28056</span>人次</div>
+                            </li>
+                            <li style="border-bottom: 1px solid #efefef;">
+                                <div class="passenger-flow-li-tilte current-WIFI-passenger-flow">今天WIFI客流峰值</div>
+                                <div class="current-WIFI-passenger-flow-data"><span class="p-num">23</span>min</div>
+                            </li>
+                            <li style="border-right: 1px solid #efefef">
+                                <div class="passenger-flow-li-tilte current-WIFI-passenger-flow">当前WIFI客流量</div>
+                                <div class="current-WIFI-passenger-flow-data"><span class="p-num">5643</span>GB</div>
+                            </li>
+                            <li >
+                                <div class="passenger-flow-li-tilte current-WIFI-passenger-flow">今日累计使用WIFI流量</div>
+                                <div class="current-WIFI-passenger-flow-data"><span class="p-num">8643</span>GB</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--景区各时段下载速度标题-->
+                <div class="scenic-down-speed">
+                    <div class="scenic-down-speed-header clearfix">
+                        <div class="passenger-flow-title">景区各时段下载速度</div>
+                        <div class="drop-down"><i class="iconfont">&#xe600</i></div>
+                    </div>
+                    <div id="up-down-speed-map">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        Copyright © 2016 杭州以数科技有限公司
+    </div>
+</div>
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../js/echarts.js"></script>
+<script>
+    var upDownSpeed = echarts.init(document.getElementById('up-down-speed-map'));
+    var upDownSpeedOption = {
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['上传','下载'],
+            x:620,
+            y:5
+        },
+        grid: {
+            x:35,
+            y:30,
+            x2:60,
+            y2:30
+        },
+        xAxis:  {
+            type: 'category',
+            name : '（时间）',
+            boundaryGap: false,
+            data: ['6:00','8:00','10:00','12:00','14:00','16:00','18:00']
+        },
+        yAxis: {
+            type: 'value',
+            name : '（100Mbps）'
+        },
+        series: [
+            {
+                name:'上传',
+                type:'line',
+                symbolSize:10,
+                data:[8, 12, 50, 40, 60, 48, 8],
+                itemStyle: {
+                    normal: {
+                        color:'#00c199'
+                    }
+                }
+            },
+            {
+                name:'下载',
+                type:'line',
+                symbolSize:10,
+                data:[17, 43, 80, 77, 97, 71, 38],
+                itemStyle: {
+                    normal: {
+                        color:'#fb835e'
+                    }
+                }
+            }
+        ]
+    };
+    upDownSpeed.setOption(upDownSpeedOption);
+</script>
+<script>
+    $('.area-t-ul li').on('click',function(){
+        var text = $(this).text();
+        $('.area-title').text(text);
+    });
+    $('#main .date li').on('click',function(){
+        if($(this).index()=== 3){
+            return;
+        }
+        $('#main .date li').removeClass('date-active');
+        $(this).addClass('date-active');
+    });
+
+</script>
+</body>
+</html>

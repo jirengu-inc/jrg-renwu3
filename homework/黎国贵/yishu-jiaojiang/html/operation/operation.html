@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>运维中心</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <style>
+        /*字体*/
+        @font-face {
+            font-family: 'iconfont';
+            src: url('http://at.alicdn.com/t/font_1473400777_9506023.eot'); /* IE9*/
+            src: url('http://at.alicdn.com/t/font_1473400777_9506023.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('http://at.alicdn.com/t/font_1473400777_9506023.woff') format('woff'), /* chrome、firefox */
+            url('http://at.alicdn.com/t/font_1473400777_9506023.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('http://at.alicdn.com/t/font_1473400777_9506023.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont {
+            font-family:'iconfont';
+            font-style:normal;
+            color:#666;
+        }
+        /*3个模块整体样式*/
+        #main .part{
+            margin-top: 40px;
+        }
+        #main .part .part-title{
+            box-sizing: border-box;
+            height:40px;
+            border-top: 1px solid #e3e3e3;
+            font-size: 16px;
+        }
+        #main .part-title .wenzi{
+            border-top:1px solid #00c199 ;
+            width: 98px;
+            line-height: 40px;
+        }
+        #main .part-title .wenzi{
+            width: 130px;
+        }
+        #main .part-title .wenzi{
+            width: 130px;
+        }
+        .machine,.application{
+            box-sizing: border-box;
+        }
+        /*分页器样式*/
+        #main .page-wrap{
+            margin-top: -60px;
+            margin-right: 20px;
+        }
+        #main .page-wrap ul{
+
+        }
+        #main .page-wrap li{
+            height: 30px;
+            width: 30px;
+            text-align: center;
+            line-height:30px;
+            float: right;
+            color:#00c199;
+            border: 1px solid #e4e4e4;
+            margin-left: 5px;
+        }
+        #main .page-wrap li:hover{
+            cursor: pointer;
+        }
+        #main .page-wrap .big-li{
+            height: 30px;
+            width: 65px;
+        }
+        #main .page-wrap .page-active{
+            background-color: #00c199;
+            color:#fff;
+        }
+        /*分页器样式*/
+        /*machine*/
+        #main .machine{
+            margin-top: 10px;
+            box-sizing: border-box;
+            height: 520px;
+            margin-bottom: 60px;
+        }
+        .machine-table table{
+            border-collapse: collapse;
+            margin: 15px 20px;
+        }
+        .machine-table thead{
+            font-size: 16px;
+            color: #00c199;
+            background: #f1f1f1;
+        }
+        .machine-table tbody{
+            font-size: 14px;
+            color: #666;
+        }
+        .machine-table tbody tr:nth-child(2n){
+            background: #f1f1f1;
+        }
+        .machine-table tr{
+            height: 40px;
+            text-align: center;
+        }
+        .machine-table td{
+            text-align: left;
+            word-break:keep-all;
+            white-space:nowrap;
+            padding-left: 10px;
+            padding-right: 48px;
+        }
+        .machine-table tbody td:last-child{
+            color: #0fa2f2;
+        }
+        .machine-table .impt{
+            color: #ff9c00;
+        }
+        .machine-table .impts{
+            color: #ff4949;
+        }
+        /*system*/
+        #main .system .sign{
+            box-sizing: border-box;
+            height: 26px;
+            margin-bottom: 16px;
+        }
+        #main .signs{
+            float: right;
+            height:40px;
+            box-sizing: border-box;
+            width: 160px;
+        }
+        #main .signimpt{
+            width: 20px;
+            height:20px;
+            background: #999;
+            display: inline-block;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0px 2px 1px #999;
+            margin-right: 12px;
+            float: right;
+        }
+        #main .signs .red-sign{
+            background: #ff4949;
+        }
+        #main .signs .yellow-sign{
+            background: #ff9900;
+        }
+        #main .signs .green-sign{
+            background: #03e6b7;
+        }
+        #main .signs div:nth-child(1){
+            display: inline-block;
+            height: 26px;
+            line-height: 26px;
+            float: right;
+        }
+        #main .system .content{
+            width: 100%;
+            margin-top: 26px;
+            padding-left: 20px;
+        }
+        /*application*/
+        #main .application{
+            box-sizing: border-box;
+            width: 140px;
+            height: 210px;
+            float: left;
+            margin-right: 60px;
+            margin-bottom: 20px;
+        }
+        #main .application-block{
+            box-sizing: border-box;
+            border-radius: 3px;
+            width: 140px;
+            height: 180px;
+            float: left;
+            border: 1px solid #c2c2c2;
+        }
+        #main .application-top{
+            box-sizing: border-box;
+            height: 130px;
+            color: #333;
+            font-size: 12px;
+            padding-top: 100px;
+            text-align: center;
+        }
+        #main .application-center{
+            box-sizing: border-box;
+            height: 50px;
+            width: 140px;
+        }
+        #main .application-center .signs{
+            color: #999999;
+            float: left;
+            width: 140px;
+            padding: 10px 0 0 15px;
+            font-size: 14px;
+            line-height: 26px;
+        }
+        #main .application-center .signs div{
+            float: left;
+        }
+        #main .application-center .signs div:nth-child(1){
+            height: 20px;
+        }
+        #main .application-more{
+            color: #0fa2f2;
+            font-size: 12px;
+            text-align: right;
+            line-height: 30px;
+        }
+        /*hardware*/
+        #main .hardware{
+            height: 1300px;
+        }
+        #main .hardware {
+            margin-top: 56px;
+        }
+        #main .hardware .content{
+            box-sizing: border-box;
+            padding-top: 22px;
+        }
+        .consume,.cpu,.wifi,.switch,.gate,.video{
+            box-sizing: border-box;
+            border:1px solid #c4c4c4;
+        }
+        #main .travel-chart{
+            width: 100%;
+            height:100%;
+        }
+
+        /*consume*/
+        #main .hardware .consume{
+            width: 440px;
+            height: 380px;
+            margin-bottom: 40px;
+            float: left;
+        }
+        /*cpu*/
+        #main .hardware .cpu{
+            width: 720px;
+            height: 380px;
+            margin-bottom: 40px;
+            float: right;
+            position: relative;
+        }
+        #main .cpu .server-cpu-pic{
+            height: 180px;
+            padding: 30px 0 0 45px;
+        }
+        #main .cpu .pics{
+            float: left;
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+        }
+        #main .cpu .word-left,.word-right{
+            float: left;
+            font-size: 14px;
+        }
+        #main .cpu .server-cpu-word{
+            background: #f1f1f1;
+            box-sizing: border-box;
+            padding-top: 15px;
+            height: 128px;
+        }
+        #main .cpu .word-left{
+            text-align: right;
+            color: #ff4949;
+            width: 225px;
+        }
+        #main .cpu .word-right{
+            width: 490px;
+        }
+        /*wifi*/
+        #main .hardware .wifi{
+            width: 440px;
+            height: 380px;
+            margin-bottom: 40px;
+            float: left;
+            font-size: 12px;
+        }
+        #main .wifi-top{
+            width: 100%;
+            height: 175px;
+        }
+        #main .wifi-top-left,.wifi-top-pic,.wifi-top-right{
+            float: left;
+        }
+        #main .wifi-top-left{
+            width: 148px;
+            padding-top: 84px;
+        }
+        #main .wifi-top-left div:nth-child(1){
+            width: 100%;
+            text-align: right;
+            float: right;
+        }
+        #main .wifi-top-left div:nth-child(2){
+            float: right;
+            text-align: right;
+            width: 100%;
+            color: #398eff;
+        }
+        #main .wifi-top-right div:nth-child(2){
+            color: #398eff;
+        }
+        #main .wifi-top-pic{
+            margin-top: 18px;
+        }
+        #main .wifi-top-right{
+            padding-top: 84px;
+            width: 124px;
+        }
+        #main .wifi-center{
+            height: 30px;
+        }
+        #main .wifi-center{
+            box-sizing: border-box;
+            font-size: 14px;
+            width: 100%;
+            height: 30px;
+            padding-left:54px;
+            padding-top: 6px;
+        }
+        #main .wifi-center span {
+            margin-right: 24px;
+        }
+        #main .wifi-more{
+            display: inline-block;
+            font-size: 10px;
+            text-align: center;
+            color: #fff;
+            width: 80px;
+            height: 22px;
+            line-height: 20px;
+            background: #00c199;
+            border-radius: 3px;
+        }
+        .wifi-table table{
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        .wifi-table thead{
+            font-size: 12px;
+            color: #00c199;
+            background: #f1f1f1;
+        }
+        .wifi-table tbody{
+            font-size: 12px;
+            color: #666;
+        }
+        .wifi-table tbody tr:nth-child(2n){
+            background: #f1f1f1;
+        }
+        .wifi-table tr{
+            padding-left: 20px;
+            height: 30px;
+            text-align: left;
+        }
+        .wifi-table td{
+            word-break:keep-all;
+            white-space:nowrap;
+            padding-left: 20px;
+            width: 150px;
+            text-align: left;
+        }
+        .wifi-table td:last-child{
+            color: #0fa2f2;
+            text-align:center;
+        }
+        /*switch*/
+        #main .hardware .switch{
+            width: 720px;
+            height: 380px;
+            margin-bottom: 40px;
+            float: right;
+        }
+        #main .switch-left,.switch-bottom{
+            float: left;
+        }
+        #main .switch-left{
+            box-sizing: border-box;
+            padding-left: 70px;
+            padding-top: 55px;
+            width: 460px;
+        }
+        .switch-right{
+            box-sizing: border-box;
+            padding-top: 90px;
+            padding-right: 40px;
+            float: right;
+            width:190px;
+            height: 266px;
+        }
+        #main .hardware-switch .signs{
+            margin-bottom: 20px;
+        }
+        #main .hardware-switch .red-sign{
+            background: #ff4949;
+        }
+        #main .hardware-switch .green-sign{
+            background: #38ed40;
+        }
+        #main .switch-bottom{
+            box-sizing: border-box;
+            font-size: 14px;
+            width: 100%;
+            height: 70px;
+            padding: 20px 0 0 210px;
+        }
+        #main .switch-bottom span {
+            margin-right: 24px;
+        }
+        #main .switch-more{
+            color: #0fa2f2;
+        }
+        /*gate*/
+        #main .hardware .gate{
+            width: 440px;
+            height: 390px;
+            margin-bottom: 40px;
+            float: left;
+            position: relative;
+        }
+        /*video*/
+        #main .hardware .video{
+            width: 720px;
+            height: 390px;
+            margin-bottom: 40px;
+            float: right;
+            position: relative;
+        }
+        /*more*/
+        #main .more{
+            color: #0fa2f2;
+            font-size: 14px;
+            position: absolute;
+            top:358px;
+        }
+        #main .cpu-more{
+            top: 345px;
+            right:185px;
+        }
+        #main .gate-more{
+            right:22px;
+        }
+        #main .video-more{
+            left:430px;
+        }
+    </style>
+<body>
+    <div id="header">
+        <div class="container clearfix">
+            <div class="aside-left">椒江旅游大数据平台</div>
+            <div class="header-center">
+                <ul class="clearfix">
+                    <li><a href="../control/control.html">管控中心</a></li>
+                    <li><a href="operation.html" class="active">运维中心</a></li>
+                    <li><a href="../态势中心/come-go-situation.html">态势中心</a></li>
+                    <li><a href="../marketing/revenue-analyze.html">营销中心</a></li>
+                    <li><a href="../舆情中心/public-sentiment-analyze.html">舆情中心</a></li>
+                    <li><a href="../bigScreen/bigScreen.html">可视化大屏</a></li>
+                </ul>
+            </div>
+            <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span> | <span class="user-action">注销</span></div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="container">
+            <div class="part equipment">
+                <div class="part-title">
+                    <div class="wenzi wenzi1">故障预警设备</div>
+                </div>
+                <div class="content clearfix">
+                    <div class="machine">
+                        <div class="main-title">
+                            机房设备状态
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="machine-table">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <td>序号</td>
+                                    <td>环控项目</td>
+                                    <td>设别编号</td>
+                                    <td>设备位置</td>
+                                    <td>时间</td>
+                                    <td>状态</td>
+                                    <td>责任人</td>
+                                    <td>责任人电话</td>
+                                    <td>详细日志</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>配电系统</td>
+                                    <td>JJLY-001</td>
+                                    <td>配电柜02-01</td>
+                                    <td>2016/08/15 20:00:01</td>
+                                    <td class="impt">警告</td>
+                                    <td>谢志勇</td>
+                                    <td>15896565231</td>
+                                    <td>查看</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>空调</td>
+                                    <td>JJLY-001</td>
+                                    <td>配电柜02-01</td>
+                                    <td>2016/08/15 20:00:01</td>
+                                    <td class="impts">停止制冷</td>
+                                    <td>谢志勇</td>
+                                    <td>15896565231</td>
+                                    <td>查看</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>配电系统</td>
+                                    <td>JJLY-001</td>
+                                    <td>配电柜02-01</td>
+                                    <td>2016/08/15 20:00:01</td>
+                                    <td class="impt">警告</td>
+                                    <td>谢志勇</td>
+                                    <td>15896565231</td>
+                                    <td>查看</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>配电系统</td>
+                                    <td>JJLY-001</td>
+                                    <td>配电柜02-01</td>
+                                    <td>2016/08/15 20:00:01</td>
+                                    <td class="impt">警告</td>
+                                    <td>谢志勇</td>
+                                    <td>15896565231</td>
+                                    <td>查看</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>配电系统</td>
+                                    <td>JJLY-001</td>
+                                    <td>配电柜02-01</td>
+                                    <td>2016/08/15 20:00:01</td>
+                                    <td class="impt">警告</td>
+                                    <td>谢志勇</td>
+                                    <td>15896565231</td>
+                                    <td>查看</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>配电系统</td>
+                                    <td>JJLY-001</td>
+                                    <td>配电柜02-01</td>
+                                    <td>2016/08/15 20:00:01</td>
+                                    <td class="impt">警告</td>
+                                    <td>谢志勇</td>
+                                    <td>15896565231</td>
+                                    <td>查看</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>配电系统</td>
+                                    <td>JJLY-001</td>
+                                    <td>配电柜02-01</td>
+                                    <td>2016/08/15 20:00:01</td>
+                                    <td class="impt">警告</td>
+                                    <td>谢志勇</td>
+                                    <td>15896565231</td>
+                                    <td>查看</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>配电系统</td>
+                                    <td>JJLY-001</td>
+                                    <td>配电柜02-01</td>
+                                    <td>2016/08/15 20:00:01</td>
+                                    <td class="impt">警告</td>
+                                    <td>谢志勇</td>
+                                    <td>15896565231</td>
+                                    <td>查看</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>配电系统</td>
+                                    <td>JJLY-001</td>
+                                    <td>配电柜02-01</td>
+                                    <td>2016/08/15 20:00:01</td>
+                                    <td class="impt">警告</td>
+                                    <td>谢志勇</td>
+                                    <td>15896565231</td>
+                                    <td>查看</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>配电系统</td>
+                                    <td>JJLY-001</td>
+                                    <td>配电柜02-01</td>
+                                    <td>2016/08/15 20:00:01</td>
+                                    <td class="impt">警告</td>
+                                    <td>谢志勇</td>
+                                    <td>15896565231</td>
+                                    <td>查看</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--分页器-->
+                <ul class="page-wrap clearfix">
+                    <li class="big-li">下一页</li>
+                    <li>42</li>
+                    <li>...</li>
+                    <li>5</li>
+                    <li>4</li>
+                    <li>3</li>
+                    <li>2</li>
+                    <li class="page-active">1</li>
+                    <li class="big-li">上一页</li>
+                </ul>
+            </div>
+
+            <div class="part system">
+                <div class="part-title">
+                    <div class="wenzi wenzi2">应用系统运行状态</div>
+                </div>
+                <div class="sign clearfix">
+                    <div class="signs">
+                        <div>系统故障</div>
+                        <div class="signimpt red-sign"></div>
+                    </div>
+                    <div class="signs">
+                        <div>运行缓慢</div>
+                        <div class="signimpt yellow-sign"></div>
+                    </div>
+                    <div class="signs">
+                        <div>运行正常</div>
+                        <div class="signimpt green-sign"></div>
+                    </div>
+                </div>
+                <div class="content clearfix" id="content">
+                    <div class="application">
+                        <div class="application-block">
+                            <div class="application-top">景区视频监控系统</div>
+                            <div class="application-center">
+                                <div class="sign">
+                                    <div class="signs">
+                                        <div class="signimpt green-sign"></div>
+                                        <div>运行正常</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="application-bottom application-more">查看详情>></div>
+                    </div>
+                </div>
+            </div>
+            <div class="part hardware">
+                <div class="part-title">
+                    <div class="wenzi wenzi3">硬件设备运行状态</div>
+                </div>
+                <div class="content clearfix">
+                    <div class="consume">
+                        <div class="main-title">
+                            电源消耗比例
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="travel-chart" id="hardware-consume-chart"></div>
+                    </div>
+                    <div class="cpu">
+                        <div class="main-title">
+                            服务器CPU使用率
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="travel-chart hardware-cpu">
+                            <div class="server-cpu-pic clearfix">
+                                <div class="pics">
+                                    <img src="../../img/serverA.png" alt="">
+                                    <div>服务器A</div>
+                                </div>
+                                <div class="pics">
+                                    <img src="../../img/serverB.png" alt="">
+                                    <div>服务器B</div>
+                                </div>
+                                <div class="pics">
+                                    <img src="../../img/serverC.png" alt="">
+                                    <div>服务器C</div>
+                                </div>
+                                <div class="pics">
+                                    <img src="../../img/serverD.png" alt="">
+                                    <div>服务器D</div>
+                                </div>
+                            </div>
+                            <div class="server-cpu-word clearfix">
+                                <div class="word-left">告警信息：</div>
+                                <div class="word-right">
+                                    <div class="">2016/9/10 18:01 服务器A的CPU使用率达到90%</div>
+                                    <div class="">2016/9/10 18:03 服务器B的CPU使用率达到72%</div>
+                                    <div class="">2016/9/10 18:10 服务器C的CPU使用率达到68%</div>
+                                    <div class="">2016/9/10 18:20 服务器D的CPU使用率达到55%</div>
+                                </div>
+                                <div class="more cpu-more">查看更多>></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wifi">
+                        <div class="main-title">
+                            WIFI设备通断情况
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="travel-chart hardware-wifi">
+                            <div class="wifi-top clearfix">
+                                <div class="wifi-top-left clearfix">
+                                    <div>WIFI平均信号强度</div>
+                                    <div>85dbm</div>
+                                </div>
+                                <div class="wifi-top-pic"><img src="../../img/wifi.png" alt=""></div>
+                                <div class="wifi-top-right">
+                                    <div>WIFI平均网速</div>
+                                    <div>100.42MB/s</div>
+                                </div>
+                            </div>
+                            <div class="wifi-center">
+                                <span class="port-sum">设备总数：24个</span>
+                                <span class="break-off">断连设备数：1台</span>
+                                <span class="wifi-more">查看详情>></span>
+                            </div>
+                            <div class="wifi-table">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <td>设备编号</td>
+                                        <td>告警信息</td>
+                                        <td></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>MYS-012</td>
+                                        <td>WIFI信号强度低于30dbm</td>
+                                        <td>查看详情>></td>
+                                    </tr>
+                                    <tr>
+                                        <td>LTM-003</td>
+                                        <td>WIFI平均网速低于10MB/s</td>
+                                        <td>查看详情>></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="switch">
+                        <div class="main-title">
+                            交换机端口通断情况
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="travel-chart hardware-switch clearfix">
+                            <div class="switch-left"><img src="../../img/serverport.png" alt=""></div>
+                            <div class="switch-right">
+                                <div class="signs">
+                                    <div>连接正常</div>
+                                    <div class="signimpt green-sign"></div>
+                                </div>
+                                <div class="signs">
+                                    <div>连接中断</div>
+                                    <div class="signimpt red-sign"></div>
+                                </div>
+                            </div>
+                            <div class="switch-bottom">
+                                <span class="port-sum">端口总数：24个</span>
+                                <span class="break-off">断连设备数：1个（19号端口）</span>
+                                <span class="switch-more">查看详情>></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gate">
+                        <div class="main-title">
+                            闸机设备
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="travel-chart" id="hardware-gate-chart"></div>
+                        <div class="more gate-more">查看闸机设备详情>></div>
+                    </div>
+                    <div class="video">
+                        <div class="main-title">
+                            视频设备
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="travel-chart" id="hardware-video-chart"></div>
+                        <div class="more video-more">查看视频设备详情>></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            Copyright @ 2016 杭州以数科技有限公司
+        </div>
+    </div>
+
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/echarts.min.js"></script>
+    <script src="../../js/operation/hardwareConsumeChart.js"></script>
+    <script src="../../js/operation/hardwareGateChart.js"></script>
+    <script src="../../js/operation/hardwareVideoChart.js"></script>
+    <script src="../../js/operation/operation-main.js"></script>
+    <script>
+        $('.page-wrap li').on('click',function(){
+            $('.page-wrap li').removeClass('page-active');
+            $(this).addClass('page-active');
+        });
+    </script>
+</body>
+</html>

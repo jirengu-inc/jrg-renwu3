@@ -1,0 +1,108 @@
+/*hick
+#header .header-center li a.hick{
+    height: 49px;
+}
+*/
+/*basic-properties*/
+#main .basic-properties {
+    margin-top: 32px;
+}
+#main .basic-properties .content{
+    box-sizing: border-box;
+    padding: 30px 100px 0 100px;
+    height: 700px;
+}
+#main .modular{
+    box-sizing: border-box;
+    width: 274px;
+    float: left;
+    margin-bottom: 50px;
+}
+#main .modular-title{
+    height: 28px;
+    font-size: 16px;
+    color: #00c199;
+    line-height: 28px;
+    margin-bottom: 10px;
+}
+#main .sex,#main .age-left,#main .income,#main .consumption,#main .profession{
+    margin-right: 70px;
+}
+#main .hobby{
+    width:618px;
+    position: relative;
+}
+/*基础信息条形图*/
+#main .bar-table .table-row{
+    height: 20px;
+    margin-bottom: 13px;
+}
+#main .bar-table .Cate{
+    width: 62px;
+    color:#999;
+    float: left;
+    font-size: 12px;
+}
+#main .bar-table .bar-border{
+    width: 210px;
+    font-weight: 500;
+    float: right;
+    background: #DDD;
+}
+#main .bar-table .bar-border span{
+    float: right;
+    color:#666;
+    margin-right: 10px;
+    font-size: 12px;
+    line-height: 20px;
+}
+#main .bar-table .bar-progress{
+    background: #ffa29b;
+    height: 20px;
+}
+#main .age-right .bar-table{
+    margin-top: 38px;
+}
+/*爱好条状图*/
+#main .hobby-table{
+    margin-left: -12px;
+}
+#main .hobby-table .col{
+    width:52px;
+    height: 152px;
+    float: left;
+    position: relative;
+    display: flex;
+    flex-direction:column-reverse;
+}
+#main .hobby-table .col:last-child{
+    margin-right: 0;
+}
+#main .hobby-table .hobbyCate{
+    color:#999;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 10px;
+}
+#main .hobby-table .hobby-progress{
+    width:28px;
+    height: 80px;
+    background: #ffa29b;
+    margin-top: 10px;
+    margin-left: 12px;
+}
+#main .hobby-table .quantity{
+    color:#666;
+    font-size: 12px;
+    text-align: center;
+}
+#main .hobby-line{
+    box-sizing: border-box;
+    position: absolute;
+    width:618px;
+    height: 28px;
+    bottom: 0;
+    border-top:1px solid #ededed;
+    z-index: -1;
+
+}

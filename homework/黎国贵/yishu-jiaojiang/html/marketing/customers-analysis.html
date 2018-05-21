@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>营销中心-潜在客源分析</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <link rel="stylesheet" href="../../css/basic-properties-public.css">
+    <style>
+        /*图标样式*/
+        @font-face {
+            font-family: 'iconfont';
+            src: url('http://at.alicdn.com/t/font_1473400777_9506023.eot'); /* IE9*/
+            src: url('http://at.alicdn.com/t/font_1473400777_9506023.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('http://at.alicdn.com/t/font_1473400777_9506023.woff') format('woff'), /* chrome、firefox */
+            url('http://at.alicdn.com/t/font_1473400777_9506023.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('http://at.alicdn.com/t/font_1473400777_9506023.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont {
+            font-family:'iconfont';
+            font-style:normal;
+            color:#666;
+        }
+        /*调试用，要删除的边框*/
+        /*.content{
+            border: 1px solid #000;
+        }
+        /*.modular{
+            border: 1px solid #000;
+        }*/
+        /*主体*/
+        /*potential-customers*/
+        #main .potential-customers {
+            margin-top: 32px;
+        }
+        /*intention*/
+        #main .intention{
+            height: 280px;
+            /*border: 1px solid #000;*/
+            padding:30px 0 60px 0;
+        }
+        #main .intention .intentional{
+            box-sizing: border-box;
+            height: 100%;
+            width: 388px;
+            float: left;
+            /*border: 1px solid #000;*/
+        }
+        #main .intentional .intentional-title{
+            font-size: 16px;
+            color: #333;
+        }
+        #main #intentional-title1{
+            margin-left: 105px;
+        }
+        #main #intentional-title2{
+            margin-left: 65px;
+        }
+        #main #intentional-title3{
+            margin-left: 65px;
+        }
+        #main .intentional .intentional-title span{
+            color: #fa635a;
+        }
+        #main .intentional-triangle-chart{
+            width: 100%;
+            height: 100%;
+        }
+        /*area和hot-search*/
+        #main .potential-customers .content{
+            box-sizing: border-box;
+            height: 300px;
+        }
+        #main .follow-chart{
+            width: 480px;
+            height:100%;
+            padding: 20px 52px 0 52px;
+        }
+        .area,.hot-search{
+            box-sizing: border-box;
+            border:1px solid #c4c4c4;
+        }
+        .area span,.hot-search span{
+            color: #fa635a;
+        }
+        /*area*/
+        #main .area{
+            width: 580px;
+            height: 240px;
+            margin-bottom: 40px;
+            float: left;
+        }
+        #main .area-ul{
+            font-size: 14px;
+            color: #666;
+        }
+        #main .area-left {
+            float: left;
+        }
+        #main .area-right {
+            float: right;
+        }
+        #main .area-ul .area-li{
+            margin-bottom: 15px;
+        }
+        #main .area-ul .area-li span {
+            width: 14px;
+            height: 14px;
+            line-height: 14px;
+            display: inline-block;
+            color:#fff;
+            font-size: 12px;
+            background: #ffa29b;
+            text-align: center;
+            margin-right: 20px;
+        }
+        #main .area-left .area-li span.opint {
+            background: #ff6155;
+        }
+        /*hot-search*/
+        #main .hot-search{
+            width: 580px;
+            height: 240px;
+            margin-bottom: 40px;
+            float: right;
+        }
+        #main .hot-ul{
+            font-size: 14px;
+            color: #666;
+        }
+        #main .hot-ul .hot-li{
+            margin-bottom: 5px;
+        }
+        .hot-title,.hot-strip,.hot-num{
+            float: left;
+        }
+        #main .hot-li .hot-title{
+            width: 80px;
+            text-align: end;
+            margin-right: 20px;
+        }
+        #main .hot-li .hot-strip{
+            height: 12px;
+            width: 80px;
+            border-radius: 0 10px 10px 0;
+            background: #ffa29b;
+            margin-right: 20px;
+            margin-top: 4px;
+        }
+        #main .hot-li .hot-strip.point{
+            background: #ff6155;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="container clearfix">
+            <div class="aside-left">椒江旅游大数据平台</div>
+            <div class="header-center">
+                <ul class="clearfix">
+                    <li><a href="../control/control.html">管控中心</a></li>
+                    <li><a href="../operation/operation.html" class="hick">运维中心</a></li>
+                    <li><a href="../态势中心/come-go-situation.html" class="hick">态势中心</a></li>
+                    <li><a href="../marketing/revenue-analyze.html" class="hick active">营销中心</a></li>
+                    <li><a href="../舆情中心/public-sentiment-analyze.html" class="hick">舆情中心</a></li>
+                    <li><a href="../bigScreen/bigScreen.html" class="hick">可视化大屏</a></li>
+                </ul>
+            </div>
+            <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span> | <span class="user-action">注销</span></div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="container">
+            <div class="center-title clearfix">
+                <div class="center-nav">
+                    <ul class="clearfix">
+                        <li><a href="revenue-analyze.html">景区营收分析</a></li>
+                        <li><a href="portrait.html">景区游客画像</a></li>
+                        <li class="last-li"><a href="#"  class="active">潜在客源分析</a></li>
+                    </ul>
+                </div>
+                <div class="current-location">
+                    <span>当前位置</span>:<span class='location'>营销中心</span>><span class="z-location">潜在客源中心</span>
+                </div>
+            </div>
+            <div class="potential-customers">
+                <div class="public-title">
+                    <div class="chinese-title">潜在客源分析</div>
+                    <div class="line"></div>
+                    <div class="en-title">POTENTIAL CUSTOMERS</div>
+                </div>
+                <div class="intention clearfix">
+                    <div class="intentional intentional-triangle">
+                        <div class="intentional-title" id="intentional-title1">游客意向度客户数分层</div>
+                        <div class="intentional-triangle-chart" id="intentional-triangle-chart"></div>
+                    </div>
+                    <div class="intentional intentional-bar">
+                        <div class="intentional-title" id="intentional-title2">游客意向度客户数分层 <span>TOP5</span></div>
+                        <div class="intentional-triangle-chart" id="intentional-bar-chart"></div>
+                    </div>
+                    <div class="intentional intentional-circular">
+                        <div class="intentional-title" id="intentional-title3">意向客源使用平台</div>
+                        <div class="intentional-triangle-chart" id="intentional-circular-chart"></div>
+                    </div>
+                </div>
+                <div class="content clearfix">
+                    <div class="area">
+                        <div class="main-title">
+                            意向用于关注景区 <span>TOP10</span>
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="follow-chart">
+                            <ul class="area-ul area-left">
+                                <li class="area-li"><span class="opint">1</span>杭州西湖风景名胜区</li>
+                                <li class="area-li"><span class="opint">2</span>杭州千岛湖风景名胜区</li>
+                                <li class="area-li"><span class="opint">3</span>金华东阳横店影视城景区</li>
+                                <li class="area-li"><span>4</span>乌镇古镇景区</li>
+                                <li class="area-li"><span>5</span>西塘古镇景区</li>
+                            </ul>
+                            <ul class="area-ul area-right">
+                                <li class="area-li"><span>6</span>普陀山风景名胜区</li>
+                                <li class="area-li"><span>7</span>雁荡山风景区</li>
+                                <li class="area-li"><span>8</span>浙江神仙居风景名胜区</li>
+                                <li class="area-li"><span>9</span>绍兴鲁迅故里</li>
+                                <li class="area-li"><span>10</span>杭州宋城景区</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="hot-search">
+                        <div class="main-title">
+                            意向用户热搜词 <span>TOP7</span>
+                            <i class="iconfont">&#xe607</i>
+                        </div>
+                        <div class="follow-chart">
+                            <ul class="hot-ul">
+                                <li class="hot-li clearfix">
+                                    <div class="hot-title">天气</div>
+                                    <div class="hot-strip point"></div>
+                                    <div class="hot-num">333</div>
+                                </li>
+                                <li class="hot-li clearfix">
+                                    <div class="hot-title">地图</div>
+                                    <div class="hot-strip point"></div>
+                                    <div class="hot-num"></div>
+                                </li>
+                                <li class="hot-li clearfix">
+                                    <div class="hot-title">携程</div>
+                                    <div class="hot-strip point"></div>
+                                    <div class="hot-num"></div>
+                                </li>
+                                <li class="hot-li clearfix">
+                                    <div class="hot-title">去哪儿</div>
+                                    <div class="hot-strip"></div>
+                                    <div class="hot-num"></div>
+                                </li>
+                                <li class="hot-li clearfix">
+                                    <div class="hot-title">携程旅游网</div>
+                                    <div class="hot-strip"></div>
+                                    <div class="hot-num"></div>
+                                </li>
+                                <li class="hot-li clearfix">
+                                    <div class="hot-title">马蜂窝</div>
+                                    <div class="hot-strip"></div>
+                                    <div class="hot-num"></div>
+                                </li>
+                                <li class="hot-li clearfix">
+                                    <div class="hot-title">途牛旅游网</div>
+                                    <div class="hot-strip"></div>
+                                    <div class="hot-num"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--基本客源信息-->
+            <div class="basic-properties">
+                <div class="public-title">
+                    <div class="chinese-title">意向客源群体信息</div>
+                    <div class="line"></div>
+                    <div class="en-title">GROUP INFORMATION</div>
+                </div>
+                <div class="content">
+                    <div class="modular sex">
+                        <div class="modular-title">
+                            性别
+                            <i class="iconfont">&#xe601</i>
+                        </div>
+                        <div class="bar-table clearfix">
+                            <div class="table-row">
+                                <div class="Cate">男</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">女</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modular age-left">
+                        <div class="modular-title">
+                            年龄段
+                            <i class="iconfont">&#xe606</i>
+                        </div>
+                        <div class="bar-table clearfix">
+                            <div class="table-row">
+                                <div class="Cate">10-20岁</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">20-30岁</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">30-40岁</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modular age-right">
+                        <div class="bar-table clearfix">
+                            <div class="table-row">
+                                <div class="Cate">10-20岁</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">20-30岁</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">30-40岁</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modular income">
+                        <div class="modular-title">
+                            收入层级
+                            <i class="iconfont">&#xe600</i>
+                        </div>
+                        <div class="bar-table clearfix">
+                            <div class="table-row">
+                                <div class="Cate">低收入</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">中等收入</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">高收入</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modular consumption">
+                        <div class="modular-title">
+                            消费水平
+                            <i class="iconfont">&#xe605</i>
+                        </div>
+                        <div class="bar-table clearfix">
+                            <div class="table-row">
+                                <div class="Cate">低消费</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">中等消费</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">高消费</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modular education">
+                        <div class="modular-title">
+                            教育水平
+                            <i class="iconfont">&#xe604</i>
+                        </div>
+                        <div class="bar-table clearfix">
+                            <div class="table-row">
+                                <div class="Cate">高中以下</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">高中</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">大学本科</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">硕士研究生</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">博士及以上</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modular profession">
+                        <div class="modular-title">
+                            职业
+                            <i class="iconfont">&#xe602</i>
+                        </div>
+                        <div class="bar-table clearfix">
+                            <div class="table-row">
+                                <div class="Cate">公务员</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">企业员工</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">事业单位</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">自由职业</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                            <div class="table-row">
+                                <div class="Cate">其他</div>
+                                <div class="bar-border">
+                                    <span class="percentage"></span>
+                                    <div class="bar-progress"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modular hobby">
+                        <div class="modular-title">
+                            爱好
+                            <i class="iconfont">&#xe603</i>
+                        </div>
+                        <div class="hobby-table clearfix">
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                            <div class="col">
+                                <div class="hobbyCate"></div>
+                                <div class="hobby-progress"></div>
+                                <div class="quantity"></div>
+                            </div>
+                        </div>
+                        <div class="hobby-line"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <div class="container">
+            Copyright @ 2016 杭州以数科技有限公司
+        </div>
+    </div>
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/echarts.js"></script>
+    <script src="../../js/marketing/marketingMain.js"></script>
+    <script src="../../js/marketing/intentionalTriangleChart.js"></script>
+    <script src="../../js/marketing/intentionalBarChart.js"></script>
+    <script src="../../js/marketing/intentionalCircularChart.js"></script>
+</body>
+</html>

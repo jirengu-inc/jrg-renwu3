@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>管控中心</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <style>
+        #main{
+            position:relative;
+        }
+        /*地图*/
+        .main-container{
+            box-sizing: border-box;
+            width: 100%;
+            height: 900px;
+            border: 1px solid #a3a3a3;z-index: 1;
+        }
+        /*固定内容*/
+        .fixed{
+            box-sizing: border-box;
+            width: 100%;
+            height: 900px;
+            position: absolute;
+            top: 0;
+        }
+        .pic{
+            position: absolute;
+        }
+        .platform{
+            bottom: 0;
+            left:500px;
+        }
+        .open{
+            top:10px;
+            left:320px;
+        }
+        .search{
+            top:10px;
+            left:1100px;
+        }
+        /*..................................*/
+        /*wifi*/
+        .wifi-logo{
+            position:fixed;
+        }
+        .zq{
+            display: none;
+            width: 250px;
+            height: 180px;
+            position:absolute;
+            z-index: 100;
+            top:50%;
+            left: 50%;
+            background-color: #fff;
+            box-shadow: 3px 3px 3px #b7e2ff;
+        }
+        .wifi-logo:hover .zq{
+            display: block;
+        }
+        .zq-title{
+            height: 30px;
+            width: 155px;
+            z-index: 100;
+            line-height: 30px;
+            float: left;
+            text-align: center;
+            color:#fff;
+            background-color: #0ca1e2;
+        }
+        .zq-x{
+            float: right;
+            padding-right: 10px;
+            font-size: 25px;
+            color:#c6c6c6;
+        }
+        .zq-cwrap{
+            margin-top: 15px;
+            font-size: 14px;
+            margin-left: 20px;
+            z-index: 100;
+        }
+        .zqbtn{
+            margin-top: 10px;
+            margin-left: 20px;
+            z-index: 100;
+        }
+        .zqbtn .cq{
+            height: 20px;
+            width: 50px;
+            float: left;
+            line-height: 20px;
+            margin-right: 20px;
+            text-align: center;
+            color:#fff;
+            background-color: #00c199;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .zqbtn .dk{
+            height: 20px;
+            width: 50px;
+            float: left;
+            line-height: 20px;
+            margin-right: 20px;
+            text-align: center;
+            color:#fff;
+            background-color: #00c199;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .zqbtn .ck{
+            height: 20px;
+            width: 70px;
+            float: left;
+            line-height: 20px;
+            text-align: center;
+            color:#fff;
+            background-color: #00c199;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        /*广播*/
+        .gb-logo{
+            position:fixed;
+        }
+        /*.gb-logo:hover .zq{*/
+            /*display: block;*/
+        /*}*/
+        /*监控*/
+        .jk-logo{
+            position:fixed;
+        }
+        /*.jk-logo:hover .zq{*/
+            /*display: block;*/
+        /*}*/
+        /*小图标放大效果*/
+        .a1>img{
+            transition: all 1s;
+        }
+        .a1>img:hover{
+            transform: scale(1.3);
+        }
+        .input{
+            position: fixed;
+            top: 60px;
+            left: 1101px;
+            width: 360px;
+            height: 20px;
+            padding-top: 10px;
+            padding-left: 10px;
+            padding-right: 0;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="container clearfix">
+            <div class="aside-left">椒江旅游大数据平台</div>
+            <div class="header-center">
+                <ul class="clearfix">
+                    <li><a href="control.html"  class="active">管控中心</a></li>
+                    <li><a href="../operation/operation.html">运维中心</a></li>
+                    <li><a href="../态势中心/come-go-situation.html">态势中心</a></li>
+                    <li><a href="../marketing/revenue-analyze.html">营销中心</a></li>
+                    <li><a href="../舆情中心/public-sentiment-analyze.html">舆情中心</a></li>
+                    <li><a href="../bigScreen/bigScreen.html">可视化大屏</a></li>
+                </ul>
+            </div>
+            <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span> | <span class="user-action">注销</span></div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="main-container" id="control-map">
+            <!--<div id="control-map"></div>-->
+        </div>
+        <div class="fixed">
+            <img src="../../img/platform.png" alt="" class="pic platform">
+            <div class="a1">
+                <img src="../../img/control-1.png" alt="" class="pic icon">
+                <img src="../../img/control-2.png" alt="" class="pic icon">
+                <img src="../../img/control-3.png" alt="" class="pic icon">
+                <img src="../../img/control-4.png" alt="" class="pic icon">
+                <img src="../../img/control-5.png" alt="" class="pic icon">
+                <img src="../../img/control-6.png" alt="" class="pic icon">
+                <img src="../../img/control-7.png" alt="" class="pic icon">
+            </div>
+            <div class="a2">
+                <img src="../../img/control-8.png" alt="" class="pic icon2">
+                <img src="../../img/control-9.png" alt="" class="pic icon2">
+                <img src="../../img/control-10.png" alt="" class="pic icon2">
+                <img src="../../img/control-11.png" alt="" class="pic icon2">
+                <img src="../../img/control-12.png" alt="" class="pic icon2">
+                <img src="../../img/control-13.png" alt="" class="pic icon2">
+                <img src="../../img/control-14.png" alt="" class="pic icon2">
+            </div>
+
+            <!--广播图标-->
+            <div class="gb-logo" style="left: 1304px; bottom: 384px;">
+                <img src="../../img/广播.png" alt="">
+            </div>
+            <!--广播图标-->
+            <div class="gb-logo" style="left: 1158px; bottom:480px;">
+                <img src="../../img/广播.png" alt="">
+            </div>
+            <!--广播图标-->
+            <div class="gb-logo" style="left:1500px; bottom: 744px;">
+                <img src="../../img/广播.png" alt="">
+            </div>
+            <!--广播图标-->
+            <div class="gb-logo"  style="left:728px; bottom:275px;">
+                <img src="../../img/广播.png" alt="">
+            </div>
+            <!--广播图标-->
+            <div class="gb-logo"  style="left:1585px; bottom: 862px;">
+                <img src="../../img/广播.png" alt="">
+            </div>
+            <!--监控图标-->
+            <div class="jk-logo" style="left: 1330px; bottom: 374px;">
+                <img src="../../img/监控.png" alt="">
+            </div>
+            <!--监控图标-->
+            <div class="jk-logo" style="left:1540px; bottom: 850px;">
+                <img src="../../img/监控.png" alt="">
+            </div>
+            <!--监控图标-->
+            <div class="jk-logo" style="left: 1184px; bottom:470px;">
+                <img src="../../img/监控.png" alt="">
+            </div>
+            <!--监控图标-->
+            <div class="jk-logo" style="left:1527px; bottom: 734px;">
+                <img src="../../img/监控.png" alt="">
+            </div>
+            <!--监控图标-->
+            <div class="jk-logo" style="left:755px; bottom:265px;">
+                <img src="../../img/监控.png" alt="">
+            </div>
+            <!--wifi图标-->
+            <div class="wifi-logo" style="left: 1330px; bottom: 400px;">
+                <img src="../../img/wifi2.png" alt="">
+                <div class="zq">
+                    <div class="zq-tl clearfix">
+                        <div class="zq-title">wifi源设备状态</div>
+                        <div class="zq-x">×</div>
+                    </div>
+                    <div class="zq-cwrap">
+                        <div>设备状态 ：<span style="color:#00c199">正常</span></div>
+                        <div>设备编号 ：MYS-012</div>
+                        <div>当前链接 ：146台设备</div>
+                        <div>网络速度 ：100M/bps</div>
+                        <div>连续运行时间 ：5天20小时50分钟</div>
+                    </div>
+                    <div class="zqbtn clearfix">
+                        <div class="cq">重启</div>
+                        <div class="dk">断开</div>
+                        <div class="ck">查看详情</div>
+                    </div>
+                </div>
+            </div>
+            <!--&lt;!&ndash;wifi图标&ndash;&gt;-->
+            <div class="wifi-logo" style="left:1181px; bottom: 498px;">
+                <img src="../../img/wifi2.png" alt="">
+                <div class="zq">
+                    <div class="zq-tl clearfix">
+                        <div class="zq-title">wifi源设备状态</div>
+                        <div class="zq-x">×</div>
+                    </div>
+                    <div class="zq-cwrap">
+                        <div>设备状态 ：<span style="color:#00c199">正常</span></div>
+                        <div>设备编号 ：MYS-012</div>
+                        <div>当前链接 ：146台设备</div>
+                        <div>网络速度 ：100M/bps</div>
+                        <div>连续运行时间 ：5天20小时50分钟</div>
+                    </div>
+                    <div class="zqbtn clearfix">
+                        <div class="cq">重启</div>
+                        <div class="dk">断开</div>
+                        <div class="ck">查看详情</div>
+                    </div>
+                </div>
+            </div>
+            <!--wifi图标-->
+            <div class="wifi-logo" style="left:755px; bottom:292px;">
+                <img src="../../img/wifi2.png" alt="">
+                <div class="zq">
+                    <div class="zq-tl clearfix">
+                        <div class="zq-title">wifi源设备状态</div>
+                        <div class="zq-x">×</div>
+                    </div>
+                    <div class="zq-cwrap">
+                        <div>设备状态 ：<span style="color:#00c199">正常</span></div>
+                        <div>设备编号 ：MYS-012</div>
+                        <div>当前链接 ：146台设备</div>
+                        <div>网络速度 ：100M/bps</div>
+                        <div>连续运行时间 ：5天20小时50分钟</div>
+                    </div>
+                    <div class="zqbtn clearfix">
+                        <div class="cq">重启</div>
+                        <div class="dk">断开</div>
+                        <div class="ck">查看详情</div>
+                    </div>
+                </div>
+            </div>
+            <!--wifi图标-->
+            <div class="wifi-logo" style="left:1526px; bottom: 758px;">
+                <img src="../../img/wifi2.png" alt="">
+                <div class="zq">
+                    <div class="zq-tl clearfix">
+                        <div class="zq-title">wifi源设备状态</div>
+                        <div class="zq-x">×</div>
+                    </div>
+                    <div class="zq-cwrap">
+                        <div>设备状态 ：<span style="color:#00c199">正常</span></div>
+                        <div>设备编号 ：MYS-012</div>
+                        <div>当前链接 ：146台设备</div>
+                        <div>网络速度 ：100M/bps</div>
+                        <div>连续运行时间 ：5天20小时50分钟</div>
+                    </div>
+                    <div class="zqbtn clearfix">
+                        <div class="cq">重启</div>
+                        <div class="dk">断开</div>
+                        <div class="ck">查看详情</div>
+                    </div>
+                </div>
+            </div>
+            <!--wifi图标-->
+            <div class="wifi-logo" style="left:1538px; bottom: 875px;">
+                <img src="../../img/wifi2.png" alt="">
+                <div class="zq">
+                    <div class="zq-tl clearfix">
+                        <div class="zq-title">wifi源设备状态</div>
+                        <div class="zq-x">×</div>
+                    </div>
+                    <div class="zq-cwrap">
+                        <div>设备状态 ：<span style="color:#00c199">正常</span></div>
+                        <div>设备编号 ：MYS-012</div>
+                        <div>当前链接 ：146台设备</div>
+                        <div>网络速度 ：100M/bps</div>
+                        <div>连续运行时间 ：5天20小时50分钟</div>
+                    </div>
+                    <div class="zqbtn clearfix">
+                        <div class="cq">重启</div>
+                        <div class="dk">断开</div>
+                        <div class="ck">查看详情</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <img src="../../img/open.png" alt="" class="pic open">
+            <img src="../../img/search.png" alt="" class="pic search">
+            <input type="text" class="input" placeholder="搜景点、查设备">
+        </div>
+    </div>
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script src="../../js/echarts.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DisGG5S6GStO0Hl5Cz8DtcklcGawcYne"></script>
+    <script src="../../js/control/controlMap.js"></script>
+    <script src="../../js/control/controlMain.js"></script>
+</body>
+</html>

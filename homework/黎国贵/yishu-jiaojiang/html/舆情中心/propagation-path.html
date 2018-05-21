@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>舆情中心-传播路径</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <style>
+        /*通用样式*/
+        html,body,ul,li,input{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family:'Microsoft Yahei';
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .container{
+            width:1200px;
+            margin:0 auto;
+        }
+        .triangle{
+            position:absolute;
+            top:50%;
+            margin-top: -5px;
+            left:-20px;
+            border-top:10px solid transparent;
+            border-bottom:10px solid transparent;
+            border-left:10px solid transparent;
+            border-right:10px solid #5879c2;
+        }
+        /*头部*/
+        #header{
+            background-color: #191919;
+        }
+        #header .container{
+            height:50px;
+            line-height: 50px;
+            color:#fff;
+        }
+        #header .aside-left{
+            width: 215px;
+            font-size:14px;
+            float: left;
+            text-align: left;
+        }
+        #header .header-center{
+            float:left;
+        }
+        #header .header-center li{
+            float:left;
+            width:140px;
+            text-align: left;
+        }
+        #header .header-center li a{
+            height: 47px;
+            width:72px;
+            display: block;
+            position:relative;
+            text-align: center;
+            font-size: 14px;
+            color:#fff;
+        }
+        #header .header-center li a:hover{
+            color:#05a07f;
+            border-bottom: 2px solid #05a07f;
+        }
+        #header .aside-right{
+            float: right;
+            text-align: right;
+            font-size:12px;
+        }
+        #header .h-active{
+            color:#05a07f !important;
+            border-bottom: 2px solid #05a07f;
+        }
+        /*主体*/
+        /*中心标题*/
+        #main .active{
+            color:#00c199;
+        }
+        #main .center-title{
+            margin-top: 30px;
+        }
+        #main .center-nav{
+            float:left;
+        }
+        #main .center-nav li{
+            width: 136px;
+            height: 17px;
+            line-height: 17px;
+            text-align: center;
+            float:left;
+            border-right: 2px solid #dedede;
+        }
+        #main .center-nav .last-li{
+            border-right:0;
+        }
+        #main .center-nav li:hover{
+            cursor: pointer;
+            color:#00c199;
+        }
+        #main .current-location{
+            float:right;
+            margin-right: 20px;
+            font-size:12px;
+            color:#999;
+        }
+        /*微博传播路径分析title*/
+        #main .wb-propagation-path-title{
+            height: 25px;
+            margin-top: 30px;
+        }
+        #main .wb-propagation-path-title-l{
+            width:130px;
+            height: 20px;
+            float:left;
+            box-sizing: border-box;
+            border-top:1px solid #00c199;
+            padding-top:5px;
+            font-size:16px;
+        }
+        #main .wb-propagation-path-title-r{
+            width: 160px;
+            height: 20px;
+            float:right;
+            box-sizing: border-box;
+            margin-top:5px;
+            background-color: #00c199;
+            border-radius: 3px;
+            color:#fff;
+            text-align: center;
+            font-size: 14px;
+        }
+        /*微博内容title*/
+        #main .wb-content-title{
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            margin-top: 20px;
+            font-size: 14px;
+            background-color: #fafafb;
+            color: #666;
+            border: 1px solid #c4c4c4;
+        }
+        #main .wb-content-title-real{
+            margin-left: 10px;
+            font-size: 16px;
+        }
+        /*微博内容主体*/
+        #main .wb-content-main{
+            height: 100px;
+            box-sizing: content-box;
+            border-bottom: 1px solid #c4c4c4;
+            border-left: 1px solid #c4c4c4;
+            border-right: 1px solid #c4c4c4;
+        }
+        #main .wb-content-main>li{
+            margin-top: 15px;
+            margin-bottom: 15px;
+            float: left;
+        }
+        /*微博频道*/
+        #main .wb-content-main .wb-channel{
+            width:268px;
+            height: 70px;
+            box-sizing: border-box;
+            padding-left: 55px;
+            padding-right: 39px;
+            border-right: 1px solid #e1e1e1;
+        }
+        #main .wb-channel-img{
+            width:70px;
+            height: 70px;
+            float: left;
+            margin-right:3px;
+        }
+        #main .wb-channel-img img{
+            margin-left: -10px;
+        }
+        #main .wb-channel-information{
+            width: 100px;
+            height: 70px;
+            float: left;
+            font-size:12px;
+            /*background-color: blue;*/
+        }
+        #main .wb-channel-information .wb-channel-title{
+            margin-bottom: 5px;
+            color:#3582d4;
+        }
+        /*微博频道内容*/
+        #main .wb-channel-content-wrap{
+            width:305px;
+            height:70px;
+            margin-left: 30px;
+            margin-right: 20px;
+            font-size:12px;
+        }
+        #main .wb-channel-content{
+            max-height: 45px;
+        }
+        #main .wb-channel-content-bottom{
+            margin-top: 8px;
+        }
+        #main .wb-channel-content-bottom-l{
+            float:left;
+        }
+        #main .wb-channel-content-bottom-r{
+            float:right;
+            color:#58a8e6;
+        }
+        #main .wb-content-main .wb-channel-content-datav{
+            width:575px;
+            height: 100px;
+            position:relative;
+            margin-top: 0;
+            margin-bottom: 0;
+            color:#fff;
+            background-color: #5879c2;
+            box-sizing: border-box;
+            padding:15px 20px;
+            font-size: 14px;
+        }
+        /*关键传播账号title*/
+        #main .key-propagation-account-title{
+            margin-top: 30px;
+            height:40px;
+            line-height: 40px;
+            background-color: #fafafb;
+            box-sizing: border-box;
+            border: 1px solid #c4c4c4;
+        }
+        #main .key-propagation-account-title>li{
+            float:left;
+            font-size: 12px;
+            color:#999;
+        }
+        #main .key-propagation-account-title .key-propagation-account-name{
+            width: 290px;
+            margin-left: 10px;
+            font-size: 14px;
+            color:#666;
+        }
+        #main .key-propagation-account-title .key-propagation-account-fans{
+            width: 165px;
+        }
+        #main .key-propagation-account-title .key-propagation-account-userType{
+            width: 195px;
+        }
+        #main .key-propagation-account-title .key-propagation-account-time{
+            width: 280px;
+        }
+        /*关键传播账号内容*/
+        #main .key-propagation-account-content{
+            height:60px;
+            line-height: 60px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #c4c4c4;
+            border-left: 1px solid #c4c4c4;
+            border-right: 1px solid #c4c4c4;
+        }
+        #main .key-propagation-account-content>li{
+            float:left;
+            font-size: 12px;
+        }
+        #main .key-propagation-account-content .key-propagation-account-name{
+            width: 290px;
+            margin-left: 10px;
+            color:#5879c2;
+        }
+        #main .key-propagation-account-content .key-propagation-account-name .num-1{
+            float: left;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            font-size: 12px;
+            text-align: center;
+            color:#fff;
+            background-color: #ff6155;
+            margin-top: 22px;
+            margin-right:5px;
+            border-radius: 4px;
+        }
+        #main .key-propagation-account-content .key-propagation-account-name .r-name{
+            float:left;
+        }
+        #main .key-propagation-account-content .key-propagation-account-fans{
+            width: 165px;
+        }
+        #main .key-propagation-account-content .key-propagation-account-userType{
+            width: 195px;
+        }
+        #main .key-propagation-account-content .key-propagation-account-time{
+            width: 280px;
+        }
+        /*传播路径图title*/
+        #main .propagation-path-map-title{
+            height: 40px;
+            line-height: 40px;
+            margin-top: 30px;
+            background-color: #fafafb;
+            box-sizing: border-box;
+            border: 1px solid #c4c4c4;
+        }
+        #main .propagation-path-map-title-l{
+            float: left;
+            margin-left: 10px;
+            color:#666;
+            font-size: 16px;
+        }
+        #main .propagation-path-map-title-r{
+            float:right;
+            margin-right:50px;
+            color:#5879c2;
+            font-size: 12px;
+        }
+        /*传播路径图map*/
+        #main #propagation-path-map{
+            width: 1200px;
+            height: 310px;
+            margin-top:10px;
+            box-sizing: border-box;
+        }
+        /*72小时内转发时间曲线title*/
+        #main .hours-forward-title{
+            height: 40px;
+            line-height: 40px;
+            margin-top: 30px;
+            background-color: #fafafb;
+            box-sizing: border-box;
+            border: 1px solid #c4c4c4;
+            padding-left: 10px;
+            font-size: 16px;
+            color:#666;
+        }
+        /*72小时内转发时间曲线map*/
+        #main #hours-forward-map{
+            width: 1200px;
+            height:305px;
+        }
+        /*分析列表第一排*/
+        #main .analyze-list-1{
+            margin-top: 30px;
+        }
+        #main .analyze-list-1>li{
+            float:left;
+            height:325px;
+        }
+        /*层级分析*/
+        #main .hierarchical-analysis{
+            width: 560px;
+            border:1px solid #c4c4c4;
+        }
+        #main .hierarchical-analysis-title{
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            background-color: #fafafb;
+            border-bottom: 1px solid #e1e1e1;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        /*层级分析map*/
+        #main #hierarchical-analysis-map{
+            width: 560px;
+            height:285px;
+        }
+        /*用户类型*/
+        #main .userType{
+            width: 280px;
+            margin-left: 37px;
+            border:1px solid #c4c4c4;
+        }
+        #main .userType-title{
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            background-color: #fafafb;
+            border-bottom: 1px solid #e1e1e1;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        /*用户类型map*/
+        #main #userType-map{
+            width: 280px;
+            height:170px;
+        }
+        #main .userType-map-legend{
+            width: 280px;
+            height: 100px;
+            background-color: #f4f5f9;
+        }
+        #main .userType-map-legend-row{
+            margin-top: 15px;
+            margin-left: 10px;
+            font-size: 12px;
+        }
+        #main .userType-map-legend-row>div{
+            float: left;
+        }
+        #main .userType-map-legend-row .icon-color{
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+            background-color: #5778c1;
+        }
+        #main .userType-map-legend-row .name{
+            margin-right: 20px;
+        }
+        #main .userType-map-legend-row .passbar{
+            width: 95px;
+            height: 10px;
+            background-color: #dedede;
+            margin-right: 5px;
+            border-radius: 4px;
+        }
+        #main .userType-map-legend-row .bar{
+            width:88.255px;
+            height: 10px;
+            background-color: #5778c1;
+            border-radius: 4px;
+        }
+        #main .userType-map-legend-row .wb-bar{
+            width:6.745px;
+            height: 10px;
+            background-color: #fcc46b;
+            border-radius: 4px;
+        }
+        #main .userType-map-legend-row .wb{
+            background-color: #fcc46b;
+        }
+
+
+
+
+        /*男女比例*/
+        #main .male-female-ratio{
+            width: 280px;
+            margin-left: 37px;
+            border:1px solid #c4c4c4;
+        }
+        #main .male-female-ratio-title{
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            background-color: #fafafb;
+            border-bottom: 1px solid #e1e1e1;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        /*男女比例map*/
+        #main #male-female-ratio-map{
+            width: 280px;
+            height:170px;
+        }
+        #main .male-female-ratio-map-legend{
+            width: 280px;
+            height: 115px;
+            background-color: #f4f5f9;
+        }
+        #main .male-female-ratio-legend-row{
+            margin-top: 15px;
+            margin-left: 30px;
+            font-size: 12px;
+        }
+        #main .male-female-ratio-legend-row>div{
+            float: left;
+        }
+        #main .male-female-ratio-legend-row>div{
+            float: left;
+        }
+        #main .male-female-ratio-legend-row .icon-color{
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+            background-color: #5778c1;
+        }
+        #main .male-female-ratio-legend-row .name{
+            margin-right: 20px;
+        }
+        #main .male-female-ratio-legend-row .passbar{
+            width: 95px;
+            height: 10px;
+            background-color: #dedede;
+            margin-right: 5px;
+            border-radius: 4px;
+        }
+        #main .male-female-ratio-legend-row .bar{
+            width:47.5px;
+            height: 10px;
+            background-color: #5778c1;
+            border-radius: 4px;
+        }
+        #main .male-female-ratio-legend-row .nv{
+            background-color: #fd826a;
+        }
+
+
+
+
+
+
+        /*分析列表第二排*/
+        #main .analyze-list-2{
+            margin-top: 40px;
+        }
+        #main .analyze-list-2>li{
+            float: left;
+            height: 325px;
+        }
+        /*地域分析*/
+        #main .area-analyze{
+            width: 580px;
+            border:1px solid #c4c4c4;
+        }
+        #main .area-analyze-title{
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            background-color: #fafafb;
+            border-bottom: 1px solid #e1e1e1;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        /*地域分析map*/
+        #main #area-analyze-map{
+            width:350px;
+            height:290px;
+            float:left;
+        }
+        #main .area-analyze-explain{
+            width:230px;
+            height:290px;
+            float:right;
+        }
+        #main .area-analyze-explain-title{
+            margin-top:40px;
+            margin-bottom: 7px;
+            font-size: 14px;
+        }
+        #main .area-analyze-explain-row{
+            margin-bottom:5px;
+            font-size: 12px;
+        }
+        #main .area-analyze-explain-color{
+            width: 10px;
+            height: 10px;
+            background-color: #b7cdff;
+            float:left;
+            margin-right:10px;
+            margin-top: 4px;
+        }
+        #main .area-analyze-explain-text{
+            float: left;
+        }
+        /*水军比例*/
+        /*water-army*/
+        #main .water-army{
+            width: 580px;
+            border:1px solid #c4c4c4;
+            margin-left: 36px;
+        }
+        #main .water-army-title{
+            height: 40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            background-color: #fafafb;
+            border-bottom: 1px solid #e1e1e1;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+        /*水军比例map*/
+        #main #water-army-map{
+            width: 580px;
+            height:290px;
+        }
+
+        /*底部*/
+        #footer{
+            margin-top:50px;
+            background-color: #191919;
+        }
+        #footer .container{
+            height:66px;
+            line-height: 66px;
+            text-align: center;
+            color:#999;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="container clearfix">
+        <div class="aside-left">椒江旅游大数据平台</div>
+        <div class="header-center">
+            <ul class="clearfix">
+                <li><a href="../control/control.html">管控中心</a></li>
+                <li><a href="../operation/operation.html">运维中心</a></li>
+                <li><a href="../态势中心/come-go-situation.html">态势中心</a></li>
+                <li><a href="../marketing/revenue-analyze.html">营销中心</a></li>
+                <li><a href="../舆情中心/public-sentiment-analyze.html" class="h-active">舆情中心</a></li>
+                <li><a href="../bigScreen/bigScreen.html">可视化大屏</a></li>
+            </ul>
+        </div>
+        <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span> | <span class="user-action">注销</span></div>
+    </div>
+</div>
+<div id="main">
+    <div class="container">
+        <div class="center-title clearfix">
+            <div class="center-nav">
+                <ul class="clearfix">
+                    <li class="active"><a href="public-sentiment-analyze.html">舆情分析</a></li>
+                    <li><a href="public-sentiment-list.html">舆情列表</a></li>
+                    <li><a href="propagation-path.html" class="active">传播路径</a></li>
+                    <li class="last-li"><a href="competitive-products-analyze.html" >竞品分析</a></li>
+                </ul>
+            </div>
+            <div class="current-location">
+                <span>当前位置</span>:<span class='location'>舆情中心</span>><span class="z-location">传播路径</span>
+            </div>
+        </div>
+        <!--微博传播路径分析title-->
+        <div class="wb-propagation-path-title clearfix">
+            <div class="wb-propagation-path-title-l">
+                微博传播路径分析
+            </div>
+            <div class="wb-propagation-path-title-r">
+                增加一个新的微博地址
+            </div>
+        </div>
+        <!--微博内容title-->
+        <div class="wb-content-title"><span class="wb-content-title-real">微博内容</span></div>
+        <!--微博内容主体-->
+        <ul class="wb-content-main clearfix">
+            <li class="wb-channel clearfix">
+                <div class="wb-channel-img">
+                    <img src="../../img/头像.png" alt="">
+                </div>
+                <ul class="wb-channel-information">
+                    <li class="wb-channel-title">浙江在线台州频道</li>
+                    <li class="wb-channel-basis-information"><span class="sex">男</span> <span class="channel-province">浙江</span> <span class="channel-location">台州</span></li>
+                    <li class="channel-attention">关注 ：<span class="channel-attention-num">239</span></li>
+                    <li class="channel-fans">粉丝 ： <span class="channel-fans-num">21.7</span>万</li>
+                </ul>
+            </li>
+            <li class="wb-channel-content-wrap">
+                <div class="wb-channel-content">
+                    #台州身边事#【美翻了！浙江首个地市级"美丽公路"规划完整出炉】 6月2日下午，浙江首个地市级"美丽公路"规划论证会在台州市椒江区召开。省...
+                </div>
+                <div class="wb-channel-content-bottom clearfix">
+                    <div class="wb-channel-content-bottom-l">
+                        <span class="wb-channel-content-day">2016-09-08</span>
+                        <span class="wb-channel-content-time">16:37:51</span>
+                    </div>
+                    <div class="wb-channel-content-bottom-r">查看微博原文</div>
+                </div>
+            </li>
+            <li class="wb-channel-content-datav">
+                <div class="triangle"></div>
+                消息曝光量为123513，转发2536次。消息曝光量为123513，转发2536次。消息曝光量为123513，转发2536次。消息曝光量为123513，转发2536次。消息曝光量为123513，转发2536次。
+            </li>
+        </ul>
+        <!--关键传播账号title-->
+        <ul class="key-propagation-account-title clearfix">
+            <li class="key-propagation-account-name">关键传播账号</li>
+            <li class="key-propagation-account-fans">粉丝</li>
+            <li class="key-propagation-account-userType">用户类型</li>
+            <li class="key-propagation-account-time">时间</li>
+            <li class="key-propagation-account-forward">二次转发</li>
+        </ul>
+        <!--关键传播账号内容-->
+        <ul class="key-propagation-account-content clearfix">
+            <li class="key-propagation-account-name clearfix"><div class="num-1"> 1 </div><div class="r-name">一根有仙气的竹竿</div></li>
+            <li class="key-propagation-account-fans">44</li>
+            <li class="key-propagation-account-userType">普通用户</li>
+            <li class="key-propagation-account-time">2016-06-09 09:46</li>
+            <li class="key-propagation-account-forward">1</li>
+        </ul>
+        <!--传播路径图title-->
+        <div class="propagation-path-map-title clearfix">
+            <div class="propagation-path-map-title-l">传播路径图</div>
+            <div class="propagation-path-map-title-r">全屏查看</div>
+        </div>
+        <!--传播路径图map-->
+        <img id="propagation-path-map" src="../../img/传播图.png">
+        <!--72小时内转发时间曲线title-->
+        <div class="hours-forward-title">
+            72小时内转发时间曲线
+        </div>
+        <!--72小时内转发时间曲线map-->
+        <div id="hours-forward-map"></div>
+        <!--分析列表第一排-->
+        <ul class="analyze-list-1 clearfix">
+            <!--层级分析-->
+            <li class="hierarchical-analysis">
+                <div class="hierarchical-analysis-title">层级分析</div>
+                <!--层级分析map-->
+                <div id="hierarchical-analysis-map"></div>
+            </li>
+            <!--用户类型-->
+            <li class="userType">
+                <div class="userType-title">用户类型</div>
+                <div id="userType-map"></div>
+                <ul class="userType-map-legend">
+                    <li class="userType-map-legend-row clearfix">
+                        <div class="icon-color"></div>
+                        <div class="name">普通用户</div>
+                        <div class="passbar">
+                            <div class="bar"></div>
+                        </div>
+                        <div class="radio">92.9%</div>
+                    </li>
+                    <li class="userType-map-legend-row clearfix">
+                        <div class="icon-color wb"></div>
+                        <div class="name">微博达人</div>
+                        <div class="passbar">
+                            <div class="wb-bar"></div>
+                        </div>
+                        <div class="radio">7.1%</div>
+                    </li>
+
+                </ul>
+            </li>
+            <!--男女比例-->
+            <li class="male-female-ratio">
+                <div class="male-female-ratio-title">男女比例</div>
+                <div id="male-female-ratio-map"></div>
+                <ul class="male-female-ratio-map-legend">
+                    <li class="male-female-ratio-legend-row clearfix">
+                        <div class="icon-color"></div>
+                        <div class="name">男</div>
+                        <div class="passbar">
+                            <div class="bar"></div>
+                        </div>
+                        <div class="radio">50%</div>
+                    </li>
+                    <li class="male-female-ratio-legend-row clearfix">
+                        <div class="icon-color nv"></div>
+                        <div class="name">女</div>
+                        <div class="passbar">
+                            <div class="bar nv"></div>
+                        </div>
+                        <div class="radio">50%</div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!--分析列表第二排-->
+        <ul class="analyze-list-2 clearfix">
+            <!--地域分析-->
+            <li class="area-analyze">
+                <div class="area-analyze-title">区域分析</div>
+                <div class="area-analyze-wrap clearfix">
+                    <div id="area-analyze-map"></div>
+                    <div class="area-analyze-explain">
+                        <div class="area-analyze-explain-title">用户城市分布</div>
+                        <ul>
+                            <li class="area-analyze-explain-row clearfix">
+                                <div class="area-analyze-explain-color" style="background-color:deepskyblue;"></div>
+                                <div class="area-analyze-explain-text">1、 浙江 <span>78.6%</span></div>
+                            </li>
+                            <li class="area-analyze-explain-row clearfix">
+                                <div class="area-analyze-explain-color"></div>
+                                <div class="area-analyze-explain-text">2、 安徽 <span>14.3%</span></div>
+                            </li>
+                            <li class="area-analyze-explain-row clearfix">
+                                <div class="area-analyze-explain-color"></div>
+                                <div class="area-analyze-explain-text">3、 其他 <span>7.1%</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </li>
+            <!--水军比例-->
+            <li class="water-army">
+                <div class="water-army-title">水军比例</div>
+                <div id="water-army-map"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        Copyright © 2016 杭州以数科技有限公司
+    </div>
+</div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YUtGoIIRxcYiH4ybGsuaQKktdH2cF187"></script>
+<script src="../../js/echarts.js"></script>
+<script src="../../js/china.js"></script>
+<script>
+////    propagation-path-map
+////    传播路径
+//var propagationPath = echarts.init(document.getElementById('propagation-path-map'));
+//var pPathOption = {
+//    series : [
+//        {
+//            type: 'graph',
+//            layout: 'none',
+//            roam: true,
+//            label: {
+//                normal: {
+//                    show: true
+//                }
+//            },
+//            edgeSymbolSize: [4, 10],
+//            data: [{
+//                name: '微博',
+//                symbolSize: 100,
+//                itemStyle:{
+//                    normal:{
+//                        color:'#fb7a53',
+////                        fontSize: 30
+////                        textStyle: {
+////
+////                        }
+//                    }
+//                },
+//                x: 580,
+//                y: 120
+//            }, {
+//                name: '微信',
+//                symbolSize: 80,
+//                itemStyle:{
+//                    normal:{
+//                        color:'#00c199'
+//                    }
+//                },
+//                x: 610,
+//                y: 160
+//            }, {
+//                name: '新闻',
+//                symbolSize: 150,
+//                itemStyle:{
+//                    normal:{
+//                        color:'#50d1cc'
+//                    }
+//                },
+//                x: 645,
+//                y: 135
+//            }, {
+//                name: '论坛',
+//                symbolSize: 80,
+//                itemStyle:{
+//                    normal:{
+//                        color:'#0fa2f2'
+//                    }
+//                },
+//                x: 690,
+//                y: 120
+//            },{
+//                name: '贴吧',
+//                symbolSize: 50,
+//                itemStyle:{
+//                    normal:{
+//                        color:'#ff9c00'
+//                    }
+//                },
+//                x: 710,
+//                y: 160
+//            }],
+//            links: [{
+//                source: 0,
+//                target: 1,
+//                symbolSize: [5, 20]
+//            }, {
+//                source: '微博',
+//                target: '微信'
+//            }, {
+//                source: '微信',
+//                target: '新闻'
+//            }, {
+//                source: '新闻',
+//                target: '论坛'
+//            }, {
+//                source: '论坛',
+//                target: '贴吧'
+//            }],
+//            lineStyle: {
+//                normal: {
+//                    opacity: 0.9,
+//                    width: 1,
+//                    curveness: 0
+//                }
+//            }
+//        }
+//    ]
+//};
+//propagationPath.setOption(pPathOption);
+//72小时内转发曲线图
+//hours-forward-map
+var hoursForward = echarts.init(document.getElementById('hours-forward-map'));
+var hForwardOption = {
+    tooltip: {
+        trigger: 'axis',
+        position: function (pt) {
+            return [pt[0], '10%'];
+        }
+    },
+    xAxis: {
+        type: 'category',
+        name:'时间',
+        boundaryGap: false,
+        data: ['18:00','9.Aug 02:00','08:00','14:00','20:00','10.Aug 04:00','10:00','16:00','22:00','11.Aug 04:00','10:00','16:00']
+    },
+    //        去掉坐标线
+    yAxis : [
+        {
+            type : 'value',
+            boundaryGap: [0, '100%'],
+            name : '转发量',
+            nameTextStyle : {
+                fontSize : 14
+            },
+            axisLabel:{
+                textStyle:{
+                    fontSize:14,  //刻度大小
+                    color:"#666"
+                }
+            },
+            axisLine : {
+                show:false
+            },
+            axisTick:{
+                show:false
+            }
+        }
+    ],
+    series: [
+        {
+            name:'转发量',
+            type:'line',
+            smooth:true,
+            symbol: 'none',
+            sampling: 'average',
+            itemStyle: {
+                normal: {
+                    color: 'rgb(255, 70, 131)'
+                }
+            },
+            areaStyle: {
+                normal: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                        offset: 0,
+                        color: 'rgb(255, 158, 68)'
+                    }, {
+                        offset: 1,
+                        color: 'rgb(255, 70, 131)'
+                    }])
+                }
+            },
+            data: [820,786,756,685,655,620,589,576,510,490,350,200]
+        }
+    ]
+};
+hoursForward.setOption(hForwardOption);
+//    层级分析
+//hierarchical-analysis-map
+    var hierarchicalAnalysis = echarts.init(document.getElementById('hierarchical-analysis-map'));
+    var hierarchicalAnalysisOption = {
+        color: ['#5778c1'],
+        tooltip : {
+            trigger: 'axis',
+//           在这里设置移动时的样式
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow', // 默认为直线，可选为：'line' | 'shadow'
+                shadowStyle: {
+                    color: 'rgba(183,226,255,0.3)',
+                    width: 'auto',
+                    type: 'default'
+                }
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                data : ['第一层', '第二层', '第三层', '第四层', '四层+'],
+                axisTick: {
+                    alignWithLabel: true
+                }
+            }
+        ],
+//        去掉坐标线
+        yAxis : [
+            {
+                type : 'value',
+                name : '转发量',
+                nameTextStyle : {
+                    fontSize : 14
+                },
+                axisLabel:{
+                    textStyle:{
+                        fontSize:14,  //刻度大小
+                        color:"#666"
+                    }
+                },
+                axisLine : {
+                    show:false
+                },
+                axisTick:{
+                    show:false
+                }
+            }
+        ],
+        series : [
+            {
+                name:'直接访问',
+                type:'bar',
+//                柱形图的宽度
+                barWidth:45,
+                data:[13, 10, 7, 5, 3]
+            }
+        ]
+    };
+    hierarchicalAnalysis.setOption(hierarchicalAnalysisOption);
+//    用户类型
+//userType-map
+    var userType = echarts.init(document.getElementById('userType-map'));
+    var userTypeOption = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+//        legend: {
+//            orient: 'vertical',
+//            x: 'left',
+//            data:['普通用户','微博达人']
+//        },
+        series: [
+            {
+                name:'用户类型',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '15',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {
+                        value:92.9,
+                        name:'普通用户',
+                        itemStyle: {
+                            normal: {
+                                color:'#5778c1'
+                            }
+                        }
+                    },
+                    {
+                        value:7.1,
+                        name:'微博达人',
+                        itemStyle: {
+                            normal: {
+                                color:'#fcc46c'
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    userType.setOption(userTypeOption);
+//    男女比例
+//male-female-ratio-map
+    var maleFemaleRatio = echarts.init(document.getElementById('male-female-ratio-map'));
+    var maleFemaleRatioOption = {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+//        legend: {
+//            orient: 'vertical',
+//            x: 'left',
+//            data:['男','女']
+//        },
+        series: [
+            {
+                name:'男女比例',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '15',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {
+                        value:50,
+                        name:'男',
+                        itemStyle: {
+                            normal: {
+                                color:'#fd826a'
+                            }
+                        }
+                    },
+                    {
+                        value:50,
+                        name:'女',
+                        itemStyle: {
+                            normal: {
+                                color:'#5778c1'
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    maleFemaleRatio.setOption(maleFemaleRatioOption);
+//区域分析
+//area-analyze-map
+    var areaAnalyze = echarts.init(document.getElementById('area-analyze-map'));
+    var areaAnalyzeOption = {
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b}'
+        },
+//        左下角的小指示
+//        visualMap: {
+//            left: 'left',
+//            top: 'bottom',
+//            text: ['高','低']          // 文本，默认为数值文本
+//        },
+//        color:['#bacefe'],
+        series: [
+            {
+                name: '中国',
+                type: 'map',
+                mapType: 'china',
+                selectedMode : 'multiple',
+//                itemStyle:{
+//                    normal:{
+//                        color:'#bacefe'
+//                    }
+//                },
+//                省份标题
+//                label: {
+//                    normal: {
+//                        show: true
+//                    },
+//                    emphasis: {
+//                        show: true
+//                    }
+//                },
+                itemStyle: {
+                    normal: {
+                        areaColor: '#bacefe',
+                        borderColor: '#fff'
+                    },
+                    emphasis: {
+//                areaColor: '#2a333d'
+                        areaColor: 'skyblue'
+                    }
+                },
+                data:[
+                    {
+                        name:'浙江',
+                        selected:true,
+                        itemStyle:{
+                            normal:{
+                                backgroundColor:'#5778c1'
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    areaAnalyze.setOption(areaAnalyzeOption);
+
+
+//    水军比例
+//water-army-map
+    var waterArmy = echarts.init(document.getElementById('water-army-map'));
+    var waterArmyOption =  {
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b}: {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            x: 'left',
+            data:['水军','普通用户']
+        },
+        series: [
+            {
+                name:'访问来源',
+                type:'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    normal: {
+                        show: false,
+                        position: 'center'
+                    },
+                    emphasis: {
+                        show: true,
+                        textStyle: {
+                            fontSize: '30',
+                            fontWeight: 'normal'
+                        }
+                    }
+                },
+                labelLine: {
+                    normal: {
+                        show: false
+                    }
+                },
+                data:[
+                    {
+                        value:1,
+                        name:'水军',
+                        itemStyle: {
+                            normal: {
+                                color:'#ddf0bc'
+                            }
+                        }
+                    },
+                    {
+                        value:99,
+                        name:'普通用户',
+                        itemStyle: {
+                            normal: {
+                                color:'#bfe27d'
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+    waterArmy.setOption(waterArmyOption);
+</script>
+
+</body>
+</html>

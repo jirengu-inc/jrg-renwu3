@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>营销中心-营收分析</title>
+    <style>
+        /*通用样式*/
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family:'Microsoft Yahei';
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .container{
+            width:1200px;
+            margin:0 auto;
+        }
+        /*图标样式*/
+        @font-face {
+            font-family: 'iconfont';
+            src: url('http://at.alicdn.com/t/font_1473303111_5623772.eot'); /* IE9*/
+            src: url('http://at.alicdn.com/t/font_1473303111_5623772.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('http://at.alicdn.com/t/font_1473303111_5623772.woff') format('woff'), /* chrome、firefox */
+            url('http://at.alicdn.com/t/font_1473303111_5623772.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('http://at.alicdn.com/t/font_1473303111_5623772.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont {
+            font-family:'iconfont';
+            font-style:normal;
+            color:#666;
+        }
+        /*头部*/
+        #header{
+            background-color: #191919;
+        }
+        #header .container{
+            height:50px;
+            line-height: 50px;
+            color:#fff;
+        }
+        #header .aside-left{
+            width: 215px;
+            font-size:14px;
+            float: left;
+            text-align: left;
+        }
+        #header .header-center{
+            float:left;
+        }
+        #header .header-center li{
+            float:left;
+            width:140px;
+            text-align: left;
+        }
+        #header .header-center li a{
+            height: 47px;
+            width:72px;
+            display: block;
+            position:relative;
+            text-align: center;
+            font-size: 14px;
+            color:#fff;
+        }
+        #header .header-center li a:hover{
+            color:#05a07f;
+            border-bottom: 2px solid #05a07f;
+        }
+        #header .aside-right{
+            float: right;
+            text-align: right;
+            font-size:12px;
+        }
+        /*主体*/
+        /*中心标题*/
+        #main .center-title{
+            margin-top: 30px;
+        }
+        #main .center-nav{
+            float:left;
+        }
+        #main .center-nav li{
+            width: 136px;
+            height: 17px;
+            line-height: 17px;
+            text-align: center;
+            float:left;
+            border-right: 2px solid #dedede;
+        }
+        #main .center-nav .last-li{
+            border-right:0;
+        }
+        #main .current-location{
+            float:right;
+            margin-right: 20px;
+            font-size:12px;
+            color:#999;
+        }
+        /*主体中心标题*/
+        #main .main-center-title{
+            height: 30px;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        #main .main-center-title-hr{
+            width: 50px;
+            margin:0 auto;
+            border-bottom: 1px solid #fb7a53;
+            margin-bottom: 15px;
+        }
+        #main .main-center-title-english{
+            width: 175px;
+            font-size:14px;
+            margin-left: auto;
+            margin-right:auto;
+            margin-bottom: 40px;
+        }
+        /*景区营收*/
+        /*景区营收情况*/
+        #main .scenic-revenue-status{
+            width:400px;
+            height: 330px;
+            float: left;
+            box-sizing: border-box;
+            border:1px solid #c4c4c4;
+        }
+        /*景区营收情况标题*/
+        #main .scenic-revenue-status-title{
+            height: 40px;
+            box-sizing: border-box;
+            background-color: #fafafb;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        #main .scenic-revenue-status-title-l{
+            float: left;
+            margin-left: 20px;
+            line-height: 40px;
+        }
+        #main .scenic-revenue-status-title-r{
+            float: right;
+            margin-right: 20px;
+            line-height: 40px;
+        }
+        /*景区营收情况主体*/
+        #main .scenic-revenue-status-main{
+            height:290px;
+            background-color: red;
+        }
+        /*景区营收对比图*/
+        #main .scenic-revenue-comparison{
+            width: 780px;
+            height:330px;
+            float: right;
+            box-sizing: border-box;
+            border:1px solid #c4c4c4;
+        }
+        /*景区营收对比图title*/
+        #main .scenic-revenue-comparison-title{
+            height: 40px;
+            box-sizing: border-box;
+            background-color: #fafafb;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        #main .scenic-revenue-comparison-title-l{
+            float: left;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        #main .scenic-revenue-comparison-title-l li{
+            height: 20px;
+            width: 75px;
+            border-right: 1px solid #9f9f9f;
+            float: left;
+            text-align: center;
+        }
+        #main .scenic-revenue-comparison-title-l .last-li{
+            border-right: 0;
+        }
+        #main .scenic-revenue-comparison-title-r{
+            float: right;
+            margin-right: 20px;
+            line-height: 40px;
+        }
+        /*景区营收对比主体*/
+        #main .scenic-revenue-comparison-main{
+            height:290px;
+            background-color: red;
+        }
+
+        /*景区营收第二排*/
+        #main .scenic-revenue-row2{
+            margin-top:40px;
+        }
+        /*营收同比环比*/
+        #main .revenue-comparison{
+            width: 560px;
+            height: 230px;
+            float:left;
+            box-sizing: border-box;
+            border:1px solid #c4c4c4;
+        }
+        /*营收同比环比标题*/
+        #main .revenue-comparison-title{
+            height: 40px;
+            box-sizing: border-box;
+            background-color: #fafafb;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        #main .revenue-comparison-title-l{
+            float: left;
+            margin-left: 20px;
+            line-height: 40px;
+        }
+        #main .revenue-comparison-title-r{
+            float: right;
+            margin-right: 20px;
+            line-height: 40px;
+        }
+        /*营收同比环比主体*/
+        #main .revenue-comparison-main{
+            height: 190px;
+            background-color: red;
+        }
+        /*各景点经营情况*/
+        #main .each-scenic-revenue{
+            width: 580px;
+            height: 230px;
+            float:right;
+            box-sizing: border-box;
+            border:1px solid #c4c4c4;
+        }
+        /*各景点经营情况标题*/
+        #main .each-scenic-revenue-title{
+            height: 40px;
+            box-sizing: border-box;
+            background-color: #fafafb;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        #main .each-scenic-revenue-title-l{
+            float: left;
+            margin-left: 20px;
+            line-height: 40px;
+        }
+        #main .each-scenic-revenue-title-r{
+            float: right;
+            margin-right: 20px;
+            line-height: 40px;
+        }
+        /*各景点经营情况主体*/
+        #main .each-scenic-revenue-main{
+            height: 190px;
+            background-color: red;
+        }
+        /*订单来源中心标题*/
+        #main .orderSource-center-title{
+            height: 30px;
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 15px;
+        }
+        #main .orderSource-center-title-english{
+            width: 175px;
+            font-size:14px;
+            margin-left: auto;
+            margin-right:auto;
+            margin-bottom: 40px;
+        }
+        /*订单分析表单*/
+        #main .order-analyzing-map{
+            margin-left: -40px;
+        }
+        #main .order-analyzing-map li{
+            width: 580px;
+            height: 400px;
+            margin-left: 40px;
+            margin-bottom: 40px;
+            float: left;
+        }
+        /*订单分析表单li标题*/
+        #main .order-analyzing-map li .title{
+            height: 40px;
+            box-sizing: border-box;
+            background-color: #fafafb;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        #main .order-analyzing-map li .title-l{
+            float: left;
+            margin-left: 20px;
+            line-height: 40px;
+        }
+        #main .order-analyzing-map li .title-r{
+            float: right;
+            margin-right: 20px;
+            line-height: 40px;
+        }
+        /*订单分析表单li主体*/
+        #main .order-analyzing-map-main{
+            height: 360px;
+            background-color: red;
+        }
+
+        /*底部*/
+        #footer{
+            margin-top:50px;
+            background-color: #191919;
+        }
+        #footer .container{
+            height:66px;
+            line-height: 66px;
+            text-align: center;
+            color:#999;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="container clearfix">
+        <div class="aside-left">椒江旅游大数据平台</div>
+        <div class="header-center">
+            <ul class="clearfix">
+                <li><a href="#">操作中心</a></li>
+                <li><a href="#">运维中心</a></li>
+                <li><a href="#">态势中心</a></li>
+                <li><a href="#">营销中心</a></li>
+                <li><a href="#">舆情中心</a></li>
+                <li><a href="#">可视化大屏</a></li>
+            </ul>
+        </div>
+        <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span>|<span class="user-action">注销</span></div>
+    </div>
+</div>
+<div id="main">
+    <div class="container">
+        <div class="center-title clearfix">
+            <div class="center-nav">
+                <ul class="clearfix">
+                    <li>游客出入态势</li>
+                    <li>游客轨迹态势</li>
+                    <li>景区车船态势</li>
+                    <li class="last-li">WIFI流量感知</li>
+                </ul>
+            </div>
+            <div class="current-location">
+                <span>当前位置</span>:<span class='location'>事态中心</span>><span class="z-location">WIFI流量感知</span>
+            </div>
+        </div>
+        <!--主体中心标题-->
+        <div class="main-center-title">景区营收</div>
+        <hr class="main-center-title-hr">
+        <div class="main-center-title-english">POTENTIAL CUSTOMERS</div>
+        <!--景区营收-->
+        <div class="scenic-revenue clearfix">
+            <!--景区营收情况-->
+            <div class="scenic-revenue-status">
+                <!--景区营收情况标题-->
+                <div class="scenic-revenue-status-title clearfix">
+                    <div class="scenic-revenue-status-title-l">景区营收情况</div>
+                    <div class="scenic-revenue-status-title-r"><i class="iconfont">&#xe600</i></div>
+                </div>
+                <!--景区营收情况主体-->
+                <div class="scenic-revenue-status-main">
+
+                </div>
+            </div>
+            <!--景区营收对比图-->
+            <div class="scenic-revenue-comparison">
+                <!--标题-->
+                <div class="scenic-revenue-comparison-title clearfix">
+                    <ul class="scenic-revenue-comparison-title-l clearfix">
+                        <li>全部</li>
+                        <li>餐饮</li>
+                        <li>酒店</li>
+                        <li>交通</li>
+                        <li class="last-li">其他</li>
+                    </ul>
+                    <div class="scenic-revenue-comparison-title-r"><i class="iconfont">&#xe600</i></div>
+                </div>
+                <!--主体-->
+                <div class="scenic-revenue-comparison-main">
+
+                </div>
+            </div>
+        </div>
+        <!--景区营收第二排-->
+        <div class="scenic-revenue-row2 clearfix">
+            <!--营收同比环比-->
+            <div class="revenue-comparison">
+                <!--标题-->
+                <div class="revenue-comparison-title clearfix">
+                    <div class="revenue-comparison-title-l">营收同比环比</div>
+                    <div class="revenue-comparison-title-r"><i class="iconfont">&#xe600</i></div>
+                </div>
+                <!--主体-->
+                <div class="revenue-comparison-main"></div>
+            </div>
+            <!--各景点经营情况-->
+            <div class="each-scenic-revenue">
+                <!--标题-->
+                <div class="each-scenic-revenue-title clearfix">
+                    <div class="each-scenic-revenue-title-l">各景点经营情况</div>
+                    <div class="each-scenic-revenue-title-r"><i class="iconfont">&#xe600</i></div>
+                </div>
+                <!--主体-->
+                <div class="each-scenic-revenue-main"></div>
+            </div>
+        </div>
+        <!--订单来源中心标题-->
+        <div class="orderSource-center-title">订单来源</div>
+        <hr class="main-center-title-hr">
+        <div class="orderSource-center-title-english">POTENTIAL CUSTOMERS</div>
+        <!--订单分析表-->
+        <ul class="order-analyzing-map clearfix">
+            <li>
+                <!--标题-->
+                <div class="title clearfix">
+                    <div class="title-l">行程订单分析</div>
+                    <div class="title-r"><i class="iconfont">&#xe600</i></div>
+                </div>
+                <!--主体-->
+                <div class="order-analyzing-map-main"></div>
+            </li>
+            <li>
+                <!--标题-->
+                <div class="title clearfix">
+                    <div class="title-l">票务订单分析</div>
+                    <div class="title-r"><i class="iconfont">&#xe600</i></div>
+                </div>
+                <!--主体-->
+                <div class="order-analyzing-map-main"></div>
+            </li>
+            <li>
+                <!--标题-->
+                <div class="title clearfix">
+                    <div class="title-l">餐饮订单分析</div>
+                    <div class="title-r"><i class="iconfont">&#xe600</i></div>
+                </div>
+                <!--主体-->
+                <div class="order-analyzing-map-main"></div>
+            </li>
+            <li>
+                <!--标题-->
+                <div class="title clearfix">
+                    <div class="title-l">酒店订单分析</div>
+                    <div class="title-r"><i class="iconfont">&#xe600</i></div>
+                </div>
+                <!--主体-->
+                <div class="order-analyzing-map-main"></div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        Copyright @ 2016 杭州以数科技有限公司
+    </div>
+</div>
+</body>
+</html>

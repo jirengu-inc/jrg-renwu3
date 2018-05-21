@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>游客轨迹态势</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <style>
+        /*通用样式*/
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family:'Microsoft Yahei';
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .container{
+            width:1200px;
+            margin:0 auto;
+        }
+        /*头部*/
+        #header{
+            background-color: #191919;
+        }
+        #header .container{
+            height:50px;
+            line-height: 50px;
+            color:#fff;
+        }
+        #header .aside-left{
+            width: 215px;
+            font-size:14px;
+            float: left;
+            text-align: left;
+        }
+        #header .header-center{
+            float:left;
+        }
+        #header .header-center li{
+            float:left;
+            width:140px;
+            text-align: left;
+        }
+        #header .header-center li a{
+            height: 47px;
+            width:72px;
+            display: block;
+            position:relative;
+            text-align: center;
+            font-size: 14px;
+            color:#fff;
+        }
+        #header .header-center li a:hover{
+            color:#05a07f;
+            border-bottom: 2px solid #05a07f;
+        }
+        #header .aside-right{
+            float: right;
+            text-align: right;
+            font-size:12px;
+        }
+        #header .h-active{
+            color:#05a07f !important;
+            border-bottom: 2px solid #05a07f;
+        }
+        /*主体*/
+        /*中心标题*/
+        #main .active{
+            color:#00c199;
+        }
+        #main .center-title{
+            margin-top: 30px;
+        }
+        #main .center-nav{
+            float:left;
+        }
+        #main .center-nav li{
+            width: 136px;
+            height: 17px;
+            line-height: 17px;
+            text-align: center;
+            float:left;
+            border-right: 2px solid #dedede;
+        }
+        #main .center-nav .last-li{
+            border-right:0;
+        }
+        #main .center-nav li:hover{
+            cursor: pointer;
+            color:#00c199;
+        }
+        #main .current-location{
+            float:right;
+            margin-right: 20px;
+            font-size:12px;
+            color:#999;
+        }
+        /*注意：这是此页面的特有居中样式，不通用*/
+        #main .layout{
+            width:1160px;
+            margin:0 auto;
+        }
+        /*客群热力图标题*/
+        #main .visitors-heat-wap-title{
+            width:90px;
+            height:30px;
+            margin-top:50px;
+            border-bottom: 2px solid #00c199;
+            margin-bottom:10px;
+        }
+        #main #hw-left{
+            width: 800px;
+            height: 500px;
+            float:left;
+        }
+        #main .hw-right{
+            width: 350px;
+            height: 500px;
+            float:right;
+        }
+        #main .hw-dong{
+            width: 350px;
+            height:120px;
+            box-sizing: border-box;
+            border:1px solid #c4c4c4;
+            margin-bottom:10px;
+        }
+        #main .hw-dong .hw-title{
+            background-color: #fafafb;
+            height: 35px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #c4c4c4;
+        }
+        #main .hw-dong .hw-title-l{
+            height: 35px;
+            line-height: 35px;
+            float:left;
+            margin-left: 10px;
+        }
+        #main .hw-dong .hw-title-r{
+            height: 35px;
+            line-height: 35px;
+            float:right;
+            margin-right: 10px;
+        }
+
+        #main .hw-content{
+            height: 85px;
+            padding:10px;
+        }
+
+        #main .hw-content .time{
+            font-size:14px;
+        }
+        #main .hw-content .l-time{
+            font-size: 12px;
+            margin-left:5px;
+        }
+
+        #main .hw-content-l{
+            float: left;
+        }
+        #main .hw-content-r{
+            float:right;
+        }
+        /*进度条*/
+        #main .progressbar{
+            margin-top:15px;
+            width: 280px;
+            height: 10px;
+            background: linear-gradient(#ccc, #fff);
+            border-radius: 5px;
+            border:1px solid #ccc;
+        }
+        #main .bar{
+            height: 10px;
+            width:200px;
+            position:relative;
+            background-color: #ff9736;
+            border-radius: 5px;
+        }
+        #main .bar-er{
+            height: 10px;
+            width:200px;
+            position:relative;
+            background-color: #ff9736;
+            border-radius: 5px;
+        }
+        #main .bar-circle{
+            height: 20px;
+            width: 20px;
+            position:absolute;
+            right:0;
+            margin-right: -10px;
+            margin-top: -5px;
+            border-radius: 50%;
+            background: linear-gradient(#ccc, #fff);
+            border:1px solid #ccc;
+        }
+        #main .bar-circle-er{
+            height: 20px;
+            width: 20px;
+            position:absolute;
+            right:0;
+            margin-right: -10px;
+            margin-top: -5px;
+            border-radius: 50%;
+            background: linear-gradient(#ccc, #fff);
+            border:1px solid #ccc;
+        }
+
+        /*进度条刻度*/
+        #main .bar-scale{
+            margin-top: 5px;
+        }
+        #main .bar-scale li{
+            width:35px;
+            float: left;
+            text-align: center;
+            color:#ccc;
+            font-size:12px;
+        }
+        #main #little-heat-map{
+            height: 240px;
+            width:350px;
+        }
+
+
+        /*旅客轨迹图标题*/
+        #main .visitors-track-map-title{
+            width:90px;
+            height:30px;
+            margin-top:40px;
+            border-bottom: 2px solid #00c199;
+            margin-bottom:20px;
+        }
+        #main #visitors-track-map{
+            width: 1160px;
+            height:540px;
+        }
+        /*经纬描点图*/
+        #main .longitude-and-latitude-map-title{
+            width:90px;
+            height:30px;
+            margin-top:35px;
+            border-bottom: 2px solid #00c199;
+            margin-bottom:20px;
+        }
+        #main #longitude-and-latitude-map{
+            width: 1160px;
+            height:454px;
+        }
+        /*底部*/
+        #footer{
+            margin-top:50px;
+            background-color: #191919;
+        }
+        #footer .container{
+            height:66px;
+            line-height: 66px;
+            text-align: center;
+            color:#999;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="container clearfix">
+        <div class="aside-left">椒江旅游大数据平台</div>
+        <div class="header-center">
+            <ul class="clearfix">
+                <li><a href="../control/control.html">管控中心</a></li>
+                <li><a href="../operation/operation.html">运维中心</a></li>
+                <li><a href="../态势中心/come-go-situation.html" class="h-active">态势中心</a></li>
+                <li><a href="../marketing/revenue-analyze.html">营销中心</a></li>
+                <li><a href="../舆情中心/public-sentiment-analyze.html">舆情中心</a></li>
+                <li><a href="../bigScreen/bigScreen.html">可视化大屏</a></li>
+            </ul>
+        </div>
+        <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span> | <span class="user-action">注销</span></div>
+    </div>
+</div>
+<div id="main">
+    <div class="container">
+        <div class="center-title clearfix">
+            <div class="center-nav">
+                <ul class="clearfix">
+                    <li class="active"><a href="come-go-situation.html">游客出入态势</a></li>
+                    <li><a href="track.html" class="active">游客轨迹态势</a></li>
+                    <li><a href="vehicles-and-vessels.html">景区车船态势</a></li>
+                    <li class="last-li"><a href="WIFI.html">WIFI流量感知</a></li>
+                </ul>
+            </div>
+            <div class="current-location">
+                <span>当前位置</span>:<span class='location'>态势中心</span>><span class="z-location">游客轨迹态势</span>
+            </div>
+        </div>
+        <div class="layout">
+            <div class="visitors-heat-wap-title">客群热力图</div>
+            <!--<img id="visitors-heat-wap" src="../../img/热力图.png">-->
+            <div class="heat-wap clearfix">
+                <div id="hw-left">
+
+                </div>
+                <div class="hw-right">
+                    <div class="hw-dong">
+                        <div class="hw-title clearfix">
+                            <div class="hw-title-l">查看近8小时动态图</div>
+                            <div class="hw-title-r"><i></i></div>
+                        </div>
+                        <div class="hw-content clearfix">
+                            <div class="time"><strong>2016.8.26</strong><span class="l-time">11:50</span></div>
+
+                            <div class="hw-content-l">
+                                <div class="progressbar">
+                                    <div class="bar">
+                                        <div class="bar-circle"></div>
+                                    </div>
+                                </div>
+                                <ul class="bar-scale clearfix">
+                                    <li>8时</li>
+                                    <li>9时</li>
+                                    <li>10时</li>
+                                    <li>11时</li>
+                                    <li>12时</li>
+                                    <li>13时</li>
+                                    <li>14时</li>
+                                    <li>15时</li>
+                                </ul>
+                            </div>
+                            <div class="hw-content-r">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hw-dong">
+                        <div class="hw-title clearfix">
+                            <div class="hw-title-l">查看近一周动态图</div>
+                            <div class="hw-title-r"><i></i></div>
+                        </div>
+                        <div class="hw-content clearfix">
+                            <div class="time"><strong>2016.8.25</strong><span class="l-time">周四</span></div>
+
+                            <div class="hw-content-l">
+                                <div class="progressbar">
+                                    <div class="bar-er">
+                                        <div class="bar-circle-er"></div>
+                                    </div>
+                                </div>
+                                <ul class="bar-scale clearfix">
+                                    <li>8时</li>
+                                    <li>9时</li>
+                                    <li>10时</li>
+                                    <li>11时</li>
+                                    <li>12时</li>
+                                    <li>13时</li>
+                                    <li>14时</li>
+                                    <li>15时</li>
+                                </ul>
+                            </div>
+                            <div class="hw-content-r">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="little-heat-map">
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div class="visitors-track-map-title">游客轨迹图</div>
+            <div id="visitors-track-map">
+
+            </div>
+
+            <div class="longitude-and-latitude-map-title">经纬描点图</div>
+            <div id="longitude-and-latitude-map">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        Copyright © 2016 杭州以数科技有限公司
+    </div>
+</div>
+
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=YUtGoIIRxcYiH4ybGsuaQKktdH2cF187"></script>
+<!--heatmap.min.js依赖百度地图api-->
+<script src="../../js/heatmap_min.js"></script>
+<script src="../../js/echarts.js"></script>
+<script src="../../js/jquery-1.8.3.min.js"></script>
+<script src="../../js/china.js"></script>
+<script>
+//    客群热力图
+//hw-left
+
+//经纬描点图
+var heatMap = new BMap.Map("hw-left");          // 创建地图实例
+var hPoint = new BMap.Point(121.9044790000,28.4547990000);  // 创建坐标点 其中116.404表示经度，39.915表示纬度。
+//大热力图
+heatMap.centerAndZoom(hPoint, 15);                 // 初始化地图，设置中心点坐标和地图级别 地图必须经过初始化才可以执行其他操作。
+heatMap.enableScrollWheelZoom();         //鼠标滚轮控制缩放
+//        向地图添加控件
+heatMap.addControl(new BMap.NavigationControl()); //平移缩放控件
+heatMap.addControl(new BMap.ScaleControl());        //比例尺控件
+heatMap.addControl(new BMap.OverviewMapControl());  //缩略地图控件
+heatMap.addControl(new BMap.MapTypeControl());      //地图类型控件
+
+
+
+var heatPoints =[
+    {"lng":121.912479,"lat":28.45479,"count":50},
+    {"lng":121.915479,"lat":28.45662,"count":40},
+    {"lng":121.918439,"lat":28.45569,"count":55},
+    {"lng":121.919499,"lat":28.45456,"count":65},
+    {"lng":121.914564,"lat":28.45546,"count":32},
+    {"lng":121.916984,"lat":28.45565,"count":12},
+    {"lng":121.915698,"lat":28.45365,"count":45},
+    {"lng":121.916598,"lat":28.45559,"count":69},
+    {"lng":121.914878,"lat":28.45366,"count":23},
+    {"lng":121.914684,"lat":28.44954,"count":27},
+    {"lng":121.915611,"lat":28.45564,"count":65},
+    {"lng":121.912565,"lat":28.45654,"count":78},
+    {"lng":121.916549,"lat":28.45646,"count":85},
+    {"lng":121.915679,"lat":28.45546,"count":52},
+    {"lng":121.913654,"lat":28.44594,"count":96},
+    {"lng":121.914654,"lat":28.45646,"count":48}];
+
+//判断浏览区是否支持canvas
+function isSupportCanvas(){
+    var elem = document.createElement('canvas');
+    return !!(elem.getContext && elem.getContext('2d'));
+}
+if(!isSupportCanvas()){
+    alert('热力图目前只支持有canvas支持的浏览器,您所使用的浏览器不能使用热力图功能~')
+}
+
+var heatmapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
+
+heatMap.addOverlay(heatmapOverlay);
+
+heatmapOverlay.setDataSet({data:heatPoints,max:10});
+heatmapOverlay.show();
+
+
+function setGradient(){
+    /*格式如下所示:
+     {
+     0:'rgb(102, 255, 0)',
+     .5:'rgb(255, 170, 0)',
+     1:'rgb(255, 0, 0)'
+     }*/
+    var gradient = {};
+    var colors = document.querySelectorAll("input[type='color']");
+    colors = [].slice.call(colors,0);
+    colors.forEach(function(ele){
+        gradient[ele.getAttribute("data-key")] = ele.value;
+    });
+    heatmapOverlay.setOptions({"gradient":gradient});
+}
+
+
+
+
+
+//游客轨迹图
+var visitorsTrack = echarts.init(document.getElementById('visitors-track-map'));
+var geoCoordMap = {
+//    121.9044790000,28.4547990000
+    '椒江': [121.9045,28.4548],
+    '上海': [121.4648,31.2891],
+    '东莞': [113.8953,22.901],
+    '东营': [118.7073,37.5513],
+    '中山': [113.4229,22.478],
+    '临汾': [111.4783,36.1615],
+    '临沂': [118.3118,35.2936],
+    '丹东': [124.541,40.4242],
+    '丽水': [119.5642,28.1854],
+    '乌鲁木齐': [87.9236,43.5883],
+    '佛山': [112.8955,23.1097],
+    '保定': [115.0488,39.0948],
+    '兰州': [103.5901,36.3043],
+    '包头': [110.3467,41.4899],
+    '北京': [116.4551,40.2539],
+    '北海': [109.314,21.6211],
+    '南京': [118.8062,31.9208],
+    '南宁': [108.479,23.1152],
+    '南昌': [116.0046,28.6633],
+    '南通': [121.1023,32.1625],
+    '厦门': [118.1689,24.6478],
+    '台州': [121.1353,28.6688],
+    '合肥': [117.29,32.0581],
+    '呼和浩特': [111.4124,40.4901],
+    '咸阳': [108.4131,34.8706],
+    '哈尔滨': [127.9688,45.368],
+    '唐山': [118.4766,39.6826],
+    '嘉兴': [120.9155,30.6354],
+    '大同': [113.7854,39.8035],
+    '大连': [122.2229,39.4409],
+    '天津': [117.4219,39.4189],
+    '太原': [112.3352,37.9413],
+    '威海': [121.9482,37.1393],
+    '宁波': [121.5967,29.6466],
+    '宝鸡': [107.1826,34.3433],
+    '宿迁': [118.5535,33.7775],
+    '常州': [119.4543,31.5582],
+    '广州': [113.5107,23.2196],
+    '廊坊': [116.521,39.0509],
+    '延安': [109.1052,36.4252],
+    '张家口': [115.1477,40.8527],
+    '徐州': [117.5208,34.3268],
+    '德州': [116.6858,37.2107],
+    '惠州': [114.6204,23.1647],
+    '成都': [103.9526,30.7617],
+    '扬州': [119.4653,32.8162],
+    '承德': [117.5757,41.4075],
+    '拉萨': [91.1865,30.1465],
+    '无锡': [120.3442,31.5527],
+    '日照': [119.2786,35.5023],
+    '昆明': [102.9199,25.4663],
+    '杭州': [119.5313,29.8773],
+    '枣庄': [117.323,34.8926],
+    '柳州': [109.3799,24.9774],
+    '株洲': [113.5327,27.0319],
+    '武汉': [114.3896,30.6628],
+    '汕头': [117.1692,23.3405],
+    '江门': [112.6318,22.1484],
+    '沈阳': [123.1238,42.1216],
+    '沧州': [116.8286,38.2104],
+    '河源': [114.917,23.9722],
+    '泉州': [118.3228,25.1147],
+    '泰安': [117.0264,36.0516],
+    '泰州': [120.0586,32.5525],
+    '济南': [117.1582,36.8701],
+    '济宁': [116.8286,35.3375],
+    '海口': [110.3893,19.8516],
+    '淄博': [118.0371,36.6064],
+    '淮安': [118.927,33.4039],
+    '深圳': [114.5435,22.5439],
+    '清远': [112.9175,24.3292],
+    '温州': [120.498,27.8119],
+    '渭南': [109.7864,35.0299],
+    '湖州': [119.8608,30.7782],
+    '湘潭': [112.5439,27.7075],
+    '滨州': [117.8174,37.4963],
+    '潍坊': [119.0918,36.524],
+    '烟台': [120.7397,37.5128],
+    '玉溪': [101.9312,23.8898],
+    '珠海': [113.7305,22.1155],
+    '盐城': [120.2234,33.5577],
+    '盘锦': [121.9482,41.0449],
+    '石家庄': [114.4995,38.1006],
+    '福州': [119.4543,25.9222],
+    '秦皇岛': [119.2126,40.0232],
+    '绍兴': [120.564,29.7565],
+    '聊城': [115.9167,36.4032],
+    '肇庆': [112.1265,23.5822],
+    '舟山': [122.2559,30.2234],
+    '苏州': [120.6519,31.3989],
+    '莱芜': [117.6526,36.2714],
+    '菏泽': [115.6201,35.2057],
+    '营口': [122.4316,40.4297],
+    '葫芦岛': [120.1575,40.578],
+    '衡水': [115.8838,37.7161],
+    '衢州': [118.6853,28.8666],
+    '西宁': [101.4038,36.8207],
+    '西安': [109.1162,34.2004],
+    '贵阳': [106.6992,26.7682],
+    '连云港': [119.1248,34.552],
+    '邢台': [114.8071,37.2821],
+    '邯郸': [114.4775,36.535],
+    '郑州': [113.4668,34.6234],
+    '鄂尔多斯': [108.9734,39.2487],
+    '重庆': [107.7539,30.1904],
+    '金华': [120.0037,29.1028],
+    '铜川': [109.0393,35.1947],
+    '银川': [106.3586,38.1775],
+    '镇江': [119.4763,31.9702],
+    '长春': [125.8154,44.2584],
+    '长沙': [113.0823,28.2568],
+    '长治': [112.8625,36.4746],
+    '阳泉': [113.4778,38.0951],
+    '青岛': [120.4651,36.3373],
+    '韶关': [113.7964,24.7028]
+};
+var SHData = [
+    [{name:'包头',value:95},{name:'椒江'}],
+    [{name:'昆明',value:90},{name:'椒江'}],
+    [{name:'广州',value:80},{name:'椒江'}],
+    [{name:'郑州',value:70},{name:'椒江'}],
+    [{name:'长春',value:60},{name:'椒江'}],
+    [{name:'重庆',value:50},{name:'椒江'}],
+    [{name:'长沙',value:40},{name:'椒江'}],
+    [{name:'北京',value:30},{name:'椒江'}],
+    [{name:'丹东',value:20},{name:'椒江'}],
+    [{name:'大连',value:10},{name:'椒江'}]
+];
+
+var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
+
+var convertData = function (data) {
+    var res = [];
+    for (var i = 0; i < data.length; i++) {
+        var dataItem = data[i];
+        var fromCoord = geoCoordMap[dataItem[0].name];
+        var toCoord = geoCoordMap[dataItem[1].name];
+        if (fromCoord && toCoord) {
+            res.push({
+                fromName: dataItem[0].name,
+                toName: dataItem[1].name,
+                coords: [fromCoord, toCoord]
+            });
+        }
+    }
+    return res;
+};
+
+var color = ['#15c0ff'];
+var series = [];
+[['上海', SHData]].forEach(function (item, i) {
+    series.push(
+//            这个对象是黄色的实线
+            {
+                type: 'lines',
+                zlevel: 1,
+                effect: {
+                    show: true,
+                    period: 6,
+                    trailLength: 0.7,
+                    color: '#fff',
+                    symbolSize: 3
+                },
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'right',
+                        formatter: '{b}'
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        color: color[i],
+                        width: 0,
+                        curveness: 0.2
+                    }
+                },
+                data: convertData(item[1])
+            },
+//            这个对象是动态的小飞机
+            {
+                type: 'lines',
+                zlevel: 2,
+                effect: {
+                    show: true,
+                    period: 6,
+                    trailLength: 0,
+                    symbol: planePath,
+                    symbolSize: 15
+                },
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'right',
+                        formatter: '{b}'
+                    }
+                },
+                lineStyle: {
+                    normal: {
+                        color: color[i],
+                        width: 1,
+                        opacity: 0.4,
+                        curveness: 0.2
+                    }
+                },
+                data: convertData(item[1])
+            },
+
+            {
+//                name: item[0] + ' Top10',
+                type: 'effectScatter',
+                coordinateSystem: 'geo',
+                zlevel: 2,
+                rippleEffect: {
+                    brushType: 'stroke'
+                },
+//                上海两个字出不出现
+                label: {
+                    normal: {
+                        show: true,
+                        position: 'right',
+                        formatter: '{b}'
+                    }
+                },
+//                上海坐标样式
+//                symbolSize: function (val) {
+//                    return val[2] / 8;
+//                },
+//                上海颜色
+                itemStyle: {
+                    normal: {
+                        color: color[i]
+                    }
+                },
+                data: item[1].map(function (dataItem) {
+                    return {
+                        name: dataItem[1].name,
+                        value: geoCoordMap[dataItem[1].name].concat([dataItem[1].value])
+                    };
+                })
+            }
+    );
+});
+var visitorsTrackPoption = {
+//    背景色
+    backgroundColor: '#0e1221',
+    tooltip : {
+        trigger: 'item'
+    },
+    legend: {
+        orient: 'vertical',
+        top: 'bottom',
+        left: 'right',
+        textStyle: {
+            color: '#fff'
+        },
+        selectedMode: 'single'
+    },
+
+//    黑色中国地图
+    geo: {
+        map: 'china',
+//        显示省份名字
+        label: {
+            normal: {
+                show: true,
+                textStyle: {
+                    color: '#61eeed'
+                }
+            }
+        },
+        roam: true,
+//        调省颜色、边界颜色
+        itemStyle: {
+            normal: {
+                areaColor: '#101d36',
+                borderColor: '#0a4f60'
+            },
+            emphasis: {
+//                areaColor: '#2a333d'
+                areaColor: 'skyblue'
+            }
+        }
+    },
+    series: series
+};
+
+visitorsTrack.setOption(visitorsTrackPoption);
+
+
+
+
+//经纬描点图
+var map = new BMap.Map("longitude-and-latitude-map");          // 创建地图实例
+var point = new BMap.Point(121.9044790000,28.4547990000);  // 创建坐标点 其中116.404表示经度，39.915表示纬度。
+map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别 地图必须经过初始化才可以执行其他操作。
+map.enableScrollWheelZoom();         //鼠标滚轮控制缩放
+//        向地图添加控件
+map.addControl(new BMap.NavigationControl()); //平移缩放控件
+map.addControl(new BMap.ScaleControl());        //比例尺控件
+map.addControl(new BMap.OverviewMapControl());  //缩略地图控件
+map.addControl(new BMap.MapTypeControl());      //地图类型控件
+</script>
+<script>
+    $('.bar-circle').on('mousedown',function(e){
+        $(this).css({
+            cursor:'pointer'
+        });
+        $(this).data('inner',true);
+    });
+    $('body').on('mousemove',function(e){
+        if($('.bar-circle').data('inner')){
+            console.log(e.pageX);
+            var x = e.pageX-$('.hw-dong').offset().left-10;
+            if(x>280){
+                $('.bar-circle').data('inner',false);
+                x=280;
+            }
+            $('.bar').width(x);
+        }
+    });
+    $('.bar-circle').on('mouseup',function(){
+        $(this).data('inner',false);
+    });
+
+
+
+    $('.bar-circle-er').on('mousedown',function(e){
+        $(this).css({
+            cursor:'pointer'
+        });
+        $(this).data('inner',true);
+    });
+    $('body').on('mousemove',function(e){
+        if($('.bar-circle-er').data('inner')){
+            console.log(e.pageX);
+            var x = e.pageX-$('.hw-dong').offset().left-10;
+            if(x>280){
+                $('.bar-circle-er').data('inner',false);
+                x=280;
+            }
+            $('.bar-er').width(x);
+        }
+    });
+    $('.bar-circle-er').on('mouseup',function(){
+        $(this).data('inner',false);
+    });
+</script>
+<script>
+    //    客群热力图
+    //little-heat-map
+    //经纬描点图
+    var littleMap = new BMap.Map("little-heat-map");          // 创建地图实例
+    var lPoint = new BMap.Point(121.9044790000,28.4547990000);  // 创建坐标点 其中116.404表示经度，39.915表示纬度。
+    //大热力图
+    littleMap.centerAndZoom(lPoint, 15);                 // 初始化地图，设置中心点坐标和地图级别 地图必须经过初始化才可以执行其他操作。
+    littleMap.enableScrollWheelZoom();         //鼠标滚轮控制缩放
+    //        向地图添加控件
+    littleMap.addControl(new BMap.NavigationControl()); //平移缩放控件
+    littleMap.addControl(new BMap.ScaleControl());        //比例尺控件
+    littleMap.addControl(new BMap.OverviewMapControl());  //缩略地图控件
+    littleMap.addControl(new BMap.MapTypeControl());      //地图类型控件
+
+
+
+    var littlePoints =[
+        {"lng":121.912479,"lat":28.45479,"count":50},
+        {"lng":121.915479,"lat":28.45662,"count":40},
+        {"lng":121.918439,"lat":28.45569,"count":55},
+        {"lng":121.919499,"lat":28.45456,"count":65},
+        {"lng":121.914564,"lat":28.45546,"count":32},
+        {"lng":121.916984,"lat":28.45565,"count":12},
+        {"lng":121.915698,"lat":28.45365,"count":45},
+        {"lng":121.916598,"lat":28.45559,"count":69},
+        {"lng":121.914878,"lat":28.45366,"count":23},
+        {"lng":121.914684,"lat":28.44954,"count":27},
+        {"lng":121.915611,"lat":28.45564,"count":65},
+        {"lng":121.912565,"lat":28.45654,"count":78},
+        {"lng":121.916549,"lat":28.45646,"count":85},
+        {"lng":121.915679,"lat":28.45546,"count":52},
+        {"lng":121.913654,"lat":28.44594,"count":96},
+        {"lng":121.914654,"lat":28.45646,"count":48}];
+
+    //判断浏览区是否支持canvas
+    function isSupportCanvas(){
+        var elem = document.createElement('canvas');
+        return !!(elem.getContext && elem.getContext('2d'));
+    }
+    if(!isSupportCanvas()){
+        alert('热力图目前只支持有canvas支持的浏览器,您所使用的浏览器不能使用热力图功能~')
+    }
+
+    var littlemapOverlay = new BMapLib.HeatmapOverlay({"radius":20});
+
+    littleMap.addOverlay(littlemapOverlay);
+
+    littlemapOverlay.setDataSet({data:littlePoints,max:10});
+    littlemapOverlay.show();
+
+
+    function setGradient(){
+        /*格式如下所示:
+         {
+         0:'rgb(102, 255, 0)',
+         .5:'rgb(255, 170, 0)',
+         1:'rgb(255, 0, 0)'
+         }*/
+        var gradient = {};
+        var colors = document.querySelectorAll("input[type='color']");
+        colors = [].slice.call(colors,0);
+        colors.forEach(function(ele){
+            gradient[ele.getAttribute("data-key")] = ele.value;
+        });
+        littlemapOverlay.setOptions({"gradient":gradient});
+    }
+</script>
+</body>
+</html>

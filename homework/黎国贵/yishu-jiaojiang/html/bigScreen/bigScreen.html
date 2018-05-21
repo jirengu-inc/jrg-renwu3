@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>大屏中心</title>
+    <link rel="stylesheet" href="../../css/public.css">
+    <link rel="stylesheet" href="../../css/basic-properties-public.css">
+    <style>
+        body{
+            background: #090b17;
+        }
+        #main{
+            box-sizing: border-box;
+            width: 1900px;
+            padding-top: 22px;
+            padding-bottom: 30px;
+            height: 1180px;
+        }
+        .top-left,.top-map,.top-right{
+            float: left;
+        }
+        #main .top{
+            box-sizing: border-box;
+            height: 703px;
+            width: 1850px;
+            margin: 0 auto;
+            margin-bottom: 22px;
+        }
+        #main .top-left{
+            width: 400px;
+            margin-right: 22px;
+        }
+        #main .top-map{
+            width: 930px;
+            height: 100%;
+            background: url('../../img/big-map.png');
+            margin-right: 22px;
+        }
+        #main .top-right{
+            width: 470px;
+        }
+        #main .bottom{
+            box-sizing: border-box;
+            height: 417px;
+            width: 1850px;
+            margin: auto;
+        }
+        .overview,.year,.scenic-revenue,.revenue-streams,.bottom-left,.bottom-center,.bottom-right{
+            float: left;
+        }
+        #main .big-title{
+            box-sizing: border-box;
+            font-size: 18px;
+            color: #28cfff;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            width: 100%;
+        }
+        #main .big-title-lag{
+            height: 44px;
+            line-height: 44px;
+            font-size: 20px;
+        }
+        /*Overview*/
+        #main .overview{
+            width: 400px;
+            height: 340px;
+            background: url('../../img/big-top-left-top.png');
+            margin-bottom: 22px;
+            box-sizing: border-box;
+            padding-left: 17px;
+            padding-top: 20px;
+        }
+        /*year*/
+        #main .year{
+            width: 400px;
+            height: 340px;
+            background: url('../../img/big-top-left-bottom.png');
+        }
+        #year-chart{
+            width:100%;
+            height: 298px;
+        }
+        /*map*/
+        #main #top-map-center{
+            box-sizing: border-box;
+            width: 930px;
+            height: 656px;
+        }
+        /*scenic-revenue,revenue-streams*/
+        #main .scenic-revenue,#main .revenue-streams{
+            width: 470px;
+            height: 340px;
+            background: url('../../img/big-top-right.png');
+        }
+        /*scenic-revenue*/
+        #main .scenic-revenue{
+            margin-bottom: 22px;
+        }
+        #main .scenic-revenue .buttons{
+            width: 100%;
+            height: 50px;
+            border-radius: 3px;
+        }
+        #main .buttons{
+            box-sizing: border-box;
+            width: 100%;
+            height: 50px;
+            padding: 10px 14px;
+        }
+        #main .buttons .btn{
+            padding: 0;
+            width: 100px;
+            height: 30px;
+            margin-right: 6px;
+            color: #fff;
+            background: #2575ce;
+            line-height: 30px;
+            border-radius: 3px;
+        }
+        #main .btn.active{
+            background: #13a5f9;
+        }
+        #main .buttons .btn:last-child{
+            margin-right: 0;
+        }
+        #main .scenic-revenue .follow-chart{
+            box-sizing: border-box;
+            height: 245px;
+            width: 100%;
+            padding-top: 20px;
+            padding-left: 2px;
+        }
+        #main .hotel-ul{
+            font-size: 14px;
+            color: #fff;
+            margin-left: -30px;
+        }
+        #main .hotel-ul .hotel-li{
+            margin-bottom: 14px;
+        }
+        .hotel-title,.hotel-strip,.hotel-num{
+            float: left;
+        }
+        #main .hotel-num{
+            margin-right: 28px;
+            float: right;
+            color:#15c0ff;
+            text-align: end;
+        }
+        #main .hotel-li .hotel-title{
+            width: 100px;
+            text-align: end;
+            margin-right: 20px;
+        }
+        #main .hotel-li .hotel-strip{
+            height: 14px;
+            width: 80px;
+            background: #15c0ff;
+            margin-right: 20px;
+            margin-top: 4px;
+        }
+        #main .hotel-li .hotel-strip.point{
+            background: #15c0ff;
+        }
+        /*revenue-streams*/
+        #main #revenue-streams-chart{
+            width:100%;
+            box-sizing: border-box;
+            height: 294px;
+        }
+        /*bottom-left,bottom-center,bottom-right*/
+        #main .bottom-left,.bottom-center,.bottom-right{
+            width: 601px;
+            height: 417px;
+            background: url('../../img/big-bottom.png');
+            margin-right: 22px;
+        }
+        /*bottom-left*/
+        #main .bottom-left-div{
+            box-sizing: border-box;
+            width: 100%;
+            height:370px;
+            padding-top: 64px;
+            padding-left: 30px;
+            padding-right: 28px;
+        }
+        #main .bottom-left-div li{
+            height: 34px;
+            margin-bottom: 17px;
+            border-bottom: 1px solid #213056;
+        }
+        #main .bottom-left-num,.bottom-left-word,.bottom-left-date,.bottom-left-time{
+            float: left;
+            font-size: 14px;
+        }
+        #main .bottom-left-num{
+            color:#fff;
+            box-sizing: border-box;
+            width: 24px;
+            height:24px;
+            line-height: 24px;
+            border-radius: 50%;
+            background: #7d3cf4;
+            text-align: center;
+            margin-right: 10px;
+        }
+        .bottom-left-word,.bottom-left-date,.bottom-left-time{
+            color:#15c0ff;
+            margin-top: 1px;
+        }
+        .bottom-left-date,.bottom-left-time{
+            float: right;
+        }
+        .bottom-left-date{
+            margin-right: 17px;
+        }
+        #main .bottom-left-div li:first-child .bottom-left-num{
+            background: #d9523f;
+        }
+        #main .bottom-left-div li:first-child .bottom-left-word,
+        #main .bottom-left-div li:first-child .bottom-left-date,
+        #main .bottom-left-div li:first-child .bottom-left-time{
+            color: #fff;
+        }
+        /*bottom-right*/
+        .bottom-right{
+            margin-right: 0;
+        }
+        #bottom-right-chart{
+            height: 370px;
+            width: 100%;
+        }
+        /*bottom-center*/
+        #main .bottom-center .follow-chart{
+            height: 370px;
+            width: 100%;
+            padding-top: 66px;
+            padding-left: 34px;
+        }
+        #main .hot-ul{
+            font-size: 16px;
+            color: #fff;
+        }
+        #main .hot-ul .hot-li{
+            margin-bottom: 16px;
+        }
+        .hot-title,.hot-strip,.hot-num{
+            float: left;
+        }
+        #main .hot-num{
+            color:#208af5;
+        }
+        #main .hot-li .hot-title{
+            width: 100px;
+            text-align: end;
+            margin-right: 20px;
+        }
+        #main .hot-li .hot-strip{
+            height: 16px;
+            width: 80px;
+            border-radius: 0 10px 10px 0;
+            background: #15c0ff;
+            margin-right: 20px;
+            margin-top: 4px;
+        }
+        #main .hot-li .hot-strip.point{
+            background: #15c0ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="container clearfix">
+            <div class="aside-left">椒江旅游大数据平台</div>
+            <div class="header-center">
+                <ul class="clearfix">
+                    <li><a href="../control/control.html">管控中心</a></li>
+                    <li><a href="../operation/operation.html">运维中心</a></li>
+                    <li><a href="../态势中心/come-go-situation.html">态势中心</a></li>
+                    <li><a href="../marketing/revenue-analyze.html">营销中心</a></li>
+                    <li><a href="../舆情中心/public-sentiment-analyze.html">舆情中心</a></li>
+                    <li><a href="bigScreen.html" class="active">可视化大屏</a></li>
+                </ul>
+            </div>
+            <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span> | <span class="user-action">注销</span></div>
+        </div>
+    </div>
+    <div id="main">
+        <div class="top clearfix">
+            <div class="top-left clearfix">
+                <div class="overview">
+                    <img src="../../img/overview.png" alt="">
+                </div>
+                <div class="year">
+                    <div class="big-title">近八个月客流量分析</div>
+                    <div id="year-chart"></div>
+                </div>
+            </div>
+            <div class="top-map">
+                <div class="big-title">客源地分析</div>
+                <div id="top-map-center"></div>
+            </div>
+            <div class="top-right clearfix">
+                <div class="scenic-revenue">
+                    <div class="big-title big-title-lag">景区营收</div>
+                    <div class="buttons">
+                        <button class="btn active">今日营收占比</button>
+                        <button class="btn">本周营收占比</button>
+                        <button class="btn">本月营收占比</button>
+                        <button class="btn">全年营收占比</button>
+                    </div>
+                    <div class="follow-chart">
+                        <ul class="hotel-ul">
+                            <li class="hotel-li clearfix">
+                                <div class="hotel-title">酒店</div>
+                                <div class="hotel-strip point"></div>
+                                <div class="hotel-num">333</div>
+                            </li>
+                            <li class="hotel-li clearfix">
+                                <div class="hotel-title">门票</div>
+                                <div class="hotel-strip point"></div>
+                                <div class="hotel-num"></div>
+                            </li>
+                            <li class="hotel-li clearfix">
+                                <div class="hotel-title">餐饮</div>
+                                <div class="hotel-strip point"></div>
+                                <div class="hotel-num"></div>
+                            </li>
+                            <li class="hotel-li clearfix">
+                                <div class="hotel-title">交通</div>
+                                <div class="hotel-strip"></div>
+                                <div class="hotel-num"></div>
+                            </li>
+                            <li class="hotel-li clearfix">
+                                <div class="hotel-title">纪念品</div>
+                                <div class="hotel-strip"></div>
+                                <div class="hotel-num"></div>
+                            </li>
+                            <li class="hotel-li clearfix">
+                                <div class="hotel-title">其他</div>
+                                <div class="hotel-strip"></div>
+                                <div class="hotel-num"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="revenue-streams">
+                    <div class="big-title big-title-lag">营收来源</div>
+                    <div id="revenue-streams-chart"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom clearfix">
+            <div class="bottom-left">
+                <div class="big-title big-title-lag">景区实时动态</div>
+                <div class="bottom-left-div">
+                    <ul class="bottom-left-ul">
+                        <li class="clearfix">
+                            <div class="bottom-left-num">1</div>
+                            <div class="bottom-left-word">天后宫景区管理员拾到皮包一个，需寻找失主</div>
+                            <div class="bottom-left-time">17:35</div>
+                            <div class="bottom-left-date">2016.9.10</div>
+                        </li>
+                        <li>
+                            <div class="bottom-left-num">2</div>
+                            <div class="bottom-left-word">鱼师庙景区游客过多，需要管控</div>
+                            <div class="bottom-left-time">17:20</div>
+                            <div class="bottom-left-date">2016.9.10</div>
+                        </li>
+                        <li>
+                            <div class="bottom-left-num">3</div>
+                            <div class="bottom-left-word">浪通门景区风浪过大，需疏导游客</div>
+                            <div class="bottom-left-time">15:10</div>
+                            <div class="bottom-left-date">2016.9.10</div>
+                        </li>
+                        <li>
+                            <div class="bottom-left-num">4</div>
+                            <div class="bottom-left-word">甲午岩景区垃圾箱需要清理</div>
+                            <div class="bottom-left-time">13:35</div>
+                            <div class="bottom-left-date">2016.9.10</div>
+                        </li>
+                        <li>
+                            <div class="bottom-left-num">5</div>
+                            <div class="bottom-left-word">帽雨沙景区游客过多，需要管控</div>
+                            <div class="bottom-left-time">10:20</div>
+                            <div class="bottom-left-date">2016.9.10</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-center">
+                <div class="big-title big-title-lag">当前各景点游客分布数</div>
+                <div class="follow-chart">
+                    <ul class="hot-ul">
+                        <li class="hot-li clearfix">
+                            <div class="hot-title">甲午岩</div>
+                            <div class="hot-strip point"></div>
+                            <div class="hot-num">333</div>
+                        </li>
+                        <li class="hot-li clearfix">
+                            <div class="hot-title">少年宫</div>
+                            <div class="hot-strip point"></div>
+                            <div class="hot-num"></div>
+                        </li>
+                        <li class="hot-li clearfix">
+                            <div class="hot-title">垦荒碑</div>
+                            <div class="hot-strip point"></div>
+                            <div class="hot-num"></div>
+                        </li>
+                        <li class="hot-li clearfix">
+                            <div class="hot-title">郎通门</div>
+                            <div class="hot-strip"></div>
+                            <div class="hot-num"></div>
+                        </li>
+                        <li class="hot-li clearfix">
+                            <div class="hot-title">鱼师庙</div>
+                            <div class="hot-strip"></div>
+                            <div class="hot-num"></div>
+                        </li>
+                        <li class="hot-li clearfix">
+                            <div class="hot-title">天后宫</div>
+                            <div class="hot-strip"></div>
+                            <div class="hot-num"></div>
+                        </li>
+                        <li class="hot-li clearfix">
+                            <div class="hot-title">帽雨沙</div>
+                            <div class="hot-strip"></div>
+                            <div class="hot-num"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-right">
+                <div class="big-title big-title-lag">今日游客车辆饱和指数</div>
+                <div id="bottom-right-chart"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../../js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DisGG5S6GStO0Hl5Cz8DtcklcGawcYne"></script>
+    <script src="../../js/echarts.js"></script>
+    <script src="../../js/bigScreen/bigScreenMain.js"></script>
+    <script src="../../js/bigScreen/yearChart.js"></script>
+    <script src="../../js/bigScreen/revenueStreamsChart.js"></script>
+    <script src="../../js/bigScreen/bottomRightChart.js"></script>
+    <script src="../../js/bigScreen/china.js"></script>
+</body>
+</html>

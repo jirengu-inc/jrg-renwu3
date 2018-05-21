@@ -1,0 +1,26 @@
+游客画像
+	app安装切换
+	toolsAppComprehensiveChart
+	toolsAppBoarderChart
+	toolsAppVacationChart
+	toolsAppAgencyChart
+toolsPayChart
+travelMapChart
+travelDaysChart
+travelModeChart
+travelDateChart
+
+
+营收分析
+revenueSituationChart
+proportionOfChart
+concurrentComparisonChart
+variouScenicChart
+tripOrderChart
+ticketOrderChart
+
+
+潜在客源分析
+intentionalTriangleChart
+intentionalBarChart
+intentionalCircularChart

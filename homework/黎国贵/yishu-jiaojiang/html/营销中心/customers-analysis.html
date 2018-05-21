@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>营销中心-潜在客源分析</title>
+    <style>
+        /*通用样式*/
+        html,body,ul,li{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family:'Microsoft Yahei';
+        }
+        .clearfix:after{
+            content:'';
+            display:block;
+            clear:both;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .container{
+            width:1200px;
+            margin:0 auto;
+        }
+        /*图标样式*/
+        @font-face {
+            font-family: 'iconfont';
+            src: url('http://at.alicdn.com/t/font_1473303111_5623772.eot'); /* IE9*/
+            src: url('http://at.alicdn.com/t/font_1473303111_5623772.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('http://at.alicdn.com/t/font_1473303111_5623772.woff') format('woff'), /* chrome、firefox */
+            url('http://at.alicdn.com/t/font_1473303111_5623772.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('http://at.alicdn.com/t/font_1473303111_5623772.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont {
+            font-family:'iconfont';
+            font-style:normal;
+            color:#666;
+        }
+        /*头部*/
+        #header{
+            background-color: #191919;
+        }
+        #header .container{
+            height:50px;
+            line-height: 50px;
+            color:#fff;
+        }
+        #header .aside-left{
+            width: 215px;
+            font-size:14px;
+            float: left;
+            text-align: left;
+        }
+        #header .header-center{
+            float:left;
+        }
+        #header .header-center li{
+            float:left;
+            width:140px;
+            text-align: left;
+        }
+        #header .header-center li a{
+            height: 47px;
+            width:72px;
+            display: block;
+            position:relative;
+            text-align: center;
+            font-size: 14px;
+            color:#fff;
+        }
+        #header .header-center li a:hover{
+            color:#05a07f;
+            border-bottom: 2px solid #05a07f;
+        }
+        #header .aside-right{
+            float: right;
+            text-align: right;
+            font-size:12px;
+        }
+        /*主体*/
+        /*中心标题*/
+        #main .center-title{
+            margin-top: 30px;
+        }
+        #main .center-nav{
+            float:left;
+        }
+        #main .center-nav li{
+            width: 136px;
+            height: 17px;
+            line-height: 17px;
+            text-align: center;
+            float:left;
+            border-right: 2px solid #dedede;
+        }
+        #main .center-nav .last-li{
+            border-right:0;
+        }
+        #main .current-location{
+            float:right;
+            margin-right: 20px;
+            font-size:12px;
+            color:#999;
+        }
+
+        /*通用样式在此分开*/
+        /*主体中心标题*/
+        #main .main-center-title{
+            height: 30px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        #main .main-center-title-hr{
+            width: 50px;
+            margin:0 auto;
+            border-bottom: 1px solid #fb7a53;
+            margin-bottom: 15px;
+        }
+        #main .main-center-title-english{
+            width: 175px;
+            font-size:14px;
+            margin-left: auto;
+            margin-right:auto;
+            margin-bottom: 50px;
+        }
+        /*游客意向分层*/
+        #main .tourist-purpose{
+
+        }
+        /*总的li和title布局*/
+        #main .tourist-purpose>li{
+            float: left;
+            margin-bottom: 60px;
+        }
+        #main .tourist-purpose>li .title{
+            margin-bottom: 20px;
+            font-size:16px;
+        }
+        #main .tourist-purpose-li{
+            height:240px;
+            background-color: red;
+        }
+        /*各个li*/
+        #main .tourist-purpose-first-li{
+            width:370px;
+            margin-right: 60px;
+        }
+        #main .tourist-purpose-first-li .title{
+            margin-left: 20px;
+        }
+        #main .tourist-purpose-second-li{
+            width: 345px;
+            margin-right: 110px;
+        }
+        #main .tourist-purpose-second-li .title{
+            text-align:center;
+        }
+        #main .tourist-purpose-third-li{
+            width: 280px;
+        }
+        /*意向用户兴趣*/
+        /*意向用户关注景区*/
+        #main .purpose-user-focus{
+            width: 580px;
+            height: 230px;
+            float: left;
+            border:1px solid #c4c4c4;
+        }
+        /*意向用户关注景区标题*/
+        #main .purpose-user-focus-title{
+            height:40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #e1e1e1;
+            background-color: #fafafb;
+        }
+        #main .purpose-user-focus-title-l{
+            float:left;
+            margin-left: 20px;
+        }
+        #main .purpose-user-focus-title-r{
+            float:right;
+            margin-right: 20px;
+        }
+        /*意向用户关注景区内容*/
+        #main .purpose-user-focus-content-l{
+            width: 220px;
+            height: 150px;
+            float: left;
+            margin-left: 60px;
+            margin-top: 20px;
+            /*background-color: #ff8800;*/
+        }
+        #main .purpose-user-focus-content-r{
+            width: 220px;
+            height: 150px;
+            float: right;
+            margin-left: 60px;
+            margin-top: 20px;
+            /*background-color: #ff8800;*/
+        }
+        #main .focus-title{
+            height:14px;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+        #main .focus-title-num{
+            width: 14px;
+            height: 14px;
+            float: left;
+            margin-right:20px;
+            background-color: #ff6155;
+            color:#fff;
+            text-align: center;
+            line-height: 14px;
+        }
+        /*意向用户热搜词*/
+        #main .purpose-user-hotSearch{
+            width: 580px;
+            height: 230px;
+            float:right;
+            border:1px solid #c4c4c4;
+        }
+        /*意向用户热搜词标题*/
+        #main .purpose-user-hotSearch-title{
+            height:40px;
+            line-height: 40px;
+            box-sizing: border-box;
+            border-bottom: 1px solid #e1e1e1;
+            background-color: #fafafb;
+        }
+        #main .purpose-user-hotSearch-title-l{
+            float:left;
+            margin-left: 20px;
+        }
+        #main .purpose-user-hotSearch-title-r{
+            float:right;
+            margin-right: 20px;
+        }
+        /*基本客源信息*/
+        /*基本客源信息中心标题*/
+        #main .basicinformation-center-title{
+            height: 30px;
+            margin-top: 60px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        #main .basicinformation-center-title-hr{
+            width: 50px;
+            margin:0 auto;
+            border-bottom: 1px solid #fb7a53;
+            margin-bottom: 15px;
+        }
+        #main .basicinformation-center-title-english{
+            width: 175px;
+            font-size:14px;
+            margin-left: auto;
+            margin-right:auto;
+            margin-bottom: 50px;
+        }
+        /*底部*/
+        #footer{
+            margin-top:50px;
+            background-color: #191919;
+        }
+        #footer .container{
+            height:66px;
+            line-height: 66px;
+            text-align: center;
+            color:#999;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="container clearfix">
+        <div class="aside-left">椒江旅游大数据平台</div>
+        <div class="header-center">
+            <ul class="clearfix">
+                <li><a href="#">操作中心</a></li>
+                <li><a href="#">运维中心</a></li>
+                <li><a href="#">态势中心</a></li>
+                <li><a href="#">营销中心</a></li>
+                <li><a href="#">舆情中心</a></li>
+                <li><a href="#">可视化大屏</a></li>
+            </ul>
+        </div>
+        <div class="aside-right"><span class="user-information">欢迎您，<span class="user-name">admin</span></span>|<span class="user-action">注销</span></div>
+    </div>
+</div>
+<div id="main">
+    <div class="container">
+        <div class="center-title clearfix">
+            <div class="center-nav">
+                <ul class="clearfix">
+                    <li>游客出入态势</li>
+                    <li>游客轨迹态势</li>
+                    <li>景区车船态势</li>
+                    <li class="last-li">WIFI流量感知</li>
+                </ul>
+            </div>
+            <div class="current-location">
+                <span>当前位置</span>:<span class='location'>事态中心</span>><span class="z-location">WIFI流量感知</span>
+            </div>
+        </div>
+        <!--主体中心标题-->
+        <div class="main-center-title">潜在客源分析</div>
+        <hr class="main-center-title-hr">
+        <div class="main-center-title-english">POTENTIAL CUSTOMERS</div>
+        <!--游客意向度分层-->
+        <ul class="tourist-purpose clearfix">
+            <li class="tourist-purpose-first-li">
+                <div class="title">游客意向度客户数分层</div>
+                <div class="tourist-purpose-li"></div>
+            </li>
+            <li class="tourist-purpose-second-li">
+                <div class="title">游客意向度客户数分层</div>
+                <div class="tourist-purpose-li"></div>
+            </li>
+            <li class="tourist-purpose-third-li">
+                <div class="title">意向客源使用平台</div>
+                <div class="tourist-purpose-li"></div>
+            </li>
+        </ul>
+        <!--意向用户兴趣-->
+        <div class="purpose-user-interest clearfix">
+            <!--意向用户关注景区-->
+            <div class="purpose-user-focus">
+                <div class="purpose-user-focus-title clearfix">
+                    <div class="purpose-user-focus-title-l">意向用户关注景区 TOP10</div>
+                    <div class="purpose-user-focus-title-r"><i class="iconfont">&#xe600</i></div>
+                </div>
+                <!--意向用户关注景区内容-->
+                <div class="purpose-user-focus-content clearfix">
+                    <div class="purpose-user-focus-content-l">
+                        <ul>
+                            <li class="focus-title clearfix"><div class="focus-title-num">1</div><div class="focus-title-real">杭州西湖风景名胜区</div></li>
+                            <li class="focus-title clearfix"><div class="focus-title-num">1</div><div class="focus-title-real">杭州西湖风景名胜区</div></li>
+                            <li class="focus-title clearfix"><div class="focus-title-num">1</div><div class="focus-title-real">杭州西湖风景名胜区</div></li>
+                            <li class="focus-title clearfix"><div class="focus-title-num">1</div><div class="focus-title-real">杭州西湖风景名胜区</div></li>
+                            <li class="focus-title clearfix"><div class="focus-title-num">1</div><div class="focus-title-real">杭州西湖风景名胜区</div></li>
+                        </ul>
+                    </div>
+                    <div class="purpose-user-focus-content-r">
+                        <ul>
+                            <li class="focus-title clearfix"><div class="focus-title-num">1</div><div class="focus-title-real">杭州西湖风景名胜区</div></li>
+                            <li class="focus-title clearfix"><div class="focus-title-num">1</div><div class="focus-title-real">杭州西湖风景名胜区</div></li>
+                            <li class="focus-title clearfix"><div class="focus-title-num">1</div><div class="focus-title-real">杭州西湖风景名胜区</div></li>
+                            <li class="focus-title clearfix"><div class="focus-title-num">1</div><div class="focus-title-real">杭州西湖风景名胜区</div></li>
+                            <li class="focus-title clearfix"><div class="focus-title-num">1</div><div class="focus-title-real">杭州西湖风景名胜区</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--意向用户热搜词-->
+            <div class="purpose-user-hotSearch">
+                <div class="purpose-user-hotSearch-title clearfix">
+                    <div class="purpose-user-hotSearch-title-l">意向用户热搜词 TOP7</div>
+                    <div class="purpose-user-hotSearch-title-r"><i class="iconfont">&#xe600</i></div>
+                </div>
+            </div>
+        </div>
+        <!--基本客源信息-->
+        <!--基本客源信息中心标题-->
+        <div class="basicinformation-center-title">基本客源信息</div>
+        <hr class="basicinformation-center-title-hr">
+        <div class="basicinformation-center-title-english">POTENTIAL CUSTOMERS</div>
+    </div>
+</div>
+<div id="footer">
+    <div class="container">
+        Copyright @ 2016 杭州以数科技有限公司
+    </div>
+</div>
+</body>
+</html>
